@@ -264,9 +264,3 @@ This example earned its place. Three findings worth carrying forward:
 ### What this example deliberately leaves unfinished
 
 Several `XX-XX` date placeholders for the federal litigation. This example is a schema demonstration, not a litigation tracker; specific dates and case captions can be filled by an adopter (likely AI Incident Law) when binding to v0.1. The schema validates regardless.
-
-## What this means for the McComb conversation
-
-The brief version: Obligation-First does not flatten Colorado's AI regulatory posture into a single tidy statute record. It models the spine, the litigation, and the policy direction as three separate but related layers, and the gaps it surfaces (overloaded `status`, missing `supersedes`, missing `proposed_replacement_for`) are honest v0.2 work items rather than concealed weaknesses.
-
-For Colorado-based reviewers — Semantic Arts is in Boulder — this is the right level of fidelity. A schema that ignores the litigation and the work group's ADMT proposal would not be a serious model of Colorado AI law as it actually exists right now.
