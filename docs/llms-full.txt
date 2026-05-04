@@ -1,0 +1,175 @@
+# Obligation-First — full LLM context
+
+> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.1.0-draft.
+
+This file is the deeper companion to llms.txt. Where llms.txt gives a one-screen summary, this file is the full context an LLM-powered tool needs to reason about Obligation-First, generate adopter records, or answer detailed questions without scraping.
+
+## Specification
+
+Source of truth: https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md
+
+### Core principles
+
+1. Obligation-first modeling — normative content is mapped through the obligations it creates, interprets, or allocates, not through the text of the source document.
+2. Bind to existing standards — gist for upper ontology, LegalRuleML for deontic operators, Akoma Ntoso / ELI / ECLI / USLM for source-text IRIs. Reference, do not duplicate.
+3. Permanent IRIs — `https://w3id.org/of/v1/` resolves to `https://obligationfirst.org/v1/`. The w3id IRI is canonical.
+4. Small core, explicit extensions — the spine, the proceeding strand, the deontic quartet. Everything else is a downstream extension.
+
+### The four-role spine
+
+| Role | of: term | gist class | What it is |
+|---|---|---|---|
+| Authority | of:Authority | wraps gist:Organization (or subtype: gist:GovernmentOrganization, gist:Court) | The party with interpretive or regulatory power |
+| Container | of:Instrument | gist:Agreement (negotiated) / gist:Specification (promulgated) | The artifact with binding force — a law, agreement, or ruling |
+| Secondary | of:Term | gist:ContractTerm | A clause within an Instrument |
+| Primary | of:Obligation | (deontic quartet — see below) | What the Term creates |
+
+### The proceeding strand
+
+| Role | of: term | gist class |
+|---|---|---|
+| Matter | of:Proceeding | gist:Event (subtype LegalProceeding) |
+| Asserted | of:Allegation | gist:Statement (asserted, unverified) |
+| Decided | of:Determination | gist:Determination |
+
+### The deontic quartet
+
+| of: term | LegalRuleML | gist | Meaning |
+|---|---|---|---|
+| of:Requirement | lrml:Obligation | gist:Requirement | A primary duty to act |
+| of:Restriction | lrml:Prohibition | gist:Restriction | A primary duty to refrain |
+| of:Permission | lrml:Permission | gist:Permission | An authorized capacity to act |
+| of:Reparation | lrml:Reparation | (gist binding TBC) | A secondary duty triggered by violation of a primary obligation |
+
+### Core relations (full list)
+
+- of:issuedBy (Instrument → Authority) — who promulgated the Instrument
+- of:hasTerm (Instrument → Term[]) — composition
+- of:creates (Term → Obligation[]) — the deontic content of a Term
+- of:hasAllegation (Proceeding → Allegation[]) — asserted facts in a matter
+- of:hasDetermination (Proceeding → Determination[]) — rulings issued in a matter
+- of:decides (Determination → Allegation[]) — what the ruling resolved
+- of:disposition (Determination → enum) — confirmed / rejected / partial / dismissed / settled / vacated / issued
+- of:anchors (Determination → Obligation[]) — the Obligation the ruling interprets
+- of:defeats (Term → Term[]) — Term-level override per Lawsky default logic / LegalRuleML §7.4
+- of:supersedes (Instrument → Instrument[]) — post-enactment whole-Instrument replacement
+- of:wouldSupersede (Instrument → Instrument[]) — subjunctive form for proposed Instruments
+- of:executableEncoding (Term | Obligation → typed reference) — pointer to a Catala / Blawx / OpenFisca / other executable encoding
+
+### Instrument lifecycle
+
+`of:status` — closed enum: proposed / enacted / in-force / amended / sunset / repealed / superseded / withdrawn
+`of:enforcement_status` — closed enum: routine / constrained / unsignaled. Default: routine. The cause of a non-routine state is expressed via the proceeding strand, not baked into the enum.
+
+### Authority interface
+
+Every of:Authority requires:
+- organization (gist:Organization or subtype with name)
+- authority_basis (kind: statutory | regulatory | contractual | corporate | judicial; instrument_ref pointing to the Instrument that grants authority)
+- jurisdiction (gist:Jurisdiction with ref)
+
+Recursive: every Authority's right to act traces to an Instrument on the spine. Non-government Authorities (HOAs, tribunals, co-ops, advisory bodies) are handled without special-casing.
+
+### Defeasibility semantics
+
+- Direct: A defeats B → A overrides B in any conflict.
+- Transitive: A defeats B, B defeats C → A defeats C (closure may be computed; explicit relation is authoritative).
+- No mutual defeat: A defeats B + B defeats A is invalid.
+- Cross-Instrument allowed: a Term in Instrument X may defeat a Term in Instrument Y.
+- Inferred conflict is out of scope. of:defeats is asserted, not inferred.
+- Sub-types (rebut vs undercut per LegalRuleML §7.4) deferred to v0.2.
+
+### ExecutableEncoding shape
+
+Polymorphic typed reference:
+- kind: catala | blawx | openfisca | logical-english | l4 | lkif | lrml | other
+- uri (IRI of the encoding artifact)
+- version (optional)
+- engine_version (optional)
+- notes (optional)
+
+A Term or Obligation MAY have multiple executableEncoding references (one per engine).
+
+### Conformance levels
+
+- Level 1 — IRI-only: @id and @type use canonical of: IRIs. @context references obligationfirst.org/v1/.
+- Level 2 — Schema-conformant (recommended): L1 plus every record validates against the appropriate schema.
+- Level 3 — Crosswalk-conformant: L2 plus identifier round-trip with at least one of Akoma Ntoso, ELI, or ECLI.
+
+### Versioning
+
+- Major version increments break adopters. Minor increments are additive. Patch increments are textual.
+- IRI prefix is versioned by major: w3id.org/of/v1/, w3id.org/of/v2/, etc.
+- v1.0 commitment: no breaking changes within v1.x. v2.0 is the only path for breaking changes.
+- v1.x and v2.x will be maintained for 12 months after v2.0 ships.
+
+## Worked examples (full)
+
+### Moffatt v. Air Canada (BCCRT 149) — proceeding strand
+
+Tests: Authority + Proceeding + 2 Allegations + 1 Determination. Common-law anchoring (negligent misrepresentation). Multi-valued decides.
+
+Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/air-canada/README.md
+
+### Colorado SB 24-205 — three-layer reality
+
+Tests:
+- Layer 1 (legislation): 2 Authorities + 1 Instrument (status: enacted, enforcement_status: constrained) + 1 Term + 1 Requirement + 1 Reparation.
+- Layer 2 (enforcement): Proceeding + Allegation + 2 Determinations (federal stay + AG non-enforcement statement).
+- Layer 3 (political direction): 2nd Instrument (status: proposed) with wouldSupersede pointing at SB 24-205. 3rd Authority (Colorado AI Policy Work Group) with non-government authority_basis.
+
+Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/colorado-sb24-205/README.md
+
+### Utah OAIP JIA — joint interpretation
+
+Tests: PubLedge round-trip. Demonstrates that PubLedge → v0.1 adoption is purely additive — @context swap with no semantic loss.
+
+Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/publedge-jia-utah-72/README.md
+
+## Crosswalks
+
+- gist (Semantic Arts): https://github.com/snapsynapse/obligation-first/blob/main/reference/crosswalks/gist.md
+- LegalRuleML 1.0: https://github.com/snapsynapse/obligation-first/blob/main/reference/crosswalks/legalruleml.md
+- Akoma Ntoso (OASIS LegalDocML): https://github.com/snapsynapse/obligation-first/blob/main/reference/crosswalks/akomantoso.md
+- ELI / ECLI: https://github.com/snapsynapse/obligation-first/blob/main/reference/crosswalks/eli-ecli.md
+
+## Adopters
+
+- PubLedge — https://publedge.org/ (joint interpretations) — v0.1 binding planned, additive
+- EveryAILaw — https://everyailaw.com/ (AI laws and obligations) — v0.1 first adopter, smallest lift
+- AI Incident Law — https://aiincidentlaw.org/ (AI-related cases) — v0.1 binding planned, exercises proceeding strand
+
+## Adoption — three steps
+
+1. Reference the canonical @context: set `@context: "https://obligationfirst.org/v1/"` on every record.
+2. Validate against the JSON Schemas at /v1/schema/ for the entity's @type.
+3. Cite obligationfirst.org as the canonical reference.
+
+## Endpoints
+
+- @context: https://obligationfirst.org/v1/context.jsonld
+- Authority schema: https://obligationfirst.org/v1/schema/authority.schema.json
+- Instrument schema: https://obligationfirst.org/v1/schema/instrument.schema.json
+- Term schema: https://obligationfirst.org/v1/schema/term.schema.json
+- Obligation schema: https://obligationfirst.org/v1/schema/obligation.schema.json
+- Proceeding schema: https://obligationfirst.org/v1/schema/proceeding.schema.json
+- Allegation schema: https://obligationfirst.org/v1/schema/allegation.schema.json
+- Determination schema: https://obligationfirst.org/v1/schema/determination.schema.json
+- ExecutableEncoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
+- Sitemap: https://obligationfirst.org/sitemap.xml
+- Atom feed: https://obligationfirst.org/feed.xml
+- Agent capabilities: https://obligationfirst.org/agents.json
+
+## License
+
+- Spec text and reference material: CC BY 4.0
+- Code, schemas, scripts, examples: Apache 2.0
+
+## Repo
+
+https://github.com/snapsynapse/obligation-first
+
+## Contact
+
+- Author: Sam Rogers — https://www.linkedin.com/in/samrogers
+- Publisher: PAICE.work PBC — https://paice.foundation/

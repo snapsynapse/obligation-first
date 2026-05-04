@@ -1,0 +1,8 @@
+# Obligation-First security policy
+# https://obligationfirst.org/.well-known/security.txt
+
+Contact: https://github.com/snapsynapse/obligation-first/issues
+Expires: 2027-05-04T00:00:00Z
+Preferred-Languages: en
+Canonical: https://obligationfirst.org/.well-known/security.txt
+Policy: https://github.com/snapsynapse/obligation-first/blob/main/SECURITY.md
