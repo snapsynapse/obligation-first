@@ -166,6 +166,18 @@
     .canonical-note strong { color: var(--text); }
     .canonical-note a { text-decoration: underline; text-underline-offset: 2px; }
 
+    /* Inline paragraph links (subtitle, hook, footnotes, descriptive prose) —
+       muted-text contexts where accent-on-muted contrast is below 3:1, so rely
+       on non-color affordance per WCAG 1.4.1 (link-in-text-block). */
+    section p a, .hero p a {
+      text-decoration: underline;
+      text-decoration-color: var(--border);
+      text-underline-offset: 2px;
+    }
+    section p a:hover, .hero p a:hover {
+      text-decoration-color: var(--accent-hover);
+    }
+
     section { padding: 4rem 0; }
     section.alt { background: var(--bg-alt); }
 

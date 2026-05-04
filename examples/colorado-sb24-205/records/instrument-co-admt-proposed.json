@@ -1,0 +1,12 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Instrument",
+  "@id": "https://everyailaw.com/instrument/co-admt-proposed",
+  "title": "Proposed ADMT framework (replacement for SB 24-205)",
+  "issuedBy": "https://everyailaw.com/authority/us-co-ai-policy-work-group",
+  "kind": "proposed-statute",
+  "status": "proposed",
+  "wouldSupersede": [
+    "https://everyailaw.com/instrument/co-sb24-205"
+  ]
+}

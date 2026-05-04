@@ -1,0 +1,12 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Term",
+  "@id": "https://everyailaw.com/term/co-sb24-205-1703-duty-of-care",
+  "text": "A developer of a high-risk artificial intelligence system shall use reasonable care to protect consumers from any known or reasonably foreseeable risks of algorithmic discrimination arising from the intended and contracted uses of the high-risk artificial intelligence system.",
+  "section": "§6-1-1703(1)",
+  "parent_instrument": "https://everyailaw.com/instrument/co-sb24-205",
+  "creates": [
+    "https://everyailaw.com/obligation/co-sb24-205-reasonable-care",
+    "https://everyailaw.com/obligation/co-sb24-205-violation-reparation"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Authority",
+  "@id": "https://everyailaw.com/authority/us-co-general-assembly",
+  "organization": {
+    "@type": "gist:GovernmentOrganization",
+    "name": "Colorado General Assembly"
+  },
+  "authority_basis": {
+    "kind": "statutory",
+    "instrument_ref": "https://everyailaw.com/instrument/co-constitution"
+  },
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "us-co"
+  }
+}

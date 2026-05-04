@@ -1,0 +1,24 @@
+{
+  "name": "obligation-first",
+  "version": "0.1.0-draft",
+  "description": "An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist.",
+  "homepage": "https://obligationfirst.org/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snapsynapse/obligation-first.git"
+  },
+  "license": "Apache-2.0 AND CC-BY-4.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-examples.mjs",
+    "test": "npm run validate"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

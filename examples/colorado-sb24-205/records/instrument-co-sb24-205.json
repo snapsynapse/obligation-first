@@ -1,0 +1,18 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Instrument",
+  "@id": "https://everyailaw.com/instrument/co-sb24-205",
+  "title": "Concerning consumer protections in interactions with artificial intelligence systems",
+  "short_title": "Colorado AI Act",
+  "citation": "C.R.S. §6-1-1701 et seq.",
+  "issuedBy": "https://everyailaw.com/authority/us-co-general-assembly",
+  "kind": "statute",
+  "enacted": "2024-05-17",
+  "effective": "2026-06-30",
+  "status": "enacted",
+  "enforcement_status": "constrained",
+  "hasTerm": [
+    "https://everyailaw.com/term/co-sb24-205-1703-duty-of-care"
+  ],
+  "source": "https://leg.colorado.gov/sites/default/files/2024a_205_signed.pdf"
+}

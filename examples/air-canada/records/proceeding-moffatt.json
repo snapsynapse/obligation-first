@@ -1,0 +1,17 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Proceeding",
+  "@id": "https://aiincidentlaw.org/proceeding/moffatt-v-air-canada-2024-bccrt-149",
+  "title": "Moffatt v. Air Canada",
+  "citation": "2024 BCCRT 149",
+  "filed_date": "2024-02-14",
+  "issuedBy": "https://aiincidentlaw.org/authority/ca-bc-bccrt",
+  "hasAllegation": [
+    "https://aiincidentlaw.org/allegation/moffatt-2024-misrep",
+    "https://aiincidentlaw.org/allegation/moffatt-2024-reliance"
+  ],
+  "hasDetermination": [
+    "https://aiincidentlaw.org/determination/moffatt-2024-bccrt-149"
+  ],
+  "source": "https://canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.html"
+}
