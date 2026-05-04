@@ -14,9 +14,9 @@ The good news: it can. The spine handles legislation. The proceeding strand hand
 
 ## Why this is the right test for the schema
 
-Colorado is the home of Semantic Arts. The current legal-and-policy landscape there is widely covered in regulatory commentary, and a schema claiming to model AI law that flattens this situation into "SB 24-205 is enacted" misses the practical reality every Colorado-based reviewer knows. The briefing this example is built from describes the apparent contradiction directly: a live statute, no active rule set for implementing it, federal litigation freezing enforcement, and a policy process aimed at replacement rather than operationalization.
+The current legal-and-policy landscape in Colorado is widely covered in regulatory commentary, and a schema claiming to model AI law that flattens this situation into "SB 24-205 is enacted" misses the practical reality every Colorado-based reviewer knows. The briefing this example is built from describes the apparent contradiction directly: a live statute, no active rule set for implementing it, federal litigation freezing enforcement, and a policy process aimed at replacement rather than operationalization.
 
-That triangulation between *legislation*, *enforcement*, and *political direction* is exactly the reason an obligation-first model matters. Two laws with the same Obligation are commensurable even when their texts differ; the same is true *over time* within one jurisdiction — the Obligation that today's SB 24-205 §6-1-1703 expresses is the comparable unit when evaluating a future ADMT statute, not the literal text.
+That triangulation between *legislation*, *enforcement*, and *political direction* is exactly the reason an obligation-first model matters. Two laws with the same Obligation are commensurable even when their texts differ; the same is true *over time* within one jurisdiction — the Obligation that today's SB 24-205 §6-1-1703 expresses is the comparable unit when evaluating a future ADMT statute, not the literal text. Colorado also happens to be the home of Semantic Arts, creators and stewards of the [gist](https://github.com/semanticarts/gist) upper ontology we're leveraging with this project.
 
 ## Layer 1 — Legislation (the spine)
 
