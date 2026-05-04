@@ -1,0 +1,33 @@
+# Obligation-First Content Provenance Manifest
+#
+# Tracks SHA-256 hashes of canonical Obligation-First content for tamper
+# detection and reproducibility. Run `./scripts/validate-hashes.sh` to verify,
+# or `./scripts/validate-hashes.sh --update` to recompute after intentional
+# edits.
+#
+# Hash mechanism adapted from skill-provenance (https://skillprovenance.dev)
+# and PubLedge. We adopt the integrity pattern, not the full provenance
+# protocol.
+#
+# What gets hashed:
+#   - Spec prose (PROTOCOL.md, PRIOR-ART.md, INTENT.md, ROADMAP.md)
+#   - JSON-LD context (schema/context.jsonld)
+#   - JSON Schemas (schema/*.schema.json)
+#   - Vendored upper ontology snapshot (vendor/gist/*)
+#   - Worked examples (examples/**)
+#   - Crosswalks (reference/crosswalks/*)
+#   - License files
+#
+# What does NOT get hashed:
+#   - This file (MANIFEST.yaml is the control file)
+#   - Workshop scratchpad (_workshop/) — not a stable contract
+#   - Editor / OS artifacts (.DS_Store, etc.)
+#   - Build outputs
+
+bundle: obligation-first
+bundle_version: 0.1.0-draft
+bundle_date: 2026-05-04
+
+# Hashes will be populated by ./scripts/validate-hashes.sh --update
+# once spec content is written.
+files: {}
