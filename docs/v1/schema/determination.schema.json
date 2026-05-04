@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://obligationfirst.org/v1/schema/determination.schema.json",
+  "title": "Determination",
+  "description": "An Authority's ruling about Allegations and/or Obligations. Bound to gist:Determination. A single Proceeding may accumulate multiple Determinations (trial → appeal → reversal); each Determination is a separate authoritative ruling.",
+  "type": "object",
+  "required": ["@type", "@id", "issuedBy", "decides", "disposition"],
+  "properties": {
+    "@context": { "type": ["string", "array", "object"] },
+    "@id": { "type": "string", "format": "uri" },
+    "@type": { "const": "of:Determination" },
+    "issued_date": { "type": "string", "format": "date" },
+    "issuedBy": {
+      "type": "string",
+      "format": "uri",
+      "description": "IRI of the of:Authority that issued the ruling."
+    },
+    "decides": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "minItems": 1,
+      "description": "IRIs of of:Allegation records this Determination resolves. Multi-valued: one ruling can decide multiple Allegations."
+    },
+    "disposition": {
+      "type": "string",
+      "enum": ["confirmed", "rejected", "partial", "dismissed", "settled", "vacated", "issued"],
+      "description": "Closed vocabulary. 'issued' is used when a Determination promulgates an Instrument (e.g., issuance of a JIA) rather than ruling on an Allegation."
+    },
+    "anchors": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "IRIs of of:Obligation records this Determination interprets or applies."
+    },
+    "remedy": {
+      "type": "object",
+      "description": "Unstructured remedy object in v0.1. Typed of:Remedy entity deferred to v0.2.",
+      "additionalProperties": true
+    },
+    "target_instrument": {
+      "type": "string",
+      "format": "uri",
+      "description": "When disposition='issued', the of:Instrument being promulgated."
+    },
+    "notes": { "type": "string" },
+    "source": { "type": "string", "format": "uri" }
+  },
+  "additionalProperties": true
+}

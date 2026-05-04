@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Not found &mdash; Obligation-First</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#a78bfa">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f1117;
+      --bg-alt: #1a1d27;
+      --text: #e1e4ed;
+      --text-muted: #8b90a0;
+      --accent: #a78bfa;
+      --border: #2e3345;
+      --mono: "SF Mono", "Fira Code", Menlo, Consolas, monospace;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; line-height: 1.6; }
+    main { max-width: 560px; text-align: center; }
+    h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    .code { font-family: var(--mono); font-size: 0.95rem; color: var(--accent); padding: 1rem 1.25rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; margin: 1.5rem 0; text-align: left; }
+    .code .key { color: var(--text-muted); }
+    p { color: var(--text-muted); margin-bottom: 1rem; }
+    a { color: var(--accent); text-decoration: underline; }
+    a:hover { color: #c4b5fd; }
+    .home { display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: var(--accent); color: var(--bg); border-radius: 6px; font-weight: 600; text-decoration: none; }
+    .home:hover { background: #c4b5fd; color: var(--bg); }
+  </style>
+</head>
+<body>
+<main>
+  <h1>404</h1>
+  <p>This URI does not resolve to an Obligation-First record or page.</p>
+
+  <div class="code">
+{<br>
+&nbsp;&nbsp;<span class="key">"@type"</span>: <span>"of:Determination"</span>,<br>
+&nbsp;&nbsp;<span class="key">"disposition"</span>: <span>"dismissed"</span>,<br>
+&nbsp;&nbsp;<span class="key">"notes"</span>: <span>"No matching resource. The Allegation that this URL exists has been rejected."</span><br>
+}
+  </div>
+
+  <p>Looking for the spec? <a href="https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md">PROTOCOL.md</a>.<br>
+  Looking for the @context? <a href="/v1/context.jsonld">/v1/context.jsonld</a>.</p>
+
+  <a href="https://obligationfirst.org/" class="home">Return to obligationfirst.org</a>
+</main>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://obligationfirst.org/v1/schema/allegation.schema.json",
+  "title": "Allegation",
+  "description": "An asserted but unverified factual claim within a Proceeding. Bound to gist:Statement. The alleged-vs-determined distinction is core: an Allegation is what was asserted, not what is true. A Determination resolves it.",
+  "type": "object",
+  "required": ["@type", "@id", "text"],
+  "properties": {
+    "@context": { "type": ["string", "array", "object"] },
+    "@id": { "type": "string", "format": "uri" },
+    "@type": { "const": "of:Allegation" },
+    "text": { "type": "string", "minLength": 1, "description": "The asserted facts in plain language." },
+    "asserted_by": {
+      "type": "string",
+      "description": "Open vocabulary in v0.1 (claimant, plaintiff, complainant, prosecutor, agency, etc.). Closed vocabulary deferred to v0.2."
+    },
+    "related_to": {
+      "type": "string",
+      "format": "uri",
+      "description": "Optional IRI of the AI system, party, or other entity the Allegation concerns."
+    }
+  },
+  "additionalProperties": true
+}

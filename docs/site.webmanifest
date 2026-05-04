@@ -1,0 +1,17 @@
+{
+  "name": "Obligation-First",
+  "short_name": "OF",
+  "description": "An open upper schema for normative content. Bound to Semantic Arts gist.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#a78bfa",
+  "background_color": "#0f1117",
+  "display": "minimal-ui",
+  "start_url": "/"
+}

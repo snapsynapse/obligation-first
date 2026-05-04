@@ -1,0 +1,53 @@
+# Obligation-First
+
+> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist.
+
+Obligation-First is a small, opinionated upper schema and JSON-LD context for normative content. It defines a four-role spine — Authority, Instrument, Term, Obligation — plus a proceeding strand of Proceeding, Allegation, Determination. The deontic quartet (Requirement / Restriction / Permission / Reparation) is aligned with LegalRuleML 1.0. Three projects bind to v0.1: PubLedge (joint interpretations), EveryAILaw (AI laws), AI Incident Law (AI-related cases). Status: v0.1.0-draft, drafting in public.
+
+## Key concepts
+
+- **Spine** — Authority / Instrument / Term / Obligation. Bound to gist:Organization, gist:Agreement or gist:Specification, gist:ContractTerm, and the deontic quartet respectively.
+- **Proceeding strand** — Proceeding (gist:Event) / Allegation (gist:Statement) / Determination (gist:Determination). Models legal matters with epistemic honesty: an Allegation is asserted, not authoritative; a Determination resolves it.
+- **Deontic quartet** — Requirement (lrml:Obligation), Restriction (lrml:Prohibition), Permission, Reparation. Reparation is the secondary obligation triggered when a primary is violated.
+- **Defeasibility** — `of:defeats` predicate expresses cross-Term override (statutory exceptions). Per Lawsky default logic and LegalRuleML §7.4.
+- **Polymorphic executableEncoding** — Optional pointer from a Term to a Catala scope, Blawx ruleset, OpenFisca formula, or other rules-as-code engine.
+- **Recursive Authority basis** — Every Authority's right to act traces to an Instrument on the spine. Handles non-government Authorities (HOAs, tribunals, co-ops) without special-casing.
+
+## Key files
+
+- Specification: https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md
+- Prior-art survey: https://github.com/snapsynapse/obligation-first/blob/main/PRIOR-ART.md
+- Roadmap: https://github.com/snapsynapse/obligation-first/blob/main/ROADMAP.md
+- Changelog: https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md
+- JSON-LD @context: https://obligationfirst.org/v1/context.jsonld
+- JSON Schemas: https://obligationfirst.org/v1/schema/{authority,instrument,term,obligation,proceeding,allegation,determination,executable-encoding}.schema.json
+
+## Worked examples
+
+- Moffatt v. Air Canada — proceeding strand: https://github.com/snapsynapse/obligation-first/blob/main/examples/air-canada/README.md
+- Colorado SB 24-205 — spine: https://github.com/snapsynapse/obligation-first/blob/main/examples/colorado-sb24-205/README.md
+- Utah OAIP JIA — joint interpretation: https://github.com/snapsynapse/obligation-first/blob/main/examples/publedge-jia-utah-72/README.md
+
+## Crosswalks to existing standards
+
+- gist (Semantic Arts): https://github.com/snapsynapse/obligation-first/blob/main/reference/crosswalks/gist.md
+- LegalRuleML: https://github.com/snapsynapse/obligation-first/blob/main/reference/crosswalks/legalruleml.md
+- Akoma Ntoso (OASIS LegalDocML): https://github.com/snapsynapse/obligation-first/blob/main/reference/crosswalks/akomantoso.md
+- ELI / ECLI: https://github.com/snapsynapse/obligation-first/blob/main/reference/crosswalks/eli-ecli.md
+
+## Adopters
+
+- PubLedge — https://publedge.org/ (joint interpretations)
+- EveryAILaw — https://everyailaw.com/ (AI laws and obligations)
+- AI Incident Law — https://aiincidentlaw.org/ (AI-related cases)
+
+## License
+
+- Spec text and reference material: CC BY 4.0
+- Code, schemas, scripts, examples: Apache 2.0
+
+## Contact
+
+- Repo: https://github.com/snapsynapse/obligation-first
+- Author: Sam Rogers — https://www.linkedin.com/in/samrogers
+- Publisher: PAICE.work PBC — https://paice.work/

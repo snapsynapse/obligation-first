@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://obligationfirst.org/v1/schema/proceeding.schema.json",
+  "title": "Proceeding",
+  "description": "A legal matter — case, action, enforcement docket. Bound to gist:Event (subtype LegalProceeding). A Proceeding accumulates Allegations and Determinations over its lifetime.",
+  "type": "object",
+  "required": ["@type", "@id", "title", "issuedBy"],
+  "properties": {
+    "@context": { "type": ["string", "array", "object"] },
+    "@id": { "type": "string", "format": "uri" },
+    "@type": { "const": "of:Proceeding" },
+    "title": { "type": "string", "minLength": 1, "description": "Public matter caption (e.g., 'Moffatt v. Air Canada')." },
+    "citation": { "type": "string", "description": "Reporter citation (e.g., '2024 BCCRT 149') or ECLI." },
+    "filed_date": { "type": "string", "format": "date" },
+    "issuedBy": {
+      "type": "string",
+      "format": "uri",
+      "description": "IRI of the of:Authority hearing the matter."
+    },
+    "hasAllegation": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "IRIs of of:Allegation records in this matter."
+    },
+    "hasDetermination": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "IRIs of of:Determination records in this matter. Multiple Determinations are expected over a Proceeding's lifetime (trial, appeal, reversal)."
+    },
+    "source": { "type": "string", "format": "uri", "description": "Authoritative source URL (court database, official record)." },
+    "ecli_uri": { "type": "string", "format": "uri" }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <title>Obligation-First &mdash; Open upper schema for normative content</title>
+  <meta name="description" content="An open upper schema for laws, cases, and joint interpretations. Bound to Semantic Arts gist. Aligned with LegalRuleML. Three-domain bridge for normative content.">
+  <meta name="keywords" content="obligation-first, legal ontology, regulatory ontology, gist, LegalRuleML, Akoma Ntoso, ELI, ECLI, JSON-LD, normative content, compliance schema, deontic logic, defeasibility">
+  <meta name="author" content="Sam Rogers">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#a78bfa">
+  <link rel="canonical" href="https://obligationfirst.org/">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="/favicon.svg" color="#a78bfa">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="alternate" type="text/plain" href="https://obligationfirst.org/llms.txt" title="LLM-readable summary">
+  <link rel="alternate" type="application/json" href="https://obligationfirst.org/agents.json" title="Agent capabilities">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Obligation-First">
+  <meta property="og:title" content="Obligation-First">
+  <meta property="og:description" content="An open upper schema for normative content. Three-domain bridge for laws, cases, and joint interpretations.">
+  <meta property="og:url" content="https://obligationfirst.org/">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="2026-05-04T00:00:00Z">
+  <meta property="article:modified_time" content="2026-05-04T00:00:00Z">
+  <meta property="article:author" content="Sam Rogers">
+  <meta property="article:publisher" content="https://paice.work/">
+  <meta property="article:section" content="Open Standards">
+  <meta property="article:tag" content="obligation-first">
+  <meta property="article:tag" content="legal-ontology">
+  <meta property="article:tag" content="gist">
+  <meta property="article:tag" content="LegalRuleML">
+  <meta property="article:tag" content="JSON-LD">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Obligation-First">
+  <meta name="twitter:description" content="An open upper schema for normative content. Three-domain bridge for laws, cases, and joint interpretations.">
+  <meta name="twitter:site" content="@snapsynapse">
+  <meta name="twitter:creator" content="@snapsynapse">
+
+  <!-- IndieWeb rel=me -->
+  <link rel="me" href="https://github.com/snapsynapse">
+  <link rel="me" href="https://www.linkedin.com/in/samrogers">
+
+  <!-- JSON-LD: TechArticle -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Obligation-First",
+    "alternativeHeadline": "An open upper schema for normative content",
+    "description": "Obligation-First is a small, opinionated upper schema for laws, cases, and joint interpretations. It defines a four-role spine (Authority / Instrument / Term / Obligation) plus a proceeding strand (Proceeding / Allegation / Determination), bound to the Semantic Arts gist upper ontology and aligned with the LegalRuleML 1.0 deontic operators.",
+    "inLanguage": "en",
+    "url": "https://obligationfirst.org/",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://obligationfirst.org/" },
+    "datePublished": "2026-05-04",
+    "dateModified": "2026-05-04",
+    "author": {
+      "@type": "Person",
+      "name": "Sam Rogers",
+      "url": "https://paice.work/",
+      "affiliation": { "@type": "Organization", "name": "PAICE.work PBC" }
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "PAICE.work PBC",
+      "url": "https://paice.work/"
+    },
+    "keywords": ["obligation-first", "legal ontology", "regulatory ontology", "gist", "LegalRuleML", "Akoma Ntoso", "ELI", "ECLI", "JSON-LD", "deontic logic", "defeasibility"],
+    "isPartOf": { "@type": "CreativeWork", "name": "PAICE.work Open Standards" },
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "copyrightHolder": { "@type": "Organization", "name": "PAICE.work PBC" },
+    "copyrightYear": 2026,
+    "citation": [
+      { "@type": "WebPage", "name": "Semantic Arts gist", "url": "https://www.semanticarts.com/gist/" },
+      { "@type": "WebPage", "name": "LegalRuleML 1.0", "url": "https://docs.oasis-open.org/legalruleml/" },
+      { "@type": "WebPage", "name": "Akoma Ntoso (OASIS LegalDocML)", "url": "https://docs.oasis-open.org/legaldocml/" },
+      { "@type": "WebPage", "name": "PubLedge", "url": "https://publedge.org/" },
+      { "@type": "WebPage", "name": "EveryAILaw", "url": "https://everyailaw.com/" },
+      { "@type": "WebPage", "name": "AI Incident Law", "url": "https://aiincidentlaw.org/" }
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD: DefinedTerm -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    "name": "Obligation-First",
+    "alternateName": ["obligation-first", "of:", "OF"],
+    "description": "An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. Defines a four-role spine — Authority, Instrument, Term, Obligation — plus a proceeding strand of Proceeding, Allegation, Determination. The deontic quartet (Requirement / Restriction / Permission / Reparation) aligns with LegalRuleML 1.0 §5.3.",
+    "url": "https://obligationfirst.org/",
+    "inDefinedTermSet": {
+      "@type": "DefinedTermSet",
+      "name": "PAICE.work Open Standards",
+      "url": "https://paice.work/"
+    },
+    "sameAs": [
+      "https://github.com/snapsynapse/obligation-first"
+    ]
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --bg-alt: #1a1d27;
+      --surface2: #242836;
+      --text: #e1e4ed;
+      --text-muted: #8b90a0;
+      --accent: #a78bfa;
+      --accent-hover: #c4b5fd;
+      --border: #2e3345;
+      --green: #4ecb71;
+      --red: #ff6b6b;
+      --code-bg: #0b0d13;
+      --code-text: #e1e4ed;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mono: "SF Mono", "Fira Code", "Fira Mono", Menlo, Consolas, monospace;
+      --max-width: 960px;
+      --radius: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+    .skip-link { position: absolute; left: -9999px; top: 0; background: var(--accent); color: var(--bg); padding: 0.5rem 1rem; z-index: 100; font-weight: 600; }
+    .skip-link:focus { left: 0; }
+
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+
+    nav { border-bottom: 1px solid var(--border); padding: 1rem 0; position: sticky; top: 0; background: var(--bg); z-index: 10; }
+    nav .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    nav .logo { font-weight: 700; font-size: 1.1rem; color: var(--text); text-decoration: none; letter-spacing: -0.01em; display: inline-flex; align-items: center; gap: 0.55rem; }
+    nav .logo svg { color: var(--accent-hover); flex: 0 0 auto; }
+    nav .logo:hover svg { color: var(--accent); }
+    nav .links { display: flex; align-items: center; gap: 1.5rem; font-size: 0.9rem; }
+    nav .links a { color: var(--text-muted); }
+    nav .links a:hover { color: var(--text); text-decoration: none; }
+
+    .gh-star { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.75rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg-alt); color: var(--text) !important; font-weight: 600; font-size: 0.8rem; transition: border-color 0.1s ease, transform 0.05s ease; }
+    .gh-star:hover { border-color: var(--accent); text-decoration: none; transform: translateY(-1px); }
+    .gh-star svg { flex: 0 0 auto; color: #eab308; }
+    .gh-star span { white-space: nowrap; }
+
+    .byline { font-size: 0.85rem; color: var(--text-muted); margin: 0.75rem 0 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem 0.9rem; align-items: center; justify-content: center; }
+    .byline .sep { color: var(--border); }
+    .byline a { color: var(--text); text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 2px; }
+    .byline a:hover { color: var(--accent-hover); text-decoration-color: var(--accent-hover); }
+    .byline .version { font-family: var(--mono); font-size: 0.7rem; padding: 0.15rem 0.55rem; border-radius: 999px; background: var(--bg-alt); color: var(--accent); border: 1px solid var(--border); }
+
+    .canonical-note { margin-top: 2.5rem; padding: 1rem 1.25rem; background: var(--bg-alt); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; font-size: 0.85rem; color: var(--text-muted); }
+    .canonical-note strong { color: var(--text); }
+    .canonical-note a { text-decoration: underline; text-underline-offset: 2px; }
+
+    section { padding: 4rem 0; }
+    section.alt { background: var(--bg-alt); }
+
+    h1 { font-size: 2.75rem; line-height: 1.15; letter-spacing: -0.02em; font-weight: 800; }
+    h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 1.5rem; letter-spacing: -0.01em; }
+    h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .hero { padding: 5rem 0 4rem; text-align: center; }
+    .hero h1 { margin-bottom: 1rem; }
+    .hero .subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 720px; margin: 0 auto 1.5rem; }
+    .hero .hook { font-size: 1rem; color: var(--text-muted); max-width: 680px; margin: 0 auto 2.5rem; }
+
+    .spine-display { font-family: var(--mono); font-size: 0.95rem; padding: 1.75rem 1rem; background: var(--code-bg); border: 1px solid var(--border); border-radius: var(--radius); color: var(--accent-hover); margin: 1rem 0 2rem; text-align: left; max-width: 720px; margin-left: auto; margin-right: auto; line-height: 1.8; overflow-x: auto; }
+    .spine-display .role { color: var(--accent); }
+    .spine-display .arrow { color: var(--text-muted); }
+    .spine-display .strand { color: var(--green); }
+
+    .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; text-align: left; }
+    .pillar { padding: 1.5rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-alt); }
+    .pillar h3 { color: var(--accent); font-size: 1rem; }
+    .pillar p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0; }
+
+    .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 0.75rem 1.5rem; border-radius: 6px; font-weight: 600; font-size: 0.95rem; transition: background 0.15s, color 0.15s; }
+    .btn-primary { background: var(--accent); color: var(--bg); }
+    .btn-primary:hover { background: var(--accent-hover); text-decoration: none; color: var(--bg); }
+    .btn-secondary { background: transparent; color: var(--accent-hover); border: 1px solid var(--accent); }
+    .btn-secondary:hover { background: var(--accent); color: var(--bg); text-decoration: none; }
+    .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .btn-primary:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+
+    .code-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+    .code-block { text-align: left; }
+    .code-block h3 { font-size: 0.95rem; margin-bottom: 0.75rem; }
+    .code-block .annotation { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.75rem; font-style: italic; }
+
+    pre { background: var(--code-bg); color: var(--code-text); padding: 1.25rem; border-radius: 8px; overflow-x: auto; font-family: var(--mono); font-size: 0.8rem; line-height: 1.5; border: 1px solid var(--border); }
+    code { font-family: var(--mono); font-size: 0.88em; color: var(--accent); }
+
+    table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
+    th, td { text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; vertical-align: top; }
+    th { font-weight: 600; color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    td.entity { font-family: var(--mono); color: var(--accent); white-space: nowrap; font-weight: 600; }
+
+    .adopters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+    .adopter { padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-alt); }
+    .adopter h3 { font-size: 0.95rem; color: var(--accent); margin-bottom: 0.25rem; }
+    .adopter p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .adopter .status { font-family: var(--mono); font-size: 0.7rem; padding: 0.1rem 0.45rem; border-radius: 999px; background: var(--bg); border: 1px solid var(--border); color: var(--text-muted); }
+    .adopter .status.live { color: var(--green); border-color: var(--green); }
+    .adopter .status.planned { color: var(--accent); border-color: var(--accent); }
+
+    footer { border-top: 1px solid var(--border); padding: 2.5rem 0; font-size: 0.85rem; color: var(--text-muted); }
+    .footer-grid { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-meta p { margin-bottom: 0.25rem; }
+    .footer-meta a { text-decoration: underline; text-underline-offset: 2px; }
+    .footer-links a { text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--border); }
+    .footer-links a:hover { text-decoration-color: var(--accent-hover); }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      .hero { padding: 3rem 0 2.5rem; }
+      .pillars, .adopters { grid-template-columns: 1fr; }
+      .code-grid { grid-template-columns: 1fr; }
+      .spine-display { font-size: 0.78rem; padding: 1.1rem 0.75rem; }
+      nav .links { display: none; }
+      nav .links.mobile-compact { display: flex; gap: 0.75rem; }
+      .footer-grid { flex-direction: column; }
+      pre { font-size: 0.75rem; }
+    }
+    @media (max-width: 520px) {
+      nav .links.mobile-compact a:not(.gh-star) { display: none; }
+      nav .container { gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<nav aria-label="Main navigation">
+  <div class="container">
+    <a href="/" class="logo" aria-label="Obligation-First home">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true" focusable="false">
+        <circle cx="16" cy="6" r="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <line x1="16" y1="8" x2="16" y2="11" stroke="currentColor" stroke-width="1"/>
+        <circle cx="16" cy="13" r="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <line x1="16" y1="15" x2="16" y2="18" stroke="currentColor" stroke-width="1"/>
+        <circle cx="16" cy="20" r="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        <line x1="16" y1="22" x2="16" y2="23" stroke="currentColor" stroke-width="1"/>
+        <circle cx="16" cy="26" r="3" fill="currentColor"/>
+      </svg>
+      <span>Obligation-First</span>
+    </a>
+    <div class="links mobile-compact">
+      <a href="#schema">Schema</a>
+      <a href="#bind">Bind</a>
+      <a href="#adopters">Adopters</a>
+      <a href="https://github.com/snapsynapse/obligation-first" class="gh-star" target="_blank" rel="noopener" aria-label="Star snapsynapse/obligation-first on GitHub">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/>
+        </svg>
+        <span>Star on GitHub</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content">
+<section class="hero">
+  <div class="container">
+    <h1>Map the world by obligation, not by text.</h1>
+    <p class="subtitle">An open upper schema for laws, cases, and joint interpretations. Bound to <a href="https://www.semanticarts.com/gist/" target="_blank" rel="noopener">Semantic Arts gist</a>. Aligned with <a href="https://docs.oasis-open.org/legalruleml/" target="_blank" rel="noopener">LegalRuleML</a>.</p>
+    <p class="byline">
+      By <a href="https://www.linkedin.com/in/samrogers" target="_blank" rel="noopener author">Sam Rogers</a>, <a href="https://paice.work/" target="_blank" rel="noopener">PAICE.work PBC</a>
+      <span class="sep">&middot;</span>
+      Published <time datetime="2026-05-04">May 4, 2026</time>
+      <span class="sep">&middot;</span>
+      Updated <time datetime="2026-05-04">May 4, 2026</time>
+      <span class="sep">&middot;</span>
+      <span class="version">v0.1.0-draft</span>
+      <span class="sep">&middot;</span>
+      <a href="https://creativecommons.org/licenses/by/4.0/" rel="license" target="_blank">CC&nbsp;BY&nbsp;4.0</a>
+    </p>
+    <p class="hook">Statutes, cases, and agreements all do the same thing: they create, interpret, or allocate obligations. Obligation-First makes the obligation the unit of comparison &mdash; across jurisdictions, across instruments, across time. Three datasets bind to v0.1: PubLedge, EveryAILaw, AI Incident Law.</p>
+
+    <div class="spine-display" role="img" aria-label="The Obligation-First schema spine and proceeding strand">
+<span class="role">Authority</span> <span class="arrow">&minus;&minus;issues&minus;&rarr;</span> <span class="role">Instrument</span> <span class="arrow">&minus;&minus;has&minus;&rarr;</span> <span class="role">Term</span> <span class="arrow">&minus;&minus;creates&minus;&rarr;</span> <span class="role">Obligation</span>
+                                                              <span class="arrow">|</span>
+                                                              <span class="strand">&hookrightarrow; Proceeding &minus;&rarr; Allegation</span>
+                                                                          <span class="strand">&minus;&rarr; Determination &minus;&rarr; anchors back to Obligation</span>
+    </div>
+
+    <div class="cta-row">
+      <a href="https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md" class="btn btn-primary" target="_blank" rel="noopener">Read the Specification</a>
+      <a href="/v1/context.jsonld" class="btn btn-secondary">Get the @context</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="schema">
+  <div class="container">
+    <h2>What's in v0.1</h2>
+    <p>A small, opinionated upper schema. The spine is lifted from PubLedge; the proceeding strand is the new contribution. Together they cover three domains in one schema.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <h3>Obligation as unit</h3>
+        <p>The schema models normative content by what it requires, not what it says. Two laws with the same Obligation are commensurable even when their texts differ.</p>
+      </div>
+      <div class="pillar">
+        <h3>Bound to gist</h3>
+        <p>Every entity binds to a Semantic Arts gist class. <code>Authority</code> wraps <code>gist:Organization</code>. <code>Determination</code> is <code>gist:Determination</code>. No new upper ontology.</p>
+      </div>
+      <div class="pillar">
+        <h3>Three-domain bridge</h3>
+        <p>Statutes, cases, and joint interpretations ride one schema. A <code>Determination</code> can <code>anchor</code> to an EveryAILaw <code>Term</code> from a PubLedge JIA's <code>Obligation</code>.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">The four-role spine</h3>
+    <table>
+      <thead>
+        <tr><th>Role</th><th>Term</th><th>gist binding</th><th>What it is</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Authority</td><td class="entity">of:Authority</td><td><code>gist:Organization</code></td><td>The party with interpretive or regulatory power. Recursive: every Authority's right traces to an Instrument.</td></tr>
+        <tr><td>Container</td><td class="entity">of:Instrument</td><td><code>gist:Agreement</code> / <code>gist:Specification</code></td><td>The artifact with binding force &mdash; a law, agreement, or ruling.</td></tr>
+        <tr><td>Secondary</td><td class="entity">of:Term</td><td><code>gist:ContractTerm</code></td><td>A clause within an Instrument.</td></tr>
+        <tr><td>Primary</td><td class="entity">of:Obligation</td><td>deontic quartet*</td><td>What the Term creates: <code>Requirement</code>, <code>Restriction</code>, <code>Permission</code>, or <code>Reparation</code>.</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size: 0.85rem; color: var(--text-muted);">*Aligned with <a href="https://docs.oasis-open.org/legalruleml/" target="_blank" rel="noopener">LegalRuleML 1.0</a> &sect;5.3 deontic operators.</p>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">The proceeding strand</h3>
+    <table>
+      <thead>
+        <tr><th>Role</th><th>Term</th><th>gist binding</th><th>What it is</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Matter</td><td class="entity">of:Proceeding</td><td><code>gist:Event</code></td><td>The legal matter &mdash; case, action, or enforcement docket.</td></tr>
+        <tr><td>Asserted</td><td class="entity">of:Allegation</td><td><code>gist:Statement</code></td><td>Asserted but unverified facts. Not authoritative until decided.</td></tr>
+        <tr><td>Decided</td><td class="entity">of:Determination</td><td><code>gist:Determination</code></td><td>An Authority's ruling. Resolves Allegations and anchors to Obligations.</td></tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top: 1.5rem;">The alleged-vs-determined distinction is core. An "event" in a legal matter is alleged until determined; post-ruling, the disposition could go either way. Modeling that as a status flag forces premature classification. Three distinct entity types preserve epistemic honesty: an <code>Allegation</code> is what was asserted; a <code>Determination</code> is what was decided; a <code>Proceeding</code> accumulates both over its lifetime.</p>
+  </div>
+</section>
+
+<section id="bind">
+  <div class="container">
+    <h2>Bind to v0.1</h2>
+    <p>Adopters bind via JSON-LD <code>@context</code>. The IRI prefix is permanent: it will redirect through <code>w3id.org/of/v1/</code> once v0.1 freezes. JSON Schemas validate every entity.</p>
+
+    <div class="code-grid">
+      <div class="code-block">
+        <h3>JSON-LD context</h3>
+<pre>{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Instrument",
+  "@id": "https://everyailaw.com/instrument/co-sb24-205",
+  "title": "Colorado AI Act",
+  "issuedBy": "https://everyailaw.com/authority/us-co-general-assembly",
+  "hasTerm": [
+    "https://everyailaw.com/term/co-sb24-205-1703-duty-of-care"
+  ]
+}</pre>
+        <p class="annotation">Reference the canonical context. Add repo-local extensions in a second context object.</p>
+      </div>
+
+      <div class="code-block">
+        <h3>JSON Schema validation</h3>
+<pre># Each entity has a schema at /v1/schema/
+
+curl https://obligationfirst.org/v1/schema/instrument.schema.json
+curl https://obligationfirst.org/v1/schema/term.schema.json
+curl https://obligationfirst.org/v1/schema/obligation.schema.json
+curl https://obligationfirst.org/v1/schema/proceeding.schema.json
+
+# Validate with any JSON Schema 2020-12 validator</pre>
+        <p class="annotation">Schema-conformant adopters (Level 2) validate every record. Three current adopters target Level 2 for v0.1.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Conformance levels</h3>
+    <table>
+      <thead>
+        <tr><th>Level</th><th>Bar</th><th>Required</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>L1</strong></td><td>IRI-only</td><td><code>@id</code> and <code>@type</code> use canonical <code>of:</code> IRIs. <code>@context</code> references this domain.</td></tr>
+        <tr><td><strong>L2</strong></td><td>Schema-conformant <em>(recommended)</em></td><td>L1 plus every record validates against the appropriate <code>schema/*.schema.json</code>.</td></tr>
+        <tr><td><strong>L3</strong></td><td>Crosswalk-conformant</td><td>L2 plus identifier round-trip with at least one of Akoma Ntoso, ELI, or ECLI where the source jurisdiction publishes one.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="alt" id="adopters">
+  <div class="container">
+    <h2>Adopters</h2>
+    <p>Three projects bind to v0.1. Adoption order &mdash; smallest binding effort first &mdash; lets earlier adopters validate the schema for later ones.</p>
+
+    <div class="adopters">
+      <div class="adopter">
+        <h3><a href="https://publedge.org/" target="_blank" rel="noopener">PubLedge</a></h3>
+        <p>Open recordkeeping protocol for joint interpretations &mdash; JIAs, RMAs, no-action letters.</p>
+        <span class="status planned">v0.1 binding planned</span>
+      </div>
+      <div class="adopter">
+        <h3><a href="https://everyailaw.com/" target="_blank" rel="noopener">EveryAILaw</a></h3>
+        <p>AI law and obligation tracker. First adopter &mdash; smallest lift, validates the schema.</p>
+        <span class="status planned">v0.1 binding first</span>
+      </div>
+      <div class="adopter">
+        <h3><a href="https://aiincidentlaw.org/" target="_blank" rel="noopener">AI Incident Law</a></h3>
+        <p>Public-record corpus of AI-related cases. Exercises the proceeding strand.</p>
+        <span class="status planned">v0.1 binding planned</span>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Worked examples</h3>
+    <p>The repo includes three real-world records round-tripped through v0.1. Each tests a different part of the schema.</p>
+
+    <div class="adopters">
+      <div class="adopter">
+        <h3><a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/air-canada/README.md" target="_blank" rel="noopener">Moffatt v. Air Canada</a></h3>
+        <p>Tribunal claim. Two Allegations, one Determination, common-law anchoring. Tests the proceeding strand.</p>
+      </div>
+      <div class="adopter">
+        <h3><a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/colorado-sb24-205/README.md" target="_blank" rel="noopener">Colorado SB 24-205</a></h3>
+        <p>State AI law &sect;6-1-1703. Two Authorities, one Term, both Requirement and Reparation. Tests the spine.</p>
+      </div>
+      <div class="adopter">
+        <h3><a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/publedge-jia-utah-72/README.md" target="_blank" rel="noopener">Utah OAIP JIA</a></h3>
+        <p>Joint interpretation between Utah OAIP and a regulated party. Tests PubLedge round-trip; binding is purely additive.</p>
+      </div>
+    </div>
+
+    <aside class="canonical-note" role="note">
+      <strong>Canonical reference.</strong> This page describes the live v0.1.0-draft of Obligation-First.
+      Authoritative source is <a href="https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md" target="_blank" rel="noopener">PROTOCOL.md</a> in the GitHub repo. The schema is drafting in public; breaking changes are allowed pre-freeze and recorded in
+      <a href="https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG.md</a>.
+      Last revision: <time datetime="2026-05-04">2026-05-04</time>.
+      <a href="https://github.com/snapsynapse/obligation-first/commits/main/PROTOCOL.md" target="_blank" rel="noopener">Revision history &rarr;</a>
+    </aside>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-meta">
+        <p>Obligation-First v0.1.0-draft &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license" target="_blank">CC BY 4.0</a> (spec) &middot; <a href="https://github.com/snapsynapse/obligation-first/blob/main/LICENSE-APACHE" target="_blank" rel="noopener">Apache 2.0</a> (code)</p>
+        <p>A <a href="https://paice.work/" target="_blank" rel="noopener">PAICE.work PBC</a> open standard by <a href="https://www.linkedin.com/in/samrogers" target="_blank" rel="noopener author">Sam Rogers</a>.</p>
+        <p style="margin-top: 0.5rem;">See also: <a href="https://publedge.org/" target="_blank" rel="noopener">PubLedge</a> &middot; <a href="https://knowledge-as-code.com/" target="_blank" rel="noopener">Knowledge as Code</a> &middot; <a href="https://gracefulboundaries.dev/" target="_blank" rel="noopener">Graceful Boundaries</a></p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/snapsynapse/obligation-first" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md" target="_blank" rel="noopener">Specification</a>
+        <a href="https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a>
+        <a href="https://github.com/snapsynapse/obligation-first/commits/main/PROTOCOL.md" target="_blank" rel="noopener">Revisions</a>
+        <a href="/v1/context.jsonld">@context</a>
+        <a href="/llms.txt">llms.txt</a>
+        <a href="/agents.json">agents.json</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

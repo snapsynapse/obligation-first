@@ -1,0 +1,58 @@
+{
+  "name": "Obligation-First",
+  "description": "An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist.",
+  "version": "v0.1.0-draft",
+  "url": "https://obligationfirst.org/",
+  "publisher": {
+    "name": "PAICE.work PBC",
+    "url": "https://paice.work/"
+  },
+  "license": {
+    "spec": "https://creativecommons.org/licenses/by/4.0/",
+    "code": "https://www.apache.org/licenses/LICENSE-2.0"
+  },
+  "endpoints": {
+    "context": "https://obligationfirst.org/v1/context.jsonld",
+    "schemas": {
+      "authority": "https://obligationfirst.org/v1/schema/authority.schema.json",
+      "instrument": "https://obligationfirst.org/v1/schema/instrument.schema.json",
+      "term": "https://obligationfirst.org/v1/schema/term.schema.json",
+      "obligation": "https://obligationfirst.org/v1/schema/obligation.schema.json",
+      "proceeding": "https://obligationfirst.org/v1/schema/proceeding.schema.json",
+      "allegation": "https://obligationfirst.org/v1/schema/allegation.schema.json",
+      "determination": "https://obligationfirst.org/v1/schema/determination.schema.json",
+      "executable_encoding": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json"
+    },
+    "spec": "https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md",
+    "llms_txt": "https://obligationfirst.org/llms.txt",
+    "sitemap": "https://obligationfirst.org/sitemap.xml",
+    "repo": "https://github.com/snapsynapse/obligation-first"
+  },
+  "capabilities": [
+    "json-ld-context-resolution",
+    "json-schema-validation",
+    "gist-binding",
+    "legalruleml-crosswalk",
+    "akoma-ntoso-iri-compatibility",
+    "eli-ecli-iri-compatibility"
+  ],
+  "concepts": {
+    "spine": {
+      "Authority": "https://obligationfirst.org/v1/schema/authority.schema.json",
+      "Instrument": "https://obligationfirst.org/v1/schema/instrument.schema.json",
+      "Term": "https://obligationfirst.org/v1/schema/term.schema.json",
+      "Obligation": "https://obligationfirst.org/v1/schema/obligation.schema.json"
+    },
+    "proceeding_strand": {
+      "Proceeding": "https://obligationfirst.org/v1/schema/proceeding.schema.json",
+      "Allegation": "https://obligationfirst.org/v1/schema/allegation.schema.json",
+      "Determination": "https://obligationfirst.org/v1/schema/determination.schema.json"
+    },
+    "deontic_quartet": ["Requirement", "Restriction", "Permission", "Reparation"]
+  },
+  "adopters": [
+    { "name": "PubLedge", "url": "https://publedge.org/", "status": "planned" },
+    { "name": "EveryAILaw", "url": "https://everyailaw.com/", "status": "planned" },
+    { "name": "AI Incident Law", "url": "https://aiincidentlaw.org/", "status": "planned" }
+  ]
+}

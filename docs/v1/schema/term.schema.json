@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://obligationfirst.org/v1/schema/term.schema.json",
+  "title": "Term",
+  "description": "A clause within an Instrument. Bound to gist:ContractTerm. A Term creates Obligations and may defeat other Terms.",
+  "type": "object",
+  "required": ["@type", "@id", "text", "parent_instrument"],
+  "properties": {
+    "@context": { "type": ["string", "array", "object"] },
+    "@id": { "type": "string", "format": "uri" },
+    "@type": { "const": "of:Term" },
+    "text": { "type": "string", "minLength": 1, "description": "Canonical text of the clause." },
+    "section": { "type": "string", "description": "Section / article / paragraph identifier within the parent Instrument." },
+    "parent_instrument": {
+      "type": "string",
+      "format": "uri",
+      "description": "IRI of the of:Instrument this Term belongs to."
+    },
+    "creates": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "IRIs of of:Obligation records created by this Term."
+    },
+    "defeats": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "IRIs of of:Term records this Term overrides per defeasibility semantics."
+    },
+    "executableEncoding": {
+      "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json",
+      "description": "Optional pointer to an executable encoding of this Term's logic."
+    },
+    "akn_uri": { "type": "string", "format": "uri" }
+  },
+  "additionalProperties": true
+}

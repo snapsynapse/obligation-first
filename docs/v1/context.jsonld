@@ -1,0 +1,39 @@
+{
+  "_comment": "Obligation-First v1 JSON-LD context. v0.1.0-draft. Spec text in PROTOCOL.md.",
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://w3id.org/of/v1/",
+    "of": "https://w3id.org/of/v1/",
+    "gist": "https://w3id.org/semanticarts/ns/ontology/gist/",
+    "lrml": "http://docs.oasis-open.org/legalruleml/ns/v1.0/",
+    "akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0/",
+    "eli": "http://data.europa.eu/eli/ontology#",
+
+    "Authority":     { "@id": "of:Authority" },
+    "Jurisdiction":  { "@id": "gist:Jurisdiction" },
+
+    "Instrument":    { "@id": "of:Instrument" },
+    "Term":          { "@id": "of:Term" },
+    "Obligation":    { "@id": "of:Obligation" },
+    "Requirement":   { "@id": "of:Requirement" },
+    "Restriction":   { "@id": "of:Restriction" },
+    "Permission":    { "@id": "of:Permission" },
+    "Reparation":    { "@id": "of:Reparation" },
+
+    "Proceeding":    { "@id": "of:Proceeding" },
+    "Allegation":    { "@id": "of:Allegation" },
+    "Determination": { "@id": "of:Determination" },
+
+    "issuedBy":          { "@id": "of:issuedBy",          "@type": "@id" },
+    "hasTerm":           { "@id": "of:hasTerm",           "@type": "@id", "@container": "@set" },
+    "creates":           { "@id": "of:creates",           "@type": "@id", "@container": "@set" },
+    "hasAllegation":     { "@id": "of:hasAllegation",     "@type": "@id", "@container": "@set" },
+    "hasDetermination":  { "@id": "of:hasDetermination",  "@type": "@id", "@container": "@set" },
+    "decides":           { "@id": "of:decides",           "@type": "@id", "@container": "@set" },
+    "disposition":       { "@id": "of:disposition" },
+    "anchors":           { "@id": "of:anchors",           "@type": "@id", "@container": "@set" },
+    "defeats":           { "@id": "of:defeats",           "@type": "@id", "@container": "@set" },
+    "executableEncoding":{ "@id": "of:executableEncoding" },
+    "authorityBasis":    { "@id": "of:authorityBasis" }
+  }
+}

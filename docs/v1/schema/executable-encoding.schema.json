@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json",
+  "title": "ExecutableEncoding",
+  "description": "Polymorphic typed reference to an executable encoding of a Term or Obligation. Lets a Term point at a Catala scope, a Blawx ruleset, an OpenFisca formula, etc., without privileging any one engine.",
+  "type": "object",
+  "required": ["kind", "uri"],
+  "properties": {
+    "kind": {
+      "type": "string",
+      "enum": ["catala", "blawx", "openfisca", "logical-english", "l4", "lkif", "lrml", "other"],
+      "description": "The execution engine the encoding targets. 'other' is allowed for engines not yet in the closed vocabulary; v0.x may expand the enum without breaking changes."
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri",
+      "description": "IRI of the encoding artifact (a Catala scope, a Blawx project, etc.)."
+    },
+    "version": {
+      "type": "string",
+      "description": "Optional version of the encoding (e.g., a git tag or semver string). Pinning is recommended for reproducibility."
+    },
+    "engine_version": {
+      "type": "string",
+      "description": "Optional version of the execution engine the encoding requires."
+    },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": false
+}

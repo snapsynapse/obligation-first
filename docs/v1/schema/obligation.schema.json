@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://obligationfirst.org/v1/schema/obligation.schema.json",
+  "title": "Obligation",
+  "description": "A duty, prohibition, permission, or reparation created by a Term. The deontic quartet (Requirement / Restriction / Permission / Reparation) is aligned with LegalRuleML 1.0 §5.3.",
+  "type": "object",
+  "required": ["@type", "@id", "title", "created_by"],
+  "oneOf": [
+    { "$ref": "#/$defs/Requirement" },
+    { "$ref": "#/$defs/Restriction" },
+    { "$ref": "#/$defs/Permission" },
+    { "$ref": "#/$defs/Reparation" }
+  ],
+  "$defs": {
+    "BaseObligation": {
+      "type": "object",
+      "required": ["@type", "@id", "title", "created_by"],
+      "properties": {
+        "@context": { "type": ["string", "array", "object"] },
+        "@id": { "type": "string", "format": "uri" },
+        "title": { "type": "string", "minLength": 1 },
+        "content": { "type": "string", "description": "Plain-language description of the deontic content." },
+        "created_by": {
+          "type": "string",
+          "format": "uri",
+          "description": "IRI of the of:Term that creates this Obligation."
+        },
+        "duty_holder_type": {
+          "type": "string",
+          "description": "Open vocabulary for who bears the duty (developer, deployer, processor, controller, provider, etc.). Stays repo-local in v0.1."
+        },
+        "trigger": { "type": "string", "description": "Plain-language trigger condition. Stays repo-local in v0.1." },
+        "executableEncoding": {
+          "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json"
+        }
+      }
+    },
+    "Requirement": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseObligation" },
+        {
+          "properties": {
+            "@type": { "const": "of:Requirement" }
+          }
+        }
+      ],
+      "description": "A primary duty to act. Aligned with LegalRuleML lrml:Obligation and gist:Requirement."
+    },
+    "Restriction": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseObligation" },
+        {
+          "properties": {
+            "@type": { "const": "of:Restriction" }
+          }
+        }
+      ],
+      "description": "A primary duty to refrain. Aligned with LegalRuleML lrml:Prohibition and gist:Restriction."
+    },
+    "Permission": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseObligation" },
+        {
+          "properties": {
+            "@type": { "const": "of:Permission" }
+          }
+        }
+      ],
+      "description": "An authorized capacity to act. Aligned with LegalRuleML lrml:Permission and gist:Permission."
+    },
+    "Reparation": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseObligation" },
+        {
+          "type": "object",
+          "required": ["@type", "triggers_on_violation_of"],
+          "properties": {
+            "@type": { "const": "of:Reparation" },
+            "triggers_on_violation_of": {
+              "type": "string",
+              "format": "uri",
+              "description": "IRI of the primary of:Obligation whose violation triggers this Reparation."
+            },
+            "remedy_kind": {
+              "type": "string",
+              "description": "Open vocabulary: civil_penalty, criminal_penalty, injunction, disclosure, restitution, etc."
+            },
+            "enforcement_authority": {
+              "type": "string",
+              "format": "uri",
+              "description": "IRI of the of:Authority empowered to enforce."
+            }
+          }
+        }
+      ],
+      "description": "A secondary duty triggered by violation of a primary obligation. Aligned with LegalRuleML lrml:Reparation. gist binding TBC pending Semantic Arts feedback."
+    }
+  }
+}
