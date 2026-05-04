@@ -33,6 +33,9 @@
     "disposition":       { "@id": "of:disposition" },
     "anchors":           { "@id": "of:anchors",           "@type": "@id", "@container": "@set" },
     "defeats":           { "@id": "of:defeats",           "@type": "@id", "@container": "@set" },
+    "supersedes":        { "@id": "of:supersedes",        "@type": "@id", "@container": "@set" },
+    "wouldSupersede":    { "@id": "of:wouldSupersede",    "@type": "@id", "@container": "@set" },
+    "enforcement_status":{ "@id": "of:enforcement_status" },
     "executableEncoding":{ "@id": "of:executableEncoding" },
     "authorityBasis":    { "@id": "of:authorityBasis" }
   }

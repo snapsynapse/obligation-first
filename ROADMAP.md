@@ -58,9 +58,15 @@ Adds what we deferred from v0.1.
 | 5 | Should we mint our own namespace at w3id.org or stay on obligationfirst.org alone? | When external adopters request a permanent IRI |
 | 6 | Should `of:executableEncoding` be on Term, Obligation, or both? | When first Catala/Blawx encoding lands |
 | 7 | Org structure for the repo (snapsynapse vs new GitHub org) | When first external contributor joins, or Foundation transition |
-| 8 | Enforcement posture distinct from legislative status — `of:enforcement_status` sibling field on Instrument (values: routine / stayed / pending-rulemaking / unsignaled) | Surfaced by Colorado SB 24-205 example: status=enacted but enforcement is federally stayed pending rulemaking. The legislative state and the enforcement posture are different dimensions. |
-| 9 | First-class `of:supersedes` Instrument-to-Instrument relation (distinct from `of:defeats` which is cross-Term) | Surfaced by Colorado SB 24-205 example: when/if the proposed ADMT framework is enacted, it would replace SB 24-205 wholesale, not just override individual Terms. |
-| 10 | `of:proposed_replacement_for` predicate for pre-enactment relationships between a proposed Instrument and the one it would replace | Surfaced by Colorado AI Policy Work Group's endorsed ADMT framework: significant for sensemaking, but has no first-class predicate today. Soft precursor to the eventual `of:supersedes`. |
+## Resolved in v0.1 (originally raised as deferred)
+
+These items were surfaced by the Colorado SB 24-205 example and resolved in v0.1 rather than deferred. Recorded here for audit:
+
+| # | Resolution | Where |
+|---|---|---|
+| R1 | `of:enforcement_status` added to Instrument as a flat closed enum (`routine \| constrained \| unsignaled`). Cause of non-routine state is expressed via the proceeding strand, not baked into the enum. Rationale documented in PROTOCOL.md "Why enforcement cause lives in the proceeding strand". | PROTOCOL.md, schema/instrument.schema.json, schema/context.jsonld |
+| R2 | `of:supersedes` added as Instrument → Instrument relation (post-enactment, array-valued). Does not imply Term-level defeats — those must still be asserted explicitly via `of:defeats`. Rationale documented in PROTOCOL.md "Supersession vs defeasibility". | PROTOCOL.md, schema/instrument.schema.json, schema/context.jsonld |
+| R3 | `of:wouldSupersede` added as the subjunctive form for `proposed` Instruments, parallel to `supersedes`. Migrates to `supersedes` once enactment occurs. | PROTOCOL.md, schema/instrument.schema.json, schema/context.jsonld |
 
 ## Strategic directions
 

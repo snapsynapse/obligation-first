@@ -69,6 +69,7 @@ issuedBy: https://everyailaw.com/authority/us-co-general-assembly
 enacted: 2024-05-17
 effective: 2026-06-30
 status: enacted
+enforcement_status: constrained
 hasTerm:
   - https://everyailaw.com/term/co-sb24-205-1703-duty-of-care
   - https://everyailaw.com/term/co-sb24-205-1707-rebuttable-presumption
@@ -77,10 +78,12 @@ source: https://leg.colorado.gov/sites/default/files/2024a_205_signed.pdf
 akn_uri: https://akn.everyailaw.com/us/co/act/2024/sb-205/main
 notes: >
   Statute remains enacted law as of 2026-05-04. Effective date 2026-06-30
-  remains on the legislative calendar. However, enforcement is presently
-  stayed by federal court order pending completion of rulemaking — see
-  Layer 2 (proceeding strand) below. The status field captures the
-  legislative state only; enforcement posture is modeled separately.
+  remains on the legislative calendar. The two state fields are
+  independent: `status: enacted` describes the legislative state, while
+  `enforcement_status: constrained` flags that primary obligations
+  cannot presently be enforced. The cause of the constraint is
+  expressed via Layer 2 (the proceeding strand) — a federal-court
+  Determination that anchors back to this Instrument's Reparation.
 ```
 
 ### Term — duty of care (§6-1-1703)
@@ -202,7 +205,7 @@ notes: >
 
 ## Layer 3 — Political direction (a second proposed Instrument)
 
-The Colorado AI Policy Work Group's endorsed ADMT replacement framework is itself an Instrument, modeled with `status: proposed`. It does not yet exist as enacted law; it points toward where Colorado may go.
+The Colorado AI Policy Work Group's endorsed ADMT replacement framework is itself an Instrument, modeled with `status: proposed`. It does not yet exist as enacted law; it points toward where Colorado may go. The `wouldSupersede` predicate captures the prospective replacement relationship without overstating it as a present supersession.
 
 ```yaml
 "@context": https://obligationfirst.org/v1/
@@ -211,16 +214,17 @@ The Colorado AI Policy Work Group's endorsed ADMT replacement framework is itsel
 title: "Proposed ADMT framework (replacement for SB 24-205)"
 issuedBy: https://everyailaw.com/authority/us-co-ai-policy-work-group
 status: proposed
+wouldSupersede:
+  - https://everyailaw.com/instrument/co-sb24-205
 notes: >
   Endorsed by Colorado AI Policy Work Group as a replacement for SB 24-205,
   shifting from a high-risk AI governance model toward a privacy-style
   ADMT framework: notice, explanation, human review, correction rights,
   record retention. Not yet introduced as legislation as of 2026-05-04.
-  If enacted, would likely supersede SB 24-205 — see deferred decision
-  in ROADMAP.md regarding `of:supersedes` vs `of:defeats` semantics.
+  If and when enacted, the relation migrates from `wouldSupersede` to
+  `supersedes`, and the predecessor's `status` migrates from `enacted`
+  to `superseded`.
 ```
-
-The schema does not yet have a first-class `of:supersedes` relation distinct from `of:defeats`. This example surfaces that gap explicitly (see [Findings](#findings) below).
 
 ### Authority — Colorado AI Policy Work Group
 
@@ -246,20 +250,24 @@ notes: >
 
 ## Findings
 
-This example earned its place. Three findings worth carrying forward:
-
 ### What the schema handled well
 
 1. **The three-layer reality round-trips cleanly.** Spine = legislation, proceeding strand = enforcement posture, second `status: proposed` Instrument = political direction. No special-casing required.
 2. **The recursive Authority basis paid off.** The Colorado AI Policy Work Group is not a government department; it's a governor-convened advisory body. Its `authority_basis.instrument_ref` points to the executive order that created it. The schema handles this without a "non-government Authority" exception.
 3. **Reparation modeled the right thing.** The §6-1-1703 duty creates a Requirement (use reasonable care). Violation of that Requirement triggers a Reparation (civil penalty enforced by AG). The federal stay does not vacate the Requirement — it constrains the Reparation's `enforcement_authority`'s capacity to act. That distinction is exactly what Reparation as a separate deontic class enables.
 4. **`anchors` from a Determination back to an Obligation worked across repos.** The federal court's stay is a record in AI Incident Law; the Obligation it constrains is a record in EveryAILaw. The IRI binding makes the cross-repo join trivial.
+5. **The split between `status` and `enforcement_status` carried weight.** SB 24-205 is `status: enacted` *and* `enforcement_status: constrained`. Both true, neither contradicting the other. A schema that forced these into a single field would have to either lose information or invent a "stayed-pending-rulemaking" enum value that wouldn't generalize across jurisdictions. The split avoids both.
+6. **`wouldSupersede` is the right verb for pre-enactment.** Asserting `supersedes` would overstate the case (the proposed framework has not yet been enacted, let alone replaced anything). Asserting nothing would lose useful sensemaking signal. The subjunctive predicate captures the relationship at exactly the right strength.
 
-### What the schema didn't handle well — items for v0.2
+### Schema additions this example surfaced and v0.1 absorbed
 
-1. **`Instrument.status` is overloaded.** The current enum (`proposed | enacted | in-force | amended | sunset | repealed | superseded | withdrawn`) describes legislative state only. SB 24-205 is `enacted` with a future effective date, but enforcement is stayed — that's a separate dimension the status field cannot express. **Proposal for v0.2:** introduce `enforcement_status` as a sibling to `status`, with values like `routine | stayed | pending-rulemaking | unsignaled`.
-2. **No first-class `of:supersedes` relation.** When/if the ADMT framework is enacted, it would replace SB 24-205. We have `of:defeats` (cross-Term override per defeasibility), but supersession is whole-Instrument. **Proposal for v0.2:** introduce `of:supersedes` as an Instrument-to-Instrument relation distinct from `of:defeats`.
-3. **No `of:proposed_replacement_for`.** Pre-enactment, the relationship between a proposed Instrument and the existing one it would replace is significant for sensemaking but has no first-class predicate. **Proposal for v0.2:** consider `of:proposed_replacement_for` (Instrument → Instrument) as a soft predecessor to the eventual `of:supersedes`.
+Three additions made it into v0.1 rather than being deferred to v0.2:
+
+- **`of:enforcement_status`** — a closed flat enum (`routine | constrained | unsignaled`) sibling to `of:status`. Independent dimension. The cause of a non-routine state is expressed via the proceeding strand, deliberately not baked into the enum. See PROTOCOL.md "Why enforcement cause lives in the proceeding strand" for the rationale.
+- **`of:supersedes`** — Instrument → Instrument, post-enactment, whole-Instrument replacement. Distinct from `of:defeats` (which is Term-level). Does not imply Term-level defeats automatically.
+- **`of:wouldSupersede`** — the subjunctive form, used by `proposed` Instruments. Migrates to `supersedes` on enactment.
+
+All three are additive. Recorded in CHANGELOG.md and ROADMAP.md "Resolved in v0.1".
 
 ### What this example deliberately leaves unfinished
 

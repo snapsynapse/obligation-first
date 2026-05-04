@@ -62,10 +62,55 @@ A shared upper schema for normative content, expressed as a JSON-LD `@context` a
 | `of:hasAllegation` | Proceeding | Allegation | Asserted facts in a matter |
 | `of:hasDetermination` | Proceeding | Determination | Rulings issued in a matter |
 | `of:decides` | Determination | Allegation | What the ruling resolved |
-| `of:disposition` | Determination | (closed vocab) | confirmed / rejected / partial / dismissed / settled / vacated |
+| `of:disposition` | Determination | (closed vocab) | confirmed / rejected / partial / dismissed / settled / vacated / issued |
 | `of:anchors` | Determination | Obligation | The Obligation the ruling interprets |
-| `of:defeats` | Term | Term | Statutory exception relation (Lawsky default logic) |
+| `of:defeats` | Term | Term | Term-level override (Lawsky default logic, LegalRuleML §7.4) |
+| `of:supersedes` | Instrument | Instrument | Whole-Instrument replacement (post-enactment) |
+| `of:wouldSupersede` | Instrument | Instrument | Whole-Instrument replacement (pre-enactment, subjunctive) |
 | `of:executableEncoding` | Term \| Obligation | (typed reference) | Pointer to a Catala / Blawx / OpenFisca / other executable encoding |
+
+## Instrument lifecycle and enforcement posture
+
+Two fields together describe an Instrument's operating state:
+
+- `of:status` — the legislative state. Closed enum: `proposed | enacted | in-force | amended | sunset | repealed | superseded | withdrawn`.
+- `of:enforcement_status` — whether the Instrument's primary obligations can presently be enforced. Closed enum: `routine | constrained | unsignaled`. Default: `routine` when omitted.
+
+The two are independent. An Instrument may be `enacted` and `routine` (operating normally), `enacted` and `constrained` (a court order, agency posture, or pending rulemaking has paused enforcement), or `proposed` and `unsignaled` (no enforcement question yet applies). Any combination is valid.
+
+### Why enforcement cause lives in the proceeding strand, not in the status enum
+
+`enforcement_status` is deliberately a small flat enum. It does **not** include cause-baked values like `stayed-by-court`, `pending-rulemaking`, `enjoined`, `agency-paused`, etc. The cause of a non-routine enforcement state is expressed via the proceeding strand: a `Determination` (court order, agency statement, executive action) that `anchors` to the affected Obligation.
+
+This separation is deliberate, and the rationale is worth recording because it will be contested:
+
+1. **The spine should describe state. The strand should describe causality.** The spine answers "what is this Instrument's current operating state?" The strand answers "what events affect or interpret it?" Mixing the cause of a state into the state field collapses these layers and makes them harder to query independently.
+
+2. **Cause-baked enums are hostile to enum stability.** Every new cause requires a spec amendment, an enum extension, and an adopter migration. A flat status enum lets the schema stay stable while the proceeding strand absorbs new kinds of constraints — court orders, agency posture statements, legislative pauses, executive action, treaty obligations, emergency declarations — without changing the spine. The set of things that can constrain enforcement is open-ended; the spine should not pretend otherwise.
+
+3. **Multiple causes can constrain at once.** A single Instrument can be enforcement-constrained by both a court order *and* an agency posture statement *and* a legislative review pause, all simultaneously. A scalar status field can carry only one value. The strand can carry many Determinations against the same Obligation, each with its own date, issuer, and source.
+
+4. **Cause provenance lives where causality lives.** A `Determination` already carries `issued_date`, `issuedBy`, `source`, `decides`, and `anchors`. All the metadata needed to evaluate the cause's authority and recency is built in. Inventing parallel cause-substructure on the spine would duplicate the strand.
+
+5. **Decoupling supports cross-jurisdictional comparability.** Two Instruments in different jurisdictions might both be `constrained` for entirely different reasons — one by a federal court order, another by an agency moratorium, a third by a pending statutory amendment. Comparing their enforcement statuses is meaningful precisely because the causes are factored out. Recombining cause and state into one enum forecloses that comparison.
+
+The cost of this separation is one extra hop for adopters who want to display "stayed pending rulemaking" as a single phrase. The benefit is a stable spine and a strand that grows with the world.
+
+## Supersession vs defeasibility
+
+`of:defeats` and `of:supersedes` are different tools for different scopes.
+
+| Predicate | Domain | Range | Scope | When |
+|---|---|---|---|---|
+| `of:defeats` | Term | Term | Cross-Term override within an Obligation graph | Always, when a specific exception applies |
+| `of:supersedes` | Instrument | Instrument | Whole-Instrument replacement | Post-enactment of the superseding Instrument |
+| `of:wouldSupersede` | Instrument | Instrument | Whole-Instrument replacement, subjunctive | Pre-enactment of the prospectively-superseding Instrument |
+
+`of:supersedes` does **not** automatically imply `of:defeats` for child Terms. Adopters MUST assert Term-level defeats explicitly where they matter. This is a deliberate choice: most real supersessions carry savings clauses, transitional provisions, or partially exempted sections, and inferring blanket Term-level defeats from an Instrument-level supersession would steamroll those nuances. Validators MAY warn when a `superseded` Instrument has Terms with no incoming `defeats` from the superseding Instrument's Terms, but MUST NOT infer them.
+
+`of:wouldSupersede` is used by `proposed` (or `amended`-in-flux) Instruments that do not yet have legal force. Once such an Instrument enacts, adopters SHOULD migrate the relation to `of:supersedes` and update the predecessor Instrument's `status` to `superseded`. The historical `wouldSupersede` assertion MAY be retained for audit, but `of:supersedes` is what makes the replacement authoritative.
+
+Both `of:supersedes` and `of:wouldSupersede` are array-valued: a consolidating Instrument can replace several earlier ones.
 
 ## Authority interface
 

@@ -39,7 +39,23 @@
     "status": {
       "type": "string",
       "enum": ["proposed", "enacted", "in-force", "amended", "sunset", "repealed", "superseded", "withdrawn"],
-      "description": "Lifecycle status. v0.1 ships an initial vocabulary; v0.2 may formalize the state machine."
+      "description": "Legislative state. Closed enum. v0.1 ships an initial vocabulary; v0.2 may formalize the state machine."
+    },
+    "enforcement_status": {
+      "type": "string",
+      "enum": ["routine", "constrained", "unsignaled"],
+      "default": "routine",
+      "description": "Whether the Instrument's primary obligations can presently be enforced. Independent from `status`. The cause of a non-routine state is NOT encoded here — causes are expressed via the proceeding strand (a Determination that anchors to the affected Obligation). See PROTOCOL.md 'Why enforcement cause lives in the proceeding strand' for the design rationale."
+    },
+    "supersedes": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "IRIs of of:Instrument records this Instrument has replaced. Post-enactment relation. Does NOT imply Term-level defeats; cross-Term overrides must be asserted explicitly via of:defeats."
+    },
+    "wouldSupersede": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "IRIs of of:Instrument records this Instrument would replace if enacted. Subjunctive — used by proposed or amended-in-flux Instruments. Migrate to `supersedes` once enactment occurs."
     },
     "hasTerm": {
       "type": "array",
