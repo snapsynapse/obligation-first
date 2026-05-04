@@ -58,6 +58,9 @@ Adds what we deferred from v0.1.
 | 5 | Should we mint our own namespace at w3id.org or stay on obligationfirst.org alone? | When external adopters request a permanent IRI |
 | 6 | Should `of:executableEncoding` be on Term, Obligation, or both? | When first Catala/Blawx encoding lands |
 | 7 | Org structure for the repo (snapsynapse vs new GitHub org) | When first external contributor joins, or Foundation transition |
+| 8 | Enforcement posture distinct from legislative status — `of:enforcement_status` sibling field on Instrument (values: routine / stayed / pending-rulemaking / unsignaled) | Surfaced by Colorado SB 24-205 example: status=enacted but enforcement is federally stayed pending rulemaking. The legislative state and the enforcement posture are different dimensions. |
+| 9 | First-class `of:supersedes` Instrument-to-Instrument relation (distinct from `of:defeats` which is cross-Term) | Surfaced by Colorado SB 24-205 example: when/if the proposed ADMT framework is enacted, it would replace SB 24-205 wholesale, not just override individual Terms. |
+| 10 | `of:proposed_replacement_for` predicate for pre-enactment relationships between a proposed Instrument and the one it would replace | Surfaced by Colorado AI Policy Work Group's endorsed ADMT framework: significant for sensemaking, but has no first-class predicate today. Soft precursor to the eventual `of:supersedes`. |
 
 ## Strategic directions
 
