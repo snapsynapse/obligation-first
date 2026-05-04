@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://obligationfirst.org/v1/schema/instrument.schema.json",
+  "title": "Instrument",
+  "description": "An artifact with binding force — a law, regulation, agreement, ruling, or analogous instrument. Bound to gist:Agreement (for negotiated artifacts) or gist:Specification (for promulgated artifacts).",
+  "type": "object",
+  "required": ["@type", "@id", "title", "issuedBy"],
+  "properties": {
+    "@context": { "type": ["string", "array", "object"] },
+    "@id": { "type": "string", "format": "uri" },
+    "@type": { "const": "of:Instrument" },
+    "title": { "type": "string", "minLength": 1 },
+    "short_title": { "type": "string" },
+    "citation": { "type": "string", "description": "Authoritative legal citation (e.g., Bluebook, ELI, ECLI)." },
+    "issuedBy": {
+      "type": "string",
+      "format": "uri",
+      "description": "IRI of the Authority that promulgated this Instrument."
+    },
+    "kind": {
+      "type": "string",
+      "description": "Open vocabulary for Instrument subtype.",
+      "examples": [
+        "statute",
+        "regulation",
+        "executive-order",
+        "agreement",
+        "jia",
+        "rma",
+        "no-action-letter",
+        "advisory-opinion",
+        "private-letter-ruling",
+        "judgment",
+        "consent-decree"
+      ]
+    },
+    "enacted": { "type": "string", "format": "date" },
+    "effective": { "type": "string", "format": "date" },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "enacted", "in-force", "amended", "sunset", "repealed", "superseded", "withdrawn"],
+      "description": "Lifecycle status. v0.1 ships an initial vocabulary; v0.2 may formalize the state machine."
+    },
+    "hasTerm": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "IRIs of of:Term records belonging to this Instrument."
+    },
+    "source": { "type": "string", "format": "uri", "description": "Authoritative source-text URL (PDF, HTML, or canonical hosted version)." },
+    "akn_uri": { "type": "string", "format": "uri", "description": "Akoma Ntoso element IRI when an authoritative encoding exists." },
+    "eli_uri": { "type": "string", "format": "uri", "description": "ELI URI when one exists." }
+  },
+  "additionalProperties": true
+}

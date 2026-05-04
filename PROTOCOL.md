@@ -98,18 +98,110 @@ Obligation-First does not specify a source-text format. It references existing s
 
 When a Term has a canonical source-text representation in any of these, its `@id` should be the standard's IRI.
 
-## Sections to complete before v0.1 freeze
+## Defeasibility semantics
+
+The `of:defeats` predicate expresses a cross-Term override relation: if Term A `defeats` Term B, then where both Terms apply to the same fact pattern, Term A's Obligations take precedence and Term B's Obligations are overridden.
+
+### Precedence rules
+
+1. **Direct defeat:** if `A defeats B`, A overrides B in any conflict.
+2. **Transitive closure:** `defeats` is transitive. If `A defeats B` and `B defeats C`, then `A defeats C`. Adopters MAY compute the transitive closure for query optimization but MUST treat the explicit relation as authoritative.
+3. **No mutual defeat:** `A defeats B` and `B defeats A` is invalid. Validators SHOULD reject mutual defeat at ingest time.
+4. **Cross-Instrument defeat is allowed:** Term A in Instrument X may defeat Term B in Instrument Y. This expresses statutory supersession, regulatory preemption, and treaty-over-statute relations.
+5. **Inferred conflict is out of scope.** `of:defeats` is asserted, not inferred. Adopters that wish to infer defeat from textual or logical analysis MUST emit explicit `of:defeats` relations as the inferred output; the predicate itself does not carry inference semantics.
+
+### Sub-types
+
+LegalRuleML §7.4 distinguishes *rebuttal* (the defeating rule provides an opposite conclusion) from *undercut* (the defeating rule attacks an inferential link). v0.1 does not formalize this distinction — `of:defeats` is binary in v0.1. v0.2 may introduce `of:rebuts` and `of:undercuts` as subproperties of `of:defeats`.
+
+## ExecutableEncoding shape
+
+`of:executableEncoding` is a polymorphic typed reference. Schema at [`schema/executable-encoding.schema.json`](schema/executable-encoding.schema.json). Required fields:
+
+- `kind` — the execution engine (closed vocab: `catala`, `blawx`, `openfisca`, `logical-english`, `l4`, `lkif`, `lrml`, `other`)
+- `uri` — IRI of the encoding artifact
+
+Optional: `version`, `engine_version`, `notes`.
+
+A Term or Obligation MAY have multiple `executableEncoding` references — one per engine. The schema does not constrain which engine adopters use; v0.x can expand the `kind` enum without breaking changes.
+
+## Conformance levels
+
+An adopter binds to Obligation-First v0.1 at one of three levels:
+
+### Level 1 — IRI-only
+
+The adopter publishes records using `of:` IRIs as `@id` and `@type` values, but does not validate against the JSON Schemas. Records are discoverable by any consumer that resolves IRIs.
+
+Required: `@id` and `@type` use canonical `of:` IRIs. JSON-LD `@context` references `https://obligationfirst.org/v1/`.
+
+### Level 2 — Schema-conformant (recommended)
+
+The adopter passes JSON Schema validation for every published record. This is the recommended default.
+
+Required: all of Level 1, plus every record validates against the appropriate `schema/*.schema.json`.
+
+### Level 3 — Crosswalk-conformant
+
+The adopter additionally publishes an `akn_uri` or `eli_uri` for every Instrument that has an authoritative external identifier, and binds Obligations to LegalRuleML deontic operators where applicable.
+
+Required: all of Level 2, plus identifier round-trip with at least one of Akoma Ntoso, ELI, or ECLI where the source jurisdiction publishes one.
+
+The three current adopters (PubLedge, EveryAILaw, AI Incident Law) target Level 2 for v0.1. Level 3 is aspirational; PubLedge will reach it first via existing Akoma Ntoso integrations.
+
+## Versioning policy
+
+Obligation-First follows [Semantic Versioning 2.0.0](https://semver.org/) with the following clarifications:
+
+- **MAJOR** version increments break adopters: any change that would cause a Level 2 adopter's records to fail validation against the new schema, or any IRI relocation that breaks resolution.
+- **MINOR** version increments are additive: new optional fields, new vocabulary entries (e.g., a new `disposition` enum value), new entities, new crosswalks.
+- **PATCH** version increments are textual or clarifying only — no schema or vocabulary changes.
+
+### IRI scheme
+
+The IRI prefix is versioned by major:
+
+- v1.x → `https://w3id.org/of/v1/` (resolves to `https://obligationfirst.org/v1/`)
+- v2.x → `https://w3id.org/of/v2/`
+
+Adopters bind to the major-version IRI, not to a specific minor/patch. A v1.5 record uses `@context: https://w3id.org/of/v1/`, not `https://w3id.org/of/v1.5/`.
+
+### Pre-v0.1 (current)
+
+Drafting in public. Breaking changes allowed. All changes recorded in [CHANGELOG.md](CHANGELOG.md).
+
+### v0.1 freeze
+
+Once v0.1 freezes:
+
+- Breaking changes require a 14-day comment window if any external adopter has bound to the schema
+- The CHANGELOG must call out every breaking change explicitly
+- Each breaking change requires a migration note for adopters
+
+### v1.0 commitment
+
+Once v1.0 ships:
+
+- No breaking changes within v1.x. Period.
+- v2.0 is the only path for breaking changes thereafter.
+- Both v1.x and v2.x will be maintained for at least 12 months after v2.0 ships, to give adopters a transition window.
+
+### Deprecation
+
+A field, vocabulary entry, or relation deprecated in v1.x is removed only in v2.0. Deprecation is announced in the CHANGELOG, in the relevant JSON Schema's `description`, and in `reference/deprecations.md` (created when first needed).
+
+## Sections complete
 
 Status as of 2026-05-04:
 
-- [x] JSON-LD `@context` v1 starter — published at [`schema/context.jsonld`](schema/context.jsonld)
+- [x] JSON-LD `@context` v1 — [`schema/context.jsonld`](schema/context.jsonld)
+- [x] Per-entity JSON Schemas — [`schema/authority`](schema/authority.schema.json), [`instrument`](schema/instrument.schema.json), [`term`](schema/term.schema.json), [`obligation`](schema/obligation.schema.json), [`proceeding`](schema/proceeding.schema.json), [`allegation`](schema/allegation.schema.json), [`determination`](schema/determination.schema.json), [`executable-encoding`](schema/executable-encoding.schema.json)
 - [x] Three worked examples — [Air Canada](examples/air-canada/), [Colorado SB 24-205](examples/colorado-sb24-205/), [Utah JIA](examples/publedge-jia-utah-72/)
 - [x] Crosswalk tables — [gist](reference/crosswalks/gist.md), [LegalRuleML](reference/crosswalks/legalruleml.md), [Akoma Ntoso](reference/crosswalks/akomantoso.md), [ELI/ECLI](reference/crosswalks/eli-ecli.md)
-- [ ] TODO: Per-entity JSON Schemas with required fields (`schema/*.schema.json`)
-- [ ] TODO: Defeasibility semantics — precedence rules, transitive closure formalized
-- [ ] TODO: `executableEncoding` reference shape — formalize the typed reference structure
-- [ ] TODO: Conformance levels — minimum bind vs full bind
-- [ ] TODO: Versioning policy — semver, breaking-change rules
+- [x] Defeasibility semantics
+- [x] `executableEncoding` reference shape
+- [x] Conformance levels
+- [x] Versioning policy
 
 ## Findings from worked examples
 

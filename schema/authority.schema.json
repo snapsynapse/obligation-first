@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://obligationfirst.org/v1/schema/authority.schema.json",
+  "title": "Authority",
+  "description": "An entity with interpretive or regulatory power over Instruments and Proceedings. Bound to gist:Organization (or subtype). Every Authority's right to act traces to an Instrument via authority_basis.",
+  "type": "object",
+  "required": ["@type", "@id", "organization", "authority_basis", "jurisdiction"],
+  "properties": {
+    "@context": { "type": ["string", "array", "object"] },
+    "@id": { "type": "string", "format": "uri" },
+    "@type": { "const": "of:Authority" },
+    "organization": {
+      "type": "object",
+      "required": ["@type", "name"],
+      "properties": {
+        "@type": {
+          "type": "string",
+          "description": "A gist:Organization or subtype IRI (e.g., gist:GovernmentOrganization, gist:Court)",
+          "examples": [
+            "gist:Organization",
+            "gist:GovernmentOrganization",
+            "gist:Court"
+          ]
+        },
+        "name": { "type": "string", "minLength": 1 }
+      }
+    },
+    "authority_basis": {
+      "type": "object",
+      "required": ["kind", "instrument_ref"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["statutory", "regulatory", "contractual", "corporate", "judicial"],
+          "description": "Closed vocabulary describing why the Authority has authority. Statutory = granted by enacted law. Regulatory = delegated by an administrative process. Contractual = granted by agreement. Corporate = granted by bylaws or charter. Judicial = inherent to a court or tribunal."
+        },
+        "instrument_ref": {
+          "type": "string",
+          "format": "uri",
+          "description": "IRI of the Instrument that grants this Authority's right to act."
+        }
+      }
+    },
+    "jurisdiction": {
+      "type": "object",
+      "required": ["@type", "ref"],
+      "properties": {
+        "@type": { "const": "gist:Jurisdiction" },
+        "ref": {
+          "type": "string",
+          "description": "Jurisdiction code (ISO 3166 country, ISO subdivision, or ELI member-state code).",
+          "examples": ["us-co", "ca-bc", "eu", "us"]
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}
