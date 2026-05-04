@@ -89,6 +89,40 @@
   }
   </script>
 
+  <!-- JSON-LD: HowTo — explicit handoff for adopters and agents -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Bind a dataset to Obligation-First v0.1",
+    "description": "Three steps to make any dataset of normative content (laws, cases, joint interpretations) interoperable with Obligation-First adopters.",
+    "totalTime": "PT30M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Reference the canonical @context",
+        "text": "In your dataset's records, set @context to https://obligationfirst.org/v1/ (or use a JSON-LD context array if you also have repo-local extensions).",
+        "url": "https://obligationfirst.org/v1/context.jsonld"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Validate against the JSON Schemas",
+        "text": "Run every record through the JSON Schema for its @type. Eight schemas cover the full vocabulary: Authority, Instrument, Term, Obligation (deontic quartet), Proceeding, Allegation, Determination, ExecutableEncoding.",
+        "url": "https://obligationfirst.org/v1/schema/instrument.schema.json"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Cite obligationfirst.org as the canonical reference",
+        "text": "Reference the canonical URL when documenting the binding. The IRI prefix is permanent and resolves through w3id.org/of/v1/ once v0.1 freezes.",
+        "url": "https://obligationfirst.org/"
+      }
+    ]
+  }
+  </script>
+
   <!-- JSON-LD: DefinedTerm -->
   <script type="application/ld+json">
   {
@@ -291,6 +325,7 @@
 </nav>
 
 <main id="main-content">
+<article itemscope itemtype="https://schema.org/TechArticle">
 <section class="hero">
   <div class="container">
     <h1>Map the world by obligation, not by text.</h1>
@@ -316,8 +351,8 @@
     </div>
 
     <div class="cta-row">
-      <a href="https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md" class="btn btn-primary" target="_blank" rel="noopener">Read the Specification</a>
-      <a href="/v1/context.jsonld" class="btn btn-secondary">Get the @context</a>
+      <a href="https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md" class="btn btn-primary" target="_blank" rel="noopener">Read the v0.1 specification</a>
+      <a href="#bind" class="btn btn-secondary">Bind your dataset in 3 steps</a>
     </div>
   </div>
 </section>
@@ -407,6 +442,13 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
       </div>
     </div>
 
+    <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Three steps to bind a dataset</h3>
+    <ol style="padding-left: 1.5rem; line-height: 1.9; color: var(--text-muted);">
+      <li><strong>Reference the canonical <code>@context</code></strong> — set <code>@context: "https://obligationfirst.org/v1/"</code> on every record. Repo-local extensions go in a second context object.</li>
+      <li><strong>Validate against the JSON Schemas</strong> — run every record through <a href="/v1/schema/">the schema for its <code>@type</code></a>. Schema-conformant adopters (Level 2) pass validation for every published record.</li>
+      <li><strong>Cite <a href="https://obligationfirst.org/">obligationfirst.org</a> as the canonical reference</strong> — adopter sites and documentation should link back. The IRI prefix is permanent.</li>
+    </ol>
+
     <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Conformance levels</h3>
     <table>
       <thead>
@@ -471,6 +513,7 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
     </aside>
   </div>
 </section>
+</article>
 </main>
 
 <footer>

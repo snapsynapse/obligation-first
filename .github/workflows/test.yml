@@ -1,0 +1,68 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate worked-example records against JSON Schemas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate
+        run: npm run validate
+
+  schema-jsonld-resolve:
+    name: Verify @context and schemas resolve at canonical IRIs (post-deploy probe)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: validate
+    steps:
+      - name: Wait briefly for Pages workflow to deploy
+        run: sleep 60
+
+      - name: Probe canonical endpoints
+        run: |
+          set -e
+          urls=(
+            "https://obligationfirst.org/v1/context.jsonld"
+            "https://obligationfirst.org/v1/schema/authority.schema.json"
+            "https://obligationfirst.org/v1/schema/instrument.schema.json"
+            "https://obligationfirst.org/v1/schema/term.schema.json"
+            "https://obligationfirst.org/v1/schema/obligation.schema.json"
+            "https://obligationfirst.org/v1/schema/proceeding.schema.json"
+            "https://obligationfirst.org/v1/schema/allegation.schema.json"
+            "https://obligationfirst.org/v1/schema/determination.schema.json"
+            "https://obligationfirst.org/v1/schema/executable-encoding.schema.json"
+            "https://obligationfirst.org/llms.txt"
+            "https://obligationfirst.org/agents.json"
+            "https://obligationfirst.org/sitemap.xml"
+            "https://obligationfirst.org/robots.txt"
+          )
+          fail=0
+          for u in "${urls[@]}"; do
+            code=$(curl -sI "$u" -o /dev/null -w "%{http_code}")
+            if [ "$code" = "200" ]; then
+              echo "✓ $code  $u"
+            else
+              echo "✗ $code  $u"
+              fail=1
+            fi
+          done
+          exit $fail

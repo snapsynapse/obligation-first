@@ -1,0 +1,58 @@
+name: A11y
+
+# Accessibility audit. Manual + monthly cadence rather than per-push because:
+# (a) the landing page changes infrequently after v0.1
+# (b) the audit needs the deployed live URL, not a local build
+# (c) per-push axe runs would burn CI minutes on no-op PRs.
+on:
+  workflow_dispatch:
+  schedule:
+    # First Monday of every month, 09:00 UTC
+    - cron: "0 9 1-7 * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: axe-core scan against obligationfirst.org
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install puppeteer + axe-core
+        run: |
+          npm install --no-save puppeteer @axe-core/puppeteer
+
+      - name: Run axe scan
+        run: |
+          cat > /tmp/scan.mjs <<'EOF'
+          import puppeteer from "puppeteer";
+          import { AxePuppeteer } from "@axe-core/puppeteer";
+
+          const url = "https://obligationfirst.org/";
+          const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
+          const page = await browser.newPage();
+          await page.goto(url, { waitUntil: "networkidle0" });
+          const results = await new AxePuppeteer(page).analyze();
+          await browser.close();
+
+          const v = results.violations;
+          console.log(`URL:        ${url}`);
+          console.log(`Violations: ${v.length}`);
+          console.log(`Passes:     ${results.passes.length}`);
+          console.log(`Incomplete: ${results.incomplete.length}`);
+          if (v.length > 0) {
+            console.log("");
+            for (const vio of v) {
+              console.log(`  [${vio.impact}] ${vio.id} — ${vio.help} (${vio.nodes.length} nodes)`);
+              console.log(`    ${vio.helpUrl}`);
+            }
+            process.exit(1);
+          }
+          EOF
+          node /tmp/scan.mjs
