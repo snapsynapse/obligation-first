@@ -1,6 +1,6 @@
 # Worked example: Utah Mental Health Chatbot Disclosure JIA
 
-Round-trips PubLedge instrument [`us-ut-oaip-jia-2026-001`](https://github.com/snapsynapse/publedge/blob/main/data/examples/instruments/us-ut-oaip-jia-2026-001.md) through the Obligation-First spine. Tests that an existing PubLedge JIA binds cleanly to v0.1 with a `@context` swap and minimal field changes.
+Round-trips PubLedge instrument `us-ut-oaip-jia-2026-001` through the Obligation-First spine. Tests that an existing PubLedge JIA binds cleanly to v0.1 with a `@context` swap and minimal field changes. The canonical record is maintained in the [PubLedge protocol repo](https://publedge.org/); a mirrored record set is served from [obligationfirst.org/v1/examples/publedge-jia-utah-72/records/](https://obligationfirst.org/v1/examples/publedge-jia-utah-72/records/) so reviewers can fetch and validate the JSON without repo access.
 
 ## Why this example
 

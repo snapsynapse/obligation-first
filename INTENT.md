@@ -9,7 +9,7 @@ tags: [intent, strategy, obligation-first, ontology, gist, standards]
 
 # Obligation-First INTENT
 
-Strategy for the Obligation-First upper schema and the obligationfirst.org canonical home. Subscribes to portfolio-level working hypotheses (see https://github.com/snapsynapse/paice-foundation/blob/main/INTENT.md).
+Strategy for the Obligation-First upper schema and the obligationfirst.org canonical home. Subscribes to portfolio-level working hypotheses maintained by PAICE Foundation (see [paice.foundation](https://paice.foundation/) for the public-facing portfolio; full portfolio INTENT is held privately by the Foundation and is not publicly hosted at this stage).
 
 ## Purpose
 
