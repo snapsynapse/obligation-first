@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Obligation-First — releases and changes</title>
+  <subtitle>Open upper schema for normative content</subtitle>
+  <link href="https://obligationfirst.org/feed.xml" rel="self"/>
+  <link href="https://obligationfirst.org/" rel="alternate"/>
+  <id>https://obligationfirst.org/</id>
+  <updated>2026-05-04T00:00:00Z</updated>
+  <author>
+    <name>Sam Rogers</name>
+    <uri>https://www.linkedin.com/in/samrogers</uri>
+  </author>
+  <rights>CC BY 4.0 (spec) / Apache 2.0 (code)</rights>
+  <generator uri="https://obligationfirst.org/">Obligation-First</generator>
+
+  <entry>
+    <title>v0.1.0-draft published</title>
+    <link href="https://obligationfirst.org/" rel="alternate"/>
+    <id>https://obligationfirst.org/releases/v0.1.0-draft</id>
+    <updated>2026-05-04T00:00:00Z</updated>
+    <published>2026-05-04T00:00:00Z</published>
+    <summary>Initial draft of the Obligation-First v0.1 specification. Four-role spine (Authority / Instrument / Term / Obligation) plus proceeding strand (Proceeding / Allegation / Determination). Bound to Semantic Arts gist. Aligned with LegalRuleML 1.0 deontic operators. Three worked examples: Air Canada, Colorado SB 24-205, Utah JIA. Schema gaps surfaced by Colorado example resolved in v0.1: enforcement_status, supersedes, wouldSupersede.</summary>
+    <category term="release"/>
+    <category term="v0.1"/>
+  </entry>
+</feed>
