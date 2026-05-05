@@ -1,0 +1,15 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Determination",
+  "@id": "https://aiincidentlaw.org/determination/co-sb24-205-stay-order",
+  "issued_date": "2025-12-15",
+  "issuedBy": "https://aiincidentlaw.org/authority/us-co-federal-district-court",
+  "decides": [
+    "https://aiincidentlaw.org/allegation/co-sb24-205-enforcement-challenge"
+  ],
+  "disposition": "confirmed",
+  "anchors": [
+    "https://everyailaw.com/obligation/co-sb24-205-violation-reparation"
+  ],
+  "notes": "The Determination does NOT void the underlying Requirement in §6-1-1703; the Requirement remains in the schema as enacted. What the Determination affects is the enforcement_authority's capacity to act on the Reparation until rulemaking completes. Issued_date is illustrative; the actual order date is to be filled by AI Incident Law from the docket."
+}

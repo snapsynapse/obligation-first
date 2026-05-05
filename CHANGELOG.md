@@ -49,6 +49,23 @@ PubLedge → v0.1 adoption confirmed purely additive — no breaking changes req
 
 All three additions are purely additive — no breaking changes for adopters.
 
+### Added (continued, audit-pass findings)
+
+- 2026-05-04: Audit pass surfaced two more v0.1 schema extensions, both purely additive:
+  - `of:anchors` predicate domain extended from Determination only to also allow Term and Obligation. Term → Term: a JIA term interprets a statutory term. Obligation → Obligation: a re-allocated obligation references its statutory ground. Determination → Obligation case unchanged. Distinct from `of:defeats`: anchors is interpretation without override; defeats is override.
+  - `Determination.decides` `minItems: 1` constraint relaxed. Adjudicative Determinations SHOULD have decides[] populated; administrative Determinations (disposition: `issued`, used when promulgating an Instrument or recording a posture statement) MAY leave it empty. Both cases now validate.
+
+- 2026-05-04: Filled out worked-example record sets to fully back the README narratives.
+  - Colorado: added 6 records (CO AI Policy Work Group Authority, federal district court Authority, federal-litigation Proceeding, enforcement-challenge Allegation, federal-stay Determination, AG non-enforcement-statement Determination). The narrative's Layer 2 (proceeding strand) and Layer 3 (political direction) are now fully realized as JSON.
+  - Utah JIA: created records/ subdirectory with 5 records (OAIP Authority, JIA Instrument, Term, Requirement Obligation, issuance Determination). Previously the example had no JSON records — only the README narrative referencing the upstream PubLedge file. Now the binding has bytes adopters can fetch and validate.
+  - All records pass `npm run validate`. 23/23 valid.
+
+- 2026-05-04: Added directory index pages so `/v1/schema/` and `/v1/examples/` resolve as 200 (previously 404 because GitHub Pages doesn't auto-index). Per-records subdirectories also gain index pages listing each canonical JSON record.
+
+- 2026-05-04: Added IRI resolution conventions section to PROTOCOL.md (MUST resolve / SHOULD resolve / MAY resolve), making clear that gist's per-class IRI 404s are an upstream publishing choice and that worked-example record `@id` values are aspirational adopter URLs.
+
+- 2026-05-04: Three adopter handoff documents added under reference/handoffs/ — everyailaw-binding.md, aiincidentlaw-binding.md, publedge-binding.md. Each describes what real binding entails, not name-only adoption: structured queryability, cross-portfolio joins, schema-validated records. Each ships with a verification checklist and effort estimate.
+
 ### Decisions
 
 - Adoption order: EveryAILaw first, PubLedge second, AI Incident Law third. Smallest binding effort first.

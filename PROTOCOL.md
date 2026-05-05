@@ -62,9 +62,9 @@ A shared upper schema for normative content, expressed as a JSON-LD `@context` a
 | `of:hasAllegation` | Proceeding | Allegation | Asserted facts in a matter |
 | `of:hasDetermination` | Proceeding | Determination | Rulings issued in a matter |
 | `of:decides` | Determination | Allegation | What the ruling resolved |
-| `of:disposition` | Determination | (closed vocab) | confirmed / rejected / partial / dismissed / settled / vacated / issued |
-| `of:anchors` | Determination | Obligation | The Obligation the ruling interprets |
-| `of:defeats` | Term | Term | Term-level override (Lawsky default logic, LegalRuleML §7.4) |
+| `of:disposition` | Determination | (closed vocab) | confirmed / rejected / partial / dismissed / settled / vacated / issued. Adjudicative dispositions (everything except `issued`) require `decides` to be non-empty; `issued` is the administrative form (promulgating an Instrument or recording posture) and may leave `decides` empty. |
+| `of:anchors` | Determination \| Term \| Obligation | Obligation \| Term | Interpretive reference. (1) Determination → Obligation: the ruling interprets the obligation. (2) Term → Term: a JIA term interprets a statutory term. (3) Obligation → Obligation: a re-allocated obligation references its statutory ground. Always asserted, never inferred. |
+| `of:defeats` | Term | Term | Term-level override (Lawsky default logic, LegalRuleML §7.4). Distinct from `anchors`: defeats is override; anchors is interpretation without override. |
 | `of:supersedes` | Instrument | Instrument | Whole-Instrument replacement (post-enactment) |
 | `of:wouldSupersede` | Instrument | Instrument | Whole-Instrument replacement (pre-enactment, subjunctive) |
 | `of:executableEncoding` | Term \| Obligation | (typed reference) | Pointer to a Catala / Blawx / OpenFisca / other executable encoding |

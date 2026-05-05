@@ -1,0 +1,16 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Instrument",
+  "@id": "https://publedge.org/instrument/us-ut-oaip-jia-2026-001",
+  "title": "Utah Mental Health Chatbot Disclosure — Joint Interpretation",
+  "kind": "jia",
+  "issuedBy": "https://publedge.org/authority/us-ut-oaip",
+  "enacted": "2026-04-15",
+  "effective": "2026-04-15",
+  "status": "proposed",
+  "enforcement_status": "unsignaled",
+  "hasTerm": [
+    "https://publedge.org/term/us-ut-oaip-jia-2026-001-1"
+  ],
+  "source": "https://commerce.utah.gov/ai/learning-lab/"
+}

@@ -1,0 +1,17 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Authority",
+  "@id": "https://aiincidentlaw.org/authority/us-co-federal-district-court",
+  "organization": {
+    "@type": "gist:Court",
+    "name": "United States District Court (illustrative — actual venue to be filled by AI Incident Law from the case record)"
+  },
+  "authority_basis": {
+    "kind": "judicial",
+    "instrument_ref": "https://aiincidentlaw.org/instrument/us-constitution-article-iii"
+  },
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "us-co"
+  }
+}
