@@ -2,30 +2,37 @@
 
 ## v0.1.0-draft (current)
 
-**Goal:** lock the design on paper. Ship a coherent spec, three worked examples, and a JSON-LD context. Get external feedback (Semantic Arts, Blawx) before freezing.
+**Goal:** lock the design on paper. Ship a coherent spec, three worked examples, a JSON-LD context, and a live canonical site. Get external feedback (Semantic Arts, Blawx) before freezing.
 
-In progress:
+Done:
 
-- [x] INTENT, README, PRIOR-ART, ROADMAP scaffolding
-- [x] PROTOCOL.md outline with TODO sections
-- [ ] schema/context.jsonld — full v1 context
-- [ ] schema/*.schema.json — JSON Schemas for each entity
-- [ ] vendor/gist/ — pinned snapshot
-- [ ] reference/crosswalks/ — gist, LegalRuleML, Akoma Ntoso, ELI, ECLI
-- [ ] examples/air-canada/ — proceeding strand worked example
-- [ ] examples/colorado-sb24-205/ — spine worked example
-- [ ] examples/publedge-jia-utah-72/ — joint interpretation worked example
-- [ ] McComb / Semantic Arts one-pager extraction
+- [x] INTENT, README, PRIOR-ART, ROADMAP, CHANGELOG, ATTRIBUTION, CONTRIBUTING, SECURITY scaffolding
+- [x] PROTOCOL.md complete — all internal TODOs closed (defeasibility semantics, executableEncoding shape, conformance levels, versioning policy, supersession vs defeasibility, enforcement-cause rationale)
+- [x] schema/context.jsonld — full v1 context published
+- [x] schema/*.schema.json — eight JSON Schemas (Authority, Instrument, Term, Obligation, Proceeding, Allegation, Determination, ExecutableEncoding)
+- [x] vendor/gist/ — pinned snapshot (gist 14.1.0)
+- [x] reference/crosswalks/ — gist, LegalRuleML, Akoma Ntoso, ELI/ECLI
+- [x] examples/air-canada/ — proceeding strand worked example
+- [x] examples/colorado-sb24-205/ — three-layer reality worked example
+- [x] examples/publedge-jia-utah-72/ — joint interpretation worked example
+- [x] examples/*/records/ — 12 canonical JSON record files; 12/12 pass schema validation
+- [x] scripts/validate-examples.mjs + npm run validate
+- [x] McComb / Semantic Arts one-pager drafted at reference/outreach/mccomb-one-pager.md (pending send)
+- [x] Canonical landing site published at https://obligationfirst.org/ — agent-discovery files (llms.txt, llms-full.txt, agents.json, feed.xml, sitemap.xml, robots.txt, security.txt, changelog.html) all dereferencing
+- [x] CI: validation on every push (test.yml), Pages deploy (pages.yml), monthly a11y audit (a11y.yml)
+- [x] Schema additions surfaced by the Colorado example landed in v0.1 — see "Resolved in v0.1" below
 
 ## v0.1 freeze (target: within 90 days)
 
-**Gate:** all PROTOCOL.md TODOs resolved, all three worked examples round-trip, external review feedback incorporated or explicitly deferred.
+**Gate:** external review feedback incorporated or explicitly deferred; first adopter binding live; w3id PR filed.
 
-- [ ] PROTOCOL.md complete
-- [ ] context.jsonld validated against the three worked examples
-- [ ] At least one external reviewer has read and commented (target: Dave McComb / Semantic Arts, Jason Morris / Blawx)
+- [x] PROTOCOL.md complete
+- [x] context.jsonld validated against the three worked examples (npm run validate green)
+- [ ] External reviewer feedback (target: Dave McComb / Semantic Arts on gist binding for Reparation; LegalRuleML community on deontic alignment)
+- [ ] McComb one-pager sent
 - [ ] First adopter (EveryAILaw) has bound to v0.1 in production
-- [ ] CHANGELOG.md captures all changes from -draft to freeze
+- [ ] w3id.org PR filed for permanent `https://w3id.org/of/v1/` IRI
+- [x] CHANGELOG.md captures all changes from -draft to current state
 
 ## v0.2 (target: 6 months after v0.1 freeze)
 
@@ -58,6 +65,11 @@ Adds what we deferred from v0.1.
 | 5 | Should we mint our own namespace at w3id.org or stay on obligationfirst.org alone? | When external adopters request a permanent IRI |
 | 6 | Should `of:executableEncoding` be on Term, Obligation, or both? | When first Catala/Blawx encoding lands |
 | 7 | Org structure for the repo (snapsynapse vs new GitHub org) | When first external contributor joins, or Foundation transition |
+| 11 | Typed `of:Remedy` entity for monetary awards and other Determination consequences (currently unstructured object on Determination) | First adopter that needs structured remedy queries; surfaced by Air Canada example |
+| 12 | Closed party-role vocabulary for `Allegation.asserted_by` (currently free-form string) | First adopter that needs to filter allegations by asserter role; surfaced by Air Canada example |
+| 13 | Symmetric `of:violationOf` relation parallel to `of:creates` for Reparations (currently `triggers_on_violation_of` field on the Reparation itself) | First adopter that needs to query violations from the Obligation side |
+| 14 | LegalRuleML encoding pointer (`of:legalRuleMLEncoding`) parallel to `of:executableEncoding` | First Term that has authoritative LegalRuleML encoding |
+| 15 | Defeasibility sub-types — `of:rebuts` and `of:undercuts` as subproperties of `of:defeats` (per LegalRuleML §7.4 distinction) | First adopter that hits a real rebut-vs-undercut conflict |
 ## Resolved in v0.1 (originally raised as deferred)
 
 These items were surfaced by the Colorado SB 24-205 example and resolved in v0.1 rather than deferred. Recorded here for audit:
