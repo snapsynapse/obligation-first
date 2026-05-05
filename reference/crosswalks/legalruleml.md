@@ -1,6 +1,6 @@
 # Crosswalk: Obligation-First ↔ LegalRuleML 1.0
 
-Mapping Obligation-First's deontic quartet and defeasibility to LegalRuleML 1.0 (OASIS Standard). Source: [LegalRuleML 1.0 spec](https://docs.oasis-open.org/legalruleml/legalruleml-core/v1.0/legalruleml-core-v1.0.html).
+Mapping Obligation-First's deontic quartet and defeasibility to LegalRuleML 1.0 (OASIS Standard). Source: [LegalRuleML at OASIS](https://docs.oasis-open.org/legalruleml/) — entry point for the LegalRuleML Technical Committee's published artifacts (Core spec, Akoma Ntoso integration, dependencies).
 
 ## Why this crosswalk matters
 

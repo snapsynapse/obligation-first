@@ -141,7 +141,7 @@ Adopters and reviewers should know what to expect when they dereference the vari
 These URIs MUST return HTTP 200 with the appropriate content type. They are part of the spec's contract.
 
 - `https://obligationfirst.org/v1/context.jsonld` — the JSON-LD context (`application/ld+json`)
-- `https://obligationfirst.org/v1/schema/*.schema.json` — every published JSON Schema (`application/schema+json` or `application/json`)
+- `https://obligationfirst.org/v1/schema/` — index of every published JSON Schema, with eight per-entity schemas at `authority`, `instrument`, `term`, `obligation`, `proceeding`, `allegation`, `determination`, `executable-encoding` (each `.schema.json`, served as `application/schema+json` or `application/json`)
 - `https://obligationfirst.org/v1/` — namespace landing page (`text/html`)
 
 If any of these 404, the spec is broken. They're CI-verified on every push (see `.github/workflows/test.yml`).

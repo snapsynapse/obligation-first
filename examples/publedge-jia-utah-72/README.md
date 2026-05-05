@@ -77,7 +77,6 @@ PubLedge adopters that need to model JIA lineage or enforcement nuance can do so
 
 ## Reference
 
-Canonical PubLedge instrument lives upstream at:
-[github.com/snapsynapse/publedge/blob/main/data/examples/instruments/us-ut-oaip-jia-2026-001.md](https://github.com/snapsynapse/publedge/blob/main/data/examples/instruments/us-ut-oaip-jia-2026-001.md)
+Canonical PubLedge instrument: identifier `us-ut-oaip-jia-2026-001` in the PubLedge repo at `data/examples/instruments/us-ut-oaip-jia-2026-001.md`. Public web home is [publedge.org](https://publedge.org/) (the spec; per-record URLs become live once PubLedge completes its v0.1 binding — see [reference/handoffs/publedge-binding.md](../../reference/handoffs/publedge-binding.md)).
 
 This worked example demonstrates the binding; the canonical record stays in the PubLedge repo.

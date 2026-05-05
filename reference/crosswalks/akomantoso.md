@@ -1,6 +1,8 @@
 # Crosswalk: Obligation-First ↔ Akoma Ntoso
 
-Mapping Obligation-First entities to Akoma Ntoso source-text elements. Source: [OASIS LegalDocML Akoma Ntoso 1.0](https://docs.oasis-open.org/legaldocml/akn-core/v1.0/akn-core-v1.0-part1-vocabulary.html).
+Mapping Obligation-First entities to Akoma Ntoso source-text elements. Source: [OASIS LegalDocML Akoma Ntoso 1.0 vocabulary](https://docs.oasis-open.org/legaldocml/akn-core/v1.0/akn-core-v1.0-part1-vocabulary.html) (OASIS Standard, 2018).
+
+> **Note on the namespace URI.** The Akoma Ntoso XML namespace `http://docs.oasis-open.org/legaldocml/ns/akn/3.0` is an **identifier**, not a URL — the standard does not publish content at that location, and HTTP fetches return 404. This is the conventional W3C/XML namespace pattern. Tools that need the schema content fetch from the OASIS Standard distribution above; tools that only need to recognize Akoma Ntoso documents match the namespace string.
 
 ## Why this crosswalk matters
 
