@@ -132,6 +132,43 @@ authority:
 
 The `authority_basis` is recursive: the HOA's authority traces to its bylaws, which are themselves an Instrument with provisions. Every Authority's right to act is grounded in an Instrument on the spine.
 
+## IRI resolution conventions
+
+Adopters and reviewers should know what to expect when they dereference the various IRIs in an Obligation-First record. Three classes:
+
+### MUST resolve
+
+These URIs MUST return HTTP 200 with the appropriate content type. They are part of the spec's contract.
+
+- `https://obligationfirst.org/v1/context.jsonld` — the JSON-LD context (`application/ld+json`)
+- `https://obligationfirst.org/v1/schema/*.schema.json` — every published JSON Schema (`application/schema+json` or `application/json`)
+- `https://obligationfirst.org/v1/` — namespace landing page (`text/html`)
+
+If any of these 404, the spec is broken. They're CI-verified on every push (see `.github/workflows/test.yml`).
+
+### SHOULD resolve
+
+Adopter-published record `@id` values SHOULD return HTTP 200. This is Linked Data convention: a reader following `@id` should be able to fetch the record and learn something. Best practice is for the `@id` to be the URL where the JSON is served, with HTML representation available via content negotiation.
+
+When an adopter binds to v0.1, they SHOULD ensure every record they publish (Authorities, Instruments, Terms, Obligations, Proceedings, Allegations, Determinations) resolves at its `@id`. The handoff documents under `reference/handoffs/` describe what this looks like for each current adopter.
+
+### MAY resolve
+
+Upstream-standard class IRIs (gist, LegalRuleML, Akoma Ntoso, ELI, ECLI) MAY or MAY NOT resolve depending on each publisher's policy. Notably:
+
+- **gist namespace** (`https://w3id.org/semanticarts/ns/ontology/gist/`) resolves to a namespace overview page (200).
+- **gist per-class IRIs** (e.g., `https://w3id.org/semanticarts/ns/ontology/gist/GovernmentOrganization`) currently return 404 — Semantic Arts publishes the namespace but not per-class HTML. The vendored Turtle file at `vendor/gist/gistCore.ttl` is the authoritative local reference.
+- **LegalRuleML** publishes per-term IRIs that resolve to the OASIS standard documents.
+- **ELI / ECLI** resolution depends on the member state's implementation.
+
+These are URIs in the technical RDF/JSON-LD sense — globally unique identifiers that don't strictly require HTTP resolution for parsing or validation. Conformance Level 1 adopters are not required to host content at upstream URIs.
+
+### Worked-example records
+
+The records under `examples/*/records/*.json` use `@id` values that point at adopter-domain URLs (everyailaw.com, aiincidentlaw.org, publedge.org). Those URLs are aspirational — they illustrate what each adopter will mint when it binds. Until that binding is live, the JSON bytes for these example records are served from `https://obligationfirst.org/v1/examples/<slug>/records/<file>.json` so reviewers can fetch and validate against the published schemas immediately.
+
+When each adopter completes its binding (see handoff documents), the adopter-domain URLs become the canonical homes; the obligationfirst.org mirror remains for spec-illustration purposes.
+
 ## Source-text compatibility
 
 Obligation-First does not specify a source-text format. It references existing standards:

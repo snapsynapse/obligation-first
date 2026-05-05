@@ -1,0 +1,17 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Authority",
+  "@id": "https://aiincidentlaw.org/authority/ca-bc-bccrt",
+  "organization": {
+    "@type": "gist:Court",
+    "name": "British Columbia Civil Resolution Tribunal"
+  },
+  "authority_basis": {
+    "kind": "judicial",
+    "instrument_ref": "https://aiincidentlaw.org/instrument/bc-civil-resolution-tribunal-act"
+  },
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "ca-bc"
+  }
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <title>Obligation-First v1 namespace</title>
+  <meta name="description" content="The v1 namespace for Obligation-First. JSON-LD context, JSON Schemas, crosswalks, and worked-example records — all dereferenceable.">
+  <meta name="theme-color" content="#a78bfa">
+  <link rel="canonical" href="https://obligationfirst.org/v1/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f1117;
+      --bg-alt: #1a1d27;
+      --text: #e1e4ed;
+      --text-muted: #8b90a0;
+      --accent: #a78bfa;
+      --border: #2e3345;
+      --mono: "SF Mono", "Fira Code", Menlo, Consolas, monospace;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; padding: 3rem 1.5rem; }
+    main { max-width: 760px; margin: 0 auto; }
+    a { color: var(--accent); text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 2px; }
+    a:hover { color: #c4b5fd; text-decoration-color: #c4b5fd; }
+    h1 { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.25rem; font-weight: 700; margin: 2rem 0 0.75rem; letter-spacing: -0.01em; }
+    p { color: var(--text-muted); margin-bottom: 1rem; }
+    .lede { color: var(--text); font-size: 1.05rem; margin-bottom: 2rem; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 1rem; }
+    li:last-child { border-bottom: none; }
+    li code { font-family: var(--mono); font-size: 0.85rem; color: var(--accent); white-space: nowrap; }
+    li .desc { color: var(--text-muted); font-size: 0.9rem; }
+    .nav-back { display: inline-block; margin-bottom: 2rem; font-size: 0.85rem; color: var(--text-muted); text-decoration: none; }
+    .nav-back:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+<main>
+  <a href="/" class="nav-back">&larr; obligationfirst.org</a>
+
+  <h1>v1 namespace</h1>
+  <p class="lede">Stable URIs for the Obligation-First v0.1 specification. Every artifact below dereferences to a real document — schema, crosswalk, or worked-example record. The <code style="font-family: var(--mono); color: var(--accent);">@vocab</code> for the JSON-LD context is <code style="font-family: var(--mono); color: var(--accent);">https://obligationfirst.org/v1/</code>.</p>
+
+  <h2>JSON-LD context</h2>
+  <ul>
+    <li><a href="/v1/context.jsonld"><code>/v1/context.jsonld</code></a> <span class="desc">Canonical context. Adopters reference this URL in their records.</span></li>
+  </ul>
+
+  <h2>JSON Schemas</h2>
+  <ul>
+    <li><a href="/v1/schema/authority.schema.json"><code>/v1/schema/authority.schema.json</code></a> <span class="desc">of:Authority</span></li>
+    <li><a href="/v1/schema/instrument.schema.json"><code>/v1/schema/instrument.schema.json</code></a> <span class="desc">of:Instrument</span></li>
+    <li><a href="/v1/schema/term.schema.json"><code>/v1/schema/term.schema.json</code></a> <span class="desc">of:Term</span></li>
+    <li><a href="/v1/schema/obligation.schema.json"><code>/v1/schema/obligation.schema.json</code></a> <span class="desc">of:Obligation (Requirement / Restriction / Permission / Reparation)</span></li>
+    <li><a href="/v1/schema/proceeding.schema.json"><code>/v1/schema/proceeding.schema.json</code></a> <span class="desc">of:Proceeding</span></li>
+    <li><a href="/v1/schema/allegation.schema.json"><code>/v1/schema/allegation.schema.json</code></a> <span class="desc">of:Allegation</span></li>
+    <li><a href="/v1/schema/determination.schema.json"><code>/v1/schema/determination.schema.json</code></a> <span class="desc">of:Determination</span></li>
+    <li><a href="/v1/schema/executable-encoding.schema.json"><code>/v1/schema/executable-encoding.schema.json</code></a> <span class="desc">Polymorphic executable-encoding reference</span></li>
+  </ul>
+
+  <h2>Worked-example records</h2>
+  <p>Three real records round-tripped through v0.1, served as JSON for direct fetch and validation. The <code style="font-family: var(--mono); color: var(--accent);">@id</code> values inside reference adopter-domain URLs (everyailaw.com, aiincidentlaw.org, publedge.org) — those are aspirational, illustrating what each adopter will mint when binding. The JSON bytes are served here.</p>
+  <ul>
+    <li><a href="/v1/examples/colorado-sb24-205/records/"><code>/v1/examples/colorado-sb24-205/records/</code></a> <span class="desc">7 records — Colorado AI Act, three-layer reality</span></li>
+    <li><a href="/v1/examples/air-canada/records/"><code>/v1/examples/air-canada/records/</code></a> <span class="desc">5 records — Moffatt v. Air Canada, proceeding strand</span></li>
+  </ul>
+
+  <h2>Source-of-truth links</h2>
+  <ul>
+    <li><a href="https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md"><code>PROTOCOL.md</code></a> <span class="desc">The specification</span></li>
+    <li><a href="https://github.com/snapsynapse/obligation-first/tree/main/reference/crosswalks"><code>reference/crosswalks/</code></a> <span class="desc">gist, LegalRuleML, Akoma Ntoso, ELI/ECLI</span></li>
+    <li><a href="https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md"><code>CHANGELOG.md</code></a> <span class="desc">Version history</span></li>
+  </ul>
+</main>
+</body>
+</html>

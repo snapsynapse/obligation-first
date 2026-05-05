@@ -1,0 +1,17 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Authority",
+  "@id": "https://everyailaw.com/authority/us-co-attorney-general",
+  "organization": {
+    "@type": "gist:GovernmentOrganization",
+    "name": "Colorado Attorney General"
+  },
+  "authority_basis": {
+    "kind": "regulatory",
+    "instrument_ref": "https://everyailaw.com/instrument/co-sb24-205"
+  },
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "us-co"
+  }
+}

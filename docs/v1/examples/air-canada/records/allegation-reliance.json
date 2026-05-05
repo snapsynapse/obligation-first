@@ -1,0 +1,7 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Allegation",
+  "@id": "https://aiincidentlaw.org/allegation/moffatt-2024-reliance",
+  "asserted_by": "claimant",
+  "text": "Claimant relied on the chatbot's answer, purchased tickets, and was denied the bereavement discount when he subsequently requested it."
+}

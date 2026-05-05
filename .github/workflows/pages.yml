@@ -21,12 +21,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Sync schema/ → docs/v1/ and imgs/ → docs/imgs/
+      - name: Sync schema/, imgs/, and worked-example records into docs/v1/
         run: |
-          mkdir -p docs/v1/schema docs/imgs
+          mkdir -p docs/v1/schema docs/v1/examples docs/imgs
           cp schema/context.jsonld docs/v1/context.jsonld
           cp schema/*.schema.json docs/v1/schema/
           if [ -d imgs ]; then cp -r imgs/. docs/imgs/; fi
+          # Mirror every example with a records/ subdirectory so JSON
+          # records dereference at obligationfirst.org/v1/examples/<slug>/records/<file>.json
+          for ex in examples/*/; do
+            slug=$(basename "$ex")
+            if [ -d "$ex/records" ]; then
+              mkdir -p "docs/v1/examples/$slug"
+              cp -r "$ex/." "docs/v1/examples/$slug/"
+            fi
+          done
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
