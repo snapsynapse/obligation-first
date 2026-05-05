@@ -65,6 +65,16 @@ The `anchors` field is the cross-portfolio join: a PubLedge JIA's obligations li
 - ✅ The `anchors` field demonstrates cross-portfolio join: PubLedge → EveryAILaw works
 - ✅ Confirms v0.1 adoption path for PubLedge is purely additive
 
+## Applicability of the Instrument lifecycle fields
+
+JIAs are Instruments, so the three Instrument-level fields landed in v0.1 from the Colorado example apply here too — they're just not exercised by this particular example, which models a single proposed JIA in isolation:
+
+- **`status`** — this JIA is `proposed` (per upstream PubLedge). Could move through `enacted` once formally issued, or `superseded` if a later JIA replaces it.
+- **`enforcement_status`** — typically `routine` for a JIA once issued (the parties have agreed to follow it). May be `unsignaled` while the JIA is still proposed. `constrained` is unusual but possible if a later authority disputes the JIA's effect.
+- **`supersedes` / `wouldSupersede`** — directly applicable when a JIA replaces an earlier interpretation. PubLedge's no-action letter pattern in particular tends to chain over time; `supersedes` is the right predicate for that chain once each successor is enacted, with `wouldSupersede` available pre-enactment.
+
+PubLedge adopters that need to model JIA lineage or enforcement nuance can do so on the same spine without extending the schema.
+
 ## Reference
 
 Canonical PubLedge instrument lives upstream at:
