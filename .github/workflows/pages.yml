@@ -21,11 +21,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Sync schema/ → docs/v1/
+      - name: Sync schema/ → docs/v1/ and imgs/ → docs/imgs/
         run: |
-          mkdir -p docs/v1/schema
+          mkdir -p docs/v1/schema docs/imgs
           cp schema/context.jsonld docs/v1/context.jsonld
           cp schema/*.schema.json docs/v1/schema/
+          if [ -d imgs ]; then cp -r imgs/. docs/imgs/; fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
