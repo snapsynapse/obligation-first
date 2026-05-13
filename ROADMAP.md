@@ -27,13 +27,13 @@ Done:
 
 **Gate:** external review feedback incorporated or explicitly deferred; first adopter binding live; w3id PR filed.
 
-Current assessment as of 2026-05-13: local repo deliverables for v0.1 are complete and tests are green. Remaining freeze gates are coordination work outside this repo or require external action. The unblocked internal path is to use Obligation-First as the interstitial contract for the PAICE legal graph and execute adopter bindings in EveryAILaw, then PubLedge, then AI Incident Law.
+Current assessment as of 2026-05-13: local repo deliverables for v0.1 are complete and tests are green. EveryAILaw, PubLedge, and AI Incident Law now publish Obligation-First bindings. Remaining freeze gates are external review, permanent IRI filing, and cross-project anchor enrichment.
 
 - [x] PROTOCOL.md complete
 - [x] context.jsonld validated against the three worked examples (npm run validate green)
 - [ ] External reviewer feedback (target: Semantic Arts on gist binding for Reparation; LegalRuleML community on deontic alignment)
 - [ ] External review questions sent
-- [ ] First adopter (EveryAILaw) has bound to v0.1 in production
+- [x] First adopter (EveryAILaw) has bound to v0.1 in production
 - [ ] w3id.org PR filed for permanent `https://w3id.org/of/v1/` IRI
 - [x] CHANGELOG.md captures all changes from -draft to current state
 
@@ -45,13 +45,13 @@ Adds what we deferred from v0.1.
 - [ ] Cross-jurisdictional equivalence relation (`of:correspondsTo`) — drives the cross-jurisdictional diff visualization
 - [ ] Akoma Ntoso element-level binding (formalized, not just IRI compatibility)
 - [ ] Multi-language source text handling
-- [ ] Second adopter (PubLedge) has bound
+- [x] Second adopter (PubLedge) has bound
 
 ## v1.0 (target: 12 months after v0.1 freeze)
 
 **Gate:** three live adopters, conformance suite, w3id permanent IRI.
 
-- [ ] EveryAILaw, PubLedge, AI Incident Law all bound to v1.0
+- [x] EveryAILaw, PubLedge, AI Incident Law all bound to v0.1
 - [ ] w3id.org/of/v1/ permanent redirect filed and live
 - [ ] SHACL validator
 - [ ] Conformance test suite

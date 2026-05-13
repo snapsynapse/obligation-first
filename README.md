@@ -47,9 +47,9 @@ Most legal data models center on the document. Obligation-First centers on what 
 
 ## Adopters
 
-- [PubLedge](https://publedge.org/) — open recordkeeping protocol for joint interpretations (binding planned, additive)
-- [EveryAILaw](https://everyailaw.com/) — AI law and obligation tracker (first-adopter binding planned)
-- [AI Incident Law](https://aiincidentlaw.org/) — public-record corpus of AI-related cases (binding planned)
+- [EveryAILaw](https://everyailaw.com/) — AI law and obligation tracker, now publishing an Obligation-First binding for statutory and regulatory obligations.
+- [PubLedge](https://publedge.org/) — open recordkeeping protocol for joint interpretations, now publishing Obligation-First records for authorities, instruments, terms, obligations, and determinations.
+- [AI Incident Law](https://aiincidentlaw.org/) — public-record corpus of AI-related cases, now publishing Obligation-First proceedings, allegations, determinations, and authorities.
 
 If you'd like to bind your project to v0.1, see [Quick start](#quick-start-bind-a-dataset-in-three-steps) below or [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -128,13 +128,12 @@ The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. Once 
 
 ## Status
 
-v0.1.0-draft. Spec, schemas, and worked examples are complete and live. Open items before v0.1 freeze:
+v0.1.0-draft. Spec, schemas, worked examples, adopter kit, and first three PAICE legal bindings are complete and live. Open items before v0.1 freeze:
 
 - External review (Semantic Arts feedback on gist binding for Reparation; LegalRuleML community feedback on deontic alignment)
-- First adopter binding (EveryAILaw — smallest lift, will validate the schema against living legal data)
 - File w3id.org PR for the permanent IRI
 
-Current local stage: no unblocked schema or example work remains in this repo before adopter binding. The next useful expansion is cross-project integration: execute the adopter handoffs and treat this repo as the validation and identifier contract between the PAICE legal products.
+Current local stage: Obligation-First is operating as the validation and identifier contract between EveryAILaw, PubLedge, and AI Incident Law. The next useful work is external review, permanent IRI filing, and cross-project anchor enrichment.
 
 The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. `https://w3id.org/of/v1/` is planned as the permanent canonical IRI once v0.1 freezes.
 

@@ -51,8 +51,8 @@
     "deontic_quartet": ["Requirement", "Restriction", "Permission", "Reparation"]
   },
   "adopters": [
-    { "name": "PubLedge", "url": "https://publedge.org/", "status": "planned" },
-    { "name": "EveryAILaw", "url": "https://everyailaw.com/", "status": "planned" },
-    { "name": "AI Incident Law", "url": "https://aiincidentlaw.org/", "status": "planned" }
+    { "name": "EveryAILaw", "url": "https://everyailaw.com/", "status": "live", "binding": "statutory and regulatory obligations" },
+    { "name": "PubLedge", "url": "https://publedge.org/", "status": "live", "binding": "joint-interpretation instruments, terms, obligations, determinations" },
+    { "name": "AI Incident Law", "url": "https://aiincidentlaw.org/", "status": "live", "binding": "proceedings, allegations, determinations, authorities" }
   ]
 }

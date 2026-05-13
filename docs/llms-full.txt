@@ -135,9 +135,9 @@ Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/puble
 
 ## Adopters
 
-- PubLedge — https://publedge.org/ (joint interpretations) — v0.1 binding planned, additive
-- EveryAILaw — https://everyailaw.com/ (AI laws and obligations) — v0.1 first adopter, smallest lift
-- AI Incident Law — https://aiincidentlaw.org/ (AI-related cases) — v0.1 binding planned, exercises proceeding strand
+- EveryAILaw — https://everyailaw.com/ (AI laws and obligations) — live v0.1 binding for statutory and regulatory obligations
+- PubLedge — https://publedge.org/ (joint interpretations) — live v0.1 binding for instruments, terms, obligations, and determinations
+- AI Incident Law — https://aiincidentlaw.org/ (AI-related cases) — live v0.1 binding for proceedings, allegations, determinations, and authorities
 
 ## Adoption — three steps
 

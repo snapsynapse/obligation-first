@@ -2,7 +2,7 @@
 
 > An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist.
 
-Obligation-First is a small, opinionated upper schema and JSON-LD context for normative content. It defines a four-role spine — Authority, Instrument, Term, Obligation — plus a proceeding strand of Proceeding, Allegation, Determination. The deontic quartet (Requirement / Restriction / Permission / Reparation) is aligned with LegalRuleML 1.0. Three projects bind to v0.1: PubLedge (joint interpretations), EveryAILaw (AI laws), AI Incident Law (AI-related cases). Status: v0.1.0-draft, drafting in public.
+Obligation-First is a small, opinionated upper schema and JSON-LD context for normative content. It defines a four-role spine — Authority, Instrument, Term, Obligation — plus a proceeding strand of Proceeding, Allegation, Determination. The deontic quartet (Requirement / Restriction / Permission / Reparation) is aligned with LegalRuleML 1.0. Three PAICE legal projects now publish v0.1 bindings: EveryAILaw (AI laws and obligations), PubLedge (joint interpretations), and AI Incident Law (AI-related cases). Status: v0.1.0-draft, drafting in public.
 
 ## Key concepts
 
@@ -47,9 +47,9 @@ Obligation-First is a small, opinionated upper schema and JSON-LD context for no
 
 ## Adopters
 
-- PubLedge — https://publedge.org/ (joint interpretations)
-- EveryAILaw — https://everyailaw.com/ (AI laws and obligations)
-- AI Incident Law — https://aiincidentlaw.org/ (AI-related cases)
+- EveryAILaw — https://everyailaw.com/ (live binding for AI laws and obligations)
+- PubLedge — https://publedge.org/ (live binding for joint interpretations)
+- AI Incident Law — https://aiincidentlaw.org/ (live binding for AI-related proceedings, allegations, and determinations)
 
 ## License
 
