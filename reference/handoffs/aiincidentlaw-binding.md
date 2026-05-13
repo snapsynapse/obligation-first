@@ -1,5 +1,19 @@
 # Handoff: bind AI Incident Law to Obligation-First v0.1
 
+Status: first binding shipped in `snapsynapse/ai-incident-law` commit `6594ed7`.
+
+Current export:
+
+- 16 `of:Authority` records
+- 18 `of:Proceeding` records
+- 18 `of:Allegation` records
+- 15 `of:Determination` records
+- 67 total records under `https://aiincidentlaw.org/api/v1/of/records/`
+
+The first implementation uses the split-on-deploy pattern: `data/data.json` remains the editorial source of truth, and `scripts/build-obligation-first.mjs` emits the typed Obligation-First records. Pending included matters emit Proceedings and Allegations but no Determinations until the matter has a resolving posture.
+
+Remaining work: add `Determination.anchors` to EveryAILaw obligation IRIs where a public matter turns on a specific statutory or regulatory obligation. The initial binding does not force anchors for common-law or weakly mapped matters.
+
 This document describes the work to bind AI Incident Law's case corpus to Obligation-First v0.1. The binding is the largest of the three current adopters because it requires restructuring AI Incident Law's flat record shape into the proceeding strand (Proceeding / Allegation / Determination) plus their related Authorities.
 
 The payoff is proportional. AI Incident Law becomes the case-and-enforcement evidence layer that makes EveryAILaw's obligations concrete and PubLedge's joint interpretations grounded in real precedent. A litigator searching for "every case where chatbot misrepresentation triggered negligent-misrepresentation liability" gets a structured, cross-portfolio-linked answer instead of a keyword search.
