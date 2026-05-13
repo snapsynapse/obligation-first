@@ -106,8 +106,11 @@ The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. Once 
 | `schema/context.jsonld` | The JSON-LD `@context` for v1 (canonical source — copied to `docs/v1/` by CI) |
 | `schema/*.schema.json` | JSON Schemas for each entity |
 | `scripts/validate-examples.mjs` | Validation harness: every JSON record under `examples/*/records/` is checked against the appropriate schema |
+| `scripts/lib/adopter-kit.mjs` | Reusable adopter helper for schema validation, graph validation, and aggregate record bundles |
+| `scripts/validate-adopter-records.mjs` | CLI validator for adopter record directories |
 | `vendor/gist/` | Pinned snapshot of Semantic Arts gist (14.1.0) |
 | `reference/crosswalks/` | Mappings to LegalRuleML, Akoma Ntoso, ELI/ECLI, gist |
+| `reference/adopter-kit.md` | How adopters reuse the binding helper introduced after EveryAILaw |
 | `reference/review/` | Public external review questions for v0.1 freeze |
 | `reference/w3id-pr.md` | Prepared w3id.org permanent identifier PR notes |
 | `reference/og-image-prompt.md` | Structured prompt for generating the OG social-card image |
