@@ -15,7 +15,7 @@ Done:
 - [x] examples/air-canada/ — proceeding strand worked example
 - [x] examples/colorado-sb24-205/ — three-layer reality worked example
 - [x] examples/publedge-jia-utah-72/ — joint interpretation worked example
-- [x] examples/*/records/ — 12 canonical JSON record files; 12/12 pass schema validation
+- [x] examples/*/records/ — 23 canonical JSON record files; 23/23 pass schema validation
 - [x] scripts/validate-examples.mjs + npm run validate
 - [x] McComb / Semantic Arts one-pager drafted at reference/outreach/mccomb-one-pager.md (pending send)
 - [x] Canonical landing site published at https://obligationfirst.org/ — agent-discovery files (llms.txt, llms-full.txt, agents.json, feed.xml, sitemap.xml, robots.txt, security.txt, changelog.html) all dereferencing

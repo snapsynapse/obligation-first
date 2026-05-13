@@ -1,0 +1,17 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Authority",
+  "@id": "https://publedge.org/authority/us-ut-oaip",
+  "organization": {
+    "@type": "gist:GovernmentOrganization",
+    "name": "Utah Office of Artificial Intelligence Policy (OAIP)"
+  },
+  "authority_basis": {
+    "kind": "statutory",
+    "instrument_ref": "https://everyailaw.com/instrument/utah-sb149"
+  },
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "us-ut"
+  }
+}

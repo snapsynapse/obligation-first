@@ -26,6 +26,11 @@
       "items": { "type": "string", "format": "uri" },
       "description": "IRIs of of:Term records this Term overrides per defeasibility semantics."
     },
+    "anchors": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "IRIs of of:Term records this Term interprets or references. Used by JIAs and other interpretive Instruments whose Terms ground out in a statutory Term. Cross-portfolio joins (PubLedge JIA Term → EveryAILaw statutory Term) use this predicate."
+    },
     "executableEncoding": {
       "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json",
       "description": "Optional pointer to an executable encoding of this Term's logic."

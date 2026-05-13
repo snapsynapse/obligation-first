@@ -18,8 +18,7 @@
     "decides": {
       "type": "array",
       "items": { "type": "string", "format": "uri" },
-      "minItems": 1,
-      "description": "IRIs of of:Allegation records this Determination resolves. Multi-valued: one ruling can decide multiple Allegations."
+      "description": "IRIs of of:Allegation records this Determination resolves. Multi-valued: one ruling can decide multiple Allegations. Adjudicative Determinations SHOULD have at least one entry. Administrative Determinations (disposition='issued', for promulgating an Instrument or recording a posture statement) MAY leave this empty."
     },
     "disposition": {
       "type": "string",

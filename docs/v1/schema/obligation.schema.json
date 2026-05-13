@@ -30,6 +30,11 @@
           "description": "Open vocabulary for who bears the duty (developer, deployer, processor, controller, provider, etc.). Stays repo-local in v0.1."
         },
         "trigger": { "type": "string", "description": "Plain-language trigger condition. Stays repo-local in v0.1." },
+        "anchors": {
+          "type": "array",
+          "items": { "type": "string", "format": "uri" },
+          "description": "IRIs of of:Obligation records this Obligation interprets, references, or re-allocates from. Used by JIAs and other interpretive Instruments whose Obligations ground out in a statutory or regulatory Obligation. Cross-portfolio joins (PubLedge JIA Obligation → EveryAILaw statutory Obligation) use this predicate."
+        },
         "executableEncoding": {
           "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json"
         }

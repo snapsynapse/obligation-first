@@ -1,0 +1,13 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Determination",
+  "@id": "https://aiincidentlaw.org/determination/co-ag-non-enforcement-statement",
+  "issued_date": "2025-11-30",
+  "issuedBy": "https://everyailaw.com/authority/us-co-attorney-general",
+  "decides": [],
+  "disposition": "issued",
+  "anchors": [
+    "https://everyailaw.com/obligation/co-sb24-205-violation-reparation"
+  ],
+  "notes": "Administrative posture statement, not an adjudicative ruling. AG stated to the federal court that he does not intend to enforce SB 24-205 or any replacement law until rulemaking is complete; has not yet initiated formal rulemaking. Disposition 'issued' reflects that this Determination is a published act of the AG, not a ruling on Allegations. Decides is empty by design."
+}

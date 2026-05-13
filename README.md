@@ -91,7 +91,7 @@ The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. Once 
 | `vendor/gist/` | Pinned snapshot of Semantic Arts gist (14.1.0) |
 | `reference/crosswalks/` | Mappings to LegalRuleML, Akoma Ntoso, ELI/ECLI, gist |
 | `reference/og-image-prompt.md` | Structured prompt for generating the OG social-card image |
-| `examples/{air-canada,colorado-sb24-205,publedge-jia-utah-72}/` | Worked examples — three real records round-tripped through v0.1, plus canonical JSON record files under each `records/` subdirectory |
+| `examples/{air-canada,colorado-sb24-205,publedge-jia-utah-72}/` | Worked examples — three real record sets round-tripped through v0.1, with 23 canonical JSON record files under the `records/` subdirectories |
 | `docs/` | Published website served by GitHub Pages from `main /docs` (canonical at obligationfirst.org) |
 | `.github/workflows/` | CI: validation on every push (`test.yml`), Pages deploy (`pages.yml`), monthly a11y audit (`a11y.yml`) |
 | `_workshop/` | Design conversation archives |

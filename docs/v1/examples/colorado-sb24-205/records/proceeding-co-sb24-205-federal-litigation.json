@@ -1,0 +1,15 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Proceeding",
+  "@id": "https://aiincidentlaw.org/proceeding/co-sb24-205-federal-litigation",
+  "title": "Federal litigation challenging Colorado SB 24-205 enforcement",
+  "filed_date": "2025-09-01",
+  "issuedBy": "https://aiincidentlaw.org/authority/us-co-federal-district-court",
+  "hasAllegation": [
+    "https://aiincidentlaw.org/allegation/co-sb24-205-enforcement-challenge"
+  ],
+  "hasDetermination": [
+    "https://aiincidentlaw.org/determination/co-sb24-205-stay-order"
+  ],
+  "notes": "Plaintiffs challenged the AG's authority to enforce SB 24-205 absent rulemaking. Federal court ordered enforcement stay until final rules are adopted. Filed_date is illustrative; the actual case caption and date are to be filled by AI Incident Law from the docket record when the matter is bound to v0.1."
+}
