@@ -40,6 +40,10 @@ export function asArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 
+function stableJson(value) {
+  return JSON.stringify(value, null, 2);
+}
+
 export function isType(record, expected) {
   if (expected === "of:Obligation") return OBLIGATION_TYPES.has(record?.["@type"]);
   return record?.["@type"] === expected;
@@ -47,6 +51,14 @@ export function isType(record, expected) {
 
 export async function loadJson(file) {
   return JSON.parse(await readFile(file, "utf8"));
+}
+
+export function recordFileStem(record) {
+  if (record.id) return record.id;
+  if (!record["@id"]) throw new Error("Cannot write record without id or @id");
+  const urlPath = String(record["@id"]).split(/[?#]/)[0].replace(/\/$/, "");
+  const base = urlPath.slice(urlPath.lastIndexOf("/") + 1);
+  return base.endsWith(".json") ? base.slice(0, -5) : base;
 }
 
 export async function* walkJsonFiles(dir) {
@@ -260,14 +272,6 @@ async function cleanDir(dir, shouldClean) {
   await mkdir(dir, { recursive: true });
 }
 
-function recordFileStem(record) {
-  if (record.id) return record.id;
-  if (!record["@id"]) throw new Error("Cannot write record without id or @id");
-  const urlPath = String(record["@id"]).split(/[?#]/)[0].replace(/\/$/, "");
-  const base = urlPath.slice(urlPath.lastIndexOf("/") + 1);
-  return base.endsWith(".json") ? base.slice(0, -5) : base;
-}
-
 export async function writeRecordBundle({
   recordsByKind,
   outDir,
@@ -354,4 +358,106 @@ export async function writeAdopterExport({
     : 0;
 
   return { index, recordCount, companionCount };
+}
+
+export async function validateAdopterExport({
+  apiDir,
+  recordsSubdir = "records",
+  docsDir,
+  companionDirs = DEFAULT_COMPANION_DIRS,
+}) {
+  const failures = [];
+  const indexPath = path.join(apiDir, "index.json");
+  let index;
+
+  try {
+    index = await loadJson(indexPath);
+  } catch {
+    return [`missing export index ${indexPath}`];
+  }
+
+  const recordsDir = path.join(apiDir, recordsSubdir);
+  const expectedFlatFiles = new Set();
+  const expectedCompanionFiles = new Map();
+  for (const dir of Object.values(companionDirs).filter(Boolean)) expectedCompanionFiles.set(dir, new Set());
+
+  for (const [kind, fileName] of Object.entries(index.files || {})) {
+    const aggregatePath = path.join(apiDir, fileName);
+    let aggregate;
+    try {
+      aggregate = await loadJson(aggregatePath);
+    } catch {
+      failures.push(`missing aggregate file ${aggregatePath}`);
+      continue;
+    }
+
+    const records = aggregate[kind] || [];
+    if (index.counts?.[kind] !== records.length) {
+      failures.push(`${kind} count is ${index.counts?.[kind]}, expected ${records.length}`);
+    }
+
+    for (const record of records) {
+      let stem;
+      try {
+        stem = recordFileStem(record);
+      } catch (err) {
+        failures.push(`${kind} record cannot be written: ${err.message}`);
+        continue;
+      }
+
+      const flatName = `${stem}.json`;
+      expectedFlatFiles.add(flatName);
+      const flatPath = path.join(recordsDir, flatName);
+      try {
+        const flatRecord = await loadJson(flatPath);
+        if (stableJson(flatRecord) !== stableJson(record)) failures.push(`flat record differs from aggregate ${flatPath}`);
+      } catch {
+        failures.push(`missing flat record ${flatPath}`);
+      }
+
+      if (docsDir) {
+        const companionDir = companionDirs[kind];
+        if (!companionDir) continue;
+        expectedCompanionFiles.get(companionDir)?.add(flatName);
+        const companionPath = path.join(docsDir, companionDir, flatName);
+        try {
+          const companionRecord = await loadJson(companionPath);
+          if (stableJson(companionRecord) !== stableJson(record)) {
+            failures.push(`companion record differs from aggregate ${companionPath}`);
+          }
+        } catch {
+          failures.push(`missing companion record ${companionPath}`);
+        }
+      }
+    }
+  }
+
+  try {
+    for (const entry of await readdir(recordsDir, { withFileTypes: true })) {
+      if (entry.isFile() && entry.name.endsWith(".json") && !expectedFlatFiles.has(entry.name)) {
+        failures.push(`stale flat record ${path.join(recordsDir, entry.name)}`);
+      }
+    }
+  } catch {
+    failures.push(`missing flat records directory ${recordsDir}`);
+  }
+
+  if (docsDir) {
+    for (const [dir, expectedFiles] of expectedCompanionFiles) {
+      const companionDir = path.join(docsDir, dir);
+      let entries;
+      try {
+        entries = await readdir(companionDir, { withFileTypes: true });
+      } catch {
+        continue;
+      }
+      for (const entry of entries) {
+        if (entry.isFile() && entry.name.endsWith(".json") && !expectedFiles.has(entry.name)) {
+          failures.push(`stale companion record ${path.join(companionDir, entry.name)}`);
+        }
+      }
+    }
+  }
+
+  return failures;
 }

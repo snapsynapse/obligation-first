@@ -64,6 +64,9 @@ For lower-level integrations, the kit also exports:
 - `writeRecordBundle`, for aggregate files only;
 - `writeRecordFiles`, for a flat validator-ready record directory;
 - `writeCompanionRecords`, for canonical companion JSON files.
+- `validateAdopterExport`, for checking aggregate counts, flat record parity, companion record parity, and stale generated JSON files.
+
+`validateAdopterExport` is an export-shape check, not a project semantics check. Pair it with local evals that know the adopter's source model. For AI Incident Law, that means checking that every `included` record produces a Proceeding and Allegation, that pending matters do not produce Determinations, and that `review` / `global` queue records are not exported.
 
 ## PubLedge path
 

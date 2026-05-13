@@ -3,7 +3,7 @@
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { loadRecordDir, writeAdopterExport } from "./lib/adopter-kit.mjs";
+import { loadRecordDir, validateAdopterExport, writeAdopterExport } from "./lib/adopter-kit.mjs";
 
 const tmp = await mkdtemp(path.join(os.tmpdir(), "of-adopter-kit-"));
 
@@ -26,6 +26,10 @@ try {
   if (result.recordCount !== entries.length) {
     throw new Error(`Expected ${entries.length} flat records, wrote ${result.recordCount}`);
   }
+  const exportFailures = await validateAdopterExport({ apiDir, docsDir: path.join(tmp, "docs") });
+  if (exportFailures.length) {
+    throw new Error(`Expected clean export, found:\n${exportFailures.join("\n")}`);
+  }
 
   const index = JSON.parse(await readFile(path.join(apiDir, "index.json"), "utf8"));
   if (index.counts.terms !== 1 || index.counts.obligations !== 1) {
@@ -37,6 +41,12 @@ try {
     throw new Error("Stale flat record survived clean export");
   } catch (err) {
     if (err.code !== "ENOENT") throw err;
+  }
+
+  await writeFile(path.join(apiDir, "records", "stale.json"), "{}\n");
+  const staleFailures = await validateAdopterExport({ apiDir, docsDir: path.join(tmp, "docs") });
+  if (!staleFailures.some((failure) => failure.includes("stale flat record"))) {
+    throw new Error("Export validator did not catch stale flat record");
   }
 
   console.log("Adopter-kit writer helpers are clean-export safe.");
