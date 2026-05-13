@@ -6,7 +6,7 @@ This example does more than round-trip a single provision through the spine. It 
 |---|---|---|
 | Legislation | SB 24-205 remains enacted Colorado law | A compliance target still exists on paper |
 | Enforcement | Attorney General enforcement is paused until rulemaking is complete; federal court has ordered the stay | Near-term enforcement risk is materially reduced |
-| Political direction | Governor-backed work group endorses a replacement ADMT (automated decision-making technology) framework | Likely destination differs from current statute |
+| Political direction | SB26-189, an ADMT (automated decision-making technology) replacement bill, has passed the legislature and was sent to the Governor on 2026-05-12 | Likely destination differs from current statute |
 
 A schema that can only model "the law" and not "the law's actual operating posture" is not useful for sensemaking. Obligation-First has to model all three layers, or it doesn't earn its place.
 
@@ -14,7 +14,7 @@ The good news: it can. The spine handles legislation. The proceeding strand hand
 
 ## Why this is the right test for the schema
 
-The current legal-and-policy landscape in Colorado is widely covered in regulatory commentary, and a schema claiming to model AI law that flattens this situation into "SB 24-205 is enacted" misses the practical reality every Colorado-based reviewer knows. The briefing this example is built from describes the apparent contradiction directly: a live statute, no active rule set for implementing it, federal litigation freezing enforcement, and a policy process aimed at replacement rather than operationalization.
+The current legal-and-policy landscape in Colorado is widely covered in regulatory commentary, and a schema claiming to model AI law that flattens this situation into "SB 24-205 is enacted" misses the practical reality every Colorado-based reviewer knows. The briefing this example is built from describes the apparent contradiction directly: a live statute, no active rule set for implementing it, federal litigation freezing enforcement, and a replacement bill moving through the legislative channel.
 
 That triangulation between *legislation*, *enforcement*, and *political direction* is exactly the reason an obligation-first model matters. Two laws with the same Obligation are commensurable even when their texts differ; the same is true *over time* within one jurisdiction — the Obligation that today's SB 24-205 §6-1-1703 expresses is the comparable unit when evaluating a future ADMT statute, not the literal text. Colorado also happens to be the home of Semantic Arts, creators and stewards of the [gist](https://github.com/semanticarts/gist) upper ontology we're leveraging with this project.
 
@@ -77,7 +77,7 @@ hasTerm:
 source: https://leg.colorado.gov/sites/default/files/2024a_205_signed.pdf
 akn_uri: https://akn.everyailaw.com/us/co/act/2024/sb-205/main
 notes: >
-  Statute remains enacted law as of 2026-05-04. Effective date 2026-06-30
+  Statute remains enacted law as of 2026-05-13. Effective date 2026-06-30
   remains on the legislative calendar. The two state fields are
   independent: `status: enacted` describes the legislative state, while
   `enforcement_status: constrained` flags that primary obligations
@@ -205,22 +205,26 @@ notes: >
 
 ## Layer 3 — Political direction (a second proposed Instrument)
 
-The Colorado AI Policy Work Group's endorsed ADMT replacement framework is itself an Instrument, modeled with `status: proposed`. It does not yet exist as enacted law; it points toward where Colorado may go. The `wouldSupersede` predicate captures the prospective replacement relationship without overstating it as a present supersession.
+SB26-189, the ADMT replacement bill, is itself an Instrument, modeled with `status: proposed` until signed. The Colorado General Assembly page states that the bill repeals and reenacts the SB 24-205 provisions with new requirements for automated decision-making technology in consequential decisions. As of 2026-05-13, the bill has passed the legislature and was sent to the Governor on 2026-05-12. The `wouldSupersede` predicate captures the prospective replacement relationship without overstating it as a present supersession.
 
 ```yaml
 "@context": https://obligationfirst.org/v1/
 "@type": of:Instrument
-"@id": https://everyailaw.com/instrument/co-admt-proposed
-title: "Proposed ADMT framework (replacement for SB 24-205)"
+"@id": https://everyailaw.com/instrument/co-sb26-189
+title: "SB26-189 Automated Decision-Making Technology"
 issuedBy: https://everyailaw.com/authority/us-co-ai-policy-work-group
 status: proposed
 wouldSupersede:
   - https://everyailaw.com/instrument/co-sb24-205
+source: https://leg.colorado.gov/bills/sb26-189
 notes: >
-  Endorsed by Colorado AI Policy Work Group as a replacement for SB 24-205,
-  shifting from a high-risk AI governance model toward a privacy-style
-  ADMT framework: notice, explanation, human review, correction rights,
-  record retention. Not yet introduced as legislation as of 2026-05-04.
+  SB26-189 would repeal and reenact the SB 24-205 AI provisions, shifting
+  from a high-risk AI governance model toward an ADMT framework for
+  consequential decisions: technical documentation, consumer notices,
+  post-adverse-outcome explanation, correction rights, meaningful human
+  review, record retention, and a cure period before enforcement where
+  cure is possible. Passed the legislature and sent to the Governor on
+  2026-05-12.
   If and when enacted, the relation migrates from `wouldSupersede` to
   `supersedes`, and the predecessor's `status` migrates from `enacted`
   to `superseded`.
@@ -252,7 +256,7 @@ notes: >
 
 ### What the schema handled well
 
-1. **The three-layer reality round-trips cleanly.** Spine = legislation, proceeding strand = enforcement posture, second `status: proposed` Instrument = political direction. No special-casing required.
+1. **The three-layer reality round-trips cleanly.** Spine = legislation, proceeding strand = enforcement posture, second `status: proposed` Instrument = replacement bill. No special-casing required.
 2. **The recursive Authority basis paid off.** The Colorado AI Policy Work Group is not a government department; it's a governor-convened advisory body. Its `authority_basis.instrument_ref` points to the executive order that created it. The schema handles this without a "non-government Authority" exception.
 3. **Reparation modeled the right thing.** The §6-1-1703 duty creates a Requirement (use reasonable care). Violation of that Requirement triggers a Reparation (civil penalty enforced by AG). The federal stay does not vacate the Requirement — it constrains the Reparation's `enforcement_authority`'s capacity to act. That distinction is exactly what Reparation as a separate deontic class enables.
 4. **`anchors` from a Determination back to an Obligation worked across repos.** The federal court's stay is a record in AI Incident Law; the Obligation it constrains is a record in EveryAILaw. The IRI binding makes the cross-repo join trivial.

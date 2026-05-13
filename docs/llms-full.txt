@@ -116,7 +116,7 @@ Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/air-c
 Tests:
 - Layer 1 (legislation): 2 Authorities + 1 Instrument (status: enacted, enforcement_status: constrained) + 1 Term + 1 Requirement + 1 Reparation.
 - Layer 2 (enforcement): Proceeding + Allegation + 2 Determinations (federal stay + AG non-enforcement statement).
-- Layer 3 (political direction): 2nd Instrument (status: proposed) with wouldSupersede pointing at SB 24-205. 3rd Authority (Colorado AI Policy Work Group) with non-government authority_basis.
+- Layer 3 (political direction): 2nd Instrument, SB26-189 Automated Decision-Making Technology (status: proposed until signed), with wouldSupersede pointing at SB 24-205. 3rd Authority (Colorado AI Policy Work Group) with non-government authority_basis.
 
 Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/colorado-sb24-205/README.md
 

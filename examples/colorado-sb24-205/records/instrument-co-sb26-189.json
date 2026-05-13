@@ -1,12 +1,13 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Instrument",
-  "@id": "https://everyailaw.com/instrument/co-admt-proposed",
-  "title": "Proposed ADMT framework (replacement for SB 24-205)",
+  "@id": "https://everyailaw.com/instrument/co-sb26-189",
+  "title": "SB26-189 Automated Decision-Making Technology",
   "issuedBy": "https://everyailaw.com/authority/us-co-ai-policy-work-group",
   "kind": "proposed-statute",
   "status": "proposed",
   "wouldSupersede": [
     "https://everyailaw.com/instrument/co-sb24-205"
-  ]
+  ],
+  "source": "https://leg.colorado.gov/bills/sb26-189"
 }
