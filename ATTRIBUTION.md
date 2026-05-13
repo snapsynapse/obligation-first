@@ -4,7 +4,7 @@ Obligation-First builds on a substantial body of prior work. This file credits t
 
 ## Upper ontology
 
-- **Semantic Arts gist** (CC-BY 4.0) — the upper ontology Obligation-First binds to. Maintained by Dave McComb and the Semantic Arts team. https://www.semanticarts.com/gist/
+- **Semantic Arts gist** (CC-BY 4.0) — the upper ontology Obligation-First binds to. Maintained by Dave McComb and the Semantic Arts team. https://semanticarts.com/gist/
 
 ## Source-text standards
 

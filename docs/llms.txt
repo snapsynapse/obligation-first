@@ -23,6 +23,14 @@ Obligation-First is a small, opinionated upper schema and JSON-LD context for no
 - Changelog: https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md
 - JSON-LD @context: https://obligationfirst.org/v1/context.jsonld
 - JSON Schemas: https://obligationfirst.org/v1/schema/{authority,instrument,term,obligation,proceeding,allegation,determination,executable-encoding}.schema.json
+- Authority schema: https://obligationfirst.org/v1/schema/authority.schema.json
+- Instrument schema: https://obligationfirst.org/v1/schema/instrument.schema.json
+- Term schema: https://obligationfirst.org/v1/schema/term.schema.json
+- Obligation schema: https://obligationfirst.org/v1/schema/obligation.schema.json
+- Proceeding schema: https://obligationfirst.org/v1/schema/proceeding.schema.json
+- Allegation schema: https://obligationfirst.org/v1/schema/allegation.schema.json
+- Determination schema: https://obligationfirst.org/v1/schema/determination.schema.json
+- Executable encoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
 
 ## Worked examples
 

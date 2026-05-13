@@ -1,6 +1,6 @@
 # Crosswalk: Obligation-First ↔ Semantic Arts gist
 
-Mapping every `of:` term to its gist class binding. Source: [Semantic Arts gist](https://www.semanticarts.com/gist/), vendored at [`vendor/gist/gistCore.ttl`](../../vendor/gist/gistCore.ttl).
+Mapping every `of:` term to its gist class binding. Source: [Semantic Arts gist](https://semanticarts.com/gist/), vendored at [`vendor/gist/gistCore.ttl`](../../vendor/gist/gistCore.ttl).
 
 ## Spine entities
 
@@ -47,7 +47,7 @@ Mapping every `of:` term to its gist class binding. Source: [Semantic Arts gist]
 
 The gist snapshot at [`vendor/gist/gistCore.ttl`](../../vendor/gist/gistCore.ttl) is pinned to gist 14.1.0 (released 2026-Apr-17). Refresh policy:
 
-- **Patch / minor:** review release notes at https://www.semanticarts.com/gist/ ; refresh if no breaking changes
+- **Patch / minor:** review release notes at https://semanticarts.com/gist/ ; refresh if no breaking changes
 - **Major:** evaluate impact, run worked examples, decide on a per-version basis
 - **Cadence:** target one refresh per major Obligation-First release
 

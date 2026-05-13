@@ -10,7 +10,7 @@ The headline finding: **no existing ontology bridges AI laws, AI incident cases,
 
 The upper ontology Obligation-First binds to. Small (~150 classes), CC-BY 4.0, FIBO-adjacent. Provides foundational classes used throughout the spec: `gist:Organization`, `gist:Agreement`, `gist:Specification`, `gist:ContractTerm`, `gist:Requirement`, `gist:Restriction`, `gist:Permission`, `gist:Determination`, `gist:Statement`, `gist:Event`, `gist:Jurisdiction`.
 
-- Home: https://www.semanticarts.com/gist/
+- Home: https://semanticarts.com/gist/
 - Vendored at `vendor/gist/`
 
 ### UFO-L, Core Legal Ontology (CLO), Estrella, Inferno

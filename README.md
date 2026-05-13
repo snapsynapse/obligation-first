@@ -5,9 +5,9 @@
 [![Spec](https://img.shields.io/badge/spec-v0.1.0--draft-orange)](PROTOCOL.md)
 [![Content license: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey)](LICENSE-CC-BY-4.0)
 [![Code license: Apache 2.0](https://img.shields.io/badge/code-Apache%202.0-lightgrey)](LICENSE-APACHE)
-[![Bound to gist](https://img.shields.io/badge/ontology-gist-green)](https://www.semanticarts.com/gist/)
+[![Bound to gist](https://img.shields.io/badge/ontology-gist-green)](https://semanticarts.com/gist/)
 
-A shared upper schema for normative content — laws, cases, and agreements — bound to the [Semantic Arts gist](https://www.semanticarts.com/gist/) upper ontology.
+A shared upper schema for normative content — laws, cases, and agreements — bound to the [Semantic Arts gist](https://semanticarts.com/gist/) upper ontology.
 
 Obligation-First is a methodology and a JSON-LD context. The methodology says that normative content is best modeled by what it requires, not what it says. The schema gives that methodology a machine-readable shape.
 
@@ -68,6 +68,14 @@ Every artifact an adopter or agent needs is dereferenceable at a stable URL:
 |---|---|
 | [`/v1/context.jsonld`](https://obligationfirst.org/v1/context.jsonld) | The JSON-LD `@context` for v1 |
 | [`/v1/schema/*.schema.json`](https://obligationfirst.org/v1/schema/) | JSON Schemas — one per entity (eight total) |
+| [`/v1/schema/authority.schema.json`](https://obligationfirst.org/v1/schema/authority.schema.json) | Authority schema |
+| [`/v1/schema/instrument.schema.json`](https://obligationfirst.org/v1/schema/instrument.schema.json) | Instrument schema |
+| [`/v1/schema/term.schema.json`](https://obligationfirst.org/v1/schema/term.schema.json) | Term schema |
+| [`/v1/schema/obligation.schema.json`](https://obligationfirst.org/v1/schema/obligation.schema.json) | Obligation schema |
+| [`/v1/schema/proceeding.schema.json`](https://obligationfirst.org/v1/schema/proceeding.schema.json) | Proceeding schema |
+| [`/v1/schema/allegation.schema.json`](https://obligationfirst.org/v1/schema/allegation.schema.json) | Allegation schema |
+| [`/v1/schema/determination.schema.json`](https://obligationfirst.org/v1/schema/determination.schema.json) | Determination schema |
+| [`/v1/schema/executable-encoding.schema.json`](https://obligationfirst.org/v1/schema/executable-encoding.schema.json) | Executable encoding schema |
 | [`/llms.txt`](https://obligationfirst.org/llms.txt), [`/llms-full.txt`](https://obligationfirst.org/llms-full.txt) | LLM-readable summary + full context |
 | [`/agents.json`](https://obligationfirst.org/agents.json) | Agent capabilities and endpoint inventory |
 | [`/feed.xml`](https://obligationfirst.org/feed.xml) | Atom feed of releases |
