@@ -1,6 +1,6 @@
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
-import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 export const OF_CONTEXT = "https://obligationfirst.org/v1/";
@@ -23,6 +23,16 @@ export const TYPE_TO_SCHEMA = {
   "of:Proceeding": "proceeding.schema.json",
   "of:Allegation": "allegation.schema.json",
   "of:Determination": "determination.schema.json",
+};
+
+export const DEFAULT_COMPANION_DIRS = {
+  authorities: "authority",
+  instruments: "instrument",
+  terms: "term",
+  obligations: "obligation",
+  proceedings: "proceeding",
+  allegations: "allegation",
+  determinations: "determination",
 };
 
 export function asArray(value) {
@@ -245,8 +255,27 @@ export function validateRecordGraph(entries) {
   return failures;
 }
 
-export async function writeRecordBundle({ recordsByKind, outDir, context = OF_CONTEXT, generated = new Date().toISOString() }) {
-  await mkdir(outDir, { recursive: true });
+async function cleanDir(dir, shouldClean) {
+  if (shouldClean) await rm(dir, { recursive: true, force: true });
+  await mkdir(dir, { recursive: true });
+}
+
+function recordFileStem(record) {
+  if (record.id) return record.id;
+  if (!record["@id"]) throw new Error("Cannot write record without id or @id");
+  const urlPath = String(record["@id"]).split(/[?#]/)[0].replace(/\/$/, "");
+  const base = urlPath.slice(urlPath.lastIndexOf("/") + 1);
+  return base.endsWith(".json") ? base.slice(0, -5) : base;
+}
+
+export async function writeRecordBundle({
+  recordsByKind,
+  outDir,
+  context = OF_CONTEXT,
+  generated = new Date().toISOString(),
+  clean = false,
+}) {
+  await cleanDir(outDir, clean);
 
   const files = {};
   const counts = {};
@@ -262,4 +291,67 @@ export async function writeRecordBundle({ recordsByKind, outDir, context = OF_CO
   const index = { "@context": context, generated, files, counts };
   await writeFile(path.join(outDir, "index.json"), `${JSON.stringify(index, null, 2)}\n`);
   return index;
+}
+
+export async function writeRecordFiles({ recordsByKind, outDir, clean = false }) {
+  await cleanDir(outDir, clean);
+
+  let count = 0;
+  for (const records of Object.values(recordsByKind)) {
+    for (const record of records) {
+      await writeFile(path.join(outDir, `${recordFileStem(record)}.json`), `${JSON.stringify(record, null, 2)}\n`);
+      count += 1;
+    }
+  }
+
+  return count;
+}
+
+export async function writeCompanionRecords({
+  recordsByKind,
+  docsDir,
+  companionDirs = DEFAULT_COMPANION_DIRS,
+  clean = false,
+}) {
+  if (clean) {
+    const dirs = new Set(Object.values(companionDirs).filter(Boolean));
+    for (const dir of dirs) await rm(path.join(docsDir, dir), { recursive: true, force: true });
+  }
+
+  let count = 0;
+  for (const [kind, records] of Object.entries(recordsByKind)) {
+    const dir = companionDirs[kind];
+    if (!dir) continue;
+    const targetDir = path.join(docsDir, dir);
+    await mkdir(targetDir, { recursive: true });
+    for (const record of records) {
+      await writeFile(path.join(targetDir, `${recordFileStem(record)}.json`), `${JSON.stringify(record, null, 2)}\n`);
+      count += 1;
+    }
+  }
+
+  return count;
+}
+
+export async function writeAdopterExport({
+  recordsByKind,
+  apiDir,
+  docsDir,
+  context = OF_CONTEXT,
+  generated = new Date().toISOString(),
+  clean = true,
+  recordsSubdir = "records",
+  companionDirs = DEFAULT_COMPANION_DIRS,
+}) {
+  const index = await writeRecordBundle({ recordsByKind, outDir: apiDir, context, generated, clean });
+  const recordCount = await writeRecordFiles({
+    recordsByKind,
+    outDir: path.join(apiDir, recordsSubdir),
+    clean: true,
+  });
+  const companionCount = docsDir
+    ? await writeCompanionRecords({ recordsByKind, docsDir, companionDirs, clean })
+    : 0;
+
+  return { index, recordCount, companionCount };
 }

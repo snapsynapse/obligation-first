@@ -33,13 +33,14 @@ External `anchors` are allowed to point outside the local record set. This is in
 
 ## Bundle writer
 
-Adopters can import `writeRecordBundle` to publish aggregate JSON files:
+Adopters can import `writeAdopterExport` to publish the three surfaces that EveryAILaw and PubLedge now need:
 
 ```js
-import { writeRecordBundle } from "../obligation-first/scripts/lib/adopter-kit.mjs";
+import { writeAdopterExport } from "../obligation-first/scripts/lib/adopter-kit.mjs";
 
-await writeRecordBundle({
-  outDir: "docs/api/v1/of",
+await writeAdopterExport({
+  apiDir: "docs/api/v1/of",
+  docsDir: "docs",
   recordsByKind: {
     authorities,
     instruments,
@@ -50,7 +51,19 @@ await writeRecordBundle({
 });
 ```
 
-This writes one aggregate per kind plus `index.json` with file names and counts. Adopters can also publish companion JSON records at their canonical `@id` paths, as EveryAILaw does.
+This writes:
+
+1. one aggregate per kind plus `index.json` with file names and counts;
+2. a validator-ready `records/` directory containing every record by local `id`;
+3. optional companion JSON records at canonical path families such as `/authority/{id}.json`, `/instrument/{id}.json`, `/term/{id}.json`, `/obligation/{id}.json`, and `/determination/{id}.json`.
+
+`writeAdopterExport` cleans the generated output directories by default. That matters when an adopter changes export strategy, because stale generated records can otherwise remain valid JSON while no longer being part of the intended graph.
+
+For lower-level integrations, the kit also exports:
+
+- `writeRecordBundle`, for aggregate files only;
+- `writeRecordFiles`, for a flat validator-ready record directory;
+- `writeCompanionRecords`, for canonical companion JSON files.
 
 ## PubLedge path
 
@@ -66,7 +79,11 @@ The minimum first pass is:
 
 1. Generate the record set into a local directory.
 2. Run `node ../obligation-first/scripts/validate-adopter-records.mjs <records-dir>`.
-3. Publish aggregate records with `writeRecordBundle`.
+3. Publish aggregate, flat record, and companion records with `writeAdopterExport`.
 4. Add the same validator command to CI.
+
+PubLedge exposed one important modeling rule: if a project has a shared native obligation that is implemented by multiple provisions or instruments, the Obligation-First export should usually emit one concrete obligation record per creating term. Keep the adopter's native shared identifier as source metadata, such as `publedge_primary_id`, and let each exported `of:Term.creates` point to an `of:Requirement`, `of:Restriction`, or `of:Permission` whose `created_by` points back to that same term.
+
+That preserves the reciprocal OF graph while leaving the adopter's native model intact.
 
 The kit does not decide PubLedge's native migration strategy. It only makes the conformance surface reusable.
