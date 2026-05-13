@@ -26,6 +26,16 @@ Together they cover three domains in one schema:
 - **Proceedings and enforcement** — cases, allegations, rulings (used by AI Incident Law)
 - **Joint interpretations** — agreements between authorities and regulated parties (used by PubLedge)
 
+## Role in the PAICE legal graph
+
+Obligation-First is the interstitial layer between the PAICE legal projects. It does not replace EveryAILaw, AI Incident Law, or PubLedge. It gives them a shared contract:
+
+- EveryAILaw contributes statutory and regulatory `Obligation` records.
+- AI Incident Law contributes `Proceeding`, `Allegation`, and `Determination` records that anchor back to those Obligations.
+- PubLedge contributes joint-interpretation `Instrument`, `Term`, and `Obligation` records that clarify or re-allocate the same underlying Obligations.
+
+The join surface is deliberately small: stable `@id` values, a shared `@context`, schema validation, and `anchors` for cross-project references.
+
 ## Why obligation-first
 
 Most legal data models center on the document. Obligation-First centers on what the document *makes you do*. The advantages compound:
@@ -120,6 +130,8 @@ v0.1.0-draft. Spec, schemas, and worked examples are complete and live. Open ite
 - External review (Semantic Arts feedback on gist binding for Reparation; LegalRuleML community feedback on deontic alignment)
 - First adopter binding (EveryAILaw — smallest lift, will validate the schema against living legal data)
 - File w3id.org PR for the permanent IRI
+
+Current local stage: no unblocked schema or example work remains in this repo before adopter binding. The next useful expansion is cross-project integration: execute the adopter handoffs and treat this repo as the validation and identifier contract between the PAICE legal products.
 
 The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. `https://w3id.org/of/v1/` is planned as the permanent canonical IRI once v0.1 freezes.
 

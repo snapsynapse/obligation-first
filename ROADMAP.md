@@ -7,7 +7,7 @@
 Done:
 
 - [x] INTENT, README, PRIOR-ART, ROADMAP, CHANGELOG, ATTRIBUTION, CONTRIBUTING, SECURITY scaffolding
-- [x] PROTOCOL.md complete — all internal TODOs closed (defeasibility semantics, executableEncoding shape, conformance levels, versioning policy, supersession vs defeasibility, enforcement-cause rationale)
+- [x] PROTOCOL.md complete — all internal drafting placeholders closed (defeasibility semantics, executableEncoding shape, conformance levels, versioning policy, supersession vs defeasibility, enforcement-cause rationale)
 - [x] schema/context.jsonld — full v1 context published
 - [x] schema/*.schema.json — eight JSON Schemas (Authority, Instrument, Term, Obligation, Proceeding, Allegation, Determination, ExecutableEncoding)
 - [x] vendor/gist/ — pinned snapshot (gist 14.1.0)
@@ -26,6 +26,8 @@ Done:
 ## v0.1 freeze (target: within 90 days)
 
 **Gate:** external review feedback incorporated or explicitly deferred; first adopter binding live; w3id PR filed.
+
+Current assessment as of 2026-05-13: local repo deliverables for v0.1 are complete and tests are green. Remaining freeze gates are coordination work outside this repo or require external action. The unblocked internal path is to use Obligation-First as the interstitial contract for the PAICE legal graph and execute adopter bindings in EveryAILaw, then PubLedge, then AI Incident Law.
 
 - [x] PROTOCOL.md complete
 - [x] context.jsonld validated against the three worked examples (npm run validate green)
@@ -84,6 +86,17 @@ These items were surfaced by the Colorado SB 24-205 example and resolved in v0.1
 ## Strategic directions
 
 These are not v0.1 deliverables but shape the architecture from the beginning so we don't have to retrofit later.
+
+### PAICE legal graph integration
+
+Obligation-First should now be treated as the shared contract between PAICE legal projects:
+
+1. EveryAILaw is the statutory source of truth for Instruments, Terms, and Obligations.
+2. AI Incident Law is the proceeding source of truth for Proceedings, Allegations, and Determinations.
+3. PubLedge is the joint-interpretation source of truth for negotiated Instruments and re-allocated Obligations.
+4. Obligation-First owns the common `@context`, JSON Schemas, crosswalks, and validation harness that let those records join without centralizing the products.
+
+Near-term integration work belongs in the adopter repos, using the handoffs in `reference/handoffs/` as the execution checklist. This repo should remain the stable vocabulary and conformance source.
 
 ### EU AI Act as collaboration vector
 

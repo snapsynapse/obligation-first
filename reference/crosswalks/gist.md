@@ -18,7 +18,7 @@ Mapping every `of:` term to its gist class binding. Source: [Semantic Arts gist]
 | `of:Requirement` | `gist:Requirement` | `lrml:Obligation` |
 | `of:Restriction` | `gist:Restriction` | `lrml:Prohibition` |
 | `of:Permission` | `gist:Permission` | `lrml:Permission` |
-| `of:Reparation` | (TODO: gist binding TBC) | `lrml:Reparation` |
+| `of:Reparation` | Open for Semantic Arts review | `lrml:Reparation` |
 
 **Open question for Semantic Arts review:** Reparation in legal-rule semantics is a *secondary* obligation that fires when a primary obligation is violated. gist's existing `gist:Requirement`, `gist:Restriction`, `gist:Permission` cover primary obligations. Does `gist:Requirement` with a `triggeredBy` predicate suffice, or does Reparation merit its own gist class? Tracked in [external review questions](../review/external-review-questions.md).
 

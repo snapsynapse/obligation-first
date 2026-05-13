@@ -17,6 +17,8 @@ Obligation-First is the shared upper schema for normative content across the PAI
 
 The methodology behind the schema: normative content is modeled by what it requires, not what it says. The Obligation is the unit of comparison across jurisdictions, instruments, and time.
 
+Obligation-First is therefore the integration layer for PAICE legal projects, not another end-user corpus. EveryAILaw publishes statutory Obligations, AI Incident Law publishes Proceedings and Determinations that anchor to those Obligations, and PubLedge publishes joint interpretations that re-allocate or clarify them. This repo owns the common vocabulary, validation contract, and identifier conventions that let those projects behave as one graph while remaining separately scoped products.
+
 ## Design constraints
 
 1. **Bind, don't reinvent.** Where standards exist (Semantic Arts gist, LegalRuleML deontic operators, Akoma Ntoso source-text IRIs, ELI, ECLI), Obligation-First references them. It does not duplicate them.
@@ -45,6 +47,15 @@ Out of scope for v0.1:
 - Multi-language source text handling
 - A formal SHACL validator (deferred to v1.0)
 - Conformance test suite (deferred to v1.0)
+
+## Integration role
+
+The project has two operating modes:
+
+1. **Specification mode.** Define the smallest stable schema that can carry statutes, proceedings, and joint interpretations without forcing one domain's record shape onto the others.
+2. **Interstitial mode.** Provide the cross-project contract that lets PAICE legal products join through stable `@id` values, `anchors`, shared schemas, and common validation.
+
+At the current stage, specification mode is locally complete for v0.1. The unblocked next work is interstitial: make adopter bindings executable, keep cross-project IDs stable, and ensure each adopter can validate against this repo without bespoke translation.
 
 ## Adoption order
 
@@ -79,4 +90,5 @@ Next scheduled review: when v0.1 freezes (expected within 90 days), or after fir
 
 ## Changelog
 
+- 0.1.0-draft+integration (2026-05-13): Clarifies that Obligation-First is the interstitial integration layer for PAICE legal projects after the local v0.1 spec work is complete.
 - 0.1.0-draft (2026-05-04): Initial INTENT. Codifies four-role spine + proceeding strand, gist binding, LegalRuleML alignment, three-adopter v1.0 gate, EveryAILaw-first adoption order.

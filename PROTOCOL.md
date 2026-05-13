@@ -9,7 +9,7 @@ modified: 2026-05-04
 
 # Obligation-First Protocol
 
-> **Status: drafting.** This document is the placeholder for the v0.1 specification. The design has been settled in [_workshop/2026-05-04-design-conversation.md](_workshop/2026-05-04-design-conversation.md). The spec text below is an outline; sections marked `TODO` will be expanded before v0.1 freeze.
+> **Status: v0.1.0-draft.** The core specification, JSON-LD context, JSON Schemas, and worked examples are complete enough for adopter binding and external review. Remaining v0.1 freeze gates are external feedback, the first live adopter binding, and the permanent w3id.org redirect.
 
 ## What this protocol specifies
 
@@ -50,7 +50,7 @@ A shared upper schema for normative content, expressed as a JSON-LD `@context` a
 | `of:Requirement` | `lrml:Obligation` | `gist:Requirement` | A primary duty to act |
 | `of:Restriction` | `lrml:Prohibition` | `gist:Restriction` | A primary duty to refrain |
 | `of:Permission` | `lrml:Permission` | `gist:Permission` | An authorized capacity to act |
-| `of:Reparation` | `lrml:Reparation` | (TODO: gist binding TBC) | A secondary duty triggered by violation of a primary obligation |
+| `of:Reparation` | `lrml:Reparation` | Open for review: gist binding TBC | A secondary duty triggered by violation of a primary obligation |
 
 ## Core relations
 
@@ -306,7 +306,7 @@ Round-tripping the three examples surfaced these findings:
 - Defeasibility sub-types (rebut vs undercut, priority hierarchies per LegalRuleML §7.4)
 
 **Open for external review (see [external review questions](reference/review/external-review-questions.md)):**
-- gist binding for Reparation — current placeholder is TBC; depends on Semantic Arts feedback
+- gist binding for Reparation remains open for Semantic Arts review
 - Whether `gist:Statement` is the right binding for Allegation
 
 ## Changelog
