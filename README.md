@@ -90,6 +90,8 @@ The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. Once 
 | `scripts/validate-examples.mjs` | Validation harness: every JSON record under `examples/*/records/` is checked against the appropriate schema |
 | `vendor/gist/` | Pinned snapshot of Semantic Arts gist (14.1.0) |
 | `reference/crosswalks/` | Mappings to LegalRuleML, Akoma Ntoso, ELI/ECLI, gist |
+| `reference/review/` | Public external review questions for v0.1 freeze |
+| `reference/w3id-pr.md` | Prepared w3id.org permanent identifier PR notes |
 | `reference/og-image-prompt.md` | Structured prompt for generating the OG social-card image |
 | `examples/{air-canada,colorado-sb24-205,publedge-jia-utah-72}/` | Worked examples — three real record sets round-tripped through v0.1, with 23 canonical JSON record files under the `records/` subdirectories |
 | `docs/` | Published website served by GitHub Pages from `main /docs` (canonical at obligationfirst.org) |

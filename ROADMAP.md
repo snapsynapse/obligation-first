@@ -17,7 +17,8 @@ Done:
 - [x] examples/publedge-jia-utah-72/ — joint interpretation worked example
 - [x] examples/*/records/ — 23 canonical JSON record files; 23/23 pass schema validation
 - [x] scripts/validate-examples.mjs + npm run validate
-- [x] McComb / Semantic Arts one-pager drafted at reference/outreach/mccomb-one-pager.md (pending send)
+- [x] Public external review questions drafted at reference/review/external-review-questions.md
+- [x] w3id.org PR prep drafted at reference/w3id-pr.md
 - [x] Canonical landing site published at https://obligationfirst.org/ — agent-discovery files (llms.txt, llms-full.txt, agents.json, feed.xml, sitemap.xml, robots.txt, security.txt, changelog.html) all dereferencing
 - [x] CI: validation on every push (test.yml), Pages deploy (pages.yml), monthly a11y audit (a11y.yml)
 - [x] Schema additions surfaced by the Colorado example landed in v0.1 — see "Resolved in v0.1" below
@@ -28,8 +29,8 @@ Done:
 
 - [x] PROTOCOL.md complete
 - [x] context.jsonld validated against the three worked examples (npm run validate green)
-- [ ] External reviewer feedback (target: Dave McComb / Semantic Arts on gist binding for Reparation; LegalRuleML community on deontic alignment)
-- [ ] McComb one-pager sent
+- [ ] External reviewer feedback (target: Semantic Arts on gist binding for Reparation; LegalRuleML community on deontic alignment)
+- [ ] External review questions sent
 - [ ] First adopter (EveryAILaw) has bound to v0.1 in production
 - [ ] w3id.org PR filed for permanent `https://w3id.org/of/v1/` IRI
 - [x] CHANGELOG.md captures all changes from -draft to current state

@@ -305,7 +305,7 @@ Round-tripping the three examples surfaced these findings:
 - LegalRuleML encoding pointer (`of:legalRuleMLEncoding` parallel to `of:executableEncoding`)
 - Defeasibility sub-types (rebut vs undercut, priority hierarchies per LegalRuleML §7.4)
 
-**Open for external review (see [outreach](reference/outreach/mccomb-one-pager.md)):**
+**Open for external review (see [external review questions](reference/review/external-review-questions.md)):**
 - gist binding for Reparation — current placeholder is TBC; depends on Semantic Arts feedback
 - Whether `gist:Statement` is the right binding for Allegation
 
