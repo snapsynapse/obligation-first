@@ -12,7 +12,7 @@ Current export:
 
 The first implementation uses the split-on-deploy pattern: `data/data.json` remains the editorial source of truth, and `scripts/build-obligation-first.mjs` emits the typed Obligation-First records. Pending included matters emit Proceedings and Allegations but no Determinations until the matter has a resolving posture.
 
-Remaining work: add `Determination.anchors` to EveryAILaw obligation IRIs where a public matter turns on a specific statutory or regulatory obligation. The initial binding does not force anchors for common-law or weakly mapped matters.
+Anchor mechanism: `obligation_first_anchors` now passes curated source-data IRIs through to `Determination.anchors`. The first seeded anchors point high-confidence discrimination/enforcement determinations to EveryAILaw's `bias-prevention` obligation. Remaining work is broader enrichment, not base binding.
 
 This document describes the work to bind AI Incident Law's case corpus to Obligation-First v0.1. The binding is the largest of the three current adopters because it requires restructuring AI Incident Law's flat record shape into the proceeding strand (Proceeding / Allegation / Determination) plus their related Authorities.
 
@@ -135,7 +135,7 @@ This discipline is what makes the corpus useful as evidence rather than as opini
 - [ ] Authorities are deduplicated across the corpus (one record per court/tribunal/agency)
 - [ ] Allegations are written in asserted-by-party voice, not settled-fact voice
 - [ ] Determinations cite the Authority that issued them and the Allegations they decide
-- [ ] At least one Determination's `anchors` field points at a real EveryAILaw Obligation IRI
+- [x] At least one Determination's `anchors` field points at a real EveryAILaw Obligation IRI
 - [ ] At least one matter with multiple Determinations (e.g., trial + appeal) demonstrates the strand's lifetime accumulation
 - [ ] Schema validation runs in CI and blocks merge on drift
 - [ ] The weekly cascade verification system that AI Incident Law inherits from ai-tool-watch / every-ai-law continues to run, now layered on top of the typed structure

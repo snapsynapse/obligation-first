@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ### Added
 
+- 2026-05-14: Added `scripts/report-anchor-graph.mjs` and `npm run report:anchors` to measure cross-project `anchors` across worked examples and adopter exports. The report validates present anchor targets, summarizes source/target hosts, distinguishes omitted versus empty anchor fields, and lists unresolved external anchors for enrichment.
+- 2026-05-14: Added optional `npm run report:anchors:implementations` for local sibling checkouts of EveryAILaw, PubLedge, and AI Incident Law; kept it out of `npm test` because it depends on portfolio-local repositories.
 - 2026-05-13: Clarified the post-local-delivery scope: Obligation-First is the interstitial validation and identifier contract joining EveryAILaw, AI Incident Law, PubLedge, and related PAICE legal projects. Updated INTENT, README, ROADMAP, and PROTOCOL status language.
 - 2026-05-13: Added the adopter kit: reusable validation/bundle helpers plus `validate-adopter-records.mjs`, so PubLedge and later adopters can reuse the EveryAILaw binding pattern.
 - 2026-05-13: Updated public copy to reflect that EveryAILaw, PubLedge, and AI Incident Law now publish Obligation-First bindings. Obligation-First is live as the PAICE legal graph contract, not merely a planned schema.

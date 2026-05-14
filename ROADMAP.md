@@ -34,6 +34,9 @@ Current assessment as of 2026-05-13: local repo deliverables for v0.1 are comple
 - [ ] External reviewer feedback (target: Semantic Arts on gist binding for Reparation; LegalRuleML community on deontic alignment)
 - [ ] External review questions sent
 - [x] First adopter (EveryAILaw) has bound to v0.1 in production
+- [x] Cross-project anchor report added so enrichment can be measured across adopter exports
+- [x] Initial cross-project anchor enrichment seeded: PubLedge and AI Incident Law both resolve anchors into EveryAILaw in local implementation checks
+- [ ] Broader anchor enrichment pass across AI Incident Law and PubLedge
 - [ ] w3id.org PR filed for permanent `https://w3id.org/of/v1/` IRI
 - [x] CHANGELOG.md captures all changes from -draft to current state
 

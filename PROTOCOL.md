@@ -9,7 +9,7 @@ modified: 2026-05-04
 
 # Obligation-First Protocol
 
-> **Status: v0.1.0-draft.** The core specification, JSON-LD context, JSON Schemas, and worked examples are complete enough for adopter binding and external review. Remaining v0.1 freeze gates are external feedback, the first live adopter binding, and the permanent w3id.org redirect.
+> **Status: v0.1.0-draft.** The core specification, JSON-LD context, JSON Schemas, worked examples, adopter kit, and first three PAICE legal bindings are complete enough for external review. Remaining v0.1 freeze gates are external feedback, permanent w3id.org redirect filing, and cross-project anchor enrichment.
 
 ## What this protocol specifies
 
@@ -168,6 +168,8 @@ These are URIs in the technical RDF/JSON-LD sense — globally unique identifier
 The records under `examples/*/records/*.json` use `@id` values that point at adopter-domain URLs (everyailaw.com, aiincidentlaw.org, publedge.org). Those URLs are aspirational — they illustrate what each adopter will mint when it binds. Until that binding is live, the JSON bytes for these example records are served from `https://obligationfirst.org/v1/examples/<slug>/records/<file>.json` so reviewers can fetch and validate against the published schemas immediately.
 
 When each adopter completes its binding (see handoff documents), the adopter-domain URLs become the canonical homes; the obligationfirst.org mirror remains for spec-illustration purposes.
+
+For enrichment work, `scripts/report-anchor-graph.mjs` reports `anchors` edges across one or more worked-example or adopter exports. It distinguishes base Obligation-First export coverage from populated anchor edges, validates target type when the target record is present, and lists unresolved external targets so adopter repos can add or mirror the missing record-side binding deliberately.
 
 ## Source-text compatibility
 

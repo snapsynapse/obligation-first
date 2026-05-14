@@ -108,6 +108,7 @@ The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. Once 
 | `scripts/validate-examples.mjs` | Validation harness: every JSON record under `examples/*/records/` is checked against the appropriate schema |
 | `scripts/lib/adopter-kit.mjs` | Reusable adopter helper for schema validation, graph validation, and aggregate record bundles |
 | `scripts/validate-adopter-records.mjs` | CLI validator for adopter record directories |
+| `scripts/report-anchor-graph.mjs` | Cross-project `anchors` report for adopter exports and worked examples |
 | `vendor/gist/` | Pinned snapshot of Semantic Arts gist (14.1.0) |
 | `reference/crosswalks/` | Mappings to LegalRuleML, Akoma Ntoso, ELI/ECLI, gist |
 | `reference/adopter-kit.md` | How adopters reuse the binding helper introduced after EveryAILaw |
@@ -134,6 +135,8 @@ v0.1.0-draft. Spec, schemas, worked examples, adopter kit, and first three PAICE
 - File w3id.org PR for the permanent IRI
 
 Current local stage: Obligation-First is operating as the validation and identifier contract between EveryAILaw, PubLedge, and AI Incident Law. The next useful work is external review, permanent IRI filing, and cross-project anchor enrichment.
+
+For anchor enrichment, run `npm run report:anchors` against the worked examples or `node scripts/report-anchor-graph.mjs <adopter-export> [...]` against sibling adopter exports.
 
 The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. `https://w3id.org/of/v1/` is planned as the permanent canonical IRI once v0.1 freezes.
 

@@ -31,6 +31,29 @@ The validator checks two layers:
 
 External `anchors` are allowed to point outside the local record set. This is intentional: PubLedge anchors should point to EveryAILaw IDs, and AI Incident Law Determinations should do the same.
 
+## Anchor graph report
+
+Use `scripts/report-anchor-graph.mjs` when the question is no longer "does one adopter validate?" but "are multiple adopters forming the intended graph?"
+
+```bash
+npm run report:anchors:implementations
+```
+
+The report accepts either flat `records/` directories or aggregate export directories containing `index.json` plus kind files such as `obligations.json` and `determinations.json`. It summarizes `anchors` by source and target host, distinguishes records that omit `anchors` from records that publish an empty `anchors: []`, validates anchor target type when the target record is present, and lists unresolved external anchors for enrichment work.
+
+By default unresolved targets are reported but do not fail the command, because real adopter graphs often point to records that live in another repo or have not been mirrored locally yet. Add `--require-all-targets` when running against a complete local mirror and every anchor should resolve.
+
+`npm run report:anchors:implementations` is intentionally not part of `npm test`; it assumes local sibling checkouts of EveryAILaw, PubLedge, and AI Incident Law.
+
+The report measures anchor enrichment only. It does not determine whether an adopter has completed its base Obligation-First export; a repo can publish valid Proceedings, Allegations, and Determinations before it has enough curated obligation targets to populate `Determination.anchors`.
+
+This is the current cross-project enrichment loop:
+
+1. Export each adopter's Obligation-First records.
+2. Run the anchor graph report across all available adopter exports.
+3. Add missing `anchors` where a Determination, Term, or Obligation has a specific statutory or joint-interpretation target.
+4. Re-run the report and commit the adopter-side export.
+
 ## Bundle writer
 
 Adopters can import `writeAdopterExport` to publish the three surfaces that EveryAILaw and PubLedge now need:
