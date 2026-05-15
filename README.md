@@ -144,4 +144,6 @@ The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. `http
 
 Spec text and reference material under [CC BY 4.0](LICENSE-CC-BY-4.0). Code (schemas, scripts, examples) under [Apache 2.0](LICENSE-APACHE).
 
+Exception: example records under `examples/` that bear `https://everyailaw.com/` identifiers are reproduced from the EveryAILaw corpus by express permission, solely as schema illustration. They are NOT licensed under Apache 2.0 or CC BY 4.0, and no rights in the EveryAILaw corpus are granted by this repository. See [NOTICE](NOTICE) and https://everyailaw.com/.
+
 Stewarded by PAICE.work PBC. Transition to an independent steward (PAICE Foundation) is anticipated.

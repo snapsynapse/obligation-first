@@ -1,0 +1,27 @@
+Obligation First
+Copyright (c) 2026 PAICE.work PBC
+
+This product includes the Obligation First specification, schema, and
+reference material. Spec text and reference material are licensed under
+CC BY 4.0; code (schemas, scripts, examples) under Apache License 2.0.
+
+EVERYAILAW CORPUS — BOUNDED ILLUSTRATIVE USE
+
+Certain example records under examples/ bear https://everyailaw.com/
+identifiers. Those records are reproduced from the EveryAILaw corpus,
+copyright (c) 2026 PAICE.work PBC, by express permission, solely as
+Obligation First schema illustration.
+
+This permission is limited to the specific records actually present in this
+repository. It is NOT a license to the EveryAILaw corpus. The EveryAILaw
+corpus is licensed separately and restrictively; see
+https://everyailaw.com/ and its Data License.
+
+No license to the EveryAILaw corpus is granted by this repository, by the
+Apache 2.0 or CC BY 4.0 licenses applied to this repository, or by the
+appearance of these example records. Unless a specific record is present
+here as an Obligation First example, there is no basis to infer or argue
+that it, or any other part of the EveryAILaw corpus, is licensed under
+CC BY 4.0, Apache 2.0, or any other open license. It is not.
+
+Redistributors of this repository must retain this NOTICE.

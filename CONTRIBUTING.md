@@ -22,6 +22,24 @@ Obligation-First is drafting in public. Contributions are welcome.
 3. For schema changes: PR against `schema/context.jsonld` and the relevant `schema/*.schema.json`.
 4. For crosswalks or examples: PR with the new file and a short rationale.
 
+## Example records and restricted source data
+
+Examples may reference real laws, but example records must not silently
+import another project's restricted data under this repo's open licenses.
+
+- Do not add a record bearing `https://everyailaw.com/` identifiers (or any
+  other restricted-corpus identifier) to `examples/` unless it is covered by
+  the carve in `NOTICE`, and the carve plus the README License exception are
+  updated to name what was added.
+- The carve is per-record and by express permission. Adding new restricted
+  records without updating `NOTICE` is not allowed, because the repo's
+  Apache-2.0 / CC-BY-4.0 grant would otherwise sweep them in.
+- Prefer a neutral example namespace or synthetic records. Use a restricted
+  identifier only when the worked example genuinely requires the real one,
+  and then carve it explicitly.
+- A PR that adds or changes `examples/` must state whether it touches any
+  restricted identifiers and, if so, show the matching `NOTICE` update.
+
 ## License
 
 By contributing, you agree that:
