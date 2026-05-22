@@ -23,6 +23,7 @@
       "determination": "https://obligationfirst.org/v1/schema/determination.schema.json",
       "executable_encoding": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json"
     },
+    "assistant_guide": "https://obligationfirst.org/.well-known/assistant-guide.txt",
     "spec": "https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md",
     "llms_txt": "https://obligationfirst.org/llms.txt",
     "sitemap": "https://obligationfirst.org/sitemap.xml",
@@ -31,6 +32,7 @@
   "capabilities": [
     "json-ld-context-resolution",
     "json-schema-validation",
+    "guidecheck-assistant-guide",
     "gist-binding",
     "legalruleml-crosswalk",
     "akoma-ntoso-iri-compatibility",

@@ -31,6 +31,7 @@ Obligation-First is a small, opinionated upper schema and JSON-LD context for no
 - Allegation schema: https://obligationfirst.org/v1/schema/allegation.schema.json
 - Determination schema: https://obligationfirst.org/v1/schema/determination.schema.json
 - Executable encoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
+- Assistant guide: https://obligationfirst.org/.well-known/assistant-guide.txt
 
 ## Worked examples
 

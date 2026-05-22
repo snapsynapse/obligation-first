@@ -23,6 +23,7 @@ const SCANNED_ROOTS = [
   "ATTRIBUTION.md",
   "CONTRIBUTING.md",
   "SECURITY.md",
+  "assistant-guide.txt",
   "docs",
   "reference",
   "examples",
@@ -35,6 +36,8 @@ const SCANNED_ROOTS = [
 const PROJECT_OWNED_HOSTS = new Set([
   "obligationfirst.org",
   "www.obligationfirst.org",
+  "guidecheck.org",
+  "www.guidecheck.org",
   "sam-rogers.com",
   "www.sam-rogers.com",
   "snapsynapse.com",
@@ -101,6 +104,8 @@ const CORE_ENDPOINTS = [
   "https://obligationfirst.org/v1/schema/determination.schema.json",
   "https://obligationfirst.org/v1/schema/executable-encoding.schema.json",
 ];
+
+const ASSISTANT_GUIDE_ENDPOINT = "https://obligationfirst.org/.well-known/assistant-guide.txt";
 
 async function* walk(start) {
   const full = path.join(repoRoot, start);
@@ -209,6 +214,7 @@ async function validateEndpointInventory(failures) {
   const agents = JSON.parse(await readFile(path.join(repoRoot, "docs/agents.json"), "utf8"));
   const agentEndpoints = [
     agents.endpoints.context,
+    agents.endpoints.assistant_guide,
     ...Object.values(agents.endpoints.schemas || {}),
   ];
 
@@ -221,6 +227,7 @@ async function validateEndpointInventory(failures) {
   const docsToCheck = [
     "README.md",
     "docs/llms.txt",
+    "docs/llms-full.txt",
     "docs/v1/index.html",
   ];
 
@@ -231,6 +238,64 @@ async function validateEndpointInventory(failures) {
         failures.push(`${rel}: missing core endpoint inventory entry for ${endpoint}`);
       }
     }
+    if (!endpointVisible(text, ASSISTANT_GUIDE_ENDPOINT)) {
+      failures.push(`${rel}: missing assistant guide endpoint ${ASSISTANT_GUIDE_ENDPOINT}`);
+    }
+  }
+}
+
+async function validateAssistantGuide(failures) {
+  const rootPath = path.join(repoRoot, "assistant-guide.txt");
+  const docsPath = path.join(repoRoot, "docs/.well-known/assistant-guide.txt");
+  const rootBytes = await readFile(rootPath);
+  const docsBytes = await readFile(docsPath);
+
+  if (!rootBytes.equals(docsBytes)) {
+    failures.push("assistant-guide.txt: repository and docs/.well-known copies must be byte-identical");
+  }
+
+  if (rootBytes.length > 8192) {
+    failures.push(`assistant-guide.txt: file exceeds GuideCheck 8192-byte limit (${rootBytes.length})`);
+  }
+
+  const text = rootBytes.toString("utf8");
+  const lines = text.split("\n");
+  if (lines.length > 400) {
+    failures.push(`assistant-guide.txt: file exceeds GuideCheck 400-line limit (${lines.length})`);
+  }
+
+  for (let i = 0; i < rootBytes.length; i += 1) {
+    const byte = rootBytes[i];
+    if (byte !== 0x0a && (byte < 0x20 || byte > 0x7e)) {
+      failures.push(`assistant-guide.txt:${lineFor(text, i)}: byte outside GuideCheck ASCII profile`);
+      break;
+    }
+  }
+
+  lines.forEach((line, index) => {
+    if (Buffer.byteLength(line, "utf8") > 120) {
+      failures.push(`assistant-guide.txt:${index + 1}: line exceeds GuideCheck 120-byte limit`);
+    }
+  });
+
+  const requiredSnippets = [
+    "[assistant-guide-metadata]",
+    "profile: human-verifiable-assistant-guide",
+    "canonical-url: https://obligationfirst.org/.well-known/assistant-guide.txt",
+    "recommended-verifier: https://guidecheck.org/verify",
+    "Before acting",
+    "[action]",
+    "Stop and ask",
+    "Acceptance checklist",
+    "Threat model",
+    "Untrusted content handling",
+    "GuideCheck conformance is a form claim, not a safety claim.",
+  ];
+
+  for (const snippet of requiredSnippets) {
+    if (!text.includes(snippet)) {
+      failures.push(`assistant-guide.txt: missing required GuideCheck content: ${snippet}`);
+    }
   }
 }
 
@@ -238,6 +303,7 @@ const failures = [];
 await validateUrls(failures);
 await validateContextCoverage(failures);
 await validateEndpointInventory(failures);
+await validateAssistantGuide(failures);
 
 if (failures.length > 0) {
   console.log("Repo contract validation failed:");

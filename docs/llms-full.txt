@@ -156,6 +156,7 @@ Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/puble
 - Allegation schema: https://obligationfirst.org/v1/schema/allegation.schema.json
 - Determination schema: https://obligationfirst.org/v1/schema/determination.schema.json
 - ExecutableEncoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
+- Assistant guide: https://obligationfirst.org/.well-known/assistant-guide.txt
 - Sitemap: https://obligationfirst.org/sitemap.xml
 - Atom feed: https://obligationfirst.org/feed.xml
 - Agent capabilities: https://obligationfirst.org/agents.json
