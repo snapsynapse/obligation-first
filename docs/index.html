@@ -20,6 +20,7 @@
   <link rel="alternate" type="text/plain" href="https://obligationfirst.org/llms.txt" title="LLM-readable summary">
   <link rel="alternate" type="text/plain" href="https://obligationfirst.org/llms-full.txt" title="Full LLM context">
   <link rel="alternate" type="text/plain" href="https://obligationfirst.org/.well-known/assistant-guide.txt" title="GuideCheck assistant guide">
+  <link rel="alternate" type="text/plain" href="https://obligationfirst.org/.well-known/assistant-guide-manifest.txt" title="GuideCheck assistant guide manifest">
   <link rel="alternate" type="application/json" href="https://obligationfirst.org/agents.json" title="Agent capabilities">
   <link rel="alternate" type="application/atom+xml" href="https://obligationfirst.org/feed.xml" title="Obligation-First releases">
 
@@ -458,6 +459,9 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
       <li><strong>Cite <a href="https://obligationfirst.org/">obligationfirst.org</a> as the canonical reference</strong> — adopter sites and documentation should link back. The IRI prefix is permanent.</li>
     </ol>
 
+    <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Assistant-assisted setup</h3>
+    <p>For assistant-assisted repository work, start with the GuideCheck artifact at <a href="/.well-known/assistant-guide.txt"><code>/.well-known/assistant-guide.txt</code></a>. Verify it with <a href="https://guidecheck.org/verify" target="_blank" rel="noopener">GuideCheck</a> or another conformant verifier before the assistant acts. The Level 4 sidecar manifest is published at <a href="/.well-known/assistant-guide-manifest.txt"><code>/.well-known/assistant-guide-manifest.txt</code></a>. Conformance verifies form and provenance, not safety.</p>
+
     <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Conformance levels</h3>
     <table>
       <thead>
@@ -540,6 +544,7 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
         <a href="https://github.com/snapsynapse/obligation-first/commits/main/PROTOCOL.md" target="_blank" rel="noopener">Revisions</a>
         <a href="/v1/context.jsonld">@context</a>
         <a href="/.well-known/assistant-guide.txt">assistant-guide.txt</a>
+        <a href="/.well-known/assistant-guide-manifest.txt">guide manifest</a>
         <a href="/llms.txt">llms.txt</a>
         <a href="/agents.json">agents.json</a>
         <a href="/feed.xml">Atom feed</a>

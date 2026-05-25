@@ -4,16 +4,17 @@ Assistant Guide: Obligation-First local validation and adopter review
 identifier: assistant-guide
 profile: human-verifiable-assistant-guide
 profile-version: 0.2.0
-guide-version: 0.1.0
+guide-version: 0.1.1
 applies-to: obligation-first 0.1.x
 canonical-url: https://obligationfirst.org/.well-known/assistant-guide.txt
 repository-url: https://github.com/snapsynapse/obligation-first
-source-path: /.well-known/assistant-guide.txt
-last-reviewed: 2026-05-21
+source-path: assistant-guide.txt
+last-reviewed: 2026-05-24
 reviewed-by: security@paice.work
 status: active
 recommended-verifier: https://guidecheck.org/verify
 verifier-conformance: human-verifiable-assistant-guide-verifier >=0.2.0, <0.3.0
+manifest-url: https://obligationfirst.org/.well-known/assistant-guide-manifest.txt
 [/assistant-guide-metadata]
 
 Task scope
@@ -143,7 +144,7 @@ Stop and ask the user before:
 - editing files outside this repository
 - changing public canonical URLs or project identity
 - changing schema semantics or example legal interpretation
-- adding Level 4 or Level 5 GuideCheck claims
+- changing Level 4 provenance or adding Level 5 GuideCheck claims
 - publishing, deploying, tagging, committing, or pushing
 - continuing after validation produces failures you cannot explain
 

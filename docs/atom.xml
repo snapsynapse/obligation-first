@@ -5,13 +5,24 @@
   <link href="https://obligationfirst.org/feed.xml" rel="self"/>
   <link href="https://obligationfirst.org/" rel="alternate"/>
   <id>https://obligationfirst.org/</id>
-  <updated>2026-05-04T00:00:00Z</updated>
+  <updated>2026-05-24T00:00:00Z</updated>
   <author>
     <name>Sam Rogers</name>
     <uri>https://www.linkedin.com/in/samrogers</uri>
   </author>
   <rights>CC BY 4.0 (spec) / Apache 2.0 (code)</rights>
   <generator uri="https://obligationfirst.org/">Obligation-First</generator>
+
+  <entry>
+    <title>GuideCheck Level 4 assistant guide published</title>
+    <link href="https://obligationfirst.org/.well-known/assistant-guide.txt" rel="alternate"/>
+    <id>https://obligationfirst.org/releases/guidecheck-level-4-assistant-guide</id>
+    <updated>2026-05-24T00:00:00Z</updated>
+    <published>2026-05-24T00:00:00Z</published>
+    <summary>Published a GuideCheck Human-Verifiable Assistant Guide for assistant-assisted Obligation-First repository work, with a Level 4 sidecar manifest at https://obligationfirst.org/.well-known/assistant-guide-manifest.txt. Conformance is a form and provenance check, not a safety claim.</summary>
+    <category term="guidecheck"/>
+    <category term="assistant-guide"/>
+  </entry>
 
   <entry>
     <title>v0.1.0-draft published</title>

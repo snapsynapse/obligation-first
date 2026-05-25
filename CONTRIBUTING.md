@@ -22,6 +22,20 @@ Obligation-First is drafting in public. Contributions are welcome.
 3. For schema changes: PR against `schema/context.jsonld` and the relevant `schema/*.schema.json`.
 4. For crosswalks or examples: PR with the new file and a short rationale.
 
+## Local validation
+
+Install dependencies once:
+```bash
+npm install
+```
+Before opening a PR, run:
+```bash
+npm test
+```
+The suite validates examples, graph constraints, adopter-kit helpers, published `docs/` mirrors, URL conventions, endpoint inventories, and the GuideCheck assistant-guide manifest.
+
+If you use an assistant to work on this repo, fetch and verify `https://obligationfirst.org/.well-known/assistant-guide.txt` first. The Level 4 manifest is published at `https://obligationfirst.org/.well-known/assistant-guide-manifest.txt`; conformance confirms form and provenance, not safety.
+
 ## Example records and restricted source data
 
 Examples may reference real laws, but example records must not silently

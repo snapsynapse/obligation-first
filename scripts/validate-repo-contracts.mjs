@@ -9,6 +9,7 @@
 import { readFile, readdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { createHash } from "node:crypto";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -24,6 +25,7 @@ const SCANNED_ROOTS = [
   "CONTRIBUTING.md",
   "SECURITY.md",
   "assistant-guide.txt",
+  "assistant-guide-manifest.txt",
   "docs",
   "reference",
   "examples",
@@ -106,6 +108,7 @@ const CORE_ENDPOINTS = [
 ];
 
 const ASSISTANT_GUIDE_ENDPOINT = "https://obligationfirst.org/.well-known/assistant-guide.txt";
+const ASSISTANT_GUIDE_MANIFEST_ENDPOINT = "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt";
 
 async function* walk(start) {
   const full = path.join(repoRoot, start);
@@ -215,6 +218,7 @@ async function validateEndpointInventory(failures) {
   const agentEndpoints = [
     agents.endpoints.context,
     agents.endpoints.assistant_guide,
+    agents.endpoints.assistant_guide_manifest,
     ...Object.values(agents.endpoints.schemas || {}),
   ];
 
@@ -241,17 +245,40 @@ async function validateEndpointInventory(failures) {
     if (!endpointVisible(text, ASSISTANT_GUIDE_ENDPOINT)) {
       failures.push(`${rel}: missing assistant guide endpoint ${ASSISTANT_GUIDE_ENDPOINT}`);
     }
+    if (!endpointVisible(text, ASSISTANT_GUIDE_MANIFEST_ENDPOINT)) {
+      failures.push(`${rel}: missing assistant guide manifest endpoint ${ASSISTANT_GUIDE_MANIFEST_ENDPOINT}`);
+    }
   }
+}
+
+function parseKeyValueManifest(text) {
+  const out = {};
+  for (const [index, line] of text.split("\n").entries()) {
+    if (!line.trim()) continue;
+    const match = line.match(/^([a-z0-9-]+): (.+)$/);
+    if (!match) {
+      throw new Error(`malformed manifest line ${index + 1}`);
+    }
+    out[match[1]] = match[2];
+  }
+  return out;
 }
 
 async function validateAssistantGuide(failures) {
   const rootPath = path.join(repoRoot, "assistant-guide.txt");
   const docsPath = path.join(repoRoot, "docs/.well-known/assistant-guide.txt");
+  const manifestPath = path.join(repoRoot, "assistant-guide-manifest.txt");
+  const docsManifestPath = path.join(repoRoot, "docs/.well-known/assistant-guide-manifest.txt");
   const rootBytes = await readFile(rootPath);
   const docsBytes = await readFile(docsPath);
+  const manifestBytes = await readFile(manifestPath);
+  const docsManifestBytes = await readFile(docsManifestPath);
 
   if (!rootBytes.equals(docsBytes)) {
     failures.push("assistant-guide.txt: repository and docs/.well-known copies must be byte-identical");
+  }
+  if (!manifestBytes.equals(docsManifestBytes)) {
+    failures.push("assistant-guide-manifest.txt: repository and docs/.well-known copies must be byte-identical");
   }
 
   if (rootBytes.length > 8192) {
@@ -282,7 +309,9 @@ async function validateAssistantGuide(failures) {
     "[assistant-guide-metadata]",
     "profile: human-verifiable-assistant-guide",
     "canonical-url: https://obligationfirst.org/.well-known/assistant-guide.txt",
+    "source-path: assistant-guide.txt",
     "recommended-verifier: https://guidecheck.org/verify",
+    "manifest-url: https://obligationfirst.org/.well-known/assistant-guide-manifest.txt",
     "Before acting",
     "[action]",
     "Stop and ask",
@@ -295,6 +324,34 @@ async function validateAssistantGuide(failures) {
   for (const snippet of requiredSnippets) {
     if (!text.includes(snippet)) {
       failures.push(`assistant-guide.txt: missing required GuideCheck content: ${snippet}`);
+    }
+  }
+
+  let manifest;
+  try {
+    manifest = parseKeyValueManifest(manifestBytes.toString("utf8"));
+  } catch (err) {
+    failures.push(`assistant-guide-manifest.txt: ${err.message}`);
+    return;
+  }
+
+  const guideSha256 = createHash("sha256").update(rootBytes).digest("hex");
+  const gitBlobSha1 = createHash("sha1")
+    .update(Buffer.from(`blob ${rootBytes.length}\0`, "utf8"))
+    .update(rootBytes)
+    .digest("hex");
+
+  const expectedManifest = {
+    "guide-path": "/.well-known/assistant-guide.txt",
+    "guide-version": "0.1.1",
+    "guide-sha256": guideSha256,
+    "guide-bytes": String(rootBytes.length),
+    "immutable-release-url": `https://api.github.com/repos/snapsynapse/obligation-first/git/blobs/${gitBlobSha1}`,
+  };
+
+  for (const [key, value] of Object.entries(expectedManifest)) {
+    if (manifest[key] !== value) {
+      failures.push(`assistant-guide-manifest.txt: expected ${key}: ${value}`);
     }
   }
 }

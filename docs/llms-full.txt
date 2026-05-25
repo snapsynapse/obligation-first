@@ -145,6 +145,19 @@ Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/puble
 2. Validate against the JSON Schemas at /v1/schema/ for the entity's @type.
 3. Cite obligationfirst.org as the canonical reference.
 
+## Assistant-assisted setup
+
+For assistant-assisted repository work, use the GuideCheck artifact at `https://obligationfirst.org/.well-known/assistant-guide.txt`.
+
+Required ceremony:
+1. Fetch the guide without credentials.
+2. Verify it with https://guidecheck.org/verify or another conformant verifier.
+3. Report verifier name and version, achieved level, guide SHA-256, blocking findings, and warnings.
+4. Ask the user to confirm they have read the guide and approve proceeding under the reported level.
+5. Do not execute actions before confirmation.
+
+The Level 4 manifest is at `https://obligationfirst.org/.well-known/assistant-guide-manifest.txt`. It pins the guide SHA-256 and byte count and uses the public repository copy at `assistant-guide.txt` as the repository-file anchor. This is a provenance check, not a safety claim.
+
 ## Endpoints
 
 - @context: https://obligationfirst.org/v1/context.jsonld
@@ -157,6 +170,7 @@ Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/puble
 - Determination schema: https://obligationfirst.org/v1/schema/determination.schema.json
 - ExecutableEncoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
 - Assistant guide: https://obligationfirst.org/.well-known/assistant-guide.txt
+- Assistant guide manifest: https://obligationfirst.org/.well-known/assistant-guide-manifest.txt
 - Sitemap: https://obligationfirst.org/sitemap.xml
 - Atom feed: https://obligationfirst.org/feed.xml
 - Agent capabilities: https://obligationfirst.org/agents.json

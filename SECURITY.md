@@ -12,7 +12,15 @@ For implementation-level issues in adopter projects (PubLedge, EveryAILaw, AI In
 
 ## Integrity
 
-Canonical files are hashed in `MANIFEST.yaml` (SHA-256). Run `./scripts/validate-hashes.sh` to verify. Tampering with spec text or schemas is detectable.
+Repository integrity checks are part of the local test suite:
+```bash
+npm test
+```
+For the public assistant guide, Obligation-First publishes a GuideCheck Level 4 sidecar manifest at `https://obligationfirst.org/.well-known/assistant-guide-manifest.txt`. The repository contract validator recomputes the guide SHA-256, byte count, manifest URL, and public repository anchor:
+```bash
+npm run validate:contracts
+```
+GuideCheck conformance is a provenance and form check, not a safety or trust claim.
 
 ## Scope
 

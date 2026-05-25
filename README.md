@@ -60,15 +60,29 @@ If you'd like to bind your project to v0.1, see [Quick start](#quick-start-bind-
 3. **Cite [obligationfirst.org](https://obligationfirst.org/) as the canonical reference** — adopter sites and documentation should link back. The IRI prefix is permanent.
 
 To validate your own records locally:
-
 ```bash
 git clone https://github.com/snapsynapse/obligation-first.git
 cd obligation-first
 npm install
 npm run validate    # runs scripts/validate-examples.mjs
 ```
-
 The validator walks `examples/*/records/` and checks every JSON record against the appropriate schema. Adopters can drop their own records into a directory of the same shape and reuse the script.
+
+For a complete local check before opening a PR or publishing docs:
+```bash
+npm test
+```
+The full suite validates worked examples, graph constraints, adopter-kit helpers, published artifacts, URL conventions, endpoint inventories, and GuideCheck assistant-guide provenance.
+
+## Assistant-assisted setup
+
+If you use a coding assistant to install, validate, or modify this repo, start from the GuideCheck guide:
+```bash
+curl https://obligationfirst.org/.well-known/assistant-guide.txt
+```
+Verify it with https://guidecheck.org/verify or another conformant verifier before asking the assistant to act. The guide is published with a Level 4 sidecar manifest at `https://obligationfirst.org/.well-known/assistant-guide-manifest.txt`; the same guide bytes are also present at repository root as `assistant-guide.txt`.
+
+Conformance is not safety. Read the guide, confirm the reported hash, and keep normal sandboxing, least privilege, and human approval in place.
 
 ## Machine-readable endpoints
 
@@ -89,6 +103,7 @@ Every artifact an adopter or agent needs is dereferenceable at a stable URL:
 | [`/llms.txt`](https://obligationfirst.org/llms.txt), [`/llms-full.txt`](https://obligationfirst.org/llms-full.txt) | LLM-readable summary + full context |
 | [`/agents.json`](https://obligationfirst.org/agents.json) | Agent capabilities and endpoint inventory |
 | [`/.well-known/assistant-guide.txt`](https://obligationfirst.org/.well-known/assistant-guide.txt) | GuideCheck Human-Verifiable Assistant Guide for assistant-assisted repo work |
+| [`/.well-known/assistant-guide-manifest.txt`](https://obligationfirst.org/.well-known/assistant-guide-manifest.txt) | GuideCheck Level 4 sidecar manifest for the assistant guide |
 | [`/feed.xml`](https://obligationfirst.org/feed.xml) | Atom feed of releases |
 | [`/sitemap.xml`](https://obligationfirst.org/sitemap.xml), [`/robots.txt`](https://obligationfirst.org/robots.txt) | SEO + AI-crawler allow-list |
 | [`/.well-known/security.txt`](https://obligationfirst.org/.well-known/security.txt) | Security disclosure (RFC 9116) |

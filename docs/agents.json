@@ -24,6 +24,7 @@
       "executable_encoding": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json"
     },
     "assistant_guide": "https://obligationfirst.org/.well-known/assistant-guide.txt",
+    "assistant_guide_manifest": "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt",
     "spec": "https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md",
     "llms_txt": "https://obligationfirst.org/llms.txt",
     "sitemap": "https://obligationfirst.org/sitemap.xml",
