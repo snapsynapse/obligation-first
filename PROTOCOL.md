@@ -1,7 +1,7 @@
 ---
 "@type": "https://w3id.org/semanticarts/ns/ontology/gist/Specification"
 title: "Obligation-First Protocol"
-version: "0.1.0-draft"
+version: "0.2.0-draft"
 license: "CC-BY-4.0"
 created: 2026-05-04
 modified: 2026-05-04
@@ -9,7 +9,7 @@ modified: 2026-05-04
 
 # Obligation-First Protocol
 
-> **Status: v0.1.0-draft.** The core specification, JSON-LD context, JSON Schemas, worked examples, adopter kit, and first three PAICE legal bindings are complete enough for external review. Remaining v0.1 freeze gates are external feedback, permanent w3id.org redirect filing, and cross-project anchor enrichment.
+> **Status: v0.2.0-draft.** v0.1 spec was complete enough for external review; Semantic Arts feedback (Dave McComb, 2026-05-26) is absorbed in v0.2 as binding-only updates — the gist binding for `of:Reparation` is closed to a layered `gist:Requirement` + `gist:Intention` (+ `gist:Event`) pattern, and Allegation is rebound from non-existent `gist:Statement` to `gist:Content` (+ `gist:Intention` when intent-bearing). The of: vocabulary is unchanged; adopter records require no migration. See [CHANGELOG.md](CHANGELOG.md). Remaining v0.2 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and cross-project anchor enrichment.
 
 ## What this protocol specifies
 
@@ -31,14 +31,14 @@ A shared upper schema for normative content, expressed as a JSON-LD `@context` a
 | Authority | `of:Authority` | wraps `gist:Organization` (subtype as needed) | The party with interpretive or regulatory power |
 | Container | `of:Instrument` | `gist:Agreement` / `gist:Specification` (subtype by kind) | The artifact with binding force — a law, an agreement, a ruling |
 | Secondary | `of:Term` | `gist:ContractTerm` | A clause within an Instrument |
-| Primary | `of:Obligation` | `gist:Requirement` / `gist:Restriction` / `gist:Permission` / `of:Reparation` | The behavior the Term creates, prohibits, permits, or repairs |
+| Primary | `of:Obligation` | `gist:Requirement` / `gist:Restriction` / `gist:Permission` / (Reparation: see deontic-quartet section below) | The behavior the Term creates, prohibits, permits, or repairs |
 
 ### The proceeding strand
 
 | Role | of: term | gist class | What it is |
 |---|---|---|---|
 | Proceeding | `of:Proceeding` | `gist:Event` (subtype `LegalProceeding`) | The legal matter — docket, case, action |
-| Allegation | `of:Allegation` | `gist:Statement` (asserted, unverified) | Asserted facts about what happened |
+| Allegation | `of:Allegation` | `gist:Content` (assertion text) + `gist:Intention` (speech-act intent, when intent-bearing) | Asserted facts about what happened |
 | Determination | `of:Determination` | `gist:Determination` | An Authority's ruling about Allegations and Obligations |
 
 ### The deontic quartet
@@ -50,7 +50,9 @@ A shared upper schema for normative content, expressed as a JSON-LD `@context` a
 | `of:Requirement` | `lrml:Obligation` | `gist:Requirement` | A primary duty to act |
 | `of:Restriction` | `lrml:Prohibition` | `gist:Restriction` | A primary duty to refrain |
 | `of:Permission` | `lrml:Permission` | `gist:Permission` | An authorized capacity to act |
-| `of:Reparation` | `lrml:Reparation` | Open for review: gist binding TBC | A secondary duty triggered by violation of a primary obligation |
+| `of:Reparation` | `lrml:Reparation` | `gist:Requirement` + `gist:Intention` (+ `gist:Event` when actuated) — see Reparation gist-binding note below | A secondary duty triggered by violation of a primary obligation |
+
+**Reparation gist binding (v0.2).** `of:Reparation` is kept as a distinct deontic subclass — LegalRuleML 1:1 alignment, SPARQL queryability (`?r a of:Reparation`), and type-keyed validators all depend on it. What v0.2 changed is the *gist* binding for that class, per Semantic Arts feedback (Dave McComb, 2026-05-26). gist does not need a fourth deontic class; instead it expresses reparation as a layered pattern: the secondary duty is a `gist:Requirement`; the declared legislative intent to repair (compensation, restitution, deterrence) attaches as `gist:Intention` to the creating Term; the actuated reparation, when it occurs, is recorded via the proceeding strand and conceptually maps to `gist:Event`. v0.1 left this binding open; v0.2 closes it. See [reference/crosswalks/gist.md](reference/crosswalks/gist.md) for the full rationale.
 
 ## Core relations
 
@@ -64,10 +66,13 @@ A shared upper schema for normative content, expressed as a JSON-LD `@context` a
 | `of:decides` | Determination | Allegation | What the ruling resolved |
 | `of:disposition` | Determination | (closed vocab) | confirmed / rejected / partial / dismissed / settled / vacated / issued. Adjudicative dispositions (everything except `issued`) require `decides` to be non-empty; `issued` is the administrative form (promulgating an Instrument or recording posture) and may leave `decides` empty. |
 | `of:anchors` | Determination \| Term \| Obligation | Obligation \| Term | Interpretive reference. (1) Determination → Obligation: the ruling interprets the obligation. (2) Term → Term: a JIA term interprets a statutory term. (3) Obligation → Obligation: a re-allocated obligation references its statutory ground. Always asserted, never inferred. |
-| `of:defeats` | Term | Term | Term-level override (Lawsky default logic, LegalRuleML §7.4). Distinct from `anchors`: defeats is override; anchors is interpretation without override. |
+| `of:defeats` | Term | Term | Term-level override (Lawsky default logic, LegalRuleML §7.4). General/fallback defeasibility predicate. Distinct from `anchors`: defeats is override; anchors is interpretation without override. |
+| `of:rebuts` | Term | Term | Subproperty of `of:defeats`. Defeating Term denies the *conclusion* of the defeated Term (a counter-rule that asserts the opposite outcome). Per LegalRuleML §7.4 rebut/undercut distinction. Any `of:rebuts` assertion also entails `of:defeats`. |
+| `of:undercuts` | Term | Term | Subproperty of `of:defeats`. Defeating Term denies the *applicability* of the defeated Term in this context (an exception that says the rule doesn't fire here, without contradicting it elsewhere). Per LegalRuleML §7.4. Any `of:undercuts` assertion also entails `of:defeats`. |
+| `of:violationOf` | Reparation | Obligation | Symmetric/inverse predicate of `triggers_on_violation_of`. Adopters MAY assert it from either side; if both directions are present, they must be consistent. Added in v0.2 so SPARQL queries can traverse the violation relation from the primary-Obligation side without walking the trigger field. |
 | `of:supersedes` | Instrument | Instrument | Whole-Instrument replacement (post-enactment) |
 | `of:wouldSupersede` | Instrument | Instrument | Whole-Instrument replacement (pre-enactment, subjunctive) |
-| `of:executableEncoding` | Term \| Obligation | (typed reference) | Pointer to a Catala / Blawx / OpenFisca / other executable encoding |
+| `of:executableEncoding` | Term \| Obligation | (typed reference) | Pointer to a Catala / Blawx / OpenFisca / other executable encoding. Both Term and Obligation accept the field; schemas (`schema/term.schema.json`, `schema/obligation.schema.json`) reflect this. |
 
 ## Instrument lifecycle and enforcement posture
 
@@ -196,7 +201,13 @@ The `of:defeats` predicate expresses a cross-Term override relation: if Term A `
 
 ### Sub-types
 
-LegalRuleML §7.4 distinguishes *rebuttal* (the defeating rule provides an opposite conclusion) from *undercut* (the defeating rule attacks an inferential link). v0.1 does not formalize this distinction — `of:defeats` is binary in v0.1. v0.2 may introduce `of:rebuts` and `of:undercuts` as subproperties of `of:defeats`.
+LegalRuleML §7.4 distinguishes *rebuttal* (the defeating rule provides an opposite conclusion) from *undercut* (the defeating rule attacks the applicability of the defeated rule in this context). v0.1 used a single binary `of:defeats` for both cases. v0.2 introduces `of:rebuts` and `of:undercuts` as subproperties of `of:defeats`:
+
+- **`of:rebuts`** — the defeating Term asserts an *opposite outcome*. Example: a later statute that reverses the legal conclusion of an earlier rule on the same facts.
+- **`of:undercuts`** — the defeating Term denies that the defeated Term *applies* in this context. Example: an exception clause that carves a fact pattern out of an otherwise-applicable rule without contradicting the rule elsewhere.
+- **`of:defeats`** — kept as the general/fallback predicate. Use it when the distinction is unknown, irrelevant to the consumer, or when both forms apply.
+
+The subproperty relation means any assertion of `of:rebuts(A, B)` or `of:undercuts(A, B)` also entails `of:defeats(A, B)`. Adopters MAY use the general predicate alone (v0.1-compatible) or upgrade specific edges to the more precise predicate. The precedence rules above apply uniformly to all three predicates.
 
 ## ExecutableEncoding shape
 
@@ -305,12 +316,13 @@ Round-tripping the three examples surfaced these findings:
 - Symmetric `of:violationOf` relation (parallel to `of:creates`) for Reparations
 - Closed vocabularies for `duty_holder_type`, `trigger` (kept repo-local in v0.1)
 - LegalRuleML encoding pointer (`of:legalRuleMLEncoding` parallel to `of:executableEncoding`)
-- Defeasibility sub-types (rebut vs undercut, priority hierarchies per LegalRuleML §7.4)
+- Priority hierarchies per LegalRuleML §7.4 (rebut/undercut sub-types landed in v0.2 as `of:rebuts` / `of:undercuts`; explicit priority chains remain deferred)
 
-**Open for external review (see [external review questions](reference/review/external-review-questions.md)):**
-- gist binding for Reparation remains open for Semantic Arts review
-- Whether `gist:Statement` is the right binding for Allegation
+**Resolved in v0.2 by external review (see [external review questions](reference/review/external-review-questions.md)):**
+- gist binding for `of:Reparation`: layered pattern `gist:Requirement` + `gist:Intention` (declared intent on the creating Term) + `gist:Event` (actuated reparation, recorded via the proceeding strand). The `of:Reparation` class itself is preserved — LegalRuleML 1:1 alignment and SPARQL queryability depend on it. Per Dave McComb / Semantic Arts, 2026-05-26.
+- Allegation gist binding: `gist:Statement` does not exist in gist; bind assertion text to `gist:Content` and reach for `gist:Intention` only when the claim is intent-bearing.
 
 ## Changelog
 
 - 0.1.0-draft (2026-05-04): Initial draft. Outline only. Spec text to be expanded before freeze.
+- 0.2.0-draft (2026-05-26): Semantic Arts feedback absorbed as binding-only updates. `of:Reparation` retained as a distinct deontic subclass; its gist binding closed to the layered pattern `gist:Requirement` + `gist:Intention` + (when actuated) `gist:Event`. Allegation gist binding switched from non-existent `gist:Statement` to `gist:Content` (+ `gist:Intention` when intent-bearing). No of:-vocabulary or adopter-record changes. See [CHANGELOG.md](CHANGELOG.md).

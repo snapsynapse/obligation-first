@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://obligationfirst.org/v1/schema/obligation.schema.json",
   "title": "Obligation",
-  "description": "A duty, prohibition, permission, or reparation created by a Term. The deontic quartet (Requirement / Restriction / Permission / Reparation) is aligned with LegalRuleML 1.0 §5.3.",
+  "description": "A duty, prohibition, permission, or reparation created by a Term. The deontic quartet (Requirement / Restriction / Permission / Reparation) aligns with LegalRuleML 1.0 §5.3 deontic operators. Reparation's gist binding (v0.2) is the layered pattern gist:Requirement + gist:Intention (+ gist:Event when actuated); see reference/crosswalks/gist.md.",
   "type": "object",
   "required": ["@type", "@id", "title", "created_by"],
   "oneOf": [
@@ -98,7 +98,7 @@
           }
         }
       ],
-      "description": "A secondary duty triggered by violation of a primary obligation. Aligned with LegalRuleML lrml:Reparation. gist binding TBC pending Semantic Arts feedback."
+      "description": "A secondary duty triggered by violation of a primary obligation. Aligned with LegalRuleML lrml:Reparation. gist binding (v0.2, per Semantic Arts feedback 2026-05-26): the declared duty is gist:Requirement; the legislative intent to repair (compensation / restitution / deterrence) attaches as gist:Intention to the creating Term; the actuated reparation, when it occurs, is recorded via the proceeding strand and conceptually maps to gist:Event. of:Reparation is preserved as a distinct of: subclass to keep LegalRuleML 1:1 alignment and SPARQL queryability. See reference/crosswalks/gist.md."
     }
   }
 }

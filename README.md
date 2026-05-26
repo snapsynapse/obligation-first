@@ -2,7 +2,7 @@
 
 ![Obligation-First — an open upper schema for normative content. Bound to gist. Aligned with LegalRuleML.](imgs/og.png)
 
-[![Spec](https://img.shields.io/badge/spec-v0.1.0--draft-orange)](PROTOCOL.md)
+[![Spec](https://img.shields.io/badge/spec-v0.2.0--draft-orange)](PROTOCOL.md)
 [![Content license: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey)](LICENSE-CC-BY-4.0)
 [![Code license: Apache 2.0](https://img.shields.io/badge/code-Apache%202.0-lightgrey)](LICENSE-APACHE)
 [![Bound to gist](https://img.shields.io/badge/ontology-gist-green)](https://semanticarts.com/gist/)
@@ -11,7 +11,7 @@ A shared upper schema for normative content — laws, cases, and agreements — 
 
 Obligation-First is a methodology and a JSON-LD context. The methodology says that normative content is best modeled by what it requires, not what it says. The schema gives that methodology a machine-readable shape.
 
-**Live at [obligationfirst.org](https://obligationfirst.org/). Drafting in public. v0.1.0-draft. Subject to revision before the v0.1 freeze.**
+**Live at [obligationfirst.org](https://obligationfirst.org/). Drafting in public. v0.2.0-draft. Subject to revision before the v0.2 freeze.**
 
 ## What this is
 
@@ -51,7 +51,7 @@ Most legal data models center on the document. Obligation-First centers on what 
 - [PubLedge](https://publedge.org/) — open recordkeeping protocol for joint interpretations, now publishing Obligation-First records for authorities, instruments, terms, obligations, and determinations.
 - [AI Incident Law](https://aiincidentlaw.org/) — public-record corpus of AI-related cases, now publishing Obligation-First proceedings, allegations, determinations, and authorities.
 
-If you'd like to bind your project to v0.1, see [Quick start](#quick-start-bind-a-dataset-in-three-steps) below or [CONTRIBUTING.md](CONTRIBUTING.md).
+If you'd like to bind your project to the current draft, see [Quick start](#quick-start-bind-a-dataset-in-three-steps) below or [CONTRIBUTING.md](CONTRIBUTING.md). v0.1 bindings remain valid through v0.2 — no migration required.
 
 ## Quick start — bind a dataset in three steps
 
@@ -109,7 +109,7 @@ Every artifact an adopter or agent needs is dereferenceable at a stable URL:
 | [`/.well-known/security.txt`](https://obligationfirst.org/.well-known/security.txt) | Security disclosure (RFC 9116) |
 | [`/changelog.html`](https://obligationfirst.org/changelog.html) | Changelog (redirects to GitHub `CHANGELOG.md`) |
 
-The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. Once v0.1 freezes, `https://w3id.org/of/v1/` will be filed at w3id.org as the permanent canonical IRI.
+The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. `https://w3id.org/of/v1/` will be filed at w3id.org as the permanent canonical IRI before v1.0 freeze.
 
 ## Repository layout
 
@@ -117,7 +117,7 @@ The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. Once 
 |---|---|
 | [PROTOCOL.md](PROTOCOL.md) | The Obligation-First specification |
 | [PRIOR-ART.md](PRIOR-ART.md) | Survey of legal ontologies, deontic logic foundations, and rules-as-code projects |
-| [ROADMAP.md](ROADMAP.md) | Versioning plan, resolved-in-v0.1 table, deferred decisions |
+| [ROADMAP.md](ROADMAP.md) | Versioning plan, resolved-in-v0.1 and resolved-in-v0.2 tables, deferred decisions |
 | [CHANGELOG.md](CHANGELOG.md) | Material changes per version |
 | `schema/context.jsonld` | The JSON-LD `@context` for v1 (canonical source — copied to `docs/v1/` by CI) |
 | `schema/*.schema.json` | JSON Schemas for each entity |
@@ -128,10 +128,10 @@ The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. Once 
 | `vendor/gist/` | Pinned snapshot of Semantic Arts gist (14.1.0) |
 | `reference/crosswalks/` | Mappings to LegalRuleML, Akoma Ntoso, ELI/ECLI, gist |
 | `reference/adopter-kit.md` | How adopters reuse the binding helper introduced after EveryAILaw |
-| `reference/review/` | Public external review questions for v0.1 freeze |
+| `reference/review/` | Public external review questions — including v0.2 resolutions from Semantic Arts |
 | `reference/w3id-pr.md` | Prepared w3id.org permanent identifier PR notes |
 | `reference/og-image-prompt.md` | Structured prompt for generating the OG social-card image |
-| `examples/{air-canada,colorado-sb24-205,publedge-jia-utah-72}/` | Worked examples — three real record sets round-tripped through v0.1, with 23 canonical JSON record files under the `records/` subdirectories |
+| `examples/{air-canada,colorado-sb24-205,publedge-jia-utah-72}/` | Worked examples — three real record sets round-tripped through the current draft, with 23 canonical JSON record files under the `records/` subdirectories. All v0.1 records remain valid through v0.2 unchanged. |
 | `docs/` | Published website served by GitHub Pages from `main /docs` (canonical at obligationfirst.org) |
 | `.github/workflows/` | CI: validation on every push (`test.yml`), Pages deploy (`pages.yml`), monthly a11y audit (`a11y.yml`) |
 | `_workshop/` | Design conversation archives |
@@ -145,16 +145,16 @@ The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. Once 
 
 ## Status
 
-v0.1.0-draft. Spec, schemas, worked examples, adopter kit, and first three PAICE legal bindings are complete and live. Open items before v0.1 freeze:
+v0.2.0-draft. v0.1 spec, schemas, worked examples, adopter kit, and first three PAICE legal bindings are complete and live; v0.2 absorbs Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates — see [CHANGELOG](CHANGELOG.md). The of: vocabulary is unchanged from v0.1; adopter records require no migration. Open items before v0.2 freeze:
 
-- External review (Semantic Arts feedback on gist binding for Reparation; LegalRuleML community feedback on deontic alignment)
+- LegalRuleML community feedback on deontic alignment
 - File w3id.org PR for the permanent IRI
 
 Current local stage: Obligation-First is operating as the validation and identifier contract between EveryAILaw, PubLedge, and AI Incident Law. The next useful work is external review, permanent IRI filing, and cross-project anchor enrichment.
 
 For anchor enrichment, run `npm run report:anchors` against the worked examples or `node scripts/report-anchor-graph.mjs <adopter-export> [...]` against sibling adopter exports.
 
-The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. `https://w3id.org/of/v1/` is planned as the permanent canonical IRI once v0.1 freezes.
+The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. `https://w3id.org/of/v1/` is planned as the permanent canonical IRI; the w3id PR is targeted for filing before v1.0 freeze.
 
 ## License
 

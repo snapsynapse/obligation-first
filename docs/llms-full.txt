@@ -1,6 +1,6 @@
 # Obligation-First — full LLM context
 
-> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.1.0-draft.
+> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.2.0-draft.
 
 This file is the deeper companion to llms.txt. Where llms.txt gives a one-screen summary, this file is the full context an LLM-powered tool needs to reason about Obligation-First, generate adopter records, or answer detailed questions without scraping.
 
@@ -29,7 +29,7 @@ Source of truth: https://github.com/snapsynapse/obligation-first/blob/main/PROTO
 | Role | of: term | gist class |
 |---|---|---|
 | Matter | of:Proceeding | gist:Event (subtype LegalProceeding) |
-| Asserted | of:Allegation | gist:Statement (asserted, unverified) |
+| Asserted | of:Allegation | gist:Content (assertion text) + gist:Intention (when intent-bearing) |
 | Decided | of:Determination | gist:Determination |
 
 ### The deontic quartet
@@ -39,7 +39,9 @@ Source of truth: https://github.com/snapsynapse/obligation-first/blob/main/PROTO
 | of:Requirement | lrml:Obligation | gist:Requirement | A primary duty to act |
 | of:Restriction | lrml:Prohibition | gist:Restriction | A primary duty to refrain |
 | of:Permission | lrml:Permission | gist:Permission | An authorized capacity to act |
-| of:Reparation | lrml:Reparation | (gist binding TBC) | A secondary duty triggered by violation of a primary obligation |
+| of:Reparation | lrml:Reparation | gist:Requirement + gist:Intention (+ gist:Event when actuated) — see note | A secondary duty triggered by violation of a primary obligation |
+
+v0.2 closed the open gist binding for of:Reparation per Semantic Arts feedback (Dave McComb, 2026-05-26). The of:Reparation class is preserved as a distinct deontic subclass — LegalRuleML 1:1 alignment and SPARQL queryability depend on it. The gist binding is the layered pattern: gist:Requirement for the secondary duty itself, gist:Intention for the declared legislative intent attached to the creating Term, and (when the remedy is actually ordered or carried out) gist:Event conceptually, recorded via the proceeding strand.
 
 ### Core relations (full list)
 
@@ -51,10 +53,13 @@ Source of truth: https://github.com/snapsynapse/obligation-first/blob/main/PROTO
 - of:decides (Determination → Allegation[]) — what the ruling resolved
 - of:disposition (Determination → enum) — confirmed / rejected / partial / dismissed / settled / vacated / issued
 - of:anchors (Determination → Obligation[]) — the Obligation the ruling interprets
-- of:defeats (Term → Term[]) — Term-level override per Lawsky default logic / LegalRuleML §7.4
+- of:defeats (Term → Term[]) — Term-level override per Lawsky default logic / LegalRuleML §7.4. General/fallback defeasibility predicate.
+- of:rebuts (Term → Term[]) — subproperty of of:defeats. Defeating Term reaches the opposite conclusion (LegalRuleML §7.4 rebut). Entails of:defeats. Added in v0.2.
+- of:undercuts (Term → Term[]) — subproperty of of:defeats. Defeating Term denies the rule's applicability in this context (LegalRuleML §7.4 undercut). Entails of:defeats. Added in v0.2.
+- of:violationOf (Reparation → Obligation) — symmetric/inverse of triggers_on_violation_of. Adopters MAY assert from either side; if both present, must be consistent. Added in v0.2.
 - of:supersedes (Instrument → Instrument[]) — post-enactment whole-Instrument replacement
 - of:wouldSupersede (Instrument → Instrument[]) — subjunctive form for proposed Instruments
-- of:executableEncoding (Term | Obligation → typed reference) — pointer to a Catala / Blawx / OpenFisca / other executable encoding
+- of:executableEncoding (Term | Obligation → typed reference) — pointer to a Catala / Blawx / OpenFisca / other executable encoding. Both Term and Obligation accept the field.
 
 ### Instrument lifecycle
 
@@ -77,7 +82,7 @@ Recursive: every Authority's right to act traces to an Instrument on the spine. 
 - No mutual defeat: A defeats B + B defeats A is invalid.
 - Cross-Instrument allowed: a Term in Instrument X may defeat a Term in Instrument Y.
 - Inferred conflict is out of scope. of:defeats is asserted, not inferred.
-- Sub-types (rebut vs undercut per LegalRuleML §7.4) deferred to v0.2.
+- Sub-types added in v0.2: of:rebuts (opposite conclusion) and of:undercuts (denies applicability), both subproperties of of:defeats. Either entails of:defeats; the general predicate remains valid for the v0.1-compatible binary case.
 
 ### ExecutableEncoding shape
 

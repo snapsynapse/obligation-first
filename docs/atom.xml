@@ -5,13 +5,24 @@
   <link href="https://obligationfirst.org/feed.xml" rel="self"/>
   <link href="https://obligationfirst.org/" rel="alternate"/>
   <id>https://obligationfirst.org/</id>
-  <updated>2026-05-24T00:00:00Z</updated>
+  <updated>2026-05-26T00:00:00Z</updated>
   <author>
     <name>Sam Rogers</name>
     <uri>https://www.linkedin.com/in/samrogers</uri>
   </author>
   <rights>CC BY 4.0 (spec) / Apache 2.0 (code)</rights>
   <generator uri="https://obligationfirst.org/">Obligation-First</generator>
+
+  <entry>
+    <title>v0.2.0-draft published</title>
+    <link href="https://obligationfirst.org/" rel="alternate"/>
+    <id>https://obligationfirst.org/releases/v0.2.0-draft</id>
+    <updated>2026-05-26T00:00:00Z</updated>
+    <published>2026-05-26T00:00:00Z</published>
+    <summary>Binding-only refinement built on v0.1: Semantic Arts feedback (Dave McComb, 2026-05-26) absorbed for the of:Reparation gist binding (now the layered gist:Requirement + gist:Intention + gist:Event pattern) and the of:Allegation gist binding (now gist:Content + gist:Intention; gist defines no gist:Statement). Defeasibility sub-types of:rebuts and of:undercuts added as subproperties of of:defeats per LegalRuleML §7.4. of:violationOf added as the symmetric/inverse predicate of triggers_on_violation_of. of:Reparation class is preserved for LegalRuleML 1:1 alignment and SPARQL queryability; v0.1 adopter records require no migration.</summary>
+    <category term="release"/>
+    <category term="v0.2"/>
+  </entry>
 
   <entry>
     <title>GuideCheck Level 4 assistant guide published</title>

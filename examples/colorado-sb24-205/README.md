@@ -141,6 +141,8 @@ content: >
 created_by: https://everyailaw.com/term/co-sb24-205-1703-duty-of-care
 ```
 
+v0.2 keeps `of:Reparation` as a distinct deontic subclass — the LegalRuleML 1:1 alignment and SPARQL queryability both depend on it. What v0.2 changed is the *gist binding* for Reparation, per Semantic Arts feedback (Dave McComb, 2026-05-26): the declared duty maps to `gist:Requirement`; the legislative intent to repair attaches as `gist:Intention` to the creating Term; the actuated reparation, when it occurs, is recorded through the proceeding strand and conceptually maps to `gist:Event`.
+
 ## Layer 2 — Enforcement posture (the proceeding strand)
 
 The federal court order staying enforcement is itself a Determination. The AG's public statement is a separate Determination (administrative, not judicial). Both anchor back to Obligations on the spine.
@@ -258,7 +260,7 @@ notes: >
 
 1. **The three-layer reality round-trips cleanly.** Spine = legislation, proceeding strand = enforcement posture, second `status: proposed` Instrument = replacement bill. No special-casing required.
 2. **The recursive Authority basis paid off.** The Colorado AI Policy Work Group is not a government department; it's a governor-convened advisory body. Its `authority_basis.instrument_ref` points to the executive order that created it. The schema handles this without a "non-government Authority" exception.
-3. **Reparation modeled the right thing.** The §6-1-1703 duty creates a Requirement (use reasonable care). Violation of that Requirement triggers a Reparation (civil penalty enforced by AG). The federal stay does not vacate the Requirement — it constrains the Reparation's `enforcement_authority`'s capacity to act. That distinction is exactly what Reparation as a separate deontic class enables.
+3. **Reparation modeled the right thing.** The §6-1-1703 duty creates a Requirement (use reasonable care). Violation of that Requirement triggers a Reparation (civil penalty enforced by AG). The federal stay does not vacate the Requirement — it constrains the Reparation's `enforcement_authority`'s capacity to act. That distinction is exactly what Reparation as a separate deontic class enables. v0.2 refined the gist binding for `of:Reparation` (per Dave McComb / Semantic Arts, 2026-05-26) to layer `gist:Requirement` (the duty) + `gist:Intention` (the declared intent to repair, on the creating Term) + `gist:Event` (the actuated reparation, via the proceeding strand). The class itself stays — LegalRuleML 1:1 alignment and SPARQL queryability both depend on it.
 4. **`anchors` from a Determination back to an Obligation worked across repos.** The federal court's stay is a record in AI Incident Law; the Obligation it constrains is a record in EveryAILaw. The IRI binding makes the cross-repo join trivial.
 5. **The split between `status` and `enforcement_status` carried weight.** SB 24-205 is `status: enacted` *and* `enforcement_status: constrained`. Both true, neither contradicting the other. A schema that forced these into a single field would have to either lose information or invent a "stayed-pending-rulemaking" enum value that wouldn't generalize across jurisdictions. The split avoids both.
 6. **`wouldSupersede` is the right verb for pre-enactment.** Asserting `supersedes` would overstate the case (the proposed framework has not yet been enacted, let alone replaced anything). Asserting nothing would lose useful sensemaking signal. The subjunctive predicate captures the relationship at exactly the right strength.

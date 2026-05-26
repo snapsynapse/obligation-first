@@ -8,7 +8,7 @@ The headline finding: **no existing ontology bridges AI laws, AI incident cases,
 
 ### Semantic Arts gist
 
-The upper ontology Obligation-First binds to. Small (~150 classes), CC-BY 4.0, FIBO-adjacent. Provides foundational classes used throughout the spec: `gist:Organization`, `gist:Agreement`, `gist:Specification`, `gist:ContractTerm`, `gist:Requirement`, `gist:Restriction`, `gist:Permission`, `gist:Determination`, `gist:Statement`, `gist:Event`, `gist:Jurisdiction`.
+The upper ontology Obligation-First binds to. Small (~150 classes), CC-BY 4.0, FIBO-adjacent. Provides foundational classes used throughout the spec: `gist:Organization`, `gist:Agreement`, `gist:Specification`, `gist:ContractTerm`, `gist:Requirement`, `gist:Restriction`, `gist:Permission`, `gist:Determination`, `gist:Content`, `gist:Intention`, `gist:Event`, `gist:Jurisdiction`.
 
 - Home: https://semanticarts.com/gist/
 - Vendored at `vendor/gist/`
@@ -41,7 +41,7 @@ The US House XML schema for the US Code (uscode.house.gov). Equivalent role to A
 
 The OASIS standard for representing legal norms with explicit deontic operators: Obligation, Permission, Prohibition, Reparation. Handles defeasibility via `DefeasibleRule` and exception hierarchies (§7.4, §7.5).
 
-Obligation-First's deontic quartet (`of:Requirement`, `of:Restriction`, `of:Permission`, `of:Reparation`) is aligned with LegalRuleML's four operators. Crosswalk in `reference/crosswalks/legalruleml.md`.
+Obligation-First's deontic quartet (`of:Requirement`, `of:Restriction`, `of:Permission`, `of:Reparation`) is aligned with LegalRuleML's four operators. Crosswalk in `reference/crosswalks/legalruleml.md`. v0.2 refines the gist binding for `of:Reparation` per Semantic Arts feedback (the layered pattern `gist:Requirement` + `gist:Intention` + `gist:Event`); the of: class itself is preserved.
 
 - Spec: https://docs.oasis-open.org/legalruleml/
 

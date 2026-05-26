@@ -1,6 +1,6 @@
 ---
 title: "Obligation-First INTENT"
-version: "0.1.0-draft"
+version: "0.2.0-draft"
 last_updated: 2026-05-04
 status: working-hypothesis
 description: "Standards-level strategy for the Obligation-First upper schema. Defines scope, design constraints, adoption order, and governance posture."
@@ -33,7 +33,7 @@ In scope:
 
 - Authority / Instrument / Term / Obligation (the four-role spine)
 - Proceeding / Allegation / Determination (the proceeding strand)
-- Deontic quartet: Requirement / Restriction / Permission / Reparation (subclasses of Obligation, aligned with LegalRuleML 1.0)
+- Deontic quartet: Requirement / Restriction / Permission / Reparation (subclasses of Obligation, aligned with LegalRuleML 1.0). v0.2 refines the gist binding for Reparation to a layered `gist:Requirement` + `gist:Intention` (+ `gist:Event`) pattern without changing the of: class — see [reference/crosswalks/gist.md](reference/crosswalks/gist.md).
 - Defeasibility relation (`of:defeats`) per Lawsky / LegalRuleML §7.4
 - Polymorphic executable-encoding reference (Catala, Blawx, OpenFisca, others)
 - Authority-basis vocabulary (statutory / regulatory / contractual / corporate / judicial)

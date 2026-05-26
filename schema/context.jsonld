@@ -1,5 +1,5 @@
 {
-  "_comment": "Obligation-First v1 JSON-LD context. v0.1.0-draft. Spec text in PROTOCOL.md.",
+  "_comment": "Obligation-First v1 JSON-LD context. v0.2.0-draft. Spec text in PROTOCOL.md.",
   "@context": {
     "@version": 1.1,
     "@vocab": "https://w3id.org/of/v1/",
@@ -39,6 +39,9 @@
     "disposition":       { "@id": "of:disposition" },
     "anchors":           { "@id": "of:anchors",           "@type": "@id", "@container": "@set" },
     "defeats":           { "@id": "of:defeats",           "@type": "@id", "@container": "@set" },
+    "rebuts":            { "@id": "of:rebuts",            "@type": "@id", "@container": "@set" },
+    "undercuts":         { "@id": "of:undercuts",         "@type": "@id", "@container": "@set" },
+    "violationOf":       { "@id": "of:violationOf",       "@type": "@id" },
     "supersedes":        { "@id": "of:supersedes",        "@type": "@id", "@container": "@set" },
     "wouldSupersede":    { "@id": "of:wouldSupersede",    "@type": "@id", "@container": "@set" },
     "enforcement_status":{ "@id": "of:enforcement_status" },

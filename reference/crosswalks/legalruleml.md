@@ -17,14 +17,18 @@ LegalRuleML is the most widely-known OASIS standard for representing legal norms
 
 Direct alignment. The naming difference (`Requirement` vs `Obligation`) is to avoid the term collision: in Obligation-First, `Obligation` is the *abstract superclass* of all four deontic operators, so `Requirement` names the specific subclass. LegalRuleML uses `Obligation` for what we call `Requirement`.
 
+`of:Reparation` is preserved as a distinct deontic subclass in v0.2 specifically to keep this 1:1 LegalRuleML alignment intact and to keep SPARQL queries (`?r a of:Reparation`) clean. v0.2 only changed the *gist* binding for the class — see [reference/crosswalks/gist.md — Reparation gist binding](gist.md) for the layered `gist:Requirement` + `gist:Intention` (+ `gist:Event`) pattern (Semantic Arts feedback, 2026-05-26).
+
 ## Defeasibility alignment
 
-LegalRuleML 1.0 §7.4 specifies `lr:DefeasibleRule` and exception hierarchies. Obligation-First's `of:defeats` predicate is the cross-instrument counterpart:
+LegalRuleML 1.0 §7.4 specifies `lr:DefeasibleRule` and exception hierarchies, distinguishing *rebuttal* (counter-conclusion) from *undercut* (denying the rule's applicability in this context). Obligation-First's defeasibility predicates are the cross-instrument counterpart:
 
-- A `lrml:DefeasibleRule` represents a single rule that can be defeated
-- `of:defeats` represents the cross-Term relationship: Term A's Obligation overrides Term B's Obligation
+- A `lrml:DefeasibleRule` represents a single rule that can be defeated.
+- `of:defeats` represents the cross-Term relationship: Term A's Obligation overrides Term B's Obligation. General/fallback predicate.
+- `of:rebuts` — subproperty of `of:defeats`. Aligns with the LegalRuleML rebut case (opposite conclusion).
+- `of:undercuts` — subproperty of `of:defeats`. Aligns with the LegalRuleML undercut case (denies applicability).
 
-These compose. A LegalRuleML rule encoding a Term's logic can be marked `DefeasibleRule`; the *which-rule-defeats-which* metadata lives in `of:defeats` at the spine layer.
+These compose with LegalRuleML. A rule encoding a Term's logic can be marked `lr:DefeasibleRule`; the *which-rule-defeats-which* metadata lives at the spine layer, and the rebut/undercut distinction can flow through to `of:rebuts` / `of:undercuts` where the source rule annotates the type.
 
 ## Proceeding strand
 

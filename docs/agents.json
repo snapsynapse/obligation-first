@@ -1,7 +1,7 @@
 {
   "name": "Obligation-First",
   "description": "An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist.",
-  "version": "v0.1.0-draft",
+  "version": "v0.2.0-draft",
   "url": "https://obligationfirst.org/",
   "publisher": {
     "name": "PAICE.work PBC",
@@ -51,7 +51,26 @@
       "Allegation": "https://obligationfirst.org/v1/schema/allegation.schema.json",
       "Determination": "https://obligationfirst.org/v1/schema/determination.schema.json"
     },
-    "deontic_quartet": ["Requirement", "Restriction", "Permission", "Reparation"]
+    "deontic_quartet": ["Requirement", "Restriction", "Permission", "Reparation"],
+    "reparation_gist_binding": "gist:Requirement (secondary duty) + gist:Intention (declared intent on creating Term) + gist:Event (actuated reparation, via proceeding strand) — v0.2 binding-only refinement per Semantic Arts feedback; of:Reparation class preserved",
+    "allegation_gist_binding": "gist:Content (assertion text) + gist:Intention (only when the claim is itself intent-bearing — libel, fraud, defamation). gist defines no gist:Statement class. Refined in v0.2 per Semantic Arts feedback.",
+    "relations": {
+      "issuedBy": "Instrument → Authority",
+      "hasTerm": "Instrument → Term[]",
+      "creates": "Term → Obligation[]",
+      "hasAllegation": "Proceeding → Allegation[]",
+      "hasDetermination": "Proceeding → Determination[]",
+      "decides": "Determination → Allegation[]",
+      "anchors": "Determination | Term | Obligation → Obligation | Term",
+      "defeats": "Term → Term[] — Term-level override, LegalRuleML §7.4 (general / fallback)",
+      "rebuts": "Term → Term[] — subproperty of defeats; opposite-conclusion case (LegalRuleML §7.4). Added in v0.2.",
+      "undercuts": "Term → Term[] — subproperty of defeats; denies-applicability case (LegalRuleML §7.4). Added in v0.2.",
+      "triggers_on_violation_of": "Reparation → Obligation — Reparation-side assertion",
+      "violationOf": "Reparation → Obligation — inverse of triggers_on_violation_of; Obligation-side assertion. Added in v0.2.",
+      "supersedes": "Instrument → Instrument[] — post-enactment whole-Instrument replacement",
+      "wouldSupersede": "Instrument → Instrument[] — subjunctive form for proposed Instruments",
+      "executableEncoding": "Term | Obligation → typed reference (Catala / Blawx / OpenFisca / others)"
+    }
   },
   "adopters": [
     { "name": "EveryAILaw", "url": "https://everyailaw.com/", "status": "live", "binding": "statutory and regulatory obligations" },

@@ -25,8 +25,8 @@
 #   - Build outputs
 
 bundle: obligation-first
-bundle_version: 0.1.0-draft
-bundle_date: 2026-05-04
+bundle_version: 0.2.0-draft
+bundle_date: 2026-05-26
 
 # Hashes will be populated by ./scripts/validate-hashes.sh --update
 # once spec content is written.

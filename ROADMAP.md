@@ -1,6 +1,10 @@
 # Roadmap
 
-## v0.1.0-draft (current)
+## v0.2.0-draft (current)
+
+Current draft. Binding-only refinement built on v0.1: Semantic Arts feedback (Dave McComb, 2026-05-26) absorbed for the `of:Reparation` gist binding and the `of:Allegation` gist binding; plus several small predicate additions surfaced by review (`of:rebuts`, `of:undercuts`, `of:violationOf`). The of:-vocabulary class set is unchanged from v0.1, so adopter records require no migration. See [CHANGELOG.md](CHANGELOG.md).
+
+## v0.1.0-draft
 
 **Goal:** lock the design on paper. Ship a coherent spec, three worked examples, a JSON-LD context, and a live canonical site. Get external feedback (Semantic Arts, Blawx) before freezing.
 
@@ -27,12 +31,13 @@ Done:
 
 **Gate:** external review feedback incorporated or explicitly deferred; first adopter binding live; w3id PR filed.
 
-Current assessment as of 2026-05-13: local repo deliverables for v0.1 are complete and tests are green. EveryAILaw, PubLedge, and AI Incident Law now publish Obligation-First bindings. Remaining freeze gates are external review, permanent IRI filing, and cross-project anchor enrichment.
+Current assessment as of 2026-05-26: local repo deliverables for v0.1 are complete and tests are green. EveryAILaw, PubLedge, and AI Incident Law publish Obligation-First bindings. Semantic Arts review has come back and is absorbed into v0.2. Remaining v0.1-freeze gates are LegalRuleML community feedback, permanent IRI filing, and cross-project anchor enrichment.
 
 - [x] PROTOCOL.md complete
 - [x] context.jsonld validated against the three worked examples (npm run validate green)
-- [ ] External reviewer feedback (target: Semantic Arts on gist binding for Reparation; LegalRuleML community on deontic alignment)
-- [ ] External review questions sent
+- [x] External reviewer feedback (Semantic Arts: Dave McComb response 2026-05-26 — incorporated into v0.2; see [CHANGELOG.md](CHANGELOG.md))
+- [ ] LegalRuleML community feedback on deontic alignment
+- [x] External review questions sent (Semantic Arts: 2026-05-19)
 - [x] First adopter (EveryAILaw) has bound to v0.1 in production
 - [x] Cross-project anchor report added so enrichment can be measured across adopter exports
 - [x] Initial cross-project anchor enrichment seeded: PubLedge and AI Incident Law both resolve anchors into EveryAILaw in local implementation checks
@@ -42,7 +47,17 @@ Current assessment as of 2026-05-13: local repo deliverables for v0.1 are comple
 
 ## v0.2 (target: 6 months after v0.1 freeze)
 
-Adds what we deferred from v0.1.
+Adds what we deferred from v0.1, plus binding-only refinements landed mid-cycle.
+
+Landed in v0.2.0-draft (2026-05-26):
+
+- [x] `of:Reparation` gist binding closed to the layered pattern `gist:Requirement` + `gist:Intention` (+ `gist:Event`) per Semantic Arts feedback; class itself preserved.
+- [x] `of:Allegation` rebound from non-existent `gist:Statement` to `gist:Content` (+ `gist:Intention` when intent-bearing).
+- [x] Defeasibility sub-types added: `of:rebuts` and `of:undercuts` as subproperties of `of:defeats` per LegalRuleML §7.4.
+- [x] `of:violationOf` symmetric/inverse predicate of `triggers_on_violation_of` added so the violation relation can be queried from either side.
+- [x] Confirmed `of:executableEncoding` accepts both Term and Obligation as domain (already true in v0.1 schemas; documented).
+
+Still planned for v0.2:
 
 - [ ] Provision lifecycle state machine (effective / amended / sunset / repealed) — drives the visualization layer
 - [ ] Cross-jurisdictional equivalence relation (`of:correspondsTo`) — drives the cross-jurisdictional diff visualization
@@ -64,18 +79,30 @@ Adds what we deferred from v0.1.
 
 | # | Question | Re-open trigger |
 |---|---|---|
-| 1 | Is gist's `Requirement`/`Restriction`/`Permission` enough, or does Reparation need its own gist binding? | Semantic Arts feedback or first attempt to validate against gist |
+| 1 | ~~Is gist's `Requirement`/`Restriction`/`Permission` enough, or does Reparation need its own gist binding?~~ **Resolved v0.2 (2026-05-26):** gist binding for `of:Reparation` closed to the layered pattern `gist:Requirement` (the duty) + `gist:Intention` (declared legislative intent on the creating Term) + `gist:Event` (the actuated reparation, recorded via the proceeding strand). `of:Reparation` retained as a distinct deontic subclass for LegalRuleML 1:1 alignment and SPARQL queryability. Per Dave McComb / Semantic Arts. | — |
 | 2 | Should `of:Proceeding` be subtyped by jurisdiction-specific kinds (US civil action, EU regulatory enforcement, UK tribunal)? | When third proceeding example doesn't fit the generic shape |
 | 3 | Should `of:correspondsTo` carry confidence/scope metadata, or be binary? | First cross-jurisdictional comparison use case |
 | 4 | Does multi-language source text need its own predicate or piggyback on existing dc:language? | First non-English Instrument bound |
 | 5 | Should we mint our own namespace at w3id.org or stay on obligationfirst.org alone? | When external adopters request a permanent IRI |
-| 6 | Should `of:executableEncoding` be on Term, Obligation, or both? | When first Catala/Blawx encoding lands |
+| 6 | ~~Should `of:executableEncoding` be on Term, Obligation, or both?~~ **Resolved v0.2 (2026-05-26):** both. v0.1 schemas already accept the field on Term and Obligation; PROTOCOL.md core-relations table updated to make this explicit. | — |
 | 7 | Org structure for the repo (snapsynapse vs new GitHub org) | When first external contributor joins, or Foundation transition |
 | 11 | Typed `of:Remedy` entity for monetary awards and other Determination consequences (currently unstructured object on Determination) | First adopter that needs structured remedy queries; surfaced by Air Canada example |
 | 12 | Closed party-role vocabulary for `Allegation.asserted_by` (currently free-form string) | First adopter that needs to filter allegations by asserter role; surfaced by Air Canada example |
-| 13 | Symmetric `of:violationOf` relation parallel to `of:creates` for Reparations (currently `triggers_on_violation_of` field on the Reparation itself) | First adopter that needs to query violations from the Obligation side |
+| 13 | ~~Symmetric `of:violationOf` relation parallel to `of:creates` for Reparations~~ **Resolved v0.2 (2026-05-26):** `of:violationOf` added as the symmetric/inverse predicate of `triggers_on_violation_of`. Adopters MAY assert it from either side; if both directions are present they must be consistent. | — |
 | 14 | LegalRuleML encoding pointer (`of:legalRuleMLEncoding`) parallel to `of:executableEncoding` | First Term that has authoritative LegalRuleML encoding |
-| 15 | Defeasibility sub-types — `of:rebuts` and `of:undercuts` as subproperties of `of:defeats` (per LegalRuleML §7.4 distinction) | First adopter that hits a real rebut-vs-undercut conflict |
+| 15 | ~~Defeasibility sub-types — `of:rebuts` and `of:undercuts` as subproperties of `of:defeats`~~ **Resolved v0.2 (2026-05-26):** added per LegalRuleML §7.4. `of:defeats` retained as general/fallback predicate; `of:rebuts` denies the conclusion; `of:undercuts` denies applicability. Subproperty entailment: rebut/undercut implies defeats. | — |
+## Resolved in v0.2 (originally raised as deferred)
+
+Surfaced by Semantic Arts review (Dave McComb, 2026-05-26) and a roadmap sweep on the same date. All resolved as binding-only / additive changes — no breaking impact on v0.1 adopter records.
+
+| # | Resolution | Where |
+|---|---|---|
+| 1 | `of:Reparation` gist binding closed to the layered pattern `gist:Requirement` + `gist:Intention` (+ `gist:Event` when actuated). Class itself preserved for LegalRuleML 1:1 alignment and SPARQL queryability. | PROTOCOL.md (deontic-quartet section), reference/crosswalks/gist.md (Reparation gist binding section), schema/obligation.schema.json (Reparation description) |
+| 6 | `of:executableEncoding` confirmed on both Term and Obligation. Already true in v0.1 schemas; PROTOCOL core-relations table now states this explicitly. | PROTOCOL.md, schema/term.schema.json, schema/obligation.schema.json |
+| 13 | `of:violationOf` added as symmetric/inverse of `triggers_on_violation_of`. Adopters MAY assert from either side; if both present, must be consistent. | PROTOCOL.md, schema/context.jsonld |
+| 15 | `of:rebuts` and `of:undercuts` added as subproperties of `of:defeats` per LegalRuleML §7.4. `of:defeats` kept as general/fallback predicate. | PROTOCOL.md (Defeasibility / Sub-types), schema/context.jsonld, reference/crosswalks/legalruleml.md |
+| — | `of:Allegation` gist binding switched from non-existent `gist:Statement` to `gist:Content` (+ `gist:Intention` when intent-bearing). | PROTOCOL.md, schema/allegation.schema.json, reference/crosswalks/gist.md |
+
 ## Resolved in v0.1 (originally raised as deferred)
 
 These items were surfaced by the Colorado SB 24-205 example and resolved in v0.1 rather than deferred. Recorded here for audit:

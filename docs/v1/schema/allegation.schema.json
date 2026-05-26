@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://obligationfirst.org/v1/schema/allegation.schema.json",
   "title": "Allegation",
-  "description": "An asserted but unverified factual claim within a Proceeding. Bound to gist:Statement. The alleged-vs-determined distinction is core: an Allegation is what was asserted, not what is true. A Determination resolves it.",
+  "description": "An asserted but unverified factual claim within a Proceeding. gist binding (v0.2): the assertion text maps to gist:Content; the asserter's speech-act intent maps to gist:Intention only when the claim itself is intent-bearing (e.g. libel, fraud). gist does not define a gist:Statement class. The alleged-vs-determined distinction is core: an Allegation is what was asserted, not what is true. A Determination resolves it.",
   "type": "object",
   "required": ["@type", "@id", "text"],
   "properties": {

@@ -4,6 +4,30 @@ All notable changes to the Obligation-First specification.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/) once it reaches v0.1.0 freeze.
 
+## [0.2.0-draft] — 2026-05-26
+
+### Changed (binding-only — non-breaking)
+
+- **2026-05-26: Semantic Arts feedback (Dave McComb) absorbed into v0.2.** Dave responded on 2026-05-26 to the 2026-05-19 review-packet outreach (see `reference/review/external-review-questions.md`). v0.2 is a binding-only refinement: the of: vocabulary is unchanged from v0.1, and adopter records require no migration. Two gist-binding updates:
+  1. **`of:Reparation` gist binding closed.** v0.1 left this open. v0.2 binds Reparation to the layered pattern: `gist:Requirement` for the secondary duty itself; `gist:Intention` for the declared legislative intent (compensation, restitution, deterrence) attached to the creating Term; `gist:Event` for the actuated reparation, recorded via the proceeding strand (formal of:→gist:Event binding for the actuated act deferred to a later minor version). Dave's rationale: gist treats a reparation declaration as an intention linked to a description of behavior, with the actuated reparation itself a `gist:Event` — mirroring how a contract is `gist:Content` while the commitments it creates are `gist:Commitment`-shaped. gist therefore does not need a fourth deontic class. **The `of:Reparation` class itself is preserved** to keep LegalRuleML 1:1 alignment (`of:Reparation` ↔ `lrml:Reparation`) and SPARQL queryability (`?r a of:Reparation`) — both of which would degrade if we compressed Reparation into a Requirement-with-flag.
+  2. **`of:Allegation` no longer binds to `gist:Statement`.** Dave confirmed gist defines no `gist:Statement` class. v0.2 binds the assertion text to `gist:Content` and reaches for `gist:Intention` only when the asserted claim is itself intent-bearing (libel, fraud, defamation, similar). Dave noted RDF 1.2's statements-about-statements mechanism as a parallel layer of interest, not adopted in v0.2.
+- Sense-check note (also 2026-05-26): an earlier draft of v0.2 collapsed `of:Reparation` into `of:Requirement` carrying `triggers_on_violation_of`. On review, this conflated gist's modeling pattern with Obligation-First's vocabulary, weakened LegalRuleML alignment, and complicated SPARQL querying. Rolled back before release. Dave's feedback applies to the gist crosswalk, not to the of: class set.
+- Files touched: `schema/obligation.schema.json` (Reparation description refined; structure unchanged from v0.1), `schema/allegation.schema.json` (description), `schema/context.jsonld` (no class change; version comment bumped), `reference/crosswalks/gist.md`, `reference/crosswalks/legalruleml.md`, `reference/review/external-review-questions.md`, `PROTOCOL.md`, `INTENT.md`, `README.md`, `ROADMAP.md`, `PRIOR-ART.md`, `examples/colorado-sb24-205/records/determination-co-sb24-205-stay-order.json` (note text), `examples/colorado-sb24-205/README.md`. The Colorado `obligation-violation-reparation.json` record is unchanged from v0.1 (`@type: of:Reparation`).
+- Migration: none required. v0.1 adopter records remain valid.
+
+### Added
+
+- **2026-05-26: `of:rebuts` and `of:undercuts` predicates** added as subproperties of `of:defeats`, formalizing the LegalRuleML §7.4 rebut/undercut distinction. `of:rebuts(A, B)` asserts that defeating Term A reaches the opposite conclusion of defeated Term B; `of:undercuts(A, B)` asserts that A denies B's applicability in this context. Both entail `of:defeats(A, B)`. `of:defeats` is kept as the general/fallback predicate for the v0.1-compatible binary case. Files touched: `schema/context.jsonld`, `PROTOCOL.md` (core relations table + Defeasibility/Sub-types section), `reference/crosswalks/legalruleml.md`. Closes deferred decision #15. Resolves the deferred LegalRuleML §7.4 rebut/undercut note that v0.1 said v0.2 might introduce.
+- **2026-05-26: `of:violationOf` predicate** added as the symmetric/inverse of `triggers_on_violation_of`. Adopters MAY assert it from the primary-Obligation side as well as (or instead of) the Reparation side; if both directions are present, they must be consistent. Enables SPARQL queries that walk the violation relation without traversing `triggers_on_violation_of`. Files touched: `schema/context.jsonld`, `PROTOCOL.md` (core relations table). Closes deferred decision #13.
+- **2026-05-26: `of:executableEncoding` domain clarified** in PROTOCOL.md core-relations table as `Term | Obligation`. v0.1 schemas already accepted the field on both — `schema/term.schema.json` and `schema/obligation.schema.json` are unchanged. Documentation-only. Closes deferred decision #6.
+- **2026-05-26: Atom/RSS feed entry** for v0.2.0-draft added at `docs/atom.xml` and `docs/feed.xml`. Feed updated timestamp bumped.
+- **2026-05-26: ROADMAP currency refresh.** Top heading bumped to v0.2.0-draft. v0.2 section split into "Landed in v0.2.0-draft" and "Still planned for v0.2". New "Resolved in v0.2" table records deferred decisions #1, #6, #13, #15 plus the Allegation binding shift.
+- **2026-05-26: User-facing copy + agentic surface refresh.** README spec badge bumped to v0.2.0-draft; "bind to v0.1" / "once v0.1 freezes" framing replaced with current-draft phrasing throughout README and docs/index.html. New v0.2 predicates (`of:rebuts`, `of:undercuts`, `of:violationOf`) and the `executableEncoding`-on-both-domains clarification surfaced in `docs/llms.txt`, `docs/llms-full.txt` (relations list + defeasibility section), and `docs/agents.json` (new `concepts.relations` block plus `allegation_gist_binding` entry). Files touched: `README.md`, `docs/index.html`, `docs/llms.txt`, `docs/llms-full.txt`, `docs/agents.json`.
+
+### Acknowledgements
+
+- Dave McComb (CEO, Semantic Arts) — for the v0.2 gist-binding feedback that this release is built on.
+
 ## [Unreleased] — drafting
 
 ### Added
