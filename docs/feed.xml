@@ -5,13 +5,24 @@
   <link href="https://obligationfirst.org/feed.xml" rel="self"/>
   <link href="https://obligationfirst.org/" rel="alternate"/>
   <id>https://obligationfirst.org/</id>
-  <updated>2026-05-26T00:00:00Z</updated>
+  <updated>2026-05-26T12:00:00Z</updated>
   <author>
     <name>Sam Rogers</name>
     <uri>https://www.linkedin.com/in/samrogers</uri>
   </author>
   <rights>CC BY 4.0 (spec) / Apache 2.0 (code)</rights>
   <generator uri="https://obligationfirst.org/">Obligation-First</generator>
+
+  <entry>
+    <title>v0.2.1-draft release package published</title>
+    <link href="https://obligationfirst.org/releases/v0.2.1-draft/" rel="alternate"/>
+    <id>https://obligationfirst.org/releases/v0.2.1-draft</id>
+    <updated>2026-05-26T12:00:00Z</updated>
+    <published>2026-05-26T12:00:00Z</published>
+    <summary>Patch draft release package for Obligation-First v0.2.1-draft, including a machine-readable manifest and SHA-256 checksum index for core public spec, schema, agent, LLM, and GuideCheck artifacts. v0.1 adopter records remain valid without migration.</summary>
+    <category term="release"/>
+    <category term="v0.2"/>
+  </entry>
 
   <entry>
     <title>v0.2.0-draft published</title>

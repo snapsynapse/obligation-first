@@ -4,6 +4,16 @@ All notable changes to the Obligation-First specification.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/) once it reaches v0.1.0 freeze.
 
+## [0.2.1-draft] - 2026-05-26
+
+### Added
+
+- Release package for v0.2.1-draft under `docs/releases/v0.2.1-draft/`, including a machine-readable manifest and SHA-256 checksum index for the public spec, schema, agent, GuideCheck, and feed artifacts.
+
+### Changed
+
+- Project semver bumped from `0.2.0-draft` to `0.2.1-draft` across package metadata, protocol front matter, public docs, LLM context, agent inventory, roadmap, and JSON-LD context mirrors.
+
 ## [0.2.0-draft] — 2026-05-26
 
 ### Changed (binding-only — non-breaking)

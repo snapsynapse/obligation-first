@@ -2,7 +2,7 @@
 
 > An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist.
 
-Obligation-First is a small, opinionated upper schema and JSON-LD context for normative content. It defines a four-role spine — Authority, Instrument, Term, Obligation — plus a proceeding strand of Proceeding, Allegation, Determination. The deontic quartet (Requirement / Restriction / Permission / Reparation) is aligned with LegalRuleML 1.0; v0.2 refines the gist binding for `of:Reparation` to a layered `gist:Requirement` + `gist:Intention` (+ `gist:Event`) pattern. Three PAICE legal projects now publish bindings: EveryAILaw (AI laws and obligations), PubLedge (joint interpretations), and AI Incident Law (AI-related cases). Status: v0.2.0-draft, drafting in public.
+Obligation-First is a small, opinionated upper schema and JSON-LD context for normative content. It defines a four-role spine — Authority, Instrument, Term, Obligation — plus a proceeding strand of Proceeding, Allegation, Determination. The deontic quartet (Requirement / Restriction / Permission / Reparation) is aligned with LegalRuleML 1.0; v0.2 refines the gist binding for `of:Reparation` to a layered `gist:Requirement` + `gist:Intention` (+ `gist:Event`) pattern. Three PAICE legal projects now publish bindings: EveryAILaw (AI laws and obligations), PubLedge (joint interpretations), and AI Incident Law (AI-related cases). Status: v0.2.1-draft, drafting in public.
 
 ## Key concepts
 
@@ -32,6 +32,7 @@ Obligation-First is a small, opinionated upper schema and JSON-LD context for no
 - Allegation schema: https://obligationfirst.org/v1/schema/allegation.schema.json
 - Determination schema: https://obligationfirst.org/v1/schema/determination.schema.json
 - Executable encoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
+- Release package: https://obligationfirst.org/releases/v0.2.1-draft/
 - Assistant guide: https://obligationfirst.org/.well-known/assistant-guide.txt
 - Assistant guide manifest: https://obligationfirst.org/.well-known/assistant-guide-manifest.txt
 

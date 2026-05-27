@@ -1,6 +1,6 @@
 # Roadmap
 
-## v0.2.0-draft (current)
+## v0.2.1-draft (current)
 
 Current draft. Binding-only refinement built on v0.1: Semantic Arts feedback (Dave McComb, 2026-05-26) absorbed for the `of:Reparation` gist binding and the `of:Allegation` gist binding; plus several small predicate additions surfaced by review (`of:rebuts`, `of:undercuts`, `of:violationOf`). The of:-vocabulary class set is unchanged from v0.1, so adopter records require no migration. See [CHANGELOG.md](CHANGELOG.md).
 
@@ -49,7 +49,7 @@ Current assessment as of 2026-05-26: local repo deliverables for v0.1 are comple
 
 Adds what we deferred from v0.1, plus binding-only refinements landed mid-cycle.
 
-Landed in v0.2.0-draft (2026-05-26):
+Landed in v0.2.1-draft (2026-05-26):
 
 - [x] `of:Reparation` gist binding closed to the layered pattern `gist:Requirement` + `gist:Intention` (+ `gist:Event`) per Semantic Arts feedback; class itself preserved.
 - [x] `of:Allegation` rebound from non-existent `gist:Statement` to `gist:Content` (+ `gist:Intention` when intent-bearing).

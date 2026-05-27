@@ -109,6 +109,7 @@ const CORE_ENDPOINTS = [
 
 const ASSISTANT_GUIDE_ENDPOINT = "https://obligationfirst.org/.well-known/assistant-guide.txt";
 const ASSISTANT_GUIDE_MANIFEST_ENDPOINT = "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt";
+const RELEASE_PACKAGE_ENDPOINT = "https://obligationfirst.org/releases/v0.2.1-draft/";
 
 async function* walk(start) {
   const full = path.join(repoRoot, start);
@@ -219,6 +220,7 @@ async function validateEndpointInventory(failures) {
     agents.endpoints.context,
     agents.endpoints.assistant_guide,
     agents.endpoints.assistant_guide_manifest,
+    agents.endpoints.release_package,
     ...Object.values(agents.endpoints.schemas || {}),
   ];
 
@@ -247,6 +249,19 @@ async function validateEndpointInventory(failures) {
     }
     if (!endpointVisible(text, ASSISTANT_GUIDE_MANIFEST_ENDPOINT)) {
       failures.push(`${rel}: missing assistant guide manifest endpoint ${ASSISTANT_GUIDE_MANIFEST_ENDPOINT}`);
+    }
+  }
+
+  const releaseDocsToCheck = [
+    "README.md",
+    "docs/llms.txt",
+    "docs/llms-full.txt",
+  ];
+
+  for (const rel of releaseDocsToCheck) {
+    const text = await readFile(path.join(repoRoot, rel), "utf8");
+    if (!endpointVisible(text, RELEASE_PACKAGE_ENDPOINT)) {
+      failures.push(`${rel}: missing release package endpoint ${RELEASE_PACKAGE_ENDPOINT}`);
     }
   }
 }
@@ -356,11 +371,51 @@ async function validateAssistantGuide(failures) {
   }
 }
 
+async function validateReleasePackage(failures) {
+  const releaseDir = path.join(repoRoot, "docs/releases/v0.2.1-draft");
+  const manifest = JSON.parse(await readFile(path.join(releaseDir, "manifest.json"), "utf8"));
+  const shaIndex = await readFile(path.join(releaseDir, "sha256.txt"), "utf8");
+  const shaLines = new Map();
+
+  for (const line of shaIndex.trim().split("\n")) {
+    const match = line.match(/^([a-f0-9]{64})  (.+)$/);
+    if (!match) {
+      failures.push(`docs/releases/v0.2.1-draft/sha256.txt: malformed line: ${line}`);
+      continue;
+    }
+    shaLines.set(match[2], match[1]);
+  }
+
+  if (manifest.version !== "0.2.1-draft") {
+    failures.push(`docs/releases/v0.2.1-draft/manifest.json: expected version 0.2.1-draft`);
+  }
+
+  for (const artifact of manifest.artifacts || []) {
+    const artifactPath = path.join(repoRoot, artifact.path);
+    let bytes;
+    try {
+      bytes = await readFile(artifactPath);
+    } catch (err) {
+      failures.push(`docs/releases/v0.2.1-draft/manifest.json: missing artifact ${artifact.path}`);
+      continue;
+    }
+
+    const actualSha = createHash("sha256").update(bytes).digest("hex");
+    if (artifact.sha256 !== actualSha) {
+      failures.push(`docs/releases/v0.2.1-draft/manifest.json: stale sha256 for ${artifact.path}`);
+    }
+    if (shaLines.get(artifact.path) !== actualSha) {
+      failures.push(`docs/releases/v0.2.1-draft/sha256.txt: stale sha256 for ${artifact.path}`);
+    }
+  }
+}
+
 const failures = [];
 await validateUrls(failures);
 await validateContextCoverage(failures);
 await validateEndpointInventory(failures);
 await validateAssistantGuide(failures);
+await validateReleasePackage(failures);
 
 if (failures.length > 0) {
   console.log("Repo contract validation failed:");

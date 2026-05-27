@@ -11,7 +11,7 @@ A shared upper schema for normative content — laws, cases, and agreements — 
 
 Obligation-First is a methodology and a JSON-LD context. The methodology says that normative content is best modeled by what it requires, not what it says. The schema gives that methodology a machine-readable shape.
 
-**Live at [obligationfirst.org](https://obligationfirst.org/). Drafting in public. v0.2.0-draft. Subject to revision before the v0.2 freeze.**
+**Live at [obligationfirst.org](https://obligationfirst.org/). Drafting in public. v0.2.1-draft. Subject to revision before the v0.2 freeze.**
 
 ## What this is
 
@@ -102,6 +102,7 @@ Every artifact an adopter or agent needs is dereferenceable at a stable URL:
 | [`/v1/schema/executable-encoding.schema.json`](https://obligationfirst.org/v1/schema/executable-encoding.schema.json) | Executable encoding schema |
 | [`/llms.txt`](https://obligationfirst.org/llms.txt), [`/llms-full.txt`](https://obligationfirst.org/llms-full.txt) | LLM-readable summary + full context |
 | [`/agents.json`](https://obligationfirst.org/agents.json) | Agent capabilities and endpoint inventory |
+| [`/releases/v0.2.1-draft/`](https://obligationfirst.org/releases/v0.2.1-draft/) | Current release package manifest and checksums |
 | [`/.well-known/assistant-guide.txt`](https://obligationfirst.org/.well-known/assistant-guide.txt) | GuideCheck Human-Verifiable Assistant Guide for assistant-assisted repo work |
 | [`/.well-known/assistant-guide-manifest.txt`](https://obligationfirst.org/.well-known/assistant-guide-manifest.txt) | GuideCheck Level 4 sidecar manifest for the assistant guide |
 | [`/feed.xml`](https://obligationfirst.org/feed.xml) | Atom feed of releases |
@@ -145,7 +146,7 @@ The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. `http
 
 ## Status
 
-v0.2.0-draft. v0.1 spec, schemas, worked examples, adopter kit, and first three PAICE legal bindings are complete and live; v0.2 absorbs Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates — see [CHANGELOG](CHANGELOG.md). The of: vocabulary is unchanged from v0.1; adopter records require no migration. Open items before v0.2 freeze:
+v0.2.1-draft. v0.1 spec, schemas, worked examples, adopter kit, and first three PAICE legal bindings are complete and live; v0.2 absorbs Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates — see [CHANGELOG](CHANGELOG.md). The of: vocabulary is unchanged from v0.1; adopter records require no migration. Open items before v0.2 freeze:
 
 - LegalRuleML community feedback on deontic alignment
 - File w3id.org PR for the permanent IRI
