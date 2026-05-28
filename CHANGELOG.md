@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ## [0.2.1-draft] - 2026-05-26
 
+### Decisions
+
+- **2026-05-27: OSCAL not adopted as substrate; deferred as secondary export projection (deferred decision #16).** A format-comparison experiment in the GuideCheck session (Markdown / YAML / SARIF 2.1.0 / OSCAL Assessment Results 1.1.2) was forwarded to Obligation-First on the conjecture that OSCAL might be a genuine fit here. Assessment finding: OSCAL is layer-mismatched to OF. OF is an upper schema for normative content (what an Obligation *is*); OSCAL is an operational schema for assessments of deployed systems against controls. Adopting OSCAL as substrate would violate the "bind, don't reinvent" design principle, displace the JSON-LD + gist + LegalRuleML alignment that the three live adopters (EveryAILaw, PubLedge, AI Incident Law) bind against, and break the cross-instrument anchors machinery (`of:anchors`, `of:defeats`, `of:rebuts`, `of:undercuts`, `of:violationOf`). The natural OSCAL home in the PAICE legal graph is **AI Posture** — the project that actually assesses organizations/systems against obligations. OF will: (a) keep JSON-LD + JSON Schema canonical, (b) defer an OSCAL crosswalk doc and export projection to v0.3+ behind the re-open triggers in ROADMAP deferred decision #16, (c) hand the OSCAL exemplar files off to AI Posture for its own format evaluation. SARIF: not applicable to the PAICE legal graph. YAML front matter on Markdown: already in use across INTENT.md, PROTOCOL.md, GuideCheck guides — no re-decision needed. Files touched: `ROADMAP.md` (deferred decision #16 added), `handoffs/2026-05-27-ai-posture-oscal-assessment.md` (handoff to AI Posture session). Source: handoff `handoffs/2026-05-27-format-comparison-for-obligation-first.md` from the GuideCheck session.
+
 ### Added
 
 - Release package for v0.2.1-draft under `docs/releases/v0.2.1-draft/`, including a machine-readable manifest and SHA-256 checksum index for the public spec, schema, agent, GuideCheck, and feed artifacts.
