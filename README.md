@@ -13,6 +13,18 @@ Obligation-First is a methodology and a JSON-LD context. The methodology says th
 
 **Live at [obligationfirst.org](https://obligationfirst.org/). Drafting in public. v0.2.1-draft. Subject to revision before the v0.2 freeze.**
 
+## Who this is for
+
+Anyone modeling laws, cases, or agreements for machines — legal-graph builders, compliance-tool developers, and ontologists who need normative content to be queryable across sources.
+
+## What problem it solves
+
+Normative content is usually modeled by what it says, not what it requires, so obligations can't be queried consistently across laws, cases, and agreements. Obligation-First is a shared upper schema and JSON-LD context that models normative content by what it requires.
+
+## Canonical URL
+
+https://obligationfirst.org/
+
 ## What this is
 
 A small, opinionated upper schema with two parts:
