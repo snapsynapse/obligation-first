@@ -4,6 +4,22 @@ All notable changes to the Obligation-First specification.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/) once it reaches v0.1.0 freeze.
 
+## [0.2.2-draft] - 2026-05-30
+
+### Security hardening
+
+- Hardened graph validation by moving the stricter worked-example graph rules into the shared adopter-kit validator. `of:Determination` records with `disposition: issued` now require either `target_instrument` or at least one `anchors` target; this prevents administrative determinations from becoming unanchored authority assertions.
+- Collapsed duplicate graph-validation logic so `scripts/validate-example-graphs.mjs` and adopter validation use the same implementation.
+- Added focused hardening regressions for the confirmed `issued` Determination bypass, false-positive controls for valid `target_instrument` and `anchors` cases, validator parity, stale release hashes, assistant-guide byte identity, and stale content-manifest hashes.
+- Made the content provenance manifest real: `MANIFEST.yaml` now carries SHA-256 entries for the documented canonical content set, enforced by `npm run validate:hashes`.
+- Strengthened CI so GitHub Actions runs `npm test`, not only shape validation.
+- Refreshed GuideCheck assistant-guide metadata to `guide-version: 0.1.2` and the current `0.2.x-draft` applicability line, with updated sidecar manifests.
+- Published a new `v0.2.2-draft` release package manifest and checksum index for the hardened draft line.
+
+### Compatibility
+
+- No schema vocabulary or adopter-record migration is required. The only behavior change is stricter graph validation for administrative Determinations that were previously accepted without an instrument target or anchor.
+
 ## [0.2.1-draft] - 2026-05-26
 
 ### Decisions

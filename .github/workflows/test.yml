@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   validate:
-    name: Validate worked-example records against JSON Schemas
+    name: Run local contract suite
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +26,7 @@ jobs:
         run: npm ci
 
       - name: Validate
-        run: npm run validate
+        run: npm test
 
   schema-jsonld-resolve:
     name: Verify @context and schemas resolve at canonical IRIs (post-deploy probe)

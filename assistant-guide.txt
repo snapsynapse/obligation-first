@@ -4,8 +4,8 @@ Assistant Guide: Obligation-First local validation and adopter review
 identifier: assistant-guide
 profile: human-verifiable-assistant-guide
 profile-version: 0.2.0
-guide-version: 0.1.1
-applies-to: obligation-first 0.1.x
+guide-version: 0.1.2
+applies-to: obligation-first 0.2.x-draft
 canonical-url: https://obligationfirst.org/.well-known/assistant-guide.txt
 repository-url: https://github.com/snapsynapse/obligation-first
 source-path: assistant-guide.txt

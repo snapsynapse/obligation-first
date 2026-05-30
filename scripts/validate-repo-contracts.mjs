@@ -7,7 +7,7 @@
  */
 
 import { readFile, readdir } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import path from "node:path";
 import { createHash } from "node:crypto";
 
@@ -109,7 +109,7 @@ const CORE_ENDPOINTS = [
 
 const ASSISTANT_GUIDE_ENDPOINT = "https://obligationfirst.org/.well-known/assistant-guide.txt";
 const ASSISTANT_GUIDE_MANIFEST_ENDPOINT = "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt";
-const RELEASE_PACKAGE_ENDPOINT = "https://obligationfirst.org/releases/v0.2.1-draft/";
+const RELEASE_PACKAGE_ENDPOINT = "https://obligationfirst.org/releases/v0.2.2-draft/";
 
 async function* walk(start) {
   const full = path.join(repoRoot, start);
@@ -279,11 +279,11 @@ function parseKeyValueManifest(text) {
   return out;
 }
 
-async function validateAssistantGuide(failures) {
-  const rootPath = path.join(repoRoot, "assistant-guide.txt");
-  const docsPath = path.join(repoRoot, "docs/.well-known/assistant-guide.txt");
-  const manifestPath = path.join(repoRoot, "assistant-guide-manifest.txt");
-  const docsManifestPath = path.join(repoRoot, "docs/.well-known/assistant-guide-manifest.txt");
+export async function validateAssistantGuide(failures, root = repoRoot) {
+  const rootPath = path.join(root, "assistant-guide.txt");
+  const docsPath = path.join(root, "docs/.well-known/assistant-guide.txt");
+  const manifestPath = path.join(root, "assistant-guide-manifest.txt");
+  const docsManifestPath = path.join(root, "docs/.well-known/assistant-guide-manifest.txt");
   const rootBytes = await readFile(rootPath);
   const docsBytes = await readFile(docsPath);
   const manifestBytes = await readFile(manifestPath);
@@ -358,7 +358,7 @@ async function validateAssistantGuide(failures) {
 
   const expectedManifest = {
     "guide-path": "/.well-known/assistant-guide.txt",
-    "guide-version": "0.1.1",
+    "guide-version": "0.1.2",
     "guide-sha256": guideSha256,
     "guide-bytes": String(rootBytes.length),
     "immutable-release-url": `https://api.github.com/repos/snapsynapse/obligation-first/git/blobs/${gitBlobSha1}`,
@@ -371,8 +371,8 @@ async function validateAssistantGuide(failures) {
   }
 }
 
-async function validateReleasePackage(failures) {
-  const releaseDir = path.join(repoRoot, "docs/releases/v0.2.1-draft");
+export async function validateReleasePackage(failures, root = repoRoot) {
+  const releaseDir = path.join(root, "docs/releases/v0.2.2-draft");
   const manifest = JSON.parse(await readFile(path.join(releaseDir, "manifest.json"), "utf8"));
   const shaIndex = await readFile(path.join(releaseDir, "sha256.txt"), "utf8");
   const shaLines = new Map();
@@ -380,47 +380,58 @@ async function validateReleasePackage(failures) {
   for (const line of shaIndex.trim().split("\n")) {
     const match = line.match(/^([a-f0-9]{64})  (.+)$/);
     if (!match) {
-      failures.push(`docs/releases/v0.2.1-draft/sha256.txt: malformed line: ${line}`);
+      failures.push(`docs/releases/v0.2.2-draft/sha256.txt: malformed line: ${line}`);
       continue;
     }
     shaLines.set(match[2], match[1]);
   }
 
-  if (manifest.version !== "0.2.1-draft") {
-    failures.push(`docs/releases/v0.2.1-draft/manifest.json: expected version 0.2.1-draft`);
+  if (manifest.version !== "0.2.2-draft") {
+    failures.push(`docs/releases/v0.2.2-draft/manifest.json: expected version 0.2.2-draft`);
   }
 
   for (const artifact of manifest.artifacts || []) {
-    const artifactPath = path.join(repoRoot, artifact.path);
+    const artifactPath = path.join(root, artifact.path);
     let bytes;
     try {
       bytes = await readFile(artifactPath);
     } catch (err) {
-      failures.push(`docs/releases/v0.2.1-draft/manifest.json: missing artifact ${artifact.path}`);
+      failures.push(`docs/releases/v0.2.2-draft/manifest.json: missing artifact ${artifact.path}`);
       continue;
     }
 
     const actualSha = createHash("sha256").update(bytes).digest("hex");
     if (artifact.sha256 !== actualSha) {
-      failures.push(`docs/releases/v0.2.1-draft/manifest.json: stale sha256 for ${artifact.path}`);
+      failures.push(`docs/releases/v0.2.2-draft/manifest.json: stale sha256 for ${artifact.path}`);
     }
     if (shaLines.get(artifact.path) !== actualSha) {
-      failures.push(`docs/releases/v0.2.1-draft/sha256.txt: stale sha256 for ${artifact.path}`);
+      failures.push(`docs/releases/v0.2.2-draft/sha256.txt: stale sha256 for ${artifact.path}`);
     }
   }
 }
 
-const failures = [];
-await validateUrls(failures);
-await validateContextCoverage(failures);
-await validateEndpointInventory(failures);
-await validateAssistantGuide(failures);
-await validateReleasePackage(failures);
-
-if (failures.length > 0) {
-  console.log("Repo contract validation failed:");
-  for (const failure of failures) console.log(`- ${failure}`);
-  process.exit(1);
+export async function validateRepoContracts() {
+  const failures = [];
+  await validateUrls(failures);
+  await validateContextCoverage(failures);
+  await validateEndpointInventory(failures);
+  await validateAssistantGuide(failures);
+  await validateReleasePackage(failures);
+  return failures;
 }
 
-console.log("Repo URL, context, and endpoint contracts are valid.");
+async function main() {
+  const failures = await validateRepoContracts();
+
+  if (failures.length > 0) {
+    console.log("Repo contract validation failed:");
+    for (const failure of failures) console.log(`- ${failure}`);
+    process.exit(1);
+  }
+
+  console.log("Repo URL, context, and endpoint contracts are valid.");
+}
+
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  await main();
+}

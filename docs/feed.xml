@@ -5,13 +5,25 @@
   <link href="https://obligationfirst.org/feed.xml" rel="self"/>
   <link href="https://obligationfirst.org/" rel="alternate"/>
   <id>https://obligationfirst.org/</id>
-  <updated>2026-05-26T12:00:00Z</updated>
+  <updated>2026-05-30T12:00:00Z</updated>
   <author>
     <name>Sam Rogers</name>
     <uri>https://www.linkedin.com/in/samrogers</uri>
   </author>
   <rights>CC BY 4.0 (spec) / Apache 2.0 (code)</rights>
   <generator uri="https://obligationfirst.org/">Obligation-First</generator>
+
+  <entry>
+    <title>v0.2.2-draft security hardening release published</title>
+    <link href="https://obligationfirst.org/releases/v0.2.2-draft/" rel="alternate"/>
+    <id>https://obligationfirst.org/releases/v0.2.2-draft</id>
+    <updated>2026-05-30T12:00:00Z</updated>
+    <published>2026-05-30T12:00:00Z</published>
+    <summary>Security hardening release for Obligation-First v0.2.2-draft. Shared graph validation now rejects unanchored administrative Determinations, CI runs the full local contract suite, release and content hashes are enforced, and focused hardening regressions cover the confirmed bypass and false-positive controls. No schema vocabulary migration is required for adopters.</summary>
+    <category term="release"/>
+    <category term="security-hardening"/>
+    <category term="v0.2"/>
+  </entry>
 
   <entry>
     <title>v0.2.1-draft release package published</title>

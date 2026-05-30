@@ -1,6 +1,6 @@
 # Roadmap
 
-## v0.2.1-draft (current)
+## v0.2.2-draft (current)
 
 Current draft. Binding-only refinement built on v0.1: Semantic Arts feedback (Dave McComb, 2026-05-26) absorbed for the `of:Reparation` gist binding and the `of:Allegation` gist binding; plus several small predicate additions surfaced by review (`of:rebuts`, `of:undercuts`, `of:violationOf`). The of:-vocabulary class set is unchanged from v0.1, so adopter records require no migration. See [CHANGELOG.md](CHANGELOG.md).
 
@@ -48,6 +48,12 @@ Current assessment as of 2026-05-26: local repo deliverables for v0.1 are comple
 ## v0.2 (target: 6 months after v0.1 freeze)
 
 Adds what we deferred from v0.1, plus binding-only refinements landed mid-cycle.
+
+Landed in v0.2.2-draft (2026-05-30):
+
+- [x] Security hardening release contracts: CI now runs the full local contract suite, release package hashes are enforced, GuideCheck assistant-guide byte identity is checked, and `MANIFEST.yaml` hashes the documented canonical content set.
+- [x] Shared graph validation hardened: administrative Determinations with `disposition: issued` must cite a `target_instrument` or at least one `anchors` target; worked examples and adopter validation now use the same graph validator.
+- [x] Focused hardening regressions added for the confirmed administrative Determination bypass, false-positive controls, stale release hashes, assistant-guide byte drift, and stale content hashes.
 
 Landed in v0.2.1-draft (2026-05-26):
 

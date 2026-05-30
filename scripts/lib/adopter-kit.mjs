@@ -258,9 +258,53 @@ export function validateRecordGraph(entries) {
       const decides = asArray(record.decides);
       if (record.disposition === "issued") {
         if (decides.length > 0) failures.push(`${entry.rel}: disposition issued should not decide Allegations`);
+        if (!record.target_instrument && asArray(record.anchors).length === 0) {
+          failures.push(`${entry.rel}: disposition issued needs target_instrument or anchors`);
+        }
       } else if (decides.length === 0) {
         failures.push(`${entry.rel}: adjudicative Determination should decide at least one Allegation`);
       }
+    }
+
+    if (type === "of:Instrument" && record.wouldSupersede) {
+      const allowed = new Set(["proposed", "amended"]);
+      if (!allowed.has(record.status)) {
+        failures.push(`${entry.rel}: wouldSupersede should only appear on proposed or amended Instruments`);
+      }
+    }
+  }
+
+  for (const proceeding of entries.filter((entry) => entry.record["@type"] === "of:Proceeding")) {
+    const allegations = new Set(asArray(proceeding.record.hasAllegation));
+    for (const determinationId of asArray(proceeding.record.hasDetermination)) {
+      const determination = byId.get(determinationId);
+      if (!determination) continue;
+      for (const allegationId of asArray(determination.record.decides)) {
+        if (!allegations.has(allegationId)) {
+          failures.push(`${proceeding.rel}: Determination ${determinationId} decides ${allegationId}, not listed in hasAllegation`);
+        }
+      }
+    }
+  }
+
+  for (const instrument of entries.filter((entry) => entry.record["@type"] === "of:Instrument")) {
+    if (instrument.record.enforcement_status !== "constrained") continue;
+
+    const obligationIds = new Set();
+    for (const termId of asArray(instrument.record.hasTerm)) {
+      const term = byId.get(termId);
+      for (const obligationId of asArray(term?.record.creates)) {
+        obligationIds.add(obligationId);
+      }
+    }
+
+    const hasAnchoredDetermination = entries.some((entry) => {
+      if (entry.record["@type"] !== "of:Determination") return false;
+      return asArray(entry.record.anchors).some((anchor) => obligationIds.has(anchor));
+    });
+
+    if (!hasAnchoredDetermination) {
+      failures.push(`${instrument.rel}: constrained enforcement_status needs a Determination anchored to one of its Obligations`);
     }
   }
 

@@ -1,7 +1,7 @@
 ---
 "@type": "https://w3id.org/semanticarts/ns/ontology/gist/Specification"
 title: "Obligation-First Protocol"
-version: "0.2.1-draft"
+version: "0.2.2-draft"
 license: "CC-BY-4.0"
 created: 2026-05-04
 modified: 2026-05-26
@@ -9,7 +9,7 @@ modified: 2026-05-26
 
 # Obligation-First Protocol
 
-> **Status: v0.2.1-draft.** v0.1 spec was complete enough for external review; Semantic Arts feedback (Dave McComb, 2026-05-26) is absorbed in v0.2 as binding-only updates — the gist binding for `of:Reparation` is closed to a layered `gist:Requirement` + `gist:Intention` (+ `gist:Event`) pattern, and Allegation is rebound from non-existent `gist:Statement` to `gist:Content` (+ `gist:Intention` when intent-bearing). The of: vocabulary is unchanged; adopter records require no migration. See [CHANGELOG.md](CHANGELOG.md). Remaining v0.2 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and cross-project anchor enrichment.
+> **Status: v0.2.2-draft.** v0.1 spec was complete enough for external review; Semantic Arts feedback (Dave McComb, 2026-05-26) is absorbed in v0.2 as binding-only updates — the gist binding for `of:Reparation` is closed to a layered `gist:Requirement` + `gist:Intention` (+ `gist:Event`) pattern, and Allegation is rebound from non-existent `gist:Statement` to `gist:Content` (+ `gist:Intention` when intent-bearing). The of: vocabulary is unchanged; adopter records require no migration. See [CHANGELOG.md](CHANGELOG.md). Remaining v0.2 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and cross-project anchor enrichment.
 
 ## What this protocol specifies
 
@@ -327,3 +327,4 @@ Round-tripping the three examples surfaced these findings:
 - 0.1.0-draft (2026-05-04): Initial draft. Outline only. Spec text to be expanded before freeze.
 - 0.2.0-draft (2026-05-26): Semantic Arts feedback absorbed as binding-only updates. `of:Reparation` retained as a distinct deontic subclass; its gist binding closed to the layered pattern `gist:Requirement` + `gist:Intention` + (when actuated) `gist:Event`. Allegation gist binding switched from non-existent `gist:Statement` to `gist:Content` (+ `gist:Intention` when intent-bearing). No of:-vocabulary or adopter-record changes. See [CHANGELOG.md](CHANGELOG.md).
 - 0.2.1-draft (2026-05-26): Patch draft release package added under `docs/releases/v0.2.1-draft/` with machine-readable manifest and SHA-256 checksum index for public artifacts.
+- 0.2.2-draft (2026-05-30): Security hardening draft. The adopter graph validator now rejects administrative Determinations with `disposition: issued` unless they cite a `target_instrument` or anchor; example and adopter graph validation share one implementation; CI runs the full contract suite; release hashes, GuideCheck guide metadata, and content provenance checks are enforced locally.
