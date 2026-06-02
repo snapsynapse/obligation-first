@@ -1,0 +1,10 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Term",
+  "@id": "https://everyailaw.com/term/eu-ai-act-recital-132",
+  "text": "Transparency requirements for AI systems that interact directly with natural persons are necessary to ensure that natural persons are not deceived as to the AI nature of such systems. Natural persons should be able to know when they are interacting with an AI system, so that they can make informed decisions. This requirement should apply to providers and deployers of AI systems that are intended to interact directly with natural persons, such as chatbots. The requirement should not prevent the development of AI systems for creative or artistic purposes where the AI nature of the interaction is obvious from the context, nor should it apply to AI systems used by law enforcement authorities where such application would jeopardise criminal investigations.",
+  "section": "Recital (132)",
+  "parent_instrument": "https://everyailaw.com/instrument/eu-ai-act",
+  "creates": [],
+  "notes": "Recital text is approximate; verify against OJ L 2024/1689. Grounds the Article 50(1) interaction-disclosure obligation."
+}

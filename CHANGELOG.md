@@ -4,6 +4,23 @@ All notable changes to the Obligation-First specification.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/) once it reaches v0.1.0 freeze.
 
+## [0.2.2-draft] - 2026-06-02
+
+### Added
+
+- **2026-06-02: EU AI Act Article 50 worked example completed.** Expanded the `examples/eu-ai-act-article-50/` set from 7 records (Article 50(2) only) to 26 records covering the full Article 50 transparency obligation hierarchy.
+  - New article Terms: `term-art-50-1.json` (interaction disclosure), `term-art-50-3.json` (emotion recognition and biometric categorisation), `term-art-50-4.json` (deepfakes), `term-art-50-5.json` (AI-generated text for public interest).
+  - New Obligations: `obligation-provider-design-for-disclosure.json`, `obligation-deployer-disclose-ai-interaction.json` (both created by Art 50(1)), `obligation-disclose-emotion-biometric.json`, `obligation-label-deepfake-content.json`, `obligation-disclose-ai-generated-text.json`.
+  - New Recital Terms (all `creates: []`): `term-recital-132.json` through `term-recital-136.json`. Guideline Terms anchor to them.
+  - New Code of Practice Instrument: `instrument-eu-art50-cop.json` (`status: proposed`, `enforcement_status: unsignaled`), the forthcoming Art 50(2)/(4) marking-and-labelling co-regulatory instrument.
+  - New Guideline section Terms: `term-guidelines-section-3-chatbot-disclosure.json`, `term-guidelines-section-5-emotion-biometric.json`, `term-guidelines-section-6-deepfakes.json`, `term-guidelines-section-7-ai-text.json` — each `anchors` the corresponding statutory Term and Recital.
+  - Updated `instrument-eu-ai-act.json` `hasTerm` to include all five Article Terms and all five Recital Terms.
+  - Updated `instrument-eu-art50-guidelines.json` `hasTerm` to include the four new section-level guideline Terms.
+  - Mirrored to `docs/v1/examples/eu-ai-act-article-50/`.
+  - Added `examples/eu-ai-act-article-50/records` to `validate:adopter-kit` and `report:anchors` in `package.json`.
+  - `npm test` green: 49/49 schema-valid, 4/4 graph-valid, all contracts and hashes clean.
+  - Built during the Commission's Article 50 transparency-guidelines stakeholder consultation (closed 2026-06-03). Recital text is approximate; verify against OJ L 2024/1689. Guideline section Terms are section-level stubs; exact paragraph numbers should be added on verification against the adopted text.
+
 ## [0.2.2-draft] - 2026-05-30
 
 ### Security hardening

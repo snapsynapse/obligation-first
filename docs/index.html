@@ -277,6 +277,12 @@
     .adopter .status.live { color: var(--green); border-color: var(--green); }
     .adopter .status.planned { color: var(--accent); border-color: var(--accent); }
 
+    .examples { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+    .example { position: relative; padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-alt); }
+    .example h3 { font-size: 0.95rem; color: var(--accent); margin-bottom: 0.25rem; padding-right: 3rem; }
+    .example p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0; }
+    .example .flag { position: absolute; top: 1rem; right: 1.25rem; width: 36px; height: auto; border: 1px solid var(--border); border-radius: 3px; }
+
     footer { border-top: 1px solid var(--border); padding: 2.5rem 0; font-size: 0.85rem; color: var(--text-muted); }
     .footer-grid { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; }
     .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
@@ -288,7 +294,7 @@
     @media (max-width: 768px) {
       h1 { font-size: 2rem; }
       .hero { padding: 3rem 0 2.5rem; }
-      .pillars, .adopters { grid-template-columns: 1fr; }
+      .pillars, .adopters, .examples { grid-template-columns: 1fr; }
       .code-grid { grid-template-columns: 1fr; }
       .spine-display { font-size: 0.78rem; padding: 1.1rem 0.75rem; }
       nav .links { display: none; }
@@ -500,20 +506,28 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
     </div>
 
     <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Worked examples</h3>
-    <p>The repo includes three real-world record sets round-tripped through the current draft. Each tests a different part of the schema.</p>
+    <p>The repo includes four real-world record sets round-tripped through the current draft. Each tests a different part of the schema.</p>
 
-    <div class="adopters">
-      <div class="adopter">
+    <div class="examples">
+      <div class="example">
+        <img class="flag" src="https://flagcdn.com/ca.svg" alt="Flag of Canada" width="36" loading="lazy">
         <h3><a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/air-canada/README.md" target="_blank" rel="noopener">Moffatt v. Air Canada</a></h3>
-        <p>Tribunal claim. Two Allegations, one Determination, common-law anchoring. Tests the proceeding strand.</p>
+        <p>BC tribunal claim. Two Allegations, one Determination, common-law anchoring. Tests the proceeding strand.</p>
       </div>
-      <div class="adopter">
+      <div class="example">
+        <img class="flag" src="https://flagcdn.com/us-co.svg" alt="Flag of Colorado" width="36" loading="lazy">
         <h3><a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/colorado-sb24-205/README.md" target="_blank" rel="noopener">Colorado SB 24-205</a></h3>
         <p>Three layers in one example: enacted statute (spine), federally-stayed enforcement (proceeding strand), SB26-189 ADMT replacement bill (second Instrument). Stress test of the schema against a contested, multi-layered situation.</p>
       </div>
-      <div class="adopter">
+      <div class="example">
+        <img class="flag" src="https://flagcdn.com/us-ut.svg" alt="Flag of Utah" width="36" loading="lazy">
         <h3><a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/publedge-jia-utah-72/README.md" target="_blank" rel="noopener">Utah OAIP JIA</a></h3>
         <p>Joint interpretation between Utah OAIP and a regulated party. Tests PubLedge round-trip; binding is purely additive.</p>
+      </div>
+      <div class="example">
+        <img class="flag" src="https://flagcdn.com/eu.svg" alt="Flag of the European Union" width="36" loading="lazy">
+        <h3><a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/eu-ai-act-article-50/README.md" target="_blank" rel="noopener">EU AI Act Article 50</a></h3>
+        <p>The source-hierarchy collapse: regulation article, recital, and non-binding Commission guideline all ride one schema as Terms. Interpretation is <code>anchors</code>, never override. Tests cross-layer EU normative structure.</p>
       </div>
     </div>
 
@@ -521,7 +535,7 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
       <strong>Canonical reference.</strong> This page describes the live v0.2.2-draft of Obligation-First.
       Authoritative source is <a href="https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md" target="_blank" rel="noopener">PROTOCOL.md</a> in the GitHub repo. The schema is drafting in public; breaking changes are allowed pre-freeze and recorded in
       <a href="https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG.md</a>.
-      Last revision: <time datetime="2026-05-26">2026-05-26</time>.
+      Last revision: <time datetime="2026-06-02">2026-06-02</time>.
       <a href="https://github.com/snapsynapse/obligation-first/commits/main/PROTOCOL.md" target="_blank" rel="noopener">Revision history &rarr;</a>
     </aside>
   </div>

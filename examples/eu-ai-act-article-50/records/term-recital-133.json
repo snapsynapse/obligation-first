@@ -1,0 +1,10 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Term",
+  "@id": "https://everyailaw.com/term/eu-ai-act-recital-133",
+  "text": "Techniques and methods to mark AI-generated content - watermarks, metadata identifications, cryptographic methods for proving provenance and authenticity of content, logging methods, or fingerprints - should be sufficiently reliable, interoperable, effective and robust as far as technically feasible, taking into account available techniques and the generally acknowledged state of the art.",
+  "section": "Recital (133)",
+  "parent_instrument": "https://everyailaw.com/instrument/eu-ai-act",
+  "creates": [],
+  "notes": "This recital provides interpretive context for the Article 50(2) marking and detection obligation. Text sourced from the README inline snippet; verify against OJ L 2024/1689."
+}

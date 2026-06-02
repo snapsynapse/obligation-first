@@ -1,0 +1,14 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Term",
+  "@id": "https://everyailaw.com/term/eu-art50-guidelines-section-5",
+  "text": "AI systems used for emotion recognition or biometric categorisation process particularly sensitive categories of data. The notification required under Article 50(3) should be provided before the system processes the natural person's data, and should identify the purpose of the processing and the type of biometric or emotional data being inferred or categorised. The obligation applies to deployers regardless of whether the system uses direct observation, audio, video or other modalities to infer emotional state or to categorise persons based on biometric features.",
+  "section": "Section V",
+  "parent_instrument": "https://everyailaw.com/instrument/eu-art50-guidelines",
+  "creates": [],
+  "anchors": [
+    "https://everyailaw.com/term/eu-ai-act-art-50-3",
+    "https://everyailaw.com/term/eu-ai-act-recital-134"
+  ],
+  "notes": "Section-level stub. Exact paragraph numbers from the consultation draft should be added on verification. Interprets Article 50(3) emotion recognition and biometric categorisation disclosure obligation."
+}

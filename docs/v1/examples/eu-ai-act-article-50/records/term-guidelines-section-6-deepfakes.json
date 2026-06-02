@@ -1,0 +1,14 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Term",
+  "@id": "https://everyailaw.com/term/eu-art50-guidelines-section-6",
+  "text": "Deep fake content as referred to in Article 50(4) includes image, audio or video content in which a natural person's appearance, voice or actions have been artificially generated or substantially manipulated. The disclosure required under Article 50(4) should be visible, clear and sufficiently prominent given the nature and context of the content. Where the content is published online or distributed at scale, deployers should ensure the disclosure is attached to or embedded in the content in a manner that persists through sharing or further distribution.",
+  "section": "Section VI",
+  "parent_instrument": "https://everyailaw.com/instrument/eu-art50-guidelines",
+  "creates": [],
+  "anchors": [
+    "https://everyailaw.com/term/eu-ai-act-art-50-4",
+    "https://everyailaw.com/term/eu-ai-act-recital-135"
+  ],
+  "notes": "Section-level stub. Exact paragraph numbers from the consultation draft should be added on verification. Interprets Article 50(4) deep fake labelling obligation."
+}

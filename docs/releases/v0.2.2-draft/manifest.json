@@ -94,12 +94,12 @@
     {
       "path": "CHANGELOG.md",
       "url": "https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md",
-      "sha256": "2e9ab2846a2d9704939de006adcbf13351c0bbf06900d668a3209d9f25deb468"
+      "sha256": "3c89ee84c1d34a3cbf16e0a58033644bd6f74906546fc54c32cb04ec7e3c6ccf"
     },
     {
       "path": "package.json",
       "url": "https://github.com/snapsynapse/obligation-first/blob/main/package.json",
-      "sha256": "1d8da37e524f74c937400e0ea5c0aa57aae31c12b8bc0e49145d70e2ce099229"
+      "sha256": "2d2a1893dd79f683741a950b5de192849f0364806500a8c74318d5c4e488735a"
     },
     {
       "path": "package-lock.json",

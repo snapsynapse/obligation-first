@@ -1,0 +1,11 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Term",
+  "@id": "https://everyailaw.com/term/eu-ai-act-art-50-3",
+  "text": "Deployers of an AI system that is used for emotion recognition or biometric categorisation shall inform the natural persons exposed thereto of the operation of the system, and shall process the personal data in accordance with Regulations (EU) 2016/679 and (EU) 2018/1725 and Directive (EU) 2016/680, where applicable. This obligation shall not apply to AI systems used for biometric categorisation or emotion recognition that are authorised by law to detect, prevent, investigate or prosecute criminal offences, provided that the AI systems are operated in accordance with other applicable Union and national law.",
+  "section": "Article 50(3)",
+  "parent_instrument": "https://everyailaw.com/instrument/eu-ai-act",
+  "creates": [
+    "https://everyailaw.com/obligation/eu-ai-act-art-50-3-disclose-emotion-biometric"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Term",
+  "@id": "https://everyailaw.com/term/eu-ai-act-art-50-4",
+  "text": "Deployers of an AI system that generates or manipulates image, audio or video content constituting a 'deep fake' shall disclose that the content has been artificially generated or manipulated. This obligation shall not apply where the use is authorised by law to detect, prevent, investigate or prosecute criminal offences, or where the content forms part of an evidently artistic, creative, satirical or fictional cinematographic or analogous work, provided that the existence of such content is disclosed in an appropriate manner that does not impair the display or enjoyment of the work.",
+  "section": "Article 50(4)",
+  "parent_instrument": "https://everyailaw.com/instrument/eu-ai-act",
+  "creates": [
+    "https://everyailaw.com/obligation/eu-ai-act-art-50-4-label-deepfake-content"
+  ]
+}

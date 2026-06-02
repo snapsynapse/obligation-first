@@ -16,10 +16,10 @@
   "scripts": {
     "validate": "node scripts/validate-examples.mjs",
     "validate:graphs": "node scripts/validate-example-graphs.mjs",
-    "validate:adopter-kit": "node scripts/validate-adopter-records.mjs examples/air-canada/records examples/colorado-sb24-205/records examples/publedge-jia-utah-72/records",
+    "validate:adopter-kit": "node scripts/validate-adopter-records.mjs examples/air-canada/records examples/colorado-sb24-205/records examples/publedge-jia-utah-72/records examples/eu-ai-act-article-50/records",
     "validate:adopter-kit-writers": "node scripts/test-adopter-kit-writers.mjs",
     "test:hardening": "node scripts/test-hardening-regressions.mjs",
-    "report:anchors": "node scripts/report-anchor-graph.mjs examples/air-canada/records examples/colorado-sb24-205/records examples/publedge-jia-utah-72/records",
+    "report:anchors": "node scripts/report-anchor-graph.mjs examples/air-canada/records examples/colorado-sb24-205/records examples/publedge-jia-utah-72/records examples/eu-ai-act-article-50/records",
     "report:anchors:implementations": "node scripts/report-anchor-graph.mjs --require-all-targets ../every-ai-law/docs/api/v1/of ../publedge/docs/api/v1/of ../ai-incident-law/api/v1/of",
     "validate:published": "node scripts/validate-published-artifacts.mjs",
     "validate:contracts": "node scripts/validate-repo-contracts.mjs",

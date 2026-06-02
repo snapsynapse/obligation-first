@@ -1,0 +1,12 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Term",
+  "@id": "https://everyailaw.com/term/eu-art50-guidelines-4-2-1-para-69",
+  "text": "Recital 133 AI Act provides examples of marking techniques to include watermarks, metadata identifications, cryptographic methods for proving provenance and authenticity of content, logging methods, fingerprints or other techniques, and a combination of such techniques. Providers are not required to record or keep a full provenance chain, but such provenance methods may be used for compliance with Article 50(2) and can be conducive to enabling natural persons to distinguish AI-generated or manipulated content.",
+  "section": "Section 4.2.1, paragraph (69)",
+  "parent_instrument": "https://everyailaw.com/instrument/eu-art50-guidelines",
+  "creates": [],
+  "anchors": [
+    "https://everyailaw.com/term/eu-ai-act-art-50-2"
+  ]
+}

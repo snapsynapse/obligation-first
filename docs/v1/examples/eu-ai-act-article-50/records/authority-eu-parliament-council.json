@@ -1,0 +1,18 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Authority",
+  "@id": "https://everyailaw.com/authority/eu-parliament-council",
+  "organization": {
+    "@type": "gist:GovernmentOrganization",
+    "name": "European Parliament and Council of the European Union"
+  },
+  "authority_basis": {
+    "kind": "statutory",
+    "instrument_ref": "https://everyailaw.com/instrument/eu-tfeu#art-114"
+  },
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "eu"
+  },
+  "notes": "Co-legislators that adopted the Regulation under the ordinary legislative procedure. Their legislative power traces to the Treaty on the Functioning of the European Union (Article 114, internal-market harmonisation); that Treaty Instrument is referenced but not minted in this sample, consistent with the recursive authority_basis pattern."
+}

@@ -1,0 +1,14 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:Instrument",
+  "@id": "https://everyailaw.com/instrument/eu-art50-cop",
+  "title": "Code of Practice on Transparency and Marking of AI-generated Content under Article 50(2) and (4) of the AI Act",
+  "short_title": "Article 50 Marking and Labelling Code of Practice (forthcoming)",
+  "citation": "Code of Practice under Article 50(2) and (4) AI Act",
+  "kind": "guidance",
+  "issuedBy": "https://everyailaw.com/authority/eu-commission",
+  "status": "proposed",
+  "enforcement_status": "unsignaled",
+  "hasTerm": [],
+  "notes": "Forthcoming Code of Practice referenced in the draft Article 50 Guidelines. Co-regulatory instrument: adherence to an adopted Code creates a presumption of compliance with Articles 50(2) and (4). Modeled as a separate Instrument; when Terms are available, they will anchor to the relevant Article Terms (eu-ai-act-art-50-2, eu-ai-act-art-50-4) using the same anchors pattern as the Guidelines. issuedBy set to the Commission authority pending confirmation of the precise issuing body."
+}
