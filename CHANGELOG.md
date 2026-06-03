@@ -4,7 +4,11 @@ All notable changes to the Obligation-First specification.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/) once it reaches v0.1.0 freeze.
 
-## [0.2.2-draft] - 2026-06-02
+## [0.3.0-draft] - 2026-06-02
+
+### Changed
+
+- **2026-06-02: `@id` federation and identifier crosswalks adopted (direction).** Decision record: `reference/iri-naming-and-crosswalks.md`. Prompted by an audit showing that all four worked examples mint adopter-host IRIs that do not resolve against the live adopters (because of the `.json` suffix alone, zero of the 50 example `@id` values match), and that the examples followed the binding handoffs while all three adopters implemented differently from their own handoffs. Resolution: record `@id` values are adopter-local, opaque, and permanent (renames preserved via HTTP 301, per "Cool URIs Don't Change"); external standard identifiers (ELI, ECLI, Akoma Ntoso, urn:lex, Wikidata) ride as typed crosswalks, never as the `@id`; cross-adopter joins key on crosswalks, not slugs; each adopter publishes a `.well-known` naming profile (VoID `uriSpace` / `uriRegexPattern` + RFC 6570 template) that obligation-first consumes rather than prescribes; jurisdiction is a typed ISO 3166 field, never a slug component. A recommended crosswalk matrix per entity type is added, with Wikidata at SHOULD for authorities and urn:lex at MAY for instruments. This reverses the prior guidance that a Term's `@id` should be the standard source-text IRI; no live adopter ever did this. Additive and non-breaking to v0.1 / v0.2 records (`additionalProperties` already admits the crosswalk fields); the matrix governs Level 3, and the new Level 2 naming-profile + jurisdiction requirements are a pre-freeze conformance tightening, not a validation break. Files touched: `PROTOCOL.md` (new "`@id` federation and crosswalks" and "Naming profiles and identifier crosswalks" sections; reversed Term-`@id` guidance; Level 2 / Level 3 redefinitions; worked-example paragraph), `reference/iri-naming-and-crosswalks.md` (new), `ROADMAP.md` (deferred decisions #17 enforcement mechanism, #18 not-yet-minted example IRIs, #19 `.json` suffix, #20 non-EU join key). Deferred to follow-on rounds: schema and `context.jsonld` crosswalk fields, the `.well-known` profile format and schema, the conformance validator, handoff reconciliation, and example realignment.
 
 ### Added
 

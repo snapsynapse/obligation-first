@@ -1,30 +1,31 @@
 {
   "name": "obligation-first",
-  "version": "0.2.2-draft",
+  "version": "0.3.0-draft",
   "status": "draft",
-  "release_date": "2026-05-30",
-  "canonical_url": "https://obligationfirst.org/releases/v0.2.2-draft/",
+  "release_date": "2026-06-02",
+  "canonical_url": "https://obligationfirst.org/releases/v0.3.0-draft/",
   "repository": "https://github.com/snapsynapse/obligation-first",
-  "summary": "Security hardening release package for the v0.2 draft line, publishing checksums for core public artifacts, GuideCheck assistant-guide provenance, and release notes.",
+  "summary": "Draft release federating record @id values and binding cross-adopter interoperability to standard identifier crosswalks declared in per-adopter .well-known naming profiles. Additive and non-breaking to v0.1 and v0.2 records. Also completes the EU AI Act Article 50 worked example.",
   "compatibility": {
     "v0_1_adopter_records": "valid without migration",
+    "v0_2_adopter_records": "valid without migration",
     "iri_major": "v1"
   },
   "artifacts": [
     {
       "path": "PROTOCOL.md",
       "url": "https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md",
-      "sha256": "f6e298bb8536a266483e0217de242a000817b8d37ce788489e6322d549fc2484"
+      "sha256": "6caf58b00ef485f539594d4e20a7a3d50c6d67f046debdeb0bcbd35195f36c26"
     },
     {
-      "path": "docs/releases/v0.2.2-draft/RELEASE_NOTES-v0.2.2-draft.md",
-      "url": "https://obligationfirst.org/releases/v0.2.2-draft/RELEASE_NOTES-v0.2.2-draft.md",
-      "sha256": "5edaad51ec33dc5bad506224224e348c0b4df98bd6374e4d4c35b6e5c913dfc5"
+      "path": "docs/releases/v0.3.0-draft/RELEASE_NOTES-v0.3.0-draft.md",
+      "url": "https://obligationfirst.org/releases/v0.3.0-draft/RELEASE_NOTES-v0.3.0-draft.md",
+      "sha256": "f5e1079c10512fec332aa53ed2a9fbc94b931d9e4fb4bbb57cec4bce5568e252"
     },
     {
       "path": "schema/context.jsonld",
       "url": "https://obligationfirst.org/v1/context.jsonld",
-      "sha256": "ad79eacf3417ec23fbbc4dae17ec1fbd404f261e861a0dcc9dfe6a00946e7467"
+      "sha256": "cba019d028ea130bdb90228d268bbb3f6c23101aacdc48ea6737b61be6785af3"
     },
     {
       "path": "schema/allegation.schema.json",
@@ -69,42 +70,42 @@
     {
       "path": "docs/agents.json",
       "url": "https://obligationfirst.org/agents.json",
-      "sha256": "7fb6aea7ebe05c7c8484f5279a690060fd14d3f0a1247d1269dadeb84b893f39"
+      "sha256": "05800021488eecb6609fde826a7d26b9ec1f20b3110282e08aed97d5ef3e9bea"
     },
     {
       "path": "docs/llms.txt",
       "url": "https://obligationfirst.org/llms.txt",
-      "sha256": "f7162ec584f467844bc82ec83ebafd021f53294e016535c1171180a3d1002c1c"
+      "sha256": "26b3f16416f560ce77e9c40ff1ba189141a14149afd838233aefb30b615c33a1"
     },
     {
       "path": "docs/llms-full.txt",
       "url": "https://obligationfirst.org/llms-full.txt",
-      "sha256": "1051a927c9f4d95b29059a969fc59f2ca03f699fb02a9aec6719cba501dea31d"
+      "sha256": "a883201d459f3864f53f212b51ced0df5135a54a853871d327f854c289a65938"
     },
     {
       "path": "assistant-guide.txt",
       "url": "https://obligationfirst.org/.well-known/assistant-guide.txt",
-      "sha256": "1558d1db12fdfda586bca4ddac2e0180523b06f87dc3a7e665b01f82d966d723"
+      "sha256": "3debb10a6f431455c5763f4aca3458facce4767c5ddbdd3ee909e18c20f8501a"
     },
     {
       "path": "assistant-guide-manifest.txt",
       "url": "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt",
-      "sha256": "b070f7f36b50ddf9d4b74d40b4b3e60b6b521ade6eed32a9cd11859645bad32e"
+      "sha256": "d92825745fc80118b5354de62d50012ae9f7cfe27e2223520b24c7726b083406"
     },
     {
       "path": "CHANGELOG.md",
       "url": "https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md",
-      "sha256": "d0a9844890fd0d1d675530bfd5d3796507a5e9e994ceba40a99141aa16027fe6"
+      "sha256": "70571bd846edc72083f964a601e432a64c85530587dafcf1ac84b3b70ea69d94"
     },
     {
       "path": "package.json",
       "url": "https://github.com/snapsynapse/obligation-first/blob/main/package.json",
-      "sha256": "2d2a1893dd79f683741a950b5de192849f0364806500a8c74318d5c4e488735a"
+      "sha256": "f80b7df0c528805937325d52b3891c227350a36681854184db24226da1012432"
     },
     {
       "path": "package-lock.json",
       "url": "https://github.com/snapsynapse/obligation-first/blob/main/package-lock.json",
-      "sha256": "b4a9e7b10c012700c18bbadd09551388e29081e341b5748af415f873d8aec157"
+      "sha256": "aaf144c7262e6276bea5f07d1496881281d8681a7f0a1b8812c90f2a9f998b10"
     }
   ]
 }

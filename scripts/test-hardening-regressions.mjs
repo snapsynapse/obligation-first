@@ -82,7 +82,7 @@ assert(
 async function testReleasePackageStaleHash() {
   const root = await mkdtemp(path.join(os.tmpdir(), "of-release-regression-"));
   try {
-    const releaseDir = path.join(root, "docs/releases/v0.2.2-draft");
+    const releaseDir = path.join(root, "docs/releases/v0.3.0-draft");
     await mkdir(releaseDir, { recursive: true });
     await writeFile(path.join(root, "artifact.txt"), "current\n");
     const stale = createHash("sha256").update("stale\n").digest("hex");
@@ -90,7 +90,7 @@ async function testReleasePackageStaleHash() {
       path.join(releaseDir, "manifest.json"),
       `${JSON.stringify(
         {
-          version: "0.2.2-draft",
+          version: "0.3.0-draft",
           artifacts: [{ path: "artifact.txt", sha256: stale }],
         },
         null,

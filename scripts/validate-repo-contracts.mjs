@@ -109,7 +109,7 @@ const CORE_ENDPOINTS = [
 
 const ASSISTANT_GUIDE_ENDPOINT = "https://obligationfirst.org/.well-known/assistant-guide.txt";
 const ASSISTANT_GUIDE_MANIFEST_ENDPOINT = "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt";
-const RELEASE_PACKAGE_ENDPOINT = "https://obligationfirst.org/releases/v0.2.2-draft/";
+const RELEASE_PACKAGE_ENDPOINT = "https://obligationfirst.org/releases/v0.3.0-draft/";
 
 async function* walk(start) {
   const full = path.join(repoRoot, start);
@@ -372,7 +372,7 @@ export async function validateAssistantGuide(failures, root = repoRoot) {
 }
 
 export async function validateReleasePackage(failures, root = repoRoot) {
-  const releaseDir = path.join(root, "docs/releases/v0.2.2-draft");
+  const releaseDir = path.join(root, "docs/releases/v0.3.0-draft");
   const manifest = JSON.parse(await readFile(path.join(releaseDir, "manifest.json"), "utf8"));
   const shaIndex = await readFile(path.join(releaseDir, "sha256.txt"), "utf8");
   const shaLines = new Map();
@@ -380,14 +380,14 @@ export async function validateReleasePackage(failures, root = repoRoot) {
   for (const line of shaIndex.trim().split("\n")) {
     const match = line.match(/^([a-f0-9]{64})  (.+)$/);
     if (!match) {
-      failures.push(`docs/releases/v0.2.2-draft/sha256.txt: malformed line: ${line}`);
+      failures.push(`docs/releases/v0.3.0-draft/sha256.txt: malformed line: ${line}`);
       continue;
     }
     shaLines.set(match[2], match[1]);
   }
 
-  if (manifest.version !== "0.2.2-draft") {
-    failures.push(`docs/releases/v0.2.2-draft/manifest.json: expected version 0.2.2-draft`);
+  if (manifest.version !== "0.3.0-draft") {
+    failures.push(`docs/releases/v0.3.0-draft/manifest.json: expected version 0.3.0-draft`);
   }
 
   for (const artifact of manifest.artifacts || []) {
@@ -396,16 +396,16 @@ export async function validateReleasePackage(failures, root = repoRoot) {
     try {
       bytes = await readFile(artifactPath);
     } catch (err) {
-      failures.push(`docs/releases/v0.2.2-draft/manifest.json: missing artifact ${artifact.path}`);
+      failures.push(`docs/releases/v0.3.0-draft/manifest.json: missing artifact ${artifact.path}`);
       continue;
     }
 
     const actualSha = createHash("sha256").update(bytes).digest("hex");
     if (artifact.sha256 !== actualSha) {
-      failures.push(`docs/releases/v0.2.2-draft/manifest.json: stale sha256 for ${artifact.path}`);
+      failures.push(`docs/releases/v0.3.0-draft/manifest.json: stale sha256 for ${artifact.path}`);
     }
     if (shaLines.get(artifact.path) !== actualSha) {
-      failures.push(`docs/releases/v0.2.2-draft/sha256.txt: stale sha256 for ${artifact.path}`);
+      failures.push(`docs/releases/v0.3.0-draft/sha256.txt: stale sha256 for ${artifact.path}`);
     }
   }
 }

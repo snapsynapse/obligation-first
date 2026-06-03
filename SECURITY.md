@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-The Obligation-First spec is in `v0.2.2-draft`. Only the latest draft is supported. Once `v0.2.2` freezes, the latest minor version of the current major will be supported.
+The Obligation-First spec is in `v0.3.0-draft`. Only the latest draft is supported. Once `v0.3.0` freezes, the latest minor version of the current major will be supported.
 
 ## Reporting a vulnerability
 

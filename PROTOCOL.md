@@ -1,7 +1,7 @@
 ---
 "@type": "https://w3id.org/semanticarts/ns/ontology/gist/Specification"
 title: "Obligation-First Protocol"
-version: "0.2.2-draft"
+version: "0.3.0-draft"
 license: "CC-BY-4.0"
 created: 2026-05-04
 modified: 2026-05-26
@@ -9,7 +9,7 @@ modified: 2026-05-26
 
 # Obligation-First Protocol
 
-> **Status: v0.2.2-draft.** v0.1 spec was complete enough for external review; Semantic Arts feedback (Dave McComb, 2026-05-26) is absorbed in v0.2 as binding-only updates — the gist binding for `of:Reparation` is closed to a layered `gist:Requirement` + `gist:Intention` (+ `gist:Event`) pattern, and Allegation is rebound from non-existent `gist:Statement` to `gist:Content` (+ `gist:Intention` when intent-bearing). The of: vocabulary is unchanged; adopter records require no migration. See [CHANGELOG.md](CHANGELOG.md). Remaining v0.2 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and cross-project anchor enrichment.
+> **Status: v0.3.0-draft.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the naming-profile format plus crosswalk schema additions.
 
 ## What this protocol specifies
 
@@ -168,11 +168,19 @@ Upstream-standard class IRIs (gist, LegalRuleML, Akoma Ntoso, ELI, ECLI) MAY or 
 
 These are URIs in the technical RDF/JSON-LD sense — globally unique identifiers that don't strictly require HTTP resolution for parsing or validation. Conformance Level 1 adopters are not required to host content at upstream URIs.
 
+### `@id` federation and crosswalks
+
+Record `@id` values are adopter-local, opaque, and permanent. An `@id` identifies the adopter's record about a legal entity, not the entity's canonical external identifier. Obligation-First does not prescribe slug grammar; each adopter declares its own naming scheme (see "Naming profiles and identifier crosswalks" below).
+
+External standard identifiers (ELI, ECLI, Akoma Ntoso, urn:lex, Wikidata, and the rest) are carried as typed crosswalk properties on the record, never as the `@id`. Cross-adopter joins key on these crosswalks, not on slugs: two adopters referencing the same statute agree on its `eli_uri`, not on whether one wrote `colorado-sb24-205` and the other `us-co-legislature-statute-2024-sb24-205`.
+
+Permanence: once published, an `@id` does not change. If an adopter reorganizes its namespace, the old `@id` MUST continue to resolve via an HTTP 301 redirect (W3C "Cool URIs Don't Change"). A rename is therefore never a breaking change as long as the redirect persists. This is what lets canonical identity and "do not restructure anyone's files" coexist. See `reference/iri-naming-and-crosswalks.md` for the full decision record.
+
 ### Worked-example records
 
-The records under `examples/*/records/*.json` use `@id` values that point at adopter-domain URLs (everyailaw.com, aiincidentlaw.org, publedge.org). Those URLs are aspirational — they illustrate what each adopter will mint when it binds. Until that binding is live, the JSON bytes for these example records are served from `https://obligationfirst.org/v1/examples/<slug>/records/<file>.json` so reviewers can fetch and validate against the published schemas immediately.
+The records under `examples/*/records/*.json` use `@id` values under adopter-domain hosts (everyailaw.com, aiincidentlaw.org, publedge.org). Per "`@id` federation and crosswalks" above, an example `@id` is not a prediction of what an adopter will mint. Where the referenced entity already exists in an adopter's published export, the example MUST use that adopter's actual IRI rather than invent a plausible one. The policy for entities an adopter has not yet minted (a neutral obligationfirst.org example namespace versus a proposed-extension marker) is being finalized; see `reference/iri-naming-and-crosswalks.md`. The current example records predate this rule and are being realigned to it.
 
-When each adopter completes its binding (see handoff documents), the adopter-domain URLs become the canonical homes; the obligationfirst.org mirror remains for spec-illustration purposes.
+Until realignment is complete, the JSON bytes for these example records are served from `https://obligationfirst.org/v1/examples/<slug>/records/<file>.json` so reviewers can fetch and validate against the published schemas immediately.
 
 For enrichment work, `scripts/report-anchor-graph.mjs` reports `anchors` edges across one or more worked-example or adopter exports. It distinguishes base Obligation-First export coverage from populated anchor edges, validates target type when the target record is present, and lists unresolved external targets so adopter repos can add or mirror the missing record-side binding deliberately.
 
@@ -185,7 +193,51 @@ Obligation-First does not specify a source-text format. It references existing s
 - **ECLI** (European Case Law Identifier) for case IRIs
 - **USLM** (United States Legislative Markup) for US federal statutes
 
-When a Term has a canonical source-text representation in any of these, its `@id` should be the standard's IRI.
+When a Term has a canonical source-text representation in any of these, it SHOULD carry the standard's IRI as a typed crosswalk property (`akn_uri`, `eli_uri`, `ecli`), not as its `@id`. Record `@id` values are always adopter-local and permanent; see "`@id` federation and crosswalks" above. (This reverses earlier guidance that a Term's `@id` should be the standard IRI. No live adopter ever did this; the spec is corrected to match practice and to keep all `@id` values federated.)
+
+## Naming profiles and identifier crosswalks
+
+Obligation-First does not standardize adopter slug grammar. Instead, each adopter declares its own scheme and binds interoperability to standard identifiers carried as crosswalks. Full decision record: `reference/iri-naming-and-crosswalks.md`.
+
+### Naming profile
+
+A bound adopter (Level 2 and above) publishes a naming profile at a `.well-known` location, describing the IRI scheme for each entity type using existing vocabulary:
+
+- VoID `void:uriSpace` and `void:uriRegexPattern` for the namespace and pattern its `@id` values follow.
+- An RFC 6570 URI Template for the generative form (e.g. `https://example.org/{type}/{slug}`).
+- A declared list of which crosswalks the adopter supplies per entity type.
+
+The profile is adopter-owned and adopter-published. Obligation-First consumes and validates against it; it does not prescribe the slug grammar. This is by design: a spec-held prescription of adopter naming is exactly what drifted from reality in the binding handoffs. ELI is the precedent — each EU member state publishes its own ELI URI template and a registry collects them.
+
+### Jurisdiction
+
+Every entity with a jurisdiction carries it as a typed `jurisdiction` field using ISO 3166-2 (or ISO 3166-1 for national and supranational bodies). Jurisdiction is never a slug component. MUST at Level 2.
+
+### Identifier crosswalk matrix
+
+Requirements are RFC 2119 and conditional on coverage; an adopter is never failed for an identifier its jurisdiction does not issue. This is the recommended baseline. An adopter's actual obligations are whatever its naming profile declares.
+
+| Entity | Crosswalk | Req | Condition |
+|---|---|---|---|
+| Authority | Wikidata QID (`sameAs`) | SHOULD | body has an entry |
+| Authority | LCNAF, ISNI, EU Named Authority List | MAY | supplements or substitutes |
+| Instrument | ELI (`eli_uri`) | MUST | jurisdiction issues ELIs |
+| Instrument | `citation` | SHOULD | always |
+| Instrument | urn:lex | MAY | fallback where no ELI |
+| Instrument | Akoma Ntoso (`akn_uri`) | MAY | AKN encoding exists |
+| Term | Akoma Ntoso element IRI (`akn_uri`) | SHOULD | provision has an AKN representation |
+| Term | `section` | MUST | always |
+| Term | executable encoding | MAY | executable logic exists |
+| Obligation | LegalRuleML deontic alignment | SHOULD | the `of:` deontic class already maps |
+| Obligation | EuroVoc concept (`sameAs`) | SHOULD | subject has a EuroVoc concept |
+| Proceeding | ECLI | MUST | ECLI jurisdiction |
+| Proceeding | neutral citation | MUST | common-law neutral-citation jurisdiction, no ECLI |
+| Proceeding | docket / CourtListener id | SHOULD | US and other docket systems |
+| Allegation | doctrine / legal-concept ref | MAY | claim maps to a named doctrine |
+| Determination | ECLI / neutral citation | MUST | citable court decision |
+| Determination | urn:lex / source-document id | SHOULD | administrative determination |
+
+The crosswalk fields above are optional at the JSON-Schema layer (`additionalProperties` already admits them); the matrix governs Level 3 conformance, not schema validity. Formal schema and `context.jsonld` additions for the new crosswalk properties are tracked as follow-on work in `reference/iri-naming-and-crosswalks.md`.
 
 ## Defeasibility semantics
 
@@ -234,13 +286,13 @@ Required: `@id` and `@type` use canonical `of:` IRIs. JSON-LD `@context` referen
 
 The adopter passes JSON Schema validation for every published record. This is the recommended default.
 
-Required: all of Level 1, plus every record validates against the appropriate `schema/*.schema.json`.
+Required: all of Level 1, plus every record validates against the appropriate `schema/*.schema.json`; plus a published `.well-known` naming profile (see "Naming profiles and identifier crosswalks"); plus `jurisdiction` carried as an ISO 3166 code on every entity that has one. The naming-profile and jurisdiction requirements were added with the `@id`-federation decision (2026-06-02); they tighten Level 2 going forward but are not a record-validation break, since `additionalProperties` already admits the fields.
 
 ### Level 3 — Crosswalk-conformant
 
-The adopter additionally publishes an `akn_uri` or `eli_uri` for every Instrument that has an authoritative external identifier, and binds Obligations to LegalRuleML deontic operators where applicable.
+The adopter additionally carries, on every applicable record, each identifier crosswalk its naming profile declares — with the matrix in "Naming profiles and identifier crosswalks" as the recommended baseline. In practice this means ELI or Akoma Ntoso for instruments where the jurisdiction issues them, ECLI or neutral citation for proceedings and determinations, and the deontic and subject alignments for obligations.
 
-Required: all of Level 2, plus identifier round-trip with at least one of Akoma Ntoso, ELI, or ECLI where the source jurisdiction publishes one.
+Required: all of Level 2, plus every crosswalk declared in the adopter's profile is present where applicable, and at least one standard legal-source or case identifier round-trips where the source jurisdiction publishes one.
 
 The three current adopters (PubLedge, EveryAILaw, AI Incident Law) target Level 2 for v0.1. Level 3 is aspirational; PubLedge will reach it first via existing Akoma Ntoso integrations.
 
@@ -328,3 +380,4 @@ Round-tripping the three examples surfaced these findings:
 - 0.2.0-draft (2026-05-26): Semantic Arts feedback absorbed as binding-only updates. `of:Reparation` retained as a distinct deontic subclass; its gist binding closed to the layered pattern `gist:Requirement` + `gist:Intention` + (when actuated) `gist:Event`. Allegation gist binding switched from non-existent `gist:Statement` to `gist:Content` (+ `gist:Intention` when intent-bearing). No of:-vocabulary or adopter-record changes. See [CHANGELOG.md](CHANGELOG.md).
 - 0.2.1-draft (2026-05-26): Patch draft release package added under `docs/releases/v0.2.1-draft/` with machine-readable manifest and SHA-256 checksum index for public artifacts.
 - 0.2.2-draft (2026-05-30): Security hardening draft. The adopter graph validator now rejects administrative Determinations with `disposition: issued` unless they cite a `target_instrument` or anchor; example and adopter graph validation share one implementation; CI runs the full contract suite; release hashes, GuideCheck guide metadata, and content provenance checks are enforced locally.
+- 0.3.0-draft (2026-06-02): `@id` federation and identifier crosswalks. Record `@id` values are adopter-local and permanent; external standard identifiers ride as typed crosswalks; each adopter publishes a `.well-known` naming profile; jurisdiction is a typed ISO 3166 field; Level 2 and Level 3 conformance redefined accordingly. Reverses the Term-`@id`-is-standard-IRI guidance. Additive and non-breaking. Decision record: `reference/iri-naming-and-crosswalks.md`.

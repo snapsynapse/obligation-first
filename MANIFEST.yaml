@@ -25,7 +25,7 @@
 #   - Build outputs
 
 bundle: obligation-first
-bundle_version: 0.2.2-draft
+bundle_version: 0.3.0-draft
 bundle_date: 2026-06-02
 
 files:
@@ -87,15 +87,15 @@ files:
   LICENSE-CC-BY-4.0: 62a68518848c2fdcd108ff5cc11ba1516440c507bf425d5e76ad36886fd5752a
   NOTICE: 78632858989d3af8d731918afe289fe2929a4c52538c5c5fec109e0e0c5109a4
   PRIOR-ART.md: 64e5169875cc7bf1e1d9ca57b43698efbf5665d8e73ea3697339895735c90cc4
-  PROTOCOL.md: cba30192d9ab7968cdcf96ffef9de5a785d142ccf311e0bb171d8ece6c68ede1
+  PROTOCOL.md: 6caf58b00ef485f539594d4e20a7a3d50c6d67f046debdeb0bcbd35195f36c26
   reference/crosswalks/akomantoso.md: 4115b262847900a9a644965d50f1644ec7624449a61375a2bda4ee8f51dcc82a
   reference/crosswalks/eli-ecli.md: 8061a4d41517bd535a27dece422eb26ed350f006d3723f7977de761ed4e943dd
   reference/crosswalks/gist.md: b7b6a9cb81dee9c69e6b83d89cf24511576c639587d5ea8c244b088501b62745
   reference/crosswalks/legalruleml.md: 163db1053dfd2876b85d004248dbbbac93b262f6e125d66900552e40e8bb85c9
-  ROADMAP.md: c2b0539c8994f69354259cbb5fab2d26d8edb4f5c51d3e06ea34ea791f813b02
+  ROADMAP.md: ed1695a908ee2c81c7fd4996e3463744d867300f9a88498c84b8ee49b56e7b0e
   schema/allegation.schema.json: a21b2075f4c8b83208ea08b745e0a8da91f0e74742d4a7a908423cca044cffa7
   schema/authority.schema.json: 8872b134d7574048855e08aa2acb31de560d6a354aac97c8e8ec788fa5a476dc
-  schema/context.jsonld: ad79eacf3417ec23fbbc4dae17ec1fbd404f261e861a0dcc9dfe6a00946e7467
+  schema/context.jsonld: cba019d028ea130bdb90228d268bbb3f6c23101aacdc48ea6737b61be6785af3
   schema/determination.schema.json: 9a61c867f5ee883f4d8e261530ddb07aa2d4515f19467d98e69e88e75269eee0
   schema/executable-encoding.schema.json: 4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810
   schema/instrument.schema.json: 4e087378105250e02a90b86e11917477dbd7bc834b3416cb1ea74d8ea8e0aff1
