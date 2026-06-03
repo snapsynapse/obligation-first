@@ -5,13 +5,25 @@
   <link href="https://obligationfirst.org/feed.xml" rel="self"/>
   <link href="https://obligationfirst.org/" rel="alternate"/>
   <id>https://obligationfirst.org/</id>
-  <updated>2026-06-02T12:00:00Z</updated>
+  <updated>2026-06-03T12:00:00Z</updated>
   <author>
     <name>Sam Rogers</name>
     <uri>https://www.linkedin.com/in/samrogers</uri>
   </author>
   <rights>CC BY 4.0 (spec) / Apache 2.0 (code)</rights>
   <generator uri="https://obligationfirst.org/">Obligation-First</generator>
+
+  <entry>
+    <title>v0.4.0 released</title>
+    <link href="https://obligationfirst.org/releases/v0.4.0/" rel="alternate"/>
+    <id>https://obligationfirst.org/releases/v0.4.0</id>
+    <updated>2026-06-03T12:00:00Z</updated>
+    <published>2026-06-03T12:00:00Z</published>
+    <summary>v0.4.0 defines the naming-profile format. The .well-known naming profile, a Level 2 requirement since v0.3 but previously specified only in prose, is now a concrete validatable standard: a JSON-LD of:NamingProfile document served at /.well-known/obligation-first-naming-profile.jsonld (application/ld+json) and validated by schema/naming-profile.schema.json, with a flat text/plain provenance sidecar at /.well-known/obligation-first-naming-profile-manifest.txt. Adds the schema, a worked profile under examples/naming-profiles/, the void prefix and profile terms in the context, and a validate:naming-profile CI gate. Closes a v0.3 freeze gate. Additive and non-breaking to adopter records.</summary>
+    <category term="release"/>
+    <category term="naming-profile"/>
+    <category term="v0.4"/>
+  </entry>
 
   <entry>
     <title>v0.3.1 released</title>

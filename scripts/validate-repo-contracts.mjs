@@ -87,6 +87,7 @@ const ALLOWED_HTTP_PREFIXES = [
   "http://docs.oasis-open.org/legalruleml/ns/v1.0/",
   "http://data.europa.eu/eli/",
   "http://www.sitemaps.org/schemas/sitemap/0.9",
+  "http://rdfs.org/ns/void#",
 ];
 
 const ALLOWED_WWW_HOSTS = new Set([

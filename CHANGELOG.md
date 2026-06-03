@@ -4,6 +4,27 @@ All notable changes to the Obligation-First specification.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/) once it reaches v0.1.0 freeze.
 
+## [0.4.0] - 2026-06-03
+
+Defines the naming-profile format. The `.well-known` naming profile — announced in v0.3 as a Level 2 requirement but specified only in prose — is now a concrete, validatable standard. This closes one of the v0.3 freeze gates.
+
+### Added
+
+- **`schema/naming-profile.schema.json`** (mirrored to `docs/v1/schema/`). A JSON-LD document of `@type` `of:NamingProfile` declaring, per entity type, the VoID `void:uriSpace` / `void:uriRegexPattern`, an RFC 6570 `uriTemplate`, and the `crosswalks` the adopter supplies. The body is structured RDF-native data so it rides the existing AJV schema validator and is directly consumable by Linked Data tooling.
+- **Canonical location and media type.** The profile is served at `/.well-known/obligation-first-naming-profile.jsonld` as `application/ld+json`. A flat `key: value` provenance sidecar (`profile-sha256` / `profile-bytes` over the profile bytes) is served at `/.well-known/obligation-first-naming-profile-manifest.txt` as `text/plain`. This splits the artifact the way GuideCheck already splits its pair: structured data body, human-reviewable hashed sidecar. The body deliberately is not forced into the GuideCheck `.txt` byte profile — that profile exists for instruction-injection review integrity, a threat a data declaration does not share.
+- **Worked profile** under `examples/naming-profiles/` (`everyailaw.jsonld` + `everyailaw-manifest.txt`), modelled on EveryAILaw's actual live IRI scheme (singular path segments with a `.json` suffix), declaring only the entity types EveryAILaw publishes (Authority, Instrument, Term, Obligation). The profile is descriptive of what the adopter mints today, not aspirational.
+- **`scripts/validate-naming-profile.mjs`** wired into `npm test`. Compiles the schema, validates every worked profile against it, checks each `void:uriRegexPattern` compiles and anchors and that its `uriTemplate` expansion satisfies the pattern, and verifies each sidecar's `profile-sha256` / `profile-bytes` match the profile bytes.
+
+### Changed
+
+- **`schema/context.jsonld`** adds the `void` prefix (`http://rdfs.org/ns/void#`), the `of:NamingProfile` class, and the `profileVersion`, `appliesTo`, `adopter`, `entities`, `uriTemplate`, and `crosswalks` terms. `scripts/validate-repo-contracts.mjs` allowlists the VoID namespace (a non-HTTPS standards namespace, alongside the existing AKN / ELI / LegalRuleML entries).
+- **`PROTOCOL.md`** "Naming profile" section rewritten from prose into a normative standard: canonical path, media type, profile shape, sidecar fields, and discovery, with RFC 2119 keywords.
+- **ROADMAP** decision #19 (`.json` suffix) reconciled: the adopter's choice is recorded descriptively in its profile's `void:uriRegexPattern`, not mandated by the spec; #17 (identity-fidelity enforcement) advanced now that a profile is machine-validatable.
+
+### Compatibility
+
+No `of:` vocabulary or record-schema change. The naming-profile artifact is additive. v0.1/v0.2/v0.3 adopter records remain valid without migration. The Level 2 naming-profile requirement, in force since v0.3, is now actually satisfiable.
+
 ## [0.3.1] - 2026-06-02
 
 The `-draft` suffix is dropped from this release forward; versions are plain SemVer (`0.x` already signals pre-1.0 instability). This release makes every surface reflect the v0.3 federation model.

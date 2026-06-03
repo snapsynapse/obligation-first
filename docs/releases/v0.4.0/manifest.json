@@ -1,0 +1,117 @@
+{
+  "name": "obligation-first",
+  "version": "0.4.0",
+  "status": "draft",
+  "release_date": "2026-06-03",
+  "canonical_url": "https://obligationfirst.org/releases/v0.4.0/",
+  "repository": "https://github.com/snapsynapse/obligation-first",
+  "summary": "Defines the naming-profile format. The .well-known naming profile, a Level 2 requirement since v0.3 but previously specified only in prose, becomes a concrete validatable standard: a JSON-LD of:NamingProfile document at /.well-known/obligation-first-naming-profile.jsonld validated by schema/naming-profile.schema.json, with a flat text/plain provenance sidecar. Closes a v0.3 freeze gate. Additive and non-breaking to adopter records.",
+  "compatibility": {
+    "v0_1_adopter_records": "valid without migration",
+    "v0_2_adopter_records": "valid without migration",
+    "v0_3_adopter_records": "valid without migration",
+    "iri_major": "v1"
+  },
+  "artifacts": [
+    {
+      "path": "PROTOCOL.md",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md",
+      "sha256": "84556ada9f3790bc0d3f9d5a88fc6aea2fecae8ae3a13b70004d693e1eb1d1da"
+    },
+    {
+      "path": "docs/releases/v0.4.0/RELEASE_NOTES-v0.4.0.md",
+      "url": "https://obligationfirst.org/releases/v0.4.0/RELEASE_NOTES-v0.4.0.md",
+      "sha256": "877c8683ab5cc719656790c01369cef1a984b94872ccc2de9c53581a77943128"
+    },
+    {
+      "path": "schema/context.jsonld",
+      "url": "https://obligationfirst.org/v1/context.jsonld",
+      "sha256": "f2962864def2cbac36c17d58a1a5e44d5474c819318cd8032e74f4a764cb3bf1"
+    },
+    {
+      "path": "schema/allegation.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/allegation.schema.json",
+      "sha256": "a21b2075f4c8b83208ea08b745e0a8da91f0e74742d4a7a908423cca044cffa7"
+    },
+    {
+      "path": "schema/authority.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/authority.schema.json",
+      "sha256": "8872b134d7574048855e08aa2acb31de560d6a354aac97c8e8ec788fa5a476dc"
+    },
+    {
+      "path": "schema/determination.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/determination.schema.json",
+      "sha256": "9a61c867f5ee883f4d8e261530ddb07aa2d4515f19467d98e69e88e75269eee0"
+    },
+    {
+      "path": "schema/executable-encoding.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json",
+      "sha256": "4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810"
+    },
+    {
+      "path": "schema/instrument.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/instrument.schema.json",
+      "sha256": "4e087378105250e02a90b86e11917477dbd7bc834b3416cb1ea74d8ea8e0aff1"
+    },
+    {
+      "path": "schema/naming-profile.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/naming-profile.schema.json",
+      "sha256": "945695ea99800587c9782c77cdebc50a7deeab7f36494f98223e16baf80131f8"
+    },
+    {
+      "path": "schema/obligation.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/obligation.schema.json",
+      "sha256": "3c57920c6424f9048d03a535f79345147f30c0e4ae512fb0b345ee05f03be383"
+    },
+    {
+      "path": "schema/proceeding.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/proceeding.schema.json",
+      "sha256": "f60e0a73e7f86cefb30d120d826717d84f6330f3b14ab3d7cbc59cadd897ee4e"
+    },
+    {
+      "path": "schema/term.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/term.schema.json",
+      "sha256": "5bc2a8fa43229c792e3409de864fee781904ae998770f215dbe59631b7497eae"
+    },
+    {
+      "path": "docs/agents.json",
+      "url": "https://obligationfirst.org/agents.json",
+      "sha256": "9a816c3e254acbae06d47819e968ee214bdc6445fa7e0e4c2e5cf899f819e9ce"
+    },
+    {
+      "path": "docs/llms.txt",
+      "url": "https://obligationfirst.org/llms.txt",
+      "sha256": "1f85045f7d2bb485e8ea000f3362c66df1269f5c03e1cd844d93eb0ce5bc0e3d"
+    },
+    {
+      "path": "docs/llms-full.txt",
+      "url": "https://obligationfirst.org/llms-full.txt",
+      "sha256": "13edcc5271a1fb46c9bc932916b1cbca0bc1b5f59f82a588d79dddc765286155"
+    },
+    {
+      "path": "assistant-guide.txt",
+      "url": "https://obligationfirst.org/.well-known/assistant-guide.txt",
+      "sha256": "a3b302093739d3c324c0f478cdceaffd05d43cf7f3b8a3e56b1484805d2ea1e0"
+    },
+    {
+      "path": "assistant-guide-manifest.txt",
+      "url": "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt",
+      "sha256": "610501b850b014bb78676ac434de25709998a7032d79773ea8f49d1f67ee78a5"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md",
+      "sha256": "dc48393d27ea14d306e08c34fa460f08c632af78cb816b04e17da00876441cdf"
+    },
+    {
+      "path": "package.json",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/package.json",
+      "sha256": "e1936a49aa96e1888acb7607d33ec8749542e933d9d09876df28c2ed534c1e69"
+    },
+    {
+      "path": "package-lock.json",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/package-lock.json",
+      "sha256": "abfe2ada0513ade1f21feeda08bdaa1dbb38c4b3d5b685ef6674104c0bb24f12"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://obligationfirst.org/v1/schema/naming-profile.schema.json",
+  "title": "NamingProfile",
+  "description": "An adopter-published declaration of the IRI scheme each Obligation-First entity type follows, plus the identifier crosswalks the adopter supplies. Published at /.well-known/obligation-first-naming-profile.jsonld and served as application/ld+json. Obligation-First consumes and validates against this profile; it never prescribes the slug grammar. Required to be 'bound' (Level 2). See PROTOCOL.md 'Naming profiles and identifier crosswalks'.",
+  "type": "object",
+  "required": ["@type", "profileVersion", "appliesTo", "adopter", "entities"],
+  "properties": {
+    "@context": { "type": ["string", "array", "object"] },
+    "@type": { "const": "of:NamingProfile" },
+    "profileVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "SemVer of this profile document, owned by the adopter. Independent of the Obligation-First spec version."
+    },
+    "appliesTo": {
+      "type": "string",
+      "description": "The Obligation-First version range this profile is written against, e.g. 'obligation-first 0.4.x'."
+    },
+    "adopter": {
+      "type": "string",
+      "format": "uri",
+      "description": "Canonical base URL of the adopter that owns and publishes this profile."
+    },
+    "jurisdiction": {
+      "type": "object",
+      "description": "Optional default jurisdiction for the adopter, ISO 3166-1 alpha-2 (national/supranational) or ISO 3166-2 (subdivision). Per-record jurisdiction on the entity always wins; this is a profile-level default only.",
+      "required": ["@type", "ref"],
+      "properties": {
+        "@type": { "const": "gist:Jurisdiction" },
+        "ref": { "type": "string", "pattern": "^[A-Z]{2}(-[A-Z0-9]{1,3})?$" }
+      },
+      "additionalProperties": false
+    },
+    "entities": {
+      "type": "object",
+      "description": "One entry per Obligation-First entity type the adopter mints IRIs for. Key is the unprefixed entity-type name.",
+      "minProperties": 1,
+      "propertyNames": {
+        "enum": ["Authority", "Instrument", "Term", "Obligation", "Proceeding", "Allegation", "Determination"]
+      },
+      "additionalProperties": { "$ref": "#/$defs/entityProfile" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "entityProfile": {
+      "type": "object",
+      "description": "How this adopter mints IRIs for one entity type, and which crosswalks it supplies for it.",
+      "required": ["void:uriSpace", "void:uriRegexPattern"],
+      "properties": {
+        "void:uriSpace": {
+          "type": "string",
+          "format": "uri",
+          "description": "VoID uriSpace: the namespace prefix every @id of this entity type starts with."
+        },
+        "void:uriRegexPattern": {
+          "type": "string",
+          "description": "VoID uriRegexPattern: a regular expression that every minted @id of this entity type matches. This is the authoritative, descriptive statement of the adopter's actual scheme — including any served-file suffix such as '.json' if the adopter mints one."
+        },
+        "uriTemplate": {
+          "type": "string",
+          "description": "RFC 6570 URI Template for the generative form of an @id, e.g. 'https://example.org/instruments/{slug}'."
+        },
+        "crosswalks": {
+          "type": "array",
+          "description": "Crosswalk field names this adopter supplies on records of this entity type (e.g. 'eli_uri', 'ecli_uri', 'akn_uri', 'citation', 'section', 'sameAs'). The recommended baseline per entity type is the crosswalk matrix in PROTOCOL.md; the adopter's actual obligations are whatever this list declares.",
+          "items": { "type": "string" },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

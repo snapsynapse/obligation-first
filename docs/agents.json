@@ -1,7 +1,7 @@
 {
   "name": "Obligation-First",
   "description": "An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist.",
-  "version": "v0.3.1",
+  "version": "v0.4.0",
   "url": "https://obligationfirst.org/",
   "publisher": {
     "name": "PAICE.work PBC",
@@ -21,13 +21,14 @@
       "proceeding": "https://obligationfirst.org/v1/schema/proceeding.schema.json",
       "allegation": "https://obligationfirst.org/v1/schema/allegation.schema.json",
       "determination": "https://obligationfirst.org/v1/schema/determination.schema.json",
-      "executable_encoding": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json"
+      "executable_encoding": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json",
+      "naming_profile": "https://obligationfirst.org/v1/schema/naming-profile.schema.json"
     },
     "assistant_guide": "https://obligationfirst.org/.well-known/assistant-guide.txt",
     "assistant_guide_manifest": "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt",
     "spec": "https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md",
     "llms_txt": "https://obligationfirst.org/llms.txt",
-    "release_package": "https://obligationfirst.org/releases/v0.3.1/",
+    "release_package": "https://obligationfirst.org/releases/v0.4.0/",
     "sitemap": "https://obligationfirst.org/sitemap.xml",
     "repo": "https://github.com/snapsynapse/obligation-first"
   },
@@ -55,7 +56,7 @@
     "deontic_quartet": ["Requirement", "Restriction", "Permission", "Reparation"],
     "id_federation": "Record @id values are adopter-local, opaque, and permanent. An @id identifies the adopter's record about a legal entity, not the entity's canonical external identifier. Obligation-First does not prescribe slug grammar; each adopter declares its own. A namespace reorganization MUST keep the old @id resolving via HTTP 301 (W3C 'Cool URIs Don't Change'); a rename is therefore not a breaking change. Added in v0.3.",
     "identifier_crosswalks": "Standard identifiers ride as typed crosswalks on the record, never as the @id. Cross-adopter joins key on crosswalks, not slugs. Matrix (RFC 2119, conditional on coverage): ELI (eli_uri, MUST for instruments where the jurisdiction issues ELIs), ECLI / neutral_citation (MUST for citable court decisions), Akoma Ntoso (akn_uri, SHOULD/MAY where an AKN representation exists), urn:lex (MAY, fallback where no ELI), Wikidata QID (sameAs, SHOULD for authorities with an entry), EuroVoc concept (sameAs/exactMatch, SHOULD where the subject has a concept). Added in v0.3.",
-    "naming_profiles": "Each adopter publishes a naming profile at a .well-known location using VoID uriSpace and uriRegexPattern plus an RFC 6570 URI Template and a declared list of supplied crosswalks. The profile is adopter-owned and adopter-published; Obligation-First consumes and validates against it, and never prescribes it. Required to be 'bound' (Level 2). Added in v0.3.",
+    "naming_profiles": "Each adopter publishes a naming profile, a JSON-LD of:NamingProfile document served at /.well-known/obligation-first-naming-profile.jsonld (application/ld+json) and validated by https://obligationfirst.org/v1/schema/naming-profile.schema.json. It declares, per entity type, VoID uriSpace and uriRegexPattern plus an RFC 6570 uriTemplate and a list of supplied crosswalks. A flat text/plain provenance sidecar at /.well-known/obligation-first-naming-profile-manifest.txt carries profile-sha256 and profile-bytes. The profile is adopter-owned and descriptive of what the adopter actually mints; Obligation-First consumes and validates against it, and never prescribes the slug grammar. Required to be 'bound' (Level 2). Concept added in v0.3; format defined in v0.4.",
     "jurisdiction": "Jurisdiction is a typed ISO 3166 field (gist:Jurisdiction with an ISO 3166-1 or 3166-2 ref, e.g. us-co, us-ut, ca-bc, eu), never a slug component. MUST at Level 2. Added in v0.3.",
     "reparation_gist_binding": "gist:Requirement (secondary duty) + gist:Intention (declared intent on creating Term) + gist:Event (actuated reparation, via proceeding strand) — v0.2 binding-only refinement per Semantic Arts feedback; of:Reparation class preserved",
     "allegation_gist_binding": "gist:Content (assertion text) + gist:Intention (only when the claim is itself intent-bearing — libel, fraud, defamation). gist defines no gist:Statement class. Refined in v0.2 per Semantic Arts feedback.",

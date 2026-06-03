@@ -1,5 +1,5 @@
 {
-  "_comment": "Obligation-First v1 JSON-LD context. v0.3.1. Spec text in PROTOCOL.md.",
+  "_comment": "Obligation-First v1 JSON-LD context. v0.4.0. Spec text in PROTOCOL.md.",
   "@context": {
     "@version": 1.1,
     "@vocab": "https://w3id.org/of/v1/",
@@ -10,6 +10,7 @@
     "eli": "http://data.europa.eu/eli/ontology#",
     "owl": "http://www.w3.org/2002/07/owl#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
+    "void": "http://rdfs.org/ns/void#",
 
     "Authority":     { "@id": "of:Authority" },
     "Jurisdiction":  { "@id": "gist:Jurisdiction" },
@@ -25,6 +26,7 @@
     "Proceeding":    { "@id": "of:Proceeding" },
     "Allegation":    { "@id": "of:Allegation" },
     "Determination": { "@id": "of:Determination" },
+    "NamingProfile": { "@id": "of:NamingProfile" },
 
     "issuedBy":          { "@id": "of:issuedBy",          "@type": "@id" },
     "organization":      { "@id": "of:organization" },
@@ -82,6 +84,13 @@
     "exactMatch":        { "@id": "skos:exactMatch",      "@type": "@id", "@container": "@set" },
     "uri":               { "@id": "of:uri",               "@type": "@id" },
     "version":           { "@id": "of:version" },
-    "engine_version":    { "@id": "of:engineVersion" }
+    "engine_version":    { "@id": "of:engineVersion" },
+
+    "profileVersion":    { "@id": "of:profileVersion" },
+    "appliesTo":         { "@id": "of:appliesTo" },
+    "adopter":           { "@id": "of:adopter",           "@type": "@id" },
+    "entities":          { "@id": "of:entities" },
+    "uriTemplate":       { "@id": "of:uriTemplate" },
+    "crosswalks":        { "@id": "of:crosswalks",        "@container": "@set" }
   }
 }

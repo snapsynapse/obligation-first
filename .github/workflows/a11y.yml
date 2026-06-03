@@ -30,7 +30,7 @@ jobs:
 
       - name: Run axe scan
         run: |
-          cat > /tmp/scan.mjs <<'EOF'
+          cat > scan.mjs <<'EOF'
           import puppeteer from "puppeteer";
           import { AxePuppeteer } from "@axe-core/puppeteer";
 
@@ -55,4 +55,4 @@ jobs:
             process.exit(1);
           }
           EOF
-          node /tmp/scan.mjs
+          node scan.mjs

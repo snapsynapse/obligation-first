@@ -1,6 +1,6 @@
 # External review questions
 
-Status: v0.3.1
+Status: v0.4.0
 Scope: public review packet for ontology and rules-as-code reviewers
 
 This document collects the questions that should be answered before the v0.1 freeze. It is intentionally public-safe: project strategy, private outreach notes, and recipient-specific language do not live here.

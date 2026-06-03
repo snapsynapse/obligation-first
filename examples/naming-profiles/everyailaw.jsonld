@@ -1,0 +1,33 @@
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:NamingProfile",
+  "profileVersion": "1.0.0",
+  "appliesTo": "obligation-first 0.4.x",
+  "adopter": "https://everyailaw.com/",
+  "entities": {
+    "Authority": {
+      "void:uriSpace": "https://everyailaw.com/authority/",
+      "void:uriRegexPattern": "^https://everyailaw\\.com/authority/[a-z0-9-]+\\.json$",
+      "uriTemplate": "https://everyailaw.com/authority/{slug}.json",
+      "crosswalks": ["sameAs"]
+    },
+    "Instrument": {
+      "void:uriSpace": "https://everyailaw.com/instrument/",
+      "void:uriRegexPattern": "^https://everyailaw\\.com/instrument/[a-z0-9-]+\\.json$",
+      "uriTemplate": "https://everyailaw.com/instrument/{slug}.json",
+      "crosswalks": ["eli_uri", "citation"]
+    },
+    "Term": {
+      "void:uriSpace": "https://everyailaw.com/term/",
+      "void:uriRegexPattern": "^https://everyailaw\\.com/term/[a-z0-9-]+\\.json$",
+      "uriTemplate": "https://everyailaw.com/term/{slug}.json",
+      "crosswalks": ["section"]
+    },
+    "Obligation": {
+      "void:uriSpace": "https://everyailaw.com/obligation/",
+      "void:uriRegexPattern": "^https://everyailaw\\.com/obligation/[a-z0-9-]+\\.json$",
+      "uriTemplate": "https://everyailaw.com/obligation/{slug}.json",
+      "crosswalks": ["exactMatch"]
+    }
+  }
+}

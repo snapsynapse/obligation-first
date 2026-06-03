@@ -1,7 +1,7 @@
 ---
 "@type": "https://w3id.org/semanticarts/ns/ontology/gist/Specification"
 title: "Obligation-First Protocol"
-version: "0.3.1"
+version: "0.4.0"
 license: "CC-BY-4.0"
 created: 2026-05-04
 modified: 2026-05-26
@@ -9,7 +9,7 @@ modified: 2026-05-26
 
 # Obligation-First Protocol
 
-> **Status: v0.3.1.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the naming-profile format plus crosswalk schema additions.
+> **Status: v0.4.0.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). The naming-profile format is defined as of v0.4.0 (`schema/naming-profile.schema.json`, served at `/.well-known/obligation-first-naming-profile.jsonld`). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the crosswalk schema additions.
 
 ## What this protocol specifies
 
@@ -201,13 +201,76 @@ Obligation-First does not standardize adopter slug grammar. Instead, each adopte
 
 ### Naming profile
 
-A bound adopter (Level 2 and above) publishes a naming profile at a `.well-known` location, describing the IRI scheme for each entity type using existing vocabulary:
+A bound adopter (Level 2 and above) MUST publish a naming profile describing the IRI scheme it follows for each entity type, using existing vocabulary:
 
 - VoID `void:uriSpace` and `void:uriRegexPattern` for the namespace and pattern its `@id` values follow.
-- An RFC 6570 URI Template for the generative form (e.g. `https://example.org/{type}/{slug}`).
-- A declared list of which crosswalks the adopter supplies per entity type.
+- An RFC 6570 URI Template (`uriTemplate`) for the generative form (e.g. `https://example.org/instruments/{slug}`).
+- A declared list (`crosswalks`) of which crosswalks the adopter supplies per entity type.
 
 The profile is adopter-owned and adopter-published. Obligation-First consumes and validates against it; it does not prescribe the slug grammar. This is by design: a spec-held prescription of adopter naming is exactly what drifted from reality in the binding handoffs. ELI is the precedent — each EU member state publishes its own ELI URI template and a registry collects them.
+
+#### Canonical location and media type
+
+The profile MUST be served at the well-known path
+
+```text
+/.well-known/obligation-first-naming-profile.jsonld
+```
+
+with `Content-Type: application/ld+json` over HTTPS. The profile is a JSON-LD document of `@type` `of:NamingProfile`, referencing `@context: https://obligationfirst.org/v1/`, and MUST validate against [`schema/naming-profile.schema.json`](schema/naming-profile.schema.json) (published at `https://obligationfirst.org/v1/schema/naming-profile.schema.json`).
+
+The profile is descriptive, not aspirational: `void:uriRegexPattern` MUST match the `@id` values the adopter actually mints today, including any served-file suffix (e.g. `.json`) the adopter currently uses. Where the adopter's scheme diverges from the spec's suffixless-canonical recommendation (see decision #19), the profile records reality; the recommendation is a target, not a gate.
+
+A worked profile and its sidecar are in [`examples/naming-profiles/`](examples/naming-profiles/).
+
+#### Profile shape
+
+```json
+{
+  "@context": "https://obligationfirst.org/v1/",
+  "@type": "of:NamingProfile",
+  "profileVersion": "1.0.0",
+  "appliesTo": "obligation-first 0.4.x",
+  "adopter": "https://example.org/",
+  "entities": {
+    "Instrument": {
+      "void:uriSpace": "https://example.org/instruments/",
+      "void:uriRegexPattern": "^https://example\\.org/instruments/[a-z0-9-]+$",
+      "uriTemplate": "https://example.org/instruments/{slug}",
+      "crosswalks": ["eli_uri", "citation"]
+    }
+  }
+}
+```
+
+`entities` carries one entry per Obligation-First entity type the adopter mints (`Authority`, `Instrument`, `Term`, `Obligation`, `Proceeding`, `Allegation`, `Determination`); an adopter declares only the types it publishes. An optional profile-level `jurisdiction` (typed `gist:Jurisdiction`, ISO 3166) sets a default; per-record jurisdiction always wins.
+
+#### Provenance sidecar
+
+Alongside the profile, an adopter SHOULD publish a flat `key: value` manifest at
+
+```text
+/.well-known/obligation-first-naming-profile-manifest.txt
+```
+
+served as `text/plain`, making the profile tamper-evident. This mirrors the GuideCheck assistant-guide manifest pattern: the body is structured data, the sidecar is human-reviewable provenance. Required fields:
+
+```text
+profile-path: /.well-known/obligation-first-naming-profile.jsonld
+profile-version: 1.0.0
+profile-sha256: <64-hex SHA-256 of the profile bytes>
+profile-bytes: <byte length of the profile>
+adopter: https://example.org/
+spec: obligation-first
+spec-version-range: >=0.4.0, <0.5.0
+canonical-url: https://example.org/.well-known/obligation-first-naming-profile.jsonld
+```
+
+`repository-url` and `released-at` are RECOMMENDED. `profile-sha256` and `profile-bytes` MUST match the served profile.
+
+#### Discovery
+
+A consumer resolving cross-adopter links SHOULD locate an adopter's profile via the well-known path above. Adopters SHOULD also reference it from their `agents.json` (a `naming_profile` endpoint) and `llms.txt`. Discovery MUST NOT require script execution.
 
 ### Jurisdiction
 
@@ -381,3 +444,5 @@ Round-tripping the three examples surfaced these findings:
 - 0.2.1-draft (2026-05-26): Patch draft release package added under `docs/releases/v0.2.1-draft/` with machine-readable manifest and SHA-256 checksum index for public artifacts.
 - 0.2.2-draft (2026-05-30): Security hardening draft. The adopter graph validator now rejects administrative Determinations with `disposition: issued` unless they cite a `target_instrument` or anchor; example and adopter graph validation share one implementation; CI runs the full contract suite; release hashes, GuideCheck guide metadata, and content provenance checks are enforced locally.
 - 0.3.0-draft (2026-06-02): `@id` federation and identifier crosswalks. Record `@id` values are adopter-local and permanent; external standard identifiers ride as typed crosswalks; each adopter publishes a `.well-known` naming profile; jurisdiction is a typed ISO 3166 field; Level 2 and Level 3 conformance redefined accordingly. Reverses the Term-`@id`-is-standard-IRI guidance. Additive and non-breaking. Decision record: `reference/iri-naming-and-crosswalks.md`.
+- 0.3.1 (2026-06-02): All user-, agent-, and documentation-facing surfaces realigned to the v0.3 federation model; the four worked examples moved to a neutral example namespace with crosswalks; the `-draft` suffix dropped from this release forward. Additive and non-breaking.
+- 0.4.0 (2026-06-03): Naming-profile format defined. The `.well-known` naming profile is now a concrete, validatable standard: a JSON-LD document of `@type` `of:NamingProfile` served at `/.well-known/obligation-first-naming-profile.jsonld` (`application/ld+json`), with a flat `text/plain` provenance sidecar at `/.well-known/obligation-first-naming-profile-manifest.txt`. Adds `schema/naming-profile.schema.json`, the `void` prefix and profile terms to `context.jsonld`, a worked profile under `examples/naming-profiles/`, and the `validate:naming-profile` CI gate. Closes a v0.3 freeze gate. Additive and non-breaking to adopter records.

@@ -31,6 +31,18 @@ The validator checks two layers:
 
 External `anchors` are allowed to point outside the local record set. This is intentional: under the v0.3 federation model, cross-adopter links are typed crosswalks (`anchors` / `sameAs`) that target the other adopter's real published IRI — the actual `@id` resolved from that adopter's live export or its `.well-known` naming profile. A PubLedge anchor points at EveryAILaw's real published Term/Obligation `@id`, and an AI Incident Law Determination does the same. The join keys on those real IRIs and on shared standard identifiers, never on a slug guessed from a naming convention.
 
+## Naming profile
+
+To reach Level 2, an adopter publishes a naming profile declaring the IRI scheme it actually mints. Format and serving requirements are normative in [PROTOCOL.md](../PROTOCOL.md) ("Naming profiles and identifier crosswalks"); this is the practical path.
+
+1. Copy [`examples/naming-profiles/everyailaw.jsonld`](../examples/naming-profiles/everyailaw.jsonld) as a starting point. Keep `@type: of:NamingProfile` and `@context: https://obligationfirst.org/v1/`.
+2. For each entity type you publish, set `void:uriSpace`, a `void:uriRegexPattern` that matches your live `@id` values exactly (including any `.json` suffix you actually serve), the `uriTemplate`, and the `crosswalks` you supply. Declare only the entity types you mint — omit the rest.
+3. Validate it: `node ../obligation-first/scripts/validate-naming-profile.mjs` after dropping your profile into `examples/naming-profiles/`, or compile it against [`schema/naming-profile.schema.json`](../schema/naming-profile.schema.json) in your own pipeline.
+4. Generate the provenance sidecar (`*-manifest.txt`): `profile-sha256` is the SHA-256 of the profile bytes, `profile-bytes` its byte length. The validator fails if either drifts.
+5. Serve the profile at `/.well-known/obligation-first-naming-profile.jsonld` (`application/ld+json`) and the sidecar at `/.well-known/obligation-first-naming-profile-manifest.txt` (`text/plain`), and reference the profile from your `agents.json` and `llms.txt`.
+
+The profile is descriptive, not aspirational. Record what you mint today; the spec's suffixless-canonical recommendation is a target you can migrate toward later without re-issuing the profile as a breaking change.
+
 ## Anchor graph report
 
 Use `scripts/report-anchor-graph.mjs` when the question is no longer "does one adopter validate?" but "are multiple adopters forming the intended graph?"
