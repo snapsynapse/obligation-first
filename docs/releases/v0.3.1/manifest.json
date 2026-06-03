@@ -30,6 +30,6 @@
     { "path": "assistant-guide-manifest.txt", "url": "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt", "sha256": "610501b850b014bb78676ac434de25709998a7032d79773ea8f49d1f67ee78a5" },
     { "path": "CHANGELOG.md", "url": "https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md", "sha256": "76131e0005221b78e3702e1ac980935aa0a3576fa2c55d4e6863d5f08a2072ba" },
     { "path": "package.json", "url": "https://github.com/snapsynapse/obligation-first/blob/main/package.json", "sha256": "ca8372f0ba9f6c50a0892c80f2e10bd2aaa8bd4ce533c117319f0568c8c74d94" },
-    { "path": "package-lock.json", "url": "https://github.com/snapsynapse/obligation-first/blob/main/package-lock.json", "sha256": "311a6734a7cdc2f740ee765b0968aa2a10f56ce302335c7c34e5be4d3e177653" }
+    { "path": "package-lock.json", "url": "https://github.com/snapsynapse/obligation-first/blob/main/package-lock.json", "sha256": "1c477309815125cd4ec4a8a9c0e79f2eb998dec0317bfb90c765b662e357e49d" }
   ]
 }

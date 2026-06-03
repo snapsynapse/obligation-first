@@ -44,8 +44,12 @@ export async function versionForms() {
 function locations(f) {
   // `-draft` is optional so the same patterns work before and after the
   // de-draft (v0.3.1 onward versions carry no suffix).
+  // NOTE: package-lock.json is intentionally NOT synced here. A /g version
+  // pattern would also rewrite every dependency's "version" field (e.g.
+  // ajv 8.20.0 -> 0.3.1), which `npm ci` then rejects. The lockfile's project
+  // version is managed by npm: bump package.json, then run `npm install` (or
+  // edit the two project-version fields) so the lockfile stays valid.
   return [
-    ["package-lock.json", /"version": "\d+\.\d+\.\d+(?:-draft)?"/g, `"version": "${f.full}"`],
     ["MANIFEST.yaml", /bundle_version: \d+\.\d+\.\d+(?:-draft)?/, `bundle_version: ${f.full}`],
     ["SECURITY.md", /`v\d+\.\d+\.\d+(?:-draft)?`/, `\`${f.vfull}\``],
     ["PROTOCOL.md", /version: "\d+\.\d+\.\d+(?:-draft)?"/, `version: "${f.full}"`],
