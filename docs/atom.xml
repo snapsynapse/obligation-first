@@ -5,13 +5,25 @@
   <link href="https://obligationfirst.org/feed.xml" rel="self"/>
   <link href="https://obligationfirst.org/" rel="alternate"/>
   <id>https://obligationfirst.org/</id>
-  <updated>2026-05-30T12:00:00Z</updated>
+  <updated>2026-06-02T12:00:00Z</updated>
   <author>
     <name>Sam Rogers</name>
     <uri>https://www.linkedin.com/in/samrogers</uri>
   </author>
   <rights>CC BY 4.0 (spec) / Apache 2.0 (code)</rights>
   <generator uri="https://obligationfirst.org/">Obligation-First</generator>
+
+  <entry>
+    <title>v0.3.1 released</title>
+    <link href="https://obligationfirst.org/releases/v0.3.1/" rel="alternate"/>
+    <id>https://obligationfirst.org/releases/v0.3.1</id>
+    <updated>2026-06-02T12:00:00Z</updated>
+    <published>2026-06-02T12:00:00Z</published>
+    <summary>v0.3.1 makes every surface reflect the @id-federation model: record @id values are adopter-local, opaque, and permanent; standard identifiers (ELI, ECLI, Akoma Ntoso, Wikidata) ride as typed crosswalks; jurisdiction is a typed ISO 3166 field. All four worked examples were realigned to a neutral example namespace with crosswalks, conformance Levels 2 and 3 were redefined, and the binding handoffs were reconciled to live adopter data. The -draft version suffix is dropped from this release forward. No schema migration is required for adopters.</summary>
+    <category term="release"/>
+    <category term="federation"/>
+    <category term="v0.3"/>
+  </entry>
 
   <entry>
     <title>v0.2.2-draft security hardening release published</title>

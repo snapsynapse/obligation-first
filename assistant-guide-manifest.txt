@@ -1,5 +1,5 @@
 guide-path: /.well-known/assistant-guide.txt
 guide-version: 0.1.2
-guide-sha256: 3debb10a6f431455c5763f4aca3458facce4767c5ddbdd3ee909e18c20f8501a
-guide-bytes: 7140
-immutable-release-url: https://api.github.com/repos/snapsynapse/obligation-first/git/blobs/bef211101856cfc90524778d9a0a973c7d139734
+guide-sha256: a3b302093739d3c324c0f478cdceaffd05d43cf7f3b8a3e56b1484805d2ea1e0
+guide-bytes: 7134
+immutable-release-url: https://api.github.com/repos/snapsynapse/obligation-first/git/blobs/dcb7eee47630f9bfd1b96c74239ff9dd3b6e7411
