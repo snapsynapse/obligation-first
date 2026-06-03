@@ -28,8 +28,8 @@
     { "path": "docs/llms-full.txt", "url": "https://obligationfirst.org/llms-full.txt", "sha256": "056dbcf904748a214c6b8a9ced434f90df93aee57916965534100c87c69713ff" },
     { "path": "assistant-guide.txt", "url": "https://obligationfirst.org/.well-known/assistant-guide.txt", "sha256": "a3b302093739d3c324c0f478cdceaffd05d43cf7f3b8a3e56b1484805d2ea1e0" },
     { "path": "assistant-guide-manifest.txt", "url": "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt", "sha256": "610501b850b014bb78676ac434de25709998a7032d79773ea8f49d1f67ee78a5" },
-    { "path": "CHANGELOG.md", "url": "https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md", "sha256": "76131e0005221b78e3702e1ac980935aa0a3576fa2c55d4e6863d5f08a2072ba" },
-    { "path": "package.json", "url": "https://github.com/snapsynapse/obligation-first/blob/main/package.json", "sha256": "ca8372f0ba9f6c50a0892c80f2e10bd2aaa8bd4ce533c117319f0568c8c74d94" },
+    { "path": "CHANGELOG.md", "url": "https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md", "sha256": "9af1a08bbe7d2910ac54f096b1c50cbd1accb88c8c12b3ff8c0df03fb5e7abba" },
+    { "path": "package.json", "url": "https://github.com/snapsynapse/obligation-first/blob/main/package.json", "sha256": "881ce266a905c34d6aa9ce1faf61df343441ce4a1a4e4eb809887617cb7b7708" },
     { "path": "package-lock.json", "url": "https://github.com/snapsynapse/obligation-first/blob/main/package-lock.json", "sha256": "1c477309815125cd4ec4a8a9c0e79f2eb998dec0317bfb90c765b662e357e49d" }
   ]
 }

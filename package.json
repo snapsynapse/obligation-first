@@ -24,8 +24,9 @@
     "validate:published": "node scripts/validate-published-artifacts.mjs",
     "validate:contracts": "node scripts/validate-repo-contracts.mjs",
     "validate:hashes": "node scripts/validate-hashes.mjs",
+    "validate:lockfile": "npm ci --dry-run",
     "hashes:update": "node scripts/validate-hashes.mjs --update",
-    "test": "npm run validate && npm run validate:graphs && npm run validate:adopter-kit && npm run validate:adopter-kit-writers && npm run test:hardening && npm run report:anchors && npm run validate:published && npm run validate:contracts && npm run validate:hashes"
+    "test": "npm run validate:lockfile && npm run validate && npm run validate:graphs && npm run validate:adopter-kit && npm run validate:adopter-kit-writers && npm run test:hardening && npm run report:anchors && npm run validate:published && npm run validate:contracts && npm run validate:hashes"
   },
   "dependencies": {
     "ajv": "^8.17.1",
