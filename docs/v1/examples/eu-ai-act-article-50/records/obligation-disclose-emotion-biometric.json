@@ -1,10 +1,14 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Requirement",
-  "@id": "https://everyailaw.com/obligation/eu-ai-act-art-50-3-disclose-emotion-biometric",
+  "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/obligation/art-50-3-disclose-emotion-biometric",
   "title": "Inform natural persons of emotion recognition or biometric categorisation AI system operation",
   "duty_holder_type": "deployer",
   "trigger": "AI system is used for emotion recognition or biometric categorisation of natural persons",
   "content": "Inform natural persons exposed to the system of its operation, and process personal data in accordance with applicable Union data protection law.",
-  "created_by": "https://everyailaw.com/term/eu-ai-act-art-50-3"
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "eu"
+  },
+  "created_by": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-3"
 }

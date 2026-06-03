@@ -36,7 +36,7 @@
   <meta property="og:url" content="https://obligationfirst.org/">
   <meta property="og:locale" content="en_US">
   <meta property="article:published_time" content="2026-05-04T00:00:00Z">
-  <meta property="article:modified_time" content="2026-05-26T00:00:00Z">
+  <meta property="article:modified_time" content="2026-06-02T00:00:00Z">
   <meta property="article:author" content="Sam Rogers">
   <meta property="article:publisher" content="https://paice.work/">
   <meta property="article:section" content="Open Standards">
@@ -70,7 +70,7 @@
     "url": "https://obligationfirst.org/",
     "mainEntityOfPage": { "@type": "WebPage", "@id": "https://obligationfirst.org/" },
     "datePublished": "2026-05-04",
-    "dateModified": "2026-05-26",
+    "dateModified": "2026-06-02",
     "author": {
       "@type": "Person",
       "name": "Sam Rogers",
@@ -104,7 +104,7 @@
   {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": "Bind a dataset to Obligation-First (current draft: v0.2)",
+    "name": "Bind a dataset to Obligation-First (current draft: v0.3)",
     "description": "Three steps to make any dataset of normative content (laws, cases, joint interpretations) interoperable with Obligation-First adopters.",
     "totalTime": "PT30M",
     "step": [
@@ -118,8 +118,8 @@
       {
         "@type": "HowToStep",
         "position": 2,
-        "name": "Validate against the JSON Schemas",
-        "text": "Run every record through the JSON Schema for its @type. Eight schemas cover the full vocabulary: Authority, Instrument, Term, Obligation (deontic quartet: Requirement / Restriction / Permission / Reparation), Proceeding, Allegation, Determination, ExecutableEncoding.",
+        "name": "Validate against the JSON Schemas, publish a naming profile, and carry typed jurisdiction",
+        "text": "Run every record through the JSON Schema for its @type. Eight schemas cover the full vocabulary: Authority, Instrument, Term, Obligation (deontic quartet: Requirement / Restriction / Permission / Reparation), Proceeding, Allegation, Determination, ExecutableEncoding. Level 2 binding additionally requires publishing a .well-known naming profile (VoID uriSpace/uriRegexPattern + RFC 6570 template) and carrying jurisdiction as a typed ISO 3166 field.",
         "url": "https://obligationfirst.org/v1/schema/instrument.schema.json"
       },
       {
@@ -351,9 +351,9 @@
       <span class="sep">&middot;</span>
       Published <time datetime="2026-05-04">May 4, 2026</time>
       <span class="sep">&middot;</span>
-      Updated <time datetime="2026-05-26">May 26, 2026</time>
+      Updated <time datetime="2026-06-02">June 2, 2026</time>
       <span class="sep">&middot;</span>
-      <span class="version">v0.3.0-draft</span>
+      <span class="version">v0.3.1</span>
       <span class="sep">&middot;</span>
       <a href="https://creativecommons.org/licenses/by/4.0/" rel="license" target="_blank">CC&nbsp;BY&nbsp;4.0</a>
     </p>
@@ -367,7 +367,7 @@
     </div>
 
     <div class="cta-row">
-      <a href="https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md" class="btn btn-primary" target="_blank" rel="noopener">Read the current draft (v0.2)</a>
+      <a href="https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md" class="btn btn-primary" target="_blank" rel="noopener">Read the current draft (v0.3)</a>
       <a href="#bind" class="btn btn-secondary">Bind your dataset in 3 steps</a>
     </div>
   </div>
@@ -375,7 +375,7 @@
 
 <section class="alt" id="schema">
   <div class="container">
-    <h2>What's in the current draft (v0.2)</h2>
+    <h2>What's in the current draft (v0.3)</h2>
     <p>A small, opinionated upper schema. The spine is lifted from PubLedge; the proceeding strand is the new contribution. Together they cover three domains in one schema.</p>
 
     <div class="pillars">
@@ -425,8 +425,8 @@
 
 <section id="bind">
   <div class="container">
-    <h2>Bind your dataset (current draft: v0.2)</h2>
-    <p>Adopters bind via JSON-LD <code>@context</code>. The IRI prefix is permanent: it will redirect through <code>w3id.org/of/v1/</code> once the w3id PR is filed. JSON Schemas validate every entity. v0.1 bindings remain valid through v0.2 with no migration.</p>
+    <h2>Bind your dataset (current draft: v0.3)</h2>
+    <p>Adopters bind via JSON-LD <code>@context</code>. The IRI prefix is permanent: it will redirect through <code>w3id.org/of/v1/</code> once the w3id PR is filed. JSON Schemas validate every entity. v0.1 bindings remain valid through v0.3 with no migration.</p>
 
     <div class="code-grid">
       <div class="code-block">
@@ -434,14 +434,18 @@
 <pre>{
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Instrument",
-  "@id": "https://everyailaw.com/instrument/co-sb24-205",
+  "@id": "https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/sb24-205",
   "title": "Colorado AI Act",
-  "issuedBy": "https://everyailaw.com/authority/us-co-general-assembly",
+  "issuedBy": "https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/general-assembly",
+  "jurisdiction": { "@type": "gist:Jurisdiction", "ref": "us-co" },
   "hasTerm": [
-    "https://everyailaw.com/term/co-sb24-205-1703-duty-of-care"
+    "https://obligationfirst.org/v1/examples/colorado-sb24-205/term/sb24-205-duty-of-care"
+  ],
+  "sameAs": [
+    "https://everyailaw.com/instrument/colorado-sb24-205.json"
   ]
 }</pre>
-        <p class="annotation">Reference the canonical context. Add repo-local extensions in a second context object.</p>
+        <p class="annotation">The <code>@id</code> is adopter-local, opaque, and permanent &mdash; never a standard source IRI. Jurisdiction is a typed ISO 3166 field; the real EveryAILaw record rides as a <code>sameAs</code> crosswalk.</p>
       </div>
 
       <div class="code-block">
@@ -454,14 +458,14 @@ curl https://obligationfirst.org/v1/schema/obligation.schema.json
 curl https://obligationfirst.org/v1/schema/proceeding.schema.json
 
 # Validate with any JSON Schema 2020-12 validator</pre>
-        <p class="annotation">Schema-conformant adopters (Level 2) validate every record. Three current adopters target Level 2; v0.1 records continue to validate against v0.2.</p>
+        <p class="annotation">Schema-conformant adopters (Level 2) validate every record. Three current adopters target Level 2; v0.1 records continue to validate against v0.3.</p>
       </div>
     </div>
 
     <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Three steps to bind a dataset</h3>
     <ol style="padding-left: 1.5rem; line-height: 1.9; color: var(--text-muted);">
       <li><strong>Reference the canonical <code>@context</code></strong> — set <code>@context: "https://obligationfirst.org/v1/"</code> on every record. Repo-local extensions go in a second context object.</li>
-      <li><strong>Validate against the JSON Schemas</strong> — run every record through <a href="/v1/schema/">the schema for its <code>@type</code></a>. Schema-conformant adopters (Level 2) pass validation for every published record.</li>
+      <li><strong>Validate against the JSON Schemas</strong> — run every record through <a href="/v1/schema/">the schema for its <code>@type</code></a>. Schema-conformant adopters (Level 2) pass validation for every published record, publish a <code>.well-known</code> naming profile (VoID <code>uriSpace</code>/<code>uriRegexPattern</code> + RFC&nbsp;6570 template), and carry <code>jurisdiction</code> as a typed ISO&nbsp;3166 field.</li>
       <li><strong>Cite <a href="https://obligationfirst.org/">obligationfirst.org</a> as the canonical reference</strong> — adopter sites and documentation should link back. The IRI prefix is permanent.</li>
     </ol>
 
@@ -475,8 +479,8 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
       </thead>
       <tbody>
         <tr><td><strong>L1</strong></td><td>IRI-only</td><td><code>@id</code> and <code>@type</code> use canonical <code>of:</code> IRIs. <code>@context</code> references this domain.</td></tr>
-        <tr><td><strong>L2</strong></td><td>Schema-conformant <em>(recommended)</em></td><td>L1 plus every record validates against the appropriate <code>schema/*.schema.json</code>.</td></tr>
-        <tr><td><strong>L3</strong></td><td>Crosswalk-conformant</td><td>L2 plus identifier round-trip with at least one of Akoma Ntoso, ELI, or ECLI where the source jurisdiction publishes one.</td></tr>
+        <tr><td><strong>L2</strong></td><td>Schema-conformant <em>(recommended)</em></td><td>L1 plus every record validates against the appropriate <code>schema/*.schema.json</code>, a published <code>.well-known</code> naming profile (VoID <code>uriSpace</code>/<code>uriRegexPattern</code> + RFC&nbsp;6570 template), and <code>jurisdiction</code> as a typed ISO&nbsp;3166 field.</td></tr>
+        <tr><td><strong>L3</strong></td><td>Crosswalk-conformant</td><td>L2 plus every crosswalk the adopter's naming profile declares is present on every applicable record. Recommended baseline is the crosswalk matrix: Wikidata (SHOULD for authorities), ELI (MUST for instruments where issued), ECLI / neutral citation for cases, urn:lex (MAY), Akoma Ntoso, EuroVoc.</td></tr>
       </tbody>
     </table>
   </div>
@@ -485,7 +489,7 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
 <section class="alt" id="adopters">
   <div class="container">
     <h2>Adopters</h2>
-    <p>Three PAICE legal projects publish live Obligation-First bindings. v0.1 records remain valid through v0.2 with no migration. Obligation-First is the shared validation and identifier contract between AI laws, joint interpretations, and legal incident records.</p>
+    <p>Three PAICE legal projects publish live Obligation-First bindings. v0.1 records remain valid through v0.3 with no migration. Obligation-First is the shared validation and identifier contract between AI laws, joint interpretations, and legal incident records.</p>
 
     <div class="adopters">
       <div class="adopter">
@@ -532,7 +536,7 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
     </div>
 
     <aside class="canonical-note" role="note">
-      <strong>Canonical reference.</strong> This page describes the live v0.3.0-draft of Obligation-First.
+      <strong>Canonical reference.</strong> This page describes the live v0.3.1 of Obligation-First.
       Authoritative source is <a href="https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md" target="_blank" rel="noopener">PROTOCOL.md</a> in the GitHub repo. The schema is drafting in public; breaking changes are allowed pre-freeze and recorded in
       <a href="https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG.md</a>.
       Last revision: <time datetime="2026-06-02">2026-06-02</time>.
@@ -547,7 +551,7 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
   <div class="container">
     <div class="footer-grid">
       <div class="footer-meta">
-        <p>Obligation-First v0.3.0-draft &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license" target="_blank">CC BY 4.0</a> (spec) &middot; <a href="https://github.com/snapsynapse/obligation-first/blob/main/LICENSE-APACHE" target="_blank" rel="noopener">Apache 2.0</a> (code)</p>
+        <p>Obligation-First v0.3.1 &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license" target="_blank">CC BY 4.0</a> (spec) &middot; <a href="https://github.com/snapsynapse/obligation-first/blob/main/LICENSE-APACHE" target="_blank" rel="noopener">Apache 2.0</a> (code)</p>
         <p>A <a href="https://paice.foundation/" target="_blank" rel="noopener">PAICE.work PBC</a> open standard by <a href="https://www.linkedin.com/in/samrogers" target="_blank" rel="noopener author">Sam Rogers</a>.</p>
         <p style="margin-top: 0.5rem;">See also: <a href="https://aiposture.org/" target="_blank" rel="noopener">AI Posture</a> &middot; <a href="https://knowledge-as-code.com/" target="_blank" rel="noopener">Knowledge as Code</a> &middot; <a href="https://gracefulboundaries.dev/" target="_blank" rel="noopener">Graceful Boundaries</a></p>
       </div>

@@ -1,10 +1,10 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Requirement",
-  "@id": "https://everyailaw.com/obligation/co-sb24-205-reasonable-care",
+  "@id": "https://obligationfirst.org/v1/examples/colorado-sb24-205/obligation/reasonable-care",
   "title": "Reasonable care duty for high-risk AI developers",
   "duty_holder_type": "developer",
   "trigger": "deploys a high-risk artificial intelligence system",
   "content": "Use reasonable care to protect consumers from known or reasonably foreseeable risks of algorithmic discrimination.",
-  "created_by": "https://everyailaw.com/term/co-sb24-205-1703-duty-of-care"
+  "created_by": "https://obligationfirst.org/v1/examples/colorado-sb24-205/term/sb24-205-duty-of-care"
 }

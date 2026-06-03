@@ -1,17 +1,20 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Authority",
-  "@id": "https://aiincidentlaw.org/authority/us-co-federal-district-court",
+  "@id": "https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/federal-district-court",
   "organization": {
     "@type": "gist:Court",
-    "name": "United States District Court (illustrative — actual venue to be filled by AI Incident Law from the case record)"
+    "name": "United States District Court for the District of Colorado"
   },
   "authority_basis": {
     "kind": "judicial",
-    "instrument_ref": "https://aiincidentlaw.org/instrument/us-constitution-article-iii"
+    "instrument_ref": "https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/us-constitution-article-iii"
   },
   "jurisdiction": {
     "@type": "gist:Jurisdiction",
-    "ref": "us-co"
-  }
+    "ref": "us"
+  },
+  "sameAs": [
+    "https://aiincidentlaw.org/authority/u-s-district-court-district-of-colorado.json"
+  ]
 }

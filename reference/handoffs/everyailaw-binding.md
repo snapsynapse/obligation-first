@@ -1,5 +1,7 @@
 # Handoff: bind EveryAILaw to Obligation-First v0.1
 
+> Reconciled to live adopter data and the v0.3 federation model on 2026-06-02; earlier prescriptive slug schemes are withdrawn. Under v0.3 the record `@id` is adopter-local, opaque, and permanent; the adopter declares its own slug grammar in a `.well-known` naming profile and Obligation-First does not prescribe it; jurisdiction is a typed ISO 3166 field, never a slug component; and standard identifiers (ELI, ECLI, Akoma Ntoso, urn:lex, Wikidata) ride as typed crosswalk properties, not as the `@id`. The "mint these slugs" guidance below is replaced accordingly. See `reference/iri-naming-and-crosswalks.md` for the controlling decision.
+
 This document describes the work to make EveryAILaw a Level-2-conformant Obligation-First adopter. Goal: every record EveryAILaw publishes — laws, provisions, obligations, authorities — round-trips through the v0.1 schemas, dereferences at canonical EveryAILaw URLs, and contributes to the cross-portfolio link graph that makes the spec valuable.
 
 This is not a name-only adoption. Real binding produces:
@@ -48,16 +50,18 @@ For `data/obligations/`, pick the right deontic subclass per record: `of:Require
 
 ### 2. Mint canonical `@id` values
 
-Every record's `@id` is the URL where the record is served. Recommended scheme:
+Every record's `@id` is the URL where the record is served. Under the v0.3 federation model the `@id` is adopter-local, opaque, and permanent: it identifies EveryAILaw's record about a legal entity, not the entity's canonical external identifier. Obligation-First does not prescribe the slug grammar — EveryAILaw declares its own in a `.well-known` naming profile that the spec consumes and validates against. Jurisdiction is carried in a typed ISO 3166 field, never jammed into the slug, and standard identifiers (ELI, ECLI, Akoma Ntoso) ride as typed crosswalks, never as the `@id`.
+
+What EveryAILaw actually publishes today (the live grammar to follow, not invent against):
 
 ```
-https://everyailaw.com/authority/<slug>     (e.g., us-co-general-assembly)
-https://everyailaw.com/instrument/<slug>    (e.g., co-sb24-205)
-https://everyailaw.com/term/<slug>          (e.g., co-sb24-205-1703-duty-of-care)
-https://everyailaw.com/obligation/<slug>    (e.g., co-sb24-205-reasonable-care)
+https://everyailaw.com/authority/<slug>.json     (e.g., colorado-ag, european-commission)
+https://everyailaw.com/instrument/<slug>.json     (e.g., colorado-sb24-205, eu-ai-act)
+https://everyailaw.com/term/<slug>.json           (e.g., colorado-sb24-205-transparency)
+https://everyailaw.com/obligation/<slug>.json     (e.g., transparency, bias-prevention)
 ```
 
-Slugs match the existing filenames in `data/`. The slug becomes the URL path, kebab-cased.
+Note the live shape against the withdrawn prescription: full state names (`colorado-`, not `us-co-`) with jurisdiction also carried separately as a typed `us-co` field; full authority names (`colorado-ag`, `european-commission`, not `us-co-general-assembly` or `eu-commission`); a `.json` served suffix declared in EveryAILaw's own profile; terms named by topic (`-transparency`) rather than by section number; and obligations as abstract concepts shared across many laws (`transparency`, `bias-prevention`) rather than one obligation per provision. These are legitimate adopter editorial choices, not drift. Treat the live export under `docs/api/v1/of/` as authoritative for the grammar.
 
 ### 3. Translate existing fields to v0.1 relations
 
@@ -102,11 +106,11 @@ The script (modeled on [obligation-first/scripts/validate-examples.mjs](https://
 
 ### 6. Cross-link to AI Incident Law and PubLedge
 
-Once AI Incident Law has bound, its `Determination.anchors` will reference EveryAILaw `@id` values for the Obligations the ruling interprets. EveryAILaw's records don't need outbound references to make this work — the join is asserted from the AI-Incident-Law side.
+Once AI Incident Law has bound, its `Determination.anchors` will reference EveryAILaw's real published `@id` values for the Obligations the ruling interprets. EveryAILaw's records don't need outbound references to make this work — the join is asserted from the AI-Incident-Law side. Cross-adopter links target EveryAILaw's actual published IRIs (resolved from the live export or EveryAILaw's `.well-known` profile), not slugs guessed from a naming convention.
 
-Same for PubLedge: a JIA's Obligations carry `anchors` pointing at EveryAILaw Term/Obligation IRIs.
+Same for PubLedge: a JIA's Obligations carry `anchors` pointing at EveryAILaw's real Term/Obligation IRIs.
 
-EveryAILaw's responsibility is to keep `@id` values stable so the inbound links don't break. Treat `@id` as a permanent identifier — never change a slug after publication.
+EveryAILaw's responsibility is to keep `@id` values stable so the inbound links don't break. Treat `@id` as a permanent identifier — never change a slug after publication. If a namespace reorganization is unavoidable, the old `@id` MUST keep resolving via HTTP 301.
 
 ## Verification checklist
 

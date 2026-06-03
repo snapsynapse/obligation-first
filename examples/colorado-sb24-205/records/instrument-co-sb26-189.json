@@ -1,13 +1,20 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Instrument",
-  "@id": "https://everyailaw.com/instrument/co-sb26-189",
+  "@id": "https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/sb26-189",
   "title": "SB26-189 Automated Decision-Making Technology",
-  "issuedBy": "https://everyailaw.com/authority/us-co-ai-policy-work-group",
-  "kind": "proposed-statute",
-  "status": "proposed",
-  "wouldSupersede": [
-    "https://everyailaw.com/instrument/co-sb24-205"
+  "issuedBy": "https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/ai-policy-work-group",
+  "kind": "statute",
+  "status": "enacted",
+  "supersedes": [
+    "https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/sb24-205"
   ],
-  "source": "https://leg.colorado.gov/bills/sb26-189"
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "us-co"
+  },
+  "source": "https://leg.colorado.gov/bills/sb26-189",
+  "sameAs": [
+    "https://everyailaw.com/instrument/colorado-sb26-189.json"
+  ]
 }

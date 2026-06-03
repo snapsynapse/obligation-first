@@ -1,5 +1,5 @@
 {
-  "_comment": "Obligation-First v1 JSON-LD context. v0.3.0-draft. Spec text in PROTOCOL.md.",
+  "_comment": "Obligation-First v1 JSON-LD context. v0.3.1. Spec text in PROTOCOL.md.",
   "@context": {
     "@version": 1.1,
     "@vocab": "https://w3id.org/of/v1/",
@@ -8,6 +8,8 @@
     "lrml": "http://docs.oasis-open.org/legalruleml/ns/v1.0/",
     "akn": "http://docs.oasis-open.org/legaldocml/ns/akn/3.0/",
     "eli": "http://data.europa.eu/eli/ontology#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
 
     "Authority":     { "@id": "of:Authority" },
     "Jurisdiction":  { "@id": "gist:Jurisdiction" },
@@ -74,6 +76,10 @@
     "akn_uri":           { "@id": "of:aknUri",            "@type": "@id" },
     "eli_uri":           { "@id": "of:eliUri",            "@type": "@id" },
     "ecli_uri":          { "@id": "of:ecliUri",           "@type": "@id" },
+    "neutral_citation":  { "@id": "of:neutralCitation" },
+    "urn_lex":           { "@id": "of:urnLex",            "@type": "@id" },
+    "sameAs":            { "@id": "owl:sameAs",           "@type": "@id", "@container": "@set" },
+    "exactMatch":        { "@id": "skos:exactMatch",      "@type": "@id", "@container": "@set" },
     "uri":               { "@id": "of:uri",               "@type": "@id" },
     "version":           { "@id": "of:version" },
     "engine_version":    { "@id": "of:engineVersion" }

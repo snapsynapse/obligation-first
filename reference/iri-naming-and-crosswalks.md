@@ -78,15 +78,33 @@ Accepted consequence to be explicit about: this convention fully solves cross-ad
 
 Settled by this decision: `@id` federation, permanence with 301 redirects, the `.well-known` profile at Level 2, ISO 3166 jurisdiction at Level 2, the crosswalk matrix with Wikidata at SHOULD and urn:lex at MAY, and the Level 2 / Level 3 redefinitions.
 
-Still open (each its own round):
+### Resolved 2026-06-02 (v0.3.1)
+
+Three previously-open items were resolved after a full surface assessment confirmed that ~70% of worked-example records are teaching constructs with no adopter counterpart.
+
+- Example namespace (was #18): worked-example records use a neutral `obligationfirst.org` namespace, never an adopter host. Real-world identity rides in crosswalks. This makes examples self-contained and honest, and removes the false NOTICE claim that records are "reproduced from the EveryAILaw corpus."
+- `.json` suffix (was #19): the canonical `@id` is suffixless; representations are reached by content negotiation. Adopters that serve `.json` declare that in their own `.well-known` profile. Example `@id` values are suffixless; crosswalk references to adopters use the adopter's served form (with `.json`).
+- Crosswalk-field scope: the crosswalk properties (`jurisdiction` as a typed `gist:Jurisdiction` with an ISO 3166 `ref`, `eli_uri`, `ecli_uri`, `neutral_citation`, `urn_lex`, `akn_uri`, `sameAs`, `exactMatch`) are defined as first-class terms in `schema/context.jsonld` and populated on example records per the matrix.
+
+### Worked-example record convention (v0.3.1)
+
+Every worked-example record MUST follow this shape:
+
+- `@context`: `https://obligationfirst.org/v1/` (a string; an array only if the example genuinely needs a repo-local extension). Never `w3id.org/of/v1/` in a record — that is the vocabulary namespace, not the context document.
+- `@id`: `https://obligationfirst.org/v1/examples/<example-slug>/<entity-type>/<local-id>`, suffixless. `<entity-type>` is the lowercase role (`authority`, `instrument`, `term`, `obligation`, `proceeding`, `allegation`, `determination`). `<local-id>` is an opaque, lowercase-kebab descriptor with NO jurisdiction code in it (drop `us-`, `us-co-`, `eu-`, `ca-bc-`; keep meaningful descriptors like `sb24-205`, `art-50-2`, `attorney-general`, `bccrt`).
+- `jurisdiction`: where the entity has one, a typed `{ "@type": "gist:Jurisdiction", "ref": "<ISO 3166-1 or 3166-2>" }` (e.g. `us-co`, `us-ut`, `ca-bc`, `eu`). Never encode jurisdiction in the slug.
+- Internal cross-references (`issuedBy`, `hasTerm`, `parent_instrument`, `created_by`, `anchors`, `decides`, `hasAllegation`, `hasDetermination`, `target_instrument`, `triggers_on_violation_of`, `enforcement_authority`, `instrument_ref`): repoint to the new neutral `@id` values within the same example, so the record graph stays internally consistent.
+- Crosswalks to the real world, per the matrix: where the entity corresponds to a real adopter entity, add `sameAs: ["<real adopter IRI, with the adopter's served `.json`>"]`. Where a standard legal identifier exists, add it as a typed field (`eli_uri` for the AI Act, `neutral_citation` or `ecli_uri` for cases, `akn_uri` for provisions, `exactMatch` to a EuroVoc concept for an obligation subject). Do not invent standard identifiers; only add ones that genuinely exist.
+- A broken cross-adopter `anchors` that pointed at a non-existent adopter entity is repointed to the real entity the live adopter actually publishes (verified against the live export).
+
+### Still open (each its own round)
+
 - Identity-fidelity enforcement mechanism: live resolution vs vendored registry snapshot vs both.
-- What an example may depict before an adopter has minted it: neutral obligationfirst.org example namespace vs a proposed-extension marker.
-- The `.json` suffix: lean is suffixless canonical `@id` with `.json` reached by content negotiation, not yet decided.
 - Whether and when to tighten the non-EU instrument join key.
-- Reconciling the three binding handoffs to live adopter data (they are currently misinformation).
-- Realigning the four worked examples to this convention.
 - The obligation-abstraction model (EuroVoc bridge accepted; the model is not).
 - Naming-profile expressiveness (loose regex vs generative template) and a public conformance tool.
+
+The three binding handoffs were reconciled to live adopter data in v0.3.1 (they previously prescribed schemes no adopter followed).
 
 ## Implementation plan
 

@@ -11,6 +11,7 @@ import { validateRecordGraph } from "./lib/adopter-kit.mjs";
 import { validateExampleRecordSet } from "./validate-example-graphs.mjs";
 import { validateAssistantGuide, validateReleasePackage } from "./validate-repo-contracts.mjs";
 import { validateHashManifest } from "./validate-hashes.mjs";
+import { versionForms } from "./sync-version.mjs";
 
 const failures = [];
 
@@ -82,7 +83,8 @@ assert(
 async function testReleasePackageStaleHash() {
   const root = await mkdtemp(path.join(os.tmpdir(), "of-release-regression-"));
   try {
-    const releaseDir = path.join(root, "docs/releases/v0.3.0-draft");
+    const { full: version } = await versionForms();
+    const releaseDir = path.join(root, `docs/releases/v${version}`);
     await mkdir(releaseDir, { recursive: true });
     await writeFile(path.join(root, "artifact.txt"), "current\n");
     const stale = createHash("sha256").update("stale\n").digest("hex");
@@ -90,7 +92,7 @@ async function testReleasePackageStaleHash() {
       path.join(releaseDir, "manifest.json"),
       `${JSON.stringify(
         {
-          version: "0.3.0-draft",
+          version,
           artifacts: [{ path: "artifact.txt", sha256: stale }],
         },
         null,

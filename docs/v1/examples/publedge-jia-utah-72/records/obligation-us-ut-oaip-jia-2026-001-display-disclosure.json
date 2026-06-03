@@ -1,13 +1,13 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Requirement",
-  "@id": "https://publedge.org/obligation/us-ut-oaip-jia-2026-001-display-disclosure",
+  "@id": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/obligation/oaip-jia-2026-001-display-disclosure",
   "title": "Display GenAI disclosure on first session and after extended inactivity",
   "duty_holder_type": "provider",
   "trigger": "user starts a new mental-health chatbot session",
   "content": "Plainly identify the service as an AI chatbot on first session, and re-display the disclosure on session resumption after 30 minutes of inactivity.",
-  "created_by": "https://publedge.org/term/us-ut-oaip-jia-2026-001-1",
+  "created_by": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/term/oaip-jia-2026-001-1",
   "anchors": [
-    "https://everyailaw.com/obligation/utah-sb149-13-72a-203-genai-disclosure"
+    "https://everyailaw.com/obligation/transparency.json"
   ]
 }

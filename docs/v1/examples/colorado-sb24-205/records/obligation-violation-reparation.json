@@ -1,11 +1,11 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Reparation",
-  "@id": "https://everyailaw.com/obligation/co-sb24-205-violation-reparation",
+  "@id": "https://obligationfirst.org/v1/examples/colorado-sb24-205/obligation/violation-reparation",
   "title": "Civil penalty for violation of reasonable care duty",
   "content": "A violation of §6-1-1703 constitutes an unfair or deceptive trade practice subject to enforcement under C.R.S. §6-1-105.",
-  "created_by": "https://everyailaw.com/term/co-sb24-205-1703-duty-of-care",
-  "triggers_on_violation_of": "https://everyailaw.com/obligation/co-sb24-205-reasonable-care",
+  "created_by": "https://obligationfirst.org/v1/examples/colorado-sb24-205/term/sb24-205-duty-of-care",
+  "triggers_on_violation_of": "https://obligationfirst.org/v1/examples/colorado-sb24-205/obligation/reasonable-care",
   "remedy_kind": "civil_penalty",
-  "enforcement_authority": "https://everyailaw.com/authority/us-co-attorney-general"
+  "enforcement_authority": "https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/attorney-general"
 }

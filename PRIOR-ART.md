@@ -41,7 +41,7 @@ The US House XML schema for the US Code (uscode.house.gov). Equivalent role to A
 
 The OASIS standard for representing legal norms with explicit deontic operators: Obligation, Permission, Prohibition, Reparation. Handles defeasibility via `DefeasibleRule` and exception hierarchies (§7.4, §7.5).
 
-Obligation-First's deontic quartet (`of:Requirement`, `of:Restriction`, `of:Permission`, `of:Reparation`) is aligned with LegalRuleML's four operators. Crosswalk in `reference/crosswalks/legalruleml.md`. v0.2 refines the gist binding for `of:Reparation` per Semantic Arts feedback (the layered pattern `gist:Requirement` + `gist:Intention` + `gist:Event`); the of: class itself is preserved.
+Obligation-First's deontic quartet (`of:Requirement`, `of:Restriction`, `of:Permission`, `of:Reparation`) is aligned with LegalRuleML's four operators. Crosswalk in `reference/crosswalks/legalruleml.md`. v0.2 refines the gist binding for `of:Reparation` per Semantic Arts feedback (the layered pattern `gist:Requirement` + `gist:Intention` + `gist:Event`); the of: class itself is preserved. This refined binding is still the current binding through v0.3, which changed identifier federation and crosswalks, not the deontic gist bindings.
 
 - Spec: https://docs.oasis-open.org/legalruleml/
 

@@ -1,11 +1,14 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Term",
-  "@id": "https://publedge.org/term/us-ut-oaip-jia-2026-001-1",
+  "@id": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/term/oaip-jia-2026-001-1",
   "text": "Provider must display the standardized GenAI disclosure on first session and on session resumption after 30 minutes of inactivity.",
   "section": "1",
-  "parent_instrument": "https://publedge.org/instrument/us-ut-oaip-jia-2026-001",
+  "parent_instrument": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/instrument/oaip-jia-2026-001",
   "creates": [
-    "https://publedge.org/obligation/us-ut-oaip-jia-2026-001-display-disclosure"
+    "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/obligation/oaip-jia-2026-001-display-disclosure"
+  ],
+  "anchors": [
+    "https://everyailaw.com/term/utah-sb149-chatbot-disclosure.json"
   ]
 }

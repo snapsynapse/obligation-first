@@ -1,5 +1,7 @@
 # Handoff: bind PubLedge to Obligation-First v0.1
 
+> Reconciled to live adopter data and the v0.3 federation model on 2026-06-02; earlier prescriptive slug schemes are withdrawn. Under v0.3 the record `@id` is adopter-local, opaque, and permanent; PubLedge declares its own slug grammar in a `.well-known` naming profile and Obligation-First does not prescribe it; jurisdiction is a typed ISO 3166 field, never a slug component; and standard identifiers (ELI, ECLI, Akoma Ntoso, urn:lex, Wikidata) ride as typed crosswalk properties, not as the `@id`. Cross-adopter `anchors` target the other adopter's real published IRI, not a guessed slug. See `reference/iri-naming-and-crosswalks.md` for the controlling decision.
+
 This document describes the work to bind PubLedge's joint-interpretation corpus (JIAs, RMAs, no-action letters, advisory opinions, private letter rulings) to Obligation-First v0.1. PubLedge is unique among the three current adopters: the four-role spine originated in PubLedge and was lifted to Obligation-First. So this binding is largely a swap, not a restructure.
 
 The Utah JIA worked example in [obligation-first/examples/publedge-jia-utah-72/](https://github.com/snapsynapse/obligation-first/blob/main/examples/publedge-jia-utah-72/README.md) confirmed the binding is **purely additive** — every existing PubLedge record can carry the new `@context` reference without losing or changing any data.
@@ -43,6 +45,8 @@ The mapping is direct:
 | Obligation (requirement, restriction, permission) | one of `of:Requirement`, `of:Restriction`, `of:Permission` |
 | Term within an Instrument | `of:Term` |
 
+What PubLedge actually publishes today: instruments keyed by full issuance ID (e.g. `utah-oaip.json` as the authority, `us-ut-oaip-jia-2026-001.json` / `us-ut-oaip-rma-2025-001.json` as instruments), `.json`-served, with jurisdiction carried as a typed `us-ut` field rather than in the slug. These are PubLedge's declared grammar; the spec consumes the profile and does not prescribe it.
+
 Existing PubLedge records already use `"@type": "https://w3id.org/semanticarts/ns/ontology/gist/Agreement"` — this is gist's Agreement class. Under v0.1, the type becomes `of:Instrument` (which itself binds to `gist:Agreement` for Agreements and `gist:Specification` for Specifications). The shift is from declaring the gist class directly to declaring the Obligation-First class that wraps it. Gives adopter tools a single dispatch handle.
 
 ### 3. Replace `issuance_event: string` with a Determination record
@@ -70,27 +74,29 @@ Currently, a PubLedge JIA's prose body contains the obligations the parties have
 
 For example, the Utah Mental Health Chatbot Disclosure JIA (`us-ut-oaip-jia-2026-001`) has a prose section "Display disclosure" with sub-requirements. Under v0.1:
 
+The `@id` values below follow PubLedge's own live grammar (full issuance IDs, `.json`-served), not a spec-prescribed scheme:
+
 ```yaml
 "@type": "of:Term"
-"@id": "https://publedge.org/term/us-ut-oaip-jia-2026-001-1"
+"@id": "https://publedge.org/term/us-ut-oaip-jia-2026-001-1.json"
 text: "Provider must display the standardized GenAI disclosure on first session..."
-parent_instrument: "https://publedge.org/instrument/us-ut-oaip-jia-2026-001"
+parent_instrument: "https://publedge.org/instrument/us-ut-oaip-jia-2026-001.json"
 creates:
-  - "https://publedge.org/obligation/us-ut-oaip-jia-2026-001-display-disclosure"
+  - "https://publedge.org/obligation/us-ut-oaip-jia-2026-001-display-disclosure.json"
 ```
 
 ```yaml
 "@type": "of:Requirement"
-"@id": "https://publedge.org/obligation/us-ut-oaip-jia-2026-001-display-disclosure"
+"@id": "https://publedge.org/obligation/us-ut-oaip-jia-2026-001-display-disclosure.json"
 title: "Display disclosure on first session"
 duty_holder_type: "provider"
 content: "Plainly identify the service as an AI chatbot on first session."
-created_by: "https://publedge.org/term/us-ut-oaip-jia-2026-001-1"
+created_by: "https://publedge.org/term/us-ut-oaip-jia-2026-001-1.json"
 anchors:
-  - "https://everyailaw.com/instrument/utah-sb149/term/utah-code-13-72a-203"
+  - "<EveryAILaw's real published Term/Obligation @id for the Utah disclosure provision, resolved from EveryAILaw's live export>"
 ```
 
-The `anchors` field is the cross-portfolio join that makes PubLedge JIAs queryable from EveryAILaw's side: someone reading the EveryAILaw page for Utah SB149 §13-72a-203 can pivot to "every JIA that interprets this section."
+The `anchors` field is the cross-portfolio join that makes PubLedge JIAs queryable from EveryAILaw's side: someone reading the EveryAILaw page for the Utah disclosure provision can pivot to "every JIA that interprets this." Critically, the anchor target must be EveryAILaw's actual published IRI (resolved from its live export under `docs/api/v1/of/` or its `.well-known` naming profile), not a slug guessed from a convention. Cross-adopter joins key on the real IRI and on shared standard identifiers (crosswalks), never on a predicted slug.
 
 ### 5. Adopt v0.1's lifecycle and supersession fields where applicable
 

@@ -1,12 +1,12 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Term",
-  "@id": "https://everyailaw.com/term/eu-ai-act-art-50-1",
+  "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-1",
   "text": "Providers of AI systems intended to interact directly with natural persons shall design and develop those AI systems in such a way that natural persons are informed that they are interacting with an AI system, unless this is obvious from the circumstances and the context of use. Deployers of an AI system that is intended to interact directly with natural persons shall ensure that natural persons are informed they are interacting with an AI system, where the AI system has not already been designed by the provider to comply with that obligation. This obligation shall not apply to AI systems that are authorised by law to detect, prevent, investigate or prosecute criminal offences, provided that the AI systems are operated in accordance with other applicable Union and national law.",
   "section": "Article 50(1)",
-  "parent_instrument": "https://everyailaw.com/instrument/eu-ai-act",
+  "parent_instrument": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/instrument/ai-act",
   "creates": [
-    "https://everyailaw.com/obligation/eu-ai-act-art-50-1-provider-design-for-disclosure",
-    "https://everyailaw.com/obligation/eu-ai-act-art-50-1-deployer-disclose-ai-interaction"
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/obligation/art-50-1-provider-design-for-disclosure",
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/obligation/art-50-1-deployer-disclose-ai-interaction"
   ]
 }

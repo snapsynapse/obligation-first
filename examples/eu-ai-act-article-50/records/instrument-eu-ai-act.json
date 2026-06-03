@@ -1,29 +1,36 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Instrument",
-  "@id": "https://everyailaw.com/instrument/eu-ai-act",
+  "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/instrument/ai-act",
   "title": "Regulation (EU) 2024/1689 of the European Parliament and of the Council laying down harmonised rules on artificial intelligence (Artificial Intelligence Act)",
   "short_title": "AI Act",
   "citation": "Regulation (EU) 2024/1689",
   "kind": "regulation",
-  "issuedBy": "https://everyailaw.com/authority/eu-parliament-council",
+  "issuedBy": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/authority/parliament-council",
   "enacted": "2024-06-13",
   "effective": "2024-08-01",
   "status": "in-force",
   "enforcement_status": "routine",
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "eu"
+  },
   "hasTerm": [
-    "https://everyailaw.com/term/eu-ai-act-art-50-1",
-    "https://everyailaw.com/term/eu-ai-act-art-50-2",
-    "https://everyailaw.com/term/eu-ai-act-art-50-3",
-    "https://everyailaw.com/term/eu-ai-act-art-50-4",
-    "https://everyailaw.com/term/eu-ai-act-art-50-5",
-    "https://everyailaw.com/term/eu-ai-act-recital-132",
-    "https://everyailaw.com/term/eu-ai-act-recital-133",
-    "https://everyailaw.com/term/eu-ai-act-recital-134",
-    "https://everyailaw.com/term/eu-ai-act-recital-135",
-    "https://everyailaw.com/term/eu-ai-act-recital-136"
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-1",
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-2",
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-3",
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-4",
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-5",
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/recital-132",
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/recital-133",
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/recital-134",
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/recital-135",
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/recital-136"
   ],
   "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202401689",
   "eli_uri": "https://data.europa.eu/eli/reg/2024/1689/oj",
-  "notes": "Entered into force 2024-08-01. The Article 50 transparency obligations apply from 2026-08-02 (24 months after entry into force); the Instrument-level effective date is entry into force, while provision-level application phases in. issuedBy is the co-legislators (European Parliament and Council), adopted under the ordinary legislative procedure."
+  "sameAs": [
+    "https://everyailaw.com/instrument/eu-ai-act.json"
+  ],
+  "notes": "Entered into force 2024-08-01. The Article 50 transparency obligations apply from 2026-08-02 (24 months after entry into force); the Instrument-level effective date is entry into force, while provision-level application phases in. issuedBy is the co-legislators (European Parliament and Council), adopted under the ordinary legislative procedure. The @id is this example's own neutral identifier; eli_uri is the crosswalk to the canonical EU identifier, and sameAs points to the EveryAILaw record for the same law."
 }

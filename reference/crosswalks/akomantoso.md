@@ -15,7 +15,7 @@ Akoma Ntoso models *documents* (the textual artifact). Obligation-First models *
 | Obligation-First | Akoma Ntoso | Relationship |
 |---|---|---|
 | `of:Instrument` | `<akn:act>`, `<akn:bill>`, `<akn:statute>`, `<akn:judgment>` | An Instrument has-a source-text representation that may be an Akoma Ntoso document. |
-| `of:Term` | `<akn:section>`, `<akn:article>`, `<akn:paragraph>`, `<akn:clause>` | A Term corresponds to a textual element. The Term's `@id` may equal the Akoma Ntoso element IRI. |
+| `of:Term` | `<akn:section>`, `<akn:article>`, `<akn:paragraph>`, `<akn:clause>` | A Term corresponds to a textual element. The Term's `@id` is adopter-local and opaque; the Akoma Ntoso element IRI rides as the typed `akn_uri` crosswalk, never as the `@id`. |
 | `of:Authority` | `<akn:TLCOrganization>`, `<akn:TLCPerson>` | Akoma Ntoso's "top-level concept" references for organizations and persons. |
 | `of:Proceeding` | `<akn:judgment>` (for the resulting opinion) | Proceedings produce judgments; the judgment's text is Akoma Ntoso. |
 | `of:Obligation` | (no direct equivalent) | Akoma Ntoso encodes text; obligations are derived from text by interpretation. This is precisely the gap Obligation-First fills. |
@@ -30,7 +30,7 @@ Akoma Ntoso uses the FRBR-derived `cl:` (CLI) URI scheme for documents:
 
 For example: `/akn/us/act/2024/co-sb-205/!main`
 
-Obligation-First treats Akoma Ntoso element IRIs as valid `Instrument` and `Term` `@id` values when an authoritative encoding exists. Where one doesn't, projects use their own IRIs and may publish a `akn_uri` companion field for adopters that want to round-trip.
+Obligation-First treats the Akoma Ntoso element IRI as a typed `akn_uri` crosswalk on the `Instrument` or `Term` record, never as the `@id`. The `@id` stays adopter-local, opaque, and permanent (and whatever the adopter's `.well-known` naming profile declares); `akn_uri` is the companion field that lets adopters round-trip to the canonical encoding where one exists. Where no authoritative encoding exists, the field is simply absent.
 
 ## Worked example
 

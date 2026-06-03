@@ -1,21 +1,25 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Instrument",
-  "@id": "https://everyailaw.com/instrument/eu-art50-guidelines",
+  "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/instrument/art50-guidelines",
   "title": "Guidelines on the implementation of the transparency obligations for certain AI systems under Article 50 of Regulation (EU) 2024/1689",
   "short_title": "Article 50 Transparency Guidelines (draft)",
   "citation": "Commission Guidelines under Article 96(1)(d) AI Act",
   "kind": "guidance",
-  "issuedBy": "https://everyailaw.com/authority/eu-commission",
+  "issuedBy": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/authority/european-commission",
   "status": "proposed",
   "enforcement_status": "unsignaled",
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "eu"
+  },
   "hasTerm": [
-    "https://everyailaw.com/term/eu-art50-guidelines-4-2-1-para-69",
-    "https://everyailaw.com/term/eu-art50-guidelines-section-3",
-    "https://everyailaw.com/term/eu-art50-guidelines-section-5",
-    "https://everyailaw.com/term/eu-art50-guidelines-section-6",
-    "https://everyailaw.com/term/eu-art50-guidelines-section-7"
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/guidelines-4-2-1-para-69",
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/guidelines-section-3",
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/guidelines-section-5",
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/guidelines-section-6",
+    "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/guidelines-section-7"
   ],
   "source": "https://digital-strategy.ec.europa.eu/en/consultations/consultation-draft-guidelines-transparency-obligations-under-ai-act",
-  "notes": "Non-binding (draft Guidelines para 5: only the CJEU gives an authoritative interpretation of the Act). Issued under Article 96(1)(d) AI Act. Carries no enforceable primary Obligations of its own; its Terms interpret the Regulation's Terms via anchors. Published for stakeholder consultation closing 2026-06-03; on adoption, status moves to in-force and source should point to the adopted text."
+  "notes": "Non-binding (draft Guidelines para 5: only the CJEU gives an authoritative interpretation of the Act). Issued under Article 96(1)(d) AI Act. Carries no enforceable primary Obligations of its own; its Terms interpret the Regulation's Terms via anchors. Published for stakeholder consultation closing 2026-06-03; on adoption, status moves to in-force and source should point to the adopted text. Teaching construct: EveryAILaw has not minted this draft Guidelines instrument, so this record carries no sameAs."
 }

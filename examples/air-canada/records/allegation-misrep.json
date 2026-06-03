@@ -1,8 +1,11 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Allegation",
-  "@id": "https://aiincidentlaw.org/allegation/moffatt-2024-misrep",
+  "@id": "https://obligationfirst.org/v1/examples/air-canada/allegation/moffatt-misrep",
   "asserted_by": "claimant",
   "text": "Air Canada's chatbot told the claimant he could request a bereavement discount retroactively within 90 days after travel. The answer conflicted with Air Canada's published bereavement-fare terms, which required approval before travel.",
-  "related_to": "https://aiincidentlaw.org/system/air-canada-virtual-assistant"
+  "related_to": "https://obligationfirst.org/v1/examples/air-canada/system/air-canada-virtual-assistant",
+  "sameAs": [
+    "https://aiincidentlaw.org/allegation/aiel-2024-001-allegation.json"
+  ]
 }

@@ -1,14 +1,14 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Authority",
-  "@id": "https://everyailaw.com/authority/us-co-ai-policy-work-group",
+  "@id": "https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/ai-policy-work-group",
   "organization": {
     "@type": "gist:Organization",
     "name": "Colorado AI Policy Work Group (governor-backed)"
   },
   "authority_basis": {
     "kind": "regulatory",
-    "instrument_ref": "https://everyailaw.com/instrument/co-governor-executive-order-establishing-work-group"
+    "instrument_ref": "https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/governor-executive-order-establishing-work-group"
   },
   "jurisdiction": {
     "@type": "gist:Jurisdiction",

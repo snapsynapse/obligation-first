@@ -1,10 +1,10 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Term",
-  "@id": "https://everyailaw.com/term/eu-ai-act-recital-136",
+  "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/recital-136",
   "text": "AI systems used for the generation or manipulation of text for the purpose of informing the public on matters of public interest may influence public opinion and democratic discourse. Deployers using AI systems for this purpose should ensure that recipients are informed that the text has been artificially generated or manipulated. This requirement should not prevent deployers from using AI-generated or manipulated text where the output has undergone substantial human review and the person taking editorial responsibility for the content has ensured that no false impression of human origin is created.",
   "section": "Recital (136)",
-  "parent_instrument": "https://everyailaw.com/instrument/eu-ai-act",
+  "parent_instrument": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/instrument/ai-act",
   "creates": [],
   "notes": "Recital text is approximate; verify against OJ L 2024/1689. Grounds the Article 50(5) AI-generated-text disclosure obligation."
 }

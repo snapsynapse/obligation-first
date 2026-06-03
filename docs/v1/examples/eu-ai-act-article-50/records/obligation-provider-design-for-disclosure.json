@@ -1,10 +1,14 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Requirement",
-  "@id": "https://everyailaw.com/obligation/eu-ai-act-art-50-1-provider-design-for-disclosure",
+  "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/obligation/art-50-1-provider-design-for-disclosure",
   "title": "Design AI systems so that users are informed they are interacting with an AI",
   "duty_holder_type": "provider",
   "trigger": "AI system is intended to interact directly with natural persons",
   "content": "Design and develop the AI system so that natural persons are informed they are interacting with an AI system, unless this is obvious from the circumstances and context of use.",
-  "created_by": "https://everyailaw.com/term/eu-ai-act-art-50-1"
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "eu"
+  },
+  "created_by": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-1"
 }

@@ -1,6 +1,6 @@
 ---
 title: "Obligation-First INTENT"
-version: "0.2.0-draft"
+version: "0.3.1"
 last_updated: 2026-05-04
 status: working-hypothesis
 description: "Standards-level strategy for the Obligation-First upper schema. Defines scope, design constraints, adoption order, and governance posture."
@@ -42,8 +42,8 @@ In scope:
 Out of scope for v0.1:
 
 - Akoma Ntoso element-level binding (referenced, not formalized)
-- Provision lifecycle state machine (deferred to v0.2; drives the visualization layer)
-- Cross-jurisdictional equivalence relation (`of:correspondsTo`) (deferred to v0.2)
+- Provision lifecycle state machine (still deferred post-v0.3; drives the visualization layer)
+- Cross-jurisdictional equivalence relation (`of:correspondsTo`) (still deferred post-v0.3; the v0.3 crosswalk matrix carries cross-adopter joins for now)
 - Multi-language source text handling
 - A formal SHACL validator (deferred to v1.0)
 - Conformance test suite (deferred to v1.0)

@@ -17,16 +17,20 @@ ELI is an EU Council recommendation (2012, expanded 2017) defining a stable URI 
 
 ### Identifier compatibility
 
-For EU instruments with authoritative ELI URIs, the ELI URI should be the Instrument's `@id`:
+The ELI URI is never the Instrument's `@id`. Under the v0.3 federation model the `@id` is an adopter-local, opaque, permanent IRI that identifies the adopter's record about the legislation; the ELI URI rides as a typed `eli_uri` crosswalk field. This is what lets two adopters that mint different local IRIs for the same law still join on a shared ELI:
 
 ```yaml
 "@type": of:Instrument
-"@id": http://data.europa.eu/eli/reg/2024/1689/oj
+"@id": https://everyailaw.com/instrument/eu-ai-act.json
 title: "EU Artificial Intelligence Act"
-issuedBy: http://data.europa.eu/eli/eu/european-parliament
+jurisdiction:
+  "@type": gist:Jurisdiction
+  ref: eu
+eli_uri: http://data.europa.eu/eli/reg/2024/1689/oj
+issuedBy: https://everyailaw.com/authority/european-commission.json
 ```
 
-For non-EU instruments without ELI URIs, projects mint their own IRIs.
+The `@id` is whatever the adopter's `.well-known` naming profile declares; Obligation-First does not prescribe its grammar. For EU instruments the ELI URI is carried in `eli_uri` (MUST where the jurisdiction issues ELIs). For non-EU instruments without ELI URIs, the field is simply absent and the join falls back to `citation` or another declared crosswalk.
 
 ## ECLI — European Case Law Identifier
 
@@ -41,28 +45,38 @@ ECLI is the analogous standard for case law. Format: `ECLI:{country}:{court}:{ye
 
 ### Identifier compatibility
 
+As with ELI, the ECLI is never the `@id`. The Determination's `@id` is an adopter-local IRI; the ECLI rides as a typed `ecli_uri` crosswalk field:
+
 ```yaml
 "@type": of:Determination
-"@id": https://e-justice.europa.eu/ecli/ECLI:EU:C:2024:567
+"@id": https://aiincidentlaw.org/determination/aiel-2024-042-determination.json
 issued_date: 2024-09-12
-issuedBy: https://e-justice.europa.eu/court/cjeu
+jurisdiction:
+  "@type": gist:Jurisdiction
+  ref: eu
+ecli_uri: ECLI:EU:C:2024:567
+issuedBy: https://aiincidentlaw.org/authority/court-of-justice-of-the-european-union.json
 ```
 
 ## Non-EU adoption signal
 
-ELI and ECLI are formally EU instruments, but the pattern is portable. Where a US, UK, or other jurisdiction publishes case-law identifiers (e.g., CanLII for Canadian case law, BAILII for UK), Obligation-First treats those identifiers the same way: use the canonical IRI as `@id`.
+ELI and ECLI are formally EU instruments, but the crosswalk pattern is portable. Where a US, UK, or other jurisdiction publishes case-law identifiers (e.g., CanLII for Canadian case law, BAILII for UK, or a neutral citation), Obligation-First treats those the same way: they ride as typed crosswalk fields, never as the `@id`. Common-law neutral citations use `neutral_citation`; a CanLII or BAILII canonical URL can be carried in `sameAs`.
 
-The Air Canada example uses CanLII:
+The Air Canada example keeps an adopter-local `@id` and carries the CanLII URL and neutral citation as crosswalks:
 
 ```yaml
 "@type": of:Determination
-"@id": https://canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.html
+"@id": https://aiincidentlaw.org/determination/aiel-2024-001-determination.json
+neutral_citation: "2024 BCCRT 149"
+sameAs:
+  - https://canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.html
 ```
 
 ## What we deliberately don't do
 
-- We don't require ELI/ECLI conformance. Adopters that have authoritative IRIs use them; others mint their own.
-- We don't import ELI's full vocabulary. The mapping is at the IRI level, not the property level. Obligation-First's properties remain canonical for cross-instrument relationships; ELI's properties remain canonical for legislation-document metadata.
+- We don't require ELI/ECLI conformance. Adopters that have authoritative ELI/ECLI identifiers carry them in `eli_uri` / `ecli_uri`; others omit the field.
+- We don't make the standard identifier the `@id`. The `@id` is adopter-local and opaque; ELI/ECLI ride as crosswalks, and cross-adopter joins key on those crosswalks rather than on slugs.
+- We don't import ELI's full vocabulary. The crosswalk is at the identifier level, not the property level. Obligation-First's properties remain canonical for cross-instrument relationships; ELI's properties remain canonical for legislation-document metadata.
 
 ## Reference
 

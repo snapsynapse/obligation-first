@@ -1,7 +1,11 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Allegation",
-  "@id": "https://aiincidentlaw.org/allegation/co-sb24-205-enforcement-challenge",
+  "@id": "https://obligationfirst.org/v1/examples/colorado-sb24-205/allegation/enforcement-challenge",
   "asserted_by": "plaintiff",
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "us"
+  },
   "text": "Plaintiffs assert that the Colorado Attorney General lacks authority to enforce SB 24-205 in advance of completed rulemaking, and that enforcement absent rules would deprive regulated parties of fair notice."
 }

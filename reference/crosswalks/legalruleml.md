@@ -40,18 +40,21 @@ For an adopter using both standards:
 
 ```yaml
 "@context":
-  - https://w3id.org/of/v1/
+  - https://obligationfirst.org/v1/
   - http://docs.oasis-open.org/legalruleml/ns/v1.0/
 
 "@type": of:Term
-"@id": https://everyailaw.com/term/co-sb24-205-1703-duty-of-care
+"@id": https://everyailaw.com/term/colorado-sb24-205-transparency.json
+jurisdiction:
+  "@type": gist:Jurisdiction
+  ref: us-co
 text: "A developer ... shall use reasonable care ..."
 creates:
-  - https://everyailaw.com/obligation/co-sb24-205-reasonable-care
-lrml_encoded_as: https://everyailaw.com/lrml/co-sb24-205-1703.xml
+  - https://everyailaw.com/obligation/transparency.json
+lrml_encoded_as: https://everyailaw.com/lrml/colorado-sb24-205-transparency.xml
 ```
 
-The `lrml_encoded_as` field (or equivalent — TBD whether to formalize this in v0.1 or defer) points from the Obligation-First Term to the LegalRuleML XML encoding of its rule logic.
+The Term's `@id` is adopter-local and opaque — whatever the adopter's `.well-known` naming profile declares (here EveryAILaw's live, `.json`-served grammar), never a jurisdiction-encoded slug. Jurisdiction is a typed `gist:Jurisdiction` field carrying an ISO 3166-2 `ref`, never part of the slug. The LegalRuleML encoding rides as the typed `lrml_encoded_as` crosswalk that points from the Obligation-First Term to the LegalRuleML XML encoding of its rule logic — never as the `@id`. The field is conditional: present where a LegalRuleML encoding exists, absent otherwise.
 
 ## Open questions
 

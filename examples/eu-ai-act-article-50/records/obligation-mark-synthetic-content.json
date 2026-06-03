@@ -1,10 +1,14 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Requirement",
-  "@id": "https://everyailaw.com/obligation/eu-ai-act-art-50-2-mark-synthetic-content",
+  "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/obligation/art-50-2-mark-synthetic-content",
   "title": "Mark and make detectable AI-generated or manipulated content",
   "duty_holder_type": "provider",
   "trigger": "generates synthetic audio, image, video or text content",
   "content": "Ensure outputs are marked in a machine-readable format and detectable as artificially generated or manipulated, with technical solutions that are effective, interoperable, robust and reliable as far as technically feasible.",
-  "created_by": "https://everyailaw.com/term/eu-ai-act-art-50-2"
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "eu"
+  },
+  "created_by": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-2"
 }

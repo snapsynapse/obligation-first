@@ -1,7 +1,7 @@
 ---
 "@type": "https://w3id.org/semanticarts/ns/ontology/gist/Specification"
 title: "Obligation-First Protocol"
-version: "0.3.0-draft"
+version: "0.3.1"
 license: "CC-BY-4.0"
 created: 2026-05-04
 modified: 2026-05-26
@@ -9,7 +9,7 @@ modified: 2026-05-26
 
 # Obligation-First Protocol
 
-> **Status: v0.3.0-draft.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the naming-profile format plus crosswalk schema additions.
+> **Status: v0.3.1.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the naming-profile format plus crosswalk schema additions.
 
 ## What this protocol specifies
 

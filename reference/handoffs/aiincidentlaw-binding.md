@@ -1,5 +1,7 @@
 # Handoff: bind AI Incident Law to Obligation-First v0.1
 
+> Reconciled to live adopter data and the v0.3 federation model on 2026-06-02; earlier prescriptive slug schemes are withdrawn. Under v0.3 the record `@id` is adopter-local, opaque, and permanent; AI Incident Law declares its own slug grammar in a `.well-known` naming profile and Obligation-First does not prescribe it; jurisdiction is a typed ISO 3166 field, never a slug component; and standard identifiers (ECLI, neutral citation, urn:lex) ride as typed crosswalk properties, not as the `@id`. The `<country>-<subdivision>-<shorthand>` and `moffatt-v-air-canada-...` slug prescriptions below are replaced accordingly. See `reference/iri-naming-and-crosswalks.md` for the controlling decision.
+
 Status: first binding shipped in `snapsynapse/ai-incident-law` commit `6594ed7`.
 
 Current export:
@@ -49,24 +51,24 @@ Option A keeps editorial workflow unchanged while exposing the v0.1 surface. Rec
 
 Authorities are typically reused across multiple matters (the BCCRT hears many cases; the SDNY hears many cases). Create one `of:Authority` record per unique court, tribunal, or regulator referenced across the corpus.
 
-Per the worked example in [obligation-first/examples/air-canada/records/authority-bccrt.json](https://github.com/snapsynapse/obligation-first/blob/main/examples/air-canada/records/authority-bccrt.json):
+The pattern, shown with AI Incident Law's actual live grammar (jurisdiction in a typed field, never in the slug):
 
 ```yaml
 "@context": "https://obligationfirst.org/v1/"
 "@type": "of:Authority"
-"@id": "https://aiincidentlaw.org/authority/ca-bc-bccrt"
+"@id": "https://aiincidentlaw.org/authority/british-columbia-civil-resolution-tribunal.json"
 organization:
   "@type": "gist:Court"
   name: "British Columbia Civil Resolution Tribunal"
 authority_basis:
   kind: "judicial"
-  instrument_ref: "https://aiincidentlaw.org/instrument/bc-civil-resolution-tribunal-act"
+  instrument_ref: "https://aiincidentlaw.org/instrument/bc-civil-resolution-tribunal-act.json"
 jurisdiction:
   "@type": "gist:Jurisdiction"
   ref: "ca-bc"
 ```
 
-Slug scheme: `<country>-<subdivision>-<authority-shorthand>` (e.g., `us-ny-sdny`, `ca-bc-bccrt`, `eu-ec-cnect`).
+Slug grammar is AI Incident Law's to declare, not the spec's to prescribe. What it actually publishes today: full-name authority slugs (`british-columbia-civil-resolution-tribunal`, `u-s-district-court-southern-district-of-new-york`), `.json`-served, with jurisdiction always carried in the typed `jurisdiction` field. The retired `<country>-<subdivision>-<authority-shorthand>` scheme (e.g. `ca-bc-bccrt`) is not what any record uses.
 
 ### 3. Convert each flat record to a Proceeding + Allegations + Determinations
 
@@ -80,14 +82,16 @@ For more complex matters (Mata v. Avianca has both an underlying suit and a sanc
 
 ### 4. Mint canonical URLs
 
+The `@id` is adopter-local, opaque, and permanent; AI Incident Law declares its own slug grammar in a `.well-known` naming profile and Obligation-First does not prescribe it. What it actually publishes today: full-name authority slugs plus opaque `aiel-YYYY-NNN` sequences for the proceeding strand, all `.json`-served:
+
 ```
-https://aiincidentlaw.org/authority/<slug>           (e.g., ca-bc-bccrt)
-https://aiincidentlaw.org/proceeding/<slug>          (e.g., moffatt-v-air-canada-2024-bccrt-149)
-https://aiincidentlaw.org/allegation/<slug>          (e.g., moffatt-2024-misrep)
-https://aiincidentlaw.org/determination/<slug>       (e.g., moffatt-2024-bccrt-149)
+https://aiincidentlaw.org/authority/<full-name-slug>.json    (e.g., british-columbia-civil-resolution-tribunal)
+https://aiincidentlaw.org/proceeding/aiel-YYYY-NNN-proceeding.json       (e.g., aiel-2024-001-proceeding)
+https://aiincidentlaw.org/allegation/aiel-YYYY-NNN-allegation.json       (e.g., aiel-2024-001-allegation)
+https://aiincidentlaw.org/determination/aiel-YYYY-NNN-determination.json (e.g., aiel-2024-001-determination)
 ```
 
-Each URL must serve the JSON-LD record (Option A: alongside HTML; Option B: JSON-only with HTML rendered from it).
+The opaque `aiel-` sequence is exactly the v0.3 ideal: the `@id` says nothing about the case beyond identifying AI Incident Law's record of it, and the descriptive identity (neutral citation, ECLI, court) rides in typed crosswalk fields. The retired `moffatt-v-air-canada-2024-bccrt-149` style of descriptive slug is not what any record uses. Each URL must serve the JSON-LD record (Option A: alongside HTML; Option B: JSON-only with HTML rendered from it).
 
 ### 5. Wire `anchors` to EveryAILaw
 
@@ -95,18 +99,18 @@ Determinations interpret Obligations. When AI Incident Law has a Determination t
 
 ```yaml
 "@type": "of:Determination"
-"@id": "https://aiincidentlaw.org/determination/..."
+"@id": "https://aiincidentlaw.org/determination/aiel-2024-001-determination.json"
 anchors:
-  - "https://everyailaw.com/obligation/co-sb24-205-reasonable-care"
+  - "https://everyailaw.com/obligation/bias-prevention.json"
 ```
 
-This is the cross-portfolio join. It makes the EveryAILaw → AI Incident Law graph traversable in either direction (a researcher reading EveryAILaw's Obligation can pivot to "every Determination that has interpreted this," and vice versa).
+The anchor target is EveryAILaw's real published `@id` (resolved from its live export under `docs/api/v1/of/`), not a slug guessed from a convention. EveryAILaw publishes abstract, shared obligations (`bias-prevention`, `transparency`) rather than one obligation per provision, so anchor to the obligation EveryAILaw actually publishes. This is the cross-portfolio join. It makes the EveryAILaw → AI Incident Law graph traversable in either direction (a researcher reading EveryAILaw's Obligation can pivot to "every Determination that has interpreted this," and vice versa). The seeded live anchor noted at the top of this handoff already points at EveryAILaw's `bias-prevention` obligation.
 
-For matters that turn on common-law doctrines rather than statute (Air Canada → negligent misrepresentation), `anchors` references the doctrine as an Instrument:
+For matters that turn on common-law doctrines rather than statute (Air Canada → negligent misrepresentation), `anchors` references the doctrine as an Instrument at AI Incident Law's own real published IRI:
 
 ```yaml
 anchors:
-  - "https://aiincidentlaw.org/doctrine/negligent-misrepresentation"
+  - "https://aiincidentlaw.org/instrument/negligent-misrepresentation.json"
 ```
 
 ### 6. Validate against the v0.1 schemas in CI

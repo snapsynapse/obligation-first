@@ -34,6 +34,22 @@ The Guidelines anchor to the Act. They do not defeat or supersede it. Obligation
 
 Note one consequence of the schema: interpretation lives at the Term level, not the Instrument level. There is no instrument-to-instrument "interprets" relation. The Guidelines Instrument simply holds Terms; each interpretive Term anchors to the statutory Term it explains. This keeps the join surface small and precise - paragraph 69 interprets Article 50(2), not "the Guidelines interpret the Act" in some unspecified bulk.
 
+## Identifiers, jurisdiction, and crosswalks
+
+Every record in this example uses a neutral `obligationfirst.org` `@id` of the form `https://obligationfirst.org/v1/examples/eu-ai-act-article-50/<entity-type>/<local-id>`. The `@id` is the example's own identifier for its record about a legal entity, not a claim on any adopter's namespace and not the entity's canonical external identifier. Real-world identity rides in crosswalks, not in the slug.
+
+Two consequences worth making explicit:
+
+- Jurisdiction is a typed ISO 3166 field, never part of the slug. Each jurisdictional record carries `"jurisdiction": { "@type": "gist:Jurisdiction", "ref": "eu" }`. The local-id drops any jurisdiction code (the AI Act instrument is `instrument/ai-act`, not `instrument/eu-ai-act`); structural references that happen to look like codes but are not (`art-50-2`, `recital-133`) are kept because they identify a provision, not a jurisdiction.
+- Standard identifiers ride as typed crosswalks. The Regulation carries `eli_uri` (the European Legislation Identifier, `https://data.europa.eu/eli/reg/2024/1689/oj`): the `@id` is this example's own identifier for its record, and `eli_uri` is the crosswalk to the canonical EU identifier for the same law. Where the entity also corresponds to a real adopter record, `sameAs` points at that adopter's served form.
+
+Only two records in this example correspond to entities a real adopter has actually minted, verified against the live EveryAILaw export:
+
+- `authority-eu-commission.json` -> `sameAs` `https://everyailaw.com/authority/european-commission.json`
+- `instrument-eu-ai-act.json` -> `sameAs` `https://everyailaw.com/instrument/eu-ai-act.json`, plus its `eli_uri`
+
+The other 24 records are teaching constructs. The two-authority model (Parliament and Council enact the Regulation; the Commission issues the Guidelines under Art 96(1)(d)) is a deliberate pedagogical improvement over EveryAILaw's single-authority shape; the draft Guidelines, the forthcoming Code of Practice, the per-paragraph Obligations, and the individual Article and Recital Terms are likewise constructs EveryAILaw has not minted. They carry neutral `@id` values and `jurisdiction` but no `sameAs`, because there is no real-world record to point at.
+
 ## The four-role mapping for this example
 
 | Role | Record | Maps to |
@@ -48,12 +64,12 @@ Note one consequence of the schema: interpretation lives at the Term level, not 
 
 ## Modeling a recital
 
-A recital is left out of `records/` to keep this sample tight, but the shape is worth showing, because it is where the article-versus-recital question resolves. A recital is a Term of the Regulation that creates nothing:
+A recital is where the article-versus-recital question resolves, and the recitals that ground each Article 50 paragraph are modeled as their own records (`term-recital-132.json` through `term-recital-136.json`). A recital is a Term of the Regulation that creates nothing:
 
 ```yaml
 "@context": https://obligationfirst.org/v1/
 "@type": of:Term
-"@id": https://everyailaw.com/term/eu-ai-act-recital-133
+"@id": https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/recital-133
 text: >
   Techniques and methods to mark AI-generated content - watermarks,
   metadata identifications, cryptographic methods for proving provenance
@@ -62,7 +78,7 @@ text: >
   technically feasible, taking into account available techniques and the
   generally acknowledged state of the art.
 section: "Recital (133)"
-parent_instrument: https://everyailaw.com/instrument/eu-ai-act
+parent_instrument: https://obligationfirst.org/v1/examples/eu-ai-act-article-50/instrument/ai-act
 creates: []
 ```
 
@@ -70,26 +86,24 @@ It has no `creates`. Its weight is that the operative Article 50(2) Term, and th
 
 ## Records walk-through
 
-- `authority-eu-parliament-council.json` - the co-legislators that enacted the Regulation. Their `authority_basis` traces to the Treaty (TFEU Art 114), the recursive-basis pattern one rung higher than a national constitution.
-- `authority-eu-commission.json` - the Commission as issuing Authority for the Guidelines. Its `authority_basis` traces to Article 96 of the Act itself, demonstrating the recursive basis: the power to issue these Guidelines is granted by the very Instrument they interpret.
-- `instrument-eu-ai-act.json` - the Regulation. Carries an `eli_uri` (the European Legislation Identifier), which is the canonical external identifier and the one-field path to a Level 3 crosswalk.
-- `instrument-eu-art50-guidelines.json` - the draft Guidelines. `status: proposed` (under consultation), `enforcement_status: unsignaled` (non-binding; it carries no enforceable primary Obligations of its own).
+- `authority-eu-parliament-council.json` - the co-legislators that enacted the Regulation. Their `authority_basis` traces to the Treaty (TFEU Art 114), the recursive-basis pattern one rung higher than a national constitution. A teaching construct: no `sameAs`.
+- `authority-eu-commission.json` - the Commission as issuing Authority for the Guidelines. Its `authority_basis` traces to Article 96 of the Act itself, demonstrating the recursive basis: the power to issue these Guidelines is granted by the very Instrument they interpret. `sameAs` the EveryAILaw `european-commission` authority.
+- `instrument-eu-ai-act.json` - the Regulation. Carries `eli_uri` (the canonical EU identifier as a crosswalk) and `sameAs` the EveryAILaw `eu-ai-act` instrument.
+- `instrument-eu-art50-guidelines.json` - the draft Guidelines. `status: proposed` (under consultation), `enforcement_status: unsignaled` (non-binding; it carries no enforceable primary Obligations of its own). A teaching construct: no `sameAs`.
 - `term-art-50-2.json` - Article 50(2) verbatim; `creates` the marking Obligation.
 - `obligation-mark-synthetic-content.json` - an `of:Requirement` stating what providers must do, abstracted from the section text.
 - `term-guidelines-4-2-1-para69.json` - Guidelines paragraph 69; `creates: []`, `anchors` to the Article 50(2) Term. The interpretive edge.
 
 ## What this sample covers and what it leaves to expand
 
-Covers: the Article 50(2) marking and detection obligation across all three source layers (regulation article, recital, guideline paragraph), plus the issuing Authority.
+Covers: all five Article 50 paragraphs as Terms and the Obligations they create (50(1) interaction disclosure split into a provider design duty and a deployer disclosure duty, 50(2) marking and detection, 50(3) emotion recognition and biometric categorisation, 50(4) deep fakes, 50(5) AI-generated text), the five grounding Recitals (132 through 136), the draft Guidelines as a second interpretive Instrument with Terms anchored to the Article and Recital Terms, the forthcoming Code of Practice as a third Instrument stub, and the two-authority co-legislator-plus-Commission model.
 
 Leaves to expand:
-- The other Article 50 paragraphs - 50(1) interaction disclosure, 50(3) emotion recognition and biometric categorisation, 50(4) deepfakes and certain text, 50(5) horizontal requirements - each a Term creating its own Obligation.
-- Recitals as their own records (132, 133, 134, 135, 136).
-- The forthcoming Code of Practice as a second interpretive Instrument, with adherence modeled via anchors and an enforcement-posture note.
+- The Code of Practice's Terms, once published, anchored to Articles 50(2) and 50(4) via the same `anchors` pattern the Guidelines use.
 - Harmonised standards (CEN-CENELEC JTC 21) referenced via `executableEncoding`.
-- The proceeding strand: any future enforcement action would be a Determination anchoring to the Article 50(2) Obligation, exactly as the Colorado example does for a court stay order.
+- The proceeding strand: any future enforcement action would be a Determination anchoring to an Article 50 Obligation, exactly as the Colorado example does for a court stay order.
 
-Conformance: records target Level 2 (schema-conformant). The Regulation carries `eli_uri`, so Level 3 is one round-trip away.
+Conformance: records are schema-conformant and carry typed ISO 3166 `jurisdiction`. Reaching the tightened Level 2 additionally requires a published `.well-known` naming profile for the host that serves these `@id` values; Level 3 additionally requires every crosswalk the profile declares to be present on every applicable record. The Regulation already carries its `eli_uri` crosswalk; the Commission authority and the Regulation carry `sameAs` to their EveryAILaw counterparts.
 
 ## Provenance
 

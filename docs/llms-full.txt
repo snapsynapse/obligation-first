@@ -1,6 +1,6 @@
 # Obligation-First — full LLM context
 
-> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.3.0-draft. Record `@id` values are adopter-local, opaque, and permanent; cross-adopter interoperability rides on standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in per-adopter `.well-known` naming profiles; jurisdiction is a typed ISO 3166 field. See reference/iri-naming-and-crosswalks.md.
+> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.3.1. Record `@id` values are adopter-local, opaque, and permanent; cross-adopter interoperability rides on standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in per-adopter `.well-known` naming profiles; jurisdiction is a typed ISO 3166 field. See reference/iri-naming-and-crosswalks.md.
 
 This file is the deeper companion to llms.txt. Where llms.txt gives a one-screen summary, this file is the full context an LLM-powered tool needs to reason about Obligation-First, generate adopter records, or answer detailed questions without scraping.
 
@@ -14,6 +14,7 @@ Source of truth: https://github.com/snapsynapse/obligation-first/blob/main/PROTO
 2. Bind to existing standards — gist for upper ontology, LegalRuleML for deontic operators, Akoma Ntoso / ELI / ECLI / USLM for source-text IRIs. Reference, do not duplicate.
 3. Permanent IRIs — `https://w3id.org/of/v1/` resolves to `https://obligationfirst.org/v1/`. The w3id IRI is canonical.
 4. Small core, explicit extensions — the spine, the proceeding strand, the deontic quartet. Everything else is a downstream extension.
+5. Federated `@id` + crosswalks (v0.3) — record `@id` values are adopter-local, opaque, and permanent (HTTP 301 on rename per W3C "Cool URIs Don't Change"); an `@id` identifies the adopter's record about a legal entity, not the entity's canonical external identifier. Standard identifiers (ELI, ECLI, Akoma Ntoso, urn:lex, Wikidata, EuroVoc) ride as typed crosswalks, never as the `@id`; cross-adopter joins key on crosswalks, not slugs. Each adopter publishes its own naming profile at a `.well-known` location (VoID `uriSpace`/`uriRegexPattern` + RFC 6570 template + a declared crosswalk list); Obligation-First consumes and validates against it, and never prescribes it. Jurisdiction is a typed ISO 3166 field. Additive and non-breaking; decision record at reference/iri-naming-and-crosswalks.md.
 
 ### The four-role spine
 
@@ -71,7 +72,7 @@ v0.2 closed the open gist binding for of:Reparation per Semantic Arts feedback (
 Every of:Authority requires:
 - organization (gist:Organization or subtype with name)
 - authority_basis (kind: statutory | regulatory | contractual | corporate | judicial; instrument_ref pointing to the Instrument that grants authority)
-- jurisdiction (gist:Jurisdiction with ref)
+- jurisdiction — a typed ISO 3166 value: gist:Jurisdiction with an ISO 3166-1 or 3166-2 ref (e.g. us-co, us-ut, ca-bc, eu). Never encoded in a slug.
 
 Recursive: every Authority's right to act traces to an Instrument on the spine. Non-government Authorities (HOAs, tribunals, co-ops, advisory bodies) are handled without special-casing.
 
@@ -97,9 +98,9 @@ A Term or Obligation MAY have multiple executableEncoding references (one per en
 
 ### Conformance levels
 
-- Level 1 — IRI-only: @id and @type use canonical of: IRIs. @context references obligationfirst.org/v1/.
-- Level 2 — Schema-conformant (recommended): L1 plus every record validates against the appropriate schema.
-- Level 3 — Crosswalk-conformant: L2 plus identifier round-trip with at least one of Akoma Ntoso, ELI, or ECLI.
+- Level 1 — IRI-only: @id and @type use canonical of: IRIs. @context references obligationfirst.org/v1/. The @id resolves and is permanent (HTTP 301 on rename).
+- Level 2 — Schema-conformant (recommended): L1 plus every record validates against the appropriate schema, plus (v0.3) a published `.well-known` naming profile (VoID `uriSpace`/`uriRegexPattern` + an RFC 6570 URI Template + a declared list of supplied crosswalks) and `jurisdiction` carried as a typed ISO 3166 field.
+- Level 3 — Crosswalk-conformant: L2 plus (v0.3) every crosswalk the adopter's naming profile declares is present on every applicable record. The recommended baseline is the crosswalk matrix: Wikidata QID for authorities (SHOULD, sameAs), ELI for instruments where the jurisdiction issues ELIs (MUST, eli_uri), ECLI / neutral citation for court decisions (MUST), Akoma Ntoso element IRIs for provisions (SHOULD/MAY, akn_uri), urn:lex as a fallback (MAY), and EuroVoc concepts for obligation subjects (SHOULD). Requirements are RFC 2119 and conditional on coverage — a US-only adopter is never failed for lacking an ELI that does not exist. The earlier "round-trip with at least one of Akoma Ntoso, ELI, or ECLI" definition is superseded.
 
 ### Versioning
 
@@ -140,14 +141,16 @@ Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/puble
 
 ## Adopters
 
-- EveryAILaw — https://everyailaw.com/ (AI laws and obligations) — live v0.1 binding for statutory and regulatory obligations
-- PubLedge — https://publedge.org/ (joint interpretations) — live v0.1 binding for instruments, terms, obligations, and determinations
-- AI Incident Law — https://aiincidentlaw.org/ (AI-related cases) — live v0.1 binding for proceedings, allegations, determinations, and authorities
+- EveryAILaw — https://everyailaw.com/ (AI laws and obligations) — live binding for statutory and regulatory obligations
+- PubLedge — https://publedge.org/ (joint interpretations) — live binding for instruments, terms, obligations, and determinations
+- AI Incident Law — https://aiincidentlaw.org/ (AI-related cases) — live binding for proceedings, allegations, determinations, and authorities
+
+All three bindings went live against v0.1 and are being reconciled to the v0.3 model (federated `@id`, typed ISO 3166 jurisdiction, and per-adopter `.well-known` naming profiles declaring their crosswalks). The of: vocabulary is unchanged from v0.1, so adopter records require no migration; the three binding handoffs in reference/handoffs/ were reconciled to live adopter data in v0.3.1.
 
 ## Adoption — three steps
 
 1. Reference the canonical @context: set `@context: "https://obligationfirst.org/v1/"` on every record.
-2. Validate against the JSON Schemas at /v1/schema/ for the entity's @type.
+2. Validate against the JSON Schemas at /v1/schema/ for the entity's @type. To be Level 2 ("bound") under v0.3, also publish a `.well-known` naming profile (VoID `uriSpace`/`uriRegexPattern` + RFC 6570 template + declared crosswalk list) and carry `jurisdiction` as a typed ISO 3166 field.
 3. Cite obligationfirst.org as the canonical reference.
 
 ## Assistant-assisted setup
@@ -174,7 +177,7 @@ The Level 4 manifest is at `https://obligationfirst.org/.well-known/assistant-gu
 - Allegation schema: https://obligationfirst.org/v1/schema/allegation.schema.json
 - Determination schema: https://obligationfirst.org/v1/schema/determination.schema.json
 - ExecutableEncoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
-- Release package: https://obligationfirst.org/releases/v0.3.0-draft/
+- Release package: https://obligationfirst.org/releases/v0.3.1/
 - Assistant guide: https://obligationfirst.org/.well-known/assistant-guide.txt
 - Assistant guide manifest: https://obligationfirst.org/.well-known/assistant-guide-manifest.txt
 - Sitemap: https://obligationfirst.org/sitemap.xml

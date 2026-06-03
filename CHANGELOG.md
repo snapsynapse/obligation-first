@@ -4,6 +4,24 @@ All notable changes to the Obligation-First specification.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/) once it reaches v0.1.0 freeze.
 
+## [0.3.1] - 2026-06-02
+
+The `-draft` suffix is dropped from this release forward; versions are plain SemVer (`0.x` already signals pre-1.0 instability). This release makes every surface reflect the v0.3 federation model.
+
+### Changed
+
+- **Worked examples realigned to the v0.3 federation convention.** All 49 records across the four examples (air-canada, colorado-sb24-205, eu-ai-act-article-50, publedge-jia-utah-72) now use neutral, opaque, suffixless `@id` values under `https://obligationfirst.org/v1/examples/<slug>/...`, never adopter hosts. Jurisdiction moved out of slugs into a typed `gist:Jurisdiction` field with an ISO 3166 `ref`. Real-world identity rides in crosswalks: `sameAs` to the adopter's real published IRI where the entity exists (14 of 49 records), `eli_uri`/`neutral_citation`/`akn_uri` where a standard identifier genuinely exists; the other 35 records are teaching constructs with no adopter counterpart. Every example README rewritten to use `@context: https://obligationfirst.org/v1/` (not `w3id`), the new neutral IRIs, and typed jurisdiction; the air-canada `/doctrine/` anchor and the publedge broken cross-adopter anchor were removed or repointed to the real target.
+- **Decisions #18 (example namespace), #19 (`.json` suffix), and crosswalk-field scope resolved** in `reference/iri-naming-and-crosswalks.md`: neutral example namespace, suffixless canonical `@id` with content-negotiated representations, and crosswalk terms added to `schema/context.jsonld` (`neutral_citation`, `urn_lex`, `sameAs` via owl, `exactMatch` via skos, alongside the existing `eli_uri`/`ecli_uri`/`akn_uri`).
+- **The three binding handoffs reconciled to live adopter data.** `reference/handoffs/{everyailaw,publedge,aiincidentlaw}-binding.md` previously prescribed slug schemes no adopter follows; they now document the v0.3 rule (adopter declares its own grammar in a `.well-known` profile) and what each adopter actually publishes.
+- **Crosswalk docs corrected.** `reference/crosswalks/eli-ecli.md` and `akomantoso.md` previously showed ELI/ECLI/CanLII/AKN IRIs as the record `@id`; they now show those as typed crosswalk fields with an adopter-local `@id`. `legalruleml.md` example slugs updated.
+- **Conformance and concept surfaces updated for v0.3.** The `docs/index.html` conformance table and embedded record snippet, `docs/llms-full.txt`, `docs/llms.txt`, and `docs/agents.json` now reflect the redefined Level 2 (`.well-known` profile + ISO 3166 jurisdiction) and Level 3 (declared crosswalks present), plus `id_federation`, `identifier_crosswalks`, `naming_profiles`, and `jurisdiction` concepts.
+- **NOTICE corrected.** Example records no longer bear `everyailaw.com` `@id` values; the EveryAILaw-corpus reproduction clause is replaced with a crosswalk-reference statement.
+- **Version tooling.** `scripts/sync-version.mjs` propagates the single source of truth (`package.json`) across all surfaces and stamps the homepage date; a drift check runs inside `npm test` so version errors cannot strand. The two `.mjs` validators read the version at runtime rather than hardcoding it.
+
+### Compatibility
+
+No `of:` vocabulary or schema change. The crosswalk fields are additive (the schemas already admit them via `additionalProperties`). v0.1/v0.2 adopter records remain valid.
+
 ## [0.3.0-draft] - 2026-06-02
 
 ### Changed

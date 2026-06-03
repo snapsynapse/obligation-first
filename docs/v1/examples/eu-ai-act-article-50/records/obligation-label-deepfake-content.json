@@ -1,10 +1,14 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Requirement",
-  "@id": "https://everyailaw.com/obligation/eu-ai-act-art-50-4-label-deepfake-content",
+  "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/obligation/art-50-4-label-deepfake-content",
   "title": "Disclose that deep fake image, audio or video content is artificially generated or manipulated",
   "duty_holder_type": "deployer",
   "trigger": "AI system generates or manipulates image, audio or video content constituting a deep fake",
   "content": "Disclose that the content has been artificially generated or manipulated. Exception for content in artistic, creative, satirical or fictional works provided disclosure is made in an appropriate manner.",
-  "created_by": "https://everyailaw.com/term/eu-ai-act-art-50-4"
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "eu"
+  },
+  "created_by": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-4"
 }

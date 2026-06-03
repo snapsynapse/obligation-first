@@ -1,10 +1,14 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Requirement",
-  "@id": "https://everyailaw.com/obligation/eu-ai-act-art-50-1-deployer-disclose-ai-interaction",
+  "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/obligation/art-50-1-deployer-disclose-ai-interaction",
   "title": "Ensure natural persons are informed they are interacting with an AI system",
   "duty_holder_type": "deployer",
   "trigger": "AI system is intended to interact directly with natural persons and provider has not already designed it to give disclosure",
   "content": "Ensure natural persons are informed they are interacting with an AI system before or at the point of interaction.",
-  "created_by": "https://everyailaw.com/term/eu-ai-act-art-50-1"
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "eu"
+  },
+  "created_by": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-1"
 }

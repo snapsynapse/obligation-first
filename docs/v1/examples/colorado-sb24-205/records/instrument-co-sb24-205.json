@@ -1,18 +1,25 @@
 {
   "@context": "https://obligationfirst.org/v1/",
   "@type": "of:Instrument",
-  "@id": "https://everyailaw.com/instrument/co-sb24-205",
+  "@id": "https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/sb24-205",
   "title": "Concerning consumer protections in interactions with artificial intelligence systems",
   "short_title": "Colorado AI Act",
   "citation": "C.R.S. §6-1-1701 et seq.",
-  "issuedBy": "https://everyailaw.com/authority/us-co-general-assembly",
+  "issuedBy": "https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/general-assembly",
   "kind": "statute",
   "enacted": "2024-05-17",
   "effective": "2026-06-30",
-  "status": "enacted",
+  "status": "repealed",
   "enforcement_status": "constrained",
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "us-co"
+  },
   "hasTerm": [
-    "https://everyailaw.com/term/co-sb24-205-1703-duty-of-care"
+    "https://obligationfirst.org/v1/examples/colorado-sb24-205/term/sb24-205-duty-of-care"
   ],
-  "source": "https://leg.colorado.gov/sites/default/files/2024a_205_signed.pdf"
+  "source": "https://leg.colorado.gov/sites/default/files/2024a_205_signed.pdf",
+  "sameAs": [
+    "https://everyailaw.com/instrument/colorado-sb24-205.json"
+  ]
 }

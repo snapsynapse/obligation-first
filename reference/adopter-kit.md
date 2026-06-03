@@ -29,7 +29,7 @@ The validator checks two layers:
 1. JSON Schema conformance for each record's `@type`.
 2. Local graph coherence for links that should resolve inside the same record set.
 
-External `anchors` are allowed to point outside the local record set. This is intentional: PubLedge anchors should point to EveryAILaw IDs, and AI Incident Law Determinations should do the same.
+External `anchors` are allowed to point outside the local record set. This is intentional: under the v0.3 federation model, cross-adopter links are typed crosswalks (`anchors` / `sameAs`) that target the other adopter's real published IRI — the actual `@id` resolved from that adopter's live export or its `.well-known` naming profile. A PubLedge anchor points at EveryAILaw's real published Term/Obligation `@id`, and an AI Incident Law Determination does the same. The join keys on those real IRIs and on shared standard identifiers, never on a slug guessed from a naming convention.
 
 ## Anchor graph report
 
