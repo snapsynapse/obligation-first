@@ -80,11 +80,22 @@
     "publisher": {
       "@type": "Organization",
       "name": "PAICE.work PBC",
-      "url": "https://paice.work/"
+      "url": "https://paice.foundation/"
     },
     "keywords": ["obligation-first", "legal ontology", "regulatory ontology", "gist", "LegalRuleML", "Akoma Ntoso", "ELI", "ECLI", "JSON-LD", "deontic logic", "defeasibility"],
     "image": "https://obligationfirst.org/imgs/og.png",
-    "isPartOf": { "@type": "CreativeWork", "name": "PAICE.work Open Standards" },
+    "isPartOf": {
+      "@type": "CreativeWork",
+      "@id": "https://paice.foundation/#legal-graph",
+      "name": "PAICE legal graph",
+      "url": "https://paice.foundation/",
+      "hasPart": [
+        { "@type": "CreativeWork", "url": "https://everyailaw.com/", "name": "EveryAILaw" },
+        { "@type": "CreativeWork", "url": "https://publedge.org/", "name": "PubLedge" },
+        { "@type": "CreativeWork", "url": "https://aiincidentlaw.org/", "name": "AI Incident Law" },
+        { "@type": "CreativeWork", "url": "https://obligationfirst.org/", "name": "Obligation-First" }
+      ]
+    },
     "license": "https://creativecommons.org/licenses/by/4.0/",
     "copyrightHolder": { "@type": "Organization", "name": "PAICE.work PBC" },
     "copyrightYear": 2026,
@@ -553,7 +564,7 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
       <div class="footer-meta">
         <p>Obligation-First v0.4.0 &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license" target="_blank">CC BY 4.0</a> (spec) &middot; <a href="https://github.com/snapsynapse/obligation-first/blob/main/LICENSE-APACHE" target="_blank" rel="noopener">Apache 2.0</a> (code)</p>
         <p>A <a href="https://paice.foundation/" target="_blank" rel="noopener">PAICE.work PBC</a> open standard by <a href="https://www.linkedin.com/in/samrogers" target="_blank" rel="noopener author">Sam Rogers</a>.</p>
-        <p style="margin-top: 0.5rem;">See also: <a href="https://aiposture.org/" target="_blank" rel="noopener">AI Posture</a> &middot; <a href="https://knowledge-as-code.com/" target="_blank" rel="noopener">Knowledge as Code</a> &middot; <a href="https://gracefulboundaries.dev/" target="_blank" rel="noopener">Graceful Boundaries</a></p>
+        <p style="margin-top: 0.5rem;"><strong>Adopters in the PAICE legal graph:</strong> <a href="https://everyailaw.com/" target="_blank" rel="noopener">EveryAILaw</a> &middot; <a href="https://publedge.org/" target="_blank" rel="noopener">PubLedge</a> &middot; <a href="https://aiincidentlaw.org/" target="_blank" rel="noopener">AI Incident Law</a></p>
       </div>
       <div class="footer-links">
         <a href="https://github.com/snapsynapse/obligation-first" target="_blank" rel="noopener">GitHub</a>
