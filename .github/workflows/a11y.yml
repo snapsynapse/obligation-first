@@ -7,8 +7,11 @@ name: A11y
 on:
   workflow_dispatch:
   schedule:
-    # First Monday of every month, 09:00 UTC
-    - cron: "0 9 1-7 * 1"
+    # First Monday of every month, 09:00 UTC. Cron cannot express "first
+    # Monday" directly: restricting BOTH day-of-month and day-of-week makes
+    # cron fire when EITHER matches (so "0 9 1-7 * 1" ran daily on days 1-7
+    # plus every Monday). Instead: fire on days 1-7, gate on Monday in-job.
+    - cron: "0 9 1-7 * *"
 
 permissions:
   contents: read
@@ -18,17 +21,29 @@ jobs:
     name: axe-core scan against obligationfirst.org
     runs-on: ubuntu-latest
     steps:
+      - name: Gate scheduled runs to the first Monday
+        if: github.event_name == 'schedule'
+        run: |
+          if [ "$(date -u +%u)" != "1" ]; then
+            echo "Not Monday (UTC); skipping scheduled run." >> "$GITHUB_STEP_SUMMARY"
+            echo "SKIP_AUDIT=true" >> "$GITHUB_ENV"
+          fi
+
       - uses: actions/checkout@v4
+        if: env.SKIP_AUDIT != 'true'
 
       - uses: actions/setup-node@v4
+        if: env.SKIP_AUDIT != 'true'
         with:
           node-version: "20"
 
       - name: Install puppeteer + axe-core
+        if: env.SKIP_AUDIT != 'true'
         run: |
           npm install --no-save puppeteer @axe-core/puppeteer
 
       - name: Run axe scan
+        if: env.SKIP_AUDIT != 'true'
         run: |
           cat > scan.mjs <<'EOF'
           import puppeteer from "puppeteer";
