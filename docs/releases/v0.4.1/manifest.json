@@ -107,7 +107,7 @@
     {
       "path": "package.json",
       "url": "https://github.com/snapsynapse/obligation-first/blob/main/package.json",
-      "sha256": "3c329ba2c052c446567b7cf417df1bdff0bce0c06b5d1cf579c07cacfadf8d19"
+      "sha256": "e700863b4a5bef9d24c78ee757c6d80061c62c24bfe8adb1aa68cd377f1fd2c2"
     },
     {
       "path": "package-lock.json",
