@@ -6,7 +6,7 @@ Mapping every `of:` term to its gist class binding. Source: [Semantic Arts gist]
 
 | of: term | gist class | Notes |
 |---|---|---|
-| `of:Authority` | wraps `gist:Organization` | Not a single gist class — `of:Authority` is an interface combining `gist:Organization` (subtype as needed: `gist:GovernmentOrganization`, `gist:Court`, `gist:Organization`) with `authority_basis` metadata. The `authority_basis.instrument_ref` traces the Authority's grounding to a specific Instrument. |
+| `of:Authority` | wraps `gist:Organization` | Not a single gist class — `of:Authority` is an interface combining `gist:Organization` (subtype as needed: `gist:GovernmentOrganization`, or a local subtype; gist 14.1.0 defines no Court class) with `authority_basis` metadata. The `authority_basis.instrument_ref` traces the Authority's grounding to a specific Instrument. |
 | `of:Instrument` | `gist:Agreement` (for negotiated artifacts: JIA, RMA, contract) <br> `gist:Specification` (for promulgated artifacts: statute, regulation, ruling) | Subtype determined by Instrument kind. |
 | `of:Term` | `gist:ContractTerm` | One-to-one binding. |
 | `of:Obligation` | abstract — bound through subclasses | See deontic quartet below. |

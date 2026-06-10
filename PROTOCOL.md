@@ -1,15 +1,15 @@
 ---
 "@type": "https://w3id.org/semanticarts/ns/ontology/gist/Specification"
 title: "Obligation-First Protocol"
-version: "0.4.0"
+version: "0.4.1"
 license: "CC-BY-4.0"
 created: 2026-05-04
-modified: 2026-05-26
+modified: 2026-06-09
 ---
 
 # Obligation-First Protocol
 
-> **Status: v0.4.0.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). The naming-profile format is defined as of v0.4.0 (`schema/naming-profile.schema.json`, served at `/.well-known/obligation-first-naming-profile.jsonld`). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the crosswalk schema additions.
+> **Status: v0.4.1.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). The naming-profile format is defined as of v0.4.0 (`schema/naming-profile.schema.json`, served at `/.well-known/obligation-first-naming-profile.jsonld`). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the crosswalk schema additions.
 
 ## What this protocol specifies
 
@@ -19,7 +19,7 @@ A shared upper schema for normative content, expressed as a JSON-LD `@context` a
 
 1. **Obligation-first modeling** — normative content is mapped through the Obligations it creates, interprets, or allocates, not through the text of the source document.
 2. **Bind to existing standards** — gist for upper ontology, LegalRuleML for deontic operators, Akoma Ntoso / ELI / ECLI / USLM for source-text IRIs. Reference, do not duplicate.
-3. **Permanent IRIs** — `https://w3id.org/of/v1/` resolves to `https://obligationfirst.org/v1/`. The w3id IRI is canonical.
+3. **Permanent IRIs** — `https://w3id.org/of/v1/` is the canonical IRI prefix and will resolve to `https://obligationfirst.org/v1/` once the w3id.org redirect is filed (planned before v1.0 freeze; see ROADMAP). Until then, `https://obligationfirst.org/v1/` is the live resolution target and the only prefix whose resolution is CI-verified.
 4. **Small core, explicit extensions** — the spine, the proceeding strand, the deontic quartet. Everything else is a downstream extension.
 
 ## Entity model
@@ -146,7 +146,7 @@ Adopters and reviewers should know what to expect when they dereference the vari
 These URIs MUST return HTTP 200 with the appropriate content type. They are part of the spec's contract.
 
 - `https://obligationfirst.org/v1/context.jsonld` — the JSON-LD context (`application/ld+json`)
-- `https://obligationfirst.org/v1/schema/` — index of every published JSON Schema, with eight per-entity schemas at `authority`, `instrument`, `term`, `obligation`, `proceeding`, `allegation`, `determination`, `executable-encoding` (each `.schema.json`, served as `application/schema+json` or `application/json`)
+- `https://obligationfirst.org/v1/schema/` — index of every published JSON Schema: seven per-entity schemas at `authority`, `instrument`, `term`, `obligation`, `proceeding`, `allegation`, `determination`, plus `executable-encoding` and `naming-profile` (each `.schema.json`, served as `application/schema+json` or `application/json`)
 - `https://obligationfirst.org/v1/` — namespace landing page (`text/html`)
 
 If any of these 404, the spec is broken. They're CI-verified on every push (see `.github/workflows/test.yml`).
@@ -337,7 +337,7 @@ A Term or Obligation MAY have multiple `executableEncoding` references — one p
 
 ## Conformance levels
 
-An adopter binds to Obligation-First v0.1 at one of three levels:
+An adopter binds to Obligation-First at one of three levels (level definitions are as of the current spec version; v0.1 record bindings remain valid unchanged):
 
 ### Level 1 — IRI-only
 
@@ -445,4 +445,5 @@ Round-tripping the three examples surfaced these findings:
 - 0.2.2-draft (2026-05-30): Security hardening draft. The adopter graph validator now rejects administrative Determinations with `disposition: issued` unless they cite a `target_instrument` or anchor; example and adopter graph validation share one implementation; CI runs the full contract suite; release hashes, GuideCheck guide metadata, and content provenance checks are enforced locally.
 - 0.3.0-draft (2026-06-02): `@id` federation and identifier crosswalks. Record `@id` values are adopter-local and permanent; external standard identifiers ride as typed crosswalks; each adopter publishes a `.well-known` naming profile; jurisdiction is a typed ISO 3166 field; Level 2 and Level 3 conformance redefined accordingly. Reverses the Term-`@id`-is-standard-IRI guidance. Additive and non-breaking. Decision record: `reference/iri-naming-and-crosswalks.md`.
 - 0.3.1 (2026-06-02): All user-, agent-, and documentation-facing surfaces realigned to the v0.3 federation model; the four worked examples moved to a neutral example namespace with crosswalks; the `-draft` suffix dropped from this release forward. Additive and non-breaking.
+- 0.4.1 (2026-06-09): Documentation-consistency patch from external semantic review: README/NOTICE license-note reconciliation, phantom `gist:Court` removed from annotations, schema count corrected (nine published schemas), w3id resolution claim corrected to future tense, version-narrative drift fixed, Colorado example SB26-189 issuer corrected to the General Assembly. No vocabulary or validation-relevant schema change. See [CHANGELOG.md](CHANGELOG.md); the review's substantive findings are tracked in an internal handoff and will land as decision records.
 - 0.4.0 (2026-06-03): Naming-profile format defined. The `.well-known` naming profile is now a concrete, validatable standard: a JSON-LD document of `@type` `of:NamingProfile` served at `/.well-known/obligation-first-naming-profile.jsonld` (`application/ld+json`), with a flat `text/plain` provenance sidecar at `/.well-known/obligation-first-naming-profile-manifest.txt`. Adds `schema/naming-profile.schema.json`, the `void` prefix and profile terms to `context.jsonld`, a worked profile under `examples/naming-profiles/`, and the `validate:naming-profile` CI gate. Closes a v0.3 freeze gate. Additive and non-breaking to adopter records.

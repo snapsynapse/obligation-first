@@ -15,11 +15,10 @@
       "properties": {
         "@type": {
           "type": "string",
-          "description": "A gist:Organization or subtype IRI (e.g., gist:GovernmentOrganization, gist:Court)",
+          "description": "A gist:Organization or subtype IRI (e.g., gist:GovernmentOrganization). gist defines no Court class; courts and tribunals use gist:GovernmentOrganization (an adopter MAY subtype it locally).",
           "examples": [
             "gist:Organization",
-            "gist:GovernmentOrganization",
-            "gist:Court"
+            "gist:GovernmentOrganization"
           ]
         },
         "name": { "type": "string", "minLength": 1 }

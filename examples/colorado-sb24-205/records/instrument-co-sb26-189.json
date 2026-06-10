@@ -3,7 +3,7 @@
   "@type": "of:Instrument",
   "@id": "https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/sb26-189",
   "title": "SB26-189 Automated Decision-Making Technology",
-  "issuedBy": "https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/ai-policy-work-group",
+  "issuedBy": "https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/general-assembly",
   "kind": "statute",
   "status": "enacted",
   "supersedes": [

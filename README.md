@@ -2,7 +2,7 @@
 
 ![Obligation-First — an open upper schema for normative content. Bound to gist. Aligned with LegalRuleML.](imgs/og.png)
 
-[![Spec](https://img.shields.io/badge/spec-v0.4.0-orange)](PROTOCOL.md)
+[![Spec](https://img.shields.io/badge/spec-v0.4.1-orange)](PROTOCOL.md)
 [![Content license: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey)](LICENSE-CC-BY-4.0)
 [![Code license: Apache 2.0](https://img.shields.io/badge/code-Apache%202.0-lightgrey)](LICENSE-APACHE)
 [![Bound to gist](https://img.shields.io/badge/ontology-gist-green)](https://semanticarts.com/gist/)
@@ -11,7 +11,7 @@ A shared upper schema for normative content — laws, cases, and agreements — 
 
 Obligation-First is a methodology and a JSON-LD context. The methodology says that normative content is best modeled by what it requires, not what it says. The schema gives that methodology a machine-readable shape.
 
-**Live at [obligationfirst.org](https://obligationfirst.org/). Drafting in public. v0.4.0. Subject to revision before the v0.3 freeze.**
+**Live at [obligationfirst.org](https://obligationfirst.org/). Drafting in public. v0.4.1. Subject to revision until the spec freeze (remaining gates tracked in [ROADMAP.md](ROADMAP.md)).**
 
 ## Who this is for
 
@@ -63,12 +63,12 @@ Most legal data models center on the document. Obligation-First centers on what 
 - [PubLedge](https://publedge.org/) — open recordkeeping protocol for joint interpretations, now publishing Obligation-First records for authorities, instruments, terms, obligations, and determinations.
 - [AI Incident Law](https://aiincidentlaw.org/) — public-record corpus of AI-related cases, now publishing Obligation-First proceedings, allegations, determinations, and authorities.
 
-If you'd like to bind your project to the current draft, see [Quick start](#quick-start-bind-a-dataset-in-three-steps) below or [CONTRIBUTING.md](CONTRIBUTING.md). v0.1 bindings remain valid through v0.3 — no migration required.
+If you'd like to bind your project to the current draft, see [Quick start](#quick-start-bind-a-dataset-in-three-steps) below or [CONTRIBUTING.md](CONTRIBUTING.md). v0.1 bindings remain record-valid through v0.4 — no migration required (Level 2 conformance has tightened since v0.3; see PROTOCOL.md "Conformance levels").
 
 ## Quick start — bind a dataset in three steps
 
 1. **Reference the canonical `@context`** — set `@context: "https://obligationfirst.org/v1/"` on every record. Repo-local extensions go in a second context object.
-2. **Validate against the JSON Schemas** — run every record through the schema for its `@type` (eight schemas at `https://obligationfirst.org/v1/schema/`). Schema-conformant adopters (Level 2) pass validation for every published record.
+2. **Validate against the JSON Schemas** — run every record through the schema for its `@type` (seven per-entity schemas at `https://obligationfirst.org/v1/schema/`, plus the executable-encoding and naming-profile schemas). Schema-conformant adopters (Level 2) pass validation for every published record.
 3. **Cite [obligationfirst.org](https://obligationfirst.org/) as the canonical reference** — adopter sites and documentation should link back. The IRI prefix is permanent.
 
 To validate your own records locally:
@@ -103,7 +103,7 @@ Every artifact an adopter or agent needs is dereferenceable at a stable URL:
 | Endpoint | Purpose |
 |---|---|
 | [`/v1/context.jsonld`](https://obligationfirst.org/v1/context.jsonld) | The JSON-LD `@context` for v1 |
-| [`/v1/schema/*.schema.json`](https://obligationfirst.org/v1/schema/) | JSON Schemas — one per entity (eight total) |
+| [`/v1/schema/*.schema.json`](https://obligationfirst.org/v1/schema/) | JSON Schemas — seven per-entity plus executable-encoding and naming-profile (nine total) |
 | [`/v1/schema/authority.schema.json`](https://obligationfirst.org/v1/schema/authority.schema.json) | Authority schema |
 | [`/v1/schema/instrument.schema.json`](https://obligationfirst.org/v1/schema/instrument.schema.json) | Instrument schema |
 | [`/v1/schema/term.schema.json`](https://obligationfirst.org/v1/schema/term.schema.json) | Term schema |
@@ -112,9 +112,10 @@ Every artifact an adopter or agent needs is dereferenceable at a stable URL:
 | [`/v1/schema/allegation.schema.json`](https://obligationfirst.org/v1/schema/allegation.schema.json) | Allegation schema |
 | [`/v1/schema/determination.schema.json`](https://obligationfirst.org/v1/schema/determination.schema.json) | Determination schema |
 | [`/v1/schema/executable-encoding.schema.json`](https://obligationfirst.org/v1/schema/executable-encoding.schema.json) | Executable encoding schema |
+| [`/v1/schema/naming-profile.schema.json`](https://obligationfirst.org/v1/schema/naming-profile.schema.json) | Naming profile schema (adopter `.well-known` profiles) |
 | [`/llms.txt`](https://obligationfirst.org/llms.txt), [`/llms-full.txt`](https://obligationfirst.org/llms-full.txt) | LLM-readable summary + full context |
 | [`/agents.json`](https://obligationfirst.org/agents.json) | Agent capabilities and endpoint inventory |
-| [`/releases/v0.4.0/`](https://obligationfirst.org/releases/v0.4.0/) | Current release package manifest and checksums |
+| [`/releases/v0.4.1/`](https://obligationfirst.org/releases/v0.4.1/) | Current release package manifest and checksums |
 | [`/.well-known/assistant-guide.txt`](https://obligationfirst.org/.well-known/assistant-guide.txt) | GuideCheck Human-Verifiable Assistant Guide for assistant-assisted repo work |
 | [`/.well-known/assistant-guide-manifest.txt`](https://obligationfirst.org/.well-known/assistant-guide-manifest.txt) | GuideCheck Level 4 sidecar manifest for the assistant guide |
 | [`/feed.xml`](https://obligationfirst.org/feed.xml) | Atom feed of releases |
@@ -158,7 +159,7 @@ The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. `http
 
 ## Status
 
-v0.4.0. v0.1 spec, schemas, worked examples, adopter kit, and the first three PAICE legal bindings are complete and live. v0.2 absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. v0.3 federates record identity: `@id` values are adopter-local and permanent, cross-adopter interoperability rides on standard identifier crosswalks declared in per-adopter `.well-known` naming profiles, and jurisdiction is a typed ISO 3166 field. The of: vocabulary is unchanged from v0.1; adopter records require no migration. See [CHANGELOG](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). Open items before v0.3 freeze:
+v0.4.1. v0.1 spec, schemas, worked examples, adopter kit, and the first three PAICE legal bindings are complete and live. v0.2 absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. v0.3 federates record identity: `@id` values are adopter-local and permanent, cross-adopter interoperability rides on standard identifier crosswalks declared in per-adopter `.well-known` naming profiles, and jurisdiction is a typed ISO 3166 field. The of: vocabulary is unchanged from v0.1; adopter records require no migration. See [CHANGELOG](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). Open items before v0.3 freeze:
 
 - LegalRuleML community feedback on deontic alignment
 - File w3id.org PR for the permanent IRI
@@ -173,6 +174,6 @@ The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. `http
 
 Spec text and reference material under [CC BY 4.0](LICENSE-CC-BY-4.0). Code (schemas, scripts, examples) under [Apache 2.0](LICENSE-APACHE).
 
-Exception: example records under `examples/` that bear `https://everyailaw.com/` identifiers are reproduced from the EveryAILaw corpus by express permission, solely as schema illustration. They are NOT licensed under Apache 2.0 or CC BY 4.0, and no rights in the EveryAILaw corpus are granted by this repository. See [NOTICE](NOTICE) and https://everyailaw.com/.
+Note on adopter references: as of v0.3.1, example records under `examples/` carry neutral `https://obligationfirst.org/` identifiers and reproduce no EveryAILaw corpus content. Where an example corresponds to a real adopter entity, it references the adopter's published IRI only as a crosswalk (`sameAs` / `anchors`). Those references are citations, not reproductions, and grant no rights in the EveryAILaw corpus, which is licensed separately and restrictively. See [NOTICE](NOTICE) and https://everyailaw.com/.
 
 Stewarded by PAICE.work PBC. Transition to an independent steward (PAICE Foundation) is anticipated.

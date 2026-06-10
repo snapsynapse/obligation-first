@@ -4,6 +4,23 @@ All notable changes to the Obligation-First specification.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/) once it reaches v0.1.0 freeze.
 
+## [0.4.1] - 2026-06-09
+
+Documentation-consistency patch following an external semantic review. No `of:` vocabulary change; no validation-relevant schema change (one annotation-only `examples` correction). The full review and the remediation plan for the substantive findings are tracked in an internal review handoff (2026-06-09; the `handoffs/` directory is untracked by design) and will surface here as decision records and ROADMAP items as they are taken up.
+
+### Fixed
+
+- **README license note reconciled with NOTICE.** The README still claimed example records "are reproduced from the EveryAILaw corpus by express permission"; NOTICE (since v0.3.1) correctly states no corpus content is reproduced and adopter IRIs appear only as crosswalk citations. README now matches NOTICE.
+- **Phantom `gist:Court` removed.** gist 14.1.0 defines no Court class. `schema/authority.schema.json` annotation examples and `reference/crosswalks/gist.md` now point courts and tribunals at `gist:GovernmentOrganization` (locally subtyped if needed). Annotation-only; no record validates differently.
+- **Schema count corrected.** README and PROTOCOL said "eight per-entity schemas"; the published set is seven per-entity plus `executable-encoding` and `naming-profile` (nine total). The README endpoint table gains the naming-profile schema row.
+- **w3id resolution claim made truthful.** PROTOCOL core principle 3 stated `https://w3id.org/of/v1/` "resolves" to obligationfirst.org; the w3id PR is not yet filed. The principle now states it is the canonical prefix and will resolve once the redirect is filed, and that obligationfirst.org is the only CI-verified resolution target today.
+- **Version-narrative drift.** README "Subject to revision before the v0.3 freeze" (at v0.4) now points at the ROADMAP gates; "v0.1 bindings remain valid through v0.3" updated to v0.4 with a pointer to the tightened Level 2; the PROTOCOL conformance lead no longer says adopters bind "to v0.1".
+- **Colorado example: SB26-189 issuer corrected.** The enacted statute's `issuedBy` pointed at the Colorado AI Policy Work Group, which the same example describes as an advisory body that cannot enact. It now points at the Colorado General Assembly. The work-group Authority record is retained as the recursive-authority-basis illustration, and its known dangling executive-order reference is now called out in the example README.
+
+### Compatibility
+
+v0.1 through v0.4.0 adopter records remain valid without migration.
+
 ## [0.4.0] - 2026-06-03
 
 Defines the naming-profile format. The `.well-known` naming profile — announced in v0.3 as a Level 2 requirement but specified only in prose — is now a concrete, validatable standard. This closes one of the v0.3 freeze gates.

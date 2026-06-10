@@ -229,7 +229,7 @@ SB26-189, the ADMT statute, was enacted on 2026-05-14 and repeals-and-reenacts t
 "@type": of:Instrument
 "@id": https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/sb26-189
 title: "SB26-189 Automated Decision-Making Technology"
-issuedBy: https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/ai-policy-work-group
+issuedBy: https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/general-assembly
 kind: statute
 status: enacted
 supersedes:
@@ -261,7 +261,7 @@ jurisdiction:
   ref: us-co
 ```
 
-Advisory body, not an enacting authority. Its outputs are recommendations, not binding instruments. The recursive Authority basis still works: `authority_basis` traces to the executive order that established the group, which is itself an Instrument on the spine.
+Advisory body, not an enacting authority — which is why SB26-189's `issuedBy` points at the General Assembly, not at this group. Its outputs are recommendations, not binding instruments. The recursive Authority basis still works: `authority_basis` traces to the executive order that established the group, which is itself an Instrument on the spine. (That executive-order Instrument is referenced but not minted as a record in this example; it is a known dangling teaching reference.)
 
 ## Findings
 

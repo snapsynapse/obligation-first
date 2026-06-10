@@ -25,7 +25,7 @@
 #   - Build outputs
 
 bundle: obligation-first
-bundle_version: 0.4.0
+bundle_version: 0.4.1
 bundle_date: 2026-06-02
 
 files:
@@ -35,7 +35,7 @@ files:
   examples/air-canada/records/authority-bccrt.json: c3ada216c1267e72926b079f2042276ad8add052e732b8f3f57c4ab74fd57d22
   examples/air-canada/records/determination-bccrt-149.json: 3d410d15316ce4dc78e588cce4bc1705e1aa20832e13ef5fb36a893d594fb605
   examples/air-canada/records/proceeding-moffatt.json: 085a8b16adb52f76e49e7fe5211644fa7a7574f128f0d5a1b71d4a416e00cc57
-  examples/colorado-sb24-205/README.md: c41f82127e07a2e23ef3cc370c26277cbd4a83e2a665d2c024cc9b8e05cde291
+  examples/colorado-sb24-205/README.md: 5fd37c8f40706cb975d8f675957291270fae9268d94424fa37dc85b7029bfb02
   examples/colorado-sb24-205/records/allegation-co-sb24-205-enforcement-challenge.json: eb2b79ed0519b006123d21b9c7e5ec83d1ebc763afa9d350885be8e5653e5f19
   examples/colorado-sb24-205/records/authority-co-attorney-general.json: fb6e00813e2b8ba61d94430cc1864f2c1c92e2d10072d44224d9efcda796c6b3
   examples/colorado-sb24-205/records/authority-co-general-assembly.json: c6105cfdb41a68159714d5674d111478cdba48e8defedba827fabe6d5892a635
@@ -44,7 +44,7 @@ files:
   examples/colorado-sb24-205/records/determination-co-ag-non-enforcement-statement.json: db528a06f6347942c744438c3c68207c5a3165fcd1799a38803ed98a9b51016d
   examples/colorado-sb24-205/records/determination-co-sb24-205-stay-order.json: f1f714bf17d0ee97f457bf740781bdfcbc6294354d7b2c6ec7e530187bfd6b04
   examples/colorado-sb24-205/records/instrument-co-sb24-205.json: c0c28124ec95c32bcc84c9284068afd996114fef7cff0f4c30bce4f4155d2a5b
-  examples/colorado-sb24-205/records/instrument-co-sb26-189.json: 7f071e1d661b02ec372ebe0f2772e73befb0c23277447c3c104ed1e6296994fd
+  examples/colorado-sb24-205/records/instrument-co-sb26-189.json: feb64c4683b3cb5581c9751a3be319df88583833d9827bce4c4ed8c04123e4fa
   examples/colorado-sb24-205/records/obligation-reasonable-care.json: f40d26c477b92ebfeea5e95befe30cf4a977b0ced610c485a6eb7181b6ccd43e
   examples/colorado-sb24-205/records/obligation-violation-reparation.json: 25b07f66f3fb6b18826b9c83c32fa4f25b10611e4c83e423ab12751c00d6ea32
   examples/colorado-sb24-205/records/proceeding-co-sb24-205-federal-litigation.json: 59ded324ffa9710f4767e2b6c95011eaa4140cdc6c66324c1e3422c87ad0df5f
@@ -84,20 +84,20 @@ files:
   examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json: bc38a35fbf74f673825b0e7573309bf5bff1bfd944cea1f45dbd2e4f073178b7
   examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json: 554f3908f100d1902e7a4fc14c09350d81d4f3b73d3fec2ad6cb1bff1ae1a888
   examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json: 4ddf4f868f18709bf376d71583e4f18c810bb75e6003b5b56bebf8d687473989
-  INTENT.md: dce8d42d558102e9d42a313186b05649ea281a96978e7f53d1e3bc83861174e3
+  INTENT.md: 20f66436fe5c512301ad2b2866157ba62312ea94f87fdee577f5a0e4d9b08243
   LICENSE-APACHE: 3cbeb832e52ede2c154d4977567b70f204a853342e51d843458f9b785771f069
   LICENSE-CC-BY-4.0: 62a68518848c2fdcd108ff5cc11ba1516440c507bf425d5e76ad36886fd5752a
   NOTICE: 3f2ce598a6a3764e500c61e46ab707606ab3aa911eb780f28b87455dffece286
   PRIOR-ART.md: d518dd5e36e3f8d1a040d313034168b62433a8cdad8c067b04e0a44e46e1dcfe
-  PROTOCOL.md: 84556ada9f3790bc0d3f9d5a88fc6aea2fecae8ae3a13b70004d693e1eb1d1da
+  PROTOCOL.md: c33fe0269c2327724d6014b6a38ce6649b25d591c38cc29f2993730b7338e5a2
   reference/crosswalks/akomantoso.md: 9c1e5519788708f25ad084a0fe73aa3402ff39e9f7942c350d23b2b95720d3e4
   reference/crosswalks/eli-ecli.md: e4a36c322241011a23ef381fe87e8b99dfee257adff1dfc23a2d0255c5be2be5
-  reference/crosswalks/gist.md: b7b6a9cb81dee9c69e6b83d89cf24511576c639587d5ea8c244b088501b62745
+  reference/crosswalks/gist.md: 121e4f01a80c9531e82938120077ec66cf3bd58ad5f273345cc7800499f9f375
   reference/crosswalks/legalruleml.md: 280f206640abf5200a5b567f238196a972aad97dd37a07309d16d557bd4f44a7
-  ROADMAP.md: 6ec5e1bd288892aa63595ce2057fa1fcbe7deb1ce0356ded221495d98d52354a
+  ROADMAP.md: e78cfb5c25dda8602244d690dc95d5ce5a5cf6f37c8eda6a297b7a7ddb74f03f
   schema/allegation.schema.json: a21b2075f4c8b83208ea08b745e0a8da91f0e74742d4a7a908423cca044cffa7
-  schema/authority.schema.json: 8872b134d7574048855e08aa2acb31de560d6a354aac97c8e8ec788fa5a476dc
-  schema/context.jsonld: f2962864def2cbac36c17d58a1a5e44d5474c819318cd8032e74f4a764cb3bf1
+  schema/authority.schema.json: 3e96fb13368fa18f1dfb8816040c83c5eca38972c6e3ddec7c79f7dcd9a5e8b0
+  schema/context.jsonld: 9fd375562bf58bef23bb574dab6ca9e987ff68b54fe3f6e281448dc3cee5b9c4
   schema/determination.schema.json: 9a61c867f5ee883f4d8e261530ddb07aa2d4515f19467d98e69e88e75269eee0
   schema/executable-encoding.schema.json: 4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810
   schema/instrument.schema.json: 4e087378105250e02a90b86e11917477dbd7bc834b3416cb1ea74d8ea8e0aff1

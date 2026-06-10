@@ -1,6 +1,6 @@
 ---
 title: "Obligation-First INTENT"
-version: "0.4.0"
+version: "0.4.1"
 last_updated: 2026-05-04
 status: working-hypothesis
 description: "Standards-level strategy for the Obligation-First upper schema. Defines scope, design constraints, adoption order, and governance posture."
