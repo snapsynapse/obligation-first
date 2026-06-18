@@ -12,7 +12,7 @@ Source of truth: https://github.com/snapsynapse/obligation-first/blob/main/PROTO
 
 1. Obligation-first modeling — normative content is mapped through the obligations it creates, interprets, or allocates, not through the text of the source document.
 2. Bind to existing standards — gist for upper ontology, LegalRuleML for deontic operators, Akoma Ntoso / ELI / ECLI / USLM for source-text IRIs. Reference, do not duplicate.
-3. Permanent IRIs — `https://w3id.org/of/v1/` resolves to `https://obligationfirst.org/v1/`. The w3id IRI is canonical.
+3. Permanent IRIs — `https://w3id.org/of/v1/` is the planned permanent vocabulary prefix and will resolve to `https://obligationfirst.org/v1/` once the w3id.org redirect is filed. Until then, `https://obligationfirst.org/v1/` is the live CI-verified resolution target.
 4. Small core, explicit extensions — the spine, the proceeding strand, the deontic quartet. Everything else is a downstream extension.
 5. Federated `@id` + crosswalks (v0.3) — record `@id` values are adopter-local, opaque, and permanent (HTTP 301 on rename per W3C "Cool URIs Don't Change"); an `@id` identifies the adopter's record about a legal entity, not the entity's canonical external identifier. Standard identifiers (ELI, ECLI, Akoma Ntoso, urn:lex, Wikidata, EuroVoc) ride as typed crosswalks, never as the `@id`; cross-adopter joins key on crosswalks, not slugs. Each adopter publishes its own naming profile at a `.well-known` location (VoID `uriSpace`/`uriRegexPattern` + RFC 6570 template + a declared crosswalk list); Obligation-First consumes and validates against it, and never prescribes it. Jurisdiction is a typed ISO 3166 field. Additive and non-breaking; decision record at reference/iri-naming-and-crosswalks.md.
 

@@ -269,6 +269,32 @@ async function validateEndpointInventory(failures) {
   }
 }
 
+async function validateW3idResolutionClaims(failures) {
+  const activeDocs = [
+    "README.md",
+    "docs/index.html",
+    "docs/llms.txt",
+    "docs/llms-full.txt",
+    "docs/v1/index.html",
+  ];
+
+  const forbiddenClaims = [
+    "`https://w3id.org/of/v1/` resolves to `https://obligationfirst.org/v1/`",
+    "https://w3id.org/of/v1/ resolves to https://obligationfirst.org/v1/",
+    "The w3id IRI is canonical.",
+  ];
+
+  for (const rel of activeDocs) {
+    const text = await readFile(path.join(repoRoot, rel), "utf8");
+    for (const claim of forbiddenClaims) {
+      const index = text.indexOf(claim);
+      if (index !== -1) {
+        failures.push(`${rel}:${lineFor(text, index)}: w3id.org/of/v1/ redirect is planned, not live: ${claim}`);
+      }
+    }
+  }
+}
+
 function parseKeyValueManifest(text) {
   const out = {};
   for (const [index, line] of text.split("\n").entries()) {
@@ -419,6 +445,7 @@ export async function validateRepoContracts() {
   await validateUrls(failures);
   await validateContextCoverage(failures);
   await validateEndpointInventory(failures);
+  await validateW3idResolutionClaims(failures);
   await validateAssistantGuide(failures);
   await validateReleasePackage(failures);
   for (const problem of await checkVersions()) failures.push(problem);
