@@ -17,7 +17,7 @@
     {
       "path": "PROTOCOL.md",
       "url": "https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md",
-      "sha256": "c33fe0269c2327724d6014b6a38ce6649b25d591c38cc29f2993730b7338e5a2"
+      "sha256": "1130b618a1116ca6f8d4b57578533b35ff71d7315559ad193c6773e861aebaf3"
     },
     {
       "path": "docs/releases/v0.4.1/RELEASE_NOTES-v0.4.1.md",
@@ -77,12 +77,12 @@
     {
       "path": "docs/agents.json",
       "url": "https://obligationfirst.org/agents.json",
-      "sha256": "1aa9f8c5700e2f99954baeab76feb8cd735c3b5446ab50bbcf8d57c722305a74"
+      "sha256": "e4edeff50086b6937767680386359b2102ac20496224840098497f80c299d601"
     },
     {
       "path": "docs/llms.txt",
       "url": "https://obligationfirst.org/llms.txt",
-      "sha256": "0a307e464bbc59f1758c46cfc5d5afedcc85c757728290b751c43984f7eb327d"
+      "sha256": "94bd5973698bb6116efdefc3d43afe7fe207fe0a99a71f36367878c96ed0a2fa"
     },
     {
       "path": "docs/llms-full.txt",

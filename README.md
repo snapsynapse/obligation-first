@@ -123,7 +123,7 @@ Every artifact an adopter or agent needs is dereferenceable at a stable URL:
 | [`/.well-known/security.txt`](https://obligationfirst.org/.well-known/security.txt) | Security disclosure (RFC 9116) |
 | [`/changelog.html`](https://obligationfirst.org/changelog.html) | Changelog (redirects to GitHub `CHANGELOG.md`) |
 
-The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. `https://w3id.org/of/v1/` will be filed at w3id.org as the permanent canonical IRI before v1.0 freeze.
+The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. `https://w3id.org/of/v1/` is the planned permanent vocabulary prefix and will resolve to `https://obligationfirst.org/v1/` once the w3id.org redirect is filed before v1.0 freeze.
 
 ## Repository layout
 
@@ -168,7 +168,7 @@ Current local stage: Obligation-First is operating as the validation and identif
 
 For anchor enrichment, run `npm run report:anchors` against the worked examples or `node scripts/report-anchor-graph.mjs <adopter-export> [...]` against sibling adopter exports.
 
-The IRI prefix `https://obligationfirst.org/v1/` is the resolution target. `https://w3id.org/of/v1/` is planned as the permanent canonical IRI; the w3id PR is targeted for filing before v1.0 freeze.
+The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. `https://w3id.org/of/v1/` is the planned permanent vocabulary prefix; the w3id PR is targeted for filing before v1.0 freeze.
 
 ## License
 

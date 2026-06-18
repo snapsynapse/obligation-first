@@ -23,6 +23,8 @@ Obligation-First is a small, opinionated upper schema and JSON-LD context for no
 - Roadmap: https://github.com/snapsynapse/obligation-first/blob/main/ROADMAP.md
 - Changelog: https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md
 - JSON-LD @context: https://obligationfirst.org/v1/context.jsonld
+- Live resolution target: https://obligationfirst.org/v1/
+- Planned permanent vocabulary prefix: https://w3id.org/of/v1/ (redirect not filed yet)
 - JSON Schemas: https://obligationfirst.org/v1/schema/{authority,instrument,term,obligation,proceeding,allegation,determination,executable-encoding}.schema.json
 - Authority schema: https://obligationfirst.org/v1/schema/authority.schema.json
 - Instrument schema: https://obligationfirst.org/v1/schema/instrument.schema.json

@@ -282,6 +282,8 @@ async function validateW3idResolutionClaims(failures) {
     "`https://w3id.org/of/v1/` resolves to `https://obligationfirst.org/v1/`",
     "https://w3id.org/of/v1/ resolves to https://obligationfirst.org/v1/",
     "The w3id IRI is canonical.",
+    "permanent canonical IRI",
+    "canonical IRI prefix",
   ];
 
   for (const rel of activeDocs) {

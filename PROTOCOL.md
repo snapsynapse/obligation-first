@@ -19,7 +19,7 @@ A shared upper schema for normative content, expressed as a JSON-LD `@context` a
 
 1. **Obligation-first modeling** — normative content is mapped through the Obligations it creates, interprets, or allocates, not through the text of the source document.
 2. **Bind to existing standards** — gist for upper ontology, LegalRuleML for deontic operators, Akoma Ntoso / ELI / ECLI / USLM for source-text IRIs. Reference, do not duplicate.
-3. **Permanent IRIs** — `https://w3id.org/of/v1/` is the canonical IRI prefix and will resolve to `https://obligationfirst.org/v1/` once the w3id.org redirect is filed (planned before v1.0 freeze; see ROADMAP). Until then, `https://obligationfirst.org/v1/` is the live resolution target and the only prefix whose resolution is CI-verified.
+3. **Permanent IRIs** — `https://w3id.org/of/v1/` is the planned permanent vocabulary prefix and will resolve to `https://obligationfirst.org/v1/` once the w3id.org redirect is filed (planned before v1.0 freeze; see ROADMAP). Until then, `https://obligationfirst.org/v1/` is the live resolution target and the only prefix whose resolution is CI-verified.
 4. **Small core, explicit extensions** — the spine, the proceeding strand, the deontic quartet. Everything else is a downstream extension.
 
 ## Entity model
@@ -369,12 +369,12 @@ Obligation-First follows [Semantic Versioning 2.0.0](https://semver.org/) with t
 
 ### IRI scheme
 
-The IRI prefix is versioned by major:
+The planned permanent vocabulary prefix is versioned by major:
 
-- v1.x → `https://w3id.org/of/v1/` (resolves to `https://obligationfirst.org/v1/`)
+- v1.x → `https://w3id.org/of/v1/` (will resolve to `https://obligationfirst.org/v1/` once the w3id.org redirect is filed)
 - v2.x → `https://w3id.org/of/v2/`
 
-Adopters bind to the major-version IRI, not to a specific minor/patch. A v1.5 record uses `@context: https://w3id.org/of/v1/`, not `https://w3id.org/of/v1.5/`.
+Adopters bind through the major-version context URL, not to a specific minor/patch. A v1.5 record uses `@context: https://obligationfirst.org/v1/`, not `https://obligationfirst.org/v1.5/`.
 
 ### Pre-v0.1 (current)
 
