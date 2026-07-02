@@ -65,6 +65,10 @@ async function main() {
   }
 
   console.log(`\n${results.length - failed}/${results.length} record sets semantically valid`);
+  if (results.length === 0) {
+    console.log("✗ no record sets found under examples/*/records/ — 0 record sets is a failure, not a pass");
+    process.exit(1);
+  }
   process.exit(failed > 0 ? 1 : 0);
 }
 

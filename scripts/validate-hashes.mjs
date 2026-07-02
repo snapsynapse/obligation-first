@@ -81,16 +81,46 @@ export function parseManifest(text) {
   return { files };
 }
 
+// Rewrites only the files: section; the header (bundle, bundle_version,
+// bundle_date, leading comments) passes through untouched. Comment lines
+// inside the files: section survive an --update: each comment block stays
+// attached to the entry that follows it, and comments whose entry no longer
+// exists are re-emitted at the end of the section.
 export function renderManifest(existingText, files) {
   const lines = existingText.split("\n");
   const filesLine = lines.findIndex((line) => line.trim() === "files:" || line.trim() === "files: {}");
   const prefix = filesLine === -1 ? lines : lines.slice(0, filesLine);
   while (prefix.length > 0 && prefix[prefix.length - 1] === "") prefix.pop();
 
+  const commentsBefore = new Map(); // entry key -> comment lines preceding it
+  const orphanComments = [];
+  if (filesLine !== -1) {
+    let pending = [];
+    for (const line of lines.slice(filesLine + 1)) {
+      if (!line.trim()) continue;
+      if (line.trim().startsWith("#")) {
+        pending.push(line);
+        continue;
+      }
+      const match = line.match(/^  ([^:]+): /);
+      if (match && pending.length > 0) {
+        if (Object.hasOwn(files, match[1])) {
+          commentsBefore.set(match[1], pending);
+        } else {
+          orphanComments.push(...pending);
+        }
+        pending = [];
+      }
+    }
+    orphanComments.push(...pending);
+  }
+
   const out = [...prefix, "", "files:"];
   for (const [rel, hash] of Object.entries(files).sort(([a], [b]) => a.localeCompare(b))) {
+    for (const comment of commentsBefore.get(rel) || []) out.push(comment);
     out.push(`  ${rel}: ${hash}`);
   }
+  out.push(...orphanComments);
   return `${out.join("\n")}\n`;
 }
 

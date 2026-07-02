@@ -20,6 +20,7 @@ import { createHash } from "node:crypto";
 import { readFile, readdir } from "node:fs/promises";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import path from "node:path";
+import { parseKeyValueManifest } from "./lib/manifest.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -36,17 +37,6 @@ const REQUIRED_MANIFEST_KEYS = [
   "spec-version-range",
   "canonical-url",
 ];
-
-function parseKeyValueManifest(text) {
-  const out = {};
-  for (const [index, line] of text.split("\n").entries()) {
-    if (!line.trim()) continue;
-    const match = line.match(/^([a-z0-9-]+): (.+)$/);
-    if (!match) throw new Error(`malformed manifest line ${index + 1}`);
-    out[match[1]] = match[2];
-  }
-  return out;
-}
 
 async function listProfiles() {
   let entries;

@@ -54,11 +54,11 @@ Authorities are typically reused across multiple matters (the BCCRT hears many c
 The pattern, shown with AI Incident Law's actual live grammar (jurisdiction in a typed field, never in the slug):
 
 ```yaml
-"@context": "https://obligationfirst.org/v1/"
+"@context": "https://obligationfirst.org/v1/context.jsonld"
 "@type": "of:Authority"
 "@id": "https://aiincidentlaw.org/authority/british-columbia-civil-resolution-tribunal.json"
 organization:
-  "@type": "gist:Court"
+  "@type": "gist:GovernmentOrganization"
   name: "British Columbia Civil Resolution Tribunal"
 authority_basis:
   kind: "judicial"

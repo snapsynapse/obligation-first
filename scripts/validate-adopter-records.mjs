@@ -5,8 +5,10 @@
  *
  * Usage:
  *   node scripts/validate-adopter-records.mjs path/to/records [path/to/other-records]
+ *   node scripts/validate-adopter-records.mjs           # auto-discover examples/*\/records
  */
 
+import { readdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import {
@@ -19,11 +21,28 @@ import {
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
 const schemaDir = path.join(repoRoot, "schema");
-const dirs = process.argv.slice(2);
+
+async function discoverExampleRecordDirs() {
+  const examplesDir = path.join(repoRoot, "examples");
+  const dirs = [];
+  for (const entry of await readdir(examplesDir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    try {
+      const recordsDir = path.join(examplesDir, entry.name, "records");
+      await readdir(recordsDir);
+      dirs.push(recordsDir);
+    } catch (err) {
+      if (err.code !== "ENOENT") throw err;
+    }
+  }
+  return dirs.sort();
+}
+
+const dirs = process.argv.slice(2).length > 0 ? process.argv.slice(2) : await discoverExampleRecordDirs();
 
 if (dirs.length === 0) {
-  console.error("Usage: node scripts/validate-adopter-records.mjs <records-dir> [records-dir...]");
-  process.exit(2);
+  console.error("No records directories found under examples/*/records/ and none given on the command line.");
+  process.exit(1);
 }
 
 const schemas = await loadSchemas(schemaDir);
@@ -32,7 +51,20 @@ let failed = 0;
 
 for (const dirArg of dirs) {
   const recordsDir = path.resolve(process.cwd(), dirArg);
-  const entries = await loadRecordDir(recordsDir, { root: repoRoot });
+  let entries;
+  try {
+    entries = await loadRecordDir(recordsDir, { root: repoRoot });
+  } catch (err) {
+    if (err.code !== "ENOENT") throw err;
+    console.log(`✗ ${path.relative(repoRoot, recordsDir)}: records directory does not exist`);
+    failed += 1;
+    continue;
+  }
+  if (entries.length === 0) {
+    console.log(`✗ ${path.relative(repoRoot, recordsDir)}: contains 0 records`);
+    failed += 1;
+    continue;
+  }
   total += entries.length;
 
   const shapeFailures = validateRecordShapes(entries, schemas);

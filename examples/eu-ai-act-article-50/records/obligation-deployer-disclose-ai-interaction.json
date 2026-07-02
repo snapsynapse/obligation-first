@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Requirement",
   "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/obligation/art-50-1-deployer-disclose-ai-interaction",
   "title": "Ensure natural persons are informed they are interacting with an AI system",

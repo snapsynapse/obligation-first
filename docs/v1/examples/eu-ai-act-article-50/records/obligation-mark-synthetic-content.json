@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Requirement",
   "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/obligation/art-50-2-mark-synthetic-content",
   "title": "Mark and make detectable AI-generated or manipulated content",

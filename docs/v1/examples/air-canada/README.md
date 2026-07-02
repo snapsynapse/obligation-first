@@ -44,7 +44,7 @@ Every record in this example follows the worked-example convention in [reference
 "@type": of:Authority
 "@id": https://obligationfirst.org/v1/examples/air-canada/authority/bccrt
 organization:
-  "@type": gist:Court
+  "@type": gist:GovernmentOrganization
   name: British Columbia Civil Resolution Tribunal
 authority_basis:
   kind: judicial
@@ -56,7 +56,7 @@ sameAs:
   - https://aiincidentlaw.org/authority/british-columbia-civil-resolution-tribunal.json
 ```
 
-The BCCRT is not a government department but a quasi-judicial tribunal. It binds cleanly to `gist:Court`, with `authority_basis.kind = judicial`. The recursive Authority basis works. The `instrument_ref` points at a neutral example IRI for the BC Civil Resolution Tribunal Act — an illustrative basis with no record of its own (the live adopter does not publish that statute as a separate entity, so there is nothing to crosswalk to). The `sameAs` carries the live BCCRT authority the adopter actually serves.
+The BCCRT is not a government department but a quasi-judicial tribunal. gist 14.1.0 defines no Court class, so it binds to `gist:GovernmentOrganization` with `authority_basis.kind = judicial` carrying the quasi-judicial nature. The recursive Authority basis works. The `instrument_ref` points at a neutral example IRI for the BC Civil Resolution Tribunal Act — an illustrative basis with no record of its own (the live adopter does not publish that statute as a separate entity, so there is nothing to crosswalk to). The `sameAs` carries the live BCCRT authority the adopter actually serves.
 
 ### 2. Proceeding
 

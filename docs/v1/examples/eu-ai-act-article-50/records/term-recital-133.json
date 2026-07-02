@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Term",
   "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/recital-133",
   "text": "Techniques and methods to mark AI-generated content - watermarks, metadata identifications, cryptographic methods for proving provenance and authenticity of content, logging methods, or fingerprints - should be sufficiently reliable, interoperable, effective and robust as far as technically feasible, taking into account available techniques and the generally acknowledged state of the art.",

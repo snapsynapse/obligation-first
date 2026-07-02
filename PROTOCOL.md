@@ -1,7 +1,7 @@
 ---
 "@type": "https://w3id.org/semanticarts/ns/ontology/gist/Specification"
 title: "Obligation-First Protocol"
-version: "0.4.1"
+version: "0.4.2"
 license: "CC-BY-4.0"
 created: 2026-05-04
 modified: 2026-06-09
@@ -9,7 +9,7 @@ modified: 2026-06-09
 
 # Obligation-First Protocol
 
-> **Status: v0.4.1.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). The naming-profile format is defined as of v0.4.0 (`schema/naming-profile.schema.json`, served at `/.well-known/obligation-first-naming-profile.jsonld`). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the crosswalk schema additions.
+> **Status: v0.4.2.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). The naming-profile format is defined as of v0.4.0 (`schema/naming-profile.schema.json`, served at `/.well-known/obligation-first-naming-profile.jsonld`). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the crosswalk schema additions.
 
 ## What this protocol specifies
 
@@ -193,7 +193,7 @@ Obligation-First does not specify a source-text format. It references existing s
 - **ECLI** (European Case Law Identifier) for case IRIs
 - **USLM** (United States Legislative Markup) for US federal statutes
 
-When a Term has a canonical source-text representation in any of these, it SHOULD carry the standard's IRI as a typed crosswalk property (`akn_uri`, `eli_uri`, `ecli`), not as its `@id`. Record `@id` values are always adopter-local and permanent; see "`@id` federation and crosswalks" above. (This reverses earlier guidance that a Term's `@id` should be the standard IRI. No live adopter ever did this; the spec is corrected to match practice and to keep all `@id` values federated.)
+When a Term has a canonical source-text representation in any of these, it SHOULD carry the standard's IRI as a typed crosswalk property (`akn_uri`, `eli_uri`, `ecli_uri`), not as its `@id`. Record `@id` values are always adopter-local and permanent; see "`@id` federation and crosswalks" above. (This reverses earlier guidance that a Term's `@id` should be the standard IRI. No live adopter ever did this; the spec is corrected to match practice and to keep all `@id` values federated.)
 
 ## Naming profiles and identifier crosswalks
 
@@ -217,7 +217,7 @@ The profile MUST be served at the well-known path
 /.well-known/obligation-first-naming-profile.jsonld
 ```
 
-with `Content-Type: application/ld+json` over HTTPS. The profile is a JSON-LD document of `@type` `of:NamingProfile`, referencing `@context: https://obligationfirst.org/v1/`, and MUST validate against [`schema/naming-profile.schema.json`](schema/naming-profile.schema.json) (published at `https://obligationfirst.org/v1/schema/naming-profile.schema.json`).
+with `Content-Type: application/ld+json` over HTTPS. The profile is a JSON-LD document of `@type` `of:NamingProfile`, referencing `@context: https://obligationfirst.org/v1/context.jsonld`, and MUST validate against [`schema/naming-profile.schema.json`](schema/naming-profile.schema.json) (published at `https://obligationfirst.org/v1/schema/naming-profile.schema.json`).
 
 The profile is descriptive, not aspirational: `void:uriRegexPattern` MUST match the `@id` values the adopter actually mints today, including any served-file suffix (e.g. `.json`) the adopter currently uses. Where the adopter's scheme diverges from the spec's suffixless-canonical recommendation (see decision #19), the profile records reality; the recommendation is a target, not a gate.
 
@@ -227,7 +227,7 @@ A worked profile and its sidecar are in [`examples/naming-profiles/`](examples/n
 
 ```json
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:NamingProfile",
   "profileVersion": "1.0.0",
   "appliesTo": "obligation-first 0.4.x",
@@ -274,7 +274,7 @@ A consumer resolving cross-adopter links SHOULD locate an adopter's profile via 
 
 ### Jurisdiction
 
-Every entity with a jurisdiction carries it as a typed `jurisdiction` field using ISO 3166-2 (or ISO 3166-1 for national and supranational bodies). Jurisdiction is never a slug component. MUST at Level 2.
+Every entity with a jurisdiction carries it as a typed `jurisdiction` field using ISO 3166-2 (or ISO 3166-1 for national and supranational bodies). The `ref` value is the lowercase form of the ISO 3166 code — `us-co`, `ca-bc`, `eu`, `us` — and the entity schemas enforce the lowercase pattern. Jurisdiction is never a slug component. MUST at Level 2.
 
 ### Identifier crosswalk matrix
 
@@ -300,7 +300,7 @@ Requirements are RFC 2119 and conditional on coverage; an adopter is never faile
 | Determination | ECLI / neutral citation | MUST | citable court decision |
 | Determination | urn:lex / source-document id | SHOULD | administrative determination |
 
-The crosswalk fields above are optional at the JSON-Schema layer (`additionalProperties` already admits them); the matrix governs Level 3 conformance, not schema validity. Formal schema and `context.jsonld` additions for the new crosswalk properties are tracked as follow-on work in `reference/iri-naming-and-crosswalks.md`.
+The crosswalk fields above are optional at the JSON-Schema layer; the matrix governs Level 3 conformance, not schema validity. The crosswalk properties (`sameAs`, `exactMatch`, `neutral_citation`, `urn_lex`, `jurisdiction`, and the `*_uri` identifiers) are declared in `context.jsonld` and in the per-entity schemas, and entity records remain open (`additionalProperties: true`) for crosswalks not yet declared.
 
 ## Defeasibility semantics
 
@@ -333,7 +333,7 @@ The subproperty relation means any assertion of `of:rebuts(A, B)` or `of:undercu
 
 Optional: `version`, `engine_version`, `notes`.
 
-A Term or Obligation MAY have multiple `executableEncoding` references — one per engine. The schema does not constrain which engine adopters use; v0.x can expand the `kind` enum without breaking changes.
+A Term or Obligation MAY have multiple `executableEncoding` references — one per engine. The entity schemas accept either a single encoding object or a non-empty array of them. The schema does not constrain which engine adopters use; v0.x can expand the `kind` enum without breaking changes.
 
 ## Conformance levels
 
@@ -343,7 +343,7 @@ An adopter binds to Obligation-First at one of three levels (level definitions a
 
 The adopter publishes records using `of:` IRIs as `@id` and `@type` values, but does not validate against the JSON Schemas. Records are discoverable by any consumer that resolves IRIs.
 
-Required: `@id` and `@type` use canonical `of:` IRIs. JSON-LD `@context` references `https://obligationfirst.org/v1/`.
+Required: `@id` and `@type` use canonical `of:` IRIs. JSON-LD `@context` references `https://obligationfirst.org/v1/context.jsonld` — the context document itself, which serves `application/ld+json` and is processable by any JSON-LD processor. (The bare namespace URL `https://obligationfirst.org/v1/` serves the HTML landing page and is not a valid context reference.) Records published prior to v0.4.x used the bare namespace form as their `@context`; consumers MAY accept it for those legacy records, but new records MUST reference the context document.
 
 ### Level 2 — Schema-conformant (recommended)
 
@@ -374,7 +374,7 @@ The planned permanent vocabulary prefix is versioned by major:
 - v1.x → `https://w3id.org/of/v1/` (will resolve to `https://obligationfirst.org/v1/` once the w3id.org redirect is filed)
 - v2.x → `https://w3id.org/of/v2/`
 
-Adopters bind through the major-version context URL, not to a specific minor/patch. A v1.5 record uses `@context: https://obligationfirst.org/v1/`, not `https://obligationfirst.org/v1.5/`.
+Adopters bind through the major-version context URL, not to a specific minor/patch. A v1.5 record uses `@context: https://obligationfirst.org/v1/context.jsonld`, not `https://obligationfirst.org/v1.5/context.jsonld`.
 
 ### Pre-v0.1 (current)
 
@@ -428,7 +428,6 @@ Round-tripping the three examples surfaced these findings:
 **Deferred to v0.2:**
 - Typed `of:Remedy` entity for monetary awards and other consequences
 - Closed party-role vocabulary for `Allegation.asserted_by`
-- Symmetric `of:violationOf` relation (parallel to `of:creates`) for Reparations
 - Closed vocabularies for `duty_holder_type`, `trigger` (kept repo-local in v0.1)
 - LegalRuleML encoding pointer (`of:legalRuleMLEncoding` parallel to `of:executableEncoding`)
 - Priority hierarchies per LegalRuleML §7.4 (rebut/undercut sub-types landed in v0.2 as `of:rebuts` / `of:undercuts`; explicit priority chains remain deferred)

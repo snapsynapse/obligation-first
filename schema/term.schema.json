@@ -24,7 +24,17 @@
     "defeats": {
       "type": "array",
       "items": { "type": "string", "format": "uri" },
-      "description": "IRIs of of:Term records this Term overrides per defeasibility semantics."
+      "description": "IRIs of of:Term records this Term overrides per defeasibility semantics. General/fallback predicate; use rebuts or undercuts when the LegalRuleML §7.4 distinction is known."
+    },
+    "rebuts": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "IRIs of of:Term records this Term rebuts. Subproperty of of:defeats (v0.2): the defeating Term denies the *conclusion* of the defeated Term — a counter-rule asserting the opposite outcome (LegalRuleML §7.4). Any of:rebuts assertion also entails of:defeats."
+    },
+    "undercuts": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "IRIs of of:Term records this Term undercuts. Subproperty of of:defeats (v0.2): the defeating Term denies the *applicability* of the defeated Term in this context — an exception that says the rule doesn't fire here, without contradicting it elsewhere (LegalRuleML §7.4). Any of:undercuts assertion also entails of:defeats."
     },
     "anchors": {
       "type": "array",
@@ -32,10 +42,28 @@
       "description": "IRIs of of:Term records this Term interprets or references. Used by JIAs and other interpretive Instruments whose Terms ground out in a statutory Term. Cross-portfolio joins (PubLedge JIA Term → EveryAILaw statutory Term) use this predicate."
     },
     "executableEncoding": {
-      "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json",
-      "description": "Optional pointer to an executable encoding of this Term's logic."
+      "anyOf": [
+        { "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json" },
+        {
+          "type": "array",
+          "items": { "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json" },
+          "minItems": 1
+        }
+      ],
+      "description": "Optional pointer to one or more executable encodings of this Term's logic. A single object or a non-empty array — a Term MAY carry multiple encodings, one per engine (PROTOCOL.md 'ExecutableEncoding shape')."
     },
-    "akn_uri": { "type": "string", "format": "uri" }
+    "akn_uri": { "type": "string", "format": "uri" },
+    "sameAs": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "owl:sameAs crosswalk IRIs: external records identical to this one (e.g. a live adopter export, a Wikidata entity)."
+    },
+    "exactMatch": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "skos:exactMatch crosswalk IRIs: external concepts interchangeably usable with this record. Weaker than owl:sameAs; preferred for cross-scheme concept joins."
+    },
+    "notes": { "type": "string", "description": "Free-text editorial or provenance notes about this record." }
   },
   "additionalProperties": true
 }

@@ -36,7 +36,43 @@
           "description": "IRIs of of:Obligation records this Obligation interprets, references, or re-allocates from. Used by JIAs and other interpretive Instruments whose Obligations ground out in a statutory or regulatory Obligation. Cross-portfolio joins (PubLedge JIA Obligation → EveryAILaw statutory Obligation) use this predicate."
         },
         "executableEncoding": {
-          "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json"
+          "anyOf": [
+            { "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json" },
+            {
+              "type": "array",
+              "items": { "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json" },
+              "minItems": 1
+            }
+          ],
+          "description": "Optional pointer to one or more executable encodings of this Obligation's logic. A single object or a non-empty array — an Obligation MAY carry multiple encodings, one per engine (PROTOCOL.md 'ExecutableEncoding shape')."
+        },
+        "violationOf": {
+          "type": "string",
+          "format": "uri",
+          "description": "IRI of the primary of:Obligation whose violation this record relates to. Symmetric/inverse predicate of triggers_on_violation_of (added in v0.2): adopters MAY assert the violation relation from either side; if both directions are present they must be consistent. Lets SPARQL consumers traverse the relation from the primary-Obligation side without walking the trigger field."
+        },
+        "jurisdiction": {
+          "type": "object",
+          "required": ["@type", "ref"],
+          "properties": {
+            "@type": { "const": "gist:Jurisdiction" },
+            "ref": {
+              "type": "string",
+              "pattern": "^[a-z]{2}(-[a-z0-9]{1,3})?$",
+              "description": "Jurisdiction code: lowercase form of an ISO 3166-1 alpha-2 country/supranational code or an ISO 3166-2 subdivision code.",
+              "examples": ["us-co", "ca-bc", "eu", "us"]
+            }
+          }
+        },
+        "sameAs": {
+          "type": "array",
+          "items": { "type": "string", "format": "uri" },
+          "description": "owl:sameAs crosswalk IRIs: external records identical to this one (e.g. a live adopter export, a Wikidata entity)."
+        },
+        "exactMatch": {
+          "type": "array",
+          "items": { "type": "string", "format": "uri" },
+          "description": "skos:exactMatch crosswalk IRIs: external concepts interchangeably usable with this record (e.g. a EuroVoc concept). Weaker than owl:sameAs; preferred for cross-scheme concept joins."
         }
       }
     },

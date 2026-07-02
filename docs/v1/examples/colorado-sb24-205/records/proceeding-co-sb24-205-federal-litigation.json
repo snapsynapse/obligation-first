@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Proceeding",
   "@id": "https://obligationfirst.org/v1/examples/colorado-sb24-205/proceeding/federal-litigation",
   "title": "Federal litigation challenging Colorado SB 24-205 enforcement",

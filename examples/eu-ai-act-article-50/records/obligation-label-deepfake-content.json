@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Requirement",
   "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/obligation/art-50-4-label-deepfake-content",
   "title": "Disclose that deep fake image, audio or video content is artificially generated or manipulated",

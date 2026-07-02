@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Term",
   "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/guidelines-section-7",
   "text": "AI-generated or manipulated text published for the purpose of informing the public on matters of public interest includes news articles, reports, summaries or analyses generated substantially by AI systems. Deployers should identify where text originates from AI generation or manipulation in a clear and conspicuous manner. The human review exception under Article 50(5) requires that a natural person with editorial responsibility and competence has reviewed the content and could have independently produced it, ensuring that no false impression of purely human authorship is created.",

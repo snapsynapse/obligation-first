@@ -5,45 +5,21 @@
  * the schemas. Run via `npm run validate`.
  */
 
-import Ajv2020 from "ajv/dist/2020.js";
-import addFormats from "ajv-formats";
 import { readFile, readdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+// TYPE_TO_SCHEMA (the @type -> schema-file map; the obligation schema's
+// deontic-quartet dispatch happens via its own `oneOf`, so all four obligation
+// types map to the same schema file) and the AJV loader are shared with the
+// adopter kit so the two cannot drift.
+import { TYPE_TO_SCHEMA, loadSchemas } from "./lib/adopter-kit.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
 const schemaDir = path.join(repoRoot, "schema");
 const examplesDir = path.join(repoRoot, "examples");
 
-// Map @type values to schema files. The obligation schema's deontic-quartet
-// dispatch happens via its own `oneOf`, so all four obligation types map
-// to the same schema file.
-const TYPE_TO_SCHEMA = {
-  "of:Authority": "authority.schema.json",
-  "of:Instrument": "instrument.schema.json",
-  "of:Term": "term.schema.json",
-  "of:Requirement": "obligation.schema.json",
-  "of:Restriction": "obligation.schema.json",
-  "of:Permission": "obligation.schema.json",
-  "of:Reparation": "obligation.schema.json",
-  "of:Proceeding": "proceeding.schema.json",
-  "of:Allegation": "allegation.schema.json",
-  "of:Determination": "determination.schema.json",
-};
-
-const ajv = new Ajv2020({ strict: false, allErrors: true });
-addFormats(ajv);
-
-// Load every schema. They cross-reference via $id so all must be added
-// before any can compile.
-const schemaFiles = (await readdir(schemaDir)).filter((f) => f.endsWith(".schema.json"));
-const schemaById = {};
-for (const f of schemaFiles) {
-  const schema = JSON.parse(await readFile(path.join(schemaDir, f), "utf8"));
-  ajv.addSchema(schema, schema.$id);
-  schemaById[f] = schema.$id;
-}
+const { ajv, schemaByFile: schemaById } = await loadSchemas(schemaDir);
 
 async function* walkRecords(dir) {
   let entries;
@@ -113,6 +89,7 @@ for await (const recordPath of walkRecords(examplesDir)) {
 
 console.log(`\n${total - failed}/${total} valid`);
 if (total === 0) {
-  console.log("(no records found under examples/*/records/)");
+  console.log("✗ no records found under examples/ — a validation run over 0 records is a failure, not a pass");
+  process.exit(1);
 }
 process.exit(failed > 0 ? 1 : 0);

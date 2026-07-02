@@ -25,86 +25,86 @@
 #   - Build outputs
 
 bundle: obligation-first
-bundle_version: 0.4.1
-bundle_date: 2026-06-02
+bundle_version: 0.4.2
+bundle_date: 2026-07-01
 
 files:
-  examples/air-canada/README.md: dc282d312df513b2ca8cc06b11b02ed92de341f031df063e5582046a97b317a9
-  examples/air-canada/records/allegation-misrep.json: 54ecb9edf241c62b44692febd457c0ca84ef753824fc6681b8db928bc7a0bd91
-  examples/air-canada/records/allegation-reliance.json: 3af0014302a03d397cc9738f69060e719ed39a79bb2b42b4ecd9dc2362a4ae27
-  examples/air-canada/records/authority-bccrt.json: c3ada216c1267e72926b079f2042276ad8add052e732b8f3f57c4ab74fd57d22
-  examples/air-canada/records/determination-bccrt-149.json: 3d410d15316ce4dc78e588cce4bc1705e1aa20832e13ef5fb36a893d594fb605
-  examples/air-canada/records/proceeding-moffatt.json: 085a8b16adb52f76e49e7fe5211644fa7a7574f128f0d5a1b71d4a416e00cc57
+  examples/air-canada/README.md: b44f7daf78f051e9ceeabfe53d70a5546aa11a82a907c8b349366d4d4de9ab1c
+  examples/air-canada/records/allegation-misrep.json: 53ff685e17083ff55327e2b814be99a64a8ff2d163c32fc79352b137651e7c6a
+  examples/air-canada/records/allegation-reliance.json: 50703879c53f4a17cbeb182fb15340eaf357df1b7894c7fc080e307bf60accd9
+  examples/air-canada/records/authority-bccrt.json: 258c6c1d591f071e5c1a7c4061a9e66a7b7ee2660cf080bf17239ce1a76c0e4a
+  examples/air-canada/records/determination-bccrt-149.json: aed7474d369d98cf3e3b6963e2b13ff01c27b9d1a6f3c6857656b5ffd959dd4e
+  examples/air-canada/records/proceeding-moffatt.json: 78cc3b8b5fe24dee20979108e9f3cb1143c8594cf8247c969d35e82a7323e63b
   examples/colorado-sb24-205/README.md: 5fd37c8f40706cb975d8f675957291270fae9268d94424fa37dc85b7029bfb02
-  examples/colorado-sb24-205/records/allegation-co-sb24-205-enforcement-challenge.json: eb2b79ed0519b006123d21b9c7e5ec83d1ebc763afa9d350885be8e5653e5f19
-  examples/colorado-sb24-205/records/authority-co-attorney-general.json: fb6e00813e2b8ba61d94430cc1864f2c1c92e2d10072d44224d9efcda796c6b3
-  examples/colorado-sb24-205/records/authority-co-general-assembly.json: c6105cfdb41a68159714d5674d111478cdba48e8defedba827fabe6d5892a635
-  examples/colorado-sb24-205/records/authority-us-co-ai-policy-work-group.json: 92988f74ce08cd3df7b3c4723375e9cba335d881594a43843be16f4349423300
-  examples/colorado-sb24-205/records/authority-us-co-federal-district-court.json: c3e95ba0a7a62d01c833ddb77acb5a548573ff0ddc2bd102d17fcb6c95ed5924
-  examples/colorado-sb24-205/records/determination-co-ag-non-enforcement-statement.json: db528a06f6347942c744438c3c68207c5a3165fcd1799a38803ed98a9b51016d
-  examples/colorado-sb24-205/records/determination-co-sb24-205-stay-order.json: f1f714bf17d0ee97f457bf740781bdfcbc6294354d7b2c6ec7e530187bfd6b04
-  examples/colorado-sb24-205/records/instrument-co-sb24-205.json: c0c28124ec95c32bcc84c9284068afd996114fef7cff0f4c30bce4f4155d2a5b
-  examples/colorado-sb24-205/records/instrument-co-sb26-189.json: feb64c4683b3cb5581c9751a3be319df88583833d9827bce4c4ed8c04123e4fa
-  examples/colorado-sb24-205/records/obligation-reasonable-care.json: f40d26c477b92ebfeea5e95befe30cf4a977b0ced610c485a6eb7181b6ccd43e
-  examples/colorado-sb24-205/records/obligation-violation-reparation.json: 25b07f66f3fb6b18826b9c83c32fa4f25b10611e4c83e423ab12751c00d6ea32
-  examples/colorado-sb24-205/records/proceeding-co-sb24-205-federal-litigation.json: 59ded324ffa9710f4767e2b6c95011eaa4140cdc6c66324c1e3422c87ad0df5f
-  examples/colorado-sb24-205/records/term-co-sb24-205-1703-duty-of-care.json: 8c9b8409d3fca27b0a04d85ebaa0a985daadf4445b8cea77984cfd8ff4c571e6
+  examples/colorado-sb24-205/records/allegation-co-sb24-205-enforcement-challenge.json: 36771aae364f3b09fb896da2fca1c11c21f28c9a4c73bc987e6a3a9bcbc08065
+  examples/colorado-sb24-205/records/authority-co-attorney-general.json: 517b833196d9f26ec687f0ecdb5031e49360df2019fb179652511ca46633949b
+  examples/colorado-sb24-205/records/authority-co-general-assembly.json: 671471978c81529c690f4d288d957f125dab04a1f8807f6903a8b34734102d36
+  examples/colorado-sb24-205/records/authority-us-co-ai-policy-work-group.json: c44c740a77ef4e43b530b9fd53a6b11da3941a8e37f3b7a6627aa55feb3d68b3
+  examples/colorado-sb24-205/records/authority-us-co-federal-district-court.json: 9a5be32491950cd54be2fe82f8ecfe9902e0a039b9264f97f4c463211e130035
+  examples/colorado-sb24-205/records/determination-co-ag-non-enforcement-statement.json: 36cc081cb3b79286c1b5c3e9560c5942998ed48f5f8c604f810366c86a936d4b
+  examples/colorado-sb24-205/records/determination-co-sb24-205-stay-order.json: 445de06f0466c58a8536cb9ecd5b3e6930e343eab6238a90c64bb4ea32f448f0
+  examples/colorado-sb24-205/records/instrument-co-sb24-205.json: 739451f28d1ae3c8b17bf04dbd80c59aae39248495960bac38b83765cad215f7
+  examples/colorado-sb24-205/records/instrument-co-sb26-189.json: 6c1853f50445d18aa3f50b4734204d881e30a29679a49c2308989113b15d0837
+  examples/colorado-sb24-205/records/obligation-reasonable-care.json: 96d92a430e1b5f12d11dd1150901688bc320f726808bc1c8a31e6c2e1619ef58
+  examples/colorado-sb24-205/records/obligation-violation-reparation.json: 123c63ed5724cf5fd1cb441eda27b680133b4257a44023fba6ee73e217799b30
+  examples/colorado-sb24-205/records/proceeding-co-sb24-205-federal-litigation.json: 6f8e331eb4310ba78215d9522a9a91413b563a6359b90c2b64ab348a993c65c4
+  examples/colorado-sb24-205/records/term-co-sb24-205-1703-duty-of-care.json: 82295c26debea1591a33119e2d14b2840e7d271b28fdd74483c721a4c04a55c3
   examples/eu-ai-act-article-50/README.md: 83cdf94db635d9b3edcfd22166fa89e9610bc92a223dd5db799360643babc597
-  examples/eu-ai-act-article-50/records/authority-eu-commission.json: 27039fe240f4eced6b0c1757f863c528fc7d096f3da062a0d601cfcb7d37ab4f
-  examples/eu-ai-act-article-50/records/authority-eu-parliament-council.json: 7e7340d0bb0862e3824e4c9602058824232005f0a33ca4ea727dd74201541a9c
-  examples/eu-ai-act-article-50/records/instrument-eu-ai-act.json: 257c438b9558bd9a86ba0b2e5ed93099e8f2c0a1325b78fff44f1a095a87940a
-  examples/eu-ai-act-article-50/records/instrument-eu-art50-cop.json: 8b4edf53349e3645f30db45f28a0359532058166579023d56d766936993c75c5
-  examples/eu-ai-act-article-50/records/instrument-eu-art50-guidelines.json: c1cf22ebe5b6846764cca7967586113991347aae3fe11c14ec4f908235eb923b
-  examples/eu-ai-act-article-50/records/obligation-deployer-disclose-ai-interaction.json: 6a746e85acba30764a46ad494a22bd42f3e4c06812b72b41cc7923ca403a07a4
-  examples/eu-ai-act-article-50/records/obligation-disclose-ai-generated-text.json: 96e3c7b52138c139636268ebf3abeaf80048ccedc41ed29d187e9074bba47200
-  examples/eu-ai-act-article-50/records/obligation-disclose-emotion-biometric.json: 28f5739280f0146d1396278db79a694b3a0517da854d8b96eda04c2c666db0fa
-  examples/eu-ai-act-article-50/records/obligation-label-deepfake-content.json: 2f6b51726f2e4b48b1c7fdd52eca17fa943c8d9914e0cb6f96871a16ab32a19b
-  examples/eu-ai-act-article-50/records/obligation-mark-synthetic-content.json: 7f5f3a5b9ab3e7ffca3668b38d73c72c5cea9a4c35d6237fcc2c118f0e51736f
-  examples/eu-ai-act-article-50/records/obligation-provider-design-for-disclosure.json: 058195d2f23a70db0a387f0ed7f2846aa69bedff7a5b173b8ef52a2a9bee50ae
-  examples/eu-ai-act-article-50/records/term-art-50-1.json: ac6d1ec7d5979272e3be0ea34c9846753d72f87c96fb086240f3511641517c58
-  examples/eu-ai-act-article-50/records/term-art-50-2.json: 3ee9fa3e910ef534d142b6e8f4504aedb02d00648a992089e6bc60f749269ab0
-  examples/eu-ai-act-article-50/records/term-art-50-3.json: 02859ae407e5174c364856657f20642d51dd11c3a304cd14371d2eed9c3790f5
-  examples/eu-ai-act-article-50/records/term-art-50-4.json: f8654c9d4e16d8ff79ffacd569140d87afe18e68f4564387f3e473d7f9d26fdb
-  examples/eu-ai-act-article-50/records/term-art-50-5.json: be7e2231d40e19cd780a83bda806b10f9b5f8aa0c22c3cc08f91914ccc121de4
-  examples/eu-ai-act-article-50/records/term-guidelines-4-2-1-para69.json: cbe787677bd483699a02ddf056c855cedd63625e34d85a2b3066db657bf6c0ef
-  examples/eu-ai-act-article-50/records/term-guidelines-section-3-chatbot-disclosure.json: b354276e1a6bb5741370244a3b8b1f94e8040a6391f9c4e51c69e8800070d29c
-  examples/eu-ai-act-article-50/records/term-guidelines-section-5-emotion-biometric.json: ba12e01785b0323808d400cdbf910f35a8a0cd73743ee00b7a85265f2a29e735
-  examples/eu-ai-act-article-50/records/term-guidelines-section-6-deepfakes.json: d16d9504ac59be935218bb4d4effa1eb05c0e0e9000f4b6938cd2ec83cd788b7
-  examples/eu-ai-act-article-50/records/term-guidelines-section-7-ai-text.json: 775ef3c6e330232781c9d5fc6702b349a2340ee49a4c31c6437ac5fc6d713d32
-  examples/eu-ai-act-article-50/records/term-recital-132.json: 8d4a2ec3d8581722fe2646c1a44cdbf278de632d964bc66f09ab5fe1bcdd0d83
-  examples/eu-ai-act-article-50/records/term-recital-133.json: 661b84b11ce46fd91e3150b4ed7977deb463b34cba731711e74751017208fb28
-  examples/eu-ai-act-article-50/records/term-recital-134.json: 4094132681b26337ae28053d3c24f16646c6f637b0d8ae0390ac1a2d6a5f232d
-  examples/eu-ai-act-article-50/records/term-recital-135.json: 6d892f000bcff9a53f7e5cf00a10be2a7c10f5bcdaa6a425c14d393d43f32b49
-  examples/eu-ai-act-article-50/records/term-recital-136.json: 9b1b79d5b18ebd03c3de4fb37943be093f66a1d98784d2791cf0f8eeab276d55
-  examples/naming-profiles/everyailaw-manifest.txt: 07607d79bf20134a88eee9ee685ff0436ed7e30b3bf751e2eeb0311655e5d4c8
-  examples/naming-profiles/everyailaw.jsonld: a160a35743fc48181a7a9ea4e79e6f945eb10fc7d416fea8680c34fa6d150e38
+  examples/eu-ai-act-article-50/records/authority-eu-commission.json: 0c7e3a5c68f64ecd295c0c24aea8d947ed49bef7d5bd3dc771f8afdecec1acc2
+  examples/eu-ai-act-article-50/records/authority-eu-parliament-council.json: eb343faf6a454da35ca72b7272276da78f029757af5c6d9d01b0d69578b284ac
+  examples/eu-ai-act-article-50/records/instrument-eu-ai-act.json: 707aa2a185c62b194c048de03668de1659f98bad4fa6f5ef0fd49f96218ba4ca
+  examples/eu-ai-act-article-50/records/instrument-eu-art50-cop.json: dbb47bc23285aa1d880e146b566c9e19151ac6504521b7502414c533a5bae97a
+  examples/eu-ai-act-article-50/records/instrument-eu-art50-guidelines.json: 130d65a64b8940b9dd409747890e2cb98055baff9813cc7e090f265b48fae1b8
+  examples/eu-ai-act-article-50/records/obligation-deployer-disclose-ai-interaction.json: 595f0c659c943a504dfa7ba52a25e2f43b961eead6baf264b7c75aef60861909
+  examples/eu-ai-act-article-50/records/obligation-disclose-ai-generated-text.json: 9fa9c3a887dd6bf80681b3330d5a104269ba538f1280506af79cb9daca704e20
+  examples/eu-ai-act-article-50/records/obligation-disclose-emotion-biometric.json: 123f6484e293d3aacf9c7053c27c2716903bb7378ab97cfc9d9c0a61213f5e19
+  examples/eu-ai-act-article-50/records/obligation-label-deepfake-content.json: c68855b0aa305b3913c4347d59895df318713bd053bc8a45e7c18a5f47aeb9d0
+  examples/eu-ai-act-article-50/records/obligation-mark-synthetic-content.json: b23e2405780ee29d8bc442a1bc7c07a81657b1b88622b39534d28246c4f8ba0c
+  examples/eu-ai-act-article-50/records/obligation-provider-design-for-disclosure.json: 9b3a6aee3fe13f836b2012211c22c526e4a4376fe29dce12613eb9981ea0e076
+  examples/eu-ai-act-article-50/records/term-art-50-1.json: 2082a4986c63c8c6958ffa481fd3799d31d4b0860591cbc391eeb80c07321b80
+  examples/eu-ai-act-article-50/records/term-art-50-2.json: 82cf895e9ce137555d1a74413e2198e82534366aad8dbcad403225d19295c3a6
+  examples/eu-ai-act-article-50/records/term-art-50-3.json: 77f30b3cdd078b26e2469fff278c4535f516808cabccc81f8bc19d3afa0fd338
+  examples/eu-ai-act-article-50/records/term-art-50-4.json: 4af6a0270ec65ffd6acd49d197cd8098e862a02371f6192780d3103caaec5556
+  examples/eu-ai-act-article-50/records/term-art-50-5.json: 40b3cdf1d1153607934e056f9e4833b217109088594afa59242cbbd1e9ec4814
+  examples/eu-ai-act-article-50/records/term-guidelines-4-2-1-para69.json: ba2031c9d2dde51016299c963b180c4ad5b9fe5e1c0e8baa3d828deaccf32745
+  examples/eu-ai-act-article-50/records/term-guidelines-section-3-chatbot-disclosure.json: ebdf0037e55112ae362ca6f6c1b145c862624eb1539a5b05b0d6fb0dc765252f
+  examples/eu-ai-act-article-50/records/term-guidelines-section-5-emotion-biometric.json: f12aa289244cca1a41bb635b3362e7c4e812039b0d2e8fb2ff9e99d4c095997f
+  examples/eu-ai-act-article-50/records/term-guidelines-section-6-deepfakes.json: abdb764c2a074249dd5f6963f10f9e60809dcb1c12172e4e4f31ff344de19372
+  examples/eu-ai-act-article-50/records/term-guidelines-section-7-ai-text.json: d420621a50b5fde754160e3e258988ec8c5844a0a374e7cf5bf65d459e594ade
+  examples/eu-ai-act-article-50/records/term-recital-132.json: 1beedc7fcdf29612eeb1c768001ac8e3fa9847244907d14b8be8d315e88f1ba1
+  examples/eu-ai-act-article-50/records/term-recital-133.json: cdc3de1993a9453d1d5ba151d4b1e77940fb0a604ba47edc4c7a8a637ca943f2
+  examples/eu-ai-act-article-50/records/term-recital-134.json: b8f135fb2532108e2f6f3fa519a32c4486def68d0b44f9b01ffee8a306090d66
+  examples/eu-ai-act-article-50/records/term-recital-135.json: 364e64a4f4a88c3cb006ab65e7a3bea425023f2b0abb839b97ec97475cb1b9d0
+  examples/eu-ai-act-article-50/records/term-recital-136.json: c020b01c785780cd6bbfc45b064c0dece624b827b1eaa4b05df4ca76cfa1e9b7
+  examples/naming-profiles/everyailaw-manifest.txt: 5f6f31019e8d55ccfbc3341b7aa1ab0b5d9a691831225ae733807d0ed57c7fd1
+  examples/naming-profiles/everyailaw.jsonld: 10ecfd21b18592b562f158ed9803bd2bb36a5a7866c51f06b451f6593a909e77
   examples/publedge-jia-utah-72/README.md: f0fee5af31da841b1931f27acd9592f57565693ef530a022035c610dc6d92fc3
-  examples/publedge-jia-utah-72/records/authority-us-ut-oaip.json: 1e1a921a4b1045d7a60ff8356cbb823e822baf72520ae3e3a30bb5a7f1e10aed
-  examples/publedge-jia-utah-72/records/determination-us-ut-oaip-jia-2026-001-issuance.json: 33029fdd4721f3c3ebb0dfc9d9b220aab7fdce290533300bb5a304a7c563120f
-  examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json: bc38a35fbf74f673825b0e7573309bf5bff1bfd944cea1f45dbd2e4f073178b7
-  examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json: 554f3908f100d1902e7a4fc14c09350d81d4f3b73d3fec2ad6cb1bff1ae1a888
-  examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json: 4ddf4f868f18709bf376d71583e4f18c810bb75e6003b5b56bebf8d687473989
-  INTENT.md: 20f66436fe5c512301ad2b2866157ba62312ea94f87fdee577f5a0e4d9b08243
+  examples/publedge-jia-utah-72/records/authority-us-ut-oaip.json: 769a4bc397679d6e25f17a573edc3f083ad0da873ec3219ad8c5897859650475
+  examples/publedge-jia-utah-72/records/determination-us-ut-oaip-jia-2026-001-issuance.json: 39c74a68920176ae2f614673b96928cf92c7f966931395f7522c543075c2702a
+  examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json: bb35822fdcc54bcf4510d692b3b220b47d55633df7208acc42bcd7c2d6a43671
+  examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json: 362711be508b11b5ee91e84639f9ebd7d7fb68c45b99e7eea90558601d127928
+  examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json: 58bd40b2ac809fb0944938695e62c6e02f5e6c79e418fa57d42c47fac3f88764
+  INTENT.md: ef00cb0682afa75e327bd585a149ce4d27896ae3557d9f88be5ef349c29095b4
   LICENSE-APACHE: 3cbeb832e52ede2c154d4977567b70f204a853342e51d843458f9b785771f069
   LICENSE-CC-BY-4.0: 62a68518848c2fdcd108ff5cc11ba1516440c507bf425d5e76ad36886fd5752a
   NOTICE: 3f2ce598a6a3764e500c61e46ab707606ab3aa911eb780f28b87455dffece286
   PRIOR-ART.md: d518dd5e36e3f8d1a040d313034168b62433a8cdad8c067b04e0a44e46e1dcfe
-  PROTOCOL.md: 1130b618a1116ca6f8d4b57578533b35ff71d7315559ad193c6773e861aebaf3
+  PROTOCOL.md: eac780cf7d1a57c941f1fe34f5d44722ac14492995276c4b51d842ed5ffed138
   reference/crosswalks/akomantoso.md: 9c1e5519788708f25ad084a0fe73aa3402ff39e9f7942c350d23b2b95720d3e4
   reference/crosswalks/eli-ecli.md: e4a36c322241011a23ef381fe87e8b99dfee257adff1dfc23a2d0255c5be2be5
   reference/crosswalks/gist.md: 121e4f01a80c9531e82938120077ec66cf3bd58ad5f273345cc7800499f9f375
   reference/crosswalks/legalruleml.md: 280f206640abf5200a5b567f238196a972aad97dd37a07309d16d557bd4f44a7
-  ROADMAP.md: e78cfb5c25dda8602244d690dc95d5ce5a5cf6f37c8eda6a297b7a7ddb74f03f
-  schema/allegation.schema.json: a21b2075f4c8b83208ea08b745e0a8da91f0e74742d4a7a908423cca044cffa7
-  schema/authority.schema.json: 3e96fb13368fa18f1dfb8816040c83c5eca38972c6e3ddec7c79f7dcd9a5e8b0
-  schema/context.jsonld: 9fd375562bf58bef23bb574dab6ca9e987ff68b54fe3f6e281448dc3cee5b9c4
-  schema/determination.schema.json: 9a61c867f5ee883f4d8e261530ddb07aa2d4515f19467d98e69e88e75269eee0
+  ROADMAP.md: 5119f8f0a7ea098892657d02090e552d75232c20432c8f1a5f3fb7b642521002
+  schema/allegation.schema.json: 4ab72b4cc8a18e56b06ee00e3ccaf25267acea170cf3f3af5ffbad720d05895c
+  schema/authority.schema.json: 4cc7c22decb7fe92eef2e11373af794d1dd4175ddf8ec44585dbb154fc9056f9
+  schema/context.jsonld: 0308c3deefda14f78e9980d32734c25104a4d435ee51171d9255981f45a8aa02
+  schema/determination.schema.json: 5b8c001fbd7910367f3695a4e98a6179b6b10fe0a67232c748fb663c1fd97a71
   schema/executable-encoding.schema.json: 4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810
-  schema/instrument.schema.json: 4e087378105250e02a90b86e11917477dbd7bc834b3416cb1ea74d8ea8e0aff1
-  schema/naming-profile.schema.json: 945695ea99800587c9782c77cdebc50a7deeab7f36494f98223e16baf80131f8
-  schema/obligation.schema.json: 3c57920c6424f9048d03a535f79345147f30c0e4ae512fb0b345ee05f03be383
-  schema/proceeding.schema.json: f60e0a73e7f86cefb30d120d826717d84f6330f3b14ab3d7cbc59cadd897ee4e
-  schema/term.schema.json: 5bc2a8fa43229c792e3409de864fee781904ae998770f215dbe59631b7497eae
+  schema/instrument.schema.json: 62343902754ecaafac33054a9709ace717f382949bec459f405db823751281f1
+  schema/naming-profile.schema.json: 9aa919e5f8e865f7b49cb2a381f2d8b98e936963678be199cd3ae720816047f9
+  schema/obligation.schema.json: a48a0ef7a9e1083151369046b995eb6d0ebf0e419b9f9ebcc47644a02c5d0dcc
+  schema/proceeding.schema.json: 9f9fffcd752219d0c7f827de789c0f40ca9f97bd1bd9d0ea0e9cd97fe4a1d7dc
+  schema/term.schema.json: c7a5b5f26de2f4b26066a13f86137edc30ce6e68a7c2c2d9ac73549a74821d57
   vendor/gist/gistCore.ttl: 0d8230f3a4df9aa7782ec79bfa83def34a13a066f60d5f5ef0f00b9cecce08b1
   vendor/gist/LICENSE.txt: 9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94
   vendor/gist/UPSTREAM-README.md: e7c54a4678c09fe90ad4d6a4bdf82f0e4d89130648bb2df2404e638a3760f9a7

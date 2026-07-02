@@ -47,11 +47,23 @@
         "@type": { "const": "gist:Jurisdiction" },
         "ref": {
           "type": "string",
-          "description": "Jurisdiction code (ISO 3166 country, ISO subdivision, or ELI member-state code).",
+          "pattern": "^[a-z]{2}(-[a-z0-9]{1,3})?$",
+          "description": "Jurisdiction code: lowercase form of an ISO 3166-1 alpha-2 country/supranational code or an ISO 3166-2 subdivision code (also covers ELI member-state codes, which are ISO 3166-1).",
           "examples": ["us-co", "ca-bc", "eu", "us"]
         }
       }
-    }
+    },
+    "sameAs": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "owl:sameAs crosswalk IRIs: external records identical to this one (e.g. a live adopter export or a Wikidata QID, per the crosswalk matrix in PROTOCOL.md)."
+    },
+    "exactMatch": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "skos:exactMatch crosswalk IRIs: external concepts interchangeably usable with this record. Weaker than owl:sameAs; preferred for cross-scheme concept joins."
+    },
+    "notes": { "type": "string", "description": "Free-text editorial or provenance notes about this record." }
   },
   "additionalProperties": true
 }

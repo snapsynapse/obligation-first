@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Determination",
   "@id": "https://obligationfirst.org/v1/examples/air-canada/determination/moffatt-bccrt-149",
   "neutral_citation": "2024 BCCRT 149",

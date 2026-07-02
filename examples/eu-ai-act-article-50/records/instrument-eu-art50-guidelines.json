@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Instrument",
   "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/instrument/art50-guidelines",
   "title": "Guidelines on the implementation of the transparency obligations for certain AI systems under Article 50 of Regulation (EU) 2024/1689",

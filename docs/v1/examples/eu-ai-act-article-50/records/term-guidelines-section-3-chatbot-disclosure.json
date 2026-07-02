@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Term",
   "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/guidelines-section-3",
   "text": "AI systems intended to interact directly with natural persons include chatbots, virtual assistants, voice interfaces, and any system that engages in dialogue-based interaction with humans. Deployers should ensure that the disclosure required under Article 50(1) is provided in a clear, unambiguous and timely manner at or before the start of the interaction, and at any point where a reasonable person might be uncertain as to the AI nature of the interaction. The disclosure need not be intrusive or repeated throughout the interaction provided it is clearly given at the outset and is readily accessible throughout.",

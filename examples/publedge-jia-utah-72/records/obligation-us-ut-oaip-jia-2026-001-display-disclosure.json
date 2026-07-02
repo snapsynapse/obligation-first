@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Requirement",
   "@id": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/obligation/oaip-jia-2026-001-display-disclosure",
   "title": "Display GenAI disclosure on first session and after extended inactivity",
