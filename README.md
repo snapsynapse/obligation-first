@@ -2,7 +2,7 @@
 
 ![Obligation-First — an open upper schema for normative content. Bound to gist. Aligned with LegalRuleML.](imgs/og.png)
 
-[![Spec](https://img.shields.io/badge/spec-v0.4.1-orange)](PROTOCOL.md)
+[![Spec](https://img.shields.io/badge/spec-v0.4.2-orange)](PROTOCOL.md)
 [![Content license: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey)](LICENSE-CC-BY-4.0)
 [![Code license: Apache 2.0](https://img.shields.io/badge/code-Apache%202.0-lightgrey)](LICENSE-APACHE)
 [![Bound to gist](https://img.shields.io/badge/ontology-gist-green)](https://semanticarts.com/gist/)
@@ -11,7 +11,7 @@ A shared upper schema for normative content — laws, cases, and agreements — 
 
 Obligation-First is a methodology and a JSON-LD context. The methodology says that normative content is best modeled by what it requires, not what it says. The schema gives that methodology a machine-readable shape.
 
-**Live at [obligationfirst.org](https://obligationfirst.org/). Drafting in public. v0.4.1. Subject to revision until the spec freeze (remaining gates tracked in [ROADMAP.md](ROADMAP.md)).**
+**Live at [obligationfirst.org](https://obligationfirst.org/). Drafting in public. v0.4.2. Subject to revision until the spec freeze (remaining gates tracked in [ROADMAP.md](ROADMAP.md)).**
 
 ## Who this is for
 
@@ -67,7 +67,7 @@ If you'd like to bind your project to the current draft, see [Quick start](#quic
 
 ## Quick start — bind a dataset in three steps
 
-1. **Reference the canonical `@context`** — set `@context: "https://obligationfirst.org/v1/"` on every record. Repo-local extensions go in a second context object.
+1. **Reference the canonical `@context`** — set `@context: "https://obligationfirst.org/v1/context.jsonld"` on every record. Repo-local extensions go in a second context object.
 2. **Validate against the JSON Schemas** — run every record through the schema for its `@type` (seven per-entity schemas at `https://obligationfirst.org/v1/schema/`, plus the executable-encoding and naming-profile schemas). Schema-conformant adopters (Level 2) pass validation for every published record.
 3. **Cite [obligationfirst.org](https://obligationfirst.org/) as the canonical reference** — adopter sites and documentation should link back. The IRI prefix is permanent.
 
@@ -115,7 +115,7 @@ Every artifact an adopter or agent needs is dereferenceable at a stable URL:
 | [`/v1/schema/naming-profile.schema.json`](https://obligationfirst.org/v1/schema/naming-profile.schema.json) | Naming profile schema (adopter `.well-known` profiles) |
 | [`/llms.txt`](https://obligationfirst.org/llms.txt), [`/llms-full.txt`](https://obligationfirst.org/llms-full.txt) | LLM-readable summary + full context |
 | [`/agents.json`](https://obligationfirst.org/agents.json) | Agent capabilities and endpoint inventory |
-| [`/releases/v0.4.1/`](https://obligationfirst.org/releases/v0.4.1/) | Current release package manifest and checksums |
+| [`/releases/v0.4.2/`](https://obligationfirst.org/releases/v0.4.2/) | Current release package manifest and checksums |
 | [`/.well-known/assistant-guide.txt`](https://obligationfirst.org/.well-known/assistant-guide.txt) | GuideCheck Human-Verifiable Assistant Guide for assistant-assisted repo work |
 | [`/.well-known/assistant-guide-manifest.txt`](https://obligationfirst.org/.well-known/assistant-guide-manifest.txt) | GuideCheck Level 4 sidecar manifest for the assistant guide |
 | [`/feed.xml`](https://obligationfirst.org/feed.xml) | Atom feed of releases |
@@ -145,7 +145,7 @@ The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. 
 | `reference/review/` | Public external review questions — including v0.2 resolutions from Semantic Arts |
 | `reference/w3id-pr.md` | Prepared w3id.org permanent identifier PR notes |
 | `reference/og-image-prompt.md` | Structured prompt for generating the OG social-card image |
-| `examples/{air-canada,colorado-sb24-205,publedge-jia-utah-72}/` | Worked examples — three real record sets round-tripped through the current draft, with 23 canonical JSON record files under the `records/` subdirectories. All v0.1 records remain valid through v0.3 unchanged. |
+| `examples/{air-canada,colorado-sb24-205,publedge-jia-utah-72,eu-ai-act-article-50}/` | Worked examples — four real record sets round-tripped through the current draft, with 49 canonical JSON record files under the `records/` subdirectories. All v0.1 records remain valid through v0.4 unchanged. |
 | `docs/` | Published website served by GitHub Pages from `main /docs` (canonical at obligationfirst.org) |
 | `.github/workflows/` | CI: validation on every push (`test.yml`), Pages deploy (`pages.yml`), monthly a11y audit (`a11y.yml`) |
 | `_workshop/` | Design conversation archives |
@@ -159,7 +159,7 @@ The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. 
 
 ## Status
 
-v0.4.1. v0.1 spec, schemas, worked examples, adopter kit, and the first three PAICE legal bindings are complete and live. v0.2 absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. v0.3 federates record identity: `@id` values are adopter-local and permanent, cross-adopter interoperability rides on standard identifier crosswalks declared in per-adopter `.well-known` naming profiles, and jurisdiction is a typed ISO 3166 field. The of: vocabulary is unchanged from v0.1; adopter records require no migration. See [CHANGELOG](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). Open items before v0.3 freeze:
+v0.4.2. v0.1 spec, schemas, worked examples, adopter kit, and the first three PAICE legal bindings are complete and live. v0.2 absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. v0.3 federates record identity: `@id` values are adopter-local and permanent, cross-adopter interoperability rides on standard identifier crosswalks declared in per-adopter `.well-known` naming profiles, and jurisdiction is a typed ISO 3166 field. The of: vocabulary is unchanged from v0.1; adopter records require no migration. See [CHANGELOG](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). Open items on the current 0.4.x line ahead of the v1.0 freeze:
 
 - LegalRuleML community feedback on deontic alignment
 - File w3id.org PR for the permanent IRI

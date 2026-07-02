@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Term",
   "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-5",
   "text": "Deployers of an AI system that generates or manipulates text published with the purpose of informing the public on matters of public interest shall disclose that the text has been artificially generated or manipulated. This obligation shall not apply where the generated or manipulated text has undergone a human review process or the natural person taking editorial responsibility for the content has ensured that no false impression of a human origin is created.",

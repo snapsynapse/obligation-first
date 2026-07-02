@@ -10,6 +10,7 @@
  * Usage:
  *   node scripts/report-anchor-graph.mjs <record-dir-or-export-dir> [...]
  *   node scripts/report-anchor-graph.mjs --require-all-targets <source> [...]
+ *   node scripts/report-anchor-graph.mjs        # auto-discover examples/*\/records
  */
 
 import { readdir, stat } from "node:fs/promises";
@@ -22,11 +23,28 @@ const repoRoot = path.resolve(__dirname, "..");
 
 const args = process.argv.slice(2);
 const requireAllTargets = args.includes("--require-all-targets");
-const sourceArgs = args.filter((arg) => arg !== "--require-all-targets");
+let sourceArgs = args.filter((arg) => arg !== "--require-all-targets");
 
+// With no positional dirs, report over every examples/*/records set (explicit
+// dirs keep their behavior, e.g. report:anchors:implementations).
 if (sourceArgs.length === 0) {
-  console.error("Usage: node scripts/report-anchor-graph.mjs [--require-all-targets] <record-dir-or-export-dir> [...]");
-  process.exit(2);
+  const examplesDir = path.join(repoRoot, "examples");
+  const discovered = [];
+  for (const entry of await readdir(examplesDir, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    try {
+      const recordsDir = path.join(examplesDir, entry.name, "records");
+      await readdir(recordsDir);
+      discovered.push(recordsDir);
+    } catch (err) {
+      if (err.code !== "ENOENT") throw err;
+    }
+  }
+  sourceArgs = discovered.sort();
+  if (sourceArgs.length === 0) {
+    console.error("No records directories found under examples/*/records/ and none given on the command line.");
+    process.exit(1);
+  }
 }
 
 const AGGREGATE_KINDS = [
@@ -55,18 +73,23 @@ function expectedAnchorType(record) {
   return record?.["@type"] === "of:Term" ? "of:Term" : "of:Obligation";
 }
 
-async function loadAggregateExport(dir) {
-  const indexFile = path.join(dir, "index.json");
-  const index = await loadJson(indexFile);
-  if (!index.files || typeof index.files !== "object") return null;
-
+async function loadAggregateExport(dir, index) {
   const entries = [];
   for (const kind of AGGREGATE_KINDS) {
     const fileName = index.files[kind];
     if (!fileName) continue;
 
     const aggregateFile = path.join(dir, fileName);
-    const aggregate = await loadJson(aggregateFile);
+    let aggregate;
+    try {
+      aggregate = await loadJson(aggregateFile);
+    } catch (err) {
+      // index.json exists and names this aggregate: a missing file is a
+      // broken export, not a plain record directory. Fail loudly instead of
+      // falling through to loadRecordDir and reporting misleading errors.
+      if (err.code === "ENOENT") throw new Error(`aggregate file missing: ${rel(aggregateFile)}`);
+      throw err;
+    }
     for (const [i, record] of asArray(aggregate[kind]).entries()) {
       entries.push({
         file: aggregateFile,
@@ -92,11 +115,17 @@ async function loadSource(sourceArg) {
     throw new Error(`${sourceArg} is not a file or directory`);
   }
 
+  // A directory with an index.json carrying a files map is an aggregate
+  // export; anything else is treated as a flat record directory.
+  let index;
   try {
-    const aggregateEntries = await loadAggregateExport(source);
-    if (aggregateEntries) return aggregateEntries;
+    index = await loadJson(path.join(source, "index.json"));
   } catch (err) {
     if (err.code !== "ENOENT") throw err;
+    index = null;
+  }
+  if (index && index.files && typeof index.files === "object") {
+    return loadAggregateExport(source, index);
   }
 
   return loadRecordDir(source, { root: repoRoot });

@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Term",
   "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/guidelines-section-6",
   "text": "Deep fake content as referred to in Article 50(4) includes image, audio or video content in which a natural person's appearance, voice or actions have been artificially generated or substantially manipulated. The disclosure required under Article 50(4) should be visible, clear and sufficiently prominent given the nature and context of the content. Where the content is published online or distributed at scale, deployers should ensure the disclosure is attached to or embedded in the content in a manner that persists through sharing or further distribution.",

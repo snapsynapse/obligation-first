@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Instrument",
   "@id": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/instrument/oaip-jia-2026-001",
   "title": "Utah Mental Health Chatbot Disclosure — Joint Interpretation",
@@ -7,7 +7,7 @@
   "issuedBy": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/authority/oaip",
   "enacted": "2026-04-15",
   "effective": "2026-04-15",
-  "status": "proposed",
+  "status": "in-force",
   "enforcement_status": "unsignaled",
   "jurisdiction": {
     "@type": "gist:Jurisdiction",

@@ -1,6 +1,6 @@
 # Obligation-First — full LLM context
 
-> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.4.1. Record `@id` values are adopter-local, opaque, and permanent; cross-adopter interoperability rides on standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in per-adopter `.well-known` naming profiles; jurisdiction is a typed ISO 3166 field. See reference/iri-naming-and-crosswalks.md.
+> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.4.2. Record `@id` values are adopter-local, opaque, and permanent; cross-adopter interoperability rides on standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in per-adopter `.well-known` naming profiles; jurisdiction is a typed ISO 3166 field. See reference/iri-naming-and-crosswalks.md.
 
 This file is the deeper companion to llms.txt. Where llms.txt gives a one-screen summary, this file is the full context an LLM-powered tool needs to reason about Obligation-First, generate adopter records, or answer detailed questions without scraping.
 
@@ -132,6 +132,12 @@ Tests: PubLedge round-trip. Demonstrates that PubLedge → v0.1 adoption is pure
 
 Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/publedge-jia-utah-72/README.md
 
+### EU AI Act Article 50 — source-hierarchy collapse
+
+Tests: Regulation + interpretive Guidelines Instruments, article-vs-recital distinction, Terms that create Obligations vs Terms anchored to for interpretation only. Collapses a multi-layer EU source hierarchy (regulation, recital, guideline, code of practice) into uniform Terms and Obligations.
+
+Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/eu-ai-act-article-50/README.md
+
 ## Crosswalks
 
 - gist (Semantic Arts): https://github.com/snapsynapse/obligation-first/blob/main/reference/crosswalks/gist.md
@@ -149,7 +155,7 @@ All three bindings went live against v0.1 and are being reconciled to the v0.3 m
 
 ## Adoption — three steps
 
-1. Reference the canonical @context: set `@context: "https://obligationfirst.org/v1/"` on every record.
+1. Reference the canonical @context: set `@context: "https://obligationfirst.org/v1/context.jsonld"` on every record.
 2. Validate against the JSON Schemas at /v1/schema/ for the entity's @type. To be Level 2 ("bound") under v0.3, also publish a `.well-known` naming profile (VoID `uriSpace`/`uriRegexPattern` + RFC 6570 template + declared crosswalk list) and carry `jurisdiction` as a typed ISO 3166 field.
 3. Cite obligationfirst.org as the canonical reference.
 
@@ -177,7 +183,7 @@ The Level 4 manifest is at `https://obligationfirst.org/.well-known/assistant-gu
 - Allegation schema: https://obligationfirst.org/v1/schema/allegation.schema.json
 - Determination schema: https://obligationfirst.org/v1/schema/determination.schema.json
 - ExecutableEncoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
-- Release package: https://obligationfirst.org/releases/v0.4.1/
+- Release package: https://obligationfirst.org/releases/v0.4.2/
 - Assistant guide: https://obligationfirst.org/.well-known/assistant-guide.txt
 - Assistant guide manifest: https://obligationfirst.org/.well-known/assistant-guide-manifest.txt
 - Sitemap: https://obligationfirst.org/sitemap.xml

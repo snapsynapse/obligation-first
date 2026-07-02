@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Allegation",
   "@id": "https://obligationfirst.org/v1/examples/air-canada/allegation/moffatt-reliance",
   "asserted_by": "claimant",

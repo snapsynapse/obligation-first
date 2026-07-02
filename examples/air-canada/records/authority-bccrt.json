@@ -1,9 +1,9 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Authority",
   "@id": "https://obligationfirst.org/v1/examples/air-canada/authority/bccrt",
   "organization": {
-    "@type": "gist:Court",
+    "@type": "gist:GovernmentOrganization",
     "name": "British Columbia Civil Resolution Tribunal"
   },
   "authority_basis": {

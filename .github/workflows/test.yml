@@ -15,9 +15,9 @@ jobs:
     name: Run local contract suite
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "20"
           cache: "npm"
@@ -34,8 +34,24 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: validate
     steps:
-      - name: Wait briefly for Pages workflow to deploy
-        run: sleep 60
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Wait for Pages to reflect the current version
+        run: |
+          set -e
+          VERSION=$(node -p "require('./package.json').version")
+          echo "Waiting for https://obligationfirst.org/ to reflect v$VERSION"
+          deadline=$(( $(date +%s) + 300 ))
+          until curl -fsS "https://obligationfirst.org/" | grep -q "v$VERSION"; do
+            if [ "$(date +%s)" -ge "$deadline" ]; then
+              echo "✗ Timed out after ~5 minutes waiting for v$VERSION on the live homepage"
+              exit 1
+            fi
+            echo "  homepage not yet at v$VERSION; retrying in 15s…"
+            sleep 15
+          done
+          echo "✓ Live homepage reflects v$VERSION"
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
       - name: Probe canonical endpoints
         run: |
@@ -50,10 +66,12 @@ jobs:
             "https://obligationfirst.org/v1/schema/allegation.schema.json"
             "https://obligationfirst.org/v1/schema/determination.schema.json"
             "https://obligationfirst.org/v1/schema/executable-encoding.schema.json"
+            "https://obligationfirst.org/v1/schema/naming-profile.schema.json"
             "https://obligationfirst.org/llms.txt"
             "https://obligationfirst.org/agents.json"
             "https://obligationfirst.org/sitemap.xml"
             "https://obligationfirst.org/robots.txt"
+            "https://obligationfirst.org/releases/v${VERSION}/"
           )
           fail=0
           for u in "${urls[@]}"; do

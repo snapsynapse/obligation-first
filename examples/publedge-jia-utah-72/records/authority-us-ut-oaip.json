@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Authority",
   "@id": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/authority/oaip",
   "organization": {

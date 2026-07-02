@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Instrument",
   "@id": "https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/sb26-189",
   "title": "SB26-189 Automated Decision-Making Technology",

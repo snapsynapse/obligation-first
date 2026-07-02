@@ -1,5 +1,5 @@
 {
-  "_comment": "Obligation-First v1 JSON-LD context. v0.4.1. Spec text in PROTOCOL.md.",
+  "_comment": "Obligation-First v1 JSON-LD context. v0.4.2. Spec text in PROTOCOL.md.",
   "@context": {
     "@version": 1.1,
     "@vocab": "https://w3id.org/of/v1/",
@@ -30,8 +30,10 @@
 
     "issuedBy":          { "@id": "of:issuedBy",          "@type": "@id" },
     "organization":      { "@id": "of:organization" },
+    "name":              { "@id": "of:name" },
     "authority_basis":   { "@id": "of:authorityBasis" },
     "jurisdiction":      { "@id": "of:jurisdiction" },
+    "ref":               { "@id": "of:ref" },
     "instrument_ref":    { "@id": "of:instrumentRef",     "@type": "@id" },
     "hasTerm":           { "@id": "of:hasTerm",           "@type": "@id", "@container": "@set" },
     "parent_instrument": { "@id": "of:parentInstrument",  "@type": "@id" },
@@ -53,7 +55,6 @@
     "triggers_on_violation_of": { "@id": "of:triggersOnViolationOf", "@type": "@id" },
     "enforcement_authority": { "@id": "of:enforcementAuthority", "@type": "@id" },
     "executableEncoding":{ "@id": "of:executableEncoding" },
-    "authorityBasis":    { "@id": "of:authorityBasis" },
 
     "title":             { "@id": "of:title" },
     "short_title":       { "@id": "of:shortTitle" },
@@ -73,6 +74,8 @@
     "notes":             { "@id": "of:notes" },
     "remedy":            { "@id": "of:remedy" },
     "remedy_kind":       { "@id": "of:remedyKind" },
+    "monetary_award":    { "@id": "of:monetaryAward" },
+    "currency":          { "@id": "of:currency" },
     "duty_holder_type":  { "@id": "of:dutyHolderType" },
     "trigger":           { "@id": "of:trigger" },
     "akn_uri":           { "@id": "of:aknUri",            "@type": "@id" },

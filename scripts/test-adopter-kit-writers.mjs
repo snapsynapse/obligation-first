@@ -3,12 +3,14 @@
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { loadRecordDir, validateAdopterExport, writeAdopterExport } from "./lib/adopter-kit.mjs";
 
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const tmp = await mkdtemp(path.join(os.tmpdir(), "of-adopter-kit-"));
 
 try {
-  const entries = await loadRecordDir("examples/publedge-jia-utah-72/records", { root: process.cwd() });
+  const entries = await loadRecordDir(path.join(repoRoot, "examples/publedge-jia-utah-72/records"), { root: repoRoot });
   const recordsByKind = {
     authorities: entries.filter((entry) => entry.record["@type"] === "of:Authority").map((entry) => entry.record),
     instruments: entries.filter((entry) => entry.record["@type"] === "of:Instrument").map((entry) => entry.record),

@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Term",
   "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/recital-135",
   "text": "Deep fakes constitute a particularly serious form of AI-generated or manipulated image, audio or video content with significant potential to deceive natural persons and cause harm to individuals and society. Deployers who use AI systems to generate such content should be required to disclose the artificial nature of such content. Where deep fake content forms part of an evidently artistic, creative, satirical or fictional work, the disclosure obligation should be fulfilled in an appropriate manner that preserves the integrity of the work while ensuring that recipients are not deceived as to the AI-generated or manipulated nature of the content.",

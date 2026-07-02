@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Requirement",
   "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/obligation/art-50-1-provider-design-for-disclosure",
   "title": "Design AI systems so that users are informed they are interacting with an AI",

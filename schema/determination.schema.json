@@ -18,12 +18,12 @@
     "decides": {
       "type": "array",
       "items": { "type": "string", "format": "uri" },
-      "description": "IRIs of of:Allegation records this Determination resolves. Multi-valued: one ruling can decide multiple Allegations. Adjudicative Determinations SHOULD have at least one entry. Administrative Determinations (disposition='issued', for promulgating an Instrument or recording a posture statement) MAY leave this empty."
+      "description": "IRIs of of:Allegation records this Determination resolves. Multi-valued: one ruling can decide multiple Allegations. Adjudicative Determinations (every disposition except 'issued') MUST have at least one entry — enforced by the if/then constraint below. Administrative Determinations (disposition='issued', for promulgating an Instrument or recording a posture statement) MAY leave this empty."
     },
     "disposition": {
       "type": "string",
       "enum": ["confirmed", "rejected", "partial", "dismissed", "settled", "vacated", "issued"],
-      "description": "Closed vocabulary. 'issued' is used when a Determination promulgates an Instrument (e.g., issuance of a JIA) rather than ruling on an Allegation."
+      "description": "Closed vocabulary. 'issued' is used when a Determination promulgates an Instrument (e.g., issuance of a JIA) rather than ruling on an Allegation. Every other (adjudicative) disposition requires a non-empty 'decides'."
     },
     "anchors": {
       "type": "array",
@@ -40,8 +40,57 @@
       "format": "uri",
       "description": "When disposition='issued', the of:Instrument being promulgated."
     },
-    "notes": { "type": "string" },
-    "source": { "type": "string", "format": "uri" }
+    "notes": { "type": "string", "description": "Free-text editorial or provenance notes about this record." },
+    "source": { "type": "string", "format": "uri" },
+    "ecli_uri": {
+      "type": "string",
+      "format": "uri",
+      "description": "ECLI URI for a citable court decision (crosswalk matrix in PROTOCOL.md)."
+    },
+    "neutral_citation": {
+      "type": "string",
+      "description": "Neutral citation (e.g. '2024 BCCRT 149'). Crosswalk for citable decisions in common-law neutral-citation jurisdictions (crosswalk matrix in PROTOCOL.md)."
+    },
+    "urn_lex": {
+      "type": "string",
+      "pattern": "^urn:lex:",
+      "description": "urn:lex identifier. Crosswalk for administrative determinations without an ECLI (crosswalk matrix in PROTOCOL.md)."
+    },
+    "jurisdiction": {
+      "type": "object",
+      "required": ["@type", "ref"],
+      "properties": {
+        "@type": { "const": "gist:Jurisdiction" },
+        "ref": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[a-z0-9]{1,3})?$",
+          "description": "Jurisdiction code: lowercase form of an ISO 3166-1 alpha-2 country/supranational code or an ISO 3166-2 subdivision code.",
+          "examples": ["us-co", "ca-bc", "eu", "us"]
+        }
+      }
+    },
+    "sameAs": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "owl:sameAs crosswalk IRIs: external records identical to this one (e.g. a live adopter export, a Wikidata entity)."
+    },
+    "exactMatch": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "skos:exactMatch crosswalk IRIs: external concepts interchangeably usable with this record. Weaker than owl:sameAs; preferred for cross-scheme concept joins."
+    }
+  },
+  "if": {
+    "required": ["disposition"],
+    "properties": {
+      "disposition": { "not": { "const": "issued" } }
+    }
+  },
+  "then": {
+    "required": ["decides"],
+    "properties": {
+      "decides": { "minItems": 1 }
+    }
   },
   "additionalProperties": true
 }

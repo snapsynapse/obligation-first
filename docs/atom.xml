@@ -2,16 +2,37 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Obligation-First — releases and changes</title>
   <subtitle>Open upper schema for normative content</subtitle>
-  <link href="https://obligationfirst.org/feed.xml" rel="self"/>
+  <link href="https://obligationfirst.org/atom.xml" rel="self"/>
   <link href="https://obligationfirst.org/" rel="alternate"/>
   <id>https://obligationfirst.org/</id>
-  <updated>2026-06-03T12:00:00Z</updated>
+  <updated>2026-07-01T12:00:00Z</updated>
   <author>
     <name>Sam Rogers</name>
     <uri>https://www.linkedin.com/in/samrogers</uri>
   </author>
   <rights>CC BY 4.0 (spec) / Apache 2.0 (code)</rights>
   <generator uri="https://obligationfirst.org/">Obligation-First</generator>
+
+  <entry>
+    <title>Obligation-First v0.4.2 released</title>
+    <link href="https://obligationfirst.org/changelog.html" rel="alternate"/>
+    <id>https://obligationfirst.org/releases/v0.4.2</id>
+    <updated>2026-07-01T12:00:00Z</updated>
+    <published>2026-07-01T12:00:00Z</published>
+    <summary>Correctness patch: JSON-LD @context resolution, release-URL 404 fix, validators fail on missing dirs, plus schema-field and publishing-surface reconciliation.</summary>
+    <category term="release"/>
+  </entry>
+
+  <entry>
+    <title>v0.4.1 released</title>
+    <link href="https://obligationfirst.org/changelog.html" rel="alternate"/>
+    <id>https://obligationfirst.org/releases/v0.4.1</id>
+    <updated>2026-06-09T12:00:00Z</updated>
+    <published>2026-06-09T12:00:00Z</published>
+    <summary>v0.4.1 is a documentation-consistency patch from an external semantic review: README license note reconciled with NOTICE, phantom gist:Court removed from schema annotations and the gist crosswalk, schema count corrected to nine, w3id resolution wording made truthful, version-narrative drift fixed, and the Colorado SB26-189 issuer corrected. No of: vocabulary change; v0.1 through v0.4.0 adopter records remain valid without migration.</summary>
+    <category term="release"/>
+    <category term="v0.4"/>
+  </entry>
 
   <entry>
     <title>v0.4.0 released</title>

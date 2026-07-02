@@ -95,6 +95,12 @@ function dateLocations(iso) {
   ];
 }
 
+// Every location must be checked and replaced globally: a non-global regex
+// would silently touch only the first of several occurrences in a file.
+function globalize(re) {
+  return new RegExp(re.source, re.flags.includes("g") ? re.flags : `${re.flags}g`);
+}
+
 /** Returns an array of drift problems (empty = clean). Version only. */
 export async function checkVersions() {
   const f = await versionForms();
@@ -103,7 +109,7 @@ export async function checkVersions() {
   for (const [file, re, replacement] of locations(f)) {
     if (!byFile.has(file)) byFile.set(file, await readFile(path.join(repoRoot, file), "utf8"));
     const content = byFile.get(file);
-    const g = new RegExp(re.source, re.flags.includes("g") ? re.flags : re.flags + "g");
+    const g = globalize(re);
     if (!g.test(content)) {
       problems.push(`${file}: version anchor not found (/${re.source}/) — update scripts/sync-version.mjs`);
       continue;
@@ -121,7 +127,7 @@ async function write(dateIso) {
   const byFile = new Map();
   for (const [file, re, replacement] of edits) {
     if (!byFile.has(file)) byFile.set(file, await readFile(path.join(repoRoot, file), "utf8"));
-    byFile.set(file, byFile.get(file).replace(new RegExp(re.source, re.flags.includes("g") ? re.flags : re.flags), replacement));
+    byFile.set(file, byFile.get(file).replace(globalize(re), replacement));
   }
   for (const [file, content] of byFile) await writeFile(path.join(repoRoot, file), content);
   console.log(`Synced version ${f.full} and date ${dateIso} across ${byFile.size} files.`);
@@ -138,8 +144,17 @@ if (path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
     }
     console.log("Version strings are in sync with package.json.");
   } else {
-    const dateArg = args[args.indexOf("--date") + 1];
-    const iso = args.includes("--date") ? dateArg : new Date().toISOString().slice(0, 10);
+    let iso;
+    if (args.includes("--date")) {
+      const dateArg = args[args.indexOf("--date") + 1];
+      if (!dateArg || !/^\d{4}-\d{2}-\d{2}$/.test(dateArg)) {
+        console.error("sync-version: --date requires a YYYY-MM-DD value");
+        process.exit(2);
+      }
+      iso = dateArg;
+    } else {
+      iso = new Date().toISOString().slice(0, 10);
+    }
     await write(iso);
   }
 }

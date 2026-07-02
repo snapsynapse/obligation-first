@@ -4,6 +4,35 @@ All notable changes to the Obligation-First specification.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/) once it reaches v0.1.0 freeze.
 
+## [0.4.2] - 2026-07-01
+
+Correctness patch from a full multi-agent code review of the repo (schemas, validators, examples, publishing surfaces, CI). Fixes three high-severity defects — records were unprocessable as JSON-LD, advertised release URLs 404'd, and the adopter-kit validators passed silently on missing directories — plus a batch of schema/prose/publishing drift. Additive at the schema level; one migration note (the record `@context` reference changes).
+
+### Fixed
+
+- **Records are processable as JSON-LD again.** Every record's `@context` referenced `https://obligationfirst.org/v1/`, which GitHub Pages serves as `text/html` (no content negotiation), so a conforming JSON-LD processor threw on context load. The mandated reference is now `https://obligationfirst.org/v1/context.jsonld` (the actual JSON-LD document) across all 49 example records, the worked naming profile, `PROTOCOL.md` Level 1 conformance, and the reference binding note. The `/v1/` namespace URL remains the human-facing landing page.
+- **Release package URLs resolve.** `https://obligationfirst.org/releases/v<x>/` 404'd from v0.3.0 onward — `make-release` had stopped emitting a release `index.html`. Index pages are restored for v0.3.0-draft, v0.3.1, v0.4.0, v0.4.1, and generated for v0.4.2, and `make-release` now emits one for every future release.
+- **Adopter-kit validators fail on missing or empty record directories.** `validate-adopter-records.mjs` and the graph/example validators returned exit 0 on a nonexistent or zero-record directory, so a renamed example would keep CI green while validating nothing. Missing/empty directories are now hard failures.
+- **Phantom `gist:Court` removed from records for real.** v0.4.1 corrected the schema annotations but the actual `authority-bccrt` and Colorado federal-district-court records (and the air-canada / ai-incident-law binding notes) still declared `gist:Court`, a class gist 14.1.0 does not define. They now use `gist:GovernmentOrganization` with `authority_basis.kind = judicial`.
+- **Determination `decides`/`disposition` co-constraint enforced.** PROTOCOL required non-empty `decides` for every adjudicative disposition; the schema only said SHOULD. Added a Draft 2020-12 `if/then` so `disposition != "issued"` requires `decides` with `minItems: 1`.
+- **Publedge example status corrected.** The Utah JIA instrument carried `status: "proposed"` alongside populated `enacted`/`effective` dates and an issuance Determination; it is now `in-force`. The migration README anchor now matches the naming profile's `void:uriRegexPattern`.
+
+### Added
+
+- **Defeasibility and crosswalk fields are now schema-validated.** `rebuts`, `undercuts` (Term), and `violationOf` (Obligation) — v0.2 subproperties defined in prose and context but absent from the schemas — are declared with LegalRuleML §7.4 semantics. `jurisdiction`, `sameAs`, `exactMatch`, `neutral_citation`, `urn_lex`, and `notes` are declared on the entity schemas that use them (records stay open; these gain shape validation instead of expanding blindly via `@vocab`).
+- **`executableEncoding` accepts multiple encodings.** PROTOCOL always allowed one encoding per engine; the schema forced a single object. Term and Obligation now accept a single object or a non-empty array.
+- **New publishing-drift guards in `validate-repo-contracts.mjs`.** Every `docs/releases/*` dir must carry an `index.html`; `feed.xml`/`atom.xml` must each contain an entry for the current version with a correct `rel="self"`; `sitemap.xml` must list the current release URL; `sha256.txt` orphan lines are flagged. `make-release` now updates `feed.xml`, `atom.xml`, and `sitemap.xml` alongside the package.
+
+### Changed
+
+- **Validator hardening.** Path-traversal guard on `record.id` in the adopter-kit writer; JSON-LD context-coverage check now recurses into nested properties and `$defs`; shared `TYPE_TO_SCHEMA` and manifest-parsing helpers deduplicated into `scripts/lib/`; `validate:adopter-kit` and `report:anchors` auto-discover `examples/*/records`; `sync-version` write mode globalizes its replacement patterns; `validate-hashes --update` preserves comments.
+- **Publishing surfaces reconciled.** `naming-profile.schema.json` jurisdiction `ref` pattern and the authority `ref` field aligned to the lowercase ISO-3166 form the records use; `context.jsonld` duplicate `authorityBasis` alias removed and `name` mapped explicitly; `docs/v1/index.html`, README example counts, `llms.txt`/`llms-full.txt`, feeds, and sitemap brought current; the `ecli`/`ecli_uri` prose naming reconciled.
+- **CI.** GitHub Pages deploy is gated on the test suite; the post-deploy probe polls for the live version instead of a fixed sleep and covers the naming-profile schema, context, and release URLs; workflow actions pinned to commit SHAs.
+
+### Compatibility
+
+Adopter records MUST update their `@context` from `https://obligationfirst.org/v1/` to `https://obligationfirst.org/v1/context.jsonld` (the bare form never resolved as JSON-LD). All new schema fields are optional, and `executableEncoding` is widened, so existing records that already carried the correct `@context` remain valid. The Determination `if/then` codifies a rule PROTOCOL already stated as mandatory; a record with an adjudicative `disposition` and empty `decides` was always non-conformant and now fails schema validation. `of:` vocabulary is unchanged; IRI major version is unchanged. Releases v0.4.0 and v0.4.1 are now git-tagged so their manifests verify.
+
 ## [0.4.1] - 2026-06-09
 
 Documentation-consistency patch following an external semantic review. No `of:` vocabulary change; no validation-relevant schema change (one annotation-only `examples` correction). The full review and the remediation plan for the substantive findings are tracked in an internal review handoff (2026-06-09; the `handoffs/` directory is untracked by design) and will surface here as decision records and ROADMAP items as they are taken up.

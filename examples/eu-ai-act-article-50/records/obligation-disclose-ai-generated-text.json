@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Requirement",
   "@id": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/obligation/art-50-5-disclose-ai-generated-text",
   "title": "Disclose AI-generated or manipulated text published to inform the public on matters of public interest",

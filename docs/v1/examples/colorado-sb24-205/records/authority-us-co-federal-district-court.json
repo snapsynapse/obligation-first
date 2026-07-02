@@ -1,9 +1,9 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Authority",
   "@id": "https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/federal-district-court",
   "organization": {
-    "@type": "gist:Court",
+    "@type": "gist:GovernmentOrganization",
     "name": "United States District Court for the District of Colorado"
   },
   "authority_basis": {

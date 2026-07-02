@@ -1,5 +1,5 @@
 {
-  "@context": "https://obligationfirst.org/v1/",
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:Determination",
   "@id": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/determination/oaip-jia-2026-001-issuance",
   "issued_date": "2026-04-15",

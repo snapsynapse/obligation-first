@@ -53,12 +53,22 @@ export async function loadJson(file) {
   return JSON.parse(await readFile(file, "utf8"));
 }
 
+// File stems become path.join(outDir, `${stem}.json`) in the writers below, so
+// a stem carrying a separator or ".." would escape the export directory.
+function assertSafeFileStem(stem, source) {
+  const value = String(stem);
+  if (!value || value.includes("/") || value.includes("\\") || value.includes("..")) {
+    throw new Error(`unsafe record file stem from ${source}: ${JSON.stringify(value)} (must not contain "/", "\\\\", or "..")`);
+  }
+  return value;
+}
+
 export function recordFileStem(record) {
-  if (record.id) return record.id;
+  if (record.id) return assertSafeFileStem(record.id, "id");
   if (!record["@id"]) throw new Error("Cannot write record without id or @id");
   const urlPath = String(record["@id"]).split(/[?#]/)[0].replace(/\/$/, "");
   const base = urlPath.slice(urlPath.lastIndexOf("/") + 1);
-  return base.endsWith(".json") ? base.slice(0, -5) : base;
+  return assertSafeFileStem(base.endsWith(".json") ? base.slice(0, -5) : base, "@id");
 }
 
 export async function* walkJsonFiles(dir) {
@@ -66,7 +76,13 @@ export async function* walkJsonFiles(dir) {
   try {
     entries = await readdir(dir, { withFileTypes: true });
   } catch (err) {
-    if (err.code === "ENOENT") return;
+    if (err.code === "ENOENT") {
+      // A missing records directory must be a hard error: silently yielding
+      // nothing lets "validated 0 records" masquerade as a green run.
+      const missing = new Error(`records directory not found: ${dir}`);
+      missing.code = "ENOENT";
+      throw missing;
+    }
     throw err;
   }
 
