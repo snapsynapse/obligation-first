@@ -1,7 +1,7 @@
 ---
 "@type": "https://w3id.org/semanticarts/ns/ontology/gist/Specification"
 title: "Obligation-First Protocol"
-version: "0.4.2"
+version: "0.4.3"
 license: "CC-BY-4.0"
 created: 2026-05-04
 modified: 2026-06-09
@@ -9,7 +9,7 @@ modified: 2026-06-09
 
 # Obligation-First Protocol
 
-> **Status: v0.4.2.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). The naming-profile format is defined as of v0.4.0 (`schema/naming-profile.schema.json`, served at `/.well-known/obligation-first-naming-profile.jsonld`). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the crosswalk schema additions.
+> **Status: v0.4.3.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). The naming-profile format is defined as of v0.4.0 (`schema/naming-profile.schema.json`, served at `/.well-known/obligation-first-naming-profile.jsonld`). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the crosswalk schema additions.
 
 ## What this protocol specifies
 

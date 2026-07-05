@@ -1,5 +1,5 @@
 {
-  "_comment": "Obligation-First v1 JSON-LD context. v0.4.2. Spec text in PROTOCOL.md.",
+  "_comment": "Obligation-First v1 JSON-LD context. v0.4.3. Spec text in PROTOCOL.md.",
   "@context": {
     "@version": 1.1,
     "@vocab": "https://w3id.org/of/v1/",

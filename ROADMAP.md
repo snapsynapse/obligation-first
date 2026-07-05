@@ -1,6 +1,6 @@
 # Roadmap
 
-## v0.4.2 (current)
+## v0.4.3 (current)
 
 `@id` federation and identifier crosswalks: record `@id` values are adopter-local and permanent (renames preserved via HTTP 301), cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, and jurisdiction is a typed ISO 3166 field. Reverses the earlier Term-`@id`-is-standard-IRI guidance; additive and non-breaking to v0.1 / v0.2 records. Decision record: [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). v0.4.0 defines the naming-profile format itself: a JSON-LD `of:NamingProfile` document at `/.well-known/obligation-first-naming-profile.jsonld` validated by `schema/naming-profile.schema.json`, with a `text/plain` provenance sidecar — closing a v0.3 freeze gate. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. v0.4.1 is a documentation-consistency patch from an external semantic review; the substantive findings and their remediation plan are tracked in an internal review handoff (2026-06-09) and will land here as decision records as they are taken up. See [CHANGELOG.md](CHANGELOG.md).
 
