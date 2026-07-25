@@ -25,7 +25,7 @@
 #   - Build outputs
 
 bundle: obligation-first
-bundle_version: 0.4.3
+bundle_version: 0.5.0
 bundle_date: 2026-07-01
 
 files:
@@ -76,32 +76,32 @@ files:
   examples/eu-ai-act-article-50/records/term-recital-134.json: b8f135fb2532108e2f6f3fa519a32c4486def68d0b44f9b01ffee8a306090d66
   examples/eu-ai-act-article-50/records/term-recital-135.json: 364e64a4f4a88c3cb006ab65e7a3bea425023f2b0abb839b97ec97475cb1b9d0
   examples/eu-ai-act-article-50/records/term-recital-136.json: c020b01c785780cd6bbfc45b064c0dece624b827b1eaa4b05df4ca76cfa1e9b7
-  examples/naming-profiles/everyailaw-manifest.txt: 5f6f31019e8d55ccfbc3341b7aa1ab0b5d9a691831225ae733807d0ed57c7fd1
-  examples/naming-profiles/everyailaw.jsonld: 10ecfd21b18592b562f158ed9803bd2bb36a5a7866c51f06b451f6593a909e77
+  examples/naming-profiles/everyailaw-manifest.txt: b705b785bba1316690dd794b3370668cdbe83ef3b954fbf415ad8f1de39828d2
+  examples/naming-profiles/everyailaw.jsonld: 273c0d495b1c3cfe086a1d7d5a750d6ad7516a11287e3e95826c54c0a1b96e08
   examples/publedge-jia-utah-72/README.md: f0fee5af31da841b1931f27acd9592f57565693ef530a022035c610dc6d92fc3
   examples/publedge-jia-utah-72/records/authority-us-ut-oaip.json: 769a4bc397679d6e25f17a573edc3f083ad0da873ec3219ad8c5897859650475
   examples/publedge-jia-utah-72/records/determination-us-ut-oaip-jia-2026-001-issuance.json: 39c74a68920176ae2f614673b96928cf92c7f966931395f7522c543075c2702a
   examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json: bb35822fdcc54bcf4510d692b3b220b47d55633df7208acc42bcd7c2d6a43671
   examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json: 362711be508b11b5ee91e84639f9ebd7d7fb68c45b99e7eea90558601d127928
   examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json: 58bd40b2ac809fb0944938695e62c6e02f5e6c79e418fa57d42c47fac3f88764
-  INTENT.md: 81db0868bcb590553497ec33b57d9ff1ec5995126294b110f11e07ce8e2b75af
+  INTENT.md: 26a92135f895aa5e76b9eb463adf72a4480685a99a9a181e74d778c45c410495
   LICENSE-APACHE: 3cbeb832e52ede2c154d4977567b70f204a853342e51d843458f9b785771f069
   LICENSE-CC-BY-4.0: 62a68518848c2fdcd108ff5cc11ba1516440c507bf425d5e76ad36886fd5752a
   NOTICE: 3f2ce598a6a3764e500c61e46ab707606ab3aa911eb780f28b87455dffece286
   PRIOR-ART.md: d518dd5e36e3f8d1a040d313034168b62433a8cdad8c067b04e0a44e46e1dcfe
-  PROTOCOL.md: 4913c26c2b10a6eb11ea511c6a4b30002650eb8ca7297859dfcea56b63d81fcb
+  PROTOCOL.md: f5b1bb258ebb6dabdfd382e7d4652dadbc1d892ba36887d230c6050a1213ca01
   reference/crosswalks/akomantoso.md: 9c1e5519788708f25ad084a0fe73aa3402ff39e9f7942c350d23b2b95720d3e4
   reference/crosswalks/eli-ecli.md: e4a36c322241011a23ef381fe87e8b99dfee257adff1dfc23a2d0255c5be2be5
   reference/crosswalks/gist.md: 121e4f01a80c9531e82938120077ec66cf3bd58ad5f273345cc7800499f9f375
   reference/crosswalks/legalruleml.md: 280f206640abf5200a5b567f238196a972aad97dd37a07309d16d557bd4f44a7
-  ROADMAP.md: 0d6c22f49621f33ae36fa555c09c060dc0f8381a33852c806bff46513989023a
+  ROADMAP.md: d9b2133a98657e1c62d55a8b541c929fc110ca8a868def44289e6897efa818b4
   schema/allegation.schema.json: 586821e1bbe364f6025faad8f1d2f312de670ca99291fa102aeca135b5b5dbd5
   schema/authority.schema.json: 3b9bd821c9ac5626030b57a75d19bde653f0912f7740d74888ba4ee770e33cec
-  schema/context.jsonld: 218be4ba8fc99ee5a685f945683236ed15bb5b3e3ef62c0285d1f10156b2ebf7
+  schema/context.jsonld: 659a7261ba80498de5ba08d3181a97e5ec8ed9bb8aab42e43e442c862fc59d15
   schema/determination.schema.json: 1b3870f93c85c6ba64a6eab51a8a11eb3bb1038d917f189acc294aadeb1122c7
   schema/executable-encoding.schema.json: 4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810
   schema/instrument.schema.json: b03455019428d38fa487262fe62138e18dfdee2743a392f234b1a9a2b961ba96
-  schema/naming-profile.schema.json: abfd2d4ea3364f1410e783cf0f45886982607d40a1d596c214469c971e7d81a8
+  schema/naming-profile.schema.json: 1c0b016c2958d49a189d4ecdc37126803e039c2fac805080694a8d3e57fcae03
   schema/obligation-category.schema.json: 49adbf515e7e3470411cd1d0e87a7ed04a399de24450f840e42f1c98eb92f368
   schema/obligation.schema.json: 7d87132b88768220c3180528be0cc50f757137314994e7b76d89a2e7ffa005f9
   schema/proceeding.schema.json: 7b53822c0f06b3afc392347755b46bb48351fb59b2b1e71ef468fa8eb3ddaffb

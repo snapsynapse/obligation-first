@@ -1,7 +1,7 @@
 ---
 "@type": "https://w3id.org/semanticarts/ns/ontology/gist/Specification"
 title: "Obligation-First Protocol"
-version: "0.4.3"
+version: "0.5.0"
 license: "CC-BY-4.0"
 created: 2026-05-04
 modified: 2026-06-09
@@ -9,7 +9,7 @@ modified: 2026-06-09
 
 # Obligation-First Protocol
 
-> **Status: v0.4.3.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). The naming-profile format is defined as of v0.4.0 (`schema/naming-profile.schema.json`, served at `/.well-known/obligation-first-naming-profile.jsonld`). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the crosswalk schema additions.
+> **Status: v0.5.0.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). The naming-profile format is defined as of v0.4.0 (`schema/naming-profile.schema.json`, served at `/.well-known/obligation-first-naming-profile.jsonld`). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the crosswalk schema additions.
 
 ## What this protocol specifies
 
@@ -250,7 +250,7 @@ A worked profile and its sidecar are in [`examples/naming-profiles/`](examples/n
   "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:NamingProfile",
   "profileVersion": "1.0.0",
-  "appliesTo": "obligation-first 0.4.x",
+  "appliesTo": "obligation-first >=0.5.0 <0.6.0",
   "adopter": "https://example.org/",
   "entities": {
     "Instrument": {
@@ -263,7 +263,22 @@ A worked profile and its sidecar are in [`examples/naming-profiles/`](examples/n
 }
 ```
 
-`entities` carries one entry per Obligation-First entity type the adopter mints (`Authority`, `Instrument`, `Term`, `Obligation`, `Proceeding`, `Allegation`, `Determination`); an adopter declares only the types it publishes. An optional profile-level `jurisdiction` (typed `gist:Jurisdiction`, ISO 3166) sets a default; per-record jurisdiction always wins.
+`entities` carries one entry per Obligation-First entity type the adopter mints (`Authority`, `Instrument`, `Term`, `Obligation`, `ObligationCategory`, `Proceeding`, `Allegation`, `Determination`); an adopter declares only the types it publishes. An optional profile-level `jurisdiction` (typed `gist:Jurisdiction`, ISO 3166) sets a default; per-record jurisdiction always wins.
+
+#### Declaring a spec version range
+
+`appliesTo` states which Obligation-First versions the profile is written against. Two forms are accepted:
+
+| Form | Example | Means |
+|---|---|---|
+| Range (preferred) | `obligation-first >=0.5.0 <0.6.0` | Comparators, all of which must hold |
+| Pinned minor | `obligation-first 0.4.x` | `>=0.4.0 <0.5.0` |
+
+Declare a range wide enough to cover additive releases the profile does not depend on, and a floor at the version that first shipped an entity type or field the profile actually uses. An adopter publishing no `ObligationCategory` entry has no reason to floor at 0.5.0 and should say `>=0.4.0 <0.6.0` so an additive bump does not turn its CI red for no reason.
+
+The pinned form was the only form through v0.4 and made every additive release a flag day: each adopter had to move its profile in lockstep with the spec or fail, whether or not the release affected it. The range form removes the coupling without weakening the check — a floor declared because the profile genuinely needs a new type still fails loudly against an older checkout, and that failure is the useful one.
+
+Adopters verify with `scripts/check-adopter-of-version.mjs` (wired as `check:of` in EveryAILaw, PubLedge, and AI Incident Law). The schema deliberately enforces no `pattern` on `appliesTo`; the grammar lives in the checker, where a mistake is a clear error message rather than a schema rejection of an already-published profile.
 
 #### Provenance sidecar
 

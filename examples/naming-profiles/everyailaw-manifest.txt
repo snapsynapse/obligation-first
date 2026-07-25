@@ -1,10 +1,10 @@
 profile-path: /.well-known/obligation-first-naming-profile.jsonld
-profile-version: 1.0.0
-profile-sha256: 10ecfd21b18592b562f158ed9803bd2bb36a5a7866c51f06b451f6593a909e77
-profile-bytes: 1329
+profile-version: 1.1.0
+profile-sha256: 273c0d495b1c3cfe086a1d7d5a750d6ad7516a11287e3e95826c54c0a1b96e08
+profile-bytes: 1743
 adopter: https://everyailaw.com/
 spec: obligation-first
-spec-version-range: >=0.4.0, <0.5.0
+spec-version-range: >=0.5.0, <0.6.0
 canonical-url: https://everyailaw.com/.well-known/obligation-first-naming-profile.jsonld
 repository-url: https://github.com/snapsynapse/every-ai-law
 released-at: 2026-06-03T00:00:00Z
