@@ -16,7 +16,7 @@
 import { readdir, stat } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-import { asArray, isType, loadJson, loadRecordDir } from "./lib/adopter-kit.mjs";
+import { DEFAULT_COMPANION_DIRS, asArray, isType, loadJson, loadRecordDir } from "./lib/adopter-kit.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -47,15 +47,11 @@ if (sourceArgs.length === 0) {
   }
 }
 
-const AGGREGATE_KINDS = [
-  "authorities",
-  "instruments",
-  "terms",
-  "obligations",
-  "proceedings",
-  "allegations",
-  "determinations",
-];
+// Keys this reporter will read out of an aggregate export's `files` map. Kept
+// in sync with DEFAULT_COMPANION_DIRS in lib/adopter-kit.mjs: a key present in
+// an adopter's index.json but missing here is skipped silently, so its records
+// never enter byId and any anchor pointing at one is reported as unresolved.
+const AGGREGATE_KINDS = Object.keys(DEFAULT_COMPANION_DIRS);
 
 function rel(file) {
   return path.relative(repoRoot, file);
