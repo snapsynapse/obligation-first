@@ -22,7 +22,7 @@ Obligation-First is therefore the integration layer for PAICE legal projects, no
 ## Design constraints
 
 1. **Bind, don't reinvent.** Where standards exist (Semantic Arts gist, LegalRuleML deontic operators, Akoma Ntoso source-text IRIs, ELI, ECLI), Obligation-First references them. It does not duplicate them.
-2. **Small core, explicit extension points.** v0.1 covers the spine, the proceeding strand, the deontic quartet, defeasibility, and a polymorphic executable-encoding reference. Everything else is a downstream extension.
+2. **Small core, explicit extension points.** v0.1 covers the spine, the proceeding strand, the deontic quartet, defeasibility, and a polymorphic executable-encoding reference; v0.5.0 adds the category layer. Everything else is a downstream extension.
 3. **Three real adopters before v1.0.** EveryAILaw, PubLedge, and AI Incident Law must each bind to v0.1 in production before the schema is promoted to v1.0.
 4. **Permanent IRIs.** Stable references via w3id.org redirect; obligationfirst.org is the resolution target, not the canonical IRI.
 5. **Drafting in public.** Every revision is a commit. Material changes are documented in CHANGELOG.md.
@@ -33,6 +33,7 @@ In scope:
 
 - Authority / Instrument / Term / Obligation (the four-role spine)
 - Proceeding / Allegation / Determination (the proceeding strand)
+- ObligationCategory (the category layer, v0.5.0): jurisdiction-neutral duty concepts. Obligations join via `skos:exactMatch`; records that concern a concept generally rather than one statute's version of it `anchor` the Category. Added because all three adopters needed commensurability across jurisdictions and, lacking a type for it, EveryAILaw published concepts as Obligations.
 - Deontic quartet: Requirement / Restriction / Permission / Reparation (subclasses of Obligation, aligned with LegalRuleML 1.0). v0.2 refines the gist binding for Reparation to a layered `gist:Requirement` + `gist:Intention` (+ `gist:Event`) pattern without changing the of: class — see [reference/crosswalks/gist.md](reference/crosswalks/gist.md).
 - Defeasibility relation (`of:defeats`) per Lawsky / LegalRuleML §7.4
 - Polymorphic executable-encoding reference (Catala, Blawx, OpenFisca, others)

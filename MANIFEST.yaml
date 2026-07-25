@@ -84,7 +84,7 @@ files:
   examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json: bb35822fdcc54bcf4510d692b3b220b47d55633df7208acc42bcd7c2d6a43671
   examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json: 362711be508b11b5ee91e84639f9ebd7d7fb68c45b99e7eea90558601d127928
   examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json: 58bd40b2ac809fb0944938695e62c6e02f5e6c79e418fa57d42c47fac3f88764
-  INTENT.md: 26a92135f895aa5e76b9eb463adf72a4480685a99a9a181e74d778c45c410495
+  INTENT.md: 51693d52aece98a197efe1bef28fb3e41a169ac50815eb064ed893018bba5699
   LICENSE-APACHE: 3cbeb832e52ede2c154d4977567b70f204a853342e51d843458f9b785771f069
   LICENSE-CC-BY-4.0: 62a68518848c2fdcd108ff5cc11ba1516440c507bf425d5e76ad36886fd5752a
   NOTICE: 3f2ce598a6a3764e500c61e46ab707606ab3aa911eb780f28b87455dffece286
@@ -94,7 +94,7 @@ files:
   reference/crosswalks/eli-ecli.md: e4a36c322241011a23ef381fe87e8b99dfee257adff1dfc23a2d0255c5be2be5
   reference/crosswalks/gist.md: 121e4f01a80c9531e82938120077ec66cf3bd58ad5f273345cc7800499f9f375
   reference/crosswalks/legalruleml.md: 280f206640abf5200a5b567f238196a972aad97dd37a07309d16d557bd4f44a7
-  ROADMAP.md: d9b2133a98657e1c62d55a8b541c929fc110ca8a868def44289e6897efa818b4
+  ROADMAP.md: e7503c3450e991099041993df14fcfe2c8cf7406980e1bf38a47a4406de9c4cf
   schema/allegation.schema.json: 586821e1bbe364f6025faad8f1d2f312de670ca99291fa102aeca135b5b5dbd5
   schema/authority.schema.json: 3b9bd821c9ac5626030b57a75d19bde653f0912f7740d74888ba4ee770e33cec
   schema/context.jsonld: 659a7261ba80498de5ba08d3181a97e5ec8ed9bb8aab42e43e442c862fc59d15

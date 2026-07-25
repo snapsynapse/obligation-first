@@ -27,10 +27,11 @@ https://obligationfirst.org/
 
 ## What this is
 
-A small, opinionated upper schema with two parts:
+A small, opinionated upper schema with three parts:
 
 1. **The four-role spine** — Authority, Instrument, Term, Obligation. Inherited from the Knowledge-as-Code pattern that PubLedge introduced. Bound to gist classes.
 2. **The proceeding strand** — Proceeding, Allegation, Determination. New in Obligation-First. Models cases, enforcement actions, and rulings without forcing premature factual classification.
+3. **The category layer** — ObligationCategory. Added in v0.5.0. Jurisdiction-neutral duty concepts that Obligations are classified under, so two laws in different jurisdictions are comparable by what they require rather than by how they are worded. A Category is not a duty: it has no jurisdiction, no duty holder, and no creating Term.
 
 Together they cover three domains in one schema:
 
