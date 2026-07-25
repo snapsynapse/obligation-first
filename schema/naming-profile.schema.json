@@ -15,7 +15,7 @@
     },
     "appliesTo": {
       "type": "string",
-      "description": "The Obligation-First version range this profile is written against, e.g. 'obligation-first 0.4.x'."
+      "description": "The Obligation-First version range this profile is written against. Preferred form is an explicit range: 'obligation-first >=0.5.0 <0.6.0'. The pinned-minor form 'obligation-first 0.4.x' remains valid and means >=0.4.0 <0.5.0. Declare a range wide enough to cover additive spec releases the profile does not depend on; declare a floor at the version that first shipped an entity type or field the profile uses. No pattern is enforced here — the grammar is checked by scripts/check-adopter-of-version.mjs, which adopters run as `check:of`."
     },
     "adopter": {
       "type": "string",
@@ -37,7 +37,7 @@
       "description": "One entry per Obligation-First entity type the adopter mints IRIs for. Key is the unprefixed entity-type name.",
       "minProperties": 1,
       "propertyNames": {
-        "enum": ["Authority", "Instrument", "Term", "Obligation", "Proceeding", "Allegation", "Determination"]
+        "enum": ["Authority", "Instrument", "Term", "Obligation", "ObligationCategory", "Proceeding", "Allegation", "Determination"]
       },
       "additionalProperties": { "$ref": "#/$defs/entityProfile" }
     }

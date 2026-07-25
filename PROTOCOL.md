@@ -1,7 +1,7 @@
 ---
 "@type": "https://w3id.org/semanticarts/ns/ontology/gist/Specification"
 title: "Obligation-First Protocol"
-version: "0.4.3"
+version: "0.5.0"
 license: "CC-BY-4.0"
 created: 2026-05-04
 modified: 2026-06-09
@@ -9,7 +9,7 @@ modified: 2026-06-09
 
 # Obligation-First Protocol
 
-> **Status: v0.4.3.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). The naming-profile format is defined as of v0.4.0 (`schema/naming-profile.schema.json`, served at `/.well-known/obligation-first-naming-profile.jsonld`). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the crosswalk schema additions.
+> **Status: v0.5.0.** v0.3 federates record identity: every `@id` is adopter-local, opaque, and permanent (renames preserved via HTTP 301), and cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, not by shared slugs. Jurisdiction is a typed ISO 3166 field. This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking to v0.1 / v0.2 records. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. See [CHANGELOG.md](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). The naming-profile format is defined as of v0.4.0 (`schema/naming-profile.schema.json`, served at `/.well-known/obligation-first-naming-profile.jsonld`). Remaining v0.3 freeze gates are LegalRuleML community feedback, permanent w3id.org redirect filing, and the crosswalk schema additions.
 
 ## What this protocol specifies
 
@@ -20,7 +20,7 @@ A shared upper schema for normative content, expressed as a JSON-LD `@context` a
 1. **Obligation-first modeling** — normative content is mapped through the Obligations it creates, interprets, or allocates, not through the text of the source document.
 2. **Bind to existing standards** — gist for upper ontology, LegalRuleML for deontic operators, Akoma Ntoso / ELI / ECLI / USLM for source-text IRIs. Reference, do not duplicate.
 3. **Permanent IRIs** — `https://w3id.org/of/v1/` is the planned permanent vocabulary prefix and will resolve to `https://obligationfirst.org/v1/` once the w3id.org redirect is filed (planned before v1.0 freeze; see ROADMAP). Until then, `https://obligationfirst.org/v1/` is the live resolution target and the only prefix whose resolution is CI-verified.
-4. **Small core, explicit extensions** — the spine, the proceeding strand, the deontic quartet. Everything else is a downstream extension.
+4. **Small core, explicit extensions** — the spine, the proceeding strand, the deontic quartet, the category layer. Everything else is a downstream extension.
 
 ## Entity model
 
@@ -54,6 +54,25 @@ A shared upper schema for normative content, expressed as a JSON-LD `@context` a
 
 **Reparation gist binding (v0.2).** `of:Reparation` is kept as a distinct deontic subclass — LegalRuleML 1:1 alignment, SPARQL queryability (`?r a of:Reparation`), and type-keyed validators all depend on it. What v0.2 changed is the *gist* binding for that class, per Semantic Arts feedback (Dave McComb, 2026-05-26). gist does not need a fourth deontic class; instead it expresses reparation as a layered pattern: the secondary duty is a `gist:Requirement`; the declared legislative intent to repair (compensation, restitution, deterrence) attaches as `gist:Intention` to the creating Term; the actuated reparation, when it occurs, is recorded via the proceeding strand and conceptually maps to `gist:Event`. v0.1 left this binding open; v0.2 closes it. See [reference/crosswalks/gist.md](reference/crosswalks/gist.md) for the full rationale.
 
+### The category layer
+
+`of:ObligationCategory` is a jurisdiction-neutral duty concept — "human oversight", "incident reporting", "bias prevention". It is the commensurability layer: two Obligations in different jurisdictions are comparable because they carry the same category, not because their texts resemble each other.
+
+A Category is deliberately **not** a duty. It is created by no Term, binds no duty holder, carries no jurisdiction, and nobody can comply with one. Anything actually owed by someone under some Instrument is an Obligation. The test is simple: if you can ask "who owes this, and under which Instrument?" and get an answer, it is an Obligation.
+
+Two predicates connect the layers, and they mean different things:
+
+| From | Predicate | To | Reading |
+|---|---|---|---|
+| Obligation | `exactMatch` | ObligationCategory | This statutory duty is an instance of this concept |
+| Determination, Obligation | `anchors` | ObligationCategory | This record concerns the concept generally, not any one statutory duty |
+
+The second row is why Categories are anchorable rather than merely a classification vocabulary. A court sanctioning a lawyer for unreviewed AI output is about human oversight as a concept; there is often no single statutory Obligation it interprets. Forcing that edge onto an arbitrary statutory Obligation would assert something false. Anchoring the Category asserts what is actually true.
+
+The failure mode this guards against is the inverse: an adopter publishing Categories *as* its Obligations, so that the graph's most-referenced nodes are concepts and the statutory duties have no records at all. A Category with a `created_by` is a modelling error.
+
+Categories are adopter-published, like every other record. The spec defines the type and the two predicates; it does not define a canonical taxonomy or arbitrate whose is correct. Use `scheme` to say which vocabulary a Category belongs to, and `exactMatch` to align across vocabularies.
+
 ## Core relations
 
 | of: term | Domain | Range | Meaning |
@@ -65,7 +84,8 @@ A shared upper schema for normative content, expressed as a JSON-LD `@context` a
 | `of:hasDetermination` | Proceeding | Determination | Rulings issued in a matter |
 | `of:decides` | Determination | Allegation | What the ruling resolved |
 | `of:disposition` | Determination | (closed vocab) | confirmed / rejected / partial / dismissed / settled / vacated / issued. Adjudicative dispositions (everything except `issued`) require `decides` to be non-empty; `issued` is the administrative form (promulgating an Instrument or recording posture) and may leave `decides` empty. |
-| `of:anchors` | Determination \| Term \| Obligation | Obligation \| Term | Interpretive reference. (1) Determination → Obligation: the ruling interprets the obligation. (2) Term → Term: a JIA term interprets a statutory term. (3) Obligation → Obligation: a re-allocated obligation references its statutory ground. Always asserted, never inferred. |
+| `of:anchors` | Determination \| Term \| Obligation | Obligation \| Term \| ObligationCategory | Interpretive reference. (1) Determination → Obligation: the ruling interprets the obligation. (2) Term → Term: a JIA term interprets a statutory term. (3) Obligation → Obligation: a re-allocated obligation references its statutory ground. (4) Determination → ObligationCategory: the ruling concerns the duty concept generally rather than any one statutory obligation. Always asserted, never inferred. |
+| `of:scheme` | ObligationCategory | (IRI) | The concept scheme this Category belongs to (skos:inScheme). Lets an adopter publish more than one taxonomy and lets a consumer tell whose taxonomy a Category came from. |
 | `of:defeats` | Term | Term | Term-level override (Lawsky default logic, LegalRuleML §7.4). General/fallback defeasibility predicate. Distinct from `anchors`: defeats is override; anchors is interpretation without override. |
 | `of:rebuts` | Term | Term | Subproperty of `of:defeats`. Defeating Term denies the *conclusion* of the defeated Term (a counter-rule that asserts the opposite outcome). Per LegalRuleML §7.4 rebut/undercut distinction. Any `of:rebuts` assertion also entails `of:defeats`. |
 | `of:undercuts` | Term | Term | Subproperty of `of:defeats`. Defeating Term denies the *applicability* of the defeated Term in this context (an exception that says the rule doesn't fire here, without contradicting it elsewhere). Per LegalRuleML §7.4. Any `of:undercuts` assertion also entails `of:defeats`. |
@@ -230,7 +250,7 @@ A worked profile and its sidecar are in [`examples/naming-profiles/`](examples/n
   "@context": "https://obligationfirst.org/v1/context.jsonld",
   "@type": "of:NamingProfile",
   "profileVersion": "1.0.0",
-  "appliesTo": "obligation-first 0.4.x",
+  "appliesTo": "obligation-first >=0.5.0 <0.6.0",
   "adopter": "https://example.org/",
   "entities": {
     "Instrument": {
@@ -243,7 +263,22 @@ A worked profile and its sidecar are in [`examples/naming-profiles/`](examples/n
 }
 ```
 
-`entities` carries one entry per Obligation-First entity type the adopter mints (`Authority`, `Instrument`, `Term`, `Obligation`, `Proceeding`, `Allegation`, `Determination`); an adopter declares only the types it publishes. An optional profile-level `jurisdiction` (typed `gist:Jurisdiction`, ISO 3166) sets a default; per-record jurisdiction always wins.
+`entities` carries one entry per Obligation-First entity type the adopter mints (`Authority`, `Instrument`, `Term`, `Obligation`, `ObligationCategory`, `Proceeding`, `Allegation`, `Determination`); an adopter declares only the types it publishes. An optional profile-level `jurisdiction` (typed `gist:Jurisdiction`, ISO 3166) sets a default; per-record jurisdiction always wins.
+
+#### Declaring a spec version range
+
+`appliesTo` states which Obligation-First versions the profile is written against. Two forms are accepted:
+
+| Form | Example | Means |
+|---|---|---|
+| Range (preferred) | `obligation-first >=0.5.0 <0.6.0` | Comparators, all of which must hold |
+| Pinned minor | `obligation-first 0.4.x` | `>=0.4.0 <0.5.0` |
+
+Declare a range wide enough to cover additive releases the profile does not depend on, and a floor at the version that first shipped an entity type or field the profile actually uses. An adopter publishing no `ObligationCategory` entry has no reason to floor at 0.5.0 and should say `>=0.4.0 <0.6.0` so an additive bump does not turn its CI red for no reason.
+
+The pinned form was the only form through v0.4 and made every additive release a flag day: each adopter had to move its profile in lockstep with the spec or fail, whether or not the release affected it. The range form removes the coupling without weakening the check — a floor declared because the profile genuinely needs a new type still fails loudly against an older checkout, and that failure is the useful one.
+
+Adopters verify with `scripts/check-adopter-of-version.mjs` (wired as `check:of` in EveryAILaw, PubLedge, and AI Incident Law). The schema deliberately enforces no `pattern` on `appliesTo`; the grammar lives in the checker, where a mistake is a clear error message rather than a schema rejection of an already-published profile.
 
 #### Provenance sidecar
 
@@ -405,7 +440,7 @@ A field, vocabulary entry, or relation deprecated in v1.x is removed only in v2.
 Status as of 2026-05-04:
 
 - [x] JSON-LD `@context` v1 — [`schema/context.jsonld`](schema/context.jsonld)
-- [x] Per-entity JSON Schemas — [`schema/authority`](schema/authority.schema.json), [`instrument`](schema/instrument.schema.json), [`term`](schema/term.schema.json), [`obligation`](schema/obligation.schema.json), [`proceeding`](schema/proceeding.schema.json), [`allegation`](schema/allegation.schema.json), [`determination`](schema/determination.schema.json), [`executable-encoding`](schema/executable-encoding.schema.json)
+- [x] Per-entity JSON Schemas — [`schema/authority`](schema/authority.schema.json), [`instrument`](schema/instrument.schema.json), [`term`](schema/term.schema.json), [`obligation`](schema/obligation.schema.json), [`obligation-category`](schema/obligation-category.schema.json), [`proceeding`](schema/proceeding.schema.json), [`allegation`](schema/allegation.schema.json), [`determination`](schema/determination.schema.json), [`executable-encoding`](schema/executable-encoding.schema.json)
 - [x] Three worked examples — [Air Canada](examples/air-canada/), [Colorado SB 24-205](examples/colorado-sb24-205/), [Utah JIA](examples/publedge-jia-utah-72/)
 - [x] Crosswalk tables — [gist](reference/crosswalks/gist.md), [LegalRuleML](reference/crosswalks/legalruleml.md), [Akoma Ntoso](reference/crosswalks/akomantoso.md), [ELI/ECLI](reference/crosswalks/eli-ecli.md)
 - [x] Defeasibility semantics

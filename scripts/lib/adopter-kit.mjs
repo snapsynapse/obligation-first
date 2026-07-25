@@ -20,6 +20,7 @@ export const TYPE_TO_SCHEMA = {
   "of:Restriction": "obligation.schema.json",
   "of:Permission": "obligation.schema.json",
   "of:Reparation": "obligation.schema.json",
+  "of:ObligationCategory": "obligation-category.schema.json",
   "of:Proceeding": "proceeding.schema.json",
   "of:Allegation": "allegation.schema.json",
   "of:Determination": "determination.schema.json",
@@ -30,6 +31,7 @@ export const DEFAULT_COMPANION_DIRS = {
   instruments: "instrument",
   terms: "term",
   obligations: "obligation",
+  obligationCategories: "obligation-category",
   proceedings: "proceeding",
   allegations: "allegation",
   determinations: "determination",
@@ -45,6 +47,10 @@ function stableJson(value) {
 }
 
 export function isType(record, expected) {
+  // An array means "any of these" — used where a predicate accepts more than
+  // one range, e.g. anchors, which may point at an Obligation or at the
+  // ObligationCategory that Obligation is classified under.
+  if (Array.isArray(expected)) return expected.some((one) => isType(record, one));
   if (expected === "of:Obligation") return OBLIGATION_TYPES.has(record?.["@type"]);
   return record?.["@type"] === expected;
 }
@@ -156,7 +162,8 @@ function validateReference({ from, field, targetId, expectedType, byId, failures
     return undefined;
   }
   if (!isType(target.record, expectedType)) {
-    failures.push(`${from.rel}: ${field} points to ${targetId} (${target.record["@type"]}), expected ${expectedType}`);
+    const expected = Array.isArray(expectedType) ? expectedType.join(" or ") : expectedType;
+    failures.push(`${from.rel}: ${field} points to ${targetId} (${target.record["@type"]}), expected ${expected}`);
   }
   return target;
 }
@@ -266,7 +273,11 @@ export function validateRecordGraph(entries) {
 
     for (const targetId of asArray(record.anchors)) {
       if (!byId.has(targetId)) continue;
-      const expected = type === "of:Term" ? "of:Term" : "of:Obligation";
+      // A Term interprets another Term. Everything else interprets either a
+      // specific Obligation or the Category that Obligation sits under: a
+      // ruling about a named statutory duty anchors the Obligation, a ruling
+      // about the duty concept generally anchors the Category.
+      const expected = type === "of:Term" ? "of:Term" : ["of:Obligation", "of:ObligationCategory"];
       validateReference({ from: entry, field: "anchors", targetId, expectedType: expected, byId, failures });
     }
 

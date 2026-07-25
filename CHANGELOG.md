@@ -4,6 +4,30 @@ All notable changes to the Obligation-First specification.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/) once it reaches v0.1.0 freeze.
 
+## [0.5.0] - 2026-07-25
+
+Adds the category layer: `of:ObligationCategory`, a jurisdiction-neutral duty concept that Obligations are classified under and that interpretive records may reference when they concern the concept rather than any single statutory duty. Additive; no existing record changes meaning.
+
+This closes a gap the adopters had already worked around badly. EveryAILaw was publishing ten abstract concepts (`transparency`, `human-oversight`, and so on) *as* its Obligations, so 134 Terms collapsed into 10 Obligation records, 128 of the resulting `creates` edges failed the `created_by` back-reference rule, and every cross-adopter anchor in the graph pointed at a concept rather than a duty. The concepts were the right idea in the wrong slot: commensurability across jurisdictions is genuinely valuable, but the thing a duty holder owes and the concept that duty falls under are different entities.
+
+### Added
+
+- **`of:ObligationCategory`** (`schema/obligation-category.schema.json`). Required: `@type`, `@id`, `title`. Optional: `content`, `scheme`, `sameAs`, `exactMatch`, `notes`. Deliberately carries no `jurisdiction`, no `created_by`, and no duty holder. A Category is not a duty, and one carrying `created_by` is a modelling error.
+- **`of:scheme`** predicate (ObligationCategory to IRI, skos:inScheme) so an adopter can publish more than one taxonomy and a consumer can tell whose taxonomy a Category came from.
+- **`ObligationCategory` accepted in naming profiles** (`schema/naming-profile.schema.json` entity enum).
+- **`appliesTo` accepts a version range** in adopter naming profiles: `obligation-first >=0.5.0 <0.6.0`. Range parsing, comparison, and the rationale live in `scripts/lib/version-range.mjs`, with regression coverage in the hardening suite.
+
+### Changed
+
+- **`of:anchors` range extended** to `Obligation | Term | ObligationCategory`. A Determination about a named statutory duty anchors the Obligation; one about the duty concept generally anchors the Category. The second case was already the majority of live anchor edges (47 of 59 AI Incident Law determinations pointed at `human-oversight`), asserted against records that were concepts wearing an Obligation type. The spec now describes what the graph actually holds.
+- **`isType` accepts an array of expected types**, and `validateReference` renders multi-type expectations, so a predicate with more than one range can be checked rather than skipped.
+- **`report-anchor-graph` derives its aggregate-collection keys** from `DEFAULT_COMPANION_DIRS` instead of a hardcoded list. A collection an adopter declared in `index.json` but the reporter did not know about was skipped in silence, so anchors into it read as unresolved. Adding `ObligationCategory` surfaced this: the scanned count over the three adopters stayed at 565 while a whole collection was ignored. It now reads 575.
+- **Pinned-minor `appliesTo` is no longer the only form.** `obligation-first 0.4.x` still parses and still means `>=0.4.0 <0.5.0`, so every profile published before this release keeps working. It made each additive spec release a flag day: an adopter using nothing new still had to move its profile in lockstep or go red. Adopters that do not depend on a new entity type should widen to a range; PubLedge and AI Incident Law now declare `>=0.4.0 <0.6.0` and ride this release without changes, while EveryAILaw declares `>=0.5.0 <0.6.0` because it publishes `ObligationCategory` records.
+
+### Migration
+
+Nothing breaks. Adopters classifying Obligations under concepts should publish those concepts as `of:ObligationCategory` records, join from each Obligation via `exactMatch`, and repoint concept-directed anchors at the Category IRIs. EveryAILaw's split is tracked separately; until it lands, its ten concept records remain typed `of:Requirement`.
+
 ## [0.4.3] - 2026-07-05
 
 Reverts an unintended breaking change shipped in v0.4.2. The code-review pass added a `pattern` constraint (`^[a-z]{2}(-[a-z0-9]{1,3})?$`) to `jurisdiction/ref` across seven schemas, restricting the field to ISO 3166 codes. That constraint never existed before v0.4.2 and rejected already-published conforming records from adopters tracking supranational bodies (OECD, G7, Council of Europe, ISO) that have no ISO 3166 alpha-2 code — despite the field's own description promising "country/supranational" coverage. v0.4.2 described itself as additive at the schema level; this constraint was not.

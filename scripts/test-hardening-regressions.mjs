@@ -12,6 +12,7 @@ import { validateExampleRecordSet } from "./validate-example-graphs.mjs";
 import { validateAssistantGuide, validateReleasePackage } from "./validate-repo-contracts.mjs";
 import { validateHashManifest } from "./validate-hashes.mjs";
 import { versionForms } from "./sync-version.mjs";
+import { satisfies } from "./lib/version-range.mjs";
 
 const failures = [];
 
@@ -162,6 +163,31 @@ async function testManifestStaleHash() {
   }
 }
 
+function testAppliesToRanges() {
+  // The pinned form keeps working: it is what every adopter published before
+  // ranges existed, and it must stay exactly as narrow as it always was.
+  assert(satisfies("obligation-first 0.4.x", "0.4.3"), "pinned form should accept its own minor");
+  assert(!satisfies("obligation-first 0.4.x", "0.5.0"), "pinned form should reject the next minor");
+  assert(!satisfies("obligation-first 0.5.x", "0.4.3"), "pinned form should reject an older minor");
+
+  // The range form is the point: an adopter that uses nothing new in 0.5.0
+  // rides the bump instead of going red in lockstep.
+  assert(satisfies("obligation-first >=0.4.0 <0.6.0", "0.4.3"), "range should accept its floor minor");
+  assert(satisfies("obligation-first >=0.4.0 <0.6.0", "0.5.0"), "range should ride an additive bump");
+  assert(!satisfies("obligation-first >=0.4.0 <0.6.0", "0.6.0"), "range should reject at its ceiling");
+  assert(!satisfies("obligation-first >=0.5.0 <0.6.0", "0.4.3"), "range floor should reject older checkouts");
+
+  // Patch-level comparison, not just major.minor.
+  assert(satisfies("obligation-first >=0.4.3", "0.4.3"), ">= should be inclusive at the patch level");
+  assert(!satisfies("obligation-first >=0.4.4", "0.4.3"), ">= should compare patch versions");
+
+  // Unparseable input must fail closed rather than pass silently.
+  assert(!satisfies("obligation-first 0.4", "0.4.3"), "a bare major.minor is not a range");
+  assert(!satisfies("something-else 0.4.x", "0.4.3"), "a profile naming another spec should not satisfy");
+  assert(!satisfies(undefined, "0.4.3"), "a missing appliesTo should not satisfy");
+}
+
+testAppliesToRanges();
 await testReleasePackageStaleHash();
 await testAssistantGuideByteIdentity();
 await testManifestStaleHash();

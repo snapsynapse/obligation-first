@@ -262,6 +262,7 @@ async function main() {
   await writeFile(notesPath, notes);
 
   const artifacts = [];
+  const carried = new Set();
   for (const artifact of prior.artifacts ?? []) {
     const newPath = retargetVersion(artifact.path, priorVersion, version);
     const newUrl = retargetVersion(artifact.url, priorVersion, version);
@@ -270,7 +271,30 @@ async function main() {
     const sourcePath =
       newPath === `docs/releases/v${version}/${notesName}` ? notesPath : path.join(repoRoot, newPath);
     if (!existsSync(sourcePath)) fail(`artifact missing from tree: ${newPath}`);
+    carried.add(newPath);
     artifacts.push({ path: newPath, url: newUrl, sha256: await sha256Of(sourcePath) });
+  }
+
+  // Deriving the artifact list from the previous manifest alone means a schema
+  // added since that release is silently absent: never hashed, never pinned,
+  // never in sha256.txt. v0.5.0's obligation-category.schema.json hit exactly
+  // that. Sweep schema/ so every schema in the tree is in the package, and
+  // place new ones in sorted order alongside the carried-over entries.
+  const schemaUrlFor = (rel) => `https://obligationfirst.org/v1/${rel.replace(/^schema\//, "schema/")}`;
+  const schemaFiles = (await readdir(path.join(repoRoot, "schema")))
+    .filter((f) => f.endsWith(".json") || f.endsWith(".jsonld"))
+    .map((f) => `schema/${f}`)
+    .sort();
+  const missingSchemas = schemaFiles.filter((rel) => !carried.has(rel));
+  for (const rel of missingSchemas) {
+    artifacts.push({
+      path: rel,
+      url: schemaUrlFor(rel),
+      sha256: await sha256Of(path.join(repoRoot, rel)),
+    });
+  }
+  if (missingSchemas.length > 0) {
+    console.log(`  added ${missingSchemas.length} schema artifact(s) new since v${priorVersion}: ${missingSchemas.join(", ")}`);
   }
 
   const manifest = {

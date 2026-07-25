@@ -1,6 +1,6 @@
 # Obligation-First — full LLM context
 
-> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.4.3. Record `@id` values are adopter-local, opaque, and permanent; cross-adopter interoperability rides on standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in per-adopter `.well-known` naming profiles; jurisdiction is a typed ISO 3166 field. See reference/iri-naming-and-crosswalks.md.
+> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.5.0. Record `@id` values are adopter-local, opaque, and permanent; cross-adopter interoperability rides on standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in per-adopter `.well-known` naming profiles; jurisdiction is a typed ISO 3166 field. See reference/iri-naming-and-crosswalks.md.
 
 This file is the deeper companion to llms.txt. Where llms.txt gives a one-screen summary, this file is the full context an LLM-powered tool needs to reason about Obligation-First, generate adopter records, or answer detailed questions without scraping.
 
@@ -179,11 +179,12 @@ The Level 4 manifest is at `https://obligationfirst.org/.well-known/assistant-gu
 - Instrument schema: https://obligationfirst.org/v1/schema/instrument.schema.json
 - Term schema: https://obligationfirst.org/v1/schema/term.schema.json
 - Obligation schema: https://obligationfirst.org/v1/schema/obligation.schema.json
+- Obligation category schema: https://obligationfirst.org/v1/schema/obligation-category.schema.json
 - Proceeding schema: https://obligationfirst.org/v1/schema/proceeding.schema.json
 - Allegation schema: https://obligationfirst.org/v1/schema/allegation.schema.json
 - Determination schema: https://obligationfirst.org/v1/schema/determination.schema.json
 - ExecutableEncoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
-- Release package: https://obligationfirst.org/releases/v0.4.3/
+- Release package: https://obligationfirst.org/releases/v0.5.0/
 - Assistant guide: https://obligationfirst.org/.well-known/assistant-guide.txt
 - Assistant guide manifest: https://obligationfirst.org/.well-known/assistant-guide-manifest.txt
 - Sitemap: https://obligationfirst.org/sitemap.xml
