@@ -108,6 +108,7 @@ Every artifact an adopter or agent needs is dereferenceable at a stable URL:
 | [`/v1/schema/instrument.schema.json`](https://obligationfirst.org/v1/schema/instrument.schema.json) | Instrument schema |
 | [`/v1/schema/term.schema.json`](https://obligationfirst.org/v1/schema/term.schema.json) | Term schema |
 | [`/v1/schema/obligation.schema.json`](https://obligationfirst.org/v1/schema/obligation.schema.json) | Obligation schema |
+| [`/v1/schema/obligation-category.schema.json`](https://obligationfirst.org/v1/schema/obligation-category.schema.json) | Obligation category schema (jurisdiction-neutral duty concepts) |
 | [`/v1/schema/proceeding.schema.json`](https://obligationfirst.org/v1/schema/proceeding.schema.json) | Proceeding schema |
 | [`/v1/schema/allegation.schema.json`](https://obligationfirst.org/v1/schema/allegation.schema.json) | Allegation schema |
 | [`/v1/schema/determination.schema.json`](https://obligationfirst.org/v1/schema/determination.schema.json) | Determination schema |

@@ -179,6 +179,7 @@ The Level 4 manifest is at `https://obligationfirst.org/.well-known/assistant-gu
 - Instrument schema: https://obligationfirst.org/v1/schema/instrument.schema.json
 - Term schema: https://obligationfirst.org/v1/schema/term.schema.json
 - Obligation schema: https://obligationfirst.org/v1/schema/obligation.schema.json
+- Obligation category schema: https://obligationfirst.org/v1/schema/obligation-category.schema.json
 - Proceeding schema: https://obligationfirst.org/v1/schema/proceeding.schema.json
 - Allegation schema: https://obligationfirst.org/v1/schema/allegation.schema.json
 - Determination schema: https://obligationfirst.org/v1/schema/determination.schema.json

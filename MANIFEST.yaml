@@ -89,7 +89,7 @@ files:
   LICENSE-CC-BY-4.0: 62a68518848c2fdcd108ff5cc11ba1516440c507bf425d5e76ad36886fd5752a
   NOTICE: 3f2ce598a6a3764e500c61e46ab707606ab3aa911eb780f28b87455dffece286
   PRIOR-ART.md: d518dd5e36e3f8d1a040d313034168b62433a8cdad8c067b04e0a44e46e1dcfe
-  PROTOCOL.md: 4dda4cd4027463a9934ce6be3839a1ba1b42b408bfd012116cd590ef9995094f
+  PROTOCOL.md: 4913c26c2b10a6eb11ea511c6a4b30002650eb8ca7297859dfcea56b63d81fcb
   reference/crosswalks/akomantoso.md: 9c1e5519788708f25ad084a0fe73aa3402ff39e9f7942c350d23b2b95720d3e4
   reference/crosswalks/eli-ecli.md: e4a36c322241011a23ef381fe87e8b99dfee257adff1dfc23a2d0255c5be2be5
   reference/crosswalks/gist.md: 121e4f01a80c9531e82938120077ec66cf3bd58ad5f273345cc7800499f9f375
@@ -97,11 +97,12 @@ files:
   ROADMAP.md: 0d6c22f49621f33ae36fa555c09c060dc0f8381a33852c806bff46513989023a
   schema/allegation.schema.json: 586821e1bbe364f6025faad8f1d2f312de670ca99291fa102aeca135b5b5dbd5
   schema/authority.schema.json: 3b9bd821c9ac5626030b57a75d19bde653f0912f7740d74888ba4ee770e33cec
-  schema/context.jsonld: ba059824455a6d3790c2f8ed85acdead72d84f1e8535a2cc4c2418c67acea103
+  schema/context.jsonld: 218be4ba8fc99ee5a685f945683236ed15bb5b3e3ef62c0285d1f10156b2ebf7
   schema/determination.schema.json: 1b3870f93c85c6ba64a6eab51a8a11eb3bb1038d917f189acc294aadeb1122c7
   schema/executable-encoding.schema.json: 4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810
   schema/instrument.schema.json: b03455019428d38fa487262fe62138e18dfdee2743a392f234b1a9a2b961ba96
-  schema/naming-profile.schema.json: daa6898a77ba42751b11806d2166a9f2a69e09ba0cbc1606c081333d33a651ab
+  schema/naming-profile.schema.json: abfd2d4ea3364f1410e783cf0f45886982607d40a1d596c214469c971e7d81a8
+  schema/obligation-category.schema.json: 49adbf515e7e3470411cd1d0e87a7ed04a399de24450f840e42f1c98eb92f368
   schema/obligation.schema.json: 7d87132b88768220c3180528be0cc50f757137314994e7b76d89a2e7ffa005f9
   schema/proceeding.schema.json: 7b53822c0f06b3afc392347755b46bb48351fb59b2b1e71ef468fa8eb3ddaffb
   schema/term.schema.json: c7a5b5f26de2f4b26066a13f86137edc30ce6e68a7c2c2d9ac73549a74821d57

@@ -37,7 +37,7 @@
       "description": "One entry per Obligation-First entity type the adopter mints IRIs for. Key is the unprefixed entity-type name.",
       "minProperties": 1,
       "propertyNames": {
-        "enum": ["Authority", "Instrument", "Term", "Obligation", "Proceeding", "Allegation", "Determination"]
+        "enum": ["Authority", "Instrument", "Term", "Obligation", "ObligationCategory", "Proceeding", "Allegation", "Determination"]
       },
       "additionalProperties": { "$ref": "#/$defs/entityProfile" }
     }

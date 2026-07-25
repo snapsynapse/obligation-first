@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://obligationfirst.org/v1/schema/obligation-category.schema.json",
+  "title": "ObligationCategory",
+  "description": "A jurisdiction-neutral duty concept that Obligations are classified under, and that interpretive records may reference when they concern the concept rather than any single statutory duty. Categories are the commensurability layer: two Obligations in different jurisdictions are comparable because they carry the same category, not because they share text. An Obligation joins its categories via skos:exactMatch; a Determination that concerns a category generally references it via of:anchors. A Category is NOT itself a duty: it is created by no Term, binds no duty holder, and carries no jurisdiction. Anything that is actually owed by someone under some instrument is an Obligation, not a Category.",
+  "type": "object",
+  "required": ["@type", "@id", "title"],
+  "properties": {
+    "@context": { "type": ["string", "array", "object"] },
+    "@id": { "type": "string", "format": "uri" },
+    "@type": { "const": "of:ObligationCategory" },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Short human-readable name of the concept, e.g. 'Human Oversight'."
+    },
+    "content": {
+      "type": "string",
+      "description": "Plain-language statement of what duties fall under this category and what distinguishes it from adjacent categories."
+    },
+    "scheme": {
+      "type": "string",
+      "format": "uri",
+      "description": "IRI of the concept scheme this category belongs to (skos:inScheme). Lets an adopter publish more than one taxonomy, and lets a consumer tell whose taxonomy a category came from."
+    },
+    "sameAs": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "owl:sameAs crosswalk IRIs: external records identical to this category."
+    },
+    "exactMatch": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "skos:exactMatch crosswalk IRIs: concepts in other schemes interchangeably usable with this one (EuroVoc, an adopter's own vocabulary, a standards-body control catalogue)."
+    },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": true
+}

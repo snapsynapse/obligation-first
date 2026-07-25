@@ -23,6 +23,9 @@
     "Permission":    { "@id": "of:Permission" },
     "Reparation":    { "@id": "of:Reparation" },
 
+    "ObligationCategory": { "@id": "of:ObligationCategory" },
+    "scheme":             { "@id": "of:scheme", "@type": "@id" },
+
     "Proceeding":    { "@id": "of:Proceeding" },
     "Allegation":    { "@id": "of:Allegation" },
     "Determination": { "@id": "of:Determination" },

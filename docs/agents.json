@@ -18,6 +18,7 @@
       "instrument": "https://obligationfirst.org/v1/schema/instrument.schema.json",
       "term": "https://obligationfirst.org/v1/schema/term.schema.json",
       "obligation": "https://obligationfirst.org/v1/schema/obligation.schema.json",
+      "obligation_category": "https://obligationfirst.org/v1/schema/obligation-category.schema.json",
       "proceeding": "https://obligationfirst.org/v1/schema/proceeding.schema.json",
       "allegation": "https://obligationfirst.org/v1/schema/allegation.schema.json",
       "determination": "https://obligationfirst.org/v1/schema/determination.schema.json",
@@ -47,6 +48,9 @@
       "Instrument": "https://obligationfirst.org/v1/schema/instrument.schema.json",
       "Term": "https://obligationfirst.org/v1/schema/term.schema.json",
       "Obligation": "https://obligationfirst.org/v1/schema/obligation.schema.json"
+    },
+    "category_layer": {
+      "ObligationCategory": "https://obligationfirst.org/v1/schema/obligation-category.schema.json"
     },
     "proceeding_strand": {
       "Proceeding": "https://obligationfirst.org/v1/schema/proceeding.schema.json",
