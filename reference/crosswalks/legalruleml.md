@@ -40,7 +40,7 @@ For an adopter using both standards:
 
 ```yaml
 "@context":
-  - https://obligationfirst.org/v1/
+  - https://obligationfirst.org/v1/context.jsonld
   - http://docs.oasis-open.org/legalruleml/ns/v1.0/
 
 "@type": of:Term
@@ -50,7 +50,7 @@ jurisdiction:
   ref: us-co
 text: "A developer ... shall use reasonable care ..."
 creates:
-  - https://everyailaw.com/obligation/transparency.json
+  - https://everyailaw.com/obligation/colorado-sb24-205-transparency.json
 lrml_encoded_as: https://everyailaw.com/lrml/colorado-sb24-205-transparency.xml
 ```
 

@@ -44,8 +44,8 @@ Together they cover three domains in one schema:
 Obligation-First is the interstitial layer between the PAICE legal projects. It does not replace EveryAILaw, AI Incident Law, or PubLedge. It gives them a shared contract:
 
 - EveryAILaw contributes statutory and regulatory `Obligation` records.
-- AI Incident Law contributes `Proceeding`, `Allegation`, and `Determination` records that anchor back to those Obligations.
-- PubLedge contributes joint-interpretation `Instrument`, `Term`, and `Obligation` records that clarify or re-allocate the same underlying Obligations.
+- AI Incident Law contributes `Proceeding`, `Allegation`, and `Determination` records that anchor to concrete Obligations or, when the evidence is broader, ObligationCategories.
+- PubLedge contributes joint-interpretation `Instrument`, `Term`, and `Obligation` records that clarify or re-allocate underlying duties and duty concepts.
 
 The join surface is deliberately small: stable `@id` values, a shared `@context`, schema validation, and `anchors` for cross-project references.
 
@@ -54,7 +54,7 @@ The join surface is deliberately small: stable `@id` values, a shared `@context`
 Most legal data models center on the document. Obligation-First centers on what the document *makes you do*. The advantages compound:
 
 - **Cross-jurisdictional comparison becomes natural.** Two laws with the same Obligation are commensurable even when their texts differ.
-- **Proceedings link cleanly to statutes.** A Determination anchors to the Obligation it interprets, not the textual provision.
+- **Proceedings link cleanly to duties.** A Determination anchors to a concrete Obligation when it identifies the statutory duty, or to an ObligationCategory when it concerns the concept generally.
 - **Joint interpretations re-allocate Obligations between parties** — exactly what JIAs and RMAs do.
 - **Rules-as-code engines plug in below the schema.** A Provision can carry an `executableEncoding` reference to a Catala scope, a Blawx ruleset, or an OpenFisca formula without changing the schema.
 
@@ -64,7 +64,7 @@ Most legal data models center on the document. Obligation-First centers on what 
 - [PubLedge](https://publedge.org/) — open recordkeeping protocol for joint interpretations, now publishing Obligation-First records for authorities, instruments, terms, obligations, and determinations.
 - [AI Incident Law](https://aiincidentlaw.org/) — public-record corpus of AI-related cases, now publishing Obligation-First proceedings, allegations, determinations, and authorities.
 
-If you'd like to bind your project to the current draft, see [Quick start](#quick-start-bind-a-dataset-in-three-steps) below or [CONTRIBUTING.md](CONTRIBUTING.md). v0.1 bindings remain record-valid through v0.4 — no migration required (Level 2 conformance has tightened since v0.3; see PROTOCOL.md "Conformance levels").
+If you'd like to bind your project to the current draft, see [Quick start](#quick-start-bind-a-dataset-in-three-steps) below or [CONTRIBUTING.md](CONTRIBUTING.md). v0.1 bindings remain record-valid through v0.5, except that records must reference the canonical context document rather than the bare namespace URL (Level 2 conformance has tightened since v0.3; see PROTOCOL.md "Conformance levels").
 
 ## Quick start — bind a dataset in three steps
 

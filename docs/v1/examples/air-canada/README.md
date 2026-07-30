@@ -17,7 +17,7 @@ If this round-trips cleanly, the proceeding strand handles common-law tort cases
 
 Every record in this example follows the worked-example convention in [reference/iri-naming-and-crosswalks.md](../../reference/iri-naming-and-crosswalks.md):
 
-- `@context` is the string `https://obligationfirst.org/v1/`. (`https://w3id.org/of/v1/` is the vocabulary namespace prefix `of:` resolves to — it is never used as the context document.)
+- `@context` is the string `https://obligationfirst.org/v1/context.jsonld`. (`https://w3id.org/of/v1/` is the vocabulary namespace prefix `of:` resolves to — it is never used as the context document.)
 - `@id` is `https://obligationfirst.org/v1/examples/air-canada/<entity-type>/<local-id>`, suffixless. The `<local-id>` is an opaque, adopter-local descriptor — not a human-readable citation. Jurisdiction is never encoded in the slug; it rides as a typed `jurisdiction` field. The neutral citation rides as a crosswalk (`neutral_citation`, plus `citation` on the Proceeding).
 - Internal cross-references (`issuedBy`, `decides`, `hasAllegation`, `hasDetermination`, `related_to`, `authority_basis.instrument_ref`) point at the neutral example `@id`s, so the graph is internally consistent.
 - Where an entity corresponds to a live adopter record, `sameAs` carries the adopter's served `.json` IRI.
@@ -40,7 +40,7 @@ Every record in this example follows the worked-example convention in [reference
 ### 1. Authority — British Columbia Civil Resolution Tribunal
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Authority
 "@id": https://obligationfirst.org/v1/examples/air-canada/authority/bccrt
 organization:
@@ -61,7 +61,7 @@ The BCCRT is not a government department but a quasi-judicial tribunal. gist 14.
 ### 2. Proceeding
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Proceeding
 "@id": https://obligationfirst.org/v1/examples/air-canada/proceeding/moffatt
 title: Moffatt v. Air Canada
@@ -86,7 +86,7 @@ The `@id` is an opaque adopter-local handle (`moffatt`), not a citation. The rea
 This example keeps a teaching two-allegation split (misrepresentation; reliance). The live adopter merges both into a single allegation record, so the `sameAs` crosswalk to that merged record sits on the misrepresentation allegation only; the reliance allegation has no live counterpart and carries no `sameAs`.
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Allegation
 "@id": https://obligationfirst.org/v1/examples/air-canada/allegation/moffatt-misrep
 asserted_by: claimant
@@ -101,7 +101,7 @@ sameAs:
 ```
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Allegation
 "@id": https://obligationfirst.org/v1/examples/air-canada/allegation/moffatt-reliance
 asserted_by: claimant
@@ -115,7 +115,7 @@ The `related_to` points at a neutral example IRI for the AI system; it is illust
 ### 4. Determination
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Determination
 "@id": https://obligationfirst.org/v1/examples/air-canada/determination/moffatt-bccrt-149
 neutral_citation: 2024 BCCRT 149

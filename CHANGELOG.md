@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Enforce `https://obligationfirst.org/v1/context.jsonld` in the shared adopter validator and naming-profile schema; the bare namespace landing page is no longer accepted as a JSON-LD context for current records.
+- Complete the `of:Determination` administrative/adjudicative contract in JSON Schema: `issued` records have empty `decides` and identify at least one `target_instrument` or `anchors` target, while adjudicative records continue to require populated `decides`.
+- Clarify graph ownership: AI Incident Law owns adjudicative Determinations for public matters; PubLedge owns administrative issuance Determinations attached to its Instruments; `issuedBy` identifies the Authority that acted.
+- Align the cross-adopter anchor reporter and Obligation schema guidance with the existing `Obligation | Term | ObligationCategory` range, including category-level PubLedge and AI Incident Law edges.
+- Reconcile the PubLedge JIA worked example with its upstream proposed-draft state by removing the unevidenced issuance Determination and enacted/effective assertions.
+
 All notable changes to the Obligation-First specification.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/) once it reaches v0.1.0 freeze.

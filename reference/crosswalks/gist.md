@@ -36,7 +36,7 @@ This mirrors Dave's contract analogy: a contract document is `gist:Content`; the
 |---|---|---|
 | `of:Proceeding` | `gist:Event` (subtype `LegalProceeding`) | A Proceeding is a temporally-extended event with a docket. |
 | `of:Allegation` | `gist:Content` (assertion text) + `gist:Intention` (speech-act intent, only when the claim is itself intent-bearing — libel, fraud, defamation) | Asserted facts; not authoritative until decided. gist does not define a `gist:Statement` class — see "Reparation pattern" note above for the parallel speech-act-vs-content treatment. |
-| `of:Determination` | `gist:Determination` | One-to-one binding. Already in gist. |
+| `of:Determination` | `gist:Determination` | One-to-one binding. Covers adjudicative outcomes and administrative acts that establish an Instrument or authoritative posture. |
 
 ## Relations
 
@@ -48,7 +48,7 @@ This mirrors Dave's contract analogy: a contract document is `gist:Content`; the
 | `of:hasAllegation` | (no direct gist analog) | Custom relation. |
 | `of:hasDetermination` | (no direct gist analog) | Custom relation. |
 | `of:decides` | (no direct gist analog) | Custom relation: a Determination resolves an Allegation. |
-| `of:anchors` | (no direct gist analog) | Custom relation: a Determination anchors to the Obligation it interprets. |
+| `of:anchors` | (no direct gist analog) | Custom relation: an interpretive record anchors to a specific Obligation or Term, or to an ObligationCategory when it concerns the concept generally. |
 | `of:defeats` | (no direct gist analog) | Custom relation: defeasibility per Lawsky / LegalRuleML §7.4. |
 
 ## Vendoring

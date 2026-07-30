@@ -90,7 +90,7 @@ Three previously-open items were resolved after a full surface assessment confir
 
 Every worked-example record MUST follow this shape:
 
-- `@context`: `https://obligationfirst.org/v1/` (a string; an array only if the example genuinely needs a repo-local extension). Never `w3id.org/of/v1/` in a record — that is the vocabulary namespace, not the context document.
+- `@context`: `https://obligationfirst.org/v1/context.jsonld` (a string; an array only if the example genuinely needs a repo-local extension). Never `w3id.org/of/v1/` in a record — that is the vocabulary namespace, not the context document.
 - `@id`: `https://obligationfirst.org/v1/examples/<example-slug>/<entity-type>/<local-id>`, suffixless. `<entity-type>` is the lowercase role (`authority`, `instrument`, `term`, `obligation`, `proceeding`, `allegation`, `determination`). `<local-id>` is an opaque, lowercase-kebab descriptor with NO jurisdiction code in it (drop `us-`, `us-co-`, `eu-`, `ca-bc-`; keep meaningful descriptors like `sb24-205`, `art-50-2`, `attorney-general`, `bccrt`).
 - `jurisdiction`: where the entity has one, a typed `{ "@type": "gist:Jurisdiction", "ref": "<ISO 3166-1 or 3166-2>" }` (e.g. `us-co`, `us-ut`, `ca-bc`, `eu`). Never encode jurisdiction in the slug.
 - Internal cross-references (`issuedBy`, `hasTerm`, `parent_instrument`, `created_by`, `anchors`, `decides`, `hasAllegation`, `hasDetermination`, `target_instrument`, `triggers_on_violation_of`, `enforcement_authority`, `instrument_ref`): repoint to the new neutral `@id` values within the same example, so the record graph stays internally consistent.

@@ -7,7 +7,7 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { createHash } from "node:crypto";
-import { validateRecordGraph } from "./lib/adopter-kit.mjs";
+import { OF_CONTEXT, validateRecordGraph, validateRecordShapes } from "./lib/adopter-kit.mjs";
 import { validateExampleRecordSet } from "./validate-example-graphs.mjs";
 import { validateAssistantGuide, validateReleasePackage } from "./validate-repo-contracts.mjs";
 import { validateHashManifest } from "./validate-hashes.mjs";
@@ -30,6 +30,7 @@ function stableFailures(items) {
 
 function determination(overrides = {}) {
   return {
+    "@context": OF_CONTEXT,
     "@id": "https://example.com/determination",
     "@type": "of:Determination",
     disposition: "issued",
@@ -37,6 +38,38 @@ function determination(overrides = {}) {
     ...overrides,
   };
 }
+
+const fakeSchemaSet = {
+  ajv: {
+    getSchema() {
+      return () => true;
+    },
+  },
+  schemaByFile: {
+    "determination.schema.json": "fixture",
+  },
+};
+const legacyContextFailures = validateRecordShapes(
+  [{
+    rel: "fixture/legacy-context.json",
+    record: determination({ "@context": "https://obligationfirst.org/v1/" }),
+  }],
+  fakeSchemaSet,
+);
+assert(
+  legacyContextFailures.some((failure) => failure.message.includes("@context must reference")),
+  "adopter shape validator accepted the bare namespace URL as JSON-LD context",
+);
+assert(
+  validateRecordShapes(
+    [{
+      rel: "fixture/extended-context.json",
+      record: determination({ "@context": [OF_CONTEXT, { local: "https://example.com/local#" }] }),
+    }],
+    fakeSchemaSet,
+  ).length === 0,
+  "adopter shape validator rejected canonical context with a local extension",
+);
 
 const issuedWithoutAnchor = [{ rel: "fixture/determination.json", record: determination() }];
 const issuedWithoutAnchorFailures = validateRecordGraph(issuedWithoutAnchor);
@@ -73,6 +106,25 @@ const issuedWithAnchor = [
 assert(
   validateRecordGraph(issuedWithAnchor).length === 0,
   "adopter graph validator rejected issued Determination with valid anchors",
+);
+
+const obligationWithCategoryAnchor = [
+  {
+    rel: "fixture/category.json",
+    record: { "@id": "https://example.com/category", "@type": "of:ObligationCategory" },
+  },
+  {
+    rel: "fixture/obligation.json",
+    record: {
+      "@id": "https://example.com/obligation",
+      "@type": "of:Requirement",
+      anchors: ["https://example.com/category"],
+    },
+  },
+];
+assert(
+  validateRecordGraph(obligationWithCategoryAnchor).length === 0,
+  "adopter graph validator rejected an Obligation anchor to an ObligationCategory",
 );
 
 const exampleResult = validateExampleRecordSet("/tmp/fixture/records", issuedWithoutAnchor, { root: "/tmp" });

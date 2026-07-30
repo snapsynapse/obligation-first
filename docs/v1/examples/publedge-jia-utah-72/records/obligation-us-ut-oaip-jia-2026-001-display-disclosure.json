@@ -8,6 +8,6 @@
   "content": "Plainly identify the service as an AI chatbot on first session, and re-display the disclosure on session resumption after 30 minutes of inactivity.",
   "created_by": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/term/oaip-jia-2026-001-1",
   "anchors": [
-    "https://everyailaw.com/obligation/transparency.json"
+    "https://everyailaw.com/obligation-category/transparency.json"
   ]
 }

@@ -4,7 +4,7 @@ Round-trips PubLedge instrument `us-ut-oaip-jia-2026-001` through the Obligation
 
 ## Why this example
 
-PubLedge already runs the four-role spine. The question is whether swapping its repo-local context for `https://w3id.org/of/v1/` produces equivalent semantics — i.e., whether v0.1 is genuinely the lift-and-shift of PubLedge's existing model rather than a new modeling pattern.
+PubLedge already runs the four-role spine. The question is whether binding its records through `https://obligationfirst.org/v1/context.jsonld` produces equivalent semantics — i.e., whether v0.1 is genuinely the lift-and-shift of PubLedge's existing model rather than a new modeling pattern.
 
 If this round-trips cleanly, PubLedge's adoption path to v0.1 is purely additive: add the new `@context`, keep all existing records.
 
@@ -15,7 +15,7 @@ If this round-trips cleanly, PubLedge's adoption path to v0.1 is purely additive
 | `"@type": gist:Agreement` | unchanged — `of:Instrument` is bound to `gist:Agreement` |
 | `id`, `slug`, `title`, `type`, `jurisdiction` | unchanged |
 | `issued_by` | unchanged — wraps `gist:Organization` subtype the same way |
-| `issuance_event: gist:Determination` | this is the act of issuing the JIA itself; in v0.1 this becomes a separate `of:Determination` record (not a string field) — see note below |
+| administrative issuance event | absent while the instrument remains proposed; once evidenced, the act becomes a separate `of:Determination` record |
 | `obligation_kind: [requirement, permission]` | becomes the `@type` on each created `of:Obligation` (split into multiple typed records, not a list of strings) |
 | `parties` | unchanged for now; v0.2 may bind to a typed Party vocabulary |
 | `statute_anchors` | becomes `of:anchors` relations on the created Obligations |
@@ -24,22 +24,23 @@ If this round-trips cleanly, PubLedge's adoption path to v0.1 is purely additive
 
 ## Migration notes for PubLedge
 
-The PubLedge → Obligation-First binding is mostly *additive*. Two changes worth noting:
+The PubLedge → Obligation-First binding is mostly *additive*. Two distinctions are worth noting:
 
-### 1. `issuance_event` becomes a record, not a string
+### 1. Issuance becomes a record only after it occurs
 
-PubLedge currently stores `issuance_event: gist:Determination` as a frontmatter string. Under v0.1, the act of issuing the JIA is itself a Determination (a `gist:Determination`) and gets its own record:
+The current JIA is an illustrative proposed draft, so this example publishes no issuance Determination. After formal issuance, the authoritative act becomes a separate `of:Determination` rather than a status-like string:
 
 ```yaml
 "@type": of:Determination
 "@id": https://publedge.org/determination/us-ut-oaip-jia-2026-001-issuance
 issued_date: 2026-04-15
 issuedBy: https://publedge.org/authority/us-ut-oaip
+decides: []
 disposition: issued
 target_instrument: https://publedge.org/instrument/us-ut-oaip-jia-2026-001
 ```
 
-This makes the Determination linkable from anywhere (e.g., a future case that cites this JIA) without re-creating it.
+This makes the issuance linkable without claiming that a draft was promulgated. The current example intentionally omits this hypothetical record.
 
 ### 2. `obligation_kind` becomes typed records, not a list
 
@@ -53,15 +54,15 @@ duty_holder: provider
 content: "Plainly identify the service as an AI chatbot on first session."
 created_by: https://publedge.org/term/us-ut-oaip-jia-2026-001-1
 anchors:
-  - https://everyailaw.com/instrument/utah-sb149/term/utah-code-13-72a-203
+  - https://everyailaw.com/obligation-category/transparency.json
 ```
 
-The `anchors` field is the cross-portfolio join: a PubLedge JIA's obligations link directly to the EveryAILaw provisions they interpret. This is exactly the bridge the schema was designed to enable.
+The `anchors` field is the cross-portfolio join. This illustrative duty is supported only at the transparency-concept level, so it points to the EveryAILaw ObligationCategory. A concrete Obligation anchor would require evidence tying the JIA to the specific Term that creates that duty.
 
 ## Round-trip findings
 
 - ✅ PubLedge's existing structure is fully expressible in v0.1 with no information loss
-- ✅ Two changes (issuance as Determination record, obligations as typed records) are additive — old prose representation can stay as documentation; the record form is the canonical reference
+- ✅ Typed obligation records are additive, while the absent issuance record preserves the upstream draft posture
 - ✅ The `anchors` field demonstrates cross-portfolio join: PubLedge → EveryAILaw works
 - ✅ Confirms v0.1 adoption path for PubLedge is purely additive
 
@@ -77,6 +78,6 @@ PubLedge adopters that need to model JIA lineage or enforcement nuance can do so
 
 ## Reference
 
-Canonical PubLedge instrument: identifier `us-ut-oaip-jia-2026-001` in the PubLedge repo at `data/examples/instruments/us-ut-oaip-jia-2026-001.md`. Public web home is [publedge.org](https://publedge.org/) (the spec; per-record URLs become live once PubLedge completes its v0.1 binding — see [reference/handoffs/publedge-binding.md](../../reference/handoffs/publedge-binding.md)).
+Canonical PubLedge instrument: identifier `us-ut-oaip-jia-2026-001` in the PubLedge repo at `data/examples/instruments/us-ut-oaip-jia-2026-001.md`, published at [its live record URL](https://publedge.org/us/utah/oaip/jia/2026-001/).
 
 This worked example demonstrates the binding; the canonical record stays in the PubLedge repo.

@@ -33,7 +33,7 @@
         "anchors": {
           "type": "array",
           "items": { "type": "string", "format": "uri" },
-          "description": "IRIs of of:Obligation records this Obligation interprets, references, or re-allocates from. Used by JIAs and other interpretive Instruments whose Obligations ground out in a statutory or regulatory Obligation. Cross-portfolio joins (PubLedge JIA Obligation → EveryAILaw statutory Obligation) use this predicate."
+          "description": "IRIs of of:Obligation or of:ObligationCategory records this Obligation interprets, references, re-allocates from, or concerns. Use a concrete Obligation when a specific creating Term is identified; use an ObligationCategory when the crosswalk is only to the duty concept generally."
         },
         "executableEncoding": {
           "anyOf": [

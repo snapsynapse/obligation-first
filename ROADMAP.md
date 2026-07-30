@@ -135,8 +135,8 @@ These are not v0.1 deliverables but shape the architecture from the beginning so
 Obligation-First should now be treated as the shared contract between PAICE legal projects:
 
 1. EveryAILaw is the statutory source of truth for Instruments, Terms, and Obligations.
-2. AI Incident Law is the proceeding source of truth for Proceedings, Allegations, and Determinations.
-3. PubLedge is the joint-interpretation source of truth for negotiated Instruments and re-allocated Obligations.
+2. AI Incident Law is the proceeding source of truth for Proceedings, Allegations, and adjudicative Determinations arising from public matters.
+3. PubLedge is the joint-interpretation source of truth for negotiated Instruments, re-allocated Obligations, and administrative issuance Determinations attached to its Instruments.
 4. Obligation-First owns the common `@context`, JSON Schemas, crosswalks, and validation harness that let those records join without centralizing the products.
 
 Near-term integration work belongs in the adopter repos, using the handoffs in `reference/handoffs/` as the execution checklist. This repo should remain the stable vocabulary and conformance source.

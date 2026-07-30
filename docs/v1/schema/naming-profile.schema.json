@@ -4,9 +4,9 @@
   "title": "NamingProfile",
   "description": "An adopter-published declaration of the IRI scheme each Obligation-First entity type follows, plus the identifier crosswalks the adopter supplies. Published at /.well-known/obligation-first-naming-profile.jsonld and served as application/ld+json. Obligation-First consumes and validates against this profile; it never prescribes the slug grammar. Required to be 'bound' (Level 2). See PROTOCOL.md 'Naming profiles and identifier crosswalks'.",
   "type": "object",
-  "required": ["@type", "profileVersion", "appliesTo", "adopter", "entities"],
+  "required": ["@context", "@type", "profileVersion", "appliesTo", "adopter", "entities"],
   "properties": {
-    "@context": { "type": ["string", "array", "object"] },
+    "@context": { "const": "https://obligationfirst.org/v1/context.jsonld" },
     "@type": { "const": "of:NamingProfile" },
     "profileVersion": {
       "type": "string",

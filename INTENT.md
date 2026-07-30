@@ -17,7 +17,7 @@ Obligation-First is the shared upper schema for normative content across the PAI
 
 The methodology behind the schema: normative content is modeled by what it requires, not what it says. The Obligation is the unit of comparison across jurisdictions, instruments, and time.
 
-Obligation-First is therefore the integration layer for PAICE legal projects, not another end-user corpus. EveryAILaw publishes statutory Obligations, AI Incident Law publishes Proceedings and Determinations that anchor to those Obligations, and PubLedge publishes joint interpretations that re-allocate or clarify them. This repo owns the common vocabulary, validation contract, and identifier conventions that let those projects behave as one graph while remaining separately scoped products.
+Obligation-First is therefore the integration layer for PAICE legal projects, not another end-user corpus. EveryAILaw publishes statutory Obligations, AI Incident Law publishes Proceedings and adjudicative Determinations that anchor to those Obligations, and PubLedge publishes joint interpretations that re-allocate or clarify them plus administrative issuance Determinations for its Instruments. This repo owns the common vocabulary, validation contract, and identifier conventions that let those projects behave as one graph while remaining separately scoped products.
 
 ## Design constraints
 
@@ -67,9 +67,9 @@ At the current stage, specification mode is locally complete for v0.1. The unblo
 ## Relationship to other components
 
 - **Knowledge-as-Code** (https://knowledge-as-code.com/): the methodology family. Obligation-First is one specific KaC schema for normative content. Other KaC schemas may emerge for other domains.
-- **PubLedge** (https://publedge.org/): protocol that adopts Obligation-First. The four-role spine originated in PubLedge; Obligation-First lifts and generalizes it.
+- **PubLedge** (https://publedge.org/): protocol that adopts Obligation-First. The four-role spine originated in PubLedge; Obligation-First lifts and generalizes it. PubLedge records administrative issuance Determinations for its Instruments while `issuedBy` identifies the Authority that acted.
 - **EveryAILaw** (https://everyailaw.com/): adopter; provides the statute-and-obligation reference dataset.
-- **AI Incident Law** (https://aiincidentlaw.org/): adopter; provides the proceeding-and-determination reference dataset.
+- **AI Incident Law** (https://aiincidentlaw.org/): adopter; provides the proceeding-and-adjudicative-determination reference dataset.
 - **AI Posture** (https://aiposture.org/): downstream consumer. Posture assertions reference Obligations via Obligation-First IRIs.
 - **Semantic Arts gist**: the upper ontology Obligation-First binds to. We do not fork gist; we vendor a snapshot under `vendor/gist/` and reference it.
 

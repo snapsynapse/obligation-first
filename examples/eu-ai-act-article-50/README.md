@@ -67,7 +67,7 @@ The other 24 records are teaching constructs. The two-authority model (Parliamen
 A recital is where the article-versus-recital question resolves, and the recitals that ground each Article 50 paragraph are modeled as their own records (`term-recital-132.json` through `term-recital-136.json`). A recital is a Term of the Regulation that creates nothing:
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Term
 "@id": https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/recital-133
 text: >

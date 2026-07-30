@@ -3,7 +3,7 @@ import addFormats from "ajv-formats";
 import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-export const OF_CONTEXT = "https://obligationfirst.org/v1/";
+export const OF_CONTEXT = "https://obligationfirst.org/v1/context.jsonld";
 
 export const OBLIGATION_TYPES = new Set([
   "of:Requirement",
@@ -134,6 +134,19 @@ export function validateRecordShapes(entries, { ajv, schemaByFile }) {
   const failures = [];
 
   for (const entry of entries) {
+    const context = entry.record["@context"];
+    const hasCanonicalContext =
+      context === OF_CONTEXT ||
+      (Array.isArray(context) && context.includes(OF_CONTEXT));
+    if (!hasCanonicalContext) {
+      failures.push({
+        entry,
+        message: `@context must reference ${OF_CONTEXT}`,
+        errors: [],
+      });
+      continue;
+    }
+
     const type = entry.record["@type"];
     if (!type) {
       failures.push({ entry, message: "missing @type", errors: [] });

@@ -29,13 +29,13 @@ The validator checks two layers:
 1. JSON Schema conformance for each record's `@type`.
 2. Local graph coherence for links that should resolve inside the same record set.
 
-External `anchors` are allowed to point outside the local record set. This is intentional: under the v0.3 federation model, cross-adopter links are typed crosswalks (`anchors` / `sameAs`) that target the other adopter's real published IRI — the actual `@id` resolved from that adopter's live export or its `.well-known` naming profile. A PubLedge anchor points at EveryAILaw's real published Term/Obligation `@id`, and an AI Incident Law Determination does the same. The join keys on those real IRIs and on shared standard identifiers, never on a slug guessed from a naming convention.
+External `anchors` are allowed to point outside the local record set. This is intentional: under the v0.3 federation model, cross-adopter links are typed crosswalks (`anchors` / `sameAs`) that target the other adopter's real published IRI — the actual `@id` resolved from that adopter's live export or its `.well-known` naming profile. A PubLedge anchor points at EveryAILaw's real published Term, Obligation, or ObligationCategory `@id`, and an AI Incident Law Determination does the same. The join keys on those real IRIs and on shared standard identifiers, never on a slug guessed from a naming convention.
 
 ## Naming profile
 
 To reach Level 2, an adopter publishes a naming profile declaring the IRI scheme it actually mints. Format and serving requirements are normative in [PROTOCOL.md](../PROTOCOL.md) ("Naming profiles and identifier crosswalks"); this is the practical path.
 
-1. Copy [`examples/naming-profiles/everyailaw.jsonld`](../examples/naming-profiles/everyailaw.jsonld) as a starting point. Keep `@type: of:NamingProfile` and `@context: https://obligationfirst.org/v1/`.
+1. Copy [`examples/naming-profiles/everyailaw.jsonld`](../examples/naming-profiles/everyailaw.jsonld) as a starting point. Keep `@type: of:NamingProfile` and `@context: https://obligationfirst.org/v1/context.jsonld`.
 2. For each entity type you publish, set `void:uriSpace`, a `void:uriRegexPattern` that matches your live `@id` values exactly (including any `.json` suffix you actually serve), the `uriTemplate`, and the `crosswalks` you supply. Declare only the entity types you mint — omit the rest.
 3. Validate it: `node ../obligation-first/scripts/validate-naming-profile.mjs` after dropping your profile into `examples/naming-profiles/`, or compile it against [`schema/naming-profile.schema.json`](../schema/naming-profile.schema.json) in your own pipeline.
 4. Generate the provenance sidecar (`*-manifest.txt`): `profile-sha256` is the SHA-256 of the profile bytes, `profile-bytes` its byte length. The validator fails if either drifts.
@@ -63,7 +63,7 @@ This is the current cross-project enrichment loop:
 
 1. Export each adopter's Obligation-First records.
 2. Run the anchor graph report across all available adopter exports.
-3. Add missing `anchors` where a Determination, Term, or Obligation has a specific statutory or joint-interpretation target.
+3. Add missing `anchors` where a Determination, Term, or Obligation has a supported statutory, category, or joint-interpretation target.
 4. Re-run the report and commit the adopter-side export.
 
 ## Bundle writer

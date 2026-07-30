@@ -39,7 +39,7 @@ A shared upper schema for normative content, expressed as a JSON-LD `@context` a
 |---|---|---|---|
 | Proceeding | `of:Proceeding` | `gist:Event` (subtype `LegalProceeding`) | The legal matter — docket, case, action |
 | Allegation | `of:Allegation` | `gist:Content` (assertion text) + `gist:Intention` (speech-act intent, when intent-bearing) | Asserted facts about what happened |
-| Determination | `of:Determination` | `gist:Determination` | An Authority's ruling about Allegations and Obligations |
+| Determination | `of:Determination` | `gist:Determination` | An authoritative act that establishes a legal outcome: adjudicative when it resolves Allegations, administrative when it promulgates an Instrument or records posture |
 
 ### The deontic quartet
 
@@ -83,7 +83,7 @@ Categories are adopter-published, like every other record. The spec defines the 
 | `of:hasAllegation` | Proceeding | Allegation | Asserted facts in a matter |
 | `of:hasDetermination` | Proceeding | Determination | Rulings issued in a matter |
 | `of:decides` | Determination | Allegation | What the ruling resolved |
-| `of:disposition` | Determination | (closed vocab) | confirmed / rejected / partial / dismissed / settled / vacated / issued. Adjudicative dispositions (everything except `issued`) require `decides` to be non-empty; `issued` is the administrative form (promulgating an Instrument or recording posture) and may leave `decides` empty. |
+| `of:disposition` | Determination | (closed vocab) | confirmed / rejected / partial / dismissed / settled / vacated / issued. Adjudicative dispositions (everything except `issued`) require `decides` to be non-empty. `issued` is the administrative form: `decides` must be empty and at least one `target_instrument` or `anchors` target must identify what the act promulgates or affects. |
 | `of:anchors` | Determination \| Term \| Obligation | Obligation \| Term \| ObligationCategory | Interpretive reference. (1) Determination → Obligation: the ruling interprets the obligation. (2) Term → Term: a JIA term interprets a statutory term. (3) Obligation → Obligation: a re-allocated obligation references its statutory ground. (4) Determination → ObligationCategory: the ruling concerns the duty concept generally rather than any one statutory obligation. Always asserted, never inferred. |
 | `of:scheme` | ObligationCategory | (IRI) | The concept scheme this Category belongs to (skos:inScheme). Lets an adopter publish more than one taxonomy and lets a consumer tell whose taxonomy a Category came from. |
 | `of:defeats` | Term | Term | Term-level override (Lawsky default logic, LegalRuleML §7.4). General/fallback defeasibility predicate. Distinct from `anchors`: defeats is override; anchors is interpretation without override. |
@@ -198,7 +198,7 @@ Permanence: once published, an `@id` does not change. If an adopter reorganizes 
 
 ### Worked-example records
 
-The records under `examples/*/records/*.json` use `@id` values under adopter-domain hosts (everyailaw.com, aiincidentlaw.org, publedge.org). Per "`@id` federation and crosswalks" above, an example `@id` is not a prediction of what an adopter will mint. Where the referenced entity already exists in an adopter's published export, the example MUST use that adopter's actual IRI rather than invent a plausible one. The policy for entities an adopter has not yet minted (a neutral obligationfirst.org example namespace versus a proposed-extension marker) is being finalized; see `reference/iri-naming-and-crosswalks.md`. The current example records predate this rule and are being realigned to it.
+The records under `examples/*/records/*.json` use neutral, suffixless `obligationfirst.org` example IRIs. Real-world identity rides in `sameAs`, standard legal-identifier crosswalks, and explicit `anchors` to actual adopter records. An example never predicts an adopter slug or uses a teaching identifier as the canonical identifier of an external entity.
 
 Until realignment is complete, the JSON bytes for these example records are served from `https://obligationfirst.org/v1/examples/<slug>/records/<file>.json` so reviewers can fetch and validate against the published schemas immediately.
 
@@ -392,7 +392,7 @@ The adopter additionally carries, on every applicable record, each identifier cr
 
 Required: all of Level 2, plus every crosswalk declared in the adopter's profile is present where applicable, and at least one standard legal-source or case identifier round-trips where the source jurisdiction publishes one.
 
-The three current adopters (PubLedge, EveryAILaw, AI Incident Law) target Level 2 for v0.1. Level 3 is aspirational; PubLedge will reach it first via existing Akoma Ntoso integrations.
+The three current adopters (PubLedge, EveryAILaw, AI Incident Law) target Level 2 for v0.1. Within the federated graph, AI Incident Law is authoritative for adjudicative Determinations arising from its public matters. PubLedge is authoritative for administrative issuance Determinations attached to Instruments in its registry. `issuedBy` always identifies the Authority that acted; it never implies that PubLedge itself issued a ruling. Level 3 is aspirational; PubLedge will reach it first via existing Akoma Ntoso integrations.
 
 ## Versioning policy
 
@@ -457,7 +457,7 @@ Round-tripping the three examples surfaced these findings:
 - One Term creating both a Requirement and a Reparation (the case Reparation was added for)
 - Multi-valued `decides` on a Determination (Air Canada had two Allegations resolved by one ruling)
 - The recursive Authority basis (BCCRT's authority traced to BC Civil Resolution Tribunal Act)
-- Cross-portfolio `anchors` from a PubLedge JIA Obligation to an EveryAILaw Term — the bridge works as designed
+- Cross-portfolio `anchors` from a PubLedge JIA Term to an EveryAILaw Term and from its Obligation to an EveryAILaw ObligationCategory — the bridge works at both specificity levels
 - PubLedge adoption is purely additive: existing records bind via `@context` swap with no semantic loss
 
 **Deferred to v0.2:**

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://obligationfirst.org/v1/schema/determination.schema.json",
   "title": "Determination",
-  "description": "An Authority's ruling about Allegations and/or Obligations. Bound to gist:Determination. A single Proceeding may accumulate multiple Determinations (trial → appeal → reversal); each Determination is a separate authoritative ruling.",
+  "description": "An authoritative act that establishes a legal outcome. An adjudicative Determination resolves Allegations; an administrative Determination promulgates an Instrument or records an authoritative posture. Bound to gist:Determination.",
   "type": "object",
   "required": ["@type", "@id", "issuedBy", "decides", "disposition"],
   "properties": {
@@ -13,7 +13,7 @@
     "issuedBy": {
       "type": "string",
       "format": "uri",
-      "description": "IRI of the of:Authority that issued the ruling."
+      "description": "IRI of the of:Authority that made the determination."
     },
     "decides": {
       "type": "array",
@@ -28,7 +28,7 @@
     "anchors": {
       "type": "array",
       "items": { "type": "string", "format": "uri" },
-      "description": "IRIs of of:Obligation records this Determination interprets or applies."
+      "description": "IRIs of of:Obligation or of:ObligationCategory records this Determination interprets, applies, or concerns."
     },
     "remedy": {
       "type": "object",
@@ -79,17 +79,39 @@
       "description": "skos:exactMatch crosswalk IRIs: external concepts interchangeably usable with this record. Weaker than owl:sameAs; preferred for cross-scheme concept joins."
     }
   },
-  "if": {
-    "required": ["disposition"],
-    "properties": {
-      "disposition": { "not": { "const": "issued" } }
+  "allOf": [
+    {
+      "if": {
+        "required": ["disposition"],
+        "properties": {
+          "disposition": { "const": "issued" }
+        }
+      },
+      "then": {
+        "properties": {
+          "decides": { "maxItems": 0 },
+          "anchors": { "minItems": 1 }
+        },
+        "anyOf": [
+          { "required": ["target_instrument"] },
+          { "required": ["anchors"] }
+        ]
+      }
+    },
+    {
+      "if": {
+        "required": ["disposition"],
+        "properties": {
+          "disposition": { "not": { "const": "issued" } }
+        }
+      },
+      "then": {
+        "required": ["decides"],
+        "properties": {
+          "decides": { "minItems": 1 }
+        }
+      }
     }
-  },
-  "then": {
-    "required": ["decides"],
-    "properties": {
-      "decides": { "minItems": 1 }
-    }
-  },
+  ],
   "additionalProperties": true
 }

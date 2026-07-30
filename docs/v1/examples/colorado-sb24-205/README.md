@@ -16,7 +16,7 @@ The good news: it can. The spine handles legislation. The proceeding strand hand
 
 Every record in this example follows the worked-example record convention:
 
-- `@context` is the string `https://obligationfirst.org/v1/`.
+- `@context` is the string `https://obligationfirst.org/v1/context.jsonld`.
 - `@id` is a neutral, suffixless `obligationfirst.org` IRI of the form `https://obligationfirst.org/v1/examples/colorado-sb24-205/<entity-type>/<local-id>`. No jurisdiction code is encoded in the slug.
 - `jurisdiction` is a typed field — `{ "@type": "gist:Jurisdiction", "ref": "us-co" }` — never a slug component. The federal-court records carry `ref: "us"`.
 - Internal cross-references point at the neutral `@id` values within this example, so the record graph is internally consistent.
@@ -35,7 +35,7 @@ This layer round-trips one provision (§6-1-1703 duty of care) through Authority
 ### Authority — Colorado General Assembly (enacting)
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Authority
 "@id": https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/general-assembly
 organization:
@@ -52,7 +52,7 @@ jurisdiction:
 ### Authority — Colorado Attorney General (enforcing — currently constrained)
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Authority
 "@id": https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/attorney-general
 organization:
@@ -71,7 +71,7 @@ sameAs:
 ### Instrument — SB 24-205
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Instrument
 "@id": https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/sb24-205
 title: "Concerning consumer protections in interactions with artificial intelligence systems"
@@ -98,7 +98,7 @@ The two state fields are independent: `status: repealed` describes the legislati
 ### Term — duty of care (§6-1-1703)
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Term
 "@id": https://obligationfirst.org/v1/examples/colorado-sb24-205/term/sb24-205-duty-of-care
 text: >
@@ -117,7 +117,7 @@ creates:
 ### Obligation — Requirement (reasonable care duty)
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Requirement
 "@id": https://obligationfirst.org/v1/examples/colorado-sb24-205/obligation/reasonable-care
 title: Reasonable care duty for high-risk AI developers
@@ -132,7 +132,7 @@ created_by: https://obligationfirst.org/v1/examples/colorado-sb24-205/term/sb24-
 ### Obligation — Reparation (consequence of violation)
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Reparation
 "@id": https://obligationfirst.org/v1/examples/colorado-sb24-205/obligation/violation-reparation
 title: Civil penalty for violation of reasonable care duty
@@ -154,7 +154,7 @@ The federal court order staying enforcement is itself a Determination. The AG's 
 ### Proceeding — federal litigation freezing enforcement
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Proceeding
 "@id": https://obligationfirst.org/v1/examples/colorado-sb24-205/proceeding/federal-litigation
 title: "Federal litigation challenging Colorado SB 24-205 enforcement"
@@ -176,7 +176,7 @@ notes: >
 ### Determination — federal court stay
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Determination
 "@id": https://obligationfirst.org/v1/examples/colorado-sb24-205/determination/stay-order
 issued_date: 2025-12-15
@@ -201,7 +201,7 @@ The `anchors` link points at the Reparation Obligation defined in Layer 1 of thi
 ### Determination — AG public statement of non-enforcement intent
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Determination
 "@id": https://obligationfirst.org/v1/examples/colorado-sb24-205/determination/ag-non-enforcement-statement
 issued_date: 2025-11-30
@@ -225,7 +225,7 @@ notes: >
 SB26-189, the ADMT statute, was enacted on 2026-05-14 and repeals-and-reenacts the SB 24-205 provisions with new requirements for automated decision-making technology in consequential decisions. Because it is now enacted, it is modeled with `status: enacted` and a `supersedes` relationship to SB 24-205. The predecessor's `status` is correspondingly `repealed`.
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Instrument
 "@id": https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/sb26-189
 title: "SB26-189 Automated Decision-Making Technology"
@@ -247,7 +247,7 @@ SB26-189 repeals and reenacts the SB 24-205 AI provisions, shifting from a high-
 ### Authority — Colorado AI Policy Work Group
 
 ```yaml
-"@context": https://obligationfirst.org/v1/
+"@context": https://obligationfirst.org/v1/context.jsonld
 "@type": of:Authority
 "@id": https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/ai-policy-work-group
 organization:

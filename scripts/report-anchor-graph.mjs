@@ -66,7 +66,9 @@ function hostOf(id) {
 }
 
 function expectedAnchorType(record) {
-  return record?.["@type"] === "of:Term" ? "of:Term" : "of:Obligation";
+  return record?.["@type"] === "of:Term"
+    ? "of:Term"
+    : ["of:Obligation", "of:ObligationCategory"];
 }
 
 async function loadAggregateExport(dir, index) {
@@ -177,7 +179,7 @@ for (const entry of entries) {
     resolvedAnchors++;
     const expected = expectedAnchorType(entry.record);
     if (!isType(target.record, expected)) {
-      failures.push(`${entry.rel}: anchors points to ${targetId} (${target.record["@type"]}), expected ${expected}`);
+      failures.push(`${entry.rel}: anchors points to ${targetId} (${target.record["@type"]}), expected ${expected.join?.(" or ") || expected}`);
     }
   }
 }
