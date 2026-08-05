@@ -12,6 +12,8 @@ import { OF_CONTEXT, validateRecordGraph, validateRecordShapes } from "./lib/ado
 import { validateExampleRecordSet } from "./validate-example-graphs.mjs";
 import {
   validateAssistantGuide,
+  validateInternalHtmlLinks,
+  validatePublishingSurfaces,
   validateReleaseManifestContract,
   validateReleasePackage,
 } from "./validate-repo-contracts.mjs";
@@ -34,13 +36,13 @@ function stableFailures(items) {
   return [...items].sort().join("\n");
 }
 
-const versionFixture = { full: "0.6.2", vfull: "v0.6.2", vmm: "v0.6", badge: "v0.6.2" };
+const versionFixture = { full: "0.6.3", vfull: "v0.6.3", vmm: "v0.6", badge: "v0.6.3" };
 const wordingChanged = rewriteManagedSurface(
   "<!-- of-version: fixture -->\nCompletely different release prose now names v0.6.1.\n",
   { marker: "<!-- of-version: fixture -->", mode: "vfull" },
   versionFixture,
 );
-assert(wordingChanged.content.includes("v0.6.2"), "version marker stopped working after harmless prose changes");
+assert(wordingChanged.content.includes("v0.6.3"), "version marker stopped working after harmless prose changes");
 assert(
   rewriteManagedSurface("no marker\n", { marker: "<!-- of-version: fixture -->", mode: "vfull" }, versionFixture).problem,
   "version synchronizer accepted a missing marker",
@@ -55,7 +57,7 @@ assert(
 );
 const largeManagedLine = `<!-- of-version: fixture -->\n${"x".repeat(1_000_000)} v0.6.1\n`;
 assert(
-  rewriteManagedSurface(largeManagedLine, { marker: "<!-- of-version: fixture -->", mode: "vfull" }, versionFixture).content.endsWith("v0.6.2\n"),
+  rewriteManagedSurface(largeManagedLine, { marker: "<!-- of-version: fixture -->", mode: "vfull" }, versionFixture).content.endsWith("v0.6.3\n"),
   "version marker failed on a large managed line",
 );
 
@@ -422,6 +424,80 @@ async function testAssistantGuideByteIdentity() {
       hasFailure(guideFailures, "repository and docs/.well-known copies must be byte-identical"),
       "assistant guide validator accepted non-identical guide copies",
     );
+
+    const staleScope = guide.toString("utf8").replace(
+      /applies-to: obligation-first[^\n]+/,
+      "applies-to: obligation-first 0.3.x",
+    );
+    await writeFile(path.join(root, "assistant-guide.txt"), staleScope);
+    await writeFile(path.join(wellKnown, "assistant-guide.txt"), staleScope);
+    const scopeFailures = [];
+    await validateAssistantGuide(scopeFailures, root);
+    assert(
+      hasFailure(scopeFailures, "expected current-minor scope"),
+      "assistant guide validator accepted a stale applies-to range",
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+}
+
+async function testInternalHtmlLinks() {
+  const root = await mkdtemp(path.join(os.tmpdir(), "of-html-links-"));
+  try {
+    await mkdir(path.join(root, "docs/records"), { recursive: true });
+    await writeFile(path.join(root, "docs/records/example.json"), "{}\n");
+    await writeFile(
+      path.join(root, "docs/index.html"),
+      '<a href="records/">Broken directory</a><a href="records/example.json">Valid record</a>\n',
+    );
+    const linkFailures = [];
+    await validateInternalHtmlLinks(linkFailures, root);
+    assert(
+      hasFailure(linkFailures, "broken internal reference records/"),
+      "internal HTML link validator accepted a directory with no index.html",
+    );
+    assert(
+      !linkFailures.some((failure) => failure.includes("records/example.json")),
+      "internal HTML link validator rejected an existing JSON record",
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+}
+
+async function testPublishingSurfaceCoverage() {
+  const root = await mkdtemp(path.join(os.tmpdir(), "of-publishing-surfaces-"));
+  const { full: version } = await versionForms();
+  try {
+    await mkdir(path.join(root, `docs/releases/v${version}`), { recursive: true });
+    await mkdir(path.join(root, "docs/v1"), { recursive: true });
+    await writeFile(path.join(root, `docs/releases/v${version}/index.html`), "<title>Release</title>\n");
+    await writeFile(path.join(root, "docs/index.html"), "<title>Home</title>\n");
+    await writeFile(path.join(root, "docs/v1/index.html"), "<title>Namespace</title>\n");
+    const feed = `<feed><link href="https://obligationfirst.org/feed.xml" rel="self"/><entry><title>v${version}</title><summary>TODO: stale</summary></entry></feed>\n`;
+    const atom = feed.replace("/feed.xml", "/atom.xml");
+    await writeFile(path.join(root, "docs/feed.xml"), feed);
+    await writeFile(path.join(root, "docs/atom.xml"), atom);
+    await writeFile(
+      path.join(root, "docs/sitemap.xml"),
+      `<?xml version="1.0"?><urlset><url><loc>https://obligationfirst.org/</loc><lastmod>2026-01-01</lastmod></url><url><loc>https://obligationfirst.org/releases/v${version}/</loc><lastmod>2026-08-04</lastmod></url></urlset>\n`,
+    );
+    await writeFile(path.join(root, "MANIFEST.yaml"), "bundle_date: 2026-08-04\n");
+    const publishingFailures = [];
+    await validatePublishingSurfaces(publishingFailures, root, version);
+    assert(
+      hasFailure(publishingFailures, "release summaries must contain no TODO"),
+      "publishing validator accepted a TODO feed summary",
+    );
+    assert(
+      hasFailure(publishingFailures, "missing non-noindex page https://obligationfirst.org/v1/"),
+      "publishing validator accepted an omitted sitemap page",
+    );
+    assert(
+      hasFailure(publishingFailures, "lastmod must match MANIFEST.yaml bundle_date"),
+      "publishing validator accepted a stale current-surface lastmod",
+    );
   } finally {
     await rm(root, { recursive: true, force: true });
   }
@@ -552,6 +628,30 @@ function testReleaseStateImportGuard() {
   );
 }
 
+function testVersionSyncImportGuard() {
+  const result = spawnSync(
+    process.execPath,
+    ["--input-type=module", "-e", "await import('./scripts/sync-version.mjs')"],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+  assert(
+    result.status === 0,
+    `version synchronizer cannot be imported without a CLI argv[1]: ${result.stderr || result.stdout}`,
+  );
+}
+
+function testRepoContractsImportGuard() {
+  const result = spawnSync(
+    process.execPath,
+    ["--input-type=module", "-e", "await import('./scripts/validate-repo-contracts.mjs')"],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+  assert(
+    result.status === 0,
+    `repo contract validator cannot be imported without a CLI argv[1]: ${result.stderr || result.stdout}`,
+  );
+}
+
 function testAppliesToRanges() {
   // The pinned form keeps working: it is what every adopter published before
   // ranges existed, and it must stay exactly as narrow as it always was.
@@ -582,9 +682,13 @@ await testReleasePackageExactInventory();
 testPatchReleaseCompatibility();
 await testPublicProbeUsesCanonicalInventory();
 await testAssistantGuideByteIdentity();
+await testInternalHtmlLinks();
+await testPublishingSurfaceCoverage();
 await testManifestStaleHash();
 await testReleasedStateClaims();
 testReleaseStateImportGuard();
+testVersionSyncImportGuard();
+testRepoContractsImportGuard();
 
 if (failures.length > 0) {
   console.log("Hardening regression checks failed:");

@@ -1,7 +1,7 @@
 # Roadmap
 
 <!-- of-version: roadmap-current -->
-## v0.6.2 (current)
+## v0.6.3 (current)
 
 The v0.6 semantic contract is released through five implemented decision records:
 
@@ -191,7 +191,7 @@ All Obligation-First-adopting offerings ship with three properties baseline, not
 
 1. **Multilingual** — at minimum the EU official languages plus ES (US), ZH (CN/TW), JA. Build-time translation per the previous direction.
 2. **A11y-audited** — WCAG 2.1 AA via pa11y-ci or equivalent in CI. Failing builds block merge.
-3. **Agent-friendly** — `llms.txt`, `agents.json`, JSON-LD, structured RSS/Atom, MCP server, and explicit AI-crawler `robots.txt` allow-lists from day one. Aligned with [Siteline](https://siteline.to/) audits.
+3. **Agent-friendly** — `llms.txt`, `agents.json`, JSON-LD, structured RSS/Atom, and explicit AI-crawler `robots.txt` allow-lists from day one. Obligation-First itself is a static discovery and validation surface, not an MCP service. Interactive adopters may publish MCP servers when they expose tool calls. Aligned with [Siteline](https://siteline.to/) audits.
 
 The cost of adding these later is high; the cost of designing for them at v0.1 is low. The ROADMAP commits to this as a non-negotiable design constraint.
 

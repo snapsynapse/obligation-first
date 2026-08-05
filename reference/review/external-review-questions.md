@@ -1,7 +1,7 @@
 # External review questions
 
 <!-- of-version: external-review-status -->
-Status: v0.6.2
+Status: v0.6.3
 Scope: public review packet for ontology and rules-as-code reviewers
 
 This document collects public review questions for the released v0.6 contract and the remaining v1.0 gates. Project strategy, private outreach notes, and recipient-specific language do not live here.

@@ -226,6 +226,32 @@ function insertSitemapUrl(sitemapText, { version, date }) {
   return sitemapText.slice(0, insertAt) + urlBlock + sitemapText.slice(insertAt);
 }
 
+function updateCurrentSitemapLastmods(sitemapText, date) {
+  const currentPaths = [
+    "/",
+    "/v1/",
+    "/v1/schema/",
+    "/v1/examples/",
+    "/v1/context.jsonld",
+    "/llms.txt",
+    "/agents.json",
+    "/feed.xml",
+    "/atom.xml",
+    "/llms-full.txt",
+    "/changelog.html",
+  ];
+  let updated = sitemapText;
+  for (const pathname of currentPaths) {
+    const loc = `https://obligationfirst.org${pathname}`;
+    const escaped = loc.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    updated = updated.replace(
+      new RegExp(`(<loc>${escaped}<\\/loc>\\s*<lastmod>)[^<]+(<\\/lastmod>)`),
+      `$1${date}$2`,
+    );
+  }
+  return updated;
+}
+
 async function updatePublishingSurfaces({ version, date, summary }) {
   const touched = [];
   for (const feedRel of ["docs/feed.xml", "docs/atom.xml"]) {
@@ -238,8 +264,10 @@ async function updatePublishingSurfaces({ version, date, summary }) {
   }
 
   const sitemapPath = path.join(repoRoot, "docs/sitemap.xml");
-  const updatedSitemap = insertSitemapUrl(await readFile(sitemapPath, "utf8"), { version, date });
-  if (updatedSitemap !== null) {
+  const originalSitemap = await readFile(sitemapPath, "utf8");
+  const withRelease = insertSitemapUrl(originalSitemap, { version, date }) ?? originalSitemap;
+  const updatedSitemap = updateCurrentSitemapLastmods(withRelease, date);
+  if (updatedSitemap !== originalSitemap) {
     await writeFile(sitemapPath, updatedSitemap);
     touched.push("docs/sitemap.xml");
   }

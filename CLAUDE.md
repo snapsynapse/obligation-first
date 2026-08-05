@@ -14,8 +14,9 @@ Allegations/Determinations), and PubLedge (joint-interpretation Instruments/
 Terms/Obligations). This repo owns the shared `@context`, JSON Schemas,
 crosswalks, and validation harness — it does not centralize adopter data.
 
-Current spec version: v0.4.3, pre-freeze ("drafting in public"). See
-ROADMAP.md for freeze gates and CHANGELOG.md for version history.
+<!-- of-version: claude-current -->
+Current spec version: v0.6.3, pre-v1.0. See ROADMAP.md for freeze gates and
+CHANGELOG.md for version history.
 
 ## Tech stack
 
@@ -82,15 +83,13 @@ Release cutting is a multi-step procedure (version bump → sync-version →
 CHANGELOG → release:package → hashes:update → `npm test`) — see AGENTS.md
 "Release flow" for the exact sequence before ever running it.
 
-## Current state (as of last commit d62aa7d, 2026-07-04)
+## Current state
 
-- Working tree clean, `main` up to date with `origin/main`.
-- Spec at v0.4.3 (hotfix reverting an unintended jurisdiction/ref-pattern
-  constraint). Three adopters (EveryAILaw, PubLedge, AI Incident Law) are
-  live and bound.
-- Open ROADMAP gates before v0.1 freeze: LegalRuleML community feedback on
-  deontic alignment, and the w3id.org PR for the permanent
-  `https://w3id.org/of/v1/` IRI (both still unchecked).
+- <!-- of-version: claude-state-current -->
+  Spec at v0.6.3. Three adopters (EveryAILaw, PubLedge, AI Incident Law)
+  publish local projections against the shared contract.
+- Remaining v1.0 gates are tracked in ROADMAP.md. The
+  `https://w3id.org/of/v1/` redirect remains planned rather than live.
 - `scripts/make-release.mjs` contains intentional `TODO` placeholder text
   used as the default release-notes/manifest-summary stub — not stale work,
   it's meant to be filled in per-release.

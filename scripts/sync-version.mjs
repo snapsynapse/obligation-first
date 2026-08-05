@@ -27,6 +27,9 @@ export const VERSION_SURFACES = Object.freeze([
   ["README.md", "<!-- of-version: readme-release-url -->", "release-url"],
   ["README.md", "<!-- of-version: readme-current -->", "vfull"],
   ["ROADMAP.md", "<!-- of-version: roadmap-current -->", "vfull"],
+  ["CLAUDE.md", "<!-- of-version: claude-current -->", "vfull"],
+  ["CLAUDE.md", "<!-- of-version: claude-state-current -->", "vfull"],
+  ["PROJECT_CONTEXT.md", "<!-- of-version: project-context-current -->", "vfull"],
   ["docs/llms.txt", "<!-- of-version: llms-current -->", "vfull"],
   ["docs/llms.txt", "<!-- of-version: llms-release-url -->", "release-url"],
   ["docs/llms-full.txt", "<!-- of-version: llms-full-current -->", "vfull"],
@@ -151,6 +154,13 @@ export async function checkVersions(root = repoRoot) {
     const actual = await readFile(path.join(root, file), "utf8");
     if (actual !== expected) problems.push(`${file}: version drift, run node scripts/sync-version.mjs to match package.json (${forms.full})`);
   }
+  const expectedGuideRange = `applies-to: obligation-first >=${forms.vmm.slice(1)}.0 <${Number(forms.core.split(".")[0])}.${Number(forms.core.split(".")[1]) + 1}.0`;
+  for (const file of ["assistant-guide.txt", "docs/.well-known/assistant-guide.txt"]) {
+    const guide = await readFile(path.join(root, file), "utf8");
+    if (!guide.includes(expectedGuideRange)) {
+      problems.push(`${file}: expected current-minor guide scope ${expectedGuideRange}`);
+    }
+  }
   return problems;
 }
 
@@ -173,7 +183,7 @@ async function write(root, dateIso) {
   console.log(`Synced version ${forms.full} and date ${dateIso} across ${transformed.size} files.`);
 }
 
-if (path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = process.argv.slice(2);
   if (args.includes("--check")) {
     const problems = await checkVersions();

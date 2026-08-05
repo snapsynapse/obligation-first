@@ -2,6 +2,31 @@
 
 ## Unreleased
 
+## [0.6.3] - 2026-08-04
+
+Repairs public and agent-facing discovery surfaces and adds deterministic drift gates without changing v0.6 semantics.
+
+### Fixed
+
+- Replaced eight example-directory links that resolved to 404 responses with concrete representative JSON records and retained narrative links to each complete worked-example inventory.
+- Replaced placeholder v0.5.0 and v0.4.3 feed summaries with final release descriptions.
+- Completed sitemap coverage for public namespace, schema, example, feed, and historical release pages and reconciled stale modification dates.
+- Updated the assistant guide's version scope, review date, validation actions, integrity manifest, and published mirror.
+- Reconciled stale current-version and freeze-gate claims in agent-facing repository guidance.
+- Clarified that Obligation-First publishes static discovery and validation contracts rather than an MCP service.
+
+### Added
+
+- Local HTML reference validation for every published page, including same-origin absolute URLs and directory-index resolution.
+- Sitemap coverage and current-surface modification-date checks tied to the release bundle date.
+- Feed validation that rejects placeholder release summaries.
+- Managed version markers for `CLAUDE.md` and `PROJECT_CONTEXT.md`, plus current-minor assistant-guide scope validation.
+- Focused hardening regressions for broken internal links, stale guide applicability, feed placeholders, sitemap omissions, and sitemap date drift.
+
+### Compatibility
+
+No schema shape, vocabulary, JSON-LD context mapping, IRI, legal semantic, migration, or adopter projection changes. Existing `obligation-first >=0.6.0 <0.7.0` naming-profile ranges accept this patch.
+
 ## [0.6.2] - 2026-08-04
 
 Hardens conformance verification without changing the v0.6 vocabulary, JSON Schema shapes, context mappings, or adopter records.

@@ -24,6 +24,9 @@ const repoRoot = path.resolve(__dirname, "..");
 
 const SCANNED_ROOTS = [
   "README.md",
+  "AGENTS.md",
+  "CLAUDE.md",
+  "PROJECT_CONTEXT.md",
   "ROADMAP.md",
   "PROTOCOL.md",
   "PRIOR-ART.md",
@@ -394,7 +397,7 @@ export async function validateAssistantGuide(failures, root = repoRoot) {
   // version requires editing this constant alongside the guide + manifest.
   const expectedManifest = {
     "guide-path": "/.well-known/assistant-guide.txt",
-    "guide-version": "0.1.2",
+    "guide-version": "0.1.3",
     "guide-sha256": guideSha256,
     "guide-bytes": String(rootBytes.length),
     "immutable-release-url": `https://api.github.com/repos/snapsynapse/obligation-first/git/blobs/${gitBlobSha1}`,
@@ -405,6 +408,54 @@ export async function validateAssistantGuide(failures, root = repoRoot) {
       failures.push(`assistant-guide-manifest.txt: expected ${key}: ${value}`);
     }
   }
+
+  const [major, minor] = RELEASE_VERSION.split(".").map(Number);
+  const expectedAppliesTo = `applies-to: obligation-first >=${major}.${minor}.0 <${major}.${minor + 1}.0`;
+  if (!text.includes(expectedAppliesTo)) {
+    failures.push(`assistant-guide.txt: expected current-minor scope ${expectedAppliesTo}`);
+  }
+}
+
+function localHtmlTarget(root, htmlPath, rawReference) {
+  const reference = rawReference.split("#", 1)[0].split("?", 1)[0];
+  if (!reference || /^(?:mailto|tel|data|javascript):/i.test(reference)) return null;
+  let pathname;
+  if (/^https?:\/\//i.test(reference)) {
+    const url = new URL(reference);
+    if (url.hostname !== "obligationfirst.org") return null;
+    pathname = decodeURIComponent(url.pathname);
+  } else if (reference.startsWith("//")) {
+    return null;
+  } else if (reference.startsWith("/")) {
+    pathname = decodeURIComponent(reference);
+  } else {
+    return path.resolve(path.dirname(htmlPath), decodeURIComponent(reference));
+  }
+  return path.join(root, "docs", pathname.replace(/^\/+/, ""));
+}
+
+export async function validateInternalHtmlLinks(failures, root = repoRoot) {
+  const docsRoot = path.join(root, "docs");
+  async function inspect(directory) {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
+      const file = path.join(directory, entry.name);
+      if (entry.isDirectory()) {
+        await inspect(file);
+        continue;
+      }
+      if (!entry.name.endsWith(".html")) continue;
+      const text = await readFile(file, "utf8");
+      for (const match of text.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
+        let target = localHtmlTarget(root, file, match[1]);
+        if (target === null) continue;
+        if (match[1].split(/[?#]/, 1)[0].endsWith("/")) target = path.join(target, "index.html");
+        if (!existsSync(target)) {
+          failures.push(`${path.relative(root, file)}:${lineFor(text, match.index || 0)}: broken internal reference ${match[1]}`);
+        }
+      }
+    }
+  }
+  await inspect(docsRoot);
 }
 
 function releaseCompatibilityKey(version) {
@@ -609,6 +660,9 @@ export async function validatePublishingSurfaces(failures, root = repoRoot, vers
     if (!entryTitles.some((title) => title.includes(`v${version}`))) {
       failures.push(`${feedRel}: no <entry><title> mentions v${version} (current package.json version)`);
     }
+    if (/<summary>[^<]*\bTODO\b/i.test(feed)) {
+      failures.push(`${feedRel}: release summaries must contain no TODO placeholders`);
+    }
 
     const selfMatch = feed.match(/<link href="([^"]+)" rel="self"\s*\/>/);
     if (!selfMatch) {
@@ -624,6 +678,47 @@ export async function validatePublishingSurfaces(failures, root = repoRoot, vers
     if (!sitemap.includes(releaseUrl)) {
       failures.push(`docs/sitemap.xml: missing entry for ${releaseUrl}`);
     }
+
+    const sitemapEntries = new Map(
+      [...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>[\s\S]*?<\/url>/g)]
+        .map((match) => [match[1], match[2]]),
+    );
+    const docsRoot = path.join(root, "docs");
+    async function requireIndexCoverage(directory) {
+      for (const entry of await readdir(directory, { withFileTypes: true })) {
+        const file = path.join(directory, entry.name);
+        if (entry.isDirectory()) {
+          await requireIndexCoverage(file);
+          continue;
+        }
+        if (entry.name !== "index.html") continue;
+        const html = await readFile(file, "utf8");
+        if (/<meta[^>]+name="robots"[^>]+noindex/i.test(html)) continue;
+        const rel = path.relative(docsRoot, file).replaceAll(path.sep, "/");
+        const pathname = rel === "index.html" ? "/" : `/${rel.replace(/index\.html$/, "")}`;
+        const url = `https://obligationfirst.org${pathname}`;
+        if (!sitemapEntries.has(url)) {
+          failures.push(`docs/sitemap.xml: missing non-noindex page ${url}`);
+        }
+      }
+    }
+    await requireIndexCoverage(docsRoot);
+
+    let bundleDate;
+    try {
+      const manifestText = await readFile(path.join(root, "MANIFEST.yaml"), "utf8");
+      bundleDate = manifestText.match(/^bundle_date:\s*(\d{4}-\d{2}-\d{2})$/m)?.[1];
+    } catch (err) {
+      if (err.code !== "ENOENT") throw err;
+    }
+    if (bundleDate) {
+      for (const pathname of ["/", "/v1/", "/v1/schema/", "/v1/examples/", "/v1/context.jsonld", "/llms.txt", "/agents.json", "/feed.xml", "/atom.xml", "/llms-full.txt", "/changelog.html"]) {
+        const url = `https://obligationfirst.org${pathname}`;
+        if (sitemapEntries.get(url) !== bundleDate) {
+          failures.push(`docs/sitemap.xml: ${url} lastmod must match MANIFEST.yaml bundle_date ${bundleDate}`);
+        }
+      }
+    }
   } catch (err) {
     if (err.code !== "ENOENT") throw err;
     failures.push("docs/sitemap.xml: file missing");
@@ -637,6 +732,7 @@ export async function validateRepoContracts() {
   await validateEndpointInventory(failures);
   await validateW3idResolutionClaims(failures);
   await validateAssistantGuide(failures);
+  await validateInternalHtmlLinks(failures);
   await validateReleasePackage(failures);
   await validatePublishingSurfaces(failures);
   await validateReleaseState(failures);
@@ -656,6 +752,6 @@ async function main() {
   console.log("Repo URL, context, and endpoint contracts are valid.");
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   await main();
 }

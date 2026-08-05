@@ -14,6 +14,16 @@
   <generator uri="https://obligationfirst.org/">Obligation-First</generator>
 
   <entry>
+    <title>Obligation-First v0.6.3 released</title>
+    <link href="https://obligationfirst.org/changelog.html" rel="alternate"/>
+    <id>https://obligationfirst.org/releases/v0.6.3</id>
+    <updated>2026-08-04T12:00:00Z</updated>
+    <published>2026-08-04T12:00:00Z</published>
+    <summary>Repairs public and agent discovery surfaces and adds deterministic link, feed, sitemap, and version-drift gates without changing v0.6 semantics.</summary>
+    <category term="release"/>
+  </entry>
+
+  <entry>
     <title>Obligation-First v0.6.2 released</title>
     <link href="https://obligationfirst.org/changelog.html" rel="alternate"/>
     <id>https://obligationfirst.org/releases/v0.6.2</id>
@@ -49,7 +59,7 @@
     <id>https://obligationfirst.org/releases/v0.5.0</id>
     <updated>2026-07-25T12:00:00Z</updated>
     <published>2026-07-25T12:00:00Z</published>
-    <summary>TODO: summarize the v0.5.0 release.</summary>
+    <summary>Adds the of:ObligationCategory layer for jurisdiction-neutral duty concepts, extends of:anchors to reference them, and lets adopter naming profiles declare a version range so additive releases stop being lockstep flag days. Additive; v0.4.x records and profiles stay valid.</summary>
     <category term="release"/>
   </entry>
 
@@ -59,7 +69,7 @@
     <id>https://obligationfirst.org/releases/v0.4.3</id>
     <updated>2026-07-05T12:00:00Z</updated>
     <published>2026-07-05T12:00:00Z</published>
-    <summary>TODO: summarize the v0.4.3 release.</summary>
+    <summary>Patch: revert unintended v0.4.2 jurisdiction/ref pattern constraint that broke supranational adopter records; restores the v0.4.1 contract.</summary>
     <category term="release"/>
   </entry>
 
