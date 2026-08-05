@@ -25,7 +25,8 @@
 #   - Build outputs
 
 bundle: obligation-first
-bundle_version: 0.6.1
+# of-version: manifest-bundle
+bundle_version: 0.6.2
 bundle_date: 2026-08-04
 
 files:
@@ -97,21 +98,21 @@ files:
   examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json: 749c13ccef70be61f07e5f1deb6e65bf5e90ede28157651ada105c770fb13611
   examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json: 015868fca5d44d63506acd0935fde7cfeaf6b65273fe08f0dcf4c2e978b7e0a2
   examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json: bc83ea309c09c51d3068b841fcafc9cd45beb36199d740655eb7406bf607c312
-  INTENT.md: ce8d082dfbe99ec3048360620f37a51a4fc220773d8743ac5fbd700a348944de
+  INTENT.md: 58b294146fa335ac87bbff2a5896c2d9bba38589eae7dc392fc3391cdcd1bc76
   LICENSE-APACHE: 3cbeb832e52ede2c154d4977567b70f204a853342e51d843458f9b785771f069
   LICENSE-CC-BY-4.0: 62a68518848c2fdcd108ff5cc11ba1516440c507bf425d5e76ad36886fd5752a
   NOTICE: 3f2ce598a6a3764e500c61e46ab707606ab3aa911eb780f28b87455dffece286
   PRIOR-ART.md: 52aad9656267bfd90cbe0056d2433e5879aa589d90f80eafb4e2c77725bc447f
-  PROTOCOL.md: d238854dc189b6b7f6ebf041007c462effba3d6f36bdfdb9d3aee9d2cd4c219a
+  PROTOCOL.md: 2deb766fffeae11370d119bd36d3987b16e48c7bcc680ed5f9436ea378c7950b
   reference/crosswalks/akomantoso.md: 9c1e5519788708f25ad084a0fe73aa3402ff39e9f7942c350d23b2b95720d3e4
   reference/crosswalks/eli-ecli.md: 04d72007db68ee1e6f1532e7b53089e48af6ee8ce58b1ab92d59481f0d58a3e9
   reference/crosswalks/gist.md: 7878e5a3662f6f1a6b3a84edbf1dc4ab8032cf893ae2afef5c1e3d95e6c28452
   reference/crosswalks/legalruleml.md: 1c5de936f376251f6cf69ca02e090e4351647073ca5efa25342245e7855d0eda
-  ROADMAP.md: 6a19f668ff5155ef6e1975d8bcd8ad659885dc5bc5c9138d6feca82f3c5685d2
+  ROADMAP.md: 1122c1d3c15a984d018af3024a14f4260c2879cb8417b13992bf7929e12b9c00
   schema/allegation.schema.json: f1166364f71bcd59177504e769a8037117600b2a78b4f33e0494f6e00cd44b12
   schema/authority.schema.json: ede988f066a778bac22a148a64243fe1a80b5cc4362b68bad722dcae5bc74450
   schema/common.schema.json: cd3380f994135dbd0cc5553552a3073929dfdea55c83f56e784e8da85375f5e1
-  schema/context.jsonld: c4eb46ac0c624bc37dc747c5da96ad05a0444c5a5a4cac9e379adc75f7f49de7
+  schema/context.jsonld: 709aeef6229c6b74944f36379ec7d93f744a1f81cf1010427b7af9bcb955a326
   schema/determination.schema.json: 8cb1766fe2bcc31dceb6b54656a8764405e7a082010b44f9393ada89eddf0c39
   schema/executable-encoding.schema.json: 4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810
   schema/instrument.schema.json: dea85420c2fa47f461022023355acdd1478d5dff2ed2ef6cd3f3d1c4861eecb2

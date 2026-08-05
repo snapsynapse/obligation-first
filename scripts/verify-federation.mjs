@@ -14,6 +14,7 @@ const adopters = [
     records: "docs/api/v1/of/records",
     profile: "docs/.well-known/obligation-first-naming-profile.jsonld",
     fingerprint: "tests/fixtures/of-contract-fingerprint.json",
+    continuity: "tests/fixtures/of-identifier-continuity.json",
   },
   {
     name: "PubLedge",
@@ -21,6 +22,7 @@ const adopters = [
     records: "docs/api/v1/of/records",
     profile: "docs/.well-known/obligation-first-naming-profile.jsonld",
     fingerprint: "tests/fixtures/of-contract-fingerprint.json",
+    continuity: "tests/fixtures/of-identifier-continuity.json",
   },
   {
     name: "AI Incident Law",
@@ -28,6 +30,7 @@ const adopters = [
     records: "api/v1/of/records",
     profile: ".well-known/obligation-first-naming-profile.jsonld",
     fingerprint: "tests/fixtures/of-contract-fingerprint.json",
+    continuity: "tests/fixtures/of-identifier-continuity.json",
   },
 ];
 
@@ -57,6 +60,15 @@ run(
   ],
 );
 
+run(
+  "Expand and round-trip every adopter JSON-LD record",
+  process.execPath,
+  [
+    path.join(obligationFirst, "scripts/validate-jsonld-roundtrip.mjs"),
+    ...adopters.map((adopter) => path.dirname(path.join(adopter.root, adopter.records))),
+  ],
+);
+
 for (const adopter of adopters) {
   run(
     `${adopter.name} naming-profile range`,
@@ -79,6 +91,15 @@ for (const adopter of adopters) {
       "--records", path.join(adopter.root, adopter.records),
       "--profile", path.join(adopter.root, adopter.profile),
       "--expected", path.join(adopter.root, adopter.fingerprint),
+    ],
+  );
+  run(
+    `${adopter.name} identifier continuity`,
+    process.execPath,
+    [
+      path.join(obligationFirst, "scripts/check-identifier-continuity.mjs"),
+      "--records", path.join(adopter.root, adopter.records),
+      "--baseline", path.join(adopter.root, adopter.continuity),
     ],
   );
 }

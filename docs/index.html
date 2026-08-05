@@ -111,6 +111,7 @@
   </script>
 
   <!-- JSON-LD: HowTo — explicit handoff for adopters and agents -->
+  <!-- of-version: homepage-howto-minor -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -364,10 +365,12 @@
       <span class="sep">&middot;</span>
       Updated <time datetime="2026-08-04">August 4, 2026</time>
       <span class="sep">&middot;</span>
-      <span class="version">v0.6.1</span>
+      <!-- of-version: homepage-byline -->
+      <span class="version">v0.6.2</span>
       <span class="sep">&middot;</span>
       <a href="https://creativecommons.org/licenses/by/4.0/" rel="license" target="_blank">CC&nbsp;BY&nbsp;4.0</a>
     </p>
+    <!-- of-version: homepage-hook-minor -->
     <p class="hook">Statutes, cases, and agreements all create, interpret, or allocate obligations. Obligation-First makes the obligation the unit of comparison across jurisdictions, instruments, and time. EveryAILaw, PubLedge, and AI Incident Law have published v0.6 projections validated against the released contract.</p>
 
     <div class="spine-display" role="img" aria-label="The Obligation-First schema spine and proceeding strand">
@@ -378,6 +381,7 @@
     </div>
 
     <div class="cta-row">
+      <!-- of-version: homepage-cta-minor -->
       <a href="https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md" class="btn btn-primary" target="_blank" rel="noopener">Read the current draft (v0.6)</a>
       <a href="#bind" class="btn btn-secondary">Bind your dataset in 3 steps</a>
     </div>
@@ -386,6 +390,7 @@
 
 <section class="alt" id="schema">
   <div class="container">
+    <!-- of-version: homepage-schema-minor -->
     <h2>What's in the current draft (v0.6)</h2>
     <p>A small, opinionated upper schema. The spine is lifted from PubLedge; the proceeding strand is the new contribution. Together they cover three domains in one schema.</p>
 
@@ -448,7 +453,9 @@
 
 <section id="bind">
   <div class="container">
+    <!-- of-version: homepage-bind-heading-minor -->
     <h2>Bind your dataset (current draft: v0.6)</h2>
+    <!-- of-version: homepage-bind-copy-minor -->
     <p>Adopters bind via JSON-LD <code>@context</code>. <code>obligationfirst.org/v1/</code> is the live resolution target; <code>w3id.org/of/v1/</code> is the planned permanent vocabulary prefix. Legacy v0.5 shapes remain schema-valid, while projections using v0.6 vocabulary migrate deterministically and declare <code>obligation-first &gt;=0.6.0 &lt;0.7.0</code>.</p>
 
     <div class="code-grid">
@@ -512,6 +519,7 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
 <section class="alt" id="adopters">
   <div class="container">
     <h2>Adopters</h2>
+    <!-- of-version: homepage-adopters-minor -->
     <p>Three PAICE legal projects publish v0.6 projections. Obligation-First is their shared semantic, validation, provenance, and identifier contract, and the combined graph passes the released federation gate.</p>
 
     <div class="adopters">
@@ -559,7 +567,8 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
     </div>
 
     <aside class="canonical-note" role="note">
-      <strong>Canonical reference.</strong> This page describes the live v0.6.1 release of Obligation-First.
+      <!-- of-version: homepage-canonical -->
+      <strong>Canonical reference.</strong> This page describes the live v0.6.2 release of Obligation-First.
       Authoritative source is <a href="https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md" target="_blank" rel="noopener">PROTOCOL.md</a> in the GitHub repo. The schema is drafting in public; breaking changes are allowed pre-freeze and recorded in
       <a href="https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG.md</a>.
       Last revision: <time datetime="2026-08-04">2026-08-04</time>.
@@ -574,7 +583,8 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
   <div class="container">
     <div class="footer-grid">
       <div class="footer-meta">
-        <p>Obligation-First v0.6.1 &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license" target="_blank">CC BY 4.0</a> (spec) &middot; <a href="https://github.com/snapsynapse/obligation-first/blob/main/LICENSE-APACHE" target="_blank" rel="noopener">Apache 2.0</a> (code)</p>
+        <!-- of-version: homepage-footer -->
+        <p>Obligation-First v0.6.2 &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license" target="_blank">CC BY 4.0</a> (spec) &middot; <a href="https://github.com/snapsynapse/obligation-first/blob/main/LICENSE-APACHE" target="_blank" rel="noopener">Apache 2.0</a> (code)</p>
         <p>A <a href="https://paice.foundation/" target="_blank" rel="noopener">PAICE.work PBC</a> open standard by <a href="https://www.linkedin.com/in/samrogers" target="_blank" rel="noopener author">Sam Rogers</a>.</p>
         <p style="margin-top: 0.5rem;"><strong>Adopters in the PAICE legal graph:</strong> <a href="https://everyailaw.com/" target="_blank" rel="noopener">EveryAILaw</a> &middot; <a href="https://publedge.org/" target="_blank" rel="noopener">PubLedge</a> &middot; <a href="https://aiincidentlaw.org/" target="_blank" rel="noopener">AI Incident Law</a></p>
       </div>

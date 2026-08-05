@@ -45,6 +45,37 @@ export const DEFAULT_COMPANION_DIRS = {
   tombstones: "tombstone",
 };
 
+export const GRAPH_DIAGNOSTIC_CODES = Object.freeze({
+  MISSING_ID: "OF-GRAPH-MISSING-ID",
+  DUPLICATE_ID: "OF-GRAPH-DUPLICATE-ID",
+  MISSING_LOCAL_REFERENCE: "OF-GRAPH-MISSING-LOCAL-REFERENCE",
+  WRONG_REFERENCE_TYPE: "OF-GRAPH-WRONG-REFERENCE-TYPE",
+  INVALID_FIELD_DOMAIN: "OF-GRAPH-INVALID-FIELD-DOMAIN",
+  HAS_TERM_INVERSE: "OF-GRAPH-HAS-TERM-INVERSE",
+  CREATES_INVERSE: "OF-GRAPH-CREATES-INVERSE",
+  RECOGNIZES_INVERSE: "OF-GRAPH-RECOGNIZES-INVERSE",
+  IMPOSES_INVERSE: "OF-GRAPH-IMPOSES-INVERSE",
+  SELF_TRIGGER: "OF-GRAPH-SELF-TRIGGER",
+  CATEGORY_EXACT_MATCH: "OF-GRAPH-CATEGORY-EXACT-MATCH",
+  DUPLICATE_RELATION_ALIAS: "OF-GRAPH-DUPLICATE-RELATION-ALIAS",
+  ISSUED_DETERMINATION_DECIDES: "OF-GRAPH-ISSUED-DETERMINATION-DECIDES",
+  ISSUED_DETERMINATION_TARGET: "OF-GRAPH-ISSUED-DETERMINATION-TARGET",
+  ADJUDICATIVE_DETERMINATION_DECIDES: "OF-GRAPH-ADJUDICATIVE-DETERMINATION-DECIDES",
+  WOULD_SUPERSEDE_LIFECYCLE: "OF-GRAPH-WOULD-SUPERSEDE-LIFECYCLE",
+  FUTURE_ENFORCEMENT: "OF-GRAPH-FUTURE-ENFORCEMENT",
+  VOLUNTARY_ENFORCEMENT_BASIS: "OF-GRAPH-VOLUNTARY-ENFORCEMENT-BASIS",
+  INACTIVE_ENFORCEMENT: "OF-GRAPH-INACTIVE-ENFORCEMENT",
+  FUTURE_OPERATIVE: "OF-GRAPH-FUTURE-OPERATIVE",
+  PROCEEDING_DETERMINATION_SCOPE: "OF-GRAPH-PROCEEDING-DETERMINATION-SCOPE",
+  CONSTRAINED_ENFORCEMENT_EVIDENCE: "OF-GRAPH-CONSTRAINED-ENFORCEMENT-EVIDENCE",
+  VACATED_DETERMINATION_RELATION: "OF-GRAPH-VACATED-DETERMINATION-RELATION",
+  DEFEASIBILITY_CYCLE: "OF-GRAPH-DEFEASIBILITY-CYCLE",
+});
+
+export function formatGraphDiagnostic(diagnostic) {
+  return `[${diagnostic.code}] ${diagnostic.message}`;
+}
+
 export function asArray(value) {
   if (value === undefined || value === null) return [];
   return Array.isArray(value) ? value : [value];
@@ -186,38 +217,53 @@ export function validateRecordShapes(entries, { ajv, schemaByFile }) {
   return failures;
 }
 
-function validateReference({ from, field, targetId, expectedType, byId, failures, required = true }) {
+function validateReference({ from, field, targetId, expectedType, byId, fail, required = true }) {
   const target = byId.get(targetId);
   if (!target) {
-    if (required) failures.push(`${from.rel}: ${field} points to missing local record ${targetId}`);
+    if (required) {
+      fail(
+        GRAPH_DIAGNOSTIC_CODES.MISSING_LOCAL_REFERENCE,
+        `${from.rel}: ${field} points to missing local record ${targetId}`,
+        { rel: from.rel, field, target: targetId },
+      );
+    }
     return undefined;
   }
   if (!isType(target.record, expectedType)) {
     const expected = Array.isArray(expectedType) ? expectedType.join(" or ") : expectedType;
-    failures.push(`${from.rel}: ${field} points to ${targetId} (${target.record["@type"]}), expected ${expected}`);
+    fail(
+      GRAPH_DIAGNOSTIC_CODES.WRONG_REFERENCE_TYPE,
+      `${from.rel}: ${field} points to ${targetId} (${target.record["@type"]}), expected ${expected}`,
+      { rel: from.rel, field, target: targetId, expected },
+    );
   }
   return target;
 }
 
-export function validateRecordGraph(entries) {
+export function validateRecordGraphDetailed(entries) {
   const failures = [];
   const byId = new Map();
+  const fail = (code, message, details = {}) => failures.push({ code, message, ...details });
 
   for (const entry of entries) {
     const id = entry.record["@id"];
     if (!id) {
-      failures.push(`${entry.rel}: missing @id`);
+      fail(GRAPH_DIAGNOSTIC_CODES.MISSING_ID, `${entry.rel}: missing @id`, { rel: entry.rel });
       continue;
     }
     if (byId.has(id)) {
-      failures.push(`${entry.rel}: duplicate @id also used by ${byId.get(id).rel}`);
+      fail(
+        GRAPH_DIAGNOSTIC_CODES.DUPLICATE_ID,
+        `${entry.rel}: duplicate @id also used by ${byId.get(id).rel}`,
+        { rel: entry.rel, target: id },
+      );
     }
     byId.set(id, entry);
   }
 
   function localRefs(entry, field, expectedType, { required = true } = {}) {
     for (const targetId of asArray(entry.record[field])) {
-      validateReference({ from: entry, field, targetId, expectedType, byId, failures, required });
+      validateReference({ from: entry, field, targetId, expectedType, byId, fail, required });
     }
   }
 
@@ -264,7 +310,11 @@ export function validateRecordGraph(entries) {
     };
     for (const [field, allowed] of Object.entries(fieldDomains)) {
       if (record[field] !== undefined && !isType(record, allowed)) {
-        failures.push(`${entry.rel}: ${field} is only valid on ${allowed.join(" or ")}`);
+        fail(
+          GRAPH_DIAGNOSTIC_CODES.INVALID_FIELD_DOMAIN,
+          `${entry.rel}: ${field} is only valid on ${allowed.join(" or ")}`,
+          { rel: entry.rel, field },
+        );
       }
     }
 
@@ -280,28 +330,36 @@ export function validateRecordGraph(entries) {
           targetId: basis.instrument_ref,
           expectedType: "of:Instrument",
           byId,
-          failures,
+          fail,
         });
       }
     }
 
     if (typeof record.jurisdiction === "string" && byId.has(record.jurisdiction)) {
-      validateReference({ from: entry, field: "jurisdiction", targetId: record.jurisdiction, expectedType: "of:Jurisdiction", byId, failures });
+      validateReference({ from: entry, field: "jurisdiction", targetId: record.jurisdiction, expectedType: "of:Jurisdiction", byId, fail });
     }
 
     for (const targetId of asArray(record.hasTerm)) {
-      const target = validateReference({ from: entry, field: "hasTerm", targetId, expectedType: "of:Term", byId, failures });
+      const target = validateReference({ from: entry, field: "hasTerm", targetId, expectedType: "of:Term", byId, fail });
       if (target && !asArray(target.record.parent_instrument).includes(record["@id"])) {
-        failures.push(`${entry.rel}: hasTerm ${targetId} does not point back via parent_instrument`);
+        fail(
+          GRAPH_DIAGNOSTIC_CODES.HAS_TERM_INVERSE,
+          `${entry.rel}: hasTerm ${targetId} does not point back via parent_instrument`,
+          { rel: entry.rel, field: "hasTerm", target: targetId },
+        );
       }
     }
 
     localRefs(entry, "parent_instrument", "of:Instrument");
 
     for (const targetId of asArray(record.creates)) {
-      const target = validateReference({ from: entry, field: "creates", targetId, expectedType: "of:Obligation", byId, failures });
+      const target = validateReference({ from: entry, field: "creates", targetId, expectedType: "of:Obligation", byId, fail });
       if (target && !asArray(target.record.created_by).includes(record["@id"])) {
-        failures.push(`${entry.rel}: creates ${targetId} does not point back via created_by`);
+        fail(
+          GRAPH_DIAGNOSTIC_CODES.CREATES_INVERSE,
+          `${entry.rel}: creates ${targetId} does not point back via created_by`,
+          { rel: entry.rel, field: "creates", target: targetId },
+        );
       }
     }
 
@@ -316,7 +374,7 @@ export function validateRecordGraph(entries) {
     localRefs(entry, "related_to_party", "of:Party");
     for (const actorRole of asArray(record.actor_roles)) {
       if (!actorRole?.party) continue;
-      validateReference({ from: entry, field: "actor_roles.party", targetId: actorRole.party, expectedType: "of:Party", byId, failures });
+      validateReference({ from: entry, field: "actor_roles.party", targetId: actorRole.party, expectedType: "of:Party", byId, fail });
     }
 
     localRefs(entry, "hasAllegation", "of:Allegation");
@@ -326,22 +384,36 @@ export function validateRecordGraph(entries) {
     localRefs(entry, "resulting_instrument", "of:Instrument");
     localRefs(entry, "embodies_determination", "of:Determination");
     for (const targetId of asArray(record.recognizes)) {
-      const target = validateReference({ from: entry, field: "recognizes", targetId, expectedType: "of:Obligation", byId, failures });
+      const target = validateReference({ from: entry, field: "recognizes", targetId, expectedType: "of:Obligation", byId, fail });
       if (target && !asArray(target.record.recognized_by).includes(record["@id"])) {
-        failures.push(`${entry.rel}: recognizes ${targetId} does not point back via recognized_by`);
+        fail(
+          GRAPH_DIAGNOSTIC_CODES.RECOGNIZES_INVERSE,
+          `${entry.rel}: recognizes ${targetId} does not point back via recognized_by`,
+          { rel: entry.rel, field: "recognizes", target: targetId },
+        );
       }
     }
     for (const targetId of asArray(record.imposes)) {
-      const target = validateReference({ from: entry, field: "imposes", targetId, expectedType: "of:Obligation", byId, failures });
+      const target = validateReference({ from: entry, field: "imposes", targetId, expectedType: "of:Obligation", byId, fail });
       if (target && !asArray(target.record.imposed_by).includes(record["@id"])) {
-        failures.push(`${entry.rel}: imposes ${targetId} does not point back via imposed_by`);
+        fail(
+          GRAPH_DIAGNOSTIC_CODES.IMPOSES_INVERSE,
+          `${entry.rel}: imposes ${targetId} does not point back via imposed_by`,
+          { rel: entry.rel, field: "imposes", target: targetId },
+        );
       }
     }
     localRefs(entry, "allegedly_violates", "of:Obligation", { required: false });
 
     for (const targetId of asArray(record.triggers_on_violation_of)) {
-      if (targetId === record["@id"]) failures.push(`${entry.rel}: triggers_on_violation_of cannot point to itself`);
-      validateReference({ from: entry, field: "triggers_on_violation_of", targetId, expectedType: "of:Obligation", byId, failures });
+      if (targetId === record["@id"]) {
+        fail(
+          GRAPH_DIAGNOSTIC_CODES.SELF_TRIGGER,
+          `${entry.rel}: triggers_on_violation_of cannot point to itself`,
+          { rel: entry.rel, field: "triggers_on_violation_of", target: targetId },
+        );
+      }
+      validateReference({ from: entry, field: "triggers_on_violation_of", targetId, expectedType: "of:Obligation", byId, fail });
     }
 
     for (const field of ["supersedes", "wouldSupersede", "repeals"]) {
@@ -358,59 +430,101 @@ export function validateRecordGraph(entries) {
         targetId,
         expectedType: ["of:Instrument", "of:Term", "of:Obligation", "of:Determination"],
         byId,
-        failures,
+        fail,
       });
     }
 
     for (const targetId of asArray(record.anchors)) {
       if (!byId.has(targetId)) continue;
       const expected = isType(record, "of:Term") ? "of:Term" : ["of:Obligation", "of:ObligationCategory"];
-      validateReference({ from: entry, field: "anchors", targetId, expectedType: expected, byId, failures });
+      validateReference({ from: entry, field: "anchors", targetId, expectedType: expected, byId, fail });
     }
 
     for (const targetId of asArray(record.exactMatch)) {
       const target = byId.get(targetId);
       if (target && isType(target.record, "of:ObligationCategory") && isType(record, "of:Obligation")) {
-        failures.push(`${entry.rel}: category membership must use isCategorizedBy, not exactMatch`);
+        fail(
+          GRAPH_DIAGNOSTIC_CODES.CATEGORY_EXACT_MATCH,
+          `${entry.rel}: category membership must use isCategorizedBy, not exactMatch`,
+          { rel: entry.rel, field: "exactMatch", target: targetId },
+        );
       }
     }
 
     if (record.implemented_by_terms !== undefined) {
-      failures.push(`${entry.rel}: implemented_by_terms duplicates the shared created_by relation; remove the adopter-local alias`);
+      fail(
+        GRAPH_DIAGNOSTIC_CODES.DUPLICATE_RELATION_ALIAS,
+        `${entry.rel}: implemented_by_terms duplicates the shared created_by relation; remove the adopter-local alias`,
+        { rel: entry.rel, field: "implemented_by_terms" },
+      );
     }
 
     if (type === "of:Determination") {
       const decides = asArray(record.decides);
       if (record.disposition === "issued") {
-        if (decides.length > 0) failures.push(`${entry.rel}: disposition issued should not decide Allegations`);
+        if (decides.length > 0) {
+          fail(
+            GRAPH_DIAGNOSTIC_CODES.ISSUED_DETERMINATION_DECIDES,
+            `${entry.rel}: disposition issued should not decide Allegations`,
+            { rel: entry.rel, field: "decides" },
+          );
+        }
         if (!record.target_instrument && asArray(record.resulting_instrument).length === 0 && asArray(record.anchors).length === 0) {
-          failures.push(`${entry.rel}: disposition issued needs target_instrument or anchors, or v0.6 resulting_instrument`);
+          fail(
+            GRAPH_DIAGNOSTIC_CODES.ISSUED_DETERMINATION_TARGET,
+            `${entry.rel}: disposition issued needs target_instrument or anchors, or v0.6 resulting_instrument`,
+            { rel: entry.rel },
+          );
         }
       } else if (decides.length === 0) {
-        failures.push(`${entry.rel}: adjudicative Determination should decide at least one Allegation`);
+        fail(
+          GRAPH_DIAGNOSTIC_CODES.ADJUDICATIVE_DETERMINATION_DECIDES,
+          `${entry.rel}: adjudicative Determination should decide at least one Allegation`,
+          { rel: entry.rel, field: "decides" },
+        );
       }
     }
 
     if (type === "of:Instrument" && record.wouldSupersede) {
       const lifecycle = record.lifecycle_status || record.status;
       if (!["draft", "proposed", "amended"].includes(lifecycle)) {
-        failures.push(`${entry.rel}: wouldSupersede should only appear on draft, proposed, or amended Instruments`);
+        fail(
+          GRAPH_DIAGNOSTIC_CODES.WOULD_SUPERSEDE_LIFECYCLE,
+          `${entry.rel}: wouldSupersede should only appear on draft, proposed, or amended Instruments`,
+          { rel: entry.rel, field: "wouldSupersede" },
+        );
       }
     }
 
     const lifecycle = record.lifecycle_status || record.status;
     const enforcement = record.enforcement_status;
     if (["draft", "proposed"].includes(lifecycle) && ["routine", "enforceable"].includes(enforcement)) {
-      failures.push(`${entry.rel}: ${lifecycle} content cannot claim present ${enforcement} enforcement`);
+      fail(
+        GRAPH_DIAGNOSTIC_CODES.FUTURE_ENFORCEMENT,
+        `${entry.rel}: ${lifecycle} content cannot claim present ${enforcement} enforcement`,
+        { rel: entry.rel, field: "enforcement_status" },
+      );
     }
     if (["voluntary", "nonbinding"].includes(record.normative_force) && ["routine", "enforceable"].includes(enforcement) && !record.binding_basis) {
-      failures.push(`${entry.rel}: ${record.normative_force} content needs an evidenced binding_basis before enforcement can be ${enforcement}`);
+      fail(
+        GRAPH_DIAGNOSTIC_CODES.VOLUNTARY_ENFORCEMENT_BASIS,
+        `${entry.rel}: ${record.normative_force} content needs an evidenced binding_basis before enforcement can be ${enforcement}`,
+        { rel: entry.rel, field: "binding_basis" },
+      );
     }
     if (["repealed", "superseded", "sunset", "inactive", "withdrawn"].includes(lifecycle) && ["routine", "enforceable"].includes(enforcement)) {
-      failures.push(`${entry.rel}: ${lifecycle} content cannot claim ${enforcement} enforcement without a separately modeled residual obligation`);
+      fail(
+        GRAPH_DIAGNOSTIC_CODES.INACTIVE_ENFORCEMENT,
+        `${entry.rel}: ${lifecycle} content cannot claim ${enforcement} enforcement without a separately modeled residual obligation`,
+        { rel: entry.rel, field: "enforcement_status" },
+      );
     }
     if (record.effective && record.computed_as_of && record.effective > record.computed_as_of && record.operative_status === "operative") {
-      failures.push(`${entry.rel}: future effective date ${record.effective} cannot be operative as of ${record.computed_as_of}`);
+      fail(
+        GRAPH_DIAGNOSTIC_CODES.FUTURE_OPERATIVE,
+        `${entry.rel}: future effective date ${record.effective} cannot be operative as of ${record.computed_as_of}`,
+        { rel: entry.rel, field: "operative_status" },
+      );
     }
   }
 
@@ -421,7 +535,11 @@ export function validateRecordGraph(entries) {
       if (!determination) continue;
       for (const allegationId of asArray(determination.record.decides)) {
         if (!allegations.has(allegationId)) {
-          failures.push(`${proceeding.rel}: Determination ${determinationId} decides ${allegationId}, not listed in hasAllegation`);
+          fail(
+            GRAPH_DIAGNOSTIC_CODES.PROCEEDING_DETERMINATION_SCOPE,
+            `${proceeding.rel}: Determination ${determinationId} decides ${allegationId}, not listed in hasAllegation`,
+            { rel: proceeding.rel, field: "hasAllegation", target: allegationId },
+          );
         }
       }
     }
@@ -445,7 +563,11 @@ export function validateRecordGraph(entries) {
     });
 
     if (!hasAnchoredDetermination) {
-      failures.push(`${instrument.rel}: constrained enforcement_status needs a Determination anchored to one of its Obligations`);
+      fail(
+        GRAPH_DIAGNOSTIC_CODES.CONSTRAINED_ENFORCEMENT_EVIDENCE,
+        `${instrument.rel}: constrained enforcement_status needs a Determination anchored to one of its Obligations`,
+        { rel: instrument.rel, field: "enforcement_status" },
+      );
     }
   }
 
@@ -455,7 +577,13 @@ export function validateRecordGraph(entries) {
     const hasVacatingDecision = entries.some((entry) =>
       isType(entry.record, "of:Determination") && asArray(entry.record.vacates).includes(target.record["@id"]),
     );
-    if (!hasVacatingDecision) failures.push(`${target.rel}: vacated Determination needs an incoming vacates relation when its vacating decision is in the graph`);
+    if (!hasVacatingDecision) {
+      fail(
+        GRAPH_DIAGNOSTIC_CODES.VACATED_DETERMINATION_RELATION,
+        `${target.rel}: vacated Determination needs an incoming vacates relation when its vacating decision is in the graph`,
+        { rel: target.rel, field: "vacates" },
+      );
+    }
   }
 
   const termIds = new Set(entries.filter((entry) => isType(entry.record, "of:Term")).map((entry) => entry.record["@id"]));
@@ -479,7 +607,11 @@ export function validateRecordGraph(entries) {
       const key = [...new Set(cycle)].sort().join("|");
       if (!reportedCycles.has(key)) {
         reportedCycles.add(key);
-        failures.push(`defeats cycle: ${cycle.join(" -> ")}`);
+        fail(
+          GRAPH_DIAGNOSTIC_CODES.DEFEASIBILITY_CYCLE,
+          `defeats cycle: ${cycle.join(" -> ")}`,
+          { target: cycle },
+        );
       }
       return;
     }
@@ -493,6 +625,10 @@ export function validateRecordGraph(entries) {
   for (const id of termIds) visit(id);
 
   return failures;
+}
+
+export function validateRecordGraph(entries) {
+  return validateRecordGraphDetailed(entries).map(formatGraphDiagnostic);
 }
 
 async function cleanDir(dir, shouldClean) {

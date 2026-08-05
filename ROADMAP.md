@@ -1,6 +1,7 @@
 # Roadmap
 
-## v0.6.1 (current)
+<!-- of-version: roadmap-current -->
+## v0.6.2 (current)
 
 The v0.6 semantic contract is released through five implemented decision records:
 

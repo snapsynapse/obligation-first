@@ -2,6 +2,27 @@
 
 ## Unreleased
 
+## [0.6.2] - 2026-08-04
+
+Hardens conformance verification without changing the v0.6 vocabulary, JSON Schema shapes, context mappings, or adopter records.
+
+### Added
+
+- Stable `OF-GRAPH-*` diagnostic codes for every shared graph rule, with 24 paired valid and invalid mutations exercised through the shared, example, and adopter validation paths.
+- JSON-LD expansion, exact-IRI, compact/expand round-trip, local-extension, remote-context, and core-term-remapping checks using the standards-conformant `jsonld` processor.
+- Cross-release identifier-continuity validation independent of structural fingerprints, including Tombstone, reviewed-retirement, replacement-link, type-drift, duplicate-ID, and active-plus-Tombstone controls.
+- Adopter-owned identifier baselines for EveryAILaw, PubLedge, and AI Incident Law, wired into their canonical verification paths and the central federation gate.
+
+### Changed
+
+- Version synchronization now uses explicit managed markers and structural JSON metadata instead of wording-sensitive release prose. Missing or duplicate markers, stale unmanaged current-version claims, and stale release URLs fail closed.
+- The federation gate now expands and round-trips all 993 adopter records and checks all 993 adopter identifiers in addition to schema, graph, fingerprint, naming-profile, and anchor validation.
+- Added the `jsonld` runtime dependency and refreshed the lockfile, including the nonbreaking transitive `fast-uri` security update reported by `npm audit`.
+
+### Compatibility
+
+No schema shape, vocabulary, JSON-LD context mapping, IRI, legal semantic, migration, or adopter projection changes. Existing `obligation-first >=0.6.0 <0.7.0` naming-profile ranges accept this patch, and graph validator messages retain their human-readable text with stable codes prepended.
+
 ## [0.6.1] - 2026-08-04
 
 Corrects public release-state drift after v0.6.0 and adds a deterministic gate so a packaged release cannot continue to describe itself as a local candidate.

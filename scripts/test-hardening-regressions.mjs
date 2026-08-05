@@ -17,7 +17,7 @@ import {
 } from "./validate-repo-contracts.mjs";
 import { validateHashManifest } from "./validate-hashes.mjs";
 import { RELEASE_STATE_SURFACES, validateReleaseState } from "./validate-release-state.mjs";
-import { versionForms } from "./sync-version.mjs";
+import { rewriteManagedSurface, staleClaims, versionForms } from "./sync-version.mjs";
 import { satisfies } from "./lib/version-range.mjs";
 
 const failures = [];
@@ -33,6 +33,31 @@ function hasFailure(items, needle) {
 function stableFailures(items) {
   return [...items].sort().join("\n");
 }
+
+const versionFixture = { full: "0.6.2", vfull: "v0.6.2", vmm: "v0.6", badge: "v0.6.2" };
+const wordingChanged = rewriteManagedSurface(
+  "<!-- of-version: fixture -->\nCompletely different release prose now names v0.6.1.\n",
+  { marker: "<!-- of-version: fixture -->", mode: "vfull" },
+  versionFixture,
+);
+assert(wordingChanged.content.includes("v0.6.2"), "version marker stopped working after harmless prose changes");
+assert(
+  rewriteManagedSurface("no marker\n", { marker: "<!-- of-version: fixture -->", mode: "vfull" }, versionFixture).problem,
+  "version synchronizer accepted a missing marker",
+);
+assert(
+  rewriteManagedSurface("<!-- of-version: fixture -->\nv0.6.1\n<!-- of-version: fixture -->\nv0.6.1\n", { marker: "<!-- of-version: fixture -->", mode: "vfull" }, versionFixture).problem,
+  "version synchronizer accepted a duplicate marker",
+);
+assert(
+  staleClaims("v0.6.1 is the current release.\n", new Set()).length === 1,
+  "version synchronizer missed an unmanaged stale current-version claim",
+);
+const largeManagedLine = `<!-- of-version: fixture -->\n${"x".repeat(1_000_000)} v0.6.1\n`;
+assert(
+  rewriteManagedSurface(largeManagedLine, { marker: "<!-- of-version: fixture -->", mode: "vfull" }, versionFixture).content.endsWith("v0.6.2\n"),
+  "version marker failed on a large managed line",
+);
 
 function determination(overrides = {}) {
   return {
