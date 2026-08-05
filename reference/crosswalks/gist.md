@@ -6,10 +6,10 @@ Mapping every `of:` term to its gist class binding. Source: [Semantic Arts gist]
 
 | of: term | gist class | Notes |
 |---|---|---|
-| `of:Authority` | wraps `gist:Organization` | Not a single gist class — `of:Authority` is an interface combining `gist:Organization` (subtype as needed: `gist:GovernmentOrganization`, or a local subtype; gist 14.1.0 defines no Court class) with `authority_basis` metadata. The `authority_basis.instrument_ref` traces the Authority's grounding to a specific Instrument. |
+| `of:Authority` | wraps `gist:Organization` | Not a single gist class. `of:Authority` is an interface over an identified organization. Optional, multi-valued `authority_basis` metadata cites evidence of competence when the source supports it; a missing basis is not fabricated. |
 | `of:Instrument` | `gist:Agreement` (for negotiated artifacts: JIA, RMA, contract) <br> `gist:Specification` (for promulgated artifacts: statute, regulation, ruling) | Subtype determined by Instrument kind. |
-| `of:Term` | `gist:ContractTerm` | One-to-one binding. |
-| `of:Obligation` | abstract — bound through subclasses | See deontic quartet below. |
+| `of:Term` | `gist:Specification`; contractual Terms may additionally assert `gist:ContractTerm` | The core type covers statutory, regulatory, contractual, and standards provisions without making every clause contractual. |
+| `of:Obligation` | explicit unclassified normative state or a bound subclass | See deontic quartet below. |
 
 ## Deontic quartet
 
@@ -34,7 +34,7 @@ This mirrors Dave's contract analogy: a contract document is `gist:Content`; the
 
 | of: term | gist class | Notes |
 |---|---|---|
-| `of:Proceeding` | `gist:Event` (subtype `LegalProceeding`) | A Proceeding is a temporally-extended event with a docket. |
+| `of:Proceeding` | `of:LegalProceeding` over `gist:Event` | A Proceeding is a temporally extended legal event with a docket or matter identity. |
 | `of:Allegation` | `gist:Content` (assertion text) + `gist:Intention` (speech-act intent, only when the claim is itself intent-bearing — libel, fraud, defamation) | Asserted facts; not authoritative until decided. gist does not define a `gist:Statement` class — see "Reparation pattern" note above for the parallel speech-act-vs-content treatment. |
 | `of:Determination` | `gist:Determination` | One-to-one binding. Covers adjudicative outcomes and administrative acts that establish an Instrument or authoritative posture. |
 
@@ -49,6 +49,7 @@ This mirrors Dave's contract analogy: a contract document is `gist:Content`; the
 | `of:hasDetermination` | (no direct gist analog) | Custom relation. |
 | `of:decides` | (no direct gist analog) | Custom relation: a Determination resolves an Allegation. |
 | `of:anchors` | (no direct gist analog) | Custom relation: an interpretive record anchors to a specific Obligation or Term, or to an ObligationCategory when it concerns the concept generally. |
+| `gist:isCategorizedBy` | direct gist predicate | Classifies a concrete Obligation under an `of:ObligationCategory` bound to `gist:Category`. `skos:exactMatch` remains concept-to-concept only. |
 | `of:defeats` | (no direct gist analog) | Custom relation: defeasibility per Lawsky / LegalRuleML §7.4. |
 
 ## Vendoring
@@ -61,7 +62,7 @@ The gist snapshot at [`vendor/gist/gistCore.ttl`](../../vendor/gist/gistCore.ttl
 
 ## What gist provides that we use
 
-- Foundational class hierarchy (`gist:Thing`, `gist:Specification`, `gist:Agreement`, `gist:Event`, `gist:Content`, `gist:Intention`, `gist:Determination`, `gist:Organization`, `gist:Jurisdiction`)
+- Foundational class hierarchy (`gist:Thing`, `gist:Specification`, `gist:Agreement`, `gist:Event`, `gist:Content`, `gist:Intention`, `gist:Determination`, `gist:Organization`, `gist:Person`, `gist:Category`)
 - Deontic primitives (`gist:Requirement`, `gist:Restriction`, `gist:Permission`)
 - Provenance hooks (gist's connection to provenance is via `prov:` and gist-internal predicates)
 
@@ -71,5 +72,7 @@ The gist snapshot at [`vendor/gist/gistCore.ttl`](../../vendor/gist/gistCore.ttl
 - The proceeding strand (Proceeding / Allegation / Determination as a coherent triad)
 - Reparation as a fourth deontic operator (`of:Reparation`), with a layered gist binding: `gist:Requirement` + `gist:Intention` (+ `gist:Event` when actuated)
 - Defeasibility (`of:defeats`)
-- The recursive Authority basis (every Authority's grounding is itself an Instrument on the spine)
+- Evidence-bearing legal competence through optional, multi-valued Authority bases
+- `of:Jurisdiction` as legal competence with separate territorial and institutional scope
+- Party and Tombstone record contracts for actors and retired identifiers
 - Polymorphic `of:executableEncoding`

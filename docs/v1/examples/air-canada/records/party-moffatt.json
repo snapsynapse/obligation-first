@@ -1,0 +1,12 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "@type": "of:Party",
+  "@id": "https://obligationfirst.org/v1/examples/air-canada/party/moffatt",
+  "name": "Moffatt",
+  "party_kind": "person",
+  "entity": {
+    "@type": "gist:Person",
+    "name": "Moffatt"
+  },
+  "roles": ["claimant"]
+}

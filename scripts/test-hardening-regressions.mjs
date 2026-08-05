@@ -127,6 +127,85 @@ assert(
   "adopter graph validator rejected an Obligation anchor to an ObligationCategory",
 );
 
+const defeatsCycle = [
+  { rel: "fixture/term-a.json", record: { "@id": "https://example.com/term/a", "@type": "of:Term", defeats: ["https://example.com/term/b"] } },
+  { rel: "fixture/term-b.json", record: { "@id": "https://example.com/term/b", "@type": "of:Term", undercuts: ["https://example.com/term/a"] } },
+];
+assert(
+  hasFailure(validateRecordGraph(defeatsCycle), "defeats cycle"),
+  "adopter graph validator accepted a defeasibility cycle",
+);
+
+const explicitUnknownDeontic = [{
+  rel: "fixture/unclassified-obligation.json",
+  record: { "@id": "https://example.com/obligation/unclassified", "@type": "of:Obligation" },
+}];
+assert(
+  validateRecordGraph(explicitUnknownDeontic).length === 0,
+  "adopter graph validator rejected the explicit unclassified deontic state",
+);
+
+const contractualTermShape = validateRecordShapes(
+  [{
+    rel: "fixture/contractual-term.json",
+    record: {
+      "@context": OF_CONTEXT,
+      "@id": "https://example.com/term/contractual",
+      "@type": ["of:Term", "gist:ContractTerm"],
+    },
+  }],
+  fakeSchemaSet,
+);
+assert(
+  contractualTermShape.length === 0,
+  "adopter shape validator could not dispatch a JSON-LD multi-type contractual Term",
+);
+
+const wrongRelationDomain = [
+  { rel: "fixture/authority.json", record: { "@id": "https://example.com/authority", "@type": "of:Authority" } },
+  {
+    rel: "fixture/instrument.json",
+    record: {
+      "@id": "https://example.com/instrument",
+      "@type": "of:Instrument",
+      heardBy: ["https://example.com/authority"],
+    },
+  },
+];
+assert(
+  hasFailure(validateRecordGraph(wrongRelationDomain), "heardBy is only valid on of:Proceeding"),
+  "adopter graph validator accepted heardBy on an Instrument",
+);
+
+const impossibleLifecycle = [{
+  rel: "fixture/proposed-instrument.json",
+  record: {
+    "@id": "https://example.com/instrument/proposed",
+    "@type": "of:Instrument",
+    lifecycle_status: "proposed",
+    enforcement_status: "enforceable",
+  },
+}];
+assert(
+  hasFailure(validateRecordGraph(impossibleLifecycle), "proposed content cannot claim present enforceable enforcement"),
+  "adopter graph validator accepted proposed content as presently enforceable",
+);
+
+const voluntaryWithBindingBasis = [{
+  rel: "fixture/adopted-standard.json",
+  record: {
+    "@id": "https://example.com/instrument/adopted-standard",
+    "@type": "of:Instrument",
+    normative_force: "voluntary",
+    enforcement_status: "enforceable",
+    binding_basis: { kind: "contractual-adoption", source_citation: "Agreement section 4" },
+  },
+}];
+assert(
+  validateRecordGraph(voluntaryWithBindingBasis).length === 0,
+  "adopter graph validator rejected voluntary content with an evidenced binding basis",
+);
+
 const exampleResult = validateExampleRecordSet("/tmp/fixture/records", issuedWithoutAnchor, { root: "/tmp" });
 assert(
   stableFailures(exampleResult.failures) === stableFailures(issuedWithoutAnchorFailures),
@@ -146,7 +225,14 @@ async function testReleasePackageStaleHash() {
       `${JSON.stringify(
         {
           version,
-          artifacts: [{ path: "artifact.txt", sha256: stale }],
+          canonical_url: `https://obligationfirst.org/releases/v${version}/`,
+          summary: "Fixture release",
+          compatibility: {
+            iri_major: "v1",
+            [`v${version.replaceAll(".", "_")}_adopter_records`]: `native v${version.split(".").slice(0, 2).join(".")} conformance after schema-and-graph validation`,
+            v0_5_0_adopter_records: `schema-valid during the v${version.split(".").slice(0, 2).join(".")} migration window; migrate for v${version.split(".").slice(0, 2).join(".")} conformance`,
+          },
+          artifacts: [{ path: "artifact.txt", url: "https://example.com/artifact.txt", sha256: stale }],
         },
         null,
         2,
@@ -155,7 +241,9 @@ async function testReleasePackageStaleHash() {
     await writeFile(path.join(releaseDir, "sha256.txt"), `${stale}  artifact.txt\n`);
 
     const releaseFailures = [];
-    await validateReleasePackage(releaseFailures, root);
+    await validateReleasePackage(releaseFailures, root, {
+      expectedArtifacts: [{ path: "artifact.txt", url: "https://example.com/artifact.txt" }],
+    });
     assert(
       hasFailure(releaseFailures, "stale sha256 for artifact.txt"),
       "release package validator accepted a stale artifact hash",
@@ -163,6 +251,63 @@ async function testReleasePackageStaleHash() {
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+}
+
+async function testReleasePackageExactInventory() {
+  const root = await mkdtemp(path.join(os.tmpdir(), "of-release-inventory-"));
+  try {
+    const { full: version } = await versionForms();
+    const targetMinor = `v${version.split(".").slice(0, 2).join(".")}`;
+    const releaseDir = path.join(root, `docs/releases/v${version}`);
+    await mkdir(releaseDir, { recursive: true });
+    await writeFile(path.join(root, "artifact.txt"), "current\n");
+    const current = createHash("sha256").update("current\n").digest("hex");
+    await writeFile(
+      path.join(releaseDir, "manifest.json"),
+      `${JSON.stringify({
+        version,
+        canonical_url: `https://obligationfirst.org/releases/v${version}/`,
+        summary: "Fixture release",
+        compatibility: {
+          iri_major: "v1",
+          [`v${version.replaceAll(".", "_")}_adopter_records`]: `native ${targetMinor} conformance after schema-and-graph validation`,
+          v0_5_0_adopter_records: `valid without migration`,
+        },
+        artifacts: [{ path: "artifact.txt", url: "https://example.com/artifact.txt", sha256: current }],
+      }, null, 2)}\n`,
+    );
+    await writeFile(path.join(releaseDir, "sha256.txt"), `${current}  artifact.txt\n`);
+
+    const releaseFailures = [];
+    await validateReleasePackage(releaseFailures, root, {
+      expectedArtifacts: [
+        { path: "artifact.txt", url: "https://example.com/artifact.txt" },
+        { path: "missing.txt", url: "https://example.com/missing.txt" },
+      ],
+    });
+    assert(
+      hasFailure(releaseFailures, "missing required artifact missing.txt"),
+      "release package validator accepted an incomplete canonical artifact inventory",
+    );
+    assert(
+      hasFailure(releaseFailures, "must distinguish schema validity"),
+      "release package validator accepted legacy records as conformant without migration",
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+}
+
+async function testPublicProbeUsesCanonicalInventory() {
+  const workflow = await readFile(".github/workflows/test.yml", "utf8");
+  assert(
+    workflow.includes("node scripts/probe-public-endpoints.mjs --version \"$VERSION\""),
+    "post-deploy workflow does not call the inventory-backed endpoint probe",
+  );
+  assert(
+    !workflow.includes("https://obligationfirst.org/v1/schema/authority.schema.json"),
+    "post-deploy workflow still duplicates individual schema URLs",
+  );
 }
 
 async function testAssistantGuideByteIdentity() {
@@ -241,6 +386,8 @@ function testAppliesToRanges() {
 
 testAppliesToRanges();
 await testReleasePackageStaleHash();
+await testReleasePackageExactInventory();
+await testPublicProbeUsesCanonicalInventory();
 await testAssistantGuideByteIdentity();
 await testManifestStaleHash();
 

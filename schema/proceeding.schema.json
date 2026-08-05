@@ -2,60 +2,48 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://obligationfirst.org/v1/schema/proceeding.schema.json",
   "title": "Proceeding",
-  "description": "A legal matter — case, action, enforcement docket. Bound to gist:Event (subtype LegalProceeding). A Proceeding accumulates Allegations and Determinations over its lifetime.",
+  "description": "A legal proceeding, enforcement action, or adjudicative matter. heardBy identifies the adjudicative or administrative body; issuedBy is retained only as a v0.5 compatibility spelling.",
   "type": "object",
-  "required": ["@type", "@id", "title", "issuedBy"],
+  "required": ["@type", "@id", "title"],
   "properties": {
     "@context": { "type": ["string", "array", "object"] },
     "@id": { "type": "string", "format": "uri" },
     "@type": { "const": "of:Proceeding" },
-    "title": { "type": "string", "minLength": 1, "description": "Public matter caption (e.g., 'Moffatt v. Air Canada')." },
-    "citation": { "type": "string", "description": "Reporter citation (e.g., '2024 BCCRT 149') or ECLI." },
+    "title": { "type": "string", "minLength": 1 },
+    "citation": { "type": "string" },
     "filed_date": { "type": "string", "format": "date" },
-    "issuedBy": {
-      "type": "string",
-      "format": "uri",
-      "description": "IRI of the of:Authority hearing the matter."
-    },
-    "hasAllegation": {
+    "heardBy": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "issuedBy": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet", "description": "Legacy v0.5 spelling for a proceeding's hearing authority. Use heardBy." },
+    "parties": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "actor_roles": {
       "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "IRIs of of:Allegation records in this matter."
+      "items": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/actorRole" },
+      "minItems": 1
     },
-    "hasDetermination": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "IRIs of of:Determination records in this matter. Multiple Determinations are expected over a Proceeding's lifetime (trial, appeal, reversal)."
-    },
-    "source": { "type": "string", "format": "uri", "description": "Authoritative source URL (court database, official record)." },
+    "hasAllegation": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "hasDetermination": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "source": { "type": "string", "format": "uri" },
+    "source_citation": { "type": "string" },
+    "source_locator": { "type": "string" },
+    "source_version": { "type": "string" },
+    "language": { "type": "string" },
+    "evidence_type": { "type": "string" },
+    "verified": { "type": "string", "format": "date" },
+    "retrieved": { "type": "string", "format": "date" },
+    "asserted_by_adopter": { "type": "string", "format": "uri" },
     "ecli_uri": { "type": "string", "format": "uri" },
-    "neutral_citation": {
-      "type": "string",
-      "description": "Neutral citation (e.g. '2024 BCCRT 149'). Crosswalk for common-law neutral-citation jurisdictions without ECLI (crosswalk matrix in PROTOCOL.md)."
-    },
-    "jurisdiction": {
-      "type": "object",
-      "required": ["@type", "ref"],
-      "properties": {
-        "@type": { "const": "gist:Jurisdiction" },
-        "ref": {
-          "type": "string",
-          "description": "Jurisdiction code: lowercase form of an ISO 3166-1 alpha-2 country/supranational code or an ISO 3166-2 subdivision code.",
-          "examples": ["us-co", "ca-bc", "eu", "us"]
-        }
-      }
-    },
-    "sameAs": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "owl:sameAs crosswalk IRIs: external records identical to this one (e.g. a live adopter export, a Wikidata entity)."
-    },
-    "exactMatch": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "skos:exactMatch crosswalk IRIs: external concepts interchangeably usable with this record. Weaker than owl:sameAs; preferred for cross-scheme concept joins."
-    },
-    "notes": { "type": "string", "description": "Free-text editorial or provenance notes about this record." }
+    "neutral_citation": { "type": "string" },
+    "jurisdiction": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/jurisdiction" },
+    "territorial_scope": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/stringSet" },
+    "institutional_scope": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/stringSet" },
+    "sameAs": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "exactMatch": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "describesSameEntityAs": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "notes": { "type": "string" }
   },
+  "anyOf": [
+    { "required": ["heardBy"] },
+    { "required": ["issuedBy"] }
+  ],
   "additionalProperties": true
 }

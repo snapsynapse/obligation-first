@@ -4,7 +4,7 @@ import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadRecordDir, validateAdopterExport, writeAdopterExport } from "./lib/adopter-kit.mjs";
+import { isType, loadRecordDir, validateAdopterExport, writeAdopterExport } from "./lib/adopter-kit.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const tmp = await mkdtemp(path.join(os.tmpdir(), "of-adopter-kit-"));
@@ -12,11 +12,11 @@ const tmp = await mkdtemp(path.join(os.tmpdir(), "of-adopter-kit-"));
 try {
   const entries = await loadRecordDir(path.join(repoRoot, "examples/publedge-jia-utah-72/records"), { root: repoRoot });
   const recordsByKind = {
-    authorities: entries.filter((entry) => entry.record["@type"] === "of:Authority").map((entry) => entry.record),
-    instruments: entries.filter((entry) => entry.record["@type"] === "of:Instrument").map((entry) => entry.record),
-    terms: entries.filter((entry) => entry.record["@type"] === "of:Term").map((entry) => entry.record),
-    obligations: entries.filter((entry) => entry.record["@type"] === "of:Requirement").map((entry) => entry.record),
-    determinations: entries.filter((entry) => entry.record["@type"] === "of:Determination").map((entry) => entry.record),
+    authorities: entries.filter((entry) => isType(entry.record, "of:Authority")).map((entry) => entry.record),
+    instruments: entries.filter((entry) => isType(entry.record, "of:Instrument")).map((entry) => entry.record),
+    terms: entries.filter((entry) => isType(entry.record, "of:Term")).map((entry) => entry.record),
+    obligations: entries.filter((entry) => isType(entry.record, "of:Requirement")).map((entry) => entry.record),
+    determinations: entries.filter((entry) => isType(entry.record, "of:Determination")).map((entry) => entry.record),
   };
 
   const apiDir = path.join(tmp, "docs", "api", "v1", "of");

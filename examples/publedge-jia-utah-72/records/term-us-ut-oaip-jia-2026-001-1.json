@@ -1,6 +1,9 @@
 {
   "@context": "https://obligationfirst.org/v1/context.jsonld",
-  "@type": "of:Term",
+  "@type": [
+    "of:Term",
+    "gist:ContractTerm"
+  ],
   "@id": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/term/oaip-jia-2026-001-1",
   "text": "Provider must display the standardized GenAI disclosure on first session and on session resumption after 30 minutes of inactivity.",
   "section": "1",

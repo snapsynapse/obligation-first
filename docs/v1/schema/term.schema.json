@@ -2,68 +2,72 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://obligationfirst.org/v1/schema/term.schema.json",
   "title": "Term",
-  "description": "A clause within an Instrument. Bound to gist:ContractTerm. A Term creates Obligations and may defeat other Terms.",
+  "description": "A clause or provision within an Instrument. A Term is specification content; contractual Terms may additionally be treated as contract terms. text is reserved for exact source text and summary for editorial paraphrase.",
   "type": "object",
-  "required": ["@type", "@id", "text", "parent_instrument"],
+  "required": ["@type", "@id", "parent_instrument"],
   "properties": {
     "@context": { "type": ["string", "array", "object"] },
     "@id": { "type": "string", "format": "uri" },
-    "@type": { "const": "of:Term" },
-    "text": { "type": "string", "minLength": 1, "description": "Canonical text of the clause." },
-    "section": { "type": "string", "description": "Section / article / paragraph identifier within the parent Instrument." },
-    "parent_instrument": {
-      "type": "string",
-      "format": "uri",
-      "description": "IRI of the of:Instrument this Term belongs to."
+    "@type": {
+      "anyOf": [
+        { "const": "of:Term" },
+        {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "contains": { "const": "of:Term" },
+          "minItems": 2,
+          "uniqueItems": true
+        }
+      ],
+      "description": "The Obligation-First record type. Contractual Terms may also assert gist:ContractTerm in this JSON-LD type set."
     },
-    "creates": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "IRIs of of:Obligation records created by this Term."
+    "text": { "type": "string", "minLength": 1, "description": "Exact source text. Editorial paraphrase must use summary." },
+    "summary": { "type": "string", "minLength": 1, "description": "Editorial summary or normalized description, not represented as a quotation from the source." },
+    "section": { "type": "string" },
+    "parent_instrument": { "type": "string", "format": "uri" },
+    "creates": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "defeats": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "rebuts": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "undercuts": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "anchors": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "amends": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet", "description": "A partial Term-level modification. Instrument-level amendment uses the same predicate between Instruments." },
+    "binding_basis": {
+      "anyOf": [
+        { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/bindingBasis" },
+        { "type": "array", "items": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/bindingBasis" }, "minItems": 1 }
+      ]
     },
-    "defeats": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "IRIs of of:Term records this Term overrides per defeasibility semantics. General/fallback predicate; use rebuts or undercuts when the LegalRuleML §7.4 distinction is known."
-    },
-    "rebuts": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "IRIs of of:Term records this Term rebuts. Subproperty of of:defeats (v0.2): the defeating Term denies the *conclusion* of the defeated Term — a counter-rule asserting the opposite outcome (LegalRuleML §7.4). Any of:rebuts assertion also entails of:defeats."
-    },
-    "undercuts": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "IRIs of of:Term records this Term undercuts. Subproperty of of:defeats (v0.2): the defeating Term denies the *applicability* of the defeated Term in this context — an exception that says the rule doesn't fire here, without contradicting it elsewhere (LegalRuleML §7.4). Any of:undercuts assertion also entails of:defeats."
-    },
-    "anchors": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "IRIs of of:Term records this Term interprets or references. Used by JIAs and other interpretive Instruments whose Terms ground out in a statutory Term. Cross-portfolio joins (PubLedge JIA Term → EveryAILaw statutory Term) use this predicate."
-    },
+    "lifecycle_status": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/lifecycleStatus" },
+    "operative_status": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/operativeStatus" },
+    "enforcement_status": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/enforcementStatus" },
+    "effective": { "type": "string", "format": "date" },
+    "full_enforcement": { "type": "string", "format": "date" },
+    "sunset": { "type": "string", "format": "date" },
+    "computed_as_of": { "type": "string", "format": "date" },
+    "source": { "type": "string", "format": "uri" },
+    "source_citation": { "type": "string" },
+    "source_locator": { "type": "string" },
+    "source_version": { "type": "string" },
+    "language": { "type": "string" },
+    "evidence_type": { "type": "string" },
+    "verified": { "type": "string", "format": "date" },
+    "retrieved": { "type": "string", "format": "date" },
+    "asserted_by_adopter": { "type": "string", "format": "uri" },
     "executableEncoding": {
       "anyOf": [
         { "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json" },
-        {
-          "type": "array",
-          "items": { "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json" },
-          "minItems": 1
-        }
-      ],
-      "description": "Optional pointer to one or more executable encodings of this Term's logic. A single object or a non-empty array — a Term MAY carry multiple encodings, one per engine (PROTOCOL.md 'ExecutableEncoding shape')."
+        { "type": "array", "items": { "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json" }, "minItems": 1 }
+      ]
     },
     "akn_uri": { "type": "string", "format": "uri" },
-    "sameAs": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "owl:sameAs crosswalk IRIs: external records identical to this one (e.g. a live adopter export, a Wikidata entity)."
-    },
-    "exactMatch": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "skos:exactMatch crosswalk IRIs: external concepts interchangeably usable with this record. Weaker than owl:sameAs; preferred for cross-scheme concept joins."
-    },
-    "notes": { "type": "string", "description": "Free-text editorial or provenance notes about this record." }
+    "sameAs": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "exactMatch": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "describesSameEntityAs": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "notes": { "type": "string" }
   },
+  "anyOf": [
+    { "required": ["text"] },
+    { "required": ["summary"] }
+  ],
   "additionalProperties": true
 }

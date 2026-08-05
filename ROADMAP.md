@@ -1,10 +1,29 @@
 # Roadmap
 
-## v0.5.0 (current)
+## v0.6.0 (current)
 
-`@id` federation and identifier crosswalks: record `@id` values are adopter-local and permanent (renames preserved via HTTP 301), cross-adopter interoperability is carried by standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in a per-adopter `.well-known` naming profile, and jurisdiction is a typed ISO 3166 field. Reverses the earlier Term-`@id`-is-standard-IRI guidance; additive and non-breaking to v0.1 / v0.2 records. Decision record: [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). v0.4.0 defines the naming-profile format itself: a JSON-LD `of:NamingProfile` document at `/.well-known/obligation-first-naming-profile.jsonld` validated by `schema/naming-profile.schema.json`, with a `text/plain` provenance sidecar — closing a v0.3 freeze gate. The prior v0.2.x line absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. v0.4.1 is a documentation-consistency patch from an external semantic review; the substantive findings and their remediation plan are tracked in an internal review handoff (2026-06-09) and will land here as decision records as they are taken up.
+The v0.6 semantic contract is implemented locally from five accepted decision records:
 
-v0.5.0 adds the **category layer** (`of:ObligationCategory`): jurisdiction-neutral duty concepts that Obligations are classified under via `skos:exactMatch`, and that interpretive records may `anchor` when they concern the concept rather than any one statutory duty. It closes a gap all three adopters had already worked around badly — EveryAILaw published ten concepts *as* its Obligations, collapsing 134 Terms into 10 records and failing 128 `created_by` back-reference checks, while 47 of 59 live cross-adopter anchors pointed at a concept wearing an Obligation type. v0.5.0 also makes naming-profile `appliesTo` accept a version range, so an additive spec release stops being a lockstep flag day for adopters that use nothing new in it. See [CHANGELOG.md](CHANGELOG.md).
+1. [Identity and classification](reference/decisions/identity-and-classification.md)
+2. [Authority, source text, and legal scope](reference/decisions/authority-text-and-scope.md)
+3. [Normative force and lifecycle](reference/decisions/normative-force-and-lifecycle.md)
+4. [Actors and deontic grounding](reference/decisions/actors-and-deontic-grounding.md)
+5. [Provenance, extensions, and conformance](reference/decisions/provenance-extensions-and-conformance.md)
+
+The implementation reconciles the 2026-06-09 semantic review with adopter-scale evidence from EveryAILaw, PubLedge, and AI Incident Law. Publication remains separate authority and follows the review window.
+
+v0.6 exit gates:
+
+- [x] Exact vocabulary and compatibility window implemented from the accepted directions
+- [x] Legacy v0.5 fixtures and deterministic migrations pass
+- [x] EveryAILaw adapter preserves legal force, lifecycle, roles, text provenance, and classification semantics
+- [x] PubLedge administrative issuance, Party, source-text, and temporal-state fixtures pass
+- [x] AI Incident Law proceeding, Party, jurisdiction, and adjudicative fixtures pass
+- [x] Air Canada common-law obligation and remedy fixture passes
+- [x] Aggregate, companion, deprecated, naming-profile, and graph checks pass locally
+- [x] Conformance and migration notes are implemented
+- [ ] Material-change review window closes
+- [ ] Publication, tag, release, and deployment are separately authorized
 
 ## v0.1.0-draft
 
@@ -94,16 +113,16 @@ Still planned for v0.2:
 | 5 | Should we mint our own namespace at w3id.org or stay on obligationfirst.org alone? | When external adopters request a permanent IRI |
 | 6 | ~~Should `of:executableEncoding` be on Term, Obligation, or both?~~ **Resolved v0.2 (2026-05-26):** both. v0.1 schemas already accept the field on Term and Obligation; PROTOCOL.md core-relations table updated to make this explicit. | — |
 | 7 | Org structure for the repo (snapsynapse vs new GitHub org) | When first external contributor joins, or Foundation transition |
-| 11 | Typed `of:Remedy` entity for monetary awards and other Determination consequences (currently unstructured object on Determination) | First adopter that needs structured remedy queries; surfaced by Air Canada example |
-| 12 | Closed party-role vocabulary for `Allegation.asserted_by` (currently free-form string) | First adopter that needs to filter allegations by asserter role; surfaced by Air Canada example |
+| 11 | A standalone typed `of:Remedy` entity remains deferred. v0.6 requires an embedded remedy to reference its grounded Obligation when that link is known. | A remedy needs identity or lifecycle independent of its Determination |
+| 12 | A universal closed party-role vocabulary remains deferred. v0.6 adds typed Party records and role strings or IRIs without pretending every jurisdiction uses one role taxonomy. | Two adopters need the same controlled role identifier |
 | 13 | ~~Symmetric `of:violationOf` relation parallel to `of:creates` for Reparations~~ **Resolved v0.2 (2026-05-26):** `of:violationOf` added as the symmetric/inverse predicate of `triggers_on_violation_of`. Adopters MAY assert it from either side; if both directions are present they must be consistent. | — |
 | 14 | LegalRuleML encoding pointer (`of:legalRuleMLEncoding`) parallel to `of:executableEncoding` | First Term that has authoritative LegalRuleML encoding |
 | 15 | ~~Defeasibility sub-types — `of:rebuts` and `of:undercuts` as subproperties of `of:defeats`~~ **Resolved v0.2 (2026-05-26):** added per LegalRuleML §7.4. `of:defeats` retained as general/fallback predicate; `of:rebuts` denies the conclusion; `of:undercuts` denies applicability. Subproperty entailment: rebut/undercut implies defeats. | — |
 | 16 | OSCAL (NIST Assessment Results 1.1.2 / Profile / POA&M) as a secondary export projection from Obligation-First records. **Not adopted as substrate** (2026-05-27): JSON-LD + JSON Schema + gist binding + LegalRuleML alignment is the canonical substrate. OSCAL is layer-mismatched — it models assessments of operational systems against controls, while Obligation-First models normative content itself. The natural OSCAL home in the PAICE legal graph is **AI Posture** (the assessor), not Obligation-First (the substrate). A `reference/crosswalks/oscal.md` doc and an export script that projects OF records into OSCAL Profile / AR shapes are deferred. | First external GRC consumer (FedRAMP, ISO 27001 auditor, GRC platform) requests OSCAL ingest of OF records; OR a US federal regulator (NIST, OMB, agency adopting NIST AI RMF) publishes an OSCAL catalog for AI obligations that OF would need to ingest; OR AI Posture ships an OSCAL Assessment Results wrapping and needs OF-side alignment notes. |
-| 17 | Identity-fidelity enforcement: how a worked example or cross-adopter reference is checked against an adopter's actual minted IRIs — live HTTP resolution, a vendored registry snapshot (like `vendor/gist/`), or both. Surfaced by the `@id`-federation decision (2026-06-02, `reference/iri-naming-and-crosswalks.md`). **Advanced v0.4.0 (2026-06-03):** `schema/naming-profile.schema.json` + `scripts/validate-naming-profile.mjs` make a profile machine-validatable, so an adopter's `void:uriRegexPattern` is now the enforceable contract a reference can be checked against. Still open: checking a specific cross-adopter reference against the live or snapshotted profile (regex match) and against actual resolution. | The first CI run that must catch an example or anchor referencing a non-conformant adopter IRI. |
-| 18 | Example IRI policy for not-yet-minted entities: when a worked example needs an entity the adopter has not published (recitals, paragraph-level terms, draft guidelines), does the example use a neutral `obligationfirst.org` example namespace or an adopter-host IRI with a proposed-extension marker? Surfaced 2026-06-02. | Realigning the four worked examples to the federation convention. |
+| 17 | Identity-fidelity enforcement. v0.6 adds Tombstones, weaker record-correspondence links, versioned naming profiles, and local graph checks. Live HTTP resolution remains a release audit concern. | External adopter or resolver evidence exposes a remaining ambiguity |
+| 18 | ~~Example IRI policy for not-yet-minted entities.~~ **Resolved v0.3.1 (2026-06-02):** worked examples use the neutral, suffixless `https://obligationfirst.org/v1/examples/` namespace; real adopter identities ride in crosswalks only when they exist. | — |
 | 19 | ~~`.json` suffix in `@id`: adopt suffixless canonical `@id` with `.json` reached by content negotiation, or keep the served-file suffix as canonical.~~ **Resolved v0.4.0 (2026-06-03):** the spec does not mandate either; each adopter records its actual scheme descriptively in its naming-profile `void:uriRegexPattern` (the three live adopters' profiles will carry `.json`), while suffixless canonical with content-negotiated representations remains the recommended target, not a conformance gate. Examples stay suffixless under the neutral namespace. | — |
-| 20 | Non-EU instrument join key: whether to tighten urn:lex (currently MAY) or another universal legal-source identifier to SHOULD/MUST for jurisdictions without ELI, so US and Canadian statutes get a guaranteed cross-adopter join key. Left best-effort by the 2026-06-02 decision (rests on `citation` consistency). | urn:lex ratifies as an RFC; OR a cross-adopter query needs to join US/Canada instruments and `citation`-matching proves insufficient. |
+| 20 | Non-EU instrument join key. **Advanced 2026-08-04:** the first real US or Canadian cross-adopter join triggers a bounded citation-normalization trial before any universal identifier becomes required. | First real US or Canadian instrument join across two adopters |
 ## Resolved in v0.2 (originally raised as deferred)
 
 Surfaced by Semantic Arts review (Dave McComb, 2026-05-26) and a roadmap sweep on the same date. All resolved as binding-only / additive changes — no breaking impact on v0.1 adopter records.

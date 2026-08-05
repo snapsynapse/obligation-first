@@ -2,19 +2,22 @@
 
 > An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist.
 
-Obligation-First is a small, opinionated upper schema and JSON-LD context for normative content. It defines a four-role spine — Authority, Instrument, Term, Obligation — plus a proceeding strand of Proceeding, Allegation, Determination. The deontic quartet (Requirement / Restriction / Permission / Reparation) is aligned with LegalRuleML 1.0; v0.2 refines the gist binding for `of:Reparation` to a layered `gist:Requirement` + `gist:Intention` (+ `gist:Event`) pattern. Three PAICE legal projects now publish bindings: EveryAILaw (AI laws and obligations), PubLedge (joint interpretations), and AI Incident Law (AI-related cases). Status: v0.5.0, drafting in public. v0.3 federates record `@id` values (adopter-local, opaque, permanent, with renames preserved via HTTP 301) and binds cross-adopter interoperability to standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in per-adopter `.well-known` naming profiles; jurisdiction is a typed ISO 3166 field. v0.3 also redefines the conformance levels: Level 2 now additionally requires a published `.well-known` naming profile (VoID `uriSpace`/`uriRegexPattern` + RFC 6570 template) and `jurisdiction` as a typed ISO 3166 field; Level 3 now requires that every crosswalk the adopter's naming profile declares is present on every applicable record (recommended baseline: the crosswalk matrix). This reverses the earlier guidance that a Term's `@id` should be the standard source-text IRI. Additive and non-breaking. Decision record: https://github.com/snapsynapse/obligation-first/blob/main/reference/iri-naming-and-crosswalks.md
+Obligation-First is a small upper schema and JSON-LD context for normative content. It defines the Authority / Instrument / Term / Obligation spine, the Proceeding / Allegation / Determination strand, ObligationCategory concepts, and Party / Jurisdiction / Tombstone support. v0.6.0 is implemented locally across EveryAILaw, PubLedge, and AI Incident Law, pending review and separate publication authority. It separates issuer, administrator, enforcer, and hearing forum; separates normative force, lifecycle, operative effect, and enforcement; reserves Term.text for exact source text; and adds shared provenance plus graph-level validation. Legacy v0.5 shapes remain schema-valid. Migrated projections declare `obligation-first >=0.6.0 <0.7.0`.
 
 ## Key concepts
 
-- **Spine** — Authority / Instrument / Term / Obligation. Bound to gist:Organization, gist:Agreement or gist:Specification, gist:ContractTerm, and the deontic quartet respectively.
+- **Spine** — Authority / Instrument / Term / Obligation. Bound to gist:Organization, gist:Agreement or gist:Specification, gist:Specification for Terms, and the deontic quartet. A negotiated Term may additionally assert gist:ContractTerm.
 - **Proceeding strand** — Proceeding (gist:Event) / Allegation (gist:Content for the assertion text, plus gist:Intention only when the claim is intent-bearing) / Determination (gist:Determination). Models legal matters with epistemic honesty: an Allegation is asserted, not authoritative; a Determination resolves it.
 - **Deontic quartet** — Requirement (lrml:Obligation), Restriction (lrml:Prohibition), Permission (lrml:Permission), Reparation (lrml:Reparation). Reparation is the secondary obligation triggered when a primary is violated. v0.2 refined the gist binding for `of:Reparation` to a layered `gist:Requirement` (the duty) + `gist:Intention` (declared intent on the creating Term) + `gist:Event` (actuated reparation, via the proceeding strand) pattern per Semantic Arts feedback; the of: class is preserved.
-- **Instrument lifecycle** — Two independent fields. `of:status` (legislative state: proposed / enacted / in-force / amended / sunset / repealed / superseded / withdrawn) and `of:enforcement_status` (whether primary obligations can presently be enforced: routine / constrained / unsignaled). Independent dimensions; any combination is valid. Cause of a non-routine enforcement state is expressed via the proceeding strand, not baked into the enum.
+- **Force and lifecycle** — `normative_force`, `lifecycle_status`, `operative_status`, and `enforcement_status` are independent axes. Unknown, future, inactive, stayed, repealed, and not applicable remain distinct. Computed state carries `computed_as_of`; factual dates remain source assertions.
 - **Supersession** — `of:supersedes` (post-enactment Instrument-to-Instrument replacement) and `of:wouldSupersede` (subjunctive form for proposed Instruments). Distinct from `of:defeats`, which is Term-level. Supersedes does not auto-imply Term-level defeats.
 - **Defeasibility** — `of:defeats` predicate expresses cross-Term override (statutory exceptions) per Lawsky default logic and LegalRuleML §7.4. v0.2 adds subproperties `of:rebuts` (defeating Term reaches the opposite conclusion) and `of:undercuts` (defeating Term denies the rule's applicability in this context). Either entails `of:defeats`; the general predicate remains the v0.1-compatible binary case.
 - **Violation traversal** — `of:violationOf` is the symmetric/inverse of `triggers_on_violation_of`, added in v0.2 so SPARQL can query the violation relation from the primary-Obligation side. Adopters MAY assert from either side; if both directions are present, they must be consistent.
 - **Polymorphic executableEncoding** — Optional pointer from a Term to a Catala scope, Blawx ruleset, OpenFisca formula, or other rules-as-code engine.
-- **Recursive Authority basis** — Every Authority's right to act traces to an Instrument on the spine. Handles non-government Authorities (HOAs, tribunals, co-ops, advisory bodies) without special-casing.
+- **Evidence-bearing Authority basis** — `authority_basis` is optional and multi-valued. When present it cites a source of legal competence. Missing evidence is omitted, never replaced with a fabricated self-reference.
+- **Actors and legal scope** — Party identifies concrete people and organizations. Controlled role IRIs stay separate from concrete identity. Jurisdiction is legal competence with independent territorial and institutional scope.
+- **Identity retirement** — Tombstone records keep deprecated IRIs queryable across aggregate, companion, and per-record surfaces without pretending the old record is still a live duty or authority.
+- **Classification** — Obligations use `gist:isCategorizedBy` to join ObligationCategory concepts. `skos:exactMatch` remains concept-to-concept only.
 
 ## Key files
 
@@ -25,8 +28,10 @@ Obligation-First is a small, opinionated upper schema and JSON-LD context for no
 - JSON-LD @context: https://obligationfirst.org/v1/context.jsonld
 - Live resolution target: https://obligationfirst.org/v1/
 - Planned permanent vocabulary prefix: https://w3id.org/of/v1/ (redirect not filed yet)
-- JSON Schemas: https://obligationfirst.org/v1/schema/{authority,instrument,term,obligation,proceeding,allegation,determination,executable-encoding}.schema.json
+- Shared schema definitions: https://obligationfirst.org/v1/schema/common.schema.json
 - Authority schema: https://obligationfirst.org/v1/schema/authority.schema.json
+- Jurisdiction schema: https://obligationfirst.org/v1/schema/jurisdiction.schema.json
+- Party schema: https://obligationfirst.org/v1/schema/party.schema.json
 - Instrument schema: https://obligationfirst.org/v1/schema/instrument.schema.json
 - Term schema: https://obligationfirst.org/v1/schema/term.schema.json
 - Obligation schema: https://obligationfirst.org/v1/schema/obligation.schema.json
@@ -34,8 +39,10 @@ Obligation-First is a small, opinionated upper schema and JSON-LD context for no
 - Proceeding schema: https://obligationfirst.org/v1/schema/proceeding.schema.json
 - Allegation schema: https://obligationfirst.org/v1/schema/allegation.schema.json
 - Determination schema: https://obligationfirst.org/v1/schema/determination.schema.json
+- Tombstone schema: https://obligationfirst.org/v1/schema/tombstone.schema.json
 - Executable encoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
-- Release package: https://obligationfirst.org/releases/v0.5.0/
+- Naming profile schema: https://obligationfirst.org/v1/schema/naming-profile.schema.json
+- Release package: https://obligationfirst.org/releases/v0.6.0/
 - Assistant guide: https://obligationfirst.org/.well-known/assistant-guide.txt
 - Assistant guide manifest: https://obligationfirst.org/.well-known/assistant-guide-manifest.txt
 

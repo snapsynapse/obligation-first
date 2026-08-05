@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-The Obligation-First spec is at `v0.5.0`. Only the latest published version is supported.
+The Obligation-First spec is at `v0.6.0`. Only the latest published version is supported.
 
 ## Reporting a vulnerability
 

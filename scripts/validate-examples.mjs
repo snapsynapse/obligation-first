@@ -12,7 +12,7 @@ import path from "node:path";
 // deontic-quartet dispatch happens via its own `oneOf`, so all four obligation
 // types map to the same schema file) and the AJV loader are shared with the
 // adopter kit so the two cannot drift.
-import { TYPE_TO_SCHEMA, loadSchemas } from "./lib/adopter-kit.mjs";
+import { TYPE_TO_SCHEMA, loadSchemas, obligationFirstType, recordTypes } from "./lib/adopter-kit.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -57,9 +57,10 @@ for await (const recordPath of walkRecords(examplesDir)) {
   }
 
   total++;
-  const type = record["@type"];
+  const type = obligationFirstType(record);
   if (!type) {
-    console.log(`✗ ${rel}: missing @type`);
+    const asserted = recordTypes(record);
+    console.log(`✗ ${rel}: ${asserted.length ? `no Obligation-First type in @type=${asserted.join(",")}` : "missing @type"}`);
     failures.push(rel);
     failed++;
     continue;

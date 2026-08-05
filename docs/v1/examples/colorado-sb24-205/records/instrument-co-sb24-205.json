@@ -12,8 +12,10 @@
   "status": "repealed",
   "enforcement_status": "constrained",
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "us-co"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "us-co"
+    ]
   },
   "hasTerm": [
     "https://obligationfirst.org/v1/examples/colorado-sb24-205/term/sb24-205-duty-of-care"

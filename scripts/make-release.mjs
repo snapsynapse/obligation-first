@@ -23,6 +23,7 @@ import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { releaseArtifactInventory } from "./lib/contract-inventory.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const releasesRoot = path.join(repoRoot, "docs/releases");
@@ -80,15 +81,23 @@ function retargetVersion(text, priorVersion, version) {
   return text.split(priorVersion).join(version);
 }
 
-function deriveCompatibility(prior, priorVersion) {
+function deriveCompatibility(prior, priorVersion, version) {
+  const target = parseSemver(version);
+  const targetMinor = `v${target[0]}.${target[1]}`;
   const compat = {};
   const priorKey = `v${priorVersion.replaceAll(".", "_")}_adopter_records`;
   for (const [key, value] of Object.entries(prior.compatibility ?? {})) {
     if (key === "iri_major" && !(priorKey in compat) && !(priorKey in (prior.compatibility ?? {}))) {
-      compat[priorKey] = "valid without migration";
+      compat[priorKey] = `schema-valid during the ${targetMinor} migration window; migrate for ${targetMinor} conformance`;
     }
-    compat[key] = value;
+    const sourceMatch = key.match(/^v(\d+)_(\d+)(?:_(\d+))?_adopter_records$/);
+    const crossesMinor = sourceMatch
+      && (Number(sourceMatch[1]) !== target[0] || Number(sourceMatch[2]) !== target[1]);
+    compat[key] = crossesMinor
+      ? `schema-valid during the ${targetMinor} migration window; migrate for ${targetMinor} conformance`
+      : value;
   }
+  compat[`v${version.replaceAll(".", "_")}_adopter_records`] = `native ${targetMinor} conformance after schema-and-graph validation`;
   return compat;
 }
 
@@ -111,6 +120,7 @@ TODO: state adopter-record compatibility and IRI major version.
 
 ## Verification
 
+Literal
 \`\`\`bash
 npm test
 \`\`\`
@@ -262,39 +272,12 @@ async function main() {
   await writeFile(notesPath, notes);
 
   const artifacts = [];
-  const carried = new Set();
-  for (const artifact of prior.artifacts ?? []) {
-    const newPath = retargetVersion(artifact.path, priorVersion, version);
-    const newUrl = retargetVersion(artifact.url, priorVersion, version);
-    // The release-notes artifact lives in the package being generated; every
-    // other artifact is hashed from the current working tree.
-    const sourcePath =
-      newPath === `docs/releases/v${version}/${notesName}` ? notesPath : path.join(repoRoot, newPath);
-    if (!existsSync(sourcePath)) fail(`artifact missing from tree: ${newPath}`);
-    carried.add(newPath);
-    artifacts.push({ path: newPath, url: newUrl, sha256: await sha256Of(sourcePath) });
-  }
-
-  // Deriving the artifact list from the previous manifest alone means a schema
-  // added since that release is silently absent: never hashed, never pinned,
-  // never in sha256.txt. v0.5.0's obligation-category.schema.json hit exactly
-  // that. Sweep schema/ so every schema in the tree is in the package, and
-  // place new ones in sorted order alongside the carried-over entries.
-  const schemaUrlFor = (rel) => `https://obligationfirst.org/v1/${rel.replace(/^schema\//, "schema/")}`;
-  const schemaFiles = (await readdir(path.join(repoRoot, "schema")))
-    .filter((f) => f.endsWith(".json") || f.endsWith(".jsonld"))
-    .map((f) => `schema/${f}`)
-    .sort();
-  const missingSchemas = schemaFiles.filter((rel) => !carried.has(rel));
-  for (const rel of missingSchemas) {
-    artifacts.push({
-      path: rel,
-      url: schemaUrlFor(rel),
-      sha256: await sha256Of(path.join(repoRoot, rel)),
-    });
-  }
-  if (missingSchemas.length > 0) {
-    console.log(`  added ${missingSchemas.length} schema artifact(s) new since v${priorVersion}: ${missingSchemas.join(", ")}`);
+  for (const artifact of await releaseArtifactInventory(repoRoot, version)) {
+    const sourcePath = artifact.path === `docs/releases/v${version}/${notesName}`
+      ? notesPath
+      : path.join(repoRoot, artifact.path);
+    if (!existsSync(sourcePath)) fail(`artifact missing from tree: ${artifact.path}`);
+    artifacts.push({ ...artifact, sha256: await sha256Of(sourcePath) });
   }
 
   const manifest = {
@@ -305,7 +288,7 @@ async function main() {
     canonical_url: retargetVersion(prior.canonical_url, priorVersion, version),
     repository: prior.repository,
     summary: opts.summary ?? `TODO: summarize the v${version} release.`,
-    compatibility: deriveCompatibility(prior, priorVersion),
+    compatibility: deriveCompatibility(prior, priorVersion, version),
     artifacts,
   };
 

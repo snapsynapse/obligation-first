@@ -1,0 +1,15 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "@type": "of:Proceeding",
+  "@id": "https://example.com/proceeding/case-1",
+  "title": "Legacy proceeding",
+  "jurisdiction": {
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "ca-bc"
+    ]
+  },
+  "heardBy": [
+    "https://example.com/authority/tribunal"
+  ]
+}

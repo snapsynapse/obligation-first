@@ -24,10 +24,13 @@ The ELI URI is never the Instrument's `@id`. Under the v0.3 federation model the
 "@id": https://everyailaw.com/instrument/eu-ai-act.json
 title: "EU Artificial Intelligence Act"
 jurisdiction:
-  "@type": gist:Jurisdiction
-  ref: eu
-eli_uri: http://data.europa.eu/eli/reg/2024/1689/oj
-issuedBy: https://everyailaw.com/authority/european-commission.json
+  "@type": of:Jurisdiction
+  territorial_scope:
+    - eu
+eli_uri: https://data.europa.eu/eli/reg/2024/1689/oj
+issuedBy:
+  - https://everyailaw.com/authority/european-parliament.json
+  - https://everyailaw.com/authority/council-of-the-european-union.json
 ```
 
 The `@id` is whatever the adopter's `.well-known` naming profile declares; Obligation-First does not prescribe its grammar. For EU instruments the ELI URI is carried in `eli_uri` (MUST where the jurisdiction issues ELIs). For non-EU instruments without ELI URIs, the field is simply absent and the join falls back to `citation` or another declared crosswalk.
@@ -52,8 +55,9 @@ As with ELI, the ECLI is never the `@id`. The Determination's `@id` is an adopte
 "@id": https://aiincidentlaw.org/determination/aiel-2024-042-determination.json
 issued_date: 2024-09-12
 jurisdiction:
-  "@type": gist:Jurisdiction
-  ref: eu
+  "@type": of:Jurisdiction
+  territorial_scope:
+    - eu
 ecli_uri: ECLI:EU:C:2024:567
 issuedBy: https://aiincidentlaw.org/authority/court-of-justice-of-the-european-union.json
 ```

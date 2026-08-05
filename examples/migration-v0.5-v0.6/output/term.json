@@ -1,0 +1,7 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "@type": "of:Term",
+  "@id": "https://example.com/term/article-1",
+  "parent_instrument": "https://example.com/instrument/law",
+  "summary": "Editorial summary of Article 1."
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://obligationfirst.org/v1/schema/jurisdiction.schema.json",
+  "title": "Jurisdiction",
+  "description": "A legal competence scope. Territorial coverage and institutional competence are independent and may both be present.",
+  "type": "object",
+  "required": ["@type", "@id", "name"],
+  "properties": {
+    "@context": { "type": ["string", "array", "object"] },
+    "@id": { "type": "string", "format": "uri" },
+    "@type": { "const": "of:Jurisdiction" },
+    "name": { "type": "string", "minLength": 1 },
+    "territorial_scope": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/stringSet" },
+    "institutional_scope": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/stringSet" },
+    "sameAs": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "describesSameEntityAs": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "source": { "type": "string", "format": "uri" },
+    "source_citation": { "type": "string" },
+    "source_locator": { "type": "string" },
+    "source_version": { "type": "string" },
+    "language": { "type": "string" },
+    "evidence_type": { "type": "string" },
+    "verified": { "type": "string", "format": "date" },
+    "retrieved": { "type": "string", "format": "date" },
+    "asserted_by_adopter": { "type": "string", "format": "uri" },
+    "notes": { "type": "string" }
+  },
+  "anyOf": [
+    { "required": ["territorial_scope"] },
+    { "required": ["institutional_scope"] }
+  ],
+  "additionalProperties": true
+}

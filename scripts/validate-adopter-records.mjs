@@ -8,7 +8,8 @@
  *   node scripts/validate-adopter-records.mjs           # auto-discover examples/*\/records
  */
 
-import { readdir } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import {
@@ -21,6 +22,19 @@ import {
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
 const schemaDir = path.join(repoRoot, "schema");
+
+async function validatorIdentity() {
+  const pkg = JSON.parse(await readFile(path.join(repoRoot, "package.json"), "utf8"));
+  let commit = "unknown";
+  let dirty = "unknown";
+  try {
+    commit = execFileSync("git", ["-C", repoRoot, "rev-parse", "--short=12", "HEAD"], { encoding: "utf8" }).trim();
+    dirty = execFileSync("git", ["-C", repoRoot, "status", "--porcelain"], { encoding: "utf8" }).trim() ? "dirty" : "clean";
+  } catch {
+    // A source archive has a meaningful package version even without .git.
+  }
+  return { version: pkg.version, commit, dirty };
+}
 
 async function discoverExampleRecordDirs() {
   const examplesDir = path.join(repoRoot, "examples");
@@ -46,6 +60,8 @@ if (dirs.length === 0) {
 }
 
 const schemas = await loadSchemas(schemaDir);
+const identity = await validatorIdentity();
+console.log(`Obligation-First validator v${identity.version} (${identity.commit}, ${identity.dirty})`);
 let total = 0;
 let failed = 0;
 

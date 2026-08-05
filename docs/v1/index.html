@@ -43,7 +43,7 @@
   <a href="/" class="nav-back">&larr; obligationfirst.org</a>
 
   <h1>v1 namespace</h1>
-  <p class="lede">Stable URIs for the Obligation-First specification, currently on the v0.4.x line. Under the bind-by-major policy the <code style="font-family: var(--mono); color: var(--accent);">/v1/</code> namespace serves the entire v0.x&rarr;1.x major, so records bound today keep resolving as the spec advances toward 1.0. Every artifact below dereferences to a real document: schema, crosswalk, or worked-example record. Adopters fetch the context at <code style="font-family: var(--mono); color: var(--accent);">https://obligationfirst.org/v1/context.jsonld</code>; terms expand under the planned permanent <code style="font-family: var(--mono); color: var(--accent);">https://w3id.org/of/v1/</code> vocabulary prefix once the w3id.org redirect is filed.</p>
+  <p class="lede">Stable URIs for the Obligation-First specification, currently on the v0.6.0 candidate line. Under the bind-by-major policy the <code style="font-family: var(--mono); color: var(--accent);">/v1/</code> namespace serves the entire v0.x&rarr;1.x major, so records bound today keep resolving as the spec advances toward 1.0. The v0.6 candidate is implemented locally pending review and separate publication authority. Adopters fetch the context at <code style="font-family: var(--mono); color: var(--accent);">https://obligationfirst.org/v1/context.jsonld</code>; terms expand under the planned permanent <code style="font-family: var(--mono); color: var(--accent);">https://w3id.org/of/v1/</code> vocabulary prefix once the w3id.org redirect is filed.</p>
 
   <h2>JSON-LD context</h2>
   <ul>
@@ -52,7 +52,10 @@
 
   <h2>JSON Schemas</h2>
   <ul>
+    <li><a href="/v1/schema/common.schema.json"><code>/v1/schema/common.schema.json</code></a> <span class="desc">Shared v0.6 definitions used by entity schemas</span></li>
     <li><a href="/v1/schema/authority.schema.json"><code>/v1/schema/authority.schema.json</code></a> <span class="desc">of:Authority</span></li>
+    <li><a href="/v1/schema/jurisdiction.schema.json"><code>/v1/schema/jurisdiction.schema.json</code></a> <span class="desc">of:Jurisdiction</span></li>
+    <li><a href="/v1/schema/party.schema.json"><code>/v1/schema/party.schema.json</code></a> <span class="desc">of:Party</span></li>
     <li><a href="/v1/schema/instrument.schema.json"><code>/v1/schema/instrument.schema.json</code></a> <span class="desc">of:Instrument</span></li>
     <li><a href="/v1/schema/term.schema.json"><code>/v1/schema/term.schema.json</code></a> <span class="desc">of:Term</span></li>
     <li><a href="/v1/schema/obligation.schema.json"><code>/v1/schema/obligation.schema.json</code></a> <span class="desc">of:Obligation (Requirement / Restriction / Permission / Reparation)</span></li>
@@ -60,6 +63,7 @@
     <li><a href="/v1/schema/proceeding.schema.json"><code>/v1/schema/proceeding.schema.json</code></a> <span class="desc">of:Proceeding</span></li>
     <li><a href="/v1/schema/allegation.schema.json"><code>/v1/schema/allegation.schema.json</code></a> <span class="desc">of:Allegation</span></li>
     <li><a href="/v1/schema/determination.schema.json"><code>/v1/schema/determination.schema.json</code></a> <span class="desc">of:Determination</span></li>
+    <li><a href="/v1/schema/tombstone.schema.json"><code>/v1/schema/tombstone.schema.json</code></a> <span class="desc">of:Tombstone</span></li>
     <li><a href="/v1/schema/executable-encoding.schema.json"><code>/v1/schema/executable-encoding.schema.json</code></a> <span class="desc">Polymorphic executable-encoding reference</span></li>
     <li><a href="/v1/schema/naming-profile.schema.json"><code>/v1/schema/naming-profile.schema.json</code></a> <span class="desc">Adopter <code>.well-known</code> naming profile (VoID uriSpace + RFC 6570 template + crosswalks)</span></li>
   </ul>
@@ -67,10 +71,10 @@
   <h2>Worked-example records</h2>
   <p>Four real record sets round-tripped through the current draft, served as JSON for direct fetch and validation. Every record carries a neutral <code style="font-family: var(--mono); color: var(--accent);">https://obligationfirst.org/</code> identifier; where an example corresponds to a real adopter entity, that adopter's published IRI appears only as a crosswalk (via <code style="font-family: var(--mono); color: var(--accent);">sameAs</code> or <code style="font-family: var(--mono); color: var(--accent);">anchors</code>), never as the record's own <code style="font-family: var(--mono); color: var(--accent);">@id</code>. GitHub Pages serves no directory listings, so each link below resolves to one concrete record; browse the rest of a set from its README.</p>
   <ul>
-    <li><a href="/v1/examples/colorado-sb24-205/records/authority-co-general-assembly.json"><code>colorado-sb24-205/records/authority-co-general-assembly.json</code></a> <span class="desc">13 records — Colorado AI Act, three-layer reality</span></li>
-    <li><a href="/v1/examples/air-canada/records/authority-bccrt.json"><code>air-canada/records/authority-bccrt.json</code></a> <span class="desc">5 records — Moffatt v. Air Canada, proceeding strand</span></li>
-    <li><a href="/v1/examples/publedge-jia-utah-72/records/authority-us-ut-oaip.json"><code>publedge-jia-utah-72/records/authority-us-ut-oaip.json</code></a> <span class="desc">5 records — Utah OAIP JIA, joint interpretation</span></li>
-    <li><a href="/v1/examples/eu-ai-act-article-50/records/authority-eu-commission.json"><code>eu-ai-act-article-50/records/authority-eu-commission.json</code></a> <span class="desc">26 records — EU AI Act Article 50 transparency obligations</span></li>
+    <li><a href="/v1/examples/colorado-sb24-205/records/authority-co-general-assembly.json"><code>colorado-sb24-205/records/authority-co-general-assembly.json</code></a> <span class="desc">13 records - Colorado AI Act, three-layer reality</span></li>
+    <li><a href="/v1/examples/air-canada/records/authority-bccrt.json"><code>air-canada/records/authority-bccrt.json</code></a> <span class="desc">8 records - Moffatt v. Air Canada, Parties and common-law recognition</span></li>
+    <li><a href="/v1/examples/publedge-jia-utah-72/records/authority-us-ut-oaip.json"><code>publedge-jia-utah-72/records/authority-us-ut-oaip.json</code></a> <span class="desc">4 records - Utah OAIP JIA contractual Term</span></li>
+    <li><a href="/v1/examples/eu-ai-act-article-50/records/authority-eu-commission.json"><code>eu-ai-act-article-50/records/authority-eu-commission.json</code></a> <span class="desc">26 records - EU AI Act Article 50 transparency obligations</span></li>
   </ul>
   <p>Set READMEs on GitHub: <a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/colorado-sb24-205/README.md"><code>colorado-sb24-205</code></a>, <a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/air-canada/README.md"><code>air-canada</code></a>, <a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/publedge-jia-utah-72/README.md"><code>publedge-jia-utah-72</code></a>, <a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/eu-ai-act-article-50/README.md"><code>eu-ai-act-article-50</code></a>.</p>
 

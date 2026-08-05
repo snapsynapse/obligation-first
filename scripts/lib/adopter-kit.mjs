@@ -6,6 +6,7 @@ import path from "node:path";
 export const OF_CONTEXT = "https://obligationfirst.org/v1/context.jsonld";
 
 export const OBLIGATION_TYPES = new Set([
+  "of:Obligation",
   "of:Requirement",
   "of:Restriction",
   "of:Permission",
@@ -14,8 +15,11 @@ export const OBLIGATION_TYPES = new Set([
 
 export const TYPE_TO_SCHEMA = {
   "of:Authority": "authority.schema.json",
+  "of:Jurisdiction": "jurisdiction.schema.json",
+  "of:Party": "party.schema.json",
   "of:Instrument": "instrument.schema.json",
   "of:Term": "term.schema.json",
+  "of:Obligation": "obligation.schema.json",
   "of:Requirement": "obligation.schema.json",
   "of:Restriction": "obligation.schema.json",
   "of:Permission": "obligation.schema.json",
@@ -24,10 +28,13 @@ export const TYPE_TO_SCHEMA = {
   "of:Proceeding": "proceeding.schema.json",
   "of:Allegation": "allegation.schema.json",
   "of:Determination": "determination.schema.json",
+  "of:Tombstone": "tombstone.schema.json",
 };
 
 export const DEFAULT_COMPANION_DIRS = {
   authorities: "authority",
+  jurisdictions: "jurisdiction",
+  parties: "party",
   instruments: "instrument",
   terms: "term",
   obligations: "obligation",
@@ -35,11 +42,20 @@ export const DEFAULT_COMPANION_DIRS = {
   proceedings: "proceeding",
   allegations: "allegation",
   determinations: "determination",
+  tombstones: "tombstone",
 };
 
 export function asArray(value) {
   if (value === undefined || value === null) return [];
   return Array.isArray(value) ? value : [value];
+}
+
+export function recordTypes(record) {
+  return asArray(record?.["@type"]).filter((type) => typeof type === "string");
+}
+
+export function obligationFirstType(record) {
+  return recordTypes(record).find((type) => Object.hasOwn(TYPE_TO_SCHEMA, type));
 }
 
 function stableJson(value) {
@@ -51,8 +67,9 @@ export function isType(record, expected) {
   // one range, e.g. anchors, which may point at an Obligation or at the
   // ObligationCategory that Obligation is classified under.
   if (Array.isArray(expected)) return expected.some((one) => isType(record, one));
-  if (expected === "of:Obligation") return OBLIGATION_TYPES.has(record?.["@type"]);
-  return record?.["@type"] === expected;
+  const types = recordTypes(record);
+  if (expected === "of:Obligation") return types.some((type) => OBLIGATION_TYPES.has(type));
+  return types.includes(expected);
 }
 
 export async function loadJson(file) {
@@ -147,9 +164,10 @@ export function validateRecordShapes(entries, { ajv, schemaByFile }) {
       continue;
     }
 
-    const type = entry.record["@type"];
+    const type = obligationFirstType(entry.record);
     if (!type) {
-      failures.push({ entry, message: "missing @type", errors: [] });
+      const asserted = recordTypes(entry.record);
+      failures.push({ entry, message: asserted.length ? `no Obligation-First type found in @type=${asserted.join(",")}` : "missing @type", errors: [] });
       continue;
     }
 
@@ -197,109 +215,176 @@ export function validateRecordGraph(entries) {
     byId.set(id, entry);
   }
 
+  function localRefs(entry, field, expectedType, { required = true } = {}) {
+    for (const targetId of asArray(entry.record[field])) {
+      validateReference({ from: entry, field, targetId, expectedType, byId, failures, required });
+    }
+  }
+
   for (const entry of entries) {
     const { record } = entry;
-    const type = record["@type"];
+    const type = obligationFirstType(record);
 
-    for (const targetId of asArray(record.issuedBy)) {
-      validateReference({ from: entry, field: "issuedBy", targetId, expectedType: "of:Authority", byId, failures });
+    const fieldDomains = {
+      issuedBy: ["of:Instrument", "of:Determination", "of:Proceeding"],
+      heardBy: ["of:Proceeding"],
+      administeredBy: ["of:Instrument"],
+      regulatedBy: ["of:Instrument"],
+      enforcedBy: ["of:Instrument"],
+      enforcement_authority: ["of:Reparation"],
+      hasTerm: ["of:Instrument"],
+      parent_instrument: ["of:Term"],
+      creates: ["of:Term"],
+      created_by: ["of:Obligation"],
+      recognized_by: ["of:Obligation"],
+      imposed_by: ["of:Obligation"],
+      isCategorizedBy: ["of:Obligation"],
+      duty_holders: ["of:Obligation"],
+      owed_to: ["of:Obligation"],
+      duty_holder_roles: ["of:Obligation"],
+      owed_to_roles: ["of:Obligation"],
+      hasAllegation: ["of:Proceeding"],
+      hasDetermination: ["of:Proceeding"],
+      decides: ["of:Determination"],
+      recognizes: ["of:Determination"],
+      imposes: ["of:Determination"],
+      allegedly_violates: ["of:Allegation"],
+      target_instrument: ["of:Determination"],
+      resulting_instrument: ["of:Determination"],
+      embodies_determination: ["of:Instrument"],
+      supersedes: ["of:Instrument"],
+      wouldSupersede: ["of:Instrument"],
+      repeals: ["of:Instrument"],
+      amends: ["of:Instrument", "of:Term"],
+      defeats: ["of:Term"],
+      rebuts: ["of:Term"],
+      undercuts: ["of:Term"],
+      vacates: ["of:Determination"],
+      constrains: ["of:Determination"],
+    };
+    for (const [field, allowed] of Object.entries(fieldDomains)) {
+      if (record[field] !== undefined && !isType(record, allowed)) {
+        failures.push(`${entry.rel}: ${field} is only valid on ${allowed.join(" or ")}`);
+      }
     }
 
-    if (record.authority_basis?.instrument_ref && byId.has(record.authority_basis.instrument_ref)) {
-      validateReference({
-        from: entry,
-        field: "authority_basis.instrument_ref",
-        targetId: record.authority_basis.instrument_ref,
-        expectedType: "of:Instrument",
-        byId,
-        failures,
-      });
+    for (const field of ["issuedBy", "heardBy", "administeredBy", "regulatedBy", "enforcedBy", "enforcement_authority"]) {
+      localRefs(entry, field, "of:Authority");
+    }
+
+    for (const basis of asArray(record.authority_basis)) {
+      if (basis?.instrument_ref && byId.has(basis.instrument_ref)) {
+        validateReference({
+          from: entry,
+          field: "authority_basis.instrument_ref",
+          targetId: basis.instrument_ref,
+          expectedType: "of:Instrument",
+          byId,
+          failures,
+        });
+      }
+    }
+
+    if (typeof record.jurisdiction === "string" && byId.has(record.jurisdiction)) {
+      validateReference({ from: entry, field: "jurisdiction", targetId: record.jurisdiction, expectedType: "of:Jurisdiction", byId, failures });
     }
 
     for (const targetId of asArray(record.hasTerm)) {
       const target = validateReference({ from: entry, field: "hasTerm", targetId, expectedType: "of:Term", byId, failures });
-      if (target && target.record.parent_instrument !== record["@id"]) {
+      if (target && !asArray(target.record.parent_instrument).includes(record["@id"])) {
         failures.push(`${entry.rel}: hasTerm ${targetId} does not point back via parent_instrument`);
       }
     }
 
-    for (const targetId of asArray(record.parent_instrument)) {
-      validateReference({ from: entry, field: "parent_instrument", targetId, expectedType: "of:Instrument", byId, failures });
-    }
+    localRefs(entry, "parent_instrument", "of:Instrument");
 
     for (const targetId of asArray(record.creates)) {
       const target = validateReference({ from: entry, field: "creates", targetId, expectedType: "of:Obligation", byId, failures });
-      if (target && target.record.created_by !== record["@id"]) {
+      if (target && !asArray(target.record.created_by).includes(record["@id"])) {
         failures.push(`${entry.rel}: creates ${targetId} does not point back via created_by`);
       }
     }
 
-    for (const targetId of asArray(record.created_by)) {
-      validateReference({ from: entry, field: "created_by", targetId, expectedType: "of:Term", byId, failures });
+    localRefs(entry, "created_by", "of:Term");
+    localRefs(entry, "recognized_by", "of:Determination");
+    localRefs(entry, "imposed_by", "of:Determination");
+    localRefs(entry, "isCategorizedBy", "of:ObligationCategory");
+    localRefs(entry, "duty_holders", "of:Party");
+    localRefs(entry, "owed_to", "of:Party");
+    localRefs(entry, "parties", "of:Party");
+    localRefs(entry, "asserted_by_party", "of:Party");
+    localRefs(entry, "related_to_party", "of:Party");
+    for (const actorRole of asArray(record.actor_roles)) {
+      if (!actorRole?.party) continue;
+      validateReference({ from: entry, field: "actor_roles.party", targetId: actorRole.party, expectedType: "of:Party", byId, failures });
     }
 
-    for (const targetId of asArray(record.hasAllegation)) {
-      validateReference({ from: entry, field: "hasAllegation", targetId, expectedType: "of:Allegation", byId, failures });
+    localRefs(entry, "hasAllegation", "of:Allegation");
+    localRefs(entry, "hasDetermination", "of:Determination");
+    localRefs(entry, "decides", "of:Allegation");
+    localRefs(entry, "target_instrument", "of:Instrument");
+    localRefs(entry, "resulting_instrument", "of:Instrument");
+    localRefs(entry, "embodies_determination", "of:Determination");
+    for (const targetId of asArray(record.recognizes)) {
+      const target = validateReference({ from: entry, field: "recognizes", targetId, expectedType: "of:Obligation", byId, failures });
+      if (target && !asArray(target.record.recognized_by).includes(record["@id"])) {
+        failures.push(`${entry.rel}: recognizes ${targetId} does not point back via recognized_by`);
+      }
     }
-
-    for (const targetId of asArray(record.hasDetermination)) {
-      validateReference({ from: entry, field: "hasDetermination", targetId, expectedType: "of:Determination", byId, failures });
+    for (const targetId of asArray(record.imposes)) {
+      const target = validateReference({ from: entry, field: "imposes", targetId, expectedType: "of:Obligation", byId, failures });
+      if (target && !asArray(target.record.imposed_by).includes(record["@id"])) {
+        failures.push(`${entry.rel}: imposes ${targetId} does not point back via imposed_by`);
+      }
     }
-
-    for (const targetId of asArray(record.decides)) {
-      validateReference({ from: entry, field: "decides", targetId, expectedType: "of:Allegation", byId, failures });
-    }
-
-    for (const targetId of asArray(record.target_instrument)) {
-      validateReference({ from: entry, field: "target_instrument", targetId, expectedType: "of:Instrument", byId, failures });
-    }
+    localRefs(entry, "allegedly_violates", "of:Obligation", { required: false });
 
     for (const targetId of asArray(record.triggers_on_violation_of)) {
-      if (targetId === record["@id"]) {
-        failures.push(`${entry.rel}: triggers_on_violation_of cannot point to itself`);
-      }
+      if (targetId === record["@id"]) failures.push(`${entry.rel}: triggers_on_violation_of cannot point to itself`);
+      validateReference({ from: entry, field: "triggers_on_violation_of", targetId, expectedType: "of:Obligation", byId, failures });
+    }
+
+    for (const field of ["supersedes", "wouldSupersede", "repeals"]) {
+      localRefs(entry, field, "of:Instrument");
+    }
+    localRefs(entry, "amends", type === "of:Term" ? "of:Term" : "of:Instrument");
+    for (const field of ["defeats", "rebuts", "undercuts"]) localRefs(entry, field, "of:Term");
+    localRefs(entry, "vacates", "of:Determination");
+
+    for (const targetId of asArray(record.constrains)) {
       validateReference({
         from: entry,
-        field: "triggers_on_violation_of",
+        field: "constrains",
         targetId,
-        expectedType: "of:Obligation",
+        expectedType: ["of:Instrument", "of:Term", "of:Obligation", "of:Determination"],
         byId,
         failures,
       });
     }
 
-    for (const targetId of asArray(record.enforcement_authority)) {
-      validateReference({ from: entry, field: "enforcement_authority", targetId, expectedType: "of:Authority", byId, failures });
-    }
-
-    for (const targetId of asArray(record.supersedes)) {
-      validateReference({ from: entry, field: "supersedes", targetId, expectedType: "of:Instrument", byId, failures });
-    }
-
-    for (const targetId of asArray(record.wouldSupersede)) {
-      validateReference({ from: entry, field: "wouldSupersede", targetId, expectedType: "of:Instrument", byId, failures });
-    }
-
-    for (const targetId of asArray(record.defeats)) {
-      validateReference({ from: entry, field: "defeats", targetId, expectedType: "of:Term", byId, failures });
-    }
-
     for (const targetId of asArray(record.anchors)) {
       if (!byId.has(targetId)) continue;
-      // A Term interprets another Term. Everything else interprets either a
-      // specific Obligation or the Category that Obligation sits under: a
-      // ruling about a named statutory duty anchors the Obligation, a ruling
-      // about the duty concept generally anchors the Category.
-      const expected = type === "of:Term" ? "of:Term" : ["of:Obligation", "of:ObligationCategory"];
+      const expected = isType(record, "of:Term") ? "of:Term" : ["of:Obligation", "of:ObligationCategory"];
       validateReference({ from: entry, field: "anchors", targetId, expectedType: expected, byId, failures });
+    }
+
+    for (const targetId of asArray(record.exactMatch)) {
+      const target = byId.get(targetId);
+      if (target && isType(target.record, "of:ObligationCategory") && isType(record, "of:Obligation")) {
+        failures.push(`${entry.rel}: category membership must use isCategorizedBy, not exactMatch`);
+      }
+    }
+
+    if (record.implemented_by_terms !== undefined) {
+      failures.push(`${entry.rel}: implemented_by_terms duplicates the shared created_by relation; remove the adopter-local alias`);
     }
 
     if (type === "of:Determination") {
       const decides = asArray(record.decides);
       if (record.disposition === "issued") {
         if (decides.length > 0) failures.push(`${entry.rel}: disposition issued should not decide Allegations`);
-        if (!record.target_instrument && asArray(record.anchors).length === 0) {
-          failures.push(`${entry.rel}: disposition issued needs target_instrument or anchors`);
+        if (!record.target_instrument && asArray(record.resulting_instrument).length === 0 && asArray(record.anchors).length === 0) {
+          failures.push(`${entry.rel}: disposition issued needs target_instrument or anchors, or v0.6 resulting_instrument`);
         }
       } else if (decides.length === 0) {
         failures.push(`${entry.rel}: adjudicative Determination should decide at least one Allegation`);
@@ -307,14 +392,29 @@ export function validateRecordGraph(entries) {
     }
 
     if (type === "of:Instrument" && record.wouldSupersede) {
-      const allowed = new Set(["proposed", "amended"]);
-      if (!allowed.has(record.status)) {
-        failures.push(`${entry.rel}: wouldSupersede should only appear on proposed or amended Instruments`);
+      const lifecycle = record.lifecycle_status || record.status;
+      if (!["draft", "proposed", "amended"].includes(lifecycle)) {
+        failures.push(`${entry.rel}: wouldSupersede should only appear on draft, proposed, or amended Instruments`);
       }
+    }
+
+    const lifecycle = record.lifecycle_status || record.status;
+    const enforcement = record.enforcement_status;
+    if (["draft", "proposed"].includes(lifecycle) && ["routine", "enforceable"].includes(enforcement)) {
+      failures.push(`${entry.rel}: ${lifecycle} content cannot claim present ${enforcement} enforcement`);
+    }
+    if (["voluntary", "nonbinding"].includes(record.normative_force) && ["routine", "enforceable"].includes(enforcement) && !record.binding_basis) {
+      failures.push(`${entry.rel}: ${record.normative_force} content needs an evidenced binding_basis before enforcement can be ${enforcement}`);
+    }
+    if (["repealed", "superseded", "sunset", "inactive", "withdrawn"].includes(lifecycle) && ["routine", "enforceable"].includes(enforcement)) {
+      failures.push(`${entry.rel}: ${lifecycle} content cannot claim ${enforcement} enforcement without a separately modeled residual obligation`);
+    }
+    if (record.effective && record.computed_as_of && record.effective > record.computed_as_of && record.operative_status === "operative") {
+      failures.push(`${entry.rel}: future effective date ${record.effective} cannot be operative as of ${record.computed_as_of}`);
     }
   }
 
-  for (const proceeding of entries.filter((entry) => entry.record["@type"] === "of:Proceeding")) {
+  for (const proceeding of entries.filter((entry) => isType(entry.record, "of:Proceeding"))) {
     const allegations = new Set(asArray(proceeding.record.hasAllegation));
     for (const determinationId of asArray(proceeding.record.hasDetermination)) {
       const determination = byId.get(determinationId);
@@ -327,7 +427,7 @@ export function validateRecordGraph(entries) {
     }
   }
 
-  for (const instrument of entries.filter((entry) => entry.record["@type"] === "of:Instrument")) {
+  for (const instrument of entries.filter((entry) => isType(entry.record, "of:Instrument"))) {
     if (instrument.record.enforcement_status !== "constrained") continue;
 
     const obligationIds = new Set();
@@ -339,14 +439,58 @@ export function validateRecordGraph(entries) {
     }
 
     const hasAnchoredDetermination = entries.some((entry) => {
-      if (entry.record["@type"] !== "of:Determination") return false;
-      return asArray(entry.record.anchors).some((anchor) => obligationIds.has(anchor));
+      if (!isType(entry.record, "of:Determination")) return false;
+      return asArray(entry.record.anchors).some((anchor) => obligationIds.has(anchor)) ||
+        asArray(entry.record.constrains).includes(instrument.record["@id"]);
     });
 
     if (!hasAnchoredDetermination) {
       failures.push(`${instrument.rel}: constrained enforcement_status needs a Determination anchored to one of its Obligations`);
     }
   }
+
+  // Defeasibility is directional and acyclic. rebuts and undercuts are
+  // subrelations of defeats, so a cycle across any mix of the three fails.
+  for (const target of entries.filter((entry) => isType(entry.record, "of:Determination") && entry.record.disposition === "vacated")) {
+    const hasVacatingDecision = entries.some((entry) =>
+      isType(entry.record, "of:Determination") && asArray(entry.record.vacates).includes(target.record["@id"]),
+    );
+    if (!hasVacatingDecision) failures.push(`${target.rel}: vacated Determination needs an incoming vacates relation when its vacating decision is in the graph`);
+  }
+
+  const termIds = new Set(entries.filter((entry) => isType(entry.record, "of:Term")).map((entry) => entry.record["@id"]));
+  const adjacency = new Map();
+  for (const entry of entries) {
+    if (!termIds.has(entry.record["@id"])) continue;
+    adjacency.set(
+      entry.record["@id"],
+      [...new Set(["defeats", "rebuts", "undercuts"].flatMap((field) => asArray(entry.record[field])))].filter((id) => termIds.has(id)),
+    );
+  }
+  const visiting = new Set();
+  const visited = new Set();
+  const stack = [];
+  const reportedCycles = new Set();
+  function visit(id) {
+    if (visited.has(id)) return;
+    if (visiting.has(id)) {
+      const start = stack.indexOf(id);
+      const cycle = [...stack.slice(start), id];
+      const key = [...new Set(cycle)].sort().join("|");
+      if (!reportedCycles.has(key)) {
+        reportedCycles.add(key);
+        failures.push(`defeats cycle: ${cycle.join(" -> ")}`);
+      }
+      return;
+    }
+    visiting.add(id);
+    stack.push(id);
+    for (const target of adjacency.get(id) || []) visit(target);
+    stack.pop();
+    visiting.delete(id);
+    visited.add(id);
+  }
+  for (const id of termIds) visit(id);
 
   return failures;
 }

@@ -11,8 +11,10 @@
     "instrument_ref": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/instrument/ai-act#art-96"
   },
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "eu"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "eu"
+    ]
   },
   "sameAs": [
     "https://everyailaw.com/authority/european-commission.json"

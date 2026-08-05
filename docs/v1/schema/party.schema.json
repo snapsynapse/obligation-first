@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://obligationfirst.org/v1/schema/party.schema.json",
+  "title": "Party",
+  "description": "A person or organization participating in a legal or normative relationship. Party is a role-bearing record over gist:Person or gist:Organization, not a new kind of real-world actor.",
+  "type": "object",
+  "required": ["@type", "@id", "name"],
+  "properties": {
+    "@context": { "type": ["string", "array", "object"] },
+    "@id": { "type": "string", "format": "uri" },
+    "@type": { "const": "of:Party" },
+    "name": { "type": "string", "minLength": 1 },
+    "party_kind": { "type": "string", "enum": ["person", "organization", "unknown"] },
+    "entity": {
+      "type": "object",
+      "required": ["@type", "name"],
+      "properties": {
+        "@type": { "enum": ["gist:Person", "gist:Organization", "gist:GovernmentOrganization"] },
+        "name": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    },
+    "roles": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/stringSet" },
+    "sameAs": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "describesSameEntityAs": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "source": { "type": "string", "format": "uri" },
+    "source_citation": { "type": "string" },
+    "source_locator": { "type": "string" },
+    "source_version": { "type": "string" },
+    "language": { "type": "string" },
+    "evidence_type": { "type": "string" },
+    "verified": { "type": "string", "format": "date" },
+    "retrieved": { "type": "string", "format": "date" },
+    "asserted_by_adopter": { "type": "string", "format": "uri" },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": true
+}

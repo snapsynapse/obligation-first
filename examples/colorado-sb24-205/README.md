@@ -12,13 +12,13 @@ A schema that can only model "the law" and not "the law's actual operating postu
 
 The good news: it can. The spine handles legislation. The proceeding strand handles enforcement. A second `enacted` Instrument with a `supersedes` relationship handles the legislative succession. The example below shows each layer round-tripped, then closes with a section on what this exercise revealed about the schema's strengths and the items that still need work.
 
-## Record convention (v0.3.1)
+## Record convention (v0.6)
 
 Every record in this example follows the worked-example record convention:
 
 - `@context` is the string `https://obligationfirst.org/v1/context.jsonld`.
 - `@id` is a neutral, suffixless `obligationfirst.org` IRI of the form `https://obligationfirst.org/v1/examples/colorado-sb24-205/<entity-type>/<local-id>`. No jurisdiction code is encoded in the slug.
-- `jurisdiction` is a typed field — `{ "@type": "gist:Jurisdiction", "ref": "us-co" }` — never a slug component. The federal-court records carry `ref: "us"`.
+- `jurisdiction` is an `of:Jurisdiction` legal-competence object with `territorial_scope`, never a slug component. Colorado records carry `us-co`; federal-court records carry `us`.
 - Internal cross-references point at the neutral `@id` values within this example, so the record graph is internally consistent.
 - Where a record corresponds to a real adopter entity, it carries `sameAs` to that adopter's published IRI (with the adopter's served `.json`). The two instruments and two of the authorities have real adopter counterparts; the remaining nine records are teaching constructs with no adopter counterpart and carry no `sameAs`.
 
@@ -45,8 +45,9 @@ authority_basis:
   kind: statutory
   instrument_ref: https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/co-constitution
 jurisdiction:
-  "@type": gist:Jurisdiction
-  ref: us-co
+  "@type": of:Jurisdiction
+  territorial_scope:
+    - us-co
 ```
 
 ### Authority — Colorado Attorney General (enforcing — currently constrained)
@@ -62,8 +63,9 @@ authority_basis:
   kind: regulatory
   instrument_ref: https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/sb24-205
 jurisdiction:
-  "@type": gist:Jurisdiction
-  ref: us-co
+  "@type": of:Jurisdiction
+  territorial_scope:
+    - us-co
 sameAs:
   - https://everyailaw.com/authority/colorado-ag.json
 ```
@@ -84,8 +86,9 @@ effective: 2026-06-30
 status: repealed
 enforcement_status: constrained
 jurisdiction:
-  "@type": gist:Jurisdiction
-  ref: us-co
+  "@type": of:Jurisdiction
+  territorial_scope:
+    - us-co
 hasTerm:
   - https://obligationfirst.org/v1/examples/colorado-sb24-205/term/sb24-205-duty-of-care
 source: https://leg.colorado.gov/sites/default/files/2024a_205_signed.pdf
@@ -161,8 +164,9 @@ title: "Federal litigation challenging Colorado SB 24-205 enforcement"
 filed_date: 2025-09-01
 issuedBy: https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/federal-district-court
 jurisdiction:
-  "@type": gist:Jurisdiction
-  ref: us
+  "@type": of:Jurisdiction
+  territorial_scope:
+    - us
 hasAllegation:
   - https://obligationfirst.org/v1/examples/colorado-sb24-205/allegation/enforcement-challenge
 hasDetermination:
@@ -182,8 +186,9 @@ notes: >
 issued_date: 2025-12-15
 issuedBy: https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/federal-district-court
 jurisdiction:
-  "@type": gist:Jurisdiction
-  ref: us
+  "@type": of:Jurisdiction
+  territorial_scope:
+    - us
 decides:
   - https://obligationfirst.org/v1/examples/colorado-sb24-205/allegation/enforcement-challenge
 disposition: confirmed
@@ -207,8 +212,9 @@ The `anchors` link points at the Reparation Obligation defined in Layer 1 of thi
 issued_date: 2025-11-30
 issuedBy: https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/attorney-general
 jurisdiction:
-  "@type": gist:Jurisdiction
-  ref: us-co
+  "@type": of:Jurisdiction
+  territorial_scope:
+    - us-co
 decides: []   # this Determination is administrative, not adjudicative
 disposition: issued
 anchors:
@@ -235,8 +241,9 @@ status: enacted
 supersedes:
   - https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/sb24-205
 jurisdiction:
-  "@type": gist:Jurisdiction
-  ref: us-co
+  "@type": of:Jurisdiction
+  territorial_scope:
+    - us-co
 source: https://leg.colorado.gov/bills/sb26-189
 sameAs:
   - https://everyailaw.com/instrument/colorado-sb26-189.json
@@ -257,18 +264,19 @@ authority_basis:
   kind: regulatory
   instrument_ref: https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/governor-executive-order-establishing-work-group
 jurisdiction:
-  "@type": gist:Jurisdiction
-  ref: us-co
+  "@type": of:Jurisdiction
+  territorial_scope:
+    - us-co
 ```
 
-Advisory body, not an enacting authority — which is why SB26-189's `issuedBy` points at the General Assembly, not at this group. Its outputs are recommendations, not binding instruments. The recursive Authority basis still works: `authority_basis` traces to the executive order that established the group, which is itself an Instrument on the spine. (That executive-order Instrument is referenced but not minted as a record in this example; it is a known dangling teaching reference.)
+Advisory body, not an enacting authority, which is why SB26-189's `issuedBy` points at the General Assembly, not at this group. Its outputs are recommendations, not binding instruments. The evidence-bearing Authority basis points to the executive order that established the group. That executive-order Instrument is referenced but not minted as a record in this example, so it remains an explicit external teaching reference rather than an invented local record.
 
 ## Findings
 
 ### What the schema handled well
 
 1. **The three-layer reality round-trips cleanly.** Spine = legislation, proceeding strand = enforcement posture, second `enacted` Instrument with `supersedes` = legislative succession. No special-casing required.
-2. **The recursive Authority basis paid off.** The Colorado AI Policy Work Group is not a government department; it's a governor-convened advisory body. Its `authority_basis.instrument_ref` points to the executive order that created it. The schema handles this without a "non-government Authority" exception.
+2. **The evidence-bearing Authority basis paid off.** The Colorado AI Policy Work Group is not a government department; it is a governor-convened advisory body. Its `authority_basis.instrument_ref` points to the executive order that created it. The schema handles this without a "non-government Authority" exception while allowing unknown bases to remain omitted elsewhere.
 3. **Reparation modeled the right thing.** The §6-1-1703 duty creates a Requirement (use reasonable care). Violation of that Requirement triggers a Reparation (civil penalty enforced by AG). The federal stay does not vacate the Requirement — it constrains the Reparation's `enforcement_authority`'s capacity to act. That distinction is exactly what Reparation as a separate deontic class enables.
 4. **`anchors` from a Determination back to an Obligation worked within the example graph.** The federal court's stay and the Reparation it constrains are both neutral records here, joined by their `obligationfirst.org` IRIs. Real-world identity rides separately in `sameAs` crosswalks on the records that have adopter counterparts.
 5. **The split between `status` and `enforcement_status` carried weight.** SB 24-205 is `status: repealed` *and* carries `enforcement_status: constrained` for the period it was active. A schema that forced these into a single field would have to either lose information or invent a "stayed-pending-rulemaking" enum value that wouldn't generalize across jurisdictions. The split avoids both.

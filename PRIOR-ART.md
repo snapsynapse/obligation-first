@@ -8,7 +8,7 @@ The headline finding: **no existing ontology bridges AI laws, AI incident cases,
 
 ### Semantic Arts gist
 
-The upper ontology Obligation-First binds to. Small (~150 classes), CC-BY 4.0, FIBO-adjacent. Provides foundational classes used throughout the spec: `gist:Organization`, `gist:Agreement`, `gist:Specification`, `gist:ContractTerm`, `gist:Requirement`, `gist:Restriction`, `gist:Permission`, `gist:Determination`, `gist:Content`, `gist:Intention`, `gist:Event`, `gist:Jurisdiction`.
+The upper ontology Obligation-First binds to. Small (~150 classes), CC-BY 4.0, FIBO-adjacent. Provides foundational classes used throughout the spec: `gist:Organization`, `gist:Agreement`, `gist:Specification`, `gist:ContractTerm`, `gist:Requirement`, `gist:Restriction`, `gist:Permission`, `gist:Determination`, `gist:Content`, `gist:Intention`, and `gist:Event`. Obligation-First v0.6 defines `of:Jurisdiction` separately because legal competence may be territorial, institutional, or both.
 
 - Home: https://semanticarts.com/gist/
 - Vendored at `vendor/gist/`
@@ -131,7 +131,7 @@ Educational legal-resource metadata. Reference target, not binding target.
 
 ### W3ID
 
-Operated by W3C Permanent Identifier Community Group. Provides permanent, redirect-based IRIs at `https://w3id.org/`. Obligation-First will file a PR to mint `https://w3id.org/of/v1/` once v0.1 freezes.
+Operated by W3C Permanent Identifier Community Group. Provides permanent, redirect-based IRIs at `https://w3id.org/`. Obligation-First plans to file a PR to mint `https://w3id.org/of/v1/` after the pre-v1.0 public surface is stable.
 
 ### Schema.org Legislation
 
@@ -144,6 +144,6 @@ After surveying the above:
 1. **The integration of three layers** — statutes (spine), proceedings (strand), and joint interpretations (spine, in PubLedge's sense) in one schema. No prior art.
 2. **The alleged-vs-determined distinction modeled as separate entity types** (`of:Allegation`, `of:Determination`) rather than as a status flag on a single Event. Avoids forcing premature factual classification.
 3. **The polymorphic `of:executableEncoding`** that spans Catala, Blawx, OpenFisca, and future engines without privileging any one.
-4. **The recursive Authority basis** — every Authority's right to act is grounded in an Instrument on the spine, including non-government Authorities (HOAs, co-ops, tribunals).
+4. **The evidence-bearing Authority basis**: an Authority may cite one or more Instruments that support its competence, including charters, contracts, statutes, treaties, and judicial sources. When the source does not establish a basis, the field is omitted instead of inferred.
 
 The rest of Obligation-First is a careful composition of existing standards. That is intentional: the goal is interoperability, not novelty for its own sake.

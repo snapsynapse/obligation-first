@@ -54,33 +54,4 @@ jobs:
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
       - name: Probe canonical endpoints
-        run: |
-          set -e
-          urls=(
-            "https://obligationfirst.org/v1/context.jsonld"
-            "https://obligationfirst.org/v1/schema/authority.schema.json"
-            "https://obligationfirst.org/v1/schema/instrument.schema.json"
-            "https://obligationfirst.org/v1/schema/term.schema.json"
-            "https://obligationfirst.org/v1/schema/obligation.schema.json"
-            "https://obligationfirst.org/v1/schema/proceeding.schema.json"
-            "https://obligationfirst.org/v1/schema/allegation.schema.json"
-            "https://obligationfirst.org/v1/schema/determination.schema.json"
-            "https://obligationfirst.org/v1/schema/executable-encoding.schema.json"
-            "https://obligationfirst.org/v1/schema/naming-profile.schema.json"
-            "https://obligationfirst.org/llms.txt"
-            "https://obligationfirst.org/agents.json"
-            "https://obligationfirst.org/sitemap.xml"
-            "https://obligationfirst.org/robots.txt"
-            "https://obligationfirst.org/releases/v${VERSION}/"
-          )
-          fail=0
-          for u in "${urls[@]}"; do
-            code=$(curl -sI "$u" -o /dev/null -w "%{http_code}")
-            if [ "$code" = "200" ]; then
-              echo "✓ $code  $u"
-            else
-              echo "✗ $code  $u"
-              fail=1
-            fi
-          done
-          exit $fail
+        run: node scripts/probe-public-endpoints.mjs --version "$VERSION"

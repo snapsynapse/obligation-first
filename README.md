@@ -2,16 +2,16 @@
 
 ![Obligation-First — an open upper schema for normative content. Bound to gist. Aligned with LegalRuleML.](imgs/og.png)
 
-[![Spec](https://img.shields.io/badge/spec-v0.5.0-orange)](PROTOCOL.md)
+[![Spec](https://img.shields.io/badge/spec-v0.6.0-orange)](PROTOCOL.md)
 [![Content license: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey)](LICENSE-CC-BY-4.0)
 [![Code license: Apache 2.0](https://img.shields.io/badge/code-Apache%202.0-lightgrey)](LICENSE-APACHE)
 [![Bound to gist](https://img.shields.io/badge/ontology-gist-green)](https://semanticarts.com/gist/)
 
-A shared upper schema for normative content — laws, cases, and agreements — bound to the [Semantic Arts gist](https://semanticarts.com/gist/) upper ontology.
+A shared upper schema for normative content, including laws, cases, and agreements, bound to the [Semantic Arts gist](https://semanticarts.com/gist/) upper ontology.
 
 Obligation-First is a methodology and a JSON-LD context. The methodology says that normative content is best modeled by what it requires, not what it says. The schema gives that methodology a machine-readable shape.
 
-**Live at [obligationfirst.org](https://obligationfirst.org/). Drafting in public. v0.5.0. Subject to revision until the spec freeze (remaining gates tracked in [ROADMAP.md](ROADMAP.md)).**
+**Live at [obligationfirst.org](https://obligationfirst.org/). The v0.6.0 implementation is a local release candidate pending its review window and separate publication authority. Remaining gates are tracked in [ROADMAP.md](ROADMAP.md).**
 
 ## Who this is for
 
@@ -27,11 +27,12 @@ https://obligationfirst.org/
 
 ## What this is
 
-A small, opinionated upper schema with three parts:
+A small, opinionated upper schema with four parts:
 
 1. **The four-role spine** — Authority, Instrument, Term, Obligation. Inherited from the Knowledge-as-Code pattern that PubLedge introduced. Bound to gist classes.
 2. **The proceeding strand** — Proceeding, Allegation, Determination. New in Obligation-First. Models cases, enforcement actions, and rulings without forcing premature factual classification.
 3. **The category layer** — ObligationCategory. Added in v0.5.0. Jurisdiction-neutral duty concepts that Obligations are classified under, so two laws in different jurisdictions are comparable by what they require rather than by how they are worded. A Category is not a duty: it has no jurisdiction, no duty holder, and no creating Term.
+4. **The identity and scope layer** - Party, Jurisdiction, and Tombstone. Added in v0.6.0 for concrete actors, legal competence distinct from geography, and queryable retired identifiers.
 
 Together they cover three domains in one schema:
 
@@ -47,7 +48,7 @@ Obligation-First is the interstitial layer between the PAICE legal projects. It 
 - AI Incident Law contributes `Proceeding`, `Allegation`, and `Determination` records that anchor to concrete Obligations or, when the evidence is broader, ObligationCategories.
 - PubLedge contributes joint-interpretation `Instrument`, `Term`, and `Obligation` records that clarify or re-allocate underlying duties and duty concepts.
 
-The join surface is deliberately small: stable `@id` values, a shared `@context`, schema validation, and `anchors` for cross-project references.
+The join surface is deliberately small: stable `@id` values, a shared `@context`, schema and graph validation, explicit actor and category relations, shared provenance, and `anchors` for cross-project references.
 
 ## Why obligation-first
 
@@ -64,12 +65,12 @@ Most legal data models center on the document. Obligation-First centers on what 
 - [PubLedge](https://publedge.org/) — open recordkeeping protocol for joint interpretations, now publishing Obligation-First records for authorities, instruments, terms, obligations, and determinations.
 - [AI Incident Law](https://aiincidentlaw.org/) — public-record corpus of AI-related cases, now publishing Obligation-First proceedings, allegations, determinations, and authorities.
 
-If you'd like to bind your project to the current draft, see [Quick start](#quick-start-bind-a-dataset-in-three-steps) below or [CONTRIBUTING.md](CONTRIBUTING.md). v0.1 bindings remain record-valid through v0.5, except that records must reference the canonical context document rather than the bare namespace URL (Level 2 conformance has tightened since v0.3; see PROTOCOL.md "Conformance levels").
+If you'd like to bind your project to the current draft, see [Quick start](#quick-start-bind-a-dataset-in-three-steps) below or [CONTRIBUTING.md](CONTRIBUTING.md). Legacy v0.1 through v0.5 shapes remain record-valid under v0.6, except that current records must reference the canonical context document rather than the bare namespace URL. A projection using v0.6 vocabulary declares `obligation-first >=0.6.0 <0.7.0` and should run the supplied deterministic migration.
 
 ## Quick start — bind a dataset in three steps
 
 1. **Reference the canonical `@context`** — set `@context: "https://obligationfirst.org/v1/context.jsonld"` on every record. Repo-local extensions go in a second context object.
-2. **Validate against the JSON Schemas** — run every record through the schema for its `@type` (seven per-entity schemas at `https://obligationfirst.org/v1/schema/`, plus the executable-encoding and naming-profile schemas). Schema-conformant adopters (Level 2) pass validation for every published record.
+2. **Validate shape and graph contracts** — run every record through the schema for its Obligation-First `@type`, then run graph validation for inverse links, relation domains and ranges, lifecycle coherence, category membership, identity retirement, and defeasibility cycles. The public schema directory contains 11 entity schemas, the executable-encoding and naming-profile contracts, and their shared dependency.
 3. **Cite [obligationfirst.org](https://obligationfirst.org/) as the canonical reference** — adopter sites and documentation should link back. The IRI prefix is permanent.
 
 To validate your own records locally:
@@ -104,8 +105,11 @@ Every artifact an adopter or agent needs is dereferenceable at a stable URL:
 | Endpoint | Purpose |
 |---|---|
 | [`/v1/context.jsonld`](https://obligationfirst.org/v1/context.jsonld) | The JSON-LD `@context` for v1 |
-| [`/v1/schema/*.schema.json`](https://obligationfirst.org/v1/schema/) | JSON Schemas — seven per-entity plus executable-encoding and naming-profile (nine total) |
+| [`/v1/schema/*.schema.json`](https://obligationfirst.org/v1/schema/) | All 14 JSON Schema documents, including 11 entity schemas, two supporting contracts, and the shared definitions |
+| [`/v1/schema/common.schema.json`](https://obligationfirst.org/v1/schema/common.schema.json) | Shared reference, jurisdiction, provenance, lifecycle, actor, remedy, and binding-basis shapes |
 | [`/v1/schema/authority.schema.json`](https://obligationfirst.org/v1/schema/authority.schema.json) | Authority schema |
+| [`/v1/schema/jurisdiction.schema.json`](https://obligationfirst.org/v1/schema/jurisdiction.schema.json) | Legal-competence jurisdiction schema |
+| [`/v1/schema/party.schema.json`](https://obligationfirst.org/v1/schema/party.schema.json) | Concrete person or organization Party schema |
 | [`/v1/schema/instrument.schema.json`](https://obligationfirst.org/v1/schema/instrument.schema.json) | Instrument schema |
 | [`/v1/schema/term.schema.json`](https://obligationfirst.org/v1/schema/term.schema.json) | Term schema |
 | [`/v1/schema/obligation.schema.json`](https://obligationfirst.org/v1/schema/obligation.schema.json) | Obligation schema |
@@ -113,11 +117,12 @@ Every artifact an adopter or agent needs is dereferenceable at a stable URL:
 | [`/v1/schema/proceeding.schema.json`](https://obligationfirst.org/v1/schema/proceeding.schema.json) | Proceeding schema |
 | [`/v1/schema/allegation.schema.json`](https://obligationfirst.org/v1/schema/allegation.schema.json) | Allegation schema |
 | [`/v1/schema/determination.schema.json`](https://obligationfirst.org/v1/schema/determination.schema.json) | Determination schema |
+| [`/v1/schema/tombstone.schema.json`](https://obligationfirst.org/v1/schema/tombstone.schema.json) | Retired-identifier compatibility record schema |
 | [`/v1/schema/executable-encoding.schema.json`](https://obligationfirst.org/v1/schema/executable-encoding.schema.json) | Executable encoding schema |
 | [`/v1/schema/naming-profile.schema.json`](https://obligationfirst.org/v1/schema/naming-profile.schema.json) | Naming profile schema (adopter `.well-known` profiles) |
 | [`/llms.txt`](https://obligationfirst.org/llms.txt), [`/llms-full.txt`](https://obligationfirst.org/llms-full.txt) | LLM-readable summary + full context |
 | [`/agents.json`](https://obligationfirst.org/agents.json) | Agent capabilities and endpoint inventory |
-| [`/releases/v0.5.0/`](https://obligationfirst.org/releases/v0.5.0/) | Current release package manifest and checksums |
+| [`/releases/v0.6.0/`](https://obligationfirst.org/releases/v0.6.0/) | Current release package manifest and checksums |
 | [`/.well-known/assistant-guide.txt`](https://obligationfirst.org/.well-known/assistant-guide.txt) | GuideCheck Human-Verifiable Assistant Guide for assistant-assisted repo work |
 | [`/.well-known/assistant-guide-manifest.txt`](https://obligationfirst.org/.well-known/assistant-guide-manifest.txt) | GuideCheck Level 4 sidecar manifest for the assistant guide |
 | [`/feed.xml`](https://obligationfirst.org/feed.xml) | Atom feed of releases |
@@ -147,7 +152,7 @@ The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. 
 | `reference/review/` | Public external review questions — including v0.2 resolutions from Semantic Arts |
 | `reference/w3id-pr.md` | Prepared w3id.org permanent identifier PR notes |
 | `reference/og-image-prompt.md` | Structured prompt for generating the OG social-card image |
-| `examples/{air-canada,colorado-sb24-205,publedge-jia-utah-72,eu-ai-act-article-50}/` | Worked examples — four real record sets round-tripped through the current draft, with 49 canonical JSON record files under the `records/` subdirectories. All v0.1 records remain valid through v0.4 unchanged. |
+| `examples/{air-canada,colorado-sb24-205,publedge-jia-utah-72,eu-ai-act-article-50}/` | Four worked record sets with 51 canonical JSON records. The v0.6 Air Canada set exercises Party, recognized common-law duties, and remedy grounding. |
 | `docs/` | Published website served by GitHub Pages from `main /docs` (canonical at obligationfirst.org) |
 | `.github/workflows/` | CI: validation on every push (`test.yml`), Pages deploy (`pages.yml`), monthly a11y audit (`a11y.yml`) |
 | `_workshop/` | Design conversation archives |
@@ -161,12 +166,9 @@ The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. 
 
 ## Status
 
-v0.5.0. v0.1 spec, schemas, worked examples, adopter kit, and the first three PAICE legal bindings are complete and live. v0.2 absorbed Semantic Arts feedback (Dave McComb, 2026-05-26) as binding-only updates. v0.3 federates record identity: `@id` values are adopter-local and permanent, cross-adopter interoperability rides on standard identifier crosswalks declared in per-adopter `.well-known` naming profiles, and jurisdiction is a typed ISO 3166 field. The of: vocabulary is unchanged from v0.1; adopter records require no migration. See [CHANGELOG](CHANGELOG.md) and the decision record at [reference/iri-naming-and-crosswalks.md](reference/iri-naming-and-crosswalks.md). Open items on the current 0.4.x line ahead of the v1.0 freeze:
+v0.6.0 is implemented locally across Obligation-First, EveryAILaw, PubLedge, and AI Incident Law. The candidate separates issuance, administration, enforcement, and adjudication; separates force, lifecycle, operative effect, and enforcement; distinguishes source text from editorial summary; adds Party, Jurisdiction, and Tombstone; and makes shared provenance and graph coherence testable. Legacy v0.5 record shapes remain schema-valid, while migrated profiles declare the v0.6 range and use the deterministic migration contract.
 
-- LegalRuleML community feedback on deontic alignment
-- File w3id.org PR for the permanent IRI
-
-Current local stage: Obligation-First is operating as the validation and identifier contract between EveryAILaw, PubLedge, and AI Incident Law. The next useful work is external review, permanent IRI filing, and cross-project anchor enrichment.
+Publication has not been performed. The remaining v0.6 gates are the material-change review window and separately authorized commit, tag, release, and deployment. The remaining v1.0 gates include LegalRuleML community feedback, the permanent w3id.org redirect, SHACL and conformance work, and an external adopter.
 
 For anchor enrichment, run `npm run report:anchors` against the worked examples or `node scripts/report-anchor-graph.mjs <adopter-export> [...]` against sibling adopter exports.
 

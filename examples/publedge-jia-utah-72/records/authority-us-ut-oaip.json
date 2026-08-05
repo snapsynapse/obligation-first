@@ -11,8 +11,10 @@
     "instrument_ref": "https://everyailaw.com/instrument/utah-sb149.json"
   },
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "us-ut"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "us-ut"
+    ]
   },
   "sameAs": [
     "https://publedge.org/authority/utah-oaip.json"

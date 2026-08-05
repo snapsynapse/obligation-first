@@ -6,7 +6,15 @@
   "citation": "2024 BCCRT 149",
   "neutral_citation": "2024 BCCRT 149",
   "filed_date": "2024-02-14",
-  "issuedBy": "https://obligationfirst.org/v1/examples/air-canada/authority/bccrt",
+  "heardBy": ["https://obligationfirst.org/v1/examples/air-canada/authority/bccrt"],
+  "parties": [
+    "https://obligationfirst.org/v1/examples/air-canada/party/moffatt",
+    "https://obligationfirst.org/v1/examples/air-canada/party/air-canada"
+  ],
+  "actor_roles": [
+    { "party": "https://obligationfirst.org/v1/examples/air-canada/party/moffatt", "role": "claimant" },
+    { "party": "https://obligationfirst.org/v1/examples/air-canada/party/air-canada", "role": "respondent" }
+  ],
   "hasAllegation": [
     "https://obligationfirst.org/v1/examples/air-canada/allegation/moffatt-misrep",
     "https://obligationfirst.org/v1/examples/air-canada/allegation/moffatt-reliance"
@@ -15,7 +23,7 @@
     "https://obligationfirst.org/v1/examples/air-canada/determination/moffatt-bccrt-149"
   ],
   "source": "https://canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.html",
-  "sameAs": [
+  "describesSameEntityAs": [
     "https://aiincidentlaw.org/proceeding/aiel-2024-001-proceeding.json"
   ]
 }

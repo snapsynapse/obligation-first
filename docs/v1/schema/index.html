@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Obligation-First v1 schemas</title>
-  <meta name="description" content="Eight JSON Schemas — one per entity in Obligation-First v0.1. All dereferenceable.">
+  <meta name="description" content="Fourteen JSON Schema documents for the Obligation-First v0.6 contract. All dereferenceable.">
   <meta name="theme-color" content="#a78bfa">
   <link rel="canonical" href="https://obligationfirst.org/v1/schema/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -28,9 +28,12 @@
 <main>
   <a href="/v1/" class="nav-back">&larr; v1 namespace</a>
   <h1>v1 JSON Schemas</h1>
-  <p>One schema per entity. Each validates JSON-LD records that bind to <code style="font-family: 'SF Mono', monospace; color: #a78bfa;">https://obligationfirst.org/v1/</code>.</p>
+  <p>Eleven entity schemas plus shared definitions, executable-encoding, and naming-profile contracts. Each validates JSON-LD records that bind to <code style="font-family: 'SF Mono', monospace; color: #a78bfa;">https://obligationfirst.org/v1/context.jsonld</code>.</p>
   <ul>
+    <li><a href="common.schema.json"><code>common.schema.json</code></a> <span class="desc">Shared v0.6 reference, provenance, lifecycle, actor, remedy, and binding-basis definitions</span></li>
     <li><a href="authority.schema.json"><code>authority.schema.json</code></a> <span class="desc">of:Authority</span></li>
+    <li><a href="jurisdiction.schema.json"><code>jurisdiction.schema.json</code></a> <span class="desc">of:Jurisdiction</span></li>
+    <li><a href="party.schema.json"><code>party.schema.json</code></a> <span class="desc">of:Party</span></li>
     <li><a href="instrument.schema.json"><code>instrument.schema.json</code></a> <span class="desc">of:Instrument (with status, enforcement_status, supersedes, wouldSupersede)</span></li>
     <li><a href="term.schema.json"><code>term.schema.json</code></a> <span class="desc">of:Term</span></li>
     <li><a href="obligation.schema.json"><code>obligation.schema.json</code></a> <span class="desc">of:Obligation — Requirement / Restriction / Permission / Reparation (oneOf discriminator)</span></li>
@@ -38,7 +41,9 @@
     <li><a href="proceeding.schema.json"><code>proceeding.schema.json</code></a> <span class="desc">of:Proceeding</span></li>
     <li><a href="allegation.schema.json"><code>allegation.schema.json</code></a> <span class="desc">of:Allegation</span></li>
     <li><a href="determination.schema.json"><code>determination.schema.json</code></a> <span class="desc">of:Determination</span></li>
+    <li><a href="tombstone.schema.json"><code>tombstone.schema.json</code></a> <span class="desc">of:Tombstone</span></li>
     <li><a href="executable-encoding.schema.json"><code>executable-encoding.schema.json</code></a> <span class="desc">Polymorphic executable-encoding reference (Catala / Blawx / OpenFisca / others)</span></li>
+    <li><a href="naming-profile.schema.json"><code>naming-profile.schema.json</code></a> <span class="desc">Adopter naming and crosswalk profile</span></li>
   </ul>
 </main>
 </body>

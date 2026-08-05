@@ -1,7 +1,7 @@
 ---
 title: "Obligation-First INTENT"
-version: "0.5.0"
-last_updated: 2026-05-04
+version: "0.6.0"
+last_updated: 2026-08-04
 status: working-hypothesis
 description: "Standards-level strategy for the Obligation-First upper schema. Defines scope, design constraints, adoption order, and governance posture."
 tags: [intent, strategy, obligation-first, ontology, gist, standards]
@@ -22,8 +22,8 @@ Obligation-First is therefore the integration layer for PAICE legal projects, no
 ## Design constraints
 
 1. **Bind, don't reinvent.** Where standards exist (Semantic Arts gist, LegalRuleML deontic operators, Akoma Ntoso source-text IRIs, ELI, ECLI), Obligation-First references them. It does not duplicate them.
-2. **Small core, explicit extension points.** v0.1 covers the spine, the proceeding strand, the deontic quartet, defeasibility, and a polymorphic executable-encoding reference; v0.5.0 adds the category layer. Everything else is a downstream extension.
-3. **Three real adopters before v1.0.** EveryAILaw, PubLedge, and AI Incident Law must each bind to v0.1 in production before the schema is promoted to v1.0.
+2. **Small core, explicit extension points.** The shared core admits semantics used by more than one adopter. Domain-specific risk tiers, search metadata, editorial tags, and workflow details remain in named adopter contexts.
+3. **Three real adopters before v1.0.** EveryAILaw, PubLedge, and AI Incident Law are all live adopters. Their shared graph and migration fixtures now gate v1.0.
 4. **Permanent IRIs.** Stable references via w3id.org redirect; obligationfirst.org is the resolution target, not the canonical IRI.
 5. **Drafting in public.** Every revision is a commit. Material changes are documented in CHANGELOG.md.
 
@@ -33,17 +33,18 @@ In scope:
 
 - Authority / Instrument / Term / Obligation (the four-role spine)
 - Proceeding / Allegation / Determination (the proceeding strand)
-- ObligationCategory (the category layer, v0.5.0): jurisdiction-neutral duty concepts. Obligations join via `skos:exactMatch`; records that concern a concept generally rather than one statute's version of it `anchor` the Category. Added because all three adopters needed commensurability across jurisdictions and, lacking a type for it, EveryAILaw published concepts as Obligations.
+- ObligationCategory (the category layer): jurisdiction-neutral `gist:Category` concepts. Obligations join through `gist:isCategorizedBy`; `skos:exactMatch` remains concept-to-concept only.
+- Party, Jurisdiction, and Tombstone support for typed actors, legal competence, and queryable identifier retirement.
 - Deontic quartet: Requirement / Restriction / Permission / Reparation (subclasses of Obligation, aligned with LegalRuleML 1.0). v0.2 refines the gist binding for Reparation to a layered `gist:Requirement` + `gist:Intention` (+ `gist:Event`) pattern without changing the of: class — see [reference/crosswalks/gist.md](reference/crosswalks/gist.md).
 - Defeasibility relation (`of:defeats`) per Lawsky / LegalRuleML §7.4
 - Polymorphic executable-encoding reference (Catala, Blawx, OpenFisca, others)
-- Authority-basis vocabulary (statutory / regulatory / contractual / corporate / judicial)
+- Multi-valued authority-basis vocabulary and distinct issuance, administration, regulation, enforcement, and hearing relations
 - IRI compatibility with ELI, ECLI, Akoma Ntoso element IRIs, USLM
 
-Out of scope for v0.1:
+Deferred or extension-scoped work:
 
 - Akoma Ntoso element-level binding (referenced, not formalized)
-- Provision lifecycle state machine (still deferred post-v0.3; drives the visualization layer)
+- A future temporal rules engine beyond the v0.6 lifecycle, operative-effect, and enforcement fields
 - Cross-jurisdictional equivalence relation (`of:correspondsTo`) (still deferred post-v0.3; the v0.3 crosswalk matrix carries cross-adopter joins for now)
 - Multi-language source text handling
 - A formal SHACL validator (deferred to v1.0)
@@ -56,13 +57,26 @@ The project has two operating modes:
 1. **Specification mode.** Define the smallest stable schema that can carry statutes, proceedings, and joint interpretations without forcing one domain's record shape onto the others.
 2. **Interstitial mode.** Provide the cross-project contract that lets PAICE legal products join through stable `@id` values, `anchors`, shared schemas, and common validation.
 
-At the current stage, specification mode is locally complete for v0.1. The unblocked next work is interstitial: make adopter bindings executable, keep cross-project IDs stable, and ensure each adopter can validate against this repo without bespoke translation.
+All three adopters now generate local v0.6 projections from their native sources. The shared schema, deterministic migration fixture, graph checks, and naming-profile ranges are implemented locally; publication remains a separate release decision.
 
-## Adoption order
+## Implemented semantic direction
 
-1. **EveryAILaw first.** Its `instruments/`, `provisions/`, `obligations/`, `authorities/` already mostly fit. Smallest binding effort. Validates the schema against living legal data.
-2. **PubLedge second.** Already on the spine; adopting v0.1 means swapping its repo-local context for the shared context.
-3. **AI Incident Law third.** Largest restructure (flat records → Proceeding/Allegation/Determination). By the time it adopts, the schema has been stress-tested against EveryAILaw and PubLedge.
+Five accepted-direction records govern v0.6:
+
+- [Identity and classification](reference/decisions/identity-and-classification.md)
+- [Authority, source text, and legal scope](reference/decisions/authority-text-and-scope.md)
+- [Normative force and lifecycle](reference/decisions/normative-force-and-lifecycle.md)
+- [Actors and deontic grounding](reference/decisions/actors-and-deontic-grounding.md)
+- [Provenance, extensions, and conformance](reference/decisions/provenance-extensions-and-conformance.md)
+
+The v0.6 implementation preserves v0.5 schema validity while requiring migrated projections to state new semantics explicitly. Immutable v0.5 release packages remain unchanged.
+
+## Adoption state
+
+1. **EveryAILaw is live** as the statutory source of truth and category publisher.
+2. **PubLedge is live** on the spine and owns administrative issuance for its Instruments.
+3. **AI Incident Law is live** on the proceeding strand and owns adjudicative Determinations for public matters.
+4. EveryAILaw, PubLedge, and AI Incident Law each exercise a different portion of the v0.6 contract, and cross-repository validation checks the combined graph.
 
 ## Relationship to other components
 
@@ -85,11 +99,17 @@ Subscribes to: Measurement Authority, Calibration Compounding (both from the por
 
 Current tier: working hypothesis.
 
-Last review: 2026-05-04.
+Last review: 2026-08-04.
 
-Next scheduled review: when v0.1 freezes (expected within 90 days), or after first external adopter feedback, whichever comes first.
+Next scheduled review: after the material-change comment window, before publication, or on external adopter feedback, whichever comes first.
 
 ## Changelog
 
+- 0.6.0-candidate (2026-08-04): Implements the accepted semantic decisions and migrates all three adopter projections locally.
+- 0.5.1-candidate (2026-08-04): Reconciles the current three-adopter state, records the accepted v0.6 semantic direction, and keeps the patch candidate separate from ontology expansion.
+- 0.5.0 (2026-07-25): Adds the ObligationCategory commensurability layer and version-range naming profiles.
+- 0.4.0 (2026-06-03): Makes adopter naming profiles machine-validatable.
+- 0.3.1 (2026-06-02): Adopts record-local permanent IRIs and standard identifier crosswalks for federation.
+- 0.2.0 (2026-05-26): Incorporates Semantic Arts binding feedback for the deontic and allegation layers.
 - 0.1.0-draft+integration (2026-05-13): Clarifies that Obligation-First is the interstitial integration layer for PAICE legal projects after the local v0.1 spec work is complete.
 - 0.1.0-draft (2026-05-04): Initial INTENT. Codifies four-role spine + proceeding strand, gist binding, LegalRuleML alignment, three-adopter v1.0 gate, EveryAILaw-first adoption order.

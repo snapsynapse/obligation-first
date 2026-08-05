@@ -40,7 +40,7 @@ Every record in this example uses a neutral `obligationfirst.org` `@id` of the f
 
 Two consequences worth making explicit:
 
-- Jurisdiction is a typed ISO 3166 field, never part of the slug. Each jurisdictional record carries `"jurisdiction": { "@type": "gist:Jurisdiction", "ref": "eu" }`. The local-id drops any jurisdiction code (the AI Act instrument is `instrument/ai-act`, not `instrument/eu-ai-act`); structural references that happen to look like codes but are not (`art-50-2`, `recital-133`) are kept because they identify a provision, not a jurisdiction.
+- Jurisdiction is typed legal competence, never part of the slug. Each jurisdictional record carries `"jurisdiction": { "@type": "of:Jurisdiction", "territorial_scope": ["eu"] }`. The local-id drops any jurisdiction code (the AI Act instrument is `instrument/ai-act`, not `instrument/eu-ai-act`); structural references that happen to look like codes but are not (`art-50-2`, `recital-133`) are kept because they identify a provision, not a jurisdiction.
 - Standard identifiers ride as typed crosswalks. The Regulation carries `eli_uri` (the European Legislation Identifier, `https://data.europa.eu/eli/reg/2024/1689/oj`): the `@id` is this example's own identifier for its record, and `eli_uri` is the crosswalk to the canonical EU identifier for the same law. Where the entity also corresponds to a real adopter record, `sameAs` points at that adopter's served form.
 
 Only two records in this example correspond to entities a real adopter has actually minted, verified against the live EveryAILaw export:
@@ -86,8 +86,8 @@ It has no `creates`. Its weight is that the operative Article 50(2) Term, and th
 
 ## Records walk-through
 
-- `authority-eu-parliament-council.json` - the co-legislators that enacted the Regulation. Their `authority_basis` traces to the Treaty (TFEU Art 114), the recursive-basis pattern one rung higher than a national constitution. A teaching construct: no `sameAs`.
-- `authority-eu-commission.json` - the Commission as issuing Authority for the Guidelines. Its `authority_basis` traces to Article 96 of the Act itself, demonstrating the recursive basis: the power to issue these Guidelines is granted by the very Instrument they interpret. `sameAs` the EveryAILaw `european-commission` authority.
+- `authority-eu-parliament-council.json` - the co-legislators that enacted the Regulation. Their evidence-bearing `authority_basis` traces to the Treaty (TFEU Art 114), one rung higher than a national constitution. A teaching construct: no `sameAs`.
+- `authority-eu-commission.json` - the Commission as issuing Authority for the Guidelines. Its evidence-bearing `authority_basis` traces to Article 96 of the Act itself: the power to issue these Guidelines is granted by the Instrument they interpret. `sameAs` the EveryAILaw `european-commission` authority.
 - `instrument-eu-ai-act.json` - the Regulation. Carries `eli_uri` (the canonical EU identifier as a crosswalk) and `sameAs` the EveryAILaw `eu-ai-act` instrument.
 - `instrument-eu-art50-guidelines.json` - the draft Guidelines. `status: proposed` (under consultation), `enforcement_status: unsignaled` (non-binding; it carries no enforceable primary Obligations of its own). A teaching construct: no `sameAs`.
 - `term-art-50-2.json` - Article 50(2) verbatim; `creates` the marking Obligation.
@@ -103,7 +103,7 @@ Leaves to expand:
 - Harmonised standards (CEN-CENELEC JTC 21) referenced via `executableEncoding`.
 - The proceeding strand: any future enforcement action would be a Determination anchoring to an Article 50 Obligation, exactly as the Colorado example does for a court stay order.
 
-Conformance: records are schema-conformant and carry typed ISO 3166 `jurisdiction`. Reaching the tightened Level 2 additionally requires a published `.well-known` naming profile for the host that serves these `@id` values; Level 3 additionally requires every crosswalk the profile declares to be present on every applicable record. The Regulation already carries its `eli_uri` crosswalk; the Commission authority and the Regulation carry `sameAs` to their EveryAILaw counterparts.
+Conformance: records are schema-conformant and carry `of:Jurisdiction` legal competence. Reaching Level 2 additionally requires graph validation and a published `.well-known` naming profile for the host that serves these `@id` values. Level 3 additionally requires every crosswalk the profile declares to be present on every applicable record. The Regulation already carries its `eli_uri` crosswalk; the Commission authority and the Regulation carry `sameAs` to their EveryAILaw counterparts.
 
 ## Provenance
 

@@ -7,8 +7,10 @@
   "trigger": "AI system is used for emotion recognition or biometric categorisation of natural persons",
   "content": "Inform natural persons exposed to the system of its operation, and process personal data in accordance with applicable Union data protection law.",
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "eu"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "eu"
+    ]
   },
   "created_by": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-3"
 }

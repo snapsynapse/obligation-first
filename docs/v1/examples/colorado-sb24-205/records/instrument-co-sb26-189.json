@@ -10,8 +10,10 @@
     "https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/sb24-205"
   ],
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "us-co"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "us-co"
+    ]
   },
   "source": "https://leg.colorado.gov/bills/sb26-189",
   "sameAs": [

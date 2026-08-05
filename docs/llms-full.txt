@@ -1,6 +1,6 @@
 # Obligation-First — full LLM context
 
-> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.5.0. Record `@id` values are adopter-local, opaque, and permanent; cross-adopter interoperability rides on standard identifier crosswalks (ELI, ECLI, Akoma Ntoso, Wikidata) declared in per-adopter `.well-known` naming profiles; jurisdiction is a typed ISO 3166 field. See reference/iri-naming-and-crosswalks.md.
+> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.6.0 is implemented locally pending review and separate publication authority. Record `@id` values are adopter-local, opaque, and permanent. Jurisdiction represents legal competence, with territorial and institutional scope modeled independently.
 
 This file is the deeper companion to llms.txt. Where llms.txt gives a one-screen summary, this file is the full context an LLM-powered tool needs to reason about Obligation-First, generate adopter records, or answer detailed questions without scraping.
 
@@ -13,23 +13,24 @@ Source of truth: https://github.com/snapsynapse/obligation-first/blob/main/PROTO
 1. Obligation-first modeling — normative content is mapped through the obligations it creates, interprets, or allocates, not through the text of the source document.
 2. Bind to existing standards — gist for upper ontology, LegalRuleML for deontic operators, Akoma Ntoso / ELI / ECLI / USLM for source-text IRIs. Reference, do not duplicate.
 3. Permanent IRIs — `https://w3id.org/of/v1/` is the planned permanent vocabulary prefix and will resolve to `https://obligationfirst.org/v1/` once the w3id.org redirect is filed. Until then, `https://obligationfirst.org/v1/` is the live CI-verified resolution target.
-4. Small core, explicit extensions — the spine, the proceeding strand, the deontic quartet. Everything else is a downstream extension.
-5. Federated `@id` + crosswalks (v0.3) — record `@id` values are adopter-local, opaque, and permanent (HTTP 301 on rename per W3C "Cool URIs Don't Change"); an `@id` identifies the adopter's record about a legal entity, not the entity's canonical external identifier. Standard identifiers (ELI, ECLI, Akoma Ntoso, urn:lex, Wikidata, EuroVoc) ride as typed crosswalks, never as the `@id`; cross-adopter joins key on crosswalks, not slugs. Each adopter publishes its own naming profile at a `.well-known` location (VoID `uriSpace`/`uriRegexPattern` + RFC 6570 template + a declared crosswalk list); Obligation-First consumes and validates against it, and never prescribes it. Jurisdiction is a typed ISO 3166 field. Additive and non-breaking; decision record at reference/iri-naming-and-crosswalks.md.
+4. Small core, explicit extensions - the spine, proceeding strand, category layer, Party, Jurisdiction, Tombstone, and shared provenance. Domain-specific metadata stays in an adopter-owned context.
+5. Federated `@id` + crosswalks (v0.3) - record `@id` values are adopter-local, opaque, and permanent. Standard identifiers ride as typed crosswalks, never as the record `@id`. `owl:sameAs` is identity, `describesSameEntityAs` is weaker record correspondence, and `skos:exactMatch` is concept-to-concept alignment.
+6. Evidence honesty (v0.6) - missing authority, deontic, actor, date, and lifecycle evidence remains unknown or absent. Adapters do not fabricate a basis, silently default an unknown duty to Requirement, or copy one date into another field.
 
 ### The four-role spine
 
 | Role | of: term | gist class | What it is |
 |---|---|---|---|
-| Authority | of:Authority | wraps gist:Organization (or subtype: gist:GovernmentOrganization, gist:Court) | The party with interpretive or regulatory power |
+| Authority | of:Authority | wraps gist:Organization or gist:GovernmentOrganization | An organization exercising an evidenced legal, administrative, adjudicative, enforcement, or standards role |
 | Container | of:Instrument | gist:Agreement (negotiated) / gist:Specification (promulgated) | The artifact with binding force — a law, agreement, or ruling |
-| Secondary | of:Term | gist:ContractTerm | A clause within an Instrument |
-| Primary | of:Obligation | (deontic quartet — see below) | What the Term creates |
+| Secondary | of:Term | gist:Specification; negotiated Terms may also assert gist:ContractTerm | A clause or provision within an Instrument |
+| Primary | of:Obligation | explicit unclassified state or deontic quartet | A source-grounded normative position |
 
 ### The proceeding strand
 
 | Role | of: term | gist class |
 |---|---|---|
-| Matter | of:Proceeding | gist:Event (subtype LegalProceeding) |
+| Matter | of:Proceeding | of:LegalProceeding over gist:Event |
 | Asserted | of:Allegation | gist:Content (assertion text) + gist:Intention (when intent-bearing) |
 | Decided | of:Determination | gist:Determination |
 
@@ -46,14 +47,20 @@ v0.2 closed the open gist binding for of:Reparation per Semantic Arts feedback (
 
 ### Core relations (full list)
 
-- of:issuedBy (Instrument → Authority) — who promulgated the Instrument
+- of:issuedBy (Instrument or Determination → Authority[]) - issuer or promulgator only
+- of:heardBy (Proceeding → Authority[]) - forum hearing the matter
+- of:administeredBy / regulatedBy / enforcedBy (Instrument → Authority[]) - distinct operational roles
 - of:hasTerm (Instrument → Term[]) — composition
 - of:creates (Term → Obligation[]) — the deontic content of a Term
 - of:hasAllegation (Proceeding → Allegation[]) — asserted facts in a matter
 - of:hasDetermination (Proceeding → Determination[]) — rulings issued in a matter
 - of:decides (Determination → Allegation[]) — what the ruling resolved
 - of:disposition (Determination → enum) — confirmed / rejected / partial / dismissed / settled / vacated / issued
-- of:anchors (Determination → Obligation[]) — the Obligation the ruling interprets
+- of:anchors (Determination, Term, or Obligation → Obligation, Term, or ObligationCategory) - interpretive link, not causal enforcement state
+- of:recognizes / of:imposes (Determination → Obligation[]) - existing duty recognition versus new remedial duty imposition
+- gist:isCategorizedBy (Obligation → ObligationCategory[]) - classification; exactMatch is not membership
+- of:constrains (Determination → Instrument, Term, Obligation, or Determination) - causal limit on present effect
+- of:resultingInstrument (Determination → Instrument[]) - joins an issuance act to a forward-looking normative artifact
 - of:defeats (Term → Term[]) — Term-level override per Lawsky default logic / LegalRuleML §7.4. General/fallback defeasibility predicate.
 - of:rebuts (Term → Term[]) — subproperty of of:defeats. Defeating Term reaches the opposite conclusion (LegalRuleML §7.4 rebut). Entails of:defeats. Added in v0.2.
 - of:undercuts (Term → Term[]) — subproperty of of:defeats. Defeating Term denies the rule's applicability in this context (LegalRuleML §7.4 undercut). Entails of:defeats. Added in v0.2.
@@ -62,19 +69,19 @@ v0.2 closed the open gist binding for of:Reparation per Semantic Arts feedback (
 - of:wouldSupersede (Instrument → Instrument[]) — subjunctive form for proposed Instruments
 - of:executableEncoding (Term | Obligation → typed reference) — pointer to a Catala / Blawx / OpenFisca / other executable encoding. Both Term and Obligation accept the field.
 
-### Instrument lifecycle
+### Force and lifecycle
 
-`of:status` — closed enum: proposed / enacted / in-force / amended / sunset / repealed / superseded / withdrawn
-`of:enforcement_status` — closed enum: routine / constrained / unsignaled. Default: routine. The cause of a non-routine state is expressed via the proceeding strand, not baked into the enum.
+- `normative_force`: binding / voluntary / nonbinding / contractual / unknown
+- `lifecycle_status`: publication or legal lifecycle
+- `operative_status`: whether the content presently operates
+- `enforcement_status`: whether it is presently enforceable and under what posture
+- `computed_as_of`: date for computed present-state assertions
+
+The axes are independent but graph validation rejects incoherent combinations such as proposed plus enforceable, voluntary plus enforceable without an evidenced binding basis, or a future effective date reported operative as of an earlier date.
 
 ### Authority interface
 
-Every of:Authority requires:
-- organization (gist:Organization or subtype with name)
-- authority_basis (kind: statutory | regulatory | contractual | corporate | judicial; instrument_ref pointing to the Instrument that grants authority)
-- jurisdiction — a typed ISO 3166 value: gist:Jurisdiction with an ISO 3166-1 or 3166-2 ref (e.g. us-co, us-ut, ca-bc, eu). Never encoded in a slug.
-
-Recursive: every Authority's right to act traces to an Instrument on the spine. Non-government Authorities (HOAs, tribunals, co-ops, advisory bodies) are handled without special-casing.
+Every of:Authority requires an identified organization. `authority_basis` is optional and multi-valued. When present, each basis cites an Instrument, source URL, or source citation for legal competence. A silent source produces no basis instead of a fabricated self-reference. Jurisdiction is optional when unknown and uses of:Jurisdiction for legal competence; `territorial_scope` and `institutional_scope` remain independent.
 
 ### Defeasibility semantics
 
@@ -98,8 +105,8 @@ A Term or Obligation MAY have multiple executableEncoding references (one per en
 
 ### Conformance levels
 
-- Level 1 — IRI-only: @id and @type use canonical of: IRIs. @context references obligationfirst.org/v1/. The @id resolves and is permanent (HTTP 301 on rename).
-- Level 2 — Schema-conformant (recommended): L1 plus every record validates against the appropriate schema, plus (v0.3) a published `.well-known` naming profile (VoID `uriSpace`/`uriRegexPattern` + an RFC 6570 URI Template + a declared list of supplied crosswalks) and `jurisdiction` carried as a typed ISO 3166 field.
+- Level 1 — IRI-only: @id and @type use canonical of: IRIs. @context references https://obligationfirst.org/v1/context.jsonld. The @id resolves and is permanent, with HTTP 301 or a queryable Tombstone on retirement.
+- Level 2 — Schema-and-graph-conformant (recommended): L1 plus record schemas, inverse and relation checks, lifecycle coherence, all emitted surfaces, a published `.well-known` naming profile, and typed legal-competence jurisdiction where the source supports one.
 - Level 3 — Crosswalk-conformant: L2 plus (v0.3) every crosswalk the adopter's naming profile declares is present on every applicable record. The recommended baseline is the crosswalk matrix: Wikidata QID for authorities (SHOULD, sameAs), ELI for instruments where the jurisdiction issues ELIs (MUST, eli_uri), ECLI / neutral citation for court decisions (MUST), Akoma Ntoso element IRIs for provisions (SHOULD/MAY, akn_uri), urn:lex as a fallback (MAY), and EuroVoc concepts for obligation subjects (SHOULD). Requirements are RFC 2119 and conditional on coverage — a US-only adopter is never failed for lacking an ELI that does not exist. The earlier "round-trip with at least one of Akoma Ntoso, ELI, or ECLI" definition is superseded.
 
 ### Versioning
@@ -113,7 +120,7 @@ A Term or Obligation MAY have multiple executableEncoding references (one per en
 
 ### Moffatt v. Air Canada (BCCRT 149) — proceeding strand
 
-Tests: Authority + Proceeding + 2 Allegations + 1 Determination. Common-law anchoring (negligent misrepresentation). Multi-valued decides.
+Tests: Authority + 2 Parties + Proceeding + 2 Allegations + Determination + recognized common-law Requirement. Exercises typed actors, multi-valued decides, recognition grounding, and a remedy linked to its resulting Obligation.
 
 Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/air-canada/README.md
 
@@ -128,7 +135,7 @@ Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/color
 
 ### Utah OAIP JIA — joint interpretation
 
-Tests: PubLedge round-trip. Demonstrates that PubLedge → v0.1 adoption is purely additive — @context swap with no semantic loss.
+Tests: PubLedge round-trip with exact source text and a JSON-LD multi-type contractual Term (`of:Term` plus `gist:ContractTerm`).
 
 Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/publedge-jia-utah-72/README.md
 
@@ -151,12 +158,12 @@ Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/eu-ai
 - PubLedge — https://publedge.org/ (joint interpretations) — live binding for instruments, terms, obligations, and determinations
 - AI Incident Law — https://aiincidentlaw.org/ (AI-related cases) — live binding for proceedings, allegations, determinations, and authorities
 
-All three bindings went live against v0.1 and are being reconciled to the v0.3 model (federated `@id`, typed ISO 3166 jurisdiction, and per-adopter `.well-known` naming profiles declaring their crosswalks). The of: vocabulary is unchanged from v0.1, so adopter records require no migration; the three binding handoffs in reference/handoffs/ were reconciled to live adopter data in v0.3.1.
+All three projects retain their live pre-v0.6 bindings. Their v0.6 projections are implemented and validated locally: EveryAILaw publishes statutory duties and categories, PubLedge publishes negotiated and administrative-issuance records, and AI Incident Law publishes proceedings and adjudicative determinations. Publication remains separately authorized.
 
 ## Adoption — three steps
 
 1. Reference the canonical @context: set `@context: "https://obligationfirst.org/v1/context.jsonld"` on every record.
-2. Validate against the JSON Schemas at /v1/schema/ for the entity's @type. To be Level 2 ("bound") under v0.3, also publish a `.well-known` naming profile (VoID `uriSpace`/`uriRegexPattern` + RFC 6570 template + declared crosswalk list) and carry `jurisdiction` as a typed ISO 3166 field.
+2. Validate record shapes and the graph contract. Publish a `.well-known` naming profile and use `obligation-first >=0.6.0 <0.7.0` when the projection emits v0.6 vocabulary.
 3. Cite obligationfirst.org as the canonical reference.
 
 ## Assistant-assisted setup
@@ -175,7 +182,10 @@ The Level 4 manifest is at `https://obligationfirst.org/.well-known/assistant-gu
 ## Endpoints
 
 - @context: https://obligationfirst.org/v1/context.jsonld
+- Shared definitions schema: https://obligationfirst.org/v1/schema/common.schema.json
 - Authority schema: https://obligationfirst.org/v1/schema/authority.schema.json
+- Jurisdiction schema: https://obligationfirst.org/v1/schema/jurisdiction.schema.json
+- Party schema: https://obligationfirst.org/v1/schema/party.schema.json
 - Instrument schema: https://obligationfirst.org/v1/schema/instrument.schema.json
 - Term schema: https://obligationfirst.org/v1/schema/term.schema.json
 - Obligation schema: https://obligationfirst.org/v1/schema/obligation.schema.json
@@ -183,8 +193,10 @@ The Level 4 manifest is at `https://obligationfirst.org/.well-known/assistant-gu
 - Proceeding schema: https://obligationfirst.org/v1/schema/proceeding.schema.json
 - Allegation schema: https://obligationfirst.org/v1/schema/allegation.schema.json
 - Determination schema: https://obligationfirst.org/v1/schema/determination.schema.json
+- Tombstone schema: https://obligationfirst.org/v1/schema/tombstone.schema.json
 - ExecutableEncoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
-- Release package: https://obligationfirst.org/releases/v0.5.0/
+- Naming profile schema: https://obligationfirst.org/v1/schema/naming-profile.schema.json
+- Release package: https://obligationfirst.org/releases/v0.6.0/
 - Assistant guide: https://obligationfirst.org/.well-known/assistant-guide.txt
 - Assistant guide manifest: https://obligationfirst.org/.well-known/assistant-guide-manifest.txt
 - Sitemap: https://obligationfirst.org/sitemap.xml

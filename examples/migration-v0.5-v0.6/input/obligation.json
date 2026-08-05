@@ -1,0 +1,9 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "@type": "of:Requirement",
+  "@id": "https://example.com/obligation/article-1",
+  "title": "Disclose automated interaction",
+  "created_by": "https://example.com/term/article-1",
+  "implemented_by_terms": ["https://example.com/term/article-1"],
+  "exactMatch": ["https://example.com/category/transparency"]
+}

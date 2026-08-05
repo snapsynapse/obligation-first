@@ -46,15 +46,16 @@ For an adopter using both standards:
 "@type": of:Term
 "@id": https://everyailaw.com/term/colorado-sb24-205-transparency.json
 jurisdiction:
-  "@type": gist:Jurisdiction
-  ref: us-co
+  "@type": of:Jurisdiction
+  territorial_scope:
+    - us-co
 text: "A developer ... shall use reasonable care ..."
 creates:
   - https://everyailaw.com/obligation/colorado-sb24-205-transparency.json
 lrml_encoded_as: https://everyailaw.com/lrml/colorado-sb24-205-transparency.xml
 ```
 
-The Term's `@id` is adopter-local and opaque — whatever the adopter's `.well-known` naming profile declares (here EveryAILaw's live, `.json`-served grammar), never a jurisdiction-encoded slug. Jurisdiction is a typed `gist:Jurisdiction` field carrying an ISO 3166-2 `ref`, never part of the slug. The LegalRuleML encoding rides as the typed `lrml_encoded_as` crosswalk that points from the Obligation-First Term to the LegalRuleML XML encoding of its rule logic — never as the `@id`. The field is conditional: present where a LegalRuleML encoding exists, absent otherwise.
+The Term's `@id` is adopter-local and opaque, following the adopter's `.well-known` naming profile, and never a jurisdiction-encoded slug. Jurisdiction is an `of:Jurisdiction` legal-competence object, never part of the slug. The LegalRuleML encoding rides as the typed `lrml_encoded_as` crosswalk that points from the Obligation-First Term to the LegalRuleML XML encoding of its rule logic, never as the `@id`. The field is conditional: present where a LegalRuleML encoding exists, absent otherwise.
 
 ## Open questions
 

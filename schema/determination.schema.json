@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://obligationfirst.org/v1/schema/determination.schema.json",
   "title": "Determination",
-  "description": "An authoritative act that establishes a legal outcome. An adjudicative Determination resolves Allegations; an administrative Determination promulgates an Instrument or records an authoritative posture. Bound to gist:Determination.",
+  "description": "An authoritative act that resolves allegations, recognizes or imposes obligations, constrains prior normative effects, or promulgates an Instrument. A forward-looking normative text is represented as an Instrument joined explicitly through resulting_instrument.",
   "type": "object",
   "required": ["@type", "@id", "issuedBy", "decides", "disposition"],
   "properties": {
@@ -10,107 +10,58 @@
     "@id": { "type": "string", "format": "uri" },
     "@type": { "const": "of:Determination" },
     "issued_date": { "type": "string", "format": "date" },
-    "issuedBy": {
-      "type": "string",
-      "format": "uri",
-      "description": "IRI of the of:Authority that made the determination."
-    },
+    "issuedBy": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
     "decides": {
       "type": "array",
       "items": { "type": "string", "format": "uri" },
-      "description": "IRIs of of:Allegation records this Determination resolves. Multi-valued: one ruling can decide multiple Allegations. Adjudicative Determinations (every disposition except 'issued') MUST have at least one entry — enforced by the if/then constraint below. Administrative Determinations (disposition='issued', for promulgating an Instrument or recording a posture statement) MAY leave this empty."
+      "description": "Allegations resolved by this Determination. Administrative issuance may use an empty array."
     },
-    "disposition": {
-      "type": "string",
-      "enum": ["confirmed", "rejected", "partial", "dismissed", "settled", "vacated", "issued"],
-      "description": "Closed vocabulary. 'issued' is used when a Determination promulgates an Instrument (e.g., issuance of a JIA) rather than ruling on an Allegation. Every other (adjudicative) disposition requires a non-empty 'decides'."
-    },
-    "anchors": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "IRIs of of:Obligation or of:ObligationCategory records this Determination interprets, applies, or concerns."
-    },
-    "remedy": {
-      "type": "object",
-      "description": "Unstructured remedy object in v0.1. Typed of:Remedy entity deferred to v0.2.",
-      "additionalProperties": true
-    },
-    "target_instrument": {
-      "type": "string",
-      "format": "uri",
-      "description": "When disposition='issued', the of:Instrument being promulgated."
-    },
-    "notes": { "type": "string", "description": "Free-text editorial or provenance notes about this record." },
+    "disposition": { "type": "string", "enum": ["confirmed", "rejected", "partial", "dismissed", "settled", "vacated", "issued"] },
+    "content": { "type": "string", "minLength": 1, "description": "Exact ruling or determination content when distributable." },
+    "summary": { "type": "string", "minLength": 1, "description": "Editorial account of the ruling content." },
+    "anchors": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "recognizes": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "imposes": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "constrains": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "vacates": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "remedy": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/remedy" },
+    "target_instrument": { "type": "string", "format": "uri", "description": "Legacy v0.5 administrative target. Use resulting_instrument for a promulgated forward-looking Instrument." },
+    "resulting_instrument": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "notes": { "type": "string" },
     "source": { "type": "string", "format": "uri" },
-    "ecli_uri": {
-      "type": "string",
-      "format": "uri",
-      "description": "ECLI URI for a citable court decision (crosswalk matrix in PROTOCOL.md)."
-    },
-    "neutral_citation": {
-      "type": "string",
-      "description": "Neutral citation (e.g. '2024 BCCRT 149'). Crosswalk for citable decisions in common-law neutral-citation jurisdictions (crosswalk matrix in PROTOCOL.md)."
-    },
-    "urn_lex": {
-      "type": "string",
-      "pattern": "^urn:lex:",
-      "description": "urn:lex identifier. Crosswalk for administrative determinations without an ECLI (crosswalk matrix in PROTOCOL.md)."
-    },
-    "jurisdiction": {
-      "type": "object",
-      "required": ["@type", "ref"],
-      "properties": {
-        "@type": { "const": "gist:Jurisdiction" },
-        "ref": {
-          "type": "string",
-          "description": "Jurisdiction code: lowercase form of an ISO 3166-1 alpha-2 country/supranational code or an ISO 3166-2 subdivision code.",
-          "examples": ["us-co", "ca-bc", "eu", "us"]
-        }
-      }
-    },
-    "sameAs": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "owl:sameAs crosswalk IRIs: external records identical to this one (e.g. a live adopter export, a Wikidata entity)."
-    },
-    "exactMatch": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "skos:exactMatch crosswalk IRIs: external concepts interchangeably usable with this record. Weaker than owl:sameAs; preferred for cross-scheme concept joins."
-    }
+    "source_citation": { "type": "string" },
+    "source_locator": { "type": "string" },
+    "source_version": { "type": "string" },
+    "language": { "type": "string" },
+    "evidence_type": { "type": "string" },
+    "verified": { "type": "string", "format": "date" },
+    "retrieved": { "type": "string", "format": "date" },
+    "asserted_by_adopter": { "type": "string", "format": "uri" },
+    "ecli_uri": { "type": "string", "format": "uri" },
+    "neutral_citation": { "type": "string" },
+    "urn_lex": { "type": "string", "pattern": "^urn:lex:" },
+    "jurisdiction": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/jurisdiction" },
+    "territorial_scope": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/stringSet" },
+    "institutional_scope": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/stringSet" },
+    "sameAs": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "exactMatch": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "describesSameEntityAs": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" }
   },
   "allOf": [
     {
-      "if": {
-        "required": ["disposition"],
-        "properties": {
-          "disposition": { "const": "issued" }
-        }
-      },
+      "if": { "required": ["disposition"], "properties": { "disposition": { "const": "issued" } } },
       "then": {
-        "properties": {
-          "decides": { "maxItems": 0 },
-          "anchors": { "minItems": 1 }
-        },
+        "properties": { "decides": { "maxItems": 0 } },
         "anyOf": [
           { "required": ["target_instrument"] },
+          { "required": ["resulting_instrument"] },
           { "required": ["anchors"] }
         ]
       }
     },
     {
-      "if": {
-        "required": ["disposition"],
-        "properties": {
-          "disposition": { "not": { "const": "issued" } }
-        }
-      },
-      "then": {
-        "required": ["decides"],
-        "properties": {
-          "decides": { "minItems": 1 }
-        }
-      }
+      "if": { "required": ["disposition"], "properties": { "disposition": { "not": { "const": "issued" } } } },
+      "then": { "properties": { "decides": { "minItems": 1 } } }
     }
   ],
   "additionalProperties": true

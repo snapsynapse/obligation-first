@@ -1,8 +1,8 @@
 # Adopter kit
 
-The adopter kit is the reusable path from a project-local model to Obligation-First v0.1 records. It exists because the EveryAILaw binding surfaced a repeatable pattern that PubLedge and AI Incident Law should not have to rediscover.
+The adopter kit is the reusable path from a project-local model to Obligation-First v0.6 records. It exists because the EveryAILaw binding surfaced a repeatable pattern that PubLedge and AI Incident Law should not have to rediscover.
 
-Status: v0.1-draft helper. Not a separately published npm package yet.
+Status: v0.6 repository helper. It is versioned with the specification and is not a separately published npm package.
 
 ## What it provides
 
@@ -14,12 +14,14 @@ Status: v0.1-draft helper. Not a separately published npm package yet.
 
 From this repo:
 
+Literal
 ```bash
 node scripts/validate-adopter-records.mjs examples/publedge-jia-utah-72/records
 ```
 
 From an adopter repo with this repo checked out as a sibling:
 
+Literal
 ```bash
 node ../obligation-first/scripts/validate-adopter-records.mjs data/examples/records
 ```
@@ -47,6 +49,7 @@ The profile is descriptive, not aspirational. Record what you mint today; the sp
 
 Use `scripts/report-anchor-graph.mjs` when the question is no longer "does one adopter validate?" but "are multiple adopters forming the intended graph?"
 
+Literal
 ```bash
 npm run report:anchors:implementations
 ```
@@ -108,9 +111,10 @@ For lower-level integrations, the kit also exports:
 For PubLedge, use the kit after generating these records:
 
 - Authorities: `of:Authority`
+- Parties and jurisdictions: `of:Party` and `of:Jurisdiction` when the source supports them
 - Instruments: `of:Instrument`
-- Terms: `of:Term`
-- Obligations: `of:Requirement`, `of:Restriction`, or `of:Permission`
+- Terms: `of:Term`, with contractual terms additionally typed as `gist:ContractTerm`
+- Obligations: `of:Requirement`, `of:Restriction`, `of:Permission`, `of:Reparation`, or base `of:Obligation` when the source is explicitly unclassified
 - Issuance records: `of:Determination` with `disposition: issued`
 
 The minimum first pass is:

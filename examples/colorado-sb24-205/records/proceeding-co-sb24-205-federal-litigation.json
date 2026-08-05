@@ -6,8 +6,10 @@
   "filed_date": "2025-09-01",
   "issuedBy": "https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/federal-district-court",
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "us"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "us"
+    ]
   },
   "hasAllegation": [
     "https://obligationfirst.org/v1/examples/colorado-sb24-205/allegation/enforcement-challenge"

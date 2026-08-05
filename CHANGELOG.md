@@ -2,11 +2,67 @@
 
 ## Unreleased
 
+## [0.6.0] - 2026-08-04
+
+Implements the accepted three-adopter semantic contract while keeping the v1 IRI major and accepting legacy v0.5 record shapes during migration.
+
+### Added
+
+- `of:Party`, `of:Jurisdiction`, and `of:Tombstone` record schemas.
+- Shared reference, jurisdiction, lifecycle, normative-force, enforcement, actor-role, remedy, and authority-basis shapes in `common.schema.json`.
+- Separate `heardBy`, `administeredBy`, `regulatedBy`, `enforcedBy`, `constrains`, `vacates`, `repeals`, `amends`, and `resulting_instrument` relations.
+- Typed actor fields for proceedings, obligations, and allegations, including `parties`, `duty_holders`, `owed_to`, `asserted_by_party`, and `related_to_party`.
+- Controlled `duty_holder_roles` and `owed_to_roles` IRI fields, kept separate from concrete Party identity and applicability prose.
+- Evidence-bearing `binding_basis` for incorporated or adopted voluntary content.
+- `describesSameEntityAs` for record correspondence that is weaker than `owl:sameAs`.
+- Shared provenance fields for source citation, locator, version, language, evidence type, verification, retrieval, and asserting adopter.
+- A deterministic v0.5 to v0.6 migration script and paired fixtures.
+- Defeasibility-cycle detection and validator identity output containing version, commit, and dirty state.
+- Relation-domain, same-level amendment, lifecycle-coherence, contractual multi-type Term, and vacatur checks in the shared graph validator.
+
+### Changed
+
+- Category membership now uses `gist:isCategorizedBy`. `skos:exactMatch` remains for concept-to-concept alignment.
+- `Term.text` is reserved for exact source text; editorial paraphrases use `summary`.
+- Contractual Terms may assert a JSON-LD type set containing both `of:Term` and `gist:ContractTerm`; statutory and regulatory Terms remain `of:Term` over `gist:Specification`.
+- `issuedBy` is array-capable and means issuer or promulgator only. Proceedings use `heardBy`.
+- Authority bases are multi-valued and evidence-bearing. Missing evidence is omitted rather than replaced with a fabricated self-reference.
+- Normative force, lifecycle, operative effect, enforcement, and temporal facts are independent fields.
+- A concrete record with an unverified deontic operator uses base `of:Obligation` instead of silently defaulting to `of:Requirement`.
+- Obligations may be grounded by Terms, recognized by Determinations, or imposed by Determinations.
+- Administrative issuance joins a forward-looking Instrument explicitly through `resulting_instrument`.
+- The Air Canada example now exercises Parties, a common-law Obligation, typed allegation relations, recognition by Determination, and a remedy-to-Obligation link.
+
+### Adopter migration
+
+- EveryAILaw emits editorial summaries, explicit unclassified deontic state, controlled duty-holder role IRIs, separated authority roles, `isCategorizedBy`, extension-context fields, two EU co-legislator issuers, and queryable Tombstones for retired composite and category-shaped IRIs.
+- PubLedge emits exact JIA Term text where its native source carries it, contractual multi-type Terms, Party and actor-role records from curated agreement parties, explicit issuance Determinations, separated temporal semantics, and named extension fields.
+- AI Incident Law emits `heardBy`, typed deployer Parties, legal-competence jurisdiction objects, weaker record correspondences, shared provenance, and no fabricated court class, authority basis, or determination date.
+
+### Compatibility
+
+The context remains `https://obligationfirst.org/v1/context.jsonld` and the vocabulary major remains `v1`. Legacy v0.5 jurisdiction, status, scalar-reference, and source-text shapes remain schema-valid. Migrated naming profiles use `obligation-first >=0.6.0 <0.7.0`. The unpublished v0.5.1 correction candidate was folded into this release; no v0.5.1 tag or GitHub Release was created.
+
+## 0.5.1 release candidate, unpublished and superseded - 2026-08-04
+
+This candidate packaged v0.5-compatible corrections after the v0.5.0 release package, but it was never committed, tagged, or published. Its corrections are included in v0.6.0. The immutable v0.5.0 artifacts are unchanged.
+
+### Fixed
+
 - Enforce `https://obligationfirst.org/v1/context.jsonld` in the shared adopter validator and naming-profile schema; the bare namespace landing page is no longer accepted as a JSON-LD context for current records.
 - Complete the `of:Determination` administrative/adjudicative contract in JSON Schema: `issued` records have empty `decides` and identify at least one `target_instrument` or `anchors` target, while adjudicative records continue to require populated `decides`.
 - Clarify graph ownership: AI Incident Law owns adjudicative Determinations for public matters; PubLedge owns administrative issuance Determinations attached to its Instruments; `issuedBy` identifies the Authority that acted.
 - Align the cross-adopter anchor reporter and Obligation schema guidance with the existing `Obligation | Term | ObligationCategory` range, including category-level PubLedge and AI Incident Law edges.
 - Reconcile the PubLedge JIA worked example with its upstream proposed-draft state by removing the unevidenced issuance Determination and enacted/effective assertions.
+
+### Decisions
+
+- Add five tracked accepted-direction records for identity and classification; authority, text, and scope; normative force and lifecycle; actors and deontic grounding; and provenance, extensions, and conformance.
+- Assign shared vocabulary and semantic implementation to v0.6.0 with migration fixtures and versioned conformance. No v0.6 primitive was added to the unpublished v0.5.1 candidate.
+
+### Compatibility
+
+Existing v0.5.0 adopter records remain valid. The IRI major remains `v1`. The stricter Determination and context checks codify the published contract rather than introduce a new vocabulary. Accepted v0.6 directions require a later minor release and explicit migration notes before they affect conformance.
 
 All notable changes to the Obligation-First specification.
 

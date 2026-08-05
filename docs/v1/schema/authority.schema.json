@@ -2,9 +2,9 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://obligationfirst.org/v1/schema/authority.schema.json",
   "title": "Authority",
-  "description": "An entity with interpretive or regulatory power over Instruments and Proceedings. Bound to gist:Organization (or subtype). Every Authority's right to act traces to an Instrument via authority_basis.",
+  "description": "An organization with an evidenced legal, administrative, adjudicative, enforcement, or standards role. v0.6 does not infer authority from dataset ownership and does not require a fabricated authority basis when the source is silent.",
   "type": "object",
-  "required": ["@type", "@id", "organization", "authority_basis", "jurisdiction"],
+  "required": ["@type", "@id", "organization"],
   "properties": {
     "@context": { "type": ["string", "array", "object"] },
     "@id": { "type": "string", "format": "uri" },
@@ -13,56 +13,38 @@
       "type": "object",
       "required": ["@type", "name"],
       "properties": {
-        "@type": {
-          "type": "string",
-          "description": "A gist:Organization or subtype IRI (e.g., gist:GovernmentOrganization). gist defines no Court class; courts and tribunals use gist:GovernmentOrganization (an adopter MAY subtype it locally).",
-          "examples": [
-            "gist:Organization",
-            "gist:GovernmentOrganization"
-          ]
-        },
+        "@type": { "enum": ["gist:Organization", "gist:GovernmentOrganization"] },
         "name": { "type": "string", "minLength": 1 }
-      }
+      },
+      "additionalProperties": true
     },
     "authority_basis": {
-      "type": "object",
-      "required": ["kind", "instrument_ref"],
-      "properties": {
-        "kind": {
-          "type": "string",
-          "enum": ["statutory", "regulatory", "contractual", "corporate", "judicial"],
-          "description": "Closed vocabulary describing why the Authority has authority. Statutory = granted by enacted law. Regulatory = delegated by an administrative process. Contractual = granted by agreement. Corporate = granted by bylaws or charter. Judicial = inherent to a court or tribunal."
-        },
-        "instrument_ref": {
-          "type": "string",
-          "format": "uri",
-          "description": "IRI of the Instrument that grants this Authority's right to act."
+      "anyOf": [
+        { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/authorityBasis" },
+        {
+          "type": "array",
+          "items": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/authorityBasis" },
+          "minItems": 1
         }
-      }
+      ]
     },
-    "jurisdiction": {
-      "type": "object",
-      "required": ["@type", "ref"],
-      "properties": {
-        "@type": { "const": "gist:Jurisdiction" },
-        "ref": {
-          "type": "string",
-          "description": "Jurisdiction code: lowercase form of an ISO 3166-1 alpha-2 country/supranational code or an ISO 3166-2 subdivision code (also covers ELI member-state codes, which are ISO 3166-1).",
-          "examples": ["us-co", "ca-bc", "eu", "us"]
-        }
-      }
-    },
-    "sameAs": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "owl:sameAs crosswalk IRIs: external records identical to this one (e.g. a live adopter export or a Wikidata QID, per the crosswalk matrix in PROTOCOL.md)."
-    },
-    "exactMatch": {
-      "type": "array",
-      "items": { "type": "string", "format": "uri" },
-      "description": "skos:exactMatch crosswalk IRIs: external concepts interchangeably usable with this record. Weaker than owl:sameAs; preferred for cross-scheme concept joins."
-    },
-    "notes": { "type": "string", "description": "Free-text editorial or provenance notes about this record." }
+    "jurisdiction": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/jurisdiction" },
+    "territorial_scope": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/stringSet" },
+    "institutional_scope": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/stringSet" },
+    "roles": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/stringSet" },
+    "sameAs": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "exactMatch": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "describesSameEntityAs": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+    "source": { "type": "string", "format": "uri" },
+    "source_citation": { "type": "string" },
+    "source_locator": { "type": "string" },
+    "source_version": { "type": "string" },
+    "language": { "type": "string" },
+    "evidence_type": { "type": "string" },
+    "verified": { "type": "string", "format": "date" },
+    "retrieved": { "type": "string", "format": "date" },
+    "asserted_by_adopter": { "type": "string", "format": "uri" },
+    "notes": { "type": "string" }
   },
   "additionalProperties": true
 }

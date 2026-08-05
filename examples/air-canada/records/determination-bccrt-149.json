@@ -4,20 +4,22 @@
   "@id": "https://obligationfirst.org/v1/examples/air-canada/determination/moffatt-bccrt-149",
   "neutral_citation": "2024 BCCRT 149",
   "issued_date": "2024-02-14",
-  "issuedBy": "https://obligationfirst.org/v1/examples/air-canada/authority/bccrt",
+  "issuedBy": ["https://obligationfirst.org/v1/examples/air-canada/authority/bccrt"],
   "decides": [
     "https://obligationfirst.org/v1/examples/air-canada/allegation/moffatt-misrep",
     "https://obligationfirst.org/v1/examples/air-canada/allegation/moffatt-reliance"
   ],
   "disposition": "confirmed",
+  "recognizes": ["https://obligationfirst.org/v1/examples/air-canada/obligation/reasonable-care-customer-representations"],
   "remedy": {
+    "obligation": ["https://obligationfirst.org/v1/examples/air-canada/obligation/reasonable-care-customer-representations"],
     "monetary_award": 650.88,
     "currency": "CAD",
     "notes": "Plus interest and fees."
   },
   "notes": "Tribunal treated the chatbot answer as part of Air Canada's customer-facing service rather than a separate legal actor. Air Canada was held liable for negligent misrepresentation.",
   "source": "https://canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.html",
-  "sameAs": [
+  "describesSameEntityAs": [
     "https://aiincidentlaw.org/determination/aiel-2024-001-determination.json"
   ]
 }

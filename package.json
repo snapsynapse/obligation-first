@@ -1,6 +1,6 @@
 {
   "name": "obligation-first",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist.",
   "homepage": "https://obligationfirst.org/",
   "repository": {
@@ -19,8 +19,11 @@
     "validate:adopter-kit": "node scripts/validate-adopter-records.mjs",
     "validate:adopter-kit-writers": "node scripts/test-adopter-kit-writers.mjs",
     "test:hardening": "node scripts/test-hardening-regressions.mjs",
+    "test:migration": "node scripts/test-v0.6-migration.mjs",
     "report:anchors": "node scripts/report-anchor-graph.mjs",
     "report:anchors:implementations": "node scripts/report-anchor-graph.mjs --require-all-targets ../every-ai-law/docs/api/v1/of ../publedge/docs/api/v1/of ../ai-incident-law/api/v1/of",
+    "verify:federation": "node scripts/verify-federation.mjs",
+    "probe:published": "node scripts/probe-public-endpoints.mjs",
     "validate:naming-profile": "node scripts/validate-naming-profile.mjs",
     "validate:published": "node scripts/validate-published-artifacts.mjs",
     "validate:contracts": "node scripts/validate-repo-contracts.mjs",
@@ -28,7 +31,7 @@
     "validate:lockfile": "npm ci --dry-run",
     "hashes:update": "node scripts/validate-hashes.mjs --update",
     "release:package": "node scripts/make-release.mjs",
-    "test": "npm run validate:lockfile && npm run validate && npm run validate:graphs && npm run validate:adopter-kit && npm run validate:adopter-kit-writers && npm run test:hardening && npm run report:anchors && npm run validate:naming-profile && npm run validate:published && npm run validate:contracts && npm run validate:hashes"
+    "test": "npm run validate:lockfile && npm run validate && npm run validate:graphs && npm run validate:adopter-kit && npm run validate:adopter-kit-writers && npm run test:hardening && npm run test:migration && npm run report:anchors && npm run validate:naming-profile && npm run validate:published && npm run validate:contracts && npm run validate:hashes"
   },
   "dependencies": {
     "ajv": "^8.17.1",

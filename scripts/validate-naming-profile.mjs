@@ -25,6 +25,7 @@ import { parseKeyValueManifest } from "./lib/manifest.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
 const schemaPath = path.join(repoRoot, "schema/naming-profile.schema.json");
+const commonSchemaPath = path.join(repoRoot, "schema/common.schema.json");
 const profilesDir = path.join(repoRoot, "examples/naming-profiles");
 
 const REQUIRED_MANIFEST_KEYS = [
@@ -127,6 +128,8 @@ export async function validateNamingProfiles() {
   const ajv = new Ajv2020({ strict: false, allErrors: true });
   addFormats(ajv);
 
+  const commonSchema = JSON.parse(await readFile(commonSchemaPath, "utf8"));
+  ajv.addSchema(commonSchema, commonSchema.$id);
   const schema = JSON.parse(await readFile(schemaPath, "utf8"));
   let validate;
   try {

@@ -10,8 +10,10 @@
   "status": "proposed",
   "enforcement_status": "unsignaled",
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "eu"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "eu"
+    ]
   },
   "hasTerm": [
     "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/guidelines-4-2-1-para-69",

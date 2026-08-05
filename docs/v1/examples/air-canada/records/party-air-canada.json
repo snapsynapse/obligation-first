@@ -1,0 +1,12 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "@type": "of:Party",
+  "@id": "https://obligationfirst.org/v1/examples/air-canada/party/air-canada",
+  "name": "Air Canada",
+  "party_kind": "organization",
+  "entity": {
+    "@type": "gist:Organization",
+    "name": "Air Canada"
+  },
+  "roles": ["respondent", "deployer"]
+}

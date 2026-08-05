@@ -6,15 +6,12 @@
     "@type": "gist:GovernmentOrganization",
     "name": "British Columbia Civil Resolution Tribunal"
   },
-  "authority_basis": {
-    "kind": "judicial",
-    "instrument_ref": "https://obligationfirst.org/v1/examples/air-canada/instrument/bccrt-act"
-  },
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "ca-bc"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": ["ca-bc"],
+    "institutional_scope": ["British Columbia Civil Resolution Tribunal"]
   },
-  "sameAs": [
+  "describesSameEntityAs": [
     "https://aiincidentlaw.org/authority/british-columbia-civil-resolution-tribunal.json"
   ]
 }

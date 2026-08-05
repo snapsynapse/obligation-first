@@ -1,0 +1,11 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "@type": "of:Requirement",
+  "@id": "https://example.com/obligation/legacy-transparency",
+  "id": "legacy-transparency",
+  "title": "Legacy category-shaped transparency record",
+  "created_by": "https://example.com/term/article-1",
+  "deprecated": true,
+  "everyailaw_replaced_by": "https://example.com/category/transparency",
+  "notes": "Compatibility identifier only."
+}

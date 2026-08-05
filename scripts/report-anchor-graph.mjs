@@ -66,7 +66,7 @@ function hostOf(id) {
 }
 
 function expectedAnchorType(record) {
-  return record?.["@type"] === "of:Term"
+  return isType(record, "of:Term")
     ? "of:Term"
     : ["of:Obligation", "of:ObligationCategory"];
 }

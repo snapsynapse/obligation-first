@@ -1,6 +1,6 @@
 # Design note: IRI federation and identifier crosswalks
 
-Status: Accepted 2026-06-02. Implementation in progress (this note plus PROTOCOL amendments land first; schema, profile format, validator, handoff reconciliation, and example realignment follow).
+Status: Accepted 2026-06-02. The federation decision remains current. Its jurisdiction model was refined by v0.6 on 2026-08-04 from a geographic code field to evidence-backed legal competence.
 
 Scope: how Obligation-First record `@id` values relate to each other and to external standard identifiers across adopters. This is a standards-level decision for the Obligation-First spec. It is additive and non-breaking to v0.1 / v0.2 adopter records.
 
@@ -26,7 +26,7 @@ Obligation-First is a public standard, optimized for adoption ease even at the s
 
 4. Each adopter publishes a naming profile. At a `.well-known` location, using VoID `uriSpace` and `uriRegexPattern` plus an RFC 6570 URI Template and a declared list of supplied crosswalks. The profile is adopter-owned and adopter-published; Obligation-First consumes and validates against it, and never prescribes it. This is deliberate: the handoffs failed precisely because they were a spec-held prescription that drifted from adopter reality. ELI is the proof the pattern works: every EU member state publishes its own ELI URI template and a registry collects them. We borrow ELI's governance pattern, not just its identifiers.
 
-5. Jurisdiction is a typed ISO 3166-2 field, never a slug component. All three adopters already carry `jurisdiction` as `us-co`, `us-ut`, `ca-bc` in a separate field. The examples and handoffs are the outlier that jammed it into the slug. Defaulting to ISO 3166 dissolves the `co` vs `us-co` vs `colorado` argument.
+5. Jurisdiction is separate from the slug. The v0.3 decision used typed ISO 3166 identifiers. v0.6 refines that shape to `of:Jurisdiction`, a legal-competence object with `territorial_scope` and `institutional_scope`. ISO 3166 remains preferred for territories it describes, but is not treated as a universal legal-order vocabulary. A record omits jurisdiction when the source does not support it.
 
 ## Crosswalk matrix (recommended default profile)
 
@@ -36,7 +36,7 @@ Cross-cutting (every entity):
 - `@id` resolves and is permanent (301 on rename). MUST, Level 1.
 - `@type`, `@context`. MUST, Level 1.
 - `.well-known` naming profile published. MUST to be "bound," Level 2.
-- `jurisdiction` as ISO 3166-2 / 3166-1. MUST, Level 2.
+- `jurisdiction` as typed legal competence when supported by the source. MUST when known at Level 2; omit rather than guess.
 
 | Entity | Crosswalk | Req | Condition |
 |---|---|---|---|
@@ -62,7 +62,7 @@ The EuroVoc row is the deliberate bridge for the obligation-abstraction question
 
 ## Conformance level changes
 
-- Level 2 additionally requires: a published `.well-known` naming profile, and `jurisdiction` as an ISO 3166 code. This tightens Level 2 going forward. It is a pre-freeze policy change recorded in the CHANGELOG, not a record-validation break (records still validate; `additionalProperties` already admits the crosswalk fields).
+- Level 2 additionally requires a published `.well-known` naming profile. v0.6 also requires jurisdiction to use the legal-competence shape when the source supports one. This is a pre-freeze policy refinement recorded in the CHANGELOG; the legacy embedded `gist:Jurisdiction` plus `ref` shape remains accepted for one migration window.
 - Level 3 is redefined: every crosswalk the adopter's naming profile declares is present on every applicable record, with the matrix above as the recommended baseline.
 
 ## Rationale and the tradeoffs we accepted
@@ -84,7 +84,7 @@ Three previously-open items were resolved after a full surface assessment confir
 
 - Example namespace (was #18): worked-example records use a neutral `obligationfirst.org` namespace, never an adopter host. Real-world identity rides in crosswalks. This makes examples self-contained and honest, and removes the false NOTICE claim that records are "reproduced from the EveryAILaw corpus."
 - `.json` suffix (was #19): the canonical `@id` is suffixless; representations are reached by content negotiation. Adopters that serve `.json` declare that in their own `.well-known` profile. Example `@id` values are suffixless; crosswalk references to adopters use the adopter's served form (with `.json`).
-- Crosswalk-field scope: the crosswalk properties (`jurisdiction` as a typed `gist:Jurisdiction` with an ISO 3166 `ref`, `eli_uri`, `ecli_uri`, `neutral_citation`, `urn_lex`, `akn_uri`, `sameAs`, `exactMatch`) are defined as first-class terms in `schema/context.jsonld` and populated on example records per the matrix.
+- Crosswalk-field scope: the crosswalk properties (`jurisdiction`, `eli_uri`, `ecli_uri`, `neutral_citation`, `urn_lex`, `akn_uri`, `sameAs`, `exactMatch`) are defined as first-class terms in `schema/context.jsonld` and populated on example records per the matrix. In v0.6, jurisdiction is an `of:Jurisdiction` legal-competence object.
 
 ### Worked-example record convention (v0.3.1)
 
@@ -92,7 +92,7 @@ Every worked-example record MUST follow this shape:
 
 - `@context`: `https://obligationfirst.org/v1/context.jsonld` (a string; an array only if the example genuinely needs a repo-local extension). Never `w3id.org/of/v1/` in a record — that is the vocabulary namespace, not the context document.
 - `@id`: `https://obligationfirst.org/v1/examples/<example-slug>/<entity-type>/<local-id>`, suffixless. `<entity-type>` is the lowercase role (`authority`, `instrument`, `term`, `obligation`, `proceeding`, `allegation`, `determination`). `<local-id>` is an opaque, lowercase-kebab descriptor with NO jurisdiction code in it (drop `us-`, `us-co-`, `eu-`, `ca-bc-`; keep meaningful descriptors like `sb24-205`, `art-50-2`, `attorney-general`, `bccrt`).
-- `jurisdiction`: where the entity has one, a typed `{ "@type": "gist:Jurisdiction", "ref": "<ISO 3166-1 or 3166-2>" }` (e.g. `us-co`, `us-ut`, `ca-bc`, `eu`). Never encode jurisdiction in the slug.
+- `jurisdiction`: where the source supports one, a typed `{ "@type": "of:Jurisdiction", "territorial_scope": ["<territory identifier>"] }`, optionally with `institutional_scope`. Never encode jurisdiction in the slug, and never fabricate a geographic code for an institutional legal order.
 - Internal cross-references (`issuedBy`, `hasTerm`, `parent_instrument`, `created_by`, `anchors`, `decides`, `hasAllegation`, `hasDetermination`, `target_instrument`, `triggers_on_violation_of`, `enforcement_authority`, `instrument_ref`): repoint to the new neutral `@id` values within the same example, so the record graph stays internally consistent.
 - Crosswalks to the real world, per the matrix: where the entity corresponds to a real adopter entity, add `sameAs: ["<real adopter IRI, with the adopter's served `.json`>"]`. Where a standard legal identifier exists, add it as a typed field (`eli_uri` for the AI Act, `neutral_citation` or `ecli_uri` for cases, `akn_uri` for provisions, `exactMatch` to a EuroVoc concept for an obligation subject). Do not invent standard identifiers; only add ones that genuinely exist.
 - A broken cross-adopter `anchors` that pointed at a non-existent adopter entity is repointed to the real entity the live adopter actually publishes (verified against the live export).

@@ -2,10 +2,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://obligationfirst.org/v1/schema/obligation.schema.json",
   "title": "Obligation",
-  "description": "A duty, prohibition, permission, or reparation created by a Term. The deontic quartet (Requirement / Restriction / Permission / Reparation) aligns with LegalRuleML 1.0 §5.3 deontic operators. Reparation's gist binding (v0.2) is the layered pattern gist:Requirement + gist:Intention (+ gist:Event when actuated); see reference/crosswalks/gist.md.",
+  "description": "A source-grounded normative position. The LegalRuleML-aligned quartet remains available, while of:Obligation explicitly represents a concrete duty whose deontic operator has not yet been verified. v0.6 forbids silently converting unknown classification into of:Requirement.",
   "type": "object",
-  "required": ["@type", "@id", "title", "created_by"],
+  "required": ["@type", "@id", "title"],
   "oneOf": [
+    { "$ref": "#/$defs/UnclassifiedObligation" },
     { "$ref": "#/$defs/Requirement" },
     { "$ref": "#/$defs/Restriction" },
     { "$ref": "#/$defs/Permission" },
@@ -14,126 +15,120 @@
   "$defs": {
     "BaseObligation": {
       "type": "object",
-      "required": ["@type", "@id", "title", "created_by"],
+      "required": ["@type", "@id", "title"],
       "properties": {
         "@context": { "type": ["string", "array", "object"] },
         "@id": { "type": "string", "format": "uri" },
         "title": { "type": "string", "minLength": 1 },
-        "content": { "type": "string", "description": "Plain-language description of the deontic content." },
-        "created_by": {
-          "type": "string",
-          "format": "uri",
-          "description": "IRI of the of:Term that creates this Obligation."
-        },
-        "duty_holder_type": {
-          "type": "string",
-          "description": "Open vocabulary for who bears the duty (developer, deployer, processor, controller, provider, etc.). Stays repo-local in v0.1."
-        },
-        "trigger": { "type": "string", "description": "Plain-language trigger condition. Stays repo-local in v0.1." },
-        "anchors": {
+        "content": { "type": "string" },
+        "created_by": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+        "recognized_by": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+        "imposed_by": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+        "duty_holder_type": { "type": "string", "description": "Legacy v0.5 string fallback. New records should use duty_holders, actor_roles, and applicability." },
+        "duty_holders": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+        "duty_holder_roles": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet", "description": "Controlled role IRIs for duty holders when the obligation applies to a role rather than a known concrete Party." },
+        "owed_to": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+        "owed_to_roles": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet", "description": "Controlled beneficiary-role IRIs, kept separate from concrete Party identity." },
+        "actor_roles": {
           "type": "array",
-          "items": { "type": "string", "format": "uri" },
-          "description": "IRIs of of:Obligation or of:ObligationCategory records this Obligation interprets, references, re-allocates from, or concerns. Use a concrete Obligation when a specific creating Term is identified; use an ObligationCategory when the crosswalk is only to the duty concept generally."
+          "items": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/actorRole" },
+          "minItems": 1
         },
+        "applicability": {
+          "anyOf": [
+            { "type": "string", "minLength": 1 },
+            { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1 },
+            { "type": "object", "minProperties": 1 },
+            { "type": "array", "items": { "type": "object", "minProperties": 1 }, "minItems": 1 }
+          ]
+        },
+        "trigger": { "type": "string", "description": "Legacy v0.5 trigger summary." },
+        "grounds": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+        "triggers": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+        "isCategorizedBy": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+        "binding_basis": {
+          "anyOf": [
+            { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/bindingBasis" },
+            { "type": "array", "items": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/bindingBasis" }, "minItems": 1 }
+          ]
+        },
+        "anchors": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+        "violationOf": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+        "lifecycle_status": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/lifecycleStatus" },
+        "operative_status": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/operativeStatus" },
+        "enforcement_status": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/enforcementStatus" },
+        "effective": { "type": "string", "format": "date" },
+        "full_enforcement": { "type": "string", "format": "date" },
+        "sunset": { "type": "string", "format": "date" },
+        "computed_as_of": { "type": "string", "format": "date" },
+        "jurisdiction": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/jurisdiction" },
+        "territorial_scope": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/stringSet" },
+        "institutional_scope": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/stringSet" },
+        "source": { "type": "string", "format": "uri" },
+        "source_citation": { "type": "string" },
+        "source_locator": { "type": "string" },
+        "source_version": { "type": "string" },
+        "language": { "type": "string" },
+        "evidence_type": { "type": "string" },
+        "verified": { "type": "string", "format": "date" },
+        "retrieved": { "type": "string", "format": "date" },
+        "asserted_by_adopter": { "type": "string", "format": "uri" },
         "executableEncoding": {
           "anyOf": [
             { "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json" },
-            {
-              "type": "array",
-              "items": { "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json" },
-              "minItems": 1
-            }
-          ],
-          "description": "Optional pointer to one or more executable encodings of this Obligation's logic. A single object or a non-empty array — an Obligation MAY carry multiple encodings, one per engine (PROTOCOL.md 'ExecutableEncoding shape')."
+            { "type": "array", "items": { "$ref": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json" }, "minItems": 1 }
+          ]
         },
-        "violationOf": {
-          "type": "string",
-          "format": "uri",
-          "description": "IRI of the primary of:Obligation whose violation this record relates to. Symmetric/inverse predicate of triggers_on_violation_of (added in v0.2): adopters MAY assert the violation relation from either side; if both directions are present they must be consistent. Lets SPARQL consumers traverse the relation from the primary-Obligation side without walking the trigger field."
-        },
-        "jurisdiction": {
-          "type": "object",
-          "required": ["@type", "ref"],
-          "properties": {
-            "@type": { "const": "gist:Jurisdiction" },
-            "ref": {
-              "type": "string",
-              "description": "Jurisdiction code: lowercase form of an ISO 3166-1 alpha-2 country/supranational code or an ISO 3166-2 subdivision code.",
-              "examples": ["us-co", "ca-bc", "eu", "us"]
-            }
-          }
-        },
-        "sameAs": {
-          "type": "array",
-          "items": { "type": "string", "format": "uri" },
-          "description": "owl:sameAs crosswalk IRIs: external records identical to this one (e.g. a live adopter export, a Wikidata entity)."
-        },
-        "exactMatch": {
-          "type": "array",
-          "items": { "type": "string", "format": "uri" },
-          "description": "skos:exactMatch crosswalk IRIs: external concepts interchangeably usable with this record (e.g. a EuroVoc concept). Weaker than owl:sameAs; preferred for cross-scheme concept joins."
-        }
-      }
+        "sameAs": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+        "exactMatch": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet", "description": "Legacy concept crosswalk. Use isCategorizedBy for category membership." },
+        "describesSameEntityAs": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+        "notes": { "type": "string" }
+      },
+      "anyOf": [
+        { "required": ["created_by"] },
+        { "required": ["recognized_by"] },
+        { "required": ["imposed_by"] }
+      ],
+      "additionalProperties": true
+    },
+    "UnclassifiedObligation": {
+      "allOf": [
+        { "$ref": "#/$defs/BaseObligation" },
+        { "properties": { "@type": { "const": "of:Obligation" } } }
+      ],
+      "description": "A concrete source-grounded normative position whose deontic operator is not yet verified. This is an explicit evidence state, not a Requirement default."
     },
     "Requirement": {
       "allOf": [
         { "$ref": "#/$defs/BaseObligation" },
-        {
-          "properties": {
-            "@type": { "const": "of:Requirement" }
-          }
-        }
-      ],
-      "description": "A primary duty to act. Aligned with LegalRuleML lrml:Obligation and gist:Requirement."
+        { "properties": { "@type": { "const": "of:Requirement" } } }
+      ]
     },
     "Restriction": {
       "allOf": [
         { "$ref": "#/$defs/BaseObligation" },
-        {
-          "properties": {
-            "@type": { "const": "of:Restriction" }
-          }
-        }
-      ],
-      "description": "A primary duty to refrain. Aligned with LegalRuleML lrml:Prohibition and gist:Restriction."
+        { "properties": { "@type": { "const": "of:Restriction" } } }
+      ]
     },
     "Permission": {
       "allOf": [
         { "$ref": "#/$defs/BaseObligation" },
-        {
-          "properties": {
-            "@type": { "const": "of:Permission" }
-          }
-        }
-      ],
-      "description": "An authorized capacity to act. Aligned with LegalRuleML lrml:Permission and gist:Permission."
+        { "properties": { "@type": { "const": "of:Permission" } } }
+      ]
     },
     "Reparation": {
       "allOf": [
         { "$ref": "#/$defs/BaseObligation" },
         {
-          "type": "object",
-          "required": ["@type", "triggers_on_violation_of"],
+          "required": ["triggers_on_violation_of"],
           "properties": {
             "@type": { "const": "of:Reparation" },
-            "triggers_on_violation_of": {
-              "type": "string",
-              "format": "uri",
-              "description": "IRI of the primary of:Obligation whose violation triggers this Reparation."
-            },
-            "remedy_kind": {
-              "type": "string",
-              "description": "Open vocabulary: civil_penalty, criminal_penalty, injunction, disclosure, restitution, etc."
-            },
-            "enforcement_authority": {
-              "type": "string",
-              "format": "uri",
-              "description": "IRI of the of:Authority empowered to enforce."
-            }
+            "triggers_on_violation_of": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" },
+            "remedy_kind": { "type": "string" },
+            "enforcement_authority": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/iriSet" }
           }
         }
-      ],
-      "description": "A secondary duty triggered by violation of a primary obligation. Aligned with LegalRuleML lrml:Reparation. gist binding (v0.2, per Semantic Arts feedback 2026-05-26): the declared duty is gist:Requirement; the legislative intent to repair (compensation / restitution / deterrence) attaches as gist:Intention to the creating Term; the actuated reparation, when it occurs, is recorded via the proceeding strand and conceptually maps to gist:Event. of:Reparation is preserved as a distinct of: subclass to keep LegalRuleML 1:1 alignment and SPARQL queryability. See reference/crosswalks/gist.md."
+      ]
     }
   }
 }

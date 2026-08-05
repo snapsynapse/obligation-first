@@ -10,8 +10,10 @@
   "status": "proposed",
   "enforcement_status": "unsignaled",
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "eu"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "eu"
+    ]
   },
   "hasTerm": [],
   "notes": "Forthcoming Code of Practice referenced in the draft Article 50 Guidelines. Co-regulatory instrument: adherence to an adopted Code creates a presumption of compliance with Articles 50(2) and (4). Modeled as a separate Instrument; when Terms are available, they will anchor to the relevant Article Terms (art-50-2, art-50-4) using the same anchors pattern as the Guidelines. issuedBy set to the Commission authority pending confirmation of the precise issuing body. Teaching construct: EveryAILaw has not minted this forthcoming Code, so this record carries no sameAs."

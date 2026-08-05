@@ -15,29 +15,20 @@
     },
     "appliesTo": {
       "type": "string",
-      "description": "The Obligation-First version range this profile is written against. Preferred form is an explicit range: 'obligation-first >=0.5.0 <0.6.0'. The pinned-minor form 'obligation-first 0.4.x' remains valid and means >=0.4.0 <0.5.0. Declare a range wide enough to cover additive spec releases the profile does not depend on; declare a floor at the version that first shipped an entity type or field the profile uses. No pattern is enforced here — the grammar is checked by scripts/check-adopter-of-version.mjs, which adopters run as `check:of`."
+      "description": "The Obligation-First version range this profile is written against. A profile using v0.6 vocabulary should declare a floor of 0.6.0, for example 'obligation-first >=0.6.0 <0.7.0'. The pinned-minor form remains accepted for legacy profiles. No pattern is enforced here; the grammar is checked by scripts/check-adopter-of-version.mjs."
     },
     "adopter": {
       "type": "string",
       "format": "uri",
       "description": "Canonical base URL of the adopter that owns and publishes this profile."
     },
-    "jurisdiction": {
-      "type": "object",
-      "description": "Optional default jurisdiction for the adopter: the lowercase form of an ISO 3166-1 alpha-2 code (national/supranational) or ISO 3166-2 code (subdivision), e.g. 'us-ut', 'eu'. Per-record jurisdiction on the entity always wins; this is a profile-level default only.",
-      "required": ["@type", "ref"],
-      "properties": {
-        "@type": { "const": "gist:Jurisdiction" },
-        "ref": { "type": "string" }
-      },
-      "additionalProperties": false
-    },
+    "jurisdiction": { "$ref": "https://obligationfirst.org/v1/schema/common.schema.json#/$defs/jurisdiction" },
     "entities": {
       "type": "object",
       "description": "One entry per Obligation-First entity type the adopter mints IRIs for. Key is the unprefixed entity-type name.",
       "minProperties": 1,
       "propertyNames": {
-        "enum": ["Authority", "Instrument", "Term", "Obligation", "ObligationCategory", "Proceeding", "Allegation", "Determination"]
+        "enum": ["Authority", "Instrument", "Term", "Obligation", "ObligationCategory", "Party", "Jurisdiction", "Proceeding", "Allegation", "Determination", "Tombstone"]
       },
       "additionalProperties": { "$ref": "#/$defs/entityProfile" }
     }

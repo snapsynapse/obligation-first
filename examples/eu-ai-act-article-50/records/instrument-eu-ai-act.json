@@ -12,8 +12,10 @@
   "status": "in-force",
   "enforcement_status": "routine",
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "eu"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "eu"
+    ]
   },
   "hasTerm": [
     "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-1",

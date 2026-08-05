@@ -13,6 +13,10 @@ import path from "node:path";
 import { createHash } from "node:crypto";
 import { checkVersions } from "./sync-version.mjs";
 import { parseKeyValueManifest } from "./lib/manifest.mjs";
+import {
+  coreEndpointInventory,
+  releaseArtifactInventory,
+} from "./lib/contract-inventory.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
@@ -98,18 +102,6 @@ const ALLOWED_WWW_HOSTS = new Set([
   "www.linkedin.com",
   "www.apache.org",
 ]);
-
-const CORE_ENDPOINTS = [
-  "https://obligationfirst.org/v1/context.jsonld",
-  "https://obligationfirst.org/v1/schema/authority.schema.json",
-  "https://obligationfirst.org/v1/schema/instrument.schema.json",
-  "https://obligationfirst.org/v1/schema/term.schema.json",
-  "https://obligationfirst.org/v1/schema/obligation.schema.json",
-  "https://obligationfirst.org/v1/schema/proceeding.schema.json",
-  "https://obligationfirst.org/v1/schema/allegation.schema.json",
-  "https://obligationfirst.org/v1/schema/determination.schema.json",
-  "https://obligationfirst.org/v1/schema/executable-encoding.schema.json",
-];
 
 const ASSISTANT_GUIDE_ENDPOINT = "https://obligationfirst.org/.well-known/assistant-guide.txt";
 const ASSISTANT_GUIDE_MANIFEST_ENDPOINT = "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt";
@@ -239,6 +231,7 @@ function endpointVisible(text, endpoint) {
 }
 
 async function validateEndpointInventory(failures) {
+  const coreEndpoints = await coreEndpointInventory(repoRoot);
   const agents = JSON.parse(await readFile(path.join(repoRoot, "docs/agents.json"), "utf8"));
   const agentEndpoints = [
     agents.endpoints.context,
@@ -248,7 +241,7 @@ async function validateEndpointInventory(failures) {
     ...Object.values(agents.endpoints.schemas || {}),
   ];
 
-  for (const endpoint of CORE_ENDPOINTS) {
+  for (const endpoint of coreEndpoints) {
     if (!agentEndpoints.includes(endpoint)) {
       failures.push(`docs/agents.json: missing core endpoint ${endpoint}`);
     }
@@ -263,7 +256,7 @@ async function validateEndpointInventory(failures) {
 
   for (const rel of docsToCheck) {
     const text = await readFile(path.join(repoRoot, rel), "utf8");
-    for (const endpoint of CORE_ENDPOINTS) {
+    for (const endpoint of coreEndpoints) {
       if (!endpointVisible(text, endpoint)) {
         failures.push(`${rel}: missing core endpoint inventory entry for ${endpoint}`);
       }
@@ -413,12 +406,109 @@ export async function validateAssistantGuide(failures, root = repoRoot) {
   }
 }
 
-export async function validateReleasePackage(failures, root = repoRoot) {
-  const rel = `docs/releases/v${RELEASE_VERSION}`;
+function releaseCompatibilityKey(version) {
+  return `v${version.replaceAll(".", "_")}_adopter_records`;
+}
+
+export function validateReleaseManifestContract(
+  failures,
+  { manifest, expectedArtifacts, shaPaths, releaseNotes, version },
+) {
+  const rel = `docs/releases/v${version}`;
+  const artifacts = Array.isArray(manifest.artifacts) ? manifest.artifacts : [];
+  const expectedByPath = new Map(expectedArtifacts.map((artifact) => [artifact.path, artifact]));
+  const seenPaths = new Set();
+  const seenUrls = new Set();
+
+  if (manifest.version !== version) {
+    failures.push(`${rel}/manifest.json: expected version ${version}`);
+  }
+  if (manifest.canonical_url !== `https://obligationfirst.org/releases/v${version}/`) {
+    failures.push(`${rel}/manifest.json: canonical_url must identify the current release directory`);
+  }
+  if (!manifest.summary || /\bTODO\b/i.test(manifest.summary)) {
+    failures.push(`${rel}/manifest.json: summary must be final and contain no TODO placeholder`);
+  }
+
+  for (const artifact of artifacts) {
+    if (!artifact || typeof artifact.path !== "string") {
+      failures.push(`${rel}/manifest.json: every artifact needs a string path`);
+      continue;
+    }
+    if (seenPaths.has(artifact.path)) {
+      failures.push(`${rel}/manifest.json: duplicate artifact path ${artifact.path}`);
+    }
+    seenPaths.add(artifact.path);
+    if (typeof artifact.url !== "string") {
+      failures.push(`${rel}/manifest.json: ${artifact.path} needs a canonical URL`);
+    } else if (seenUrls.has(artifact.url)) {
+      failures.push(`${rel}/manifest.json: duplicate artifact URL ${artifact.url}`);
+    } else {
+      seenUrls.add(artifact.url);
+    }
+
+    const expected = expectedByPath.get(artifact.path);
+    if (!expected) {
+      failures.push(`${rel}/manifest.json: unexpected artifact ${artifact.path}`);
+    } else if (artifact.url !== expected.url) {
+      failures.push(`${rel}/manifest.json: noncanonical URL for ${artifact.path}; expected ${expected.url}`);
+    }
+  }
+
+  for (const expected of expectedArtifacts) {
+    if (!seenPaths.has(expected.path)) {
+      failures.push(`${rel}/manifest.json: missing required artifact ${expected.path}`);
+    }
+  }
+  for (const shaPath of shaPaths) {
+    if (!seenPaths.has(shaPath)) {
+      failures.push(`${rel}/sha256.txt: orphan line for ${shaPath} - not listed in manifest.json artifacts`);
+    }
+  }
+
+  const compatibility = manifest.compatibility && typeof manifest.compatibility === "object"
+    ? manifest.compatibility
+    : {};
+  const [major, minor] = version.split(".").map(Number);
+  const targetMinor = `v${major}.${minor}`;
+  const currentKey = releaseCompatibilityKey(version);
+  const expectedCurrent = `native ${targetMinor} conformance after schema-and-graph validation`;
+  if (compatibility.iri_major !== "v1") {
+    failures.push(`${rel}/manifest.json: compatibility.iri_major must remain v1`);
+  }
+  if (compatibility[currentKey] !== expectedCurrent) {
+    failures.push(`${rel}/manifest.json: compatibility.${currentKey} must be "${expectedCurrent}"`);
+  }
+
+  const legacyEntries = Object.entries(compatibility)
+    .filter(([key]) => /^v\d+_\d+(?:_\d+)?_adopter_records$/.test(key) && key !== currentKey);
+  if (minor > 0 && legacyEntries.length === 0) {
+    failures.push(`${rel}/manifest.json: compatibility must describe the legacy-record migration window`);
+  }
+  for (const [key, value] of legacyEntries) {
+    const text = String(value);
+    if (
+      !text.includes(`schema-valid during the ${targetMinor} migration window`)
+      || !text.includes(`migrate for ${targetMinor} conformance`)
+      || /without migration/i.test(text)
+    ) {
+      failures.push(`${rel}/manifest.json: compatibility.${key} must distinguish schema validity from ${targetMinor} conformance`);
+    }
+  }
+
+  if (releaseNotes !== undefined && /\bTODO\b/i.test(releaseNotes)) {
+    failures.push(`${rel}: release notes must contain no TODO placeholders`);
+  }
+}
+
+export async function validateReleasePackage(failures, root = repoRoot, options = {}) {
+  const version = options.version ?? RELEASE_VERSION;
+  const rel = `docs/releases/v${version}`;
   const releaseDir = path.join(root, rel);
   const manifest = JSON.parse(await readFile(path.join(releaseDir, "manifest.json"), "utf8"));
   const shaIndex = await readFile(path.join(releaseDir, "sha256.txt"), "utf8");
   const shaLines = new Map();
+  const shaPaths = [];
 
   for (const line of shaIndex.trim().split("\n")) {
     const match = line.match(/^([a-f0-9]{64})  (.+)$/);
@@ -426,12 +516,30 @@ export async function validateReleasePackage(failures, root = repoRoot) {
       failures.push(`${rel}/sha256.txt: malformed line: ${line}`);
       continue;
     }
+    if (shaLines.has(match[2])) {
+      failures.push(`${rel}/sha256.txt: duplicate line for ${match[2]}`);
+    }
     shaLines.set(match[2], match[1]);
+    shaPaths.push(match[2]);
   }
 
-  if (manifest.version !== RELEASE_VERSION) {
-    failures.push(`${rel}/manifest.json: expected version ${RELEASE_VERSION}`);
+  const expectedArtifacts = options.expectedArtifacts ?? await releaseArtifactInventory(root, version);
+  const notesArtifact = expectedArtifacts.find((artifact) => artifact.path.endsWith(`/RELEASE_NOTES-v${version}.md`));
+  let releaseNotes;
+  if (notesArtifact) {
+    try {
+      releaseNotes = await readFile(path.join(root, notesArtifact.path), "utf8");
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
+    }
   }
+  validateReleaseManifestContract(failures, {
+    manifest,
+    expectedArtifacts,
+    shaPaths,
+    releaseNotes,
+    version,
+  });
 
   for (const artifact of manifest.artifacts || []) {
     const artifactPath = path.join(root, artifact.path);
@@ -452,14 +560,6 @@ export async function validateReleasePackage(failures, root = repoRoot) {
     }
   }
 
-  // Orphans: well-formed sha256.txt lines naming files the manifest does not
-  // carry are drift (a checksum with no provenance entry).
-  const manifestPaths = new Set((manifest.artifacts || []).map((artifact) => artifact.path));
-  for (const shaPath of shaLines.keys()) {
-    if (!manifestPaths.has(shaPath)) {
-      failures.push(`${rel}/sha256.txt: orphan line for ${shaPath} — not listed in manifest.json artifacts`);
-    }
-  }
 }
 
 // Publishing surfaces (release index pages, feeds, sitemap) are generated by

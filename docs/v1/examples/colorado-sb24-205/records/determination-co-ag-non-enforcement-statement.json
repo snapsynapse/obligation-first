@@ -5,8 +5,10 @@
   "issued_date": "2025-11-30",
   "issuedBy": "https://obligationfirst.org/v1/examples/colorado-sb24-205/authority/attorney-general",
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "us-co"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "us-co"
+    ]
   },
   "decides": [],
   "disposition": "issued",

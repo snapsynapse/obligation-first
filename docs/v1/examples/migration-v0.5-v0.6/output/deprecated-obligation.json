@@ -1,0 +1,12 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "@type": "of:Tombstone",
+  "@id": "https://example.com/obligation/legacy-transparency",
+  "id": "legacy-transparency",
+  "deprecated": true,
+  "former_type": "of:Requirement",
+  "replaced_by": [
+    "https://example.com/category/transparency"
+  ],
+  "notes": "Compatibility identifier only."
+}

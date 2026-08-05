@@ -1,0 +1,6 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "@type": "of:ObligationCategory",
+  "@id": "https://example.com/category/transparency",
+  "title": "Transparency"
+}

@@ -8,8 +8,10 @@
   "status": "proposed",
   "enforcement_status": "unsignaled",
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "us-ut"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "us-ut"
+    ]
   },
   "hasTerm": [
     "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/term/oaip-jia-2026-001-1"

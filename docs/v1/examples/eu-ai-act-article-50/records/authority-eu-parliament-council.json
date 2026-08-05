@@ -11,8 +11,10 @@
     "instrument_ref": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/instrument/tfeu#art-114"
   },
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "eu"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "eu"
+    ]
   },
   "notes": "Co-legislators that adopted the Regulation under the ordinary legislative procedure. Their legislative power traces to the Treaty on the Functioning of the European Union (Article 114, internal-market harmonisation); that Treaty Instrument is referenced but not minted in this sample, consistent with the recursive authority_basis pattern. This two-authority model (Parliament and Council enact, Commission issues guidelines) is a deliberate teaching construct; EveryAILaw has not minted a separate co-legislator authority, so this record carries no sameAs."
 }

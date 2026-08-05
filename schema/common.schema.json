@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://obligationfirst.org/v1/schema/common.schema.json",
+  "title": "Obligation-First shared shapes",
+  "description": "Reusable v0.6 shapes for references, jurisdiction, lifecycle, provenance, and identity. This document is a schema dependency, not a record type.",
+  "$defs": {
+    "iri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "iriSet": {
+      "anyOf": [
+        { "$ref": "#/$defs/iri" },
+        {
+          "type": "array",
+          "items": { "$ref": "#/$defs/iri" },
+          "uniqueItems": true
+        }
+      ]
+    },
+    "stringSet": {
+      "anyOf": [
+        { "type": "string", "minLength": 1 },
+        {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      ]
+    },
+    "jurisdiction": {
+      "description": "A legal-competence scope. v0.6 uses of:Jurisdiction and separates territorial and institutional scope. The legacy gist:Jurisdiction plus ref shape remains accepted for v0.5 migration compatibility.",
+      "anyOf": [
+        { "$ref": "#/$defs/iri" },
+        {
+          "type": "object",
+          "required": ["@type"],
+          "properties": {
+            "@type": { "enum": ["of:Jurisdiction", "gist:Jurisdiction"] },
+            "name": { "type": "string", "minLength": 1 },
+            "ref": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Legacy v0.5 territorial code. New records should use territorial_scope."
+            },
+            "territorial_scope": { "$ref": "#/$defs/stringSet" },
+            "institutional_scope": { "$ref": "#/$defs/stringSet" }
+          },
+          "anyOf": [
+            { "required": ["ref"] },
+            { "required": ["territorial_scope"] },
+            { "required": ["institutional_scope"] }
+          ],
+          "additionalProperties": true
+        }
+      ]
+    },
+    "authorityBasis": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["statutory", "regulatory", "constitutional", "treaty", "charter", "contractual", "judicial", "common-law", "standards-body", "corporate"]
+        },
+        "instrument_ref": { "$ref": "#/$defs/iri" },
+        "source": { "$ref": "#/$defs/iri" },
+        "source_citation": { "type": "string", "minLength": 1 },
+        "source_locator": { "type": "string", "minLength": 1 }
+      },
+      "anyOf": [
+        { "required": ["instrument_ref"] },
+        { "required": ["source"] },
+        { "required": ["source_citation"] }
+      ],
+      "additionalProperties": true
+    },
+    "bindingBasis": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["incorporation-by-reference", "statutory-adoption", "regulatory-adoption", "contractual-adoption", "other"]
+        },
+        "instrument_ref": { "$ref": "#/$defs/iri" },
+        "source": { "$ref": "#/$defs/iri" },
+        "source_citation": { "type": "string", "minLength": 1 },
+        "source_locator": { "type": "string", "minLength": 1 },
+        "scope": { "$ref": "#/$defs/stringSet" }
+      },
+      "anyOf": [
+        { "required": ["instrument_ref"] },
+        { "required": ["source"] },
+        { "required": ["source_citation"] }
+      ],
+      "additionalProperties": true
+    },
+    "lifecycleStatus": {
+      "type": "string",
+      "enum": ["draft", "proposed", "adopted", "enacted", "in-force", "future", "inactive", "stayed", "amended", "sunset", "repealed", "superseded", "withdrawn", "unknown"]
+    },
+    "operativeStatus": {
+      "type": "string",
+      "enum": ["operative", "future", "inactive", "stayed", "repealed", "not-applicable", "unknown"]
+    },
+    "enforcementStatus": {
+      "type": "string",
+      "enum": ["routine", "constrained", "unsignaled", "enforceable", "stayed", "not-enforceable", "unknown"]
+    },
+    "normativeForce": {
+      "type": "string",
+      "enum": ["binding", "voluntary", "nonbinding", "contractual", "unknown"]
+    },
+    "actorRole": {
+      "type": "object",
+      "required": ["party", "role"],
+      "properties": {
+        "party": { "$ref": "#/$defs/iri" },
+        "role": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "remedy": {
+      "type": "object",
+      "properties": {
+        "obligation": { "$ref": "#/$defs/iriSet" },
+        "remedy_kind": { "type": "string", "minLength": 1 },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  }
+}

@@ -7,8 +7,10 @@
   "trigger": "AI system generates or manipulates image, audio or video content constituting a deep fake",
   "content": "Disclose that the content has been artificially generated or manipulated. Exception for content in artistic, creative, satirical or fictional works provided disclosure is made in an appropriate manner.",
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "eu"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "eu"
+    ]
   },
   "created_by": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-4"
 }

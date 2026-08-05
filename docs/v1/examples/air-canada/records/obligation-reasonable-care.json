@@ -1,0 +1,19 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "@type": "of:Requirement",
+  "@id": "https://obligationfirst.org/v1/examples/air-canada/obligation/reasonable-care-customer-representations",
+  "title": "Reasonable care in customer representations",
+  "content": "Air Canada was required to take reasonable care that customer-facing representations made through its chatbot were accurate and not misleading.",
+  "recognized_by": ["https://obligationfirst.org/v1/examples/air-canada/determination/moffatt-bccrt-149"],
+  "duty_holders": ["https://obligationfirst.org/v1/examples/air-canada/party/air-canada"],
+  "owed_to": ["https://obligationfirst.org/v1/examples/air-canada/party/moffatt"],
+  "jurisdiction": {
+    "@type": "of:Jurisdiction",
+    "territorial_scope": ["ca-bc"],
+    "institutional_scope": ["British Columbia Civil Resolution Tribunal"]
+  },
+  "source": "https://canlii.org/en/bc/bccrt/doc/2024/2024bccrt149/2024bccrt149.html",
+  "source_citation": "2024 BCCRT 149",
+  "source_locator": "Liability analysis and order",
+  "evidence_type": "judicial-determination"
+}

@@ -7,8 +7,10 @@
   "trigger": "AI system generates or manipulates text published for the purpose of informing the public on matters of public interest",
   "content": "Disclose that the text has been artificially generated or manipulated. Exception where the text has undergone human review or editorial oversight ensuring no false impression of human origin.",
   "jurisdiction": {
-    "@type": "gist:Jurisdiction",
-    "ref": "eu"
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "eu"
+    ]
   },
   "created_by": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/term/art-50-5"
 }
