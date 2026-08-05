@@ -1,9 +1,9 @@
 ---
 title: Actors and deontic grounding
-status: accepted-direction
+status: implemented
 decision_date: 2026-08-04
-implementation_target: v0.6.0 candidate
-current_contract_impact: none
+implementation_target: v0.6.0
+current_contract_impact: implemented in v0.6.0
 ---
 
 # Actors and deontic grounding

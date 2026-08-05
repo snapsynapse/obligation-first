@@ -1,6 +1,6 @@
 ---
 title: "Obligation-First INTENT"
-version: "0.6.0"
+version: "0.6.1"
 last_updated: 2026-08-04
 status: working-hypothesis
 description: "Standards-level strategy for the Obligation-First upper schema. Defines scope, design constraints, adoption order, and governance posture."
@@ -57,11 +57,11 @@ The project has two operating modes:
 1. **Specification mode.** Define the smallest stable schema that can carry statutes, proceedings, and joint interpretations without forcing one domain's record shape onto the others.
 2. **Interstitial mode.** Provide the cross-project contract that lets PAICE legal products join through stable `@id` values, `anchors`, shared schemas, and common validation.
 
-All three adopters now generate local v0.6 projections from their native sources. The shared schema, deterministic migration fixture, graph checks, and naming-profile ranges are implemented locally; publication remains a separate release decision.
+All three adopters publish v0.6 projections from their native sources. The shared schema, deterministic migration fixture, graph checks, and naming-profile ranges are released and validated as one federated contract.
 
 ## Implemented semantic direction
 
-Five accepted-direction records govern v0.6:
+Five implemented decision records govern v0.6:
 
 - [Identity and classification](reference/decisions/identity-and-classification.md)
 - [Authority, source text, and legal scope](reference/decisions/authority-text-and-scope.md)
@@ -101,11 +101,12 @@ Current tier: working hypothesis.
 
 Last review: 2026-08-04.
 
-Next scheduled review: after the material-change comment window, before publication, or on external adopter feedback, whichever comes first.
+Next scheduled review: on external adopter feedback or before the v1.0 freeze, whichever comes first.
 
 ## Changelog
 
-- 0.6.0-candidate (2026-08-04): Implements the accepted semantic decisions and migrates all three adopter projections locally.
+- 0.6.1 (2026-08-04): Reconciles released-state claims, promotes the five implemented decisions, and adds a deterministic release-state gate.
+- 0.6.0 (2026-08-04): Implements the accepted semantic decisions and releases all three adopter projections against the shared contract.
 - 0.5.1-candidate (2026-08-04): Reconciles the current three-adopter state, records the accepted v0.6 semantic direction, and keeps the patch candidate separate from ontology expansion.
 - 0.5.0 (2026-07-25): Adds the ObligationCategory commensurability layer and version-range naming profiles.
 - 0.4.0 (2026-06-03): Makes adopter naming profiles machine-validatable.

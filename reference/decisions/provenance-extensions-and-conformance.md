@@ -1,9 +1,9 @@
 ---
 title: Provenance, extensions, and conformance
-status: accepted-direction
+status: implemented
 decision_date: 2026-08-04
-implementation_target: v0.6.0 candidate
-current_contract_impact: none
+implementation_target: v0.6.0
+current_contract_impact: implemented in v0.6.0
 ---
 
 # Provenance, extensions, and conformance
@@ -37,7 +37,7 @@ This record resolves the direction for D12 and D13, plus semantic-review items 3
 
 - A record passes JSON Schema but fails graph validation when its issuer, category, or inverse edge is false.
 - A deprecated record is validated even when omitted from the aggregate collection.
-- A local adopter report states `0.6.0-candidate`, source commit, and dirty state.
+- An adopter report states the exact compatible release version, source commit, and dirty state.
 - EveryAILaw retains risk tier and evidence workflow metadata in its own extension while shared citations remain queryable across all adopters.
 - A three-node `defeats` cycle fails even though no pair forms an immediate two-node cycle.
 

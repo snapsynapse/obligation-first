@@ -1,6 +1,6 @@
 {
   "name": "obligation-first",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist.",
   "homepage": "https://obligationfirst.org/",
   "repository": {
@@ -27,6 +27,7 @@
     "validate:naming-profile": "node scripts/validate-naming-profile.mjs",
     "validate:published": "node scripts/validate-published-artifacts.mjs",
     "validate:contracts": "node scripts/validate-repo-contracts.mjs",
+    "validate:release-state": "node scripts/validate-release-state.mjs",
     "validate:hashes": "node scripts/validate-hashes.mjs",
     "validate:lockfile": "npm ci --dry-run",
     "hashes:update": "node scripts/validate-hashes.mjs --update",

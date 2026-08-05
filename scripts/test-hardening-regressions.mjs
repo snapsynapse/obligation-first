@@ -7,10 +7,16 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { createHash } from "node:crypto";
+import { spawnSync } from "node:child_process";
 import { OF_CONTEXT, validateRecordGraph, validateRecordShapes } from "./lib/adopter-kit.mjs";
 import { validateExampleRecordSet } from "./validate-example-graphs.mjs";
-import { validateAssistantGuide, validateReleasePackage } from "./validate-repo-contracts.mjs";
+import {
+  validateAssistantGuide,
+  validateReleaseManifestContract,
+  validateReleasePackage,
+} from "./validate-repo-contracts.mjs";
 import { validateHashManifest } from "./validate-hashes.mjs";
+import { RELEASE_STATE_SURFACES, validateReleaseState } from "./validate-release-state.mjs";
 import { versionForms } from "./sync-version.mjs";
 import { satisfies } from "./lib/version-range.mjs";
 
@@ -298,6 +304,69 @@ async function testReleasePackageExactInventory() {
   }
 }
 
+function testPatchReleaseCompatibility() {
+  const version = "0.6.1";
+  const expectedCurrent = "native v0.6 conformance after schema-and-graph validation";
+  const legacy = "schema-valid during the v0.6 migration window; migrate for v0.6 conformance";
+  const base = {
+    version,
+    canonical_url: "https://obligationfirst.org/releases/v0.6.1/",
+    summary: "Fixture release",
+    compatibility: {
+      iri_major: "v1",
+      v0_5_0_adopter_records: legacy,
+      v0_6_0_adopter_records: expectedCurrent,
+      v0_6_1_adopter_records: expectedCurrent,
+    },
+    artifacts: [],
+  };
+
+  const validFailures = [];
+  validateReleaseManifestContract(validFailures, {
+    manifest: base,
+    expectedArtifacts: [],
+    shaPaths: [],
+    releaseNotes: "Final release notes",
+    version,
+  });
+  assert(
+    validFailures.length === 0,
+    `release contract rejected native same-minor adopter compatibility: ${validFailures.join(" | ")}`,
+  );
+
+  const staleSameMinorFailures = [];
+  validateReleaseManifestContract(staleSameMinorFailures, {
+    manifest: {
+      ...base,
+      compatibility: { ...base.compatibility, v0_6_0_adopter_records: legacy },
+    },
+    expectedArtifacts: [],
+    shaPaths: [],
+    releaseNotes: "Final release notes",
+    version,
+  });
+  assert(
+    hasFailure(staleSameMinorFailures, "must preserve native v0.6 conformance"),
+    "release contract accepted migration-only wording for same-minor adopter records",
+  );
+
+  const staleLegacyFailures = [];
+  validateReleaseManifestContract(staleLegacyFailures, {
+    manifest: {
+      ...base,
+      compatibility: { ...base.compatibility, v0_5_0_adopter_records: expectedCurrent },
+    },
+    expectedArtifacts: [],
+    shaPaths: [],
+    releaseNotes: "Final release notes",
+    version,
+  });
+  assert(
+    hasFailure(staleLegacyFailures, "must distinguish schema validity"),
+    "release contract accepted native-conformance wording for cross-minor legacy records",
+  );
+}
+
 async function testPublicProbeUsesCanonicalInventory() {
   const workflow = await readFile(".github/workflows/test.yml", "utf8");
   assert(
@@ -360,6 +429,104 @@ async function testManifestStaleHash() {
   }
 }
 
+async function testReleasedStateClaims() {
+  const root = await mkdtemp(path.join(os.tmpdir(), "of-release-state-"));
+  const version = "0.6.1";
+  try {
+    await mkdir(path.join(root, `docs/releases/v${version}`), { recursive: true });
+    await writeFile(path.join(root, `docs/releases/v${version}/manifest.json`), "{}\n");
+    for (const rel of RELEASE_STATE_SURFACES) {
+      await mkdir(path.dirname(path.join(root, rel)), { recursive: true });
+      await writeFile(path.join(root, rel), `Released state for v${version}.\n`);
+    }
+
+    await writeFile(
+      path.join(root, "docs/llms.txt"),
+      "This packaged release is ImPlEmEnTeD\nLoCaLlY even though it is public.\n",
+    );
+    await writeFile(
+      path.join(root, "reference/decisions/current.md"),
+      [
+        "---",
+        "title: Current decision",
+        "status: accepted-direction",
+        "implementation_target: v0.6.0 candidate",
+        "current_contract_impact: none",
+        "---",
+        "",
+        "Current decision.",
+        "",
+      ].join("\n"),
+    );
+    await writeFile(
+      path.join(root, "reference/decisions/future.md"),
+      [
+        "---",
+        "title: Future decision",
+        "status: accepted-direction",
+        "implementation_target: v0.7.0 candidate",
+        "current_contract_impact: none",
+        "---",
+        "",
+        "Future decision.",
+        "",
+      ].join("\n"),
+    );
+
+    const staleFailures = [];
+    const staleResult = await validateReleaseState(staleFailures, root, version);
+    assert(staleResult.active, "release-state validator did not activate for a packaged release");
+    assert(
+      hasFailure(staleFailures, "stale released-state claim (implemented-locally)"),
+      "release-state validator missed a case-and-whitespace variant of implemented locally",
+    );
+    assert(
+      hasFailure(staleFailures, "status must be implemented or superseded"),
+      "release-state validator accepted an already-packaged decision in planning state",
+    );
+    assert(
+      !staleFailures.some((failure) => failure.includes("future.md")),
+      "release-state validator rejected a future-version accepted-direction decision",
+    );
+
+    await writeFile(path.join(root, "docs/llms.txt"), `v${version} is released.\n`);
+    await writeFile(
+      path.join(root, "reference/decisions/current.md"),
+      [
+        "---",
+        "title: Current decision",
+        "status: implemented",
+        "implementation_target: v0.6.0",
+        "current_contract_impact: implemented in v0.6.0",
+        "---",
+        "",
+        "Current decision.",
+        "",
+      ].join("\n"),
+    );
+    const validFailures = [];
+    await validateReleaseState(validFailures, root, version);
+    assert(
+      validFailures.length === 0,
+      `release-state validator rejected a legitimate released/future-decision corpus: ${validFailures.join(" | ")}`,
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+}
+
+function testReleaseStateImportGuard() {
+  const result = spawnSync(
+    process.execPath,
+    ["--input-type=module", "-e", "await import('./scripts/validate-release-state.mjs')"],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+  assert(
+    result.status === 0,
+    `release-state validator cannot be imported without a CLI argv[1]: ${result.stderr || result.stdout}`,
+  );
+}
+
 function testAppliesToRanges() {
   // The pinned form keeps working: it is what every adopter published before
   // ranges existed, and it must stay exactly as narrow as it always was.
@@ -387,9 +554,12 @@ function testAppliesToRanges() {
 testAppliesToRanges();
 await testReleasePackageStaleHash();
 await testReleasePackageExactInventory();
+testPatchReleaseCompatibility();
 await testPublicProbeUsesCanonicalInventory();
 await testAssistantGuideByteIdentity();
 await testManifestStaleHash();
+await testReleasedStateClaims();
+testReleaseStateImportGuard();
 
 if (failures.length > 0) {
   console.log("Hardening regression checks failed:");

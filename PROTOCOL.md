@@ -1,7 +1,7 @@
 ---
 "@type": "https://w3id.org/semanticarts/ns/ontology/gist/Specification"
 title: "Obligation-First Protocol"
-version: "0.6.0"
+version: "0.6.1"
 license: "CC-BY-4.0"
 created: 2026-05-04
 modified: 2026-08-04
@@ -9,7 +9,7 @@ modified: 2026-08-04
 
 # Obligation-First Protocol
 
-> **Status: v0.6.0.** This release implements the shared semantic contract exercised by EveryAILaw, PubLedge, and AI Incident Law. It separates issuance from administration, enforcement, and adjudication; separates normative force from lifecycle, operative effect, and enforcement; adds Party, Jurisdiction, and Tombstone records; reserves `text` for exact source text; adds shared provenance; and replaces concept membership through `exactMatch` with `gist:isCategorizedBy`. Existing v0.5 records remain schema-valid. Adopters using the v0.6 vocabulary declare `obligation-first >=0.6.0 <0.7.0` and migrate their projections with the supplied fixture and validator.
+> **Status: v0.6.1.** This release implements the shared semantic contract exercised by EveryAILaw, PubLedge, and AI Incident Law. It separates issuance from administration, enforcement, and adjudication; separates normative force from lifecycle, operative effect, and enforcement; adds Party, Jurisdiction, and Tombstone records; reserves `text` for exact source text; adds shared provenance; and replaces concept membership through `exactMatch` with `gist:isCategorizedBy`. Existing v0.5 records remain schema-valid. Adopters using the v0.6 vocabulary declare `obligation-first >=0.6.0 <0.7.0` and migrate their projections with the supplied fixture and validator.
 
 ## What this protocol specifies
 
@@ -429,7 +429,7 @@ The adopter additionally carries, on every applicable record, each identifier cr
 
 Required: all of Level 2, plus every crosswalk declared in the adopter's profile is present where applicable, and at least one standard legal-source or case identifier round-trips where the source jurisdiction publishes one.
 
-The v0.6 candidate projections for PubLedge, EveryAILaw, and AI Incident Law target Level 2 locally. Within the federated graph, AI Incident Law is authoritative for adjudicative Determinations arising from its public matters. PubLedge is authoritative for administrative issuance Determinations attached to its Instruments. `issuedBy` always identifies the Authority that acted; it never implies that PubLedge itself issued a ruling. Level 3 remains aspirational.
+The released v0.6 projections for PubLedge, EveryAILaw, and AI Incident Law pass Level 2 federation validation. Within the federated graph, AI Incident Law is authoritative for adjudicative Determinations arising from its public matters. PubLedge is authoritative for administrative issuance Determinations attached to its Instruments. `issuedBy` always identifies the Authority that acted; it never implies that PubLedge itself issued a ruling. Level 3 remains aspirational.
 
 ## Versioning policy
 

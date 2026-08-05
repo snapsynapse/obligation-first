@@ -1,6 +1,6 @@
 # v0.5 to v0.6 migration fixture
 
-This paired fixture is the executable compatibility contract for the v0.6 candidate. `input/` contains valid legacy shapes and `output/` contains their deterministic v0.6 projections.
+This paired fixture is the executable compatibility contract for the released v0.6 line. `input/` contains valid legacy shapes and `output/` contains their deterministic v0.6 projections.
 
 The migration automates only transformations whose meaning is unambiguous:
 

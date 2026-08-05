@@ -1,7 +1,7 @@
 {
   "name": "Obligation-First",
   "description": "An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist.",
-  "version": "v0.6.0",
+  "version": "v0.6.1",
   "url": "https://obligationfirst.org/",
   "publisher": {
     "name": "PAICE.work PBC",
@@ -33,7 +33,7 @@
     "assistant_guide_manifest": "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt",
     "spec": "https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md",
     "llms_txt": "https://obligationfirst.org/llms.txt",
-    "release_package": "https://obligationfirst.org/releases/v0.6.0/",
+    "release_package": "https://obligationfirst.org/releases/v0.6.1/",
     "sitemap": "https://obligationfirst.org/sitemap.xml",
     "repo": "https://github.com/snapsynapse/obligation-first"
   },

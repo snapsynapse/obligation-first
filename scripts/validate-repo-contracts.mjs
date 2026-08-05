@@ -12,6 +12,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { checkVersions } from "./sync-version.mjs";
+import { validateReleaseState } from "./validate-release-state.mjs";
 import { parseKeyValueManifest } from "./lib/manifest.mjs";
 import {
   coreEndpointInventory,
@@ -480,12 +481,22 @@ export function validateReleaseManifestContract(
     failures.push(`${rel}/manifest.json: compatibility.${currentKey} must be "${expectedCurrent}"`);
   }
 
-  const legacyEntries = Object.entries(compatibility)
-    .filter(([key]) => /^v\d+_\d+(?:_\d+)?_adopter_records$/.test(key) && key !== currentKey);
+  const priorEntries = Object.entries(compatibility)
+    .map(([key, value]) => ({ key, value, match: key.match(/^v(\d+)_(\d+)(?:_(\d+))?_adopter_records$/) }))
+    .filter(({ key, match }) => match && key !== currentKey);
+  const sameMinorEntries = priorEntries
+    .filter(({ match }) => Number(match[1]) === major && Number(match[2]) === minor);
+  const legacyEntries = priorEntries
+    .filter(({ match }) => Number(match[1]) !== major || Number(match[2]) !== minor);
   if (minor > 0 && legacyEntries.length === 0) {
     failures.push(`${rel}/manifest.json: compatibility must describe the legacy-record migration window`);
   }
-  for (const [key, value] of legacyEntries) {
+  for (const { key, value } of sameMinorEntries) {
+    if (String(value) !== expectedCurrent) {
+      failures.push(`${rel}/manifest.json: compatibility.${key} must preserve native ${targetMinor} conformance for same-minor adopter records`);
+    }
+  }
+  for (const { key, value } of legacyEntries) {
     const text = String(value);
     if (
       !text.includes(`schema-valid during the ${targetMinor} migration window`)
@@ -628,6 +639,7 @@ export async function validateRepoContracts() {
   await validateAssistantGuide(failures);
   await validateReleasePackage(failures);
   await validatePublishingSurfaces(failures);
+  await validateReleaseState(failures);
   for (const problem of await checkVersions()) failures.push(problem);
   return failures;
 }

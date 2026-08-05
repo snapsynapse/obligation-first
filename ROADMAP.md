@@ -1,8 +1,8 @@
 # Roadmap
 
-## v0.6.0 (current)
+## v0.6.1 (current)
 
-The v0.6 semantic contract is implemented locally from five accepted decision records:
+The v0.6 semantic contract is released through five implemented decision records:
 
 1. [Identity and classification](reference/decisions/identity-and-classification.md)
 2. [Authority, source text, and legal scope](reference/decisions/authority-text-and-scope.md)
@@ -10,7 +10,7 @@ The v0.6 semantic contract is implemented locally from five accepted decision re
 4. [Actors and deontic grounding](reference/decisions/actors-and-deontic-grounding.md)
 5. [Provenance, extensions, and conformance](reference/decisions/provenance-extensions-and-conformance.md)
 
-The implementation reconciles the 2026-06-09 semantic review with adopter-scale evidence from EveryAILaw, PubLedge, and AI Incident Law. Publication remains separate authority and follows the review window.
+The released implementation reconciles the 2026-06-09 semantic review with adopter-scale evidence from EveryAILaw, PubLedge, and AI Incident Law.
 
 v0.6 exit gates:
 
@@ -22,8 +22,9 @@ v0.6 exit gates:
 - [x] Air Canada common-law obligation and remedy fixture passes
 - [x] Aggregate, companion, deprecated, naming-profile, and graph checks pass locally
 - [x] Conformance and migration notes are implemented
-- [ ] Material-change review window closes
-- [ ] Publication, tag, release, and deployment are separately authorized
+- [x] Material-change review and steward release authorization completed
+- [x] Publication, tag, release, and deployment verified
+- [x] v0.6.1 release-state patch prevents packaged candidate/released copy drift
 
 ## v0.1.0-draft
 

@@ -2,7 +2,7 @@
 
 ![Obligation-First — an open upper schema for normative content. Bound to gist. Aligned with LegalRuleML.](imgs/og.png)
 
-[![Spec](https://img.shields.io/badge/spec-v0.6.0-orange)](PROTOCOL.md)
+[![Spec](https://img.shields.io/badge/spec-v0.6.1-orange)](PROTOCOL.md)
 [![Content license: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey)](LICENSE-CC-BY-4.0)
 [![Code license: Apache 2.0](https://img.shields.io/badge/code-Apache%202.0-lightgrey)](LICENSE-APACHE)
 [![Bound to gist](https://img.shields.io/badge/ontology-gist-green)](https://semanticarts.com/gist/)
@@ -11,7 +11,7 @@ A shared upper schema for normative content, including laws, cases, and agreemen
 
 Obligation-First is a methodology and a JSON-LD context. The methodology says that normative content is best modeled by what it requires, not what it says. The schema gives that methodology a machine-readable shape.
 
-**Live at [obligationfirst.org](https://obligationfirst.org/). The v0.6.0 implementation is a local release candidate pending its review window and separate publication authority. Remaining gates are tracked in [ROADMAP.md](ROADMAP.md).**
+**Live at [obligationfirst.org](https://obligationfirst.org/). The v0.6.1 release is live. Its v0.6 semantic contract is implemented across EveryAILaw, PubLedge, and AI Incident Law. Remaining v1.0 gates are tracked in [ROADMAP.md](ROADMAP.md).**
 
 ## Who this is for
 
@@ -122,7 +122,7 @@ Every artifact an adopter or agent needs is dereferenceable at a stable URL:
 | [`/v1/schema/naming-profile.schema.json`](https://obligationfirst.org/v1/schema/naming-profile.schema.json) | Naming profile schema (adopter `.well-known` profiles) |
 | [`/llms.txt`](https://obligationfirst.org/llms.txt), [`/llms-full.txt`](https://obligationfirst.org/llms-full.txt) | LLM-readable summary + full context |
 | [`/agents.json`](https://obligationfirst.org/agents.json) | Agent capabilities and endpoint inventory |
-| [`/releases/v0.6.0/`](https://obligationfirst.org/releases/v0.6.0/) | Current release package manifest and checksums |
+| [`/releases/v0.6.1/`](https://obligationfirst.org/releases/v0.6.1/) | Current release package manifest and checksums |
 | [`/.well-known/assistant-guide.txt`](https://obligationfirst.org/.well-known/assistant-guide.txt) | GuideCheck Human-Verifiable Assistant Guide for assistant-assisted repo work |
 | [`/.well-known/assistant-guide-manifest.txt`](https://obligationfirst.org/.well-known/assistant-guide-manifest.txt) | GuideCheck Level 4 sidecar manifest for the assistant guide |
 | [`/feed.xml`](https://obligationfirst.org/feed.xml) | Atom feed of releases |
@@ -166,9 +166,9 @@ The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. 
 
 ## Status
 
-v0.6.0 is implemented locally across Obligation-First, EveryAILaw, PubLedge, and AI Incident Law. The candidate separates issuance, administration, enforcement, and adjudication; separates force, lifecycle, operative effect, and enforcement; distinguishes source text from editorial summary; adds Party, Jurisdiction, and Tombstone; and makes shared provenance and graph coherence testable. Legacy v0.5 record shapes remain schema-valid, while migrated profiles declare the v0.6 range and use the deterministic migration contract.
+v0.6.1 is the current release. The v0.6 semantic contract is implemented across Obligation-First, EveryAILaw, PubLedge, and AI Incident Law. It separates issuance, administration, enforcement, and adjudication; separates force, lifecycle, operative effect, and enforcement; distinguishes source text from editorial summary; adds Party, Jurisdiction, and Tombstone; and makes shared provenance and graph coherence testable. Legacy v0.5 record shapes remain schema-valid, while migrated profiles declare the v0.6 range and use the deterministic migration contract.
 
-Publication has not been performed. The remaining v0.6 gates are the material-change review window and separately authorized commit, tag, release, and deployment. The remaining v1.0 gates include LegalRuleML community feedback, the permanent w3id.org redirect, SHACL and conformance work, and an external adopter.
+The v0.6 release and adopter-publication gates are complete. The remaining v1.0 gates include LegalRuleML community feedback, the permanent w3id.org redirect, SHACL and conformance work, and an external adopter.
 
 For anchor enrichment, run `npm run report:anchors` against the worked examples or `node scripts/report-anchor-graph.mjs <adopter-export> [...]` against sibling adopter exports.
 

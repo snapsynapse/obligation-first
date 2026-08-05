@@ -2,6 +2,25 @@
 
 ## Unreleased
 
+## [0.6.1] - 2026-08-04
+
+Corrects public release-state drift after v0.6.0 and adds a deterministic gate so a packaged release cannot continue to describe itself as a local candidate.
+
+### Fixed
+
+- Reconciled the homepage, README, namespace page, LLM context files, protocol, roadmap, review packet, and migration fixture with the published v0.6 contract.
+- Promoted the five v0.6 semantic decision records from `accepted-direction` to `implemented`, with their released target and present contract impact recorded explicitly.
+- Narrowed version synchronization to update version tokens without regenerating candidate or publication-state prose.
+
+### Added
+
+- `npm run validate:release-state`, which activates when the current release package exists, rejects stale candidate and pending-publication claims on current public surfaces, and requires semantic decisions targeted at an already-packaged version to be implemented or superseded.
+- Hardening regressions for case and whitespace variants of stale release claims, already-packaged decision state, and the legitimate case of a future-version `accepted-direction` record.
+
+### Compatibility
+
+No schema shape, context mapping, vocabulary, identifier, migration, or adopter projection changes. Every v0.6.0 adopter remains compatible, and the existing `obligation-first >=0.6.0 <0.7.0` naming-profile range accepts this patch.
+
 ## [0.6.0] - 2026-08-04
 
 Implements the accepted three-adopter semantic contract while keeping the v1 IRI major and accepting legacy v0.5 record shapes during migration.

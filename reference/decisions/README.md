@@ -1,6 +1,6 @@
 # Semantic decision index
 
-These tracked records move handoff-only decisions into the durable source for the shared Obligation-First contract. Their direction is implemented in the local v0.6.0 candidate, but their status remains `accepted-direction` until review closes and a release is separately authorized.
+These tracked records move handoff-only decisions into the durable source for the shared Obligation-First contract. Their direction is implemented in the released v0.6 contract and enforced by its conformance suite.
 
 Status meanings:
 
@@ -8,7 +8,7 @@ Status meanings:
 - `implemented`: the decision is reflected in a released contract and its conformance suite. Local candidate work alone does not qualify.
 - `superseded`: a later tracked record replaces the direction.
 
-The five accepted-direction records dated 2026-08-04 are:
+The five implemented records dated 2026-08-04 are:
 
 1. [Identity and classification](identity-and-classification.md)
 2. [Authority, source text, and legal scope](authority-text-and-scope.md)

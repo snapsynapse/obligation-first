@@ -1,6 +1,6 @@
 # Obligation-First — full LLM context
 
-> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.6.0 is implemented locally pending review and separate publication authority. Record `@id` values are adopter-local, opaque, and permanent. Jurisdiction represents legal competence, with territorial and institutional scope modeled independently.
+> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.6.1 is the current released specification. Record `@id` values are adopter-local, opaque, and permanent. Jurisdiction represents legal competence, with territorial and institutional scope modeled independently.
 
 This file is the deeper companion to llms.txt. Where llms.txt gives a one-screen summary, this file is the full context an LLM-powered tool needs to reason about Obligation-First, generate adopter records, or answer detailed questions without scraping.
 
@@ -158,7 +158,7 @@ Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/eu-ai
 - PubLedge — https://publedge.org/ (joint interpretations) — live binding for instruments, terms, obligations, and determinations
 - AI Incident Law — https://aiincidentlaw.org/ (AI-related cases) — live binding for proceedings, allegations, determinations, and authorities
 
-All three projects retain their live pre-v0.6 bindings. Their v0.6 projections are implemented and validated locally: EveryAILaw publishes statutory duties and categories, PubLedge publishes negotiated and administrative-issuance records, and AI Incident Law publishes proceedings and adjudicative determinations. Publication remains separately authorized.
+All three projects publish v0.6 bindings: EveryAILaw publishes statutory duties and categories, PubLedge publishes negotiated and administrative-issuance records, and AI Incident Law publishes proceedings and adjudicative determinations. The combined graph passes the released federation contract.
 
 ## Adoption — three steps
 
@@ -196,7 +196,7 @@ The Level 4 manifest is at `https://obligationfirst.org/.well-known/assistant-gu
 - Tombstone schema: https://obligationfirst.org/v1/schema/tombstone.schema.json
 - ExecutableEncoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
 - Naming profile schema: https://obligationfirst.org/v1/schema/naming-profile.schema.json
-- Release package: https://obligationfirst.org/releases/v0.6.0/
+- Release package: https://obligationfirst.org/releases/v0.6.1/
 - Assistant guide: https://obligationfirst.org/.well-known/assistant-guide.txt
 - Assistant guide manifest: https://obligationfirst.org/.well-known/assistant-guide-manifest.txt
 - Sitemap: https://obligationfirst.org/sitemap.xml

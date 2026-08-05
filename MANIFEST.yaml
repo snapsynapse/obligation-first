@@ -25,7 +25,7 @@
 #   - Build outputs
 
 bundle: obligation-first
-bundle_version: 0.6.0
+bundle_version: 0.6.1
 bundle_date: 2026-08-04
 
 files:
@@ -89,7 +89,7 @@ files:
   examples/migration-v0.5-v0.6/output/obligation.json: c1532a96558d68d3a7458db4389e1718507c936dd17c7084ebbc74f05ca0e5aa
   examples/migration-v0.5-v0.6/output/proceeding.json: d0e1d78534f8d631bcc57c45037adc457a728c39c013d98d492887ca18a149d1
   examples/migration-v0.5-v0.6/output/term.json: 26a9b1b5e331ef9b8a2c7f625659849bc052c45620bf33d060eb219a62be824f
-  examples/migration-v0.5-v0.6/README.md: a83922c7f39218f03ad16662f5912d61863e737f939a5ec2fc39cfde13b4f1b0
+  examples/migration-v0.5-v0.6/README.md: 424683527fda8e3f0c657723b33a7ceafbf377b031d03d249d2b4467a4a825e8
   examples/naming-profiles/everyailaw-manifest.txt: 1a4d666d6c54eb4ac68abd097b4d723066e0c8c046892b9d93099ff3c37f3fcc
   examples/naming-profiles/everyailaw.jsonld: 19b88128e0e9a1c53c637cba83e85fb2758e4d1bb1899ab97096f5a9f1cc159e
   examples/publedge-jia-utah-72/README.md: e0a8a786efded738c017a3a24180f053ac670cceb0bdf49e6f3100354d993d31
@@ -97,21 +97,21 @@ files:
   examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json: 749c13ccef70be61f07e5f1deb6e65bf5e90ede28157651ada105c770fb13611
   examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json: 015868fca5d44d63506acd0935fde7cfeaf6b65273fe08f0dcf4c2e978b7e0a2
   examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json: bc83ea309c09c51d3068b841fcafc9cd45beb36199d740655eb7406bf607c312
-  INTENT.md: e8cb611d7c19b832f7f29b330b9f49aee7a1dcdec10bbf9b4e2f5f3bb9e62259
+  INTENT.md: ce8d082dfbe99ec3048360620f37a51a4fc220773d8743ac5fbd700a348944de
   LICENSE-APACHE: 3cbeb832e52ede2c154d4977567b70f204a853342e51d843458f9b785771f069
   LICENSE-CC-BY-4.0: 62a68518848c2fdcd108ff5cc11ba1516440c507bf425d5e76ad36886fd5752a
   NOTICE: 3f2ce598a6a3764e500c61e46ab707606ab3aa911eb780f28b87455dffece286
   PRIOR-ART.md: 52aad9656267bfd90cbe0056d2433e5879aa589d90f80eafb4e2c77725bc447f
-  PROTOCOL.md: dc510e9d5d5c47a529a4cd0327514ede4c2cc86559db404afce2eb31382c1f6b
+  PROTOCOL.md: d238854dc189b6b7f6ebf041007c462effba3d6f36bdfdb9d3aee9d2cd4c219a
   reference/crosswalks/akomantoso.md: 9c1e5519788708f25ad084a0fe73aa3402ff39e9f7942c350d23b2b95720d3e4
   reference/crosswalks/eli-ecli.md: 04d72007db68ee1e6f1532e7b53089e48af6ee8ce58b1ab92d59481f0d58a3e9
   reference/crosswalks/gist.md: 7878e5a3662f6f1a6b3a84edbf1dc4ab8032cf893ae2afef5c1e3d95e6c28452
   reference/crosswalks/legalruleml.md: 1c5de936f376251f6cf69ca02e090e4351647073ca5efa25342245e7855d0eda
-  ROADMAP.md: e1e89696eaf701ac4f80849b13dcd1050c37f3fa693590d585be53d72b9d6ed6
+  ROADMAP.md: 6a19f668ff5155ef6e1975d8bcd8ad659885dc5bc5c9138d6feca82f3c5685d2
   schema/allegation.schema.json: f1166364f71bcd59177504e769a8037117600b2a78b4f33e0494f6e00cd44b12
   schema/authority.schema.json: ede988f066a778bac22a148a64243fe1a80b5cc4362b68bad722dcae5bc74450
   schema/common.schema.json: cd3380f994135dbd0cc5553552a3073929dfdea55c83f56e784e8da85375f5e1
-  schema/context.jsonld: d6747ca601e7724a64c52770a0f4a0b2bb7405157502437175e3ee327770d58c
+  schema/context.jsonld: c4eb46ac0c624bc37dc747c5da96ad05a0444c5a5a4cac9e379adc75f7f49de7
   schema/determination.schema.json: 8cb1766fe2bcc31dceb6b54656a8764405e7a082010b44f9393ada89eddf0c39
   schema/executable-encoding.schema.json: 4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810
   schema/instrument.schema.json: dea85420c2fa47f461022023355acdd1478d5dff2ed2ef6cd3f3d1c4861eecb2
