@@ -65,7 +65,7 @@ For a creator-profile or external-platform property, replace the website validat
 
 Initial evidence: [Google Search Console audit, 2026-08-18](search/GoogleSearchConsole/2026-08-18/audit.md).
 
-At the initial console inspection, the property was processing data and had no submitted sitemap. The homepage URL inspection reported indexed and HTTPS-valid. Console mutation remains gated on the production contract passing after deployment.
+At the initial console inspection, the property was processing data and had no submitted sitemap. The homepage URL inspection reported indexed and HTTPS-valid. After deployment passed the production contract, Search Console accepted and read the sitemap with status `Success` and 17 discovered pages.
 
 ## Console action ledger
 
@@ -73,5 +73,6 @@ Read this table before opening the console. Add only observed actions and confir
 
 | Provider and property | Action and target | Accepted at | Confirmation | Result class | Repeat policy | Next review |
 |---|---|---|---|---|---|---|
+| Google Search Console, `sc-domain:obligationfirst.org` | Submit `https://obligationfirst.org/sitemap.xml` | 2026-08-18 | Status `Success`; last read 2026-08-18; 17 discovered pages | Accepted and processed | Do not repeat while accepted | Review after indexing reports populate |
 
 Keep rejected attempts and unknown outcomes distinct from accepted actions. Do not repeat an accepted action merely because the provider report remains stale.

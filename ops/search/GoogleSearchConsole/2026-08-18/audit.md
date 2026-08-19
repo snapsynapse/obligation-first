@@ -28,6 +28,6 @@ status: active
 
 | Action and target | Accepted at | Confirmation | Result class | Repeat policy |
 |---|---|---|---|---|
-| Submit `https://obligationfirst.org/sitemap.xml` | Pending production gate | Not yet submitted | Pending | Submit once after production validation passes |
+| Submit `https://obligationfirst.org/sitemap.xml` | 2026-08-18 | Status `Success`; last read 2026-08-18; 17 discovered pages; 0 videos | Accepted and processed | Do not repeat while accepted |
 
 Provider processing latency is not classified as a site defect. Later observations must be added without replacing this dated baseline.
