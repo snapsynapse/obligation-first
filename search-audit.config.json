@@ -1,0 +1,158 @@
+{
+  "$schema": "portfolio-search-indexing-audit/v4",
+  "contractVersion": 4,
+  "canonicalOrigin": "https://obligationfirst.org/",
+  "outputDir": "docs",
+  "sitemaps": [
+    "sitemap.xml"
+  ],
+  "minimumWords": 40,
+  "thinPageExemptions": [],
+  "expectedNoindex": [
+    "/404.html"
+  ],
+  "requireJsonLd": false,
+  "jsonLdRequiredPaths": [
+    "/"
+  ],
+  "lastmodAgreementPaths": [],
+  "compareRepositorySitemaps": true,
+  "internalSourceRules": [],
+  "requiredFiles": [
+    {
+      "path": "robots.txt",
+      "contentTypes": [
+        "text/plain"
+      ],
+      "contains": [
+        "Sitemap: https://obligationfirst.org/sitemap.xml"
+      ]
+    },
+    {
+      "path": "sitemap.xml",
+      "contentTypes": [
+        "xml"
+      ],
+      "contains": []
+    },
+    {
+      "path": "favicon.svg",
+      "contentTypes": [
+        "image/svg+xml",
+        "svg"
+      ],
+      "contains": []
+    },
+    {
+      "path": ".well-known/assistant-guide-manifest.txt",
+      "contentTypes": [
+        "text/plain"
+      ],
+      "contains": [
+        "guide-path: /.well-known/assistant-guide.txt"
+      ]
+    },
+    {
+      "path": ".well-known/assistant-guide.txt",
+      "contentTypes": [
+        "text/plain"
+      ],
+      "contains": [
+        "canonical-url: https://obligationfirst.org/.well-known/assistant-guide.txt"
+      ]
+    },
+    {
+      "path": ".well-known/security.txt",
+      "contentTypes": [
+        "text/plain"
+      ],
+      "contains": [
+        "Canonical: https://obligationfirst.org/.well-known/security.txt"
+      ]
+    },
+    {
+      "path": "v1/context.jsonld",
+      "contentTypes": [
+        "application/ld+json",
+        "application/json",
+        "json"
+      ],
+      "contains": [
+        "https://w3id.org/of/v1/"
+      ]
+    },
+    {
+      "path": "agents.json",
+      "contentTypes": [
+        "application/json",
+        "json"
+      ],
+      "contains": [
+        "https://obligationfirst.org/v1/context.jsonld"
+      ]
+    },
+    {
+      "path": "llms.txt",
+      "contentTypes": [
+        "text/plain"
+      ],
+      "contains": [
+        "https://obligationfirst.org/"
+      ]
+    },
+    {
+      "path": "llms-full.txt",
+      "contentTypes": [
+        "text/plain"
+      ],
+      "contains": [
+        "Obligation-First"
+      ]
+    },
+    {
+      "path": "feed.xml",
+      "contentTypes": [
+        "application/rss+xml",
+        "application/xml",
+        "xml"
+      ],
+      "contains": [
+        "https://obligationfirst.org/"
+      ]
+    },
+    {
+      "path": "atom.xml",
+      "contentTypes": [
+        "application/atom+xml",
+        "application/xml",
+        "xml"
+      ],
+      "contains": [
+        "https://obligationfirst.org/"
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "from": "http://obligationfirst.org/",
+      "to": "https://obligationfirst.org/"
+    },
+    {
+      "from": "https://www.obligationfirst.org/",
+      "to": "https://obligationfirst.org/"
+    },
+    {
+      "from": "http://www.obligationfirst.org/",
+      "to": "https://obligationfirst.org/"
+    }
+  ],
+  "hosted404Patterns": [
+    "There isn't a GitHub Pages site here",
+    "<title>Page not found",
+    "404 File not found",
+    "<title>Not found &mdash; Obligation-First</title>"
+  ],
+  "expectedNotFoundPaths": [
+    "/__search-audit-404__"
+  ]
+}

@@ -232,13 +232,6 @@ function updateCurrentSitemapLastmods(sitemapText, date) {
     "/v1/",
     "/v1/schema/",
     "/v1/examples/",
-    "/v1/context.jsonld",
-    "/llms.txt",
-    "/agents.json",
-    "/feed.xml",
-    "/atom.xml",
-    "/llms-full.txt",
-    "/changelog.html",
   ];
   let updated = sitemapText;
   for (const pathname of currentPaths) {

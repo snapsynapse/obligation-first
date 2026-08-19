@@ -712,7 +712,7 @@ export async function validatePublishingSurfaces(failures, root = repoRoot, vers
       if (err.code !== "ENOENT") throw err;
     }
     if (bundleDate) {
-      for (const pathname of ["/", "/v1/", "/v1/schema/", "/v1/examples/", "/v1/context.jsonld", "/llms.txt", "/agents.json", "/feed.xml", "/atom.xml", "/llms-full.txt", "/changelog.html"]) {
+      for (const pathname of ["/", "/v1/", "/v1/schema/", "/v1/examples/"]) {
         const url = `https://obligationfirst.org${pathname}`;
         if (sitemapEntries.get(url) !== bundleDate) {
           failures.push(`docs/sitemap.xml: ${url} lastmod must match MANIFEST.yaml bundle_date ${bundleDate}`);

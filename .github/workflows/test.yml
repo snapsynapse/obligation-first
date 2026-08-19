@@ -28,6 +28,9 @@ jobs:
       - name: Validate
         run: npm test
 
+      - name: Validate search contract
+        run: node scripts/check-search.mjs
+
   schema-jsonld-resolve:
     name: Verify @context and schemas resolve at canonical IRIs (post-deploy probe)
     runs-on: ubuntu-latest
