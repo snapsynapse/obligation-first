@@ -18,6 +18,10 @@ Thumbs.db
 *.log
 npm-debug.log*
 
+# Authenticated browser and private search-console evidence
+.playwright-mcp/
+.search-evidence-private/
+
 # docs/ is the GitHub Pages publish directory (main branch /docs), committed
 # because Pages serves it. It is hand-authored, not generated: there is no
 # `npm run build` script. Version strings across docs/ are synced by

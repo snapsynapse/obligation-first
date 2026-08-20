@@ -3,9 +3,10 @@
 title: "Search indexing"
 purpose: "Property-specific index policy, validation commands, deployment gate, and console follow-up."
 status: active
-updated: 2026-08-18
+updated: 2026-08-20
 owner: "PAICE.work PBC"
-open_tasks: []
+open_tasks:
+  - "Review GSC when Page indexing and HTTPS reports populate, or on 2026-08-22 if they remain unavailable."
 ---
 # Search indexing
 
@@ -40,6 +41,15 @@ Exit code `0` is pass, `1` is a site defect, and `2` is configuration or infrast
 
 For a creator-profile or external-platform property, replace the website validation lanes with the reports and controls the property actually exposes. Do not invent repository, production, sitemap, or indexing work.
 
+## Evidence ownership and privacy
+
+- This file is the living property policy and current-state summary.
+- Sanitized dated observations belong under `ops/search/<provider>/YYYY-MM-DD/` and are tracked in Git.
+- Dated evidence records report dates, exact counts, public example URLs, classifications, accepted actions, repeat policy, and the next-review condition.
+- Account identity, private queries, raw exports, screenshots, traces, and authenticated browser state must not be committed.
+- Temporary private material belongs under `.search-evidence-private/`; Comet and Playwright artifacts belong outside the repository or under ignored `.playwright-mcp/`.
+- A cross-property queue may point to this repository, but it does not replace this policy or authorize repository, deployment, or console mutation.
+
 ## Deployment and console sequence
 
 1. Run the normal build and offline search contract.
@@ -67,12 +77,23 @@ Initial evidence: [Google Search Console audit, 2026-08-18](search/GoogleSearchC
 
 At the initial console inspection, the property was processing data and had no submitted sitemap. The homepage URL inspection reported indexed and HTTPS-valid. After deployment passed the production contract, Search Console accepted and read the sitemap with status `Success` and 17 discovered pages.
 
+Current evidence: [Google Search Console audit, 2026-08-20](search/GoogleSearchConsole/2026-08-20/audit.md).
+
+The repository and production contracts each pass 17 sitemap pages with zero defects and zero infrastructure failures. Search Console last read the sitemap on 2026-08-19 with status `Success` and 17 discovered pages. The homepage is indexed. Aggregate Page indexing and HTTPS reports remain unavailable while Google processes data; sampled specification and release routes are classified as pending recrawl rather than site defects.
+
 ## Console action ledger
 
 Read this table before opening the console. Add only observed actions and confirmations. An accepted request remains pending until a later report proves completion.
 
 | Provider and property | Action and target | Accepted at | Confirmation | Result class | Repeat policy | Next review |
 |---|---|---|---|---|---|---|
-| Google Search Console, `sc-domain:obligationfirst.org` | Submit `https://obligationfirst.org/sitemap.xml` | 2026-08-18 | Status `Success`; last read 2026-08-18; 17 discovered pages | Accepted and processed | Do not repeat while accepted | Review after indexing reports populate |
+| Google Search Console, `sc-domain:obligationfirst.org` | Submit `https://obligationfirst.org/sitemap.xml` | 2026-08-18 | Status `Success`; last read 2026-08-19; 17 discovered pages | Accepted and processed | Do not repeat while accepted | Review when Page indexing and HTTPS reports populate, or on 2026-08-22 |
 
 Keep rejected attempts and unknown outcomes distinct from accepted actions. Do not repeat an accepted action merely because the provider report remains stale.
+
+## Do-not-repeat list
+
+- Do not resubmit `https://obligationfirst.org/sitemap.xml` while it remains accepted and healthy.
+- Do not request indexing for the already indexed homepage.
+- Do not validate intentional host or protocol redirects, `/404.html`, `/changelog.html`, or machine-surface sitemap exclusions.
+- After a future indexing request is accepted, wait for a report refresh before considering another action.
