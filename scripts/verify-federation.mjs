@@ -51,6 +51,14 @@ function run(label, command, args, options = {}) {
   if (result.status !== 0) failed = true;
 }
 
+for (const adopter of adopters) {
+  run(`${adopter.name} source projection freshness`, process.execPath, [
+    path.join(obligationFirst, "scripts/check-projection-freshness.mjs"),
+    adopter.root, path.dirname(adopter.records),
+    adopter.name === "AI Incident Law" ? "scripts/build-obligation-first.mjs" : "scripts/build.js",
+  ]);
+}
+
 run(
   "Validate every adopter record",
   process.execPath,
@@ -103,6 +111,12 @@ for (const adopter of adopters) {
     ],
   );
 }
+
+run("Compare declared instrument correspondences", process.execPath, [
+  path.join(obligationFirst, "scripts/check-entity-agreement.mjs"),
+  "--required", process.env.OF_REQUIRED_ENTITY_PAIRS || path.join(portfolioRoot, "every-ai-law/tests/fixtures/of-required-entity-pairs.json"),
+  ...adopters.map(adopter => path.join(adopter.root, adopter.records)),
+]);
 
 run(
   "Resolve every cross-repository anchor",

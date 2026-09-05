@@ -697,3 +697,7 @@ if (failures.length > 0) {
 }
 
 console.log("Hardening regression checks passed.");
+
+// Cross-repository semantics are tested with synthetic, redistributable fixtures.
+await import("./test-semantic-federation.mjs");
+await import("./test-relation-coverage.mjs");

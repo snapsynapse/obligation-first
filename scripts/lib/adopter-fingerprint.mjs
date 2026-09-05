@@ -7,7 +7,7 @@ import {
   obligationFirstType,
 } from "./adopter-kit.mjs";
 
-const RELATION_FIELDS = [
+export const RELATION_FIELDS = [
   "issuedBy",
   "heardBy",
   "administeredBy",
@@ -20,14 +20,26 @@ const RELATION_FIELDS = [
   "recognized_by",
   "imposed_by",
   "isCategorizedBy",
+  "scheme",
   "duty_holders",
+  "duty_holder_roles",
   "owed_to",
+  "owed_to_roles",
   "hasAllegation",
   "hasDetermination",
   "decides",
   "recognizes",
   "imposes",
+  "constrains",
+  "vacates",
+  "asserted_by_party",
   "allegedly_violates",
+  "related_to",
+  "grounds",
+  "triggers",
+  "violationOf",
+  "triggers_on_violation_of",
+  "enforcement_authority",
   "target_instrument",
   "resulting_instrument",
   "embodies_determination",
@@ -40,6 +52,7 @@ const RELATION_FIELDS = [
   "undercuts",
   "anchors",
   "sameAs",
+  "exactMatch",
   "describesSameEntityAs",
   "replaced_by",
   "parties",
@@ -115,6 +128,9 @@ export async function buildAdopterFingerprint({ recordsDir, profilePath }) {
   const contexts = {};
   const sourceIdentity = {};
   const relations = {};
+  const exactEdges = [];
+  const provenanceDates = {};
+  const provenanceClaims = {};
   const actorRoles = {};
   const jurisdictionShapes = {};
   const tombstoneFormerTypes = {};
@@ -147,13 +163,21 @@ export async function buildAdopterFingerprint({ recordsDir, profilePath }) {
       }
     }
 
+    const claims = Object.fromEntries(["source", "source_locator", "source_citation", "source_version", "evidence_type", "asserted_by_adopter"].filter(field => record[field] !== undefined).map(field => [field, record[field]]));
+    if (Object.keys(claims).length) provenanceClaims[record["@id"]] = claims;
+    for (const field of ["verified", "retrieved"]) {
+      if (record[field]) provenanceDates[`${record["@id"]}|${field}`] = record[field];
+    }
     for (const field of RELATION_FIELDS) {
       const values = relationValues(record, field);
       if (values.length === 0) continue;
       if (!relations[field]) relations[field] = { edges: 0, sources: 0, target_hosts: {} };
       relations[field].edges += values.length;
       relations[field].sources += 1;
-      for (const value of values) increment(relations[field].target_hosts, hostOf(value));
+      for (const value of values) {
+        increment(relations[field].target_hosts, hostOf(value));
+        exactEdges.push(JSON.stringify([record["@id"], field, value]));
+      }
     }
 
     for (const field of ["duty_holder_roles", "owed_to_roles", "roles"]) {
@@ -214,7 +238,7 @@ export async function buildAdopterFingerprint({ recordsDir, profilePath }) {
   }
 
   return sortedObject({
-    fingerprint_version: 1,
+    fingerprint_version: 2,
     adopter: profile.adopter,
     applies_to: profile.appliesTo,
     naming_profile_version: profile.profileVersion,
@@ -228,6 +252,10 @@ export async function buildAdopterFingerprint({ recordsDir, profilePath }) {
     source_identity: identitySummary,
     field_coverage: fieldCoverage,
     relations,
+    exact_edges_sha256: hashStrings(exactEdges),
+    exact_edges: [...exactEdges].sort().map(edge => JSON.parse(edge)),
+    provenance_claims: provenanceClaims,
+    provenance_dates: provenanceDates,
     actor_roles: actorRoles,
     jurisdiction_shapes: jurisdictionShapes,
     tombstones: {

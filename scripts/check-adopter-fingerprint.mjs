@@ -36,6 +36,16 @@ try {
 }
 
 const actual = await buildAdopterFingerprint(options);
+let prior;
+try { prior = JSON.parse(await readFile(options.expectedPath, "utf8")); }
+catch (error) { if (error.code !== "ENOENT") throw error; }
+const regressions = Object.entries(prior?.provenance_dates || {}).filter(([key, date]) =>
+  !actual.provenance_dates[key] || actual.provenance_dates[key] < date);
+if (regressions.length) {
+  console.error(`OF-PROVENANCE-REGRESSION: ${regressions.map(([key]) => key).join(", ")}`);
+  console.error("Restore verified evidence; a backward-date correction requires a separately reviewed baseline edit.");
+  process.exit(1);
+}
 if (options.write) {
   await mkdir(path.dirname(options.expectedPath), { recursive: true });
   await writeFile(options.expectedPath, stableFingerprintJson(actual));
@@ -55,7 +65,7 @@ try {
 
 const differences = fingerprintDifferences(expected, actual);
 if (differences.length > 0) {
-  console.error(`Obligation-First contract fingerprint drifted (${differences.length}${differences.length === 50 ? "+" : ""} difference(s) shown):`);
+  console.error(`OF-SEMANTIC-DRIFT: Obligation-First contract fingerprint drifted (${differences.length}${differences.length === 50 ? "+" : ""} difference(s) shown):`);
   for (const difference of differences) console.error(`- ${difference}`);
   console.error("Regenerate with --write only when the semantic projection change is intentional.");
   process.exit(1);
