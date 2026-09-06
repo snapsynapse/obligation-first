@@ -242,7 +242,7 @@
     {
       "path": "scripts/build-vocabulary.mjs",
       "url": "https://github.com/snapsynapse/obligation-first/blob/main/scripts/build-vocabulary.mjs",
-      "sha256": "82ddfbdf1ab27b3f5187a58caaaf8a03fec84830faf66236d3a9af8cb9059b62"
+      "sha256": "0b83065b6732a392709952a6078dd7b143de31c0d9fa40f651eeab267d2aabee"
     },
     {
       "path": "scripts/test-vocabulary.mjs",
@@ -252,7 +252,7 @@
     {
       "path": "docs/v1/vocabulary/index.html",
       "url": "https://github.com/snapsynapse/obligation-first/blob/main/docs/v1/vocabulary/index.html",
-      "sha256": "56e576381cd3e8ed4d6834ca2ffe2862cb0f13f0b28d36df5f9c9433ae3eded7"
+      "sha256": "eb2eab56ae03dd8c02f3fe0e91b64b9b47ba194b6e551f3736f2ebbab30e3d93"
     },
     {
       "path": "docs/v1/vocabulary/terms.json",
