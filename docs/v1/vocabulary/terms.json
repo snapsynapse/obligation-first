@@ -1,0 +1,1093 @@
+{
+  "status": "targets-ready-external-filing-pending",
+  "terms": [
+    {
+      "term": "actorRoles",
+      "aliases": [
+        "actor_roles"
+      ],
+      "iri": "https://w3id.org/of/v1/actorRoles",
+      "target": "https://obligationfirst.org/v1/vocabulary/#actorRoles"
+    },
+    {
+      "term": "administeredBy",
+      "aliases": [
+        "administeredBy"
+      ],
+      "iri": "https://w3id.org/of/v1/administeredBy",
+      "target": "https://obligationfirst.org/v1/vocabulary/#administeredBy"
+    },
+    {
+      "term": "adopter",
+      "aliases": [
+        "adopter"
+      ],
+      "iri": "https://w3id.org/of/v1/adopter",
+      "target": "https://obligationfirst.org/v1/vocabulary/#adopter"
+    },
+    {
+      "term": "aknUri",
+      "aliases": [
+        "akn_uri"
+      ],
+      "iri": "https://w3id.org/of/v1/aknUri",
+      "target": "https://obligationfirst.org/v1/vocabulary/#aknUri"
+    },
+    {
+      "term": "Allegation",
+      "aliases": [
+        "Allegation"
+      ],
+      "iri": "https://w3id.org/of/v1/Allegation",
+      "target": "https://obligationfirst.org/v1/vocabulary/#Allegation"
+    },
+    {
+      "term": "allegedlyViolates",
+      "aliases": [
+        "allegedly_violates"
+      ],
+      "iri": "https://w3id.org/of/v1/allegedlyViolates",
+      "target": "https://obligationfirst.org/v1/vocabulary/#allegedlyViolates"
+    },
+    {
+      "term": "amends",
+      "aliases": [
+        "amends"
+      ],
+      "iri": "https://w3id.org/of/v1/amends",
+      "target": "https://obligationfirst.org/v1/vocabulary/#amends"
+    },
+    {
+      "term": "anchors",
+      "aliases": [
+        "anchors"
+      ],
+      "iri": "https://w3id.org/of/v1/anchors",
+      "target": "https://obligationfirst.org/v1/vocabulary/#anchors"
+    },
+    {
+      "term": "applicability",
+      "aliases": [
+        "applicability"
+      ],
+      "iri": "https://w3id.org/of/v1/applicability",
+      "target": "https://obligationfirst.org/v1/vocabulary/#applicability"
+    },
+    {
+      "term": "appliesTo",
+      "aliases": [
+        "appliesTo"
+      ],
+      "iri": "https://w3id.org/of/v1/appliesTo",
+      "target": "https://obligationfirst.org/v1/vocabulary/#appliesTo"
+    },
+    {
+      "term": "assertedBy",
+      "aliases": [
+        "asserted_by"
+      ],
+      "iri": "https://w3id.org/of/v1/assertedBy",
+      "target": "https://obligationfirst.org/v1/vocabulary/#assertedBy"
+    },
+    {
+      "term": "assertedByAdopter",
+      "aliases": [
+        "asserted_by_adopter"
+      ],
+      "iri": "https://w3id.org/of/v1/assertedByAdopter",
+      "target": "https://obligationfirst.org/v1/vocabulary/#assertedByAdopter"
+    },
+    {
+      "term": "assertedByParty",
+      "aliases": [
+        "asserted_by_party"
+      ],
+      "iri": "https://w3id.org/of/v1/assertedByParty",
+      "target": "https://obligationfirst.org/v1/vocabulary/#assertedByParty"
+    },
+    {
+      "term": "Authority",
+      "aliases": [
+        "Authority"
+      ],
+      "iri": "https://w3id.org/of/v1/Authority",
+      "target": "https://obligationfirst.org/v1/vocabulary/#Authority"
+    },
+    {
+      "term": "authorityBasis",
+      "aliases": [
+        "authority_basis"
+      ],
+      "iri": "https://w3id.org/of/v1/authorityBasis",
+      "target": "https://obligationfirst.org/v1/vocabulary/#authorityBasis"
+    },
+    {
+      "term": "bindingBasis",
+      "aliases": [
+        "binding_basis"
+      ],
+      "iri": "https://w3id.org/of/v1/bindingBasis",
+      "target": "https://obligationfirst.org/v1/vocabulary/#bindingBasis"
+    },
+    {
+      "term": "citation",
+      "aliases": [
+        "citation"
+      ],
+      "iri": "https://w3id.org/of/v1/citation",
+      "target": "https://obligationfirst.org/v1/vocabulary/#citation"
+    },
+    {
+      "term": "computedAsOf",
+      "aliases": [
+        "computed_as_of"
+      ],
+      "iri": "https://w3id.org/of/v1/computedAsOf",
+      "target": "https://obligationfirst.org/v1/vocabulary/#computedAsOf"
+    },
+    {
+      "term": "constrains",
+      "aliases": [
+        "constrains"
+      ],
+      "iri": "https://w3id.org/of/v1/constrains",
+      "target": "https://obligationfirst.org/v1/vocabulary/#constrains"
+    },
+    {
+      "term": "content",
+      "aliases": [
+        "content"
+      ],
+      "iri": "https://w3id.org/of/v1/content",
+      "target": "https://obligationfirst.org/v1/vocabulary/#content"
+    },
+    {
+      "term": "createdBy",
+      "aliases": [
+        "created_by"
+      ],
+      "iri": "https://w3id.org/of/v1/createdBy",
+      "target": "https://obligationfirst.org/v1/vocabulary/#createdBy"
+    },
+    {
+      "term": "creates",
+      "aliases": [
+        "creates"
+      ],
+      "iri": "https://w3id.org/of/v1/creates",
+      "target": "https://obligationfirst.org/v1/vocabulary/#creates"
+    },
+    {
+      "term": "crosswalks",
+      "aliases": [
+        "crosswalks"
+      ],
+      "iri": "https://w3id.org/of/v1/crosswalks",
+      "target": "https://obligationfirst.org/v1/vocabulary/#crosswalks"
+    },
+    {
+      "term": "currency",
+      "aliases": [
+        "currency"
+      ],
+      "iri": "https://w3id.org/of/v1/currency",
+      "target": "https://obligationfirst.org/v1/vocabulary/#currency"
+    },
+    {
+      "term": "decides",
+      "aliases": [
+        "decides"
+      ],
+      "iri": "https://w3id.org/of/v1/decides",
+      "target": "https://obligationfirst.org/v1/vocabulary/#decides"
+    },
+    {
+      "term": "defeats",
+      "aliases": [
+        "defeats"
+      ],
+      "iri": "https://w3id.org/of/v1/defeats",
+      "target": "https://obligationfirst.org/v1/vocabulary/#defeats"
+    },
+    {
+      "term": "deprecated",
+      "aliases": [
+        "deprecated"
+      ],
+      "iri": "https://w3id.org/of/v1/deprecated",
+      "target": "https://obligationfirst.org/v1/vocabulary/#deprecated"
+    },
+    {
+      "term": "describesSameEntityAs",
+      "aliases": [
+        "describesSameEntityAs"
+      ],
+      "iri": "https://w3id.org/of/v1/describesSameEntityAs",
+      "target": "https://obligationfirst.org/v1/vocabulary/#describesSameEntityAs"
+    },
+    {
+      "term": "Determination",
+      "aliases": [
+        "Determination"
+      ],
+      "iri": "https://w3id.org/of/v1/Determination",
+      "target": "https://obligationfirst.org/v1/vocabulary/#Determination"
+    },
+    {
+      "term": "disposition",
+      "aliases": [
+        "disposition"
+      ],
+      "iri": "https://w3id.org/of/v1/disposition",
+      "target": "https://obligationfirst.org/v1/vocabulary/#disposition"
+    },
+    {
+      "term": "dutyHolderRoles",
+      "aliases": [
+        "duty_holder_roles"
+      ],
+      "iri": "https://w3id.org/of/v1/dutyHolderRoles",
+      "target": "https://obligationfirst.org/v1/vocabulary/#dutyHolderRoles"
+    },
+    {
+      "term": "dutyHolders",
+      "aliases": [
+        "duty_holders"
+      ],
+      "iri": "https://w3id.org/of/v1/dutyHolders",
+      "target": "https://obligationfirst.org/v1/vocabulary/#dutyHolders"
+    },
+    {
+      "term": "dutyHolderType",
+      "aliases": [
+        "duty_holder_type"
+      ],
+      "iri": "https://w3id.org/of/v1/dutyHolderType",
+      "target": "https://obligationfirst.org/v1/vocabulary/#dutyHolderType"
+    },
+    {
+      "term": "ecliUri",
+      "aliases": [
+        "ecli_uri"
+      ],
+      "iri": "https://w3id.org/of/v1/ecliUri",
+      "target": "https://obligationfirst.org/v1/vocabulary/#ecliUri"
+    },
+    {
+      "term": "effective",
+      "aliases": [
+        "effective"
+      ],
+      "iri": "https://w3id.org/of/v1/effective",
+      "target": "https://obligationfirst.org/v1/vocabulary/#effective"
+    },
+    {
+      "term": "eliUri",
+      "aliases": [
+        "eli_uri"
+      ],
+      "iri": "https://w3id.org/of/v1/eliUri",
+      "target": "https://obligationfirst.org/v1/vocabulary/#eliUri"
+    },
+    {
+      "term": "embodiesDetermination",
+      "aliases": [
+        "embodies_determination"
+      ],
+      "iri": "https://w3id.org/of/v1/embodiesDetermination",
+      "target": "https://obligationfirst.org/v1/vocabulary/#embodiesDetermination"
+    },
+    {
+      "term": "enacted",
+      "aliases": [
+        "enacted"
+      ],
+      "iri": "https://w3id.org/of/v1/enacted",
+      "target": "https://obligationfirst.org/v1/vocabulary/#enacted"
+    },
+    {
+      "term": "enforcedBy",
+      "aliases": [
+        "enforcedBy"
+      ],
+      "iri": "https://w3id.org/of/v1/enforcedBy",
+      "target": "https://obligationfirst.org/v1/vocabulary/#enforcedBy"
+    },
+    {
+      "term": "enforcement_status",
+      "aliases": [
+        "enforcement_status"
+      ],
+      "iri": "https://w3id.org/of/v1/enforcement_status",
+      "target": "https://obligationfirst.org/v1/vocabulary/#enforcement_status"
+    },
+    {
+      "term": "enforcementAuthority",
+      "aliases": [
+        "enforcement_authority"
+      ],
+      "iri": "https://w3id.org/of/v1/enforcementAuthority",
+      "target": "https://obligationfirst.org/v1/vocabulary/#enforcementAuthority"
+    },
+    {
+      "term": "engineVersion",
+      "aliases": [
+        "engine_version"
+      ],
+      "iri": "https://w3id.org/of/v1/engineVersion",
+      "target": "https://obligationfirst.org/v1/vocabulary/#engineVersion"
+    },
+    {
+      "term": "entities",
+      "aliases": [
+        "entities"
+      ],
+      "iri": "https://w3id.org/of/v1/entities",
+      "target": "https://obligationfirst.org/v1/vocabulary/#entities"
+    },
+    {
+      "term": "entity",
+      "aliases": [
+        "entity"
+      ],
+      "iri": "https://w3id.org/of/v1/entity",
+      "target": "https://obligationfirst.org/v1/vocabulary/#entity"
+    },
+    {
+      "term": "evidenceType",
+      "aliases": [
+        "evidence_type"
+      ],
+      "iri": "https://w3id.org/of/v1/evidenceType",
+      "target": "https://obligationfirst.org/v1/vocabulary/#evidenceType"
+    },
+    {
+      "term": "executableEncoding",
+      "aliases": [
+        "executableEncoding"
+      ],
+      "iri": "https://w3id.org/of/v1/executableEncoding",
+      "target": "https://obligationfirst.org/v1/vocabulary/#executableEncoding"
+    },
+    {
+      "term": "filedDate",
+      "aliases": [
+        "filed_date"
+      ],
+      "iri": "https://w3id.org/of/v1/filedDate",
+      "target": "https://obligationfirst.org/v1/vocabulary/#filedDate"
+    },
+    {
+      "term": "formerType",
+      "aliases": [
+        "former_type"
+      ],
+      "iri": "https://w3id.org/of/v1/formerType",
+      "target": "https://obligationfirst.org/v1/vocabulary/#formerType"
+    },
+    {
+      "term": "fullEnforcement",
+      "aliases": [
+        "full_enforcement"
+      ],
+      "iri": "https://w3id.org/of/v1/fullEnforcement",
+      "target": "https://obligationfirst.org/v1/vocabulary/#fullEnforcement"
+    },
+    {
+      "term": "grounds",
+      "aliases": [
+        "grounds"
+      ],
+      "iri": "https://w3id.org/of/v1/grounds",
+      "target": "https://obligationfirst.org/v1/vocabulary/#grounds"
+    },
+    {
+      "term": "hasAllegation",
+      "aliases": [
+        "hasAllegation"
+      ],
+      "iri": "https://w3id.org/of/v1/hasAllegation",
+      "target": "https://obligationfirst.org/v1/vocabulary/#hasAllegation"
+    },
+    {
+      "term": "hasDetermination",
+      "aliases": [
+        "hasDetermination"
+      ],
+      "iri": "https://w3id.org/of/v1/hasDetermination",
+      "target": "https://obligationfirst.org/v1/vocabulary/#hasDetermination"
+    },
+    {
+      "term": "hasTerm",
+      "aliases": [
+        "hasTerm"
+      ],
+      "iri": "https://w3id.org/of/v1/hasTerm",
+      "target": "https://obligationfirst.org/v1/vocabulary/#hasTerm"
+    },
+    {
+      "term": "heardBy",
+      "aliases": [
+        "heardBy"
+      ],
+      "iri": "https://w3id.org/of/v1/heardBy",
+      "target": "https://obligationfirst.org/v1/vocabulary/#heardBy"
+    },
+    {
+      "term": "imposedBy",
+      "aliases": [
+        "imposed_by"
+      ],
+      "iri": "https://w3id.org/of/v1/imposedBy",
+      "target": "https://obligationfirst.org/v1/vocabulary/#imposedBy"
+    },
+    {
+      "term": "imposes",
+      "aliases": [
+        "imposes"
+      ],
+      "iri": "https://w3id.org/of/v1/imposes",
+      "target": "https://obligationfirst.org/v1/vocabulary/#imposes"
+    },
+    {
+      "term": "institutionalScope",
+      "aliases": [
+        "institutional_scope"
+      ],
+      "iri": "https://w3id.org/of/v1/institutionalScope",
+      "target": "https://obligationfirst.org/v1/vocabulary/#institutionalScope"
+    },
+    {
+      "term": "Instrument",
+      "aliases": [
+        "Instrument"
+      ],
+      "iri": "https://w3id.org/of/v1/Instrument",
+      "target": "https://obligationfirst.org/v1/vocabulary/#Instrument"
+    },
+    {
+      "term": "instrumentRef",
+      "aliases": [
+        "instrument_ref"
+      ],
+      "iri": "https://w3id.org/of/v1/instrumentRef",
+      "target": "https://obligationfirst.org/v1/vocabulary/#instrumentRef"
+    },
+    {
+      "term": "issuedBy",
+      "aliases": [
+        "issuedBy"
+      ],
+      "iri": "https://w3id.org/of/v1/issuedBy",
+      "target": "https://obligationfirst.org/v1/vocabulary/#issuedBy"
+    },
+    {
+      "term": "issuedDate",
+      "aliases": [
+        "issued_date"
+      ],
+      "iri": "https://w3id.org/of/v1/issuedDate",
+      "target": "https://obligationfirst.org/v1/vocabulary/#issuedDate"
+    },
+    {
+      "term": "jurisdiction",
+      "aliases": [
+        "jurisdiction"
+      ],
+      "iri": "https://w3id.org/of/v1/jurisdiction",
+      "target": "https://obligationfirst.org/v1/vocabulary/#jurisdiction"
+    },
+    {
+      "term": "Jurisdiction",
+      "aliases": [
+        "Jurisdiction"
+      ],
+      "iri": "https://w3id.org/of/v1/Jurisdiction",
+      "target": "https://obligationfirst.org/v1/vocabulary/#Jurisdiction"
+    },
+    {
+      "term": "kind",
+      "aliases": [
+        "kind"
+      ],
+      "iri": "https://w3id.org/of/v1/kind",
+      "target": "https://obligationfirst.org/v1/vocabulary/#kind"
+    },
+    {
+      "term": "language",
+      "aliases": [
+        "language"
+      ],
+      "iri": "https://w3id.org/of/v1/language",
+      "target": "https://obligationfirst.org/v1/vocabulary/#language"
+    },
+    {
+      "term": "LegalProceeding",
+      "aliases": [
+        "LegalProceeding"
+      ],
+      "iri": "https://w3id.org/of/v1/LegalProceeding",
+      "target": "https://obligationfirst.org/v1/vocabulary/#LegalProceeding"
+    },
+    {
+      "term": "lifecycleStatus",
+      "aliases": [
+        "lifecycle_status"
+      ],
+      "iri": "https://w3id.org/of/v1/lifecycleStatus",
+      "target": "https://obligationfirst.org/v1/vocabulary/#lifecycleStatus"
+    },
+    {
+      "term": "monetaryAward",
+      "aliases": [
+        "monetary_award"
+      ],
+      "iri": "https://w3id.org/of/v1/monetaryAward",
+      "target": "https://obligationfirst.org/v1/vocabulary/#monetaryAward"
+    },
+    {
+      "term": "name",
+      "aliases": [
+        "name"
+      ],
+      "iri": "https://w3id.org/of/v1/name",
+      "target": "https://obligationfirst.org/v1/vocabulary/#name"
+    },
+    {
+      "term": "NamingProfile",
+      "aliases": [
+        "NamingProfile"
+      ],
+      "iri": "https://w3id.org/of/v1/NamingProfile",
+      "target": "https://obligationfirst.org/v1/vocabulary/#NamingProfile"
+    },
+    {
+      "term": "neutralCitation",
+      "aliases": [
+        "neutral_citation"
+      ],
+      "iri": "https://w3id.org/of/v1/neutralCitation",
+      "target": "https://obligationfirst.org/v1/vocabulary/#neutralCitation"
+    },
+    {
+      "term": "normativeForce",
+      "aliases": [
+        "normative_force"
+      ],
+      "iri": "https://w3id.org/of/v1/normativeForce",
+      "target": "https://obligationfirst.org/v1/vocabulary/#normativeForce"
+    },
+    {
+      "term": "notes",
+      "aliases": [
+        "notes"
+      ],
+      "iri": "https://w3id.org/of/v1/notes",
+      "target": "https://obligationfirst.org/v1/vocabulary/#notes"
+    },
+    {
+      "term": "obligation",
+      "aliases": [
+        "obligation"
+      ],
+      "iri": "https://w3id.org/of/v1/obligation",
+      "target": "https://obligationfirst.org/v1/vocabulary/#obligation"
+    },
+    {
+      "term": "Obligation",
+      "aliases": [
+        "Obligation"
+      ],
+      "iri": "https://w3id.org/of/v1/Obligation",
+      "target": "https://obligationfirst.org/v1/vocabulary/#Obligation"
+    },
+    {
+      "term": "ObligationCategory",
+      "aliases": [
+        "ObligationCategory"
+      ],
+      "iri": "https://w3id.org/of/v1/ObligationCategory",
+      "target": "https://obligationfirst.org/v1/vocabulary/#ObligationCategory"
+    },
+    {
+      "term": "operativeStatus",
+      "aliases": [
+        "operative_status"
+      ],
+      "iri": "https://w3id.org/of/v1/operativeStatus",
+      "target": "https://obligationfirst.org/v1/vocabulary/#operativeStatus"
+    },
+    {
+      "term": "organization",
+      "aliases": [
+        "organization"
+      ],
+      "iri": "https://w3id.org/of/v1/organization",
+      "target": "https://obligationfirst.org/v1/vocabulary/#organization"
+    },
+    {
+      "term": "owedTo",
+      "aliases": [
+        "owed_to"
+      ],
+      "iri": "https://w3id.org/of/v1/owedTo",
+      "target": "https://obligationfirst.org/v1/vocabulary/#owedTo"
+    },
+    {
+      "term": "owedToRoles",
+      "aliases": [
+        "owed_to_roles"
+      ],
+      "iri": "https://w3id.org/of/v1/owedToRoles",
+      "target": "https://obligationfirst.org/v1/vocabulary/#owedToRoles"
+    },
+    {
+      "term": "parentInstrument",
+      "aliases": [
+        "parent_instrument"
+      ],
+      "iri": "https://w3id.org/of/v1/parentInstrument",
+      "target": "https://obligationfirst.org/v1/vocabulary/#parentInstrument"
+    },
+    {
+      "term": "parties",
+      "aliases": [
+        "parties"
+      ],
+      "iri": "https://w3id.org/of/v1/parties",
+      "target": "https://obligationfirst.org/v1/vocabulary/#parties"
+    },
+    {
+      "term": "party",
+      "aliases": [
+        "party"
+      ],
+      "iri": "https://w3id.org/of/v1/party",
+      "target": "https://obligationfirst.org/v1/vocabulary/#party"
+    },
+    {
+      "term": "Party",
+      "aliases": [
+        "Party"
+      ],
+      "iri": "https://w3id.org/of/v1/Party",
+      "target": "https://obligationfirst.org/v1/vocabulary/#Party"
+    },
+    {
+      "term": "partyKind",
+      "aliases": [
+        "party_kind"
+      ],
+      "iri": "https://w3id.org/of/v1/partyKind",
+      "target": "https://obligationfirst.org/v1/vocabulary/#partyKind"
+    },
+    {
+      "term": "Permission",
+      "aliases": [
+        "Permission"
+      ],
+      "iri": "https://w3id.org/of/v1/Permission",
+      "target": "https://obligationfirst.org/v1/vocabulary/#Permission"
+    },
+    {
+      "term": "Proceeding",
+      "aliases": [
+        "Proceeding"
+      ],
+      "iri": "https://w3id.org/of/v1/Proceeding",
+      "target": "https://obligationfirst.org/v1/vocabulary/#Proceeding"
+    },
+    {
+      "term": "profileVersion",
+      "aliases": [
+        "profileVersion"
+      ],
+      "iri": "https://w3id.org/of/v1/profileVersion",
+      "target": "https://obligationfirst.org/v1/vocabulary/#profileVersion"
+    },
+    {
+      "term": "rebuts",
+      "aliases": [
+        "rebuts"
+      ],
+      "iri": "https://w3id.org/of/v1/rebuts",
+      "target": "https://obligationfirst.org/v1/vocabulary/#rebuts"
+    },
+    {
+      "term": "recognizedBy",
+      "aliases": [
+        "recognized_by"
+      ],
+      "iri": "https://w3id.org/of/v1/recognizedBy",
+      "target": "https://obligationfirst.org/v1/vocabulary/#recognizedBy"
+    },
+    {
+      "term": "recognizes",
+      "aliases": [
+        "recognizes"
+      ],
+      "iri": "https://w3id.org/of/v1/recognizes",
+      "target": "https://obligationfirst.org/v1/vocabulary/#recognizes"
+    },
+    {
+      "term": "ref",
+      "aliases": [
+        "ref"
+      ],
+      "iri": "https://w3id.org/of/v1/ref",
+      "target": "https://obligationfirst.org/v1/vocabulary/#ref"
+    },
+    {
+      "term": "regulatedBy",
+      "aliases": [
+        "regulatedBy"
+      ],
+      "iri": "https://w3id.org/of/v1/regulatedBy",
+      "target": "https://obligationfirst.org/v1/vocabulary/#regulatedBy"
+    },
+    {
+      "term": "relatedTo",
+      "aliases": [
+        "related_to"
+      ],
+      "iri": "https://w3id.org/of/v1/relatedTo",
+      "target": "https://obligationfirst.org/v1/vocabulary/#relatedTo"
+    },
+    {
+      "term": "relatedToParty",
+      "aliases": [
+        "related_to_party"
+      ],
+      "iri": "https://w3id.org/of/v1/relatedToParty",
+      "target": "https://obligationfirst.org/v1/vocabulary/#relatedToParty"
+    },
+    {
+      "term": "remedy",
+      "aliases": [
+        "remedy"
+      ],
+      "iri": "https://w3id.org/of/v1/remedy",
+      "target": "https://obligationfirst.org/v1/vocabulary/#remedy"
+    },
+    {
+      "term": "remedyKind",
+      "aliases": [
+        "remedy_kind"
+      ],
+      "iri": "https://w3id.org/of/v1/remedyKind",
+      "target": "https://obligationfirst.org/v1/vocabulary/#remedyKind"
+    },
+    {
+      "term": "Reparation",
+      "aliases": [
+        "Reparation"
+      ],
+      "iri": "https://w3id.org/of/v1/Reparation",
+      "target": "https://obligationfirst.org/v1/vocabulary/#Reparation"
+    },
+    {
+      "term": "repeals",
+      "aliases": [
+        "repeals"
+      ],
+      "iri": "https://w3id.org/of/v1/repeals",
+      "target": "https://obligationfirst.org/v1/vocabulary/#repeals"
+    },
+    {
+      "term": "replacedBy",
+      "aliases": [
+        "replaced_by"
+      ],
+      "iri": "https://w3id.org/of/v1/replacedBy",
+      "target": "https://obligationfirst.org/v1/vocabulary/#replacedBy"
+    },
+    {
+      "term": "Requirement",
+      "aliases": [
+        "Requirement"
+      ],
+      "iri": "https://w3id.org/of/v1/Requirement",
+      "target": "https://obligationfirst.org/v1/vocabulary/#Requirement"
+    },
+    {
+      "term": "Restriction",
+      "aliases": [
+        "Restriction"
+      ],
+      "iri": "https://w3id.org/of/v1/Restriction",
+      "target": "https://obligationfirst.org/v1/vocabulary/#Restriction"
+    },
+    {
+      "term": "resultingInstrument",
+      "aliases": [
+        "resulting_instrument"
+      ],
+      "iri": "https://w3id.org/of/v1/resultingInstrument",
+      "target": "https://obligationfirst.org/v1/vocabulary/#resultingInstrument"
+    },
+    {
+      "term": "retrieved",
+      "aliases": [
+        "retrieved"
+      ],
+      "iri": "https://w3id.org/of/v1/retrieved",
+      "target": "https://obligationfirst.org/v1/vocabulary/#retrieved"
+    },
+    {
+      "term": "role",
+      "aliases": [
+        "role"
+      ],
+      "iri": "https://w3id.org/of/v1/role",
+      "target": "https://obligationfirst.org/v1/vocabulary/#role"
+    },
+    {
+      "term": "roles",
+      "aliases": [
+        "roles"
+      ],
+      "iri": "https://w3id.org/of/v1/roles",
+      "target": "https://obligationfirst.org/v1/vocabulary/#roles"
+    },
+    {
+      "term": "scheme",
+      "aliases": [
+        "scheme"
+      ],
+      "iri": "https://w3id.org/of/v1/scheme",
+      "target": "https://obligationfirst.org/v1/vocabulary/#scheme"
+    },
+    {
+      "term": "scope",
+      "aliases": [
+        "scope"
+      ],
+      "iri": "https://w3id.org/of/v1/scope",
+      "target": "https://obligationfirst.org/v1/vocabulary/#scope"
+    },
+    {
+      "term": "section",
+      "aliases": [
+        "section"
+      ],
+      "iri": "https://w3id.org/of/v1/section",
+      "target": "https://obligationfirst.org/v1/vocabulary/#section"
+    },
+    {
+      "term": "shortTitle",
+      "aliases": [
+        "short_title"
+      ],
+      "iri": "https://w3id.org/of/v1/shortTitle",
+      "target": "https://obligationfirst.org/v1/vocabulary/#shortTitle"
+    },
+    {
+      "term": "source",
+      "aliases": [
+        "source"
+      ],
+      "iri": "https://w3id.org/of/v1/source",
+      "target": "https://obligationfirst.org/v1/vocabulary/#source"
+    },
+    {
+      "term": "sourceCitation",
+      "aliases": [
+        "source_citation"
+      ],
+      "iri": "https://w3id.org/of/v1/sourceCitation",
+      "target": "https://obligationfirst.org/v1/vocabulary/#sourceCitation"
+    },
+    {
+      "term": "sourceLocator",
+      "aliases": [
+        "source_locator"
+      ],
+      "iri": "https://w3id.org/of/v1/sourceLocator",
+      "target": "https://obligationfirst.org/v1/vocabulary/#sourceLocator"
+    },
+    {
+      "term": "sourceVersion",
+      "aliases": [
+        "source_version"
+      ],
+      "iri": "https://w3id.org/of/v1/sourceVersion",
+      "target": "https://obligationfirst.org/v1/vocabulary/#sourceVersion"
+    },
+    {
+      "term": "status",
+      "aliases": [
+        "status"
+      ],
+      "iri": "https://w3id.org/of/v1/status",
+      "target": "https://obligationfirst.org/v1/vocabulary/#status"
+    },
+    {
+      "term": "summary",
+      "aliases": [
+        "summary"
+      ],
+      "iri": "https://w3id.org/of/v1/summary",
+      "target": "https://obligationfirst.org/v1/vocabulary/#summary"
+    },
+    {
+      "term": "sunset",
+      "aliases": [
+        "sunset"
+      ],
+      "iri": "https://w3id.org/of/v1/sunset",
+      "target": "https://obligationfirst.org/v1/vocabulary/#sunset"
+    },
+    {
+      "term": "supersedes",
+      "aliases": [
+        "supersedes"
+      ],
+      "iri": "https://w3id.org/of/v1/supersedes",
+      "target": "https://obligationfirst.org/v1/vocabulary/#supersedes"
+    },
+    {
+      "term": "targetInstrument",
+      "aliases": [
+        "target_instrument"
+      ],
+      "iri": "https://w3id.org/of/v1/targetInstrument",
+      "target": "https://obligationfirst.org/v1/vocabulary/#targetInstrument"
+    },
+    {
+      "term": "Term",
+      "aliases": [
+        "Term"
+      ],
+      "iri": "https://w3id.org/of/v1/Term",
+      "target": "https://obligationfirst.org/v1/vocabulary/#Term"
+    },
+    {
+      "term": "territorialScope",
+      "aliases": [
+        "territorial_scope"
+      ],
+      "iri": "https://w3id.org/of/v1/territorialScope",
+      "target": "https://obligationfirst.org/v1/vocabulary/#territorialScope"
+    },
+    {
+      "term": "text",
+      "aliases": [
+        "text"
+      ],
+      "iri": "https://w3id.org/of/v1/text",
+      "target": "https://obligationfirst.org/v1/vocabulary/#text"
+    },
+    {
+      "term": "title",
+      "aliases": [
+        "title"
+      ],
+      "iri": "https://w3id.org/of/v1/title",
+      "target": "https://obligationfirst.org/v1/vocabulary/#title"
+    },
+    {
+      "term": "Tombstone",
+      "aliases": [
+        "Tombstone"
+      ],
+      "iri": "https://w3id.org/of/v1/Tombstone",
+      "target": "https://obligationfirst.org/v1/vocabulary/#Tombstone"
+    },
+    {
+      "term": "trigger",
+      "aliases": [
+        "trigger"
+      ],
+      "iri": "https://w3id.org/of/v1/trigger",
+      "target": "https://obligationfirst.org/v1/vocabulary/#trigger"
+    },
+    {
+      "term": "triggers",
+      "aliases": [
+        "triggers"
+      ],
+      "iri": "https://w3id.org/of/v1/triggers",
+      "target": "https://obligationfirst.org/v1/vocabulary/#triggers"
+    },
+    {
+      "term": "triggersOnViolationOf",
+      "aliases": [
+        "triggers_on_violation_of"
+      ],
+      "iri": "https://w3id.org/of/v1/triggersOnViolationOf",
+      "target": "https://obligationfirst.org/v1/vocabulary/#triggersOnViolationOf"
+    },
+    {
+      "term": "undercuts",
+      "aliases": [
+        "undercuts"
+      ],
+      "iri": "https://w3id.org/of/v1/undercuts",
+      "target": "https://obligationfirst.org/v1/vocabulary/#undercuts"
+    },
+    {
+      "term": "uri",
+      "aliases": [
+        "uri"
+      ],
+      "iri": "https://w3id.org/of/v1/uri",
+      "target": "https://obligationfirst.org/v1/vocabulary/#uri"
+    },
+    {
+      "term": "uriTemplate",
+      "aliases": [
+        "uriTemplate"
+      ],
+      "iri": "https://w3id.org/of/v1/uriTemplate",
+      "target": "https://obligationfirst.org/v1/vocabulary/#uriTemplate"
+    },
+    {
+      "term": "urnLex",
+      "aliases": [
+        "urn_lex"
+      ],
+      "iri": "https://w3id.org/of/v1/urnLex",
+      "target": "https://obligationfirst.org/v1/vocabulary/#urnLex"
+    },
+    {
+      "term": "vacates",
+      "aliases": [
+        "vacates"
+      ],
+      "iri": "https://w3id.org/of/v1/vacates",
+      "target": "https://obligationfirst.org/v1/vocabulary/#vacates"
+    },
+    {
+      "term": "verified",
+      "aliases": [
+        "verified"
+      ],
+      "iri": "https://w3id.org/of/v1/verified",
+      "target": "https://obligationfirst.org/v1/vocabulary/#verified"
+    },
+    {
+      "term": "version",
+      "aliases": [
+        "version"
+      ],
+      "iri": "https://w3id.org/of/v1/version",
+      "target": "https://obligationfirst.org/v1/vocabulary/#version"
+    },
+    {
+      "term": "violationOf",
+      "aliases": [
+        "violationOf"
+      ],
+      "iri": "https://w3id.org/of/v1/violationOf",
+      "target": "https://obligationfirst.org/v1/vocabulary/#violationOf"
+    },
+    {
+      "term": "wouldSupersede",
+      "aliases": [
+        "wouldSupersede"
+      ],
+      "iri": "https://w3id.org/of/v1/wouldSupersede",
+      "target": "https://obligationfirst.org/v1/vocabulary/#wouldSupersede"
+    }
+  ]
+}

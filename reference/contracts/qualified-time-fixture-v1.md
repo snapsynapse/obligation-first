@@ -2,7 +2,7 @@
 
 Scope: Obligation-First offline F14 acceptance fixtures and the EveryAILaw/PubLedge owner sidecars. This is a tooling contract, not a normative OF schema or vocabulary extension.
 
-Status: implemented locally on 2026-09-05 America/Denver; not released or deployed. The v0.6.4 release and its immutable package are unchanged. Implementation: `scripts/lib/qualified-time.mjs`. Shape: `qualified-time-fixture-v1.schema.json`. Synthetic regressions run in `npm run test:hardening`; owner fixtures run in `npm run verify:federation`.
+Status: included as offline reference tooling in v0.6.5. The v0.6.4 immutable package remains unchanged. Implementation: `scripts/lib/qualified-time.mjs`. Shape: `qualified-time-fixture-v1.schema.json`. Synthetic regressions run in `npm run test:hardening`; owner fixtures run in `npm run verify:federation`.
 
 ## Interpretation
 
@@ -46,7 +46,7 @@ Both owner sidecars live at `tests/fixtures/of-qualified-time.json`. They bind t
 - Review predecessor historical assertions in the owning corpora using the necessary official sources; do not infer their truth or falsity from signature alone.
 - Demonstrate a production representation need from a second adopter before proposing a normative schema extension. Two acceptance sidecars alone do not meet that threshold.
 - General temporal causality, nested provenance, evidence-tier policy, relationship migration metadata, and F15 consumer traversals remain separate work.
-- A later delivery tranche must decide how to distribute/version the evaluator. No release-pinned inventory, package, or identifier changes in this fixture tranche.
+- v0.6.5 distributes the evaluator as offline reference tooling; production qualified-time serialization remains outside this release.
 
 ## Local verification
 

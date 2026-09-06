@@ -59,6 +59,17 @@ export async function releaseArtifactInventory(root, version) {
     ...await schemaArtifactInventory(root),
     ...FIXED_RELEASE_ARTIFACTS.slice(1),
     ...scopeArtifactInventory(version),
+    ...(version.localeCompare('0.6.5', 'en', { numeric: true }) >= 0 ? [
+      'reference/contracts/qualified-time-fixture-v1.md',
+      'reference/contracts/qualified-time-fixture-v1.schema.json',
+      'reference/fixtures/qualified-time-v1/README.md',
+      'reference/fixtures/qualified-time-v1/pending-amendment.json',
+      'scripts/lib/qualified-time.mjs', 'scripts/check-qualified-time-adopter.mjs',
+      'scripts/test-qualified-time.mjs', 'scripts/build-vocabulary.mjs',
+      'scripts/test-vocabulary.mjs', 'docs/v1/vocabulary/index.html',
+      'docs/v1/vocabulary/terms.json', 'reference/w3id/of/.htaccess',
+      'reference/w3id/of/README.md',
+    ].map(p => ({ path: p, url: `${REPOSITORY}/blob/main/${p}` })) : []),
   ];
 }
 

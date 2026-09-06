@@ -1,7 +1,7 @@
 # Roadmap
 
 <!-- of-version: roadmap-current -->
-## v0.6.4 (current)
+## v0.6.5 (current)
 
 Current evaluator work: [scope inventory contract v1](reference/contracts/scope-contract-v1.md) implements F11 and the issue 7 non-territorial issuer regression in the v0.6.4 reference package. Adopter inventories and exact scope baselines preserve recognition independently from coverage. Coordinated delivery and exact CI pins are verified in the [v0.6.4 delivery record](reference/release-delivery-v0.6.4.json).
 
@@ -31,7 +31,7 @@ v0.6 exit gates:
 
 ## Local F14 fixture tranche (2026-09-05)
 
-[Qualified-time fixture v1](reference/contracts/qualified-time-fixture-v1.md) now exercises expected/fallback branches, partial and missing dates, evidence boundaries, and Colorado section-specific acceptance sidecars in EveryAILaw and PubLedge. This is local offline tooling, not a released schema extension or production qualified-time projection. Issue 4 remains open for source-history review and a demonstrated cross-adopter production need. F10, F13, F15, evidence-tier policy, and general temporal causality remain in their owning queues.
+[Qualified-time fixture v1](reference/contracts/qualified-time-fixture-v1.md) now exercises expected/fallback branches, partial and missing dates, evidence boundaries, and Colorado section-specific acceptance sidecars in EveryAILaw and PubLedge. The v0.6.5 reference package distributes this offline tooling without a record-schema extension or production qualified-time projection. Issue 4 remains open for source-history review and a demonstrated cross-adopter production need. F10, F13, F15, evidence-tier policy, and general temporal causality remain in their owning queues.
 
 ## v0.1.0-draft
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.6.5 - 2026-09-06
+
+- Distribute the F14 offline qualified-time evaluator and source-boundary fixtures without changing the v0.6 record schema or production serialization.
+- Publish documentation targets for all expanded vocabulary terms and a tested w3id contribution; external filing remains pending.
+- Add documentation/machine-status parity gates and reconcile Colorado predecessor claims in adopter-owned records.
+
 ## Unreleased
 
 ## [0.6.4] - 2026-09-05

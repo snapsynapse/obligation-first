@@ -1,0 +1,273 @@
+{
+  "name": "obligation-first",
+  "version": "0.6.5",
+  "status": "draft",
+  "release_date": "2026-09-06",
+  "canonical_url": "https://obligationfirst.org/releases/v0.6.5/",
+  "repository": "https://github.com/snapsynapse/obligation-first",
+  "summary": "Offline qualified-time tooling and vocabulary resolution targets",
+  "compatibility": {
+    "v0_1_adopter_records": "schema-valid during the v0.6 migration window; migrate for v0.6 conformance",
+    "v0_2_adopter_records": "schema-valid during the v0.6 migration window; migrate for v0.6 conformance",
+    "v0_3_adopter_records": "schema-valid during the v0.6 migration window; migrate for v0.6 conformance",
+    "v0_4_0_adopter_records": "schema-valid during the v0.6 migration window; migrate for v0.6 conformance",
+    "v0_4_1_adopter_records": "schema-valid during the v0.6 migration window; migrate for v0.6 conformance",
+    "v0_4_2_adopter_records": "schema-valid during the v0.6 migration window; migrate for v0.6 conformance",
+    "v0_4_3_adopter_records": "schema-valid during the v0.6 migration window; migrate for v0.6 conformance",
+    "v0_5_0_adopter_records": "schema-valid during the v0.6 migration window; migrate for v0.6 conformance",
+    "iri_major": "v1",
+    "v0_6_0_adopter_records": "native v0.6 conformance after schema-and-graph validation",
+    "v0_6_1_adopter_records": "native v0.6 conformance after schema-and-graph validation",
+    "v0_6_2_adopter_records": "native v0.6 conformance after schema-and-graph validation",
+    "v0_6_3_adopter_records": "native v0.6 conformance after schema-and-graph validation",
+    "v0_6_4_adopter_records": "native v0.6 conformance after schema-and-graph validation",
+    "v0_6_5_adopter_records": "native v0.6 conformance after schema-and-graph validation"
+  },
+  "artifacts": [
+    {
+      "path": "PROTOCOL.md",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md",
+      "sha256": "393c0e6cfc27ed66f406c683382804ea202e2766798996770709675c84e6f026"
+    },
+    {
+      "path": "docs/releases/v0.6.5/RELEASE_NOTES-v0.6.5.md",
+      "url": "https://obligationfirst.org/releases/v0.6.5/RELEASE_NOTES-v0.6.5.md",
+      "sha256": "a21ed61fd7dc43803cc30a35730c29ae169f475db7dbb5bdec6cea18fa57463f"
+    },
+    {
+      "path": "schema/context.jsonld",
+      "url": "https://obligationfirst.org/v1/context.jsonld",
+      "sha256": "5b5c9bd157289ca3b9f75211ffab78edb577f4638bae2ec15a8f4996c26e0ef3"
+    },
+    {
+      "path": "schema/allegation.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/allegation.schema.json",
+      "sha256": "f1166364f71bcd59177504e769a8037117600b2a78b4f33e0494f6e00cd44b12"
+    },
+    {
+      "path": "schema/authority.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/authority.schema.json",
+      "sha256": "ede988f066a778bac22a148a64243fe1a80b5cc4362b68bad722dcae5bc74450"
+    },
+    {
+      "path": "schema/common.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/common.schema.json",
+      "sha256": "cd3380f994135dbd0cc5553552a3073929dfdea55c83f56e784e8da85375f5e1"
+    },
+    {
+      "path": "schema/determination.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/determination.schema.json",
+      "sha256": "8cb1766fe2bcc31dceb6b54656a8764405e7a082010b44f9393ada89eddf0c39"
+    },
+    {
+      "path": "schema/executable-encoding.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json",
+      "sha256": "4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810"
+    },
+    {
+      "path": "schema/instrument.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/instrument.schema.json",
+      "sha256": "dea85420c2fa47f461022023355acdd1478d5dff2ed2ef6cd3f3d1c4861eecb2"
+    },
+    {
+      "path": "schema/jurisdiction.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/jurisdiction.schema.json",
+      "sha256": "fc6f7a6badd0e3a96d62c8ee62711979b597eac36fa50bddc408a9e7f4098054"
+    },
+    {
+      "path": "schema/naming-profile.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/naming-profile.schema.json",
+      "sha256": "ce25421aea6a758a8b1cc60bf871588cdc28f3f1dcd80574cbafcd5a47351a70"
+    },
+    {
+      "path": "schema/obligation-category.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/obligation-category.schema.json",
+      "sha256": "2e2b06d0df7ca959492ada5711b9dc2e62addf3470b65bf7f2bc305bbd301354"
+    },
+    {
+      "path": "schema/obligation.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/obligation.schema.json",
+      "sha256": "eec4293dd5208d38fb7fcd2a78064c6f5abefe6d5c853954842579f0bf91e924"
+    },
+    {
+      "path": "schema/party.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/party.schema.json",
+      "sha256": "851daf4cbd7b24089bc3ba4ac7cc6f60866742d0b0b896e1db4413e82bd48192"
+    },
+    {
+      "path": "schema/proceeding.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/proceeding.schema.json",
+      "sha256": "4f4be2ad9d27438fef7f039b042d54f1f92d2da050663e90ba7e63b5ee38f0b8"
+    },
+    {
+      "path": "schema/term.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/term.schema.json",
+      "sha256": "56520814d7eaaa7e2117b7abfa744120140b575b79e04f2e84c5e85c8875d682"
+    },
+    {
+      "path": "schema/tombstone.schema.json",
+      "url": "https://obligationfirst.org/v1/schema/tombstone.schema.json",
+      "sha256": "e4bcfb9cd8f17409b33eeb5f4fb692155c4413fad8862e4035c73fbe5d8eb3f5"
+    },
+    {
+      "path": "docs/agents.json",
+      "url": "https://obligationfirst.org/agents.json",
+      "sha256": "bffa7f186284c952b4936e8ad2fb46bb698579f2405f45bfa97f228bec8cdfbe"
+    },
+    {
+      "path": "docs/llms.txt",
+      "url": "https://obligationfirst.org/llms.txt",
+      "sha256": "b92118bfad743da96bed16d65ce18ae7c6db615e0a6a687a4dc73bc821adac5e"
+    },
+    {
+      "path": "docs/llms-full.txt",
+      "url": "https://obligationfirst.org/llms-full.txt",
+      "sha256": "8006c570484e049f63e797188bed349bae0829ed9be32ec45e6b1e6a55958c3b"
+    },
+    {
+      "path": "assistant-guide.txt",
+      "url": "https://obligationfirst.org/.well-known/assistant-guide.txt",
+      "sha256": "3953f5a26e64a0510183618aa6bffad3cba9c3c254277cf4d9db7d24ce1db841"
+    },
+    {
+      "path": "assistant-guide-manifest.txt",
+      "url": "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt",
+      "sha256": "98903af6846c6c3a9bdaaac639f8bb48812bab5597854e6a4c2eda3abac90def"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md",
+      "sha256": "c7b4db878afcf8beccd94a1c4230dfba740eb0f8af7df6ff5457a68722088587"
+    },
+    {
+      "path": "package.json",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/package.json",
+      "sha256": "e1ab7fd5e3f6d1d18f21ff5232f6fac18d658904af84de8c2fee1177f46f6f1e"
+    },
+    {
+      "path": "package-lock.json",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/package-lock.json",
+      "sha256": "d945bff270259a3088ef3c1a4e2cfc4a8fe7620038540b97c07f61354d032dab"
+    },
+    {
+      "path": "reference/contracts/scope-contract-v1.md",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/scope-contract-v1.md",
+      "sha256": "1c92364b6a50020686d3b560c5cf343ad5f3ffdbc427386e998c3fdff3680d41"
+    },
+    {
+      "path": "reference/contracts/scope-inventory-v1.schema.json",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/scope-inventory-v1.schema.json",
+      "sha256": "8170c93f7943aed704fcb192e848d5d50171e7c163de3ace5fb2b2ac430932b9"
+    },
+    {
+      "path": "reference/fixtures/scope-contract-v1/README.md",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/reference/fixtures/scope-contract-v1/README.md",
+      "sha256": "2df0775b50f3c40017737dcd0d2ceb748bb959a78dd1ed3734bc7415fcf22924"
+    },
+    {
+      "path": "reference/fixtures/scope-contract-v1/records.json",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/reference/fixtures/scope-contract-v1/records.json",
+      "sha256": "ba597ca1ee49f7e24a9db8a32e1555a791832082a470ddc55cdf4a8695ccc2f3"
+    },
+    {
+      "path": "reference/fixtures/scope-contract-v1/profile.json",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/reference/fixtures/scope-contract-v1/profile.json",
+      "sha256": "30d015cd24bd588eba72ee2484a60df0998c8f767e6b85f94e8d393aa30aa4ad"
+    },
+    {
+      "path": "reference/fixtures/scope-contract-v1/inventory.json",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/reference/fixtures/scope-contract-v1/inventory.json",
+      "sha256": "98a5730a72a9548bcda1f325e54896cecffee1299f94927e11ba11ce85e77c48"
+    },
+    {
+      "path": "reference/fixtures/scope-contract-v1/baseline.json",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/reference/fixtures/scope-contract-v1/baseline.json",
+      "sha256": "16c55404f5064fc23b75554589bfb5ba749390071f9828e1ba4ea9dc53c9d025"
+    },
+    {
+      "path": "scripts/lib/scope-contract.mjs",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/scripts/lib/scope-contract.mjs",
+      "sha256": "48463f9b8197456f5ece12b541ce2a34f48dfe68f3e2e4163c7671e92105bd5a"
+    },
+    {
+      "path": "scripts/check-scope-contract.mjs",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/scripts/check-scope-contract.mjs",
+      "sha256": "5dce7d6f1e66bd604cbbcc4f4ca8c02f929d850580157e242067b9509f4aeb3a"
+    },
+    {
+      "path": "scripts/check-scope-inventories.mjs",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/scripts/check-scope-inventories.mjs",
+      "sha256": "5e77944ab85baf63f0f6ac1a930a99c39f7eb2f701e8cae4213fe4f44de98191"
+    },
+    {
+      "path": "scripts/test-scope-contract.mjs",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/scripts/test-scope-contract.mjs",
+      "sha256": "df319aa0c83330f94f558be59d2de9f39e31eeb2c9223488445056a21a116566"
+    },
+    {
+      "path": "reference/contracts/qualified-time-fixture-v1.md",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/qualified-time-fixture-v1.md",
+      "sha256": "8894656ece14c98bb023188937a15eaf2a4782f332304af997d7e79ea4f093fb"
+    },
+    {
+      "path": "reference/contracts/qualified-time-fixture-v1.schema.json",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/qualified-time-fixture-v1.schema.json",
+      "sha256": "b4e3ed509ff3ab33fb633bc382deb9b3e127ee3a7c974adcd8b271e682021c37"
+    },
+    {
+      "path": "reference/fixtures/qualified-time-v1/README.md",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/reference/fixtures/qualified-time-v1/README.md",
+      "sha256": "b7ede242caa458f3a73f3dd16de60950ab058fda1cf8bd9f49b93ac0dc50bf3b"
+    },
+    {
+      "path": "reference/fixtures/qualified-time-v1/pending-amendment.json",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/reference/fixtures/qualified-time-v1/pending-amendment.json",
+      "sha256": "ffec46c2f2956624d208e38c2f2498f5db684127eb95d20bb9b9b69588560f0c"
+    },
+    {
+      "path": "scripts/lib/qualified-time.mjs",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/scripts/lib/qualified-time.mjs",
+      "sha256": "5f7fadda28cf9dde021ff1c69f3dd7c120b3ce16c7f928a29f8b3dbcd21b2f38"
+    },
+    {
+      "path": "scripts/check-qualified-time-adopter.mjs",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/scripts/check-qualified-time-adopter.mjs",
+      "sha256": "d924bd54085400b7ed482e505497bf196654a7739ae03d1f16d8cd3bb9b8d56e"
+    },
+    {
+      "path": "scripts/test-qualified-time.mjs",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/scripts/test-qualified-time.mjs",
+      "sha256": "484defcd940b32fef7479e0d6420fda0fa3f535dc4291fa9d44cfa1d4a3febdc"
+    },
+    {
+      "path": "scripts/build-vocabulary.mjs",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/scripts/build-vocabulary.mjs",
+      "sha256": "82ddfbdf1ab27b3f5187a58caaaf8a03fec84830faf66236d3a9af8cb9059b62"
+    },
+    {
+      "path": "scripts/test-vocabulary.mjs",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/scripts/test-vocabulary.mjs",
+      "sha256": "24f7afb03bbb3752d6f7f963be2a32d22eb2003d23871dedbc9cae1f4e5f6313"
+    },
+    {
+      "path": "docs/v1/vocabulary/index.html",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/docs/v1/vocabulary/index.html",
+      "sha256": "56e576381cd3e8ed4d6834ca2ffe2862cb0f13f0b28d36df5f9c9433ae3eded7"
+    },
+    {
+      "path": "docs/v1/vocabulary/terms.json",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/docs/v1/vocabulary/terms.json",
+      "sha256": "ca29be2b1dd3914ef4fb97b9569624775de3bd3fac0a74f081d565ef03e6ca38"
+    },
+    {
+      "path": "reference/w3id/of/.htaccess",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/reference/w3id/of/.htaccess",
+      "sha256": "26847305d279d09b21c051141e29c8a111dda7a1dd74a19245de3cc2aa738ba3"
+    },
+    {
+      "path": "reference/w3id/of/README.md",
+      "url": "https://github.com/snapsynapse/obligation-first/blob/main/reference/w3id/of/README.md",
+      "sha256": "230140ab87439b8160ed907f9b11882c40d4648ff569512188b3f90ec2b32672"
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 {
   "status_schema_version": 1,
-  "released_reference_version": "0.6.4",
+  "released_reference_version": "0.6.5",
   "record_contract": "v0.6",
   "scope_continuity": {
     "status": "released-reference-tooling",
     "command": "npm run test:scope"
   },
   "qualified_time": {
-    "status": "unreleased-offline-fixture",
+    "status": "released-offline-fixture",
     "changes_record_schema": false,
     "production_serialization": false,
     "determines_legal_applicability": false,

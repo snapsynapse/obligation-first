@@ -3,7 +3,7 @@
 > An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist.
 
 <!-- of-version: llms-current -->
-Obligation-First is a small upper schema and JSON-LD context for normative content. It defines the Authority / Instrument / Term / Obligation spine, the Proceeding / Allegation / Determination strand, ObligationCategory concepts, and Party / Jurisdiction / Tombstone support. v0.6.4 is the current release. Its v0.6 semantic contract is implemented across EveryAILaw, PubLedge, and AI Incident Law. It separates issuer, administrator, enforcer, and hearing forum; separates normative force, lifecycle, operative effect, and enforcement; reserves Term.text for exact source text; and adds shared provenance plus graph-level validation. Legacy v0.5 shapes remain schema-valid. Migrated projections declare `obligation-first >=0.6.0 <0.7.0`.
+Obligation-First is a small upper schema and JSON-LD context for normative content. It defines the Authority / Instrument / Term / Obligation spine, the Proceeding / Allegation / Determination strand, ObligationCategory concepts, and Party / Jurisdiction / Tombstone support. v0.6.5 is the current release. Its v0.6 semantic contract is implemented across EveryAILaw, PubLedge, and AI Incident Law. It separates issuer, administrator, enforcer, and hearing forum; separates normative force, lifecycle, operative effect, and enforcement; reserves Term.text for exact source text; and adds shared provenance plus graph-level validation. Legacy v0.5 shapes remain schema-valid. Migrated projections declare `obligation-first >=0.6.0 <0.7.0`.
 
 ## Scope continuity evaluation
 
@@ -54,7 +54,7 @@ Run `npm run test:scope` for the deterministic shared evals. Adopter checks requ
 - Executable encoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
 - Naming profile schema: https://obligationfirst.org/v1/schema/naming-profile.schema.json
 <!-- of-version: llms-release-url -->
-- Release package: https://obligationfirst.org/releases/v0.6.4/
+- Release package: https://obligationfirst.org/releases/v0.6.5/
 - Assistant guide: https://obligationfirst.org/.well-known/assistant-guide.txt
 - Assistant guide manifest: https://obligationfirst.org/.well-known/assistant-guide-manifest.txt
 
@@ -92,3 +92,9 @@ Assistants should fetch `https://obligationfirst.org/.well-known/assistant-guide
 - Repo: https://github.com/snapsynapse/obligation-first
 - Author: Sam Rogers — https://linkedin.com/in/samrogers
 - Publisher: PAICE.work PBC — https://paice.work/
+
+## Offline evaluation and vocabulary documentation
+
+The v0.6.5 reference package includes F14 qualified-time fixtures. They do not determine legal applicability or predecessor operative history and do not change production serialization. Machine status: https://obligationfirst.org/evaluation-status.json
+
+Vocabulary documentation: https://obligationfirst.org/v1/vocabulary/ . The w3id contribution is prepared but has not been submitted; permanent-IRI resolution remains pending.

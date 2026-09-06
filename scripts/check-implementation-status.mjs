@@ -13,7 +13,7 @@ export const STATUS_FILES = [
   'reference/fixtures/qualified-time-v1/pending-amendment.json',
 ];
 export function implementationSummary(version) {
-  return `The v${version} reference package includes scope continuity evaluation. F14 qualified-time evaluation is unreleased offline tooling: expected/fallback branches and evidence/date boundaries are tested, while the v0.6 record schema and production serialization are unchanged. These fixtures do not determine legal applicability or predecessor operative history.`;
+  return `The v${version} reference package includes scope continuity evaluation. F14 qualified-time evaluation is released offline reference tooling: expected/fallback branches and evidence/date boundaries are tested, while the v0.6 record schema and production serialization are unchanged. These fixtures do not determine legal applicability or predecessor operative history.`;
 }
 export function implementationStatusFailures(files, manifest) {
   const failures = [];
@@ -35,7 +35,7 @@ export function implementationStatusFailures(files, manifest) {
       status.scope_continuity?.command !== 'npm run test:scope') failures.push('OF-STATUS-SCOPE: unsupported scope declaration');
   if (status.namespace_redirect !== 'pending-external-filing') failures.push('OF-STATUS-NAMESPACE: namespace readiness needs reviewed external evidence');
   const q = status.qualified_time;
-  if (!q || q.status !== 'unreleased-offline-fixture' ||
+  if (!q || q.status !== 'released-offline-fixture' ||
       ['changes_record_schema', 'production_serialization', 'determines_legal_applicability', 'determines_predecessor_history'].some(key => q[key] !== false) ||
       q.test_command !== 'node scripts/test-qualified-time.mjs' || q.federation_command !== 'npm run verify:federation' ||
       q.contract_path !== 'reference/contracts/qualified-time-fixture-v1.md' || q.owner_sidecar_path !== 'tests/fixtures/of-qualified-time.json' ||
@@ -52,7 +52,7 @@ export function implementationStatusFailures(files, manifest) {
   }
   const paths = new Set(manifest.artifacts.map(a => a.path));
   if (!paths.has('scripts/lib/scope-contract.mjs')) failures.push('OF-STATUS-RELEASE: scope evaluator absent from released inventory');
-  if (paths.has('scripts/lib/qualified-time.mjs') || paths.has('reference/contracts/qualified-time-fixture-v1.schema.json')) failures.push('OF-STATUS-RELEASE: F14 package inventory contradicts unreleased status');
+  if (!paths.has('scripts/lib/qualified-time.mjs') || !paths.has('reference/contracts/qualified-time-fixture-v1.schema.json')) failures.push('OF-STATUS-RELEASE: F14 tooling missing from released inventory');
   if (pkg.scripts?.['test:hardening'] !== 'node scripts/test-hardening-regressions.mjs' ||
       !pkg.scripts?.test?.includes('npm run test:hardening') ||
       !files['scripts/test-hardening-regressions.mjs'].includes('await import("./test-qualified-time.mjs")') ||

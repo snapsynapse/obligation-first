@@ -5,13 +5,23 @@
   <link href="https://obligationfirst.org/feed.xml" rel="self"/>
   <link href="https://obligationfirst.org/" rel="alternate"/>
   <id>https://obligationfirst.org/</id>
-  <updated>2026-09-05T12:00:00Z</updated>
+  <updated>2026-09-06T12:00:00Z</updated>
   <author>
     <name>Sam Rogers</name>
     <uri>https://www.linkedin.com/in/samrogers</uri>
   </author>
   <rights>CC BY 4.0 (spec) / Apache 2.0 (code)</rights>
   <generator uri="https://obligationfirst.org/">Obligation-First</generator>
+
+  <entry>
+    <title>Obligation-First v0.6.5 released</title>
+    <link href="https://obligationfirst.org/changelog.html" rel="alternate"/>
+    <id>https://obligationfirst.org/releases/v0.6.5</id>
+    <updated>2026-09-06T12:00:00Z</updated>
+    <published>2026-09-06T12:00:00Z</published>
+    <summary>Offline qualified-time tooling and vocabulary resolution targets</summary>
+    <category term="release"/>
+  </entry>
 
   <entry>
     <title>Obligation-First v0.6.4 released</title>

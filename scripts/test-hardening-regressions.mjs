@@ -742,3 +742,5 @@ await import("./test-relation-coverage.mjs");
 await import("./test-scope-contract.mjs");
 await import("./test-qualified-time.mjs");
 await import("./test-implementation-status.mjs");
+
+await import("./test-vocabulary.mjs");

@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-06",
+  "status": "local-verified-external-filing-pending",
+  "term_redirects": 136,
+  "schema_redirects": 14,
+  "resource_routes": 4,
+  "unknown_paths_404": 4,
+  "runtime": "Apache/2.4.67 (Unix), temporary loopback-only server, stopped after checks",
+  "assertions": [
+    "Every term returns 303 with exact fragment Location",
+    "Known schema and resource routes return 302 with exact Location",
+    "Unknown term, case mismatch, suffix extension and unknown schema return 404"
+  ],
+  "tests": [
+    "node scripts/test-vocabulary.mjs",
+    "npm test",
+    "npm run verify:federation"
+  ],
+  "limits": [
+    "No external w3id contribution submitted",
+    "No upstream namespace availability claimed"
+  ]
+}

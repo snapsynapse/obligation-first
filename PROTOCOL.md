@@ -2,7 +2,7 @@
 "@type": "https://w3id.org/semanticarts/ns/ontology/gist/Specification"
 title: "Obligation-First Protocol"
 # of-version: protocol-frontmatter
-version: "0.6.4"
+version: "0.6.5"
 license: "CC-BY-4.0"
 created: 2026-05-04
 modified: 2026-09-05
@@ -11,7 +11,7 @@ modified: 2026-09-05
 # Obligation-First Protocol
 
 <!-- of-version: protocol-status -->
-> **Status: v0.6.4.** This release implements the shared semantic contract exercised by EveryAILaw, PubLedge, and AI Incident Law. It separates issuance from administration, enforcement, and adjudication; separates normative force from lifecycle, operative effect, and enforcement; adds Party, Jurisdiction, and Tombstone records; reserves `text` for exact source text; adds shared provenance; and replaces concept membership through `exactMatch` with `gist:isCategorizedBy`. Existing v0.5 records remain schema-valid. Adopters using the v0.6 vocabulary declare `obligation-first >=0.6.0 <0.7.0` and migrate their projections with the supplied fixture and validator.
+> **Status: v0.6.5.** This release implements the shared semantic contract exercised by EveryAILaw, PubLedge, and AI Incident Law. It separates issuance from administration, enforcement, and adjudication; separates normative force from lifecycle, operative effect, and enforcement; adds Party, Jurisdiction, and Tombstone records; reserves `text` for exact source text; adds shared provenance; and replaces concept membership through `exactMatch` with `gist:isCategorizedBy`. Existing v0.5 records remain schema-valid. Adopters using the v0.6 vocabulary declare `obligation-first >=0.6.0 <0.7.0` and migrate their projections with the supplied fixture and validator.
 
 ## What this protocol specifies
 
