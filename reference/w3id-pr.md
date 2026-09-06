@@ -1,8 +1,10 @@
 # w3id.org PR preparation
 
-Status: ready-to-file checklist
+Status: incomplete draft, not ready to file unchanged
 Target identifier: `https://w3id.org/of/v1/`
 Resolution target: `https://obligationfirst.org/v1/`
+
+The existing draft rules below cover the root, context, and schema paths only. They do not cover expanded vocabulary terms such as `https://w3id.org/of/v1/Instrument`. F13 still requires a reviewed term-target strategy and target-page tests before external submission. Preserve current identifiers. No redirect contribution has been submitted by this documentation pass.
 
 The w3id.org process asks projects to add a directory for the intended identifier containing `.htaccess` redirect rules and a `README.md` with contact information, then submit a pull request to the [perma-id/w3id.org](https://github.com/perma-id/w3id.org) repository. The public README says the pull request should include contact info, tested redirects, and a descriptive commit message.
 
@@ -29,7 +31,7 @@ RewriteRule ^v1/schema/?$ https://obligationfirst.org/v1/schema/ [R=302,L]
 RewriteRule ^v1/schema/(.*)$ https://obligationfirst.org/v1/schema/$1 [R=302,L]
 ```
 
-Use `302` while v0.1 is still draft. After v0.1 freezes and the redirect target is stable, a follow-up PR can switch these to `301`.
+The redirect-code choice remains part of the reviewed contribution. The old v0.1 draft framing does not establish readiness for the current pre-v1.0 reference package.
 
 ## Proposed `README.md`
 
@@ -55,7 +57,8 @@ Maintainer: Sam Rogers, PAICE.work PBC, https://paice.work/
 - [ ] `https://obligationfirst.org/v1/` returns 200.
 - [ ] `https://obligationfirst.org/v1/context.jsonld` returns 200.
 - [ ] `https://obligationfirst.org/v1/schema/` returns 200.
-- [ ] All eight schema files return 200.
+- [ ] All 14 current schema documents return 200; derive the inventory from `schema/*.schema.json` before filing.
+- [ ] Representative expanded vocabulary terms, including Instrument, reach reviewed targets.
 - [ ] The repo docs consistently describe `https://w3id.org/of/v1/` as the canonical vocabulary IRI and `https://obligationfirst.org/v1/` as the resolution target.
 
 ## PR checklist
@@ -66,4 +69,3 @@ Maintainer: Sam Rogers, PAICE.work PBC, https://paice.work/
 - [ ] Commit with a descriptive message such as `Add Obligation-First permanent identifier`.
 - [ ] Open a PR from the fork to `perma-id/w3id.org`.
 - [ ] After merge, update [ROADMAP.md](../ROADMAP.md) and [CHANGELOG.md](../CHANGELOG.md).
-

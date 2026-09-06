@@ -22,6 +22,7 @@
   <link rel="alternate" type="text/plain" href="https://obligationfirst.org/.well-known/assistant-guide.txt" title="GuideCheck assistant guide">
   <link rel="alternate" type="text/plain" href="https://obligationfirst.org/.well-known/assistant-guide-manifest.txt" title="GuideCheck assistant guide manifest">
   <link rel="alternate" type="application/json" href="https://obligationfirst.org/agents.json" title="Agent capabilities">
+  <link rel="describedby" type="application/json" href="https://obligationfirst.org/evaluation-status.json" title="Evaluation implementation status">
   <link rel="alternate" type="application/atom+xml" href="https://obligationfirst.org/feed.xml" title="Obligation-First releases">
 
   <!-- Open Graph -->
@@ -496,11 +497,17 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
     <p>Scope evaluator v1 checks exact territorial and institutional identifiers against adopter-owned inventories and continuity baselines. Recognition, modeled coverage, uncovered scope, and unknown evidence remain distinct. It complements schema and fingerprint checks without changing the v0.6 record contract or certifying legal applicability.</p>
     <p>Review the <a href="https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/scope-contract-v1.md">scope contract and diagnostics</a>, <a href="https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/scope-inventory-v1.schema.json">inventory tooling schema</a>, and <a href="https://github.com/snapsynapse/obligation-first/tree/main/reference/fixtures/scope-contract-v1">synthetic evaluation fixtures</a>. The deterministic evals cover scope substitutions, institutional and territorial confusion, lost specificity, and unknown evidence.</p>
 
+    <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Implementation status beyond the release package</h3>
+    <!-- implementation-status:start -->
+    <p>The v0.6.4 reference package includes scope continuity evaluation. F14 qualified-time evaluation is unreleased offline tooling: expected/fallback branches and evidence/date boundaries are tested, while the v0.6 record schema and production serialization are unchanged. These fixtures do not determine legal applicability or predecessor operative history.</p>
+    <!-- implementation-status:end -->
+    <p>The <a href="https://obligationfirst.org/evaluation-status.json">machine-readable evaluation status</a> supplements the release-versioned agent files. It describes implementation scope, not deployment acceptance. The <a href="https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/qualified-time-fixture-v1.md">F14 fixture contract</a> defines the evidence boundaries and remaining work.</p>
+
     <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Three steps to bind a dataset</h3>
     <ol style="padding-left: 1.5rem; line-height: 1.9; color: var(--text-muted);">
       <li><strong>Reference the canonical <code>@context</code></strong> — set <code>@context: "https://obligationfirst.org/v1/context.jsonld"</code> on every record. Repo-local extensions go in a second context object.</li>
       <li><strong>Validate shape and graph contracts</strong> — run every record through <a href="/v1/schema/">the schema for its Obligation-First <code>@type</code></a>, validate graph coherence and every emitted surface, and publish a <code>.well-known</code> naming profile.</li>
-      <li><strong>Cite <a href="https://obligationfirst.org/">obligationfirst.org</a> as the canonical reference</strong> — adopter sites and documentation should link back. The IRI prefix is permanent.</li>
+      <li><strong>Cite <a href="https://obligationfirst.org/">obligationfirst.org</a> as the canonical reference</strong> &mdash; preserve record identifiers. The separate w3id vocabulary redirect remains pending.</li>
     </ol>
 
     <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Assistant-assisted setup</h3>
@@ -556,7 +563,7 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
       <div class="example">
         <img class="flag" src="https://flagcdn.com/us-co.svg" alt="Flag of Colorado" width="36" loading="lazy">
         <h3><a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/colorado-sb24-205/README.md" target="_blank" rel="noopener">Colorado SB 24-205</a></h3>
-        <p>Three layers in one example: enacted statute (spine), federally-stayed enforcement (proceeding strand), SB26-189 ADMT replacement bill (second Instrument). Stress test of the schema against a contested, multi-layered situation.</p>
+        <p>Historical modeling fixture: statute, enforcement proceeding, and enacted successor Instrument. It tests relationships, not current legal status or predecessor operative history. F14 separately tests qualified date boundaries.</p>
       </div>
       <div class="example">
         <img class="flag" src="https://flagcdn.com/us-ut.svg" alt="Flag of Utah" width="36" loading="lazy">

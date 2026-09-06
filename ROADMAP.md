@@ -29,6 +29,10 @@ v0.6 exit gates:
 - [x] Publication, tag, release, and deployment verified
 - [x] v0.6.1 release-state patch prevents packaged candidate/released copy drift
 
+## Local F14 fixture tranche (2026-09-05)
+
+[Qualified-time fixture v1](reference/contracts/qualified-time-fixture-v1.md) now exercises expected/fallback branches, partial and missing dates, evidence boundaries, and Colorado section-specific acceptance sidecars in EveryAILaw and PubLedge. This is local offline tooling, not a released schema extension or production qualified-time projection. Issue 4 remains open for source-history review and a demonstrated cross-adopter production need. F10, F13, F15, evidence-tier policy, and general temporal causality remain in their owning queues.
+
 ## v0.1.0-draft
 
 **Goal:** lock the design on paper. Ship a coherent spec, three worked examples, a JSON-LD context, and a live canonical site. Get external feedback (Semantic Arts, Blawx) before freezing.

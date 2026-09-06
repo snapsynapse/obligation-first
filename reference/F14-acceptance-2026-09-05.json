@@ -1,0 +1,119 @@
+{
+  "date": "2026-09-05",
+  "timezone": "America/Denver",
+  "scope": "Approved local F14 fixture tranche and related documentation reconciliation",
+  "status": "local-verified-uncommitted",
+  "base_heads": {
+    "obligation-first": "f6f5f40596c2dee486ecd157961c5aaebad92e1e",
+    "every-ai-law": "bd68475d4990a3386ac5e7cacd8b40ac73395a31",
+    "publedge": "469d172033bdbea26b4d9ab741aa728c626d60c7",
+    "ai-incident-law": "494038c342a2b7b3c3acd4417ce57dda58e3d6cd",
+    "every-ai-law-pro": "88ccb63b0c96a160148e2a7e6281c3489614bef2"
+  },
+  "checks": [
+    {
+      "command": "npm test",
+      "owner": "obligation-first",
+      "phase": "baseline",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run verify:federation",
+      "owner": "obligation-first",
+      "phase": "baseline",
+      "exit_code": 0
+    },
+    {
+      "command": "npm test",
+      "owner": "obligation-first",
+      "phase": "final",
+      "exit_code": 0,
+      "synthetic_f14_checks": 42
+    },
+    {
+      "command": "npm run verify:federation",
+      "owner": "obligation-first",
+      "phase": "final",
+      "exit_code": 0,
+      "f14_owner_cases": {
+        "every-ai-law": 5,
+        "publedge": 4
+      },
+      "regression_adopters": [
+        "every-ai-law",
+        "publedge",
+        "ai-incident-law"
+      ]
+    },
+    {
+      "command": "npm run verify:ci",
+      "owner": "every-ai-law",
+      "phase": "final",
+      "exit_code": 0,
+      "environment": "disposable local source snapshot with original dependency runtime; OF_SCHEMA_DIR/OBLIGATION_FIRST_DIR point to current OF checkout",
+      "tests": 215
+    },
+    {
+      "command": "npm run verify:ci",
+      "owner": "publedge",
+      "phase": "final",
+      "exit_code": 0,
+      "environment": "disposable local source snapshot after canonical manifest update and regeneration"
+    }
+  ],
+  "official_source": {
+    "url": "https://leg.colorado.gov/bill_files/116489/download",
+    "sha256": "87a8824f9071c63d2d47b736e414d28e216f5387ef5602484e53127bc94b283e",
+    "stored_pdf_match": true,
+    "visual_pages": [
+      23,
+      24
+    ],
+    "raw_section_checks": [
+      1,
+      5
+    ],
+    "scope": "Section-specific date fixture only; not a complete predecessor operative-history determination"
+  },
+  "evaluated_files": {
+    "obligation-first": {
+      "scripts/lib/qualified-time.mjs": "a2bf12ac2600f5113c29e6c032d6785394ecc256e9e3f50a6d3e950f4db0a261",
+      "scripts/check-qualified-time-adopter.mjs": "60f73cd1bf85f9a3bbc4f2608fbe3b6a2f2588dfb4066586ccfc36f5be3a22c7",
+      "scripts/test-qualified-time.mjs": "93bffe06831f47d6be61a9a935baea15e79b284db9c644b40e9168ac5d0149d6",
+      "scripts/test-hardening-regressions.mjs": "1516f857a5dbdc559d790530dcd8105c5f2cd2d9e85fd553f4a75b07bc1a4722",
+      "scripts/verify-federation.mjs": "3154f0c06e8bcbaaf317b033b95bc40457ca964f057eb188ca1532fe822bda99",
+      "reference/contracts/qualified-time-fixture-v1.schema.json": "b4e3ed509ff3ab33fb633bc382deb9b3e127ee3a7c974adcd8b271e682021c37",
+      "reference/contracts/qualified-time-fixture-v1.md": "288c1ec767f5dc0ddffa388a685cd48e92cf81b9022f06d62907baa833a99449",
+      "reference/fixtures/qualified-time-v1/pending-amendment.json": "ffec46c2f2956624d208e38c2f2498f5db684127eb95d20bb9b9b69588560f0c"
+    },
+    "every-ai-law": {
+      "tests/fixtures/of-qualified-time.json": "4831ff101c5e2bcda90293c75c19d7cb752de2d77fcf19e2e9ff9d01380a6176",
+      "design/F14-QUALIFIED-TIME.md": "9320d3105662d8fb1eb502ce8b0ad0d6ee3898e3c98fe577301a02cff17950ee",
+      "design/ROADMAP.md": "8a84be2f41f257caaa4b23bc86a823520ca0093f2f07f7d54b9bd99795850522"
+    },
+    "publedge": {
+      "tests/fixtures/of-qualified-time.json": "1e168a43ddf0292909982ac5840a682868d93cfbf58353126349dabaf59dad7c",
+      "reference/F14-QUALIFIED-TIME.md": "5c5b2f620a00455601726e0992f8f4f322b8a8997b2efefc07223ebb5a373674",
+      "ROADMAP.md": "01a514f317188e6389efd22a75667cf5defce5c8064a90b9318a3130dbdd48a2",
+      "MANIFEST.yaml": "1eef44af0cae30c791d2c88535266b18362f25f0068d9c4682c075d1af0210a2",
+      "docs/ROADMAP.md": "01a514f317188e6389efd22a75667cf5defce5c8064a90b9318a3130dbdd48a2",
+      "docs/MANIFEST.yaml": "1eef44af0cae30c791d2c88535266b18362f25f0068d9c4682c075d1af0210a2",
+      "docs/reference/F14-QUALIFIED-TIME.md": "5c5b2f620a00455601726e0992f8f4f322b8a8997b2efefc07223ebb5a373674"
+    }
+  },
+  "limits": [
+    "No normative schema, context, release-pinned inventory, version, corpus record or graph serialization changes.",
+    "Acceptance sidecars are offline fixtures, not production qualified-time projections.",
+    "No delivery commit, push, external issue action, release, deployment, or customer dispatch performed. Disposable test commits exist only under /tmp.",
+    "Remote refs and hosted production state were not refreshed; base_heads identify local inputs.",
+    "F14 predecessor-history review, general temporal causality and production representation remain pending; F10, F13 and F15 are separate tranches."
+  ],
+  "documentation": [
+    "Owning roadmaps and seven partially active ignored handoffs reconciled; no handoff was fully consumed.",
+    "EveryAILaw older SB 1000 handoff now points to accepted delivery instead of claiming the September 4 correction remains uncommitted. No new bill lifecycle check performed."
+  ],
+  "verification_logs": "Ephemeral /tmp/of-f14-*.log; this record preserves the results and file hashes rather than treating temporary logs as durable evidence.",
+  "historical_snapshot": true,
+  "follow_up": "documentation-audit-2026-09-05.json",
+  "follow_up_note": "Later eval and documentation edits are verified in the follow-up record; these original evaluated-file hashes identify the first candidate only."
+}

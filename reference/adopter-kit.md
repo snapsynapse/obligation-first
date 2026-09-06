@@ -8,7 +8,9 @@ Status: v0.6 repository helper. It is versioned with the specification and is no
 
 - `scripts/lib/adopter-kit.mjs`: shared helpers for loading records, validating schemas, validating local graph links, and writing aggregate JSON bundles.
 - `scripts/validate-adopter-records.mjs`: CLI validator for one or more record directories.
-- `npm run validate:adopter-kit`: smoke test that runs the kit against the three Obligation-First worked examples.
+- `npm run validate:adopter-kit`: validates the four worked record sets discovered under `examples/*/records/`.
+
+F14's [qualified-time fixture](contracts/qualified-time-fixture-v1.md) is separate unreleased tooling. It is not an addition to the writer's production record shape. The full federation command requires EveryAILaw/PubLedge owner sidecars and requires EveryAILaw's native two-date mapping; AI Incident Law participates in the existing regression lanes.
 
 ## Validator use
 
@@ -19,11 +21,12 @@ Literal
 node scripts/validate-adopter-records.mjs examples/publedge-jia-utah-72/records
 ```
 
-From an adopter repo with this repo checked out as a sibling:
+From an adopter repo with this repo checked out as a sibling, replace the record directory with your actual export path:
 
-Literal
+Replace: RECORDS_DIR -> the absolute path to your export's record directory.
+Customize
 ```bash
-node ../obligation-first/scripts/validate-adopter-records.mjs data/examples/records
+node ../obligation-first/scripts/validate-adopter-records.mjs RECORDS_DIR
 ```
 
 The validator checks two layers:

@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "F14 offline qualified-time fixture v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "id",
+    "subject",
+    "as_of",
+    "condition",
+    "expected",
+    "fallback"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "as_of": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "description",
+        "status",
+        "observed_on",
+        "source"
+      ],
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "satisfied",
+            "unsatisfied",
+            "unknown",
+            "conflicted"
+          ]
+        },
+        "observed_on": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "url",
+                "locator"
+              ],
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^https://(?!www\\.)"
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "date",
+        "source"
+      ],
+      "properties": {
+        "date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\d{4}(-\\d{2})?(-\\d{2})?$"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "url",
+                "locator"
+              ],
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^https://(?!www\\.)"
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "fallback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "date",
+        "source"
+      ],
+      "properties": {
+        "date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\d{4}(-\\d{2})?(-\\d{2})?$"
+        },
+        "source": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "url",
+                "locator"
+              ],
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^https://(?!www\\.)"
+                },
+                "locator": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "branch",
+        "date",
+        "state"
+      ],
+      "properties": {
+        "branch": {
+          "enum": [
+            "expected",
+            "fallback",
+            "unknown",
+            "conflicted"
+          ]
+        },
+        "date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^\\d{4}(-\\d{2})?(-\\d{2})?$"
+        },
+        "state": {
+          "enum": [
+            "before",
+            "on-or-after",
+            "unknown",
+            "conflicted"
+          ]
+        }
+      }
+    }
+  }
+}

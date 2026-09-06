@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Validate every JSON record under examples/*\/records/ against the
- * Obligation-First v0.1 JSON Schemas. Fails CI when records drift from
+ * current Obligation-First JSON Schemas. Fails CI when records drift from
  * the schemas. Run via `npm run validate`.
  */
 

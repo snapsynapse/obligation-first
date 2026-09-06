@@ -1,5 +1,7 @@
 # OF v0.6.4 release preparation
 
+Later acceptance (2026-09-05): v0.6.4 was delivered; see [the delivery record](release-delivery-v0.6.4.json). The preparation state and pending-delivery language below are historical, not instructions to repeat delivery. Current tooling scope is indexed in [implementation-status.json](implementation-status.json).
+
 Scope: OF's shared evaluator release and the required adopter CI dependency. This is a dated preparation record, not a delivered revision set. Prepared 2026-09-05 under the request to update SemVer, documentation, website and agent surfaces, then prepare staging, commit and push. No original index, commit, remote, tag, registry or hosted deployment was changed.
 
 ## Version decision

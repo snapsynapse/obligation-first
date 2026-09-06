@@ -13,6 +13,7 @@ import path from "node:path";
 import { createHash } from "node:crypto";
 import { checkVersions } from "./sync-version.mjs";
 import { validateReleaseState } from "./validate-release-state.mjs";
+import { validateImplementationStatus } from "./check-implementation-status.mjs";
 import { parseKeyValueManifest } from "./lib/manifest.mjs";
 import {
   coreEndpointInventory,
@@ -761,6 +762,7 @@ export async function validateRepoContracts() {
   await validateReleasePackage(failures);
   await validatePublishingSurfaces(failures);
   await validateReleaseState(failures);
+  await validateImplementationStatus(failures);
   for (const problem of await checkVersions()) failures.push(problem);
   return failures;
 }

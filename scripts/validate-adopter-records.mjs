@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Validate one or more adopter record directories against the Obligation-First
- * v0.1 schemas and local graph rules.
+ * current schemas and local graph rules.
  *
  * Usage:
  *   node scripts/validate-adopter-records.mjs path/to/records [path/to/other-records]

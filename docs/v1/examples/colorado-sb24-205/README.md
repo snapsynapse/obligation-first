@@ -1,12 +1,14 @@
 # Worked example: Colorado SB 24-205 — a three-layer reality
 
-This example does more than round-trip a single provision through the spine. It models Colorado's actual AI regulatory posture — a deliberately demanding test, because Colorado's situation is **not a simple "enacted law" case**. It is three layers operating simultaneously and not in alignment:
+This is a historical modeling fixture, not a current legal-status report. Its schema and graph checks establish the encoded relationships, not the predecessor's complete operative or enforcement history. The [F14 fixture contract](https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/qualified-time-fixture-v1.md) separately distinguishes section-specific dates and preserves unknown history. Source review remains necessary before relying on this narrative as a statement of law.
 
-| Layer | Current condition | Practical effect |
+The example models three interacting layers:
+
+| Layer | Condition modeled by the fixture | Interpretation boundary |
 |---|---|---|
 | Legislation | SB 24-205 has been repealed and reenacted by its successor | The original compliance target no longer stands on its own |
 | Enforcement | Attorney General enforcement was paused pending rulemaking; a federal court ordered a stay | Near-term enforcement risk was materially reduced |
-| Political direction | SB26-189, an ADMT (automated decision-making technology) statute, was enacted on 2026-05-14 and supersedes SB 24-205 | The operative framework is now the successor statute |
+| Political direction | SB26-189, an ADMT (automated decision-making technology) statute, was enacted on 2026-05-14 and supersedes SB 24-205 | The successor relationship is modeled; section-specific commencement remains separate |
 
 A schema that can only model "the law" and not "the law's actual operating posture" is not useful for sensemaking. Obligation-First has to model all three layers, or it doesn't earn its place.
 

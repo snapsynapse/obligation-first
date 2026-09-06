@@ -1,0 +1,133 @@
+{
+  "date": "2026-09-05",
+  "timezone": "America/Denver",
+  "scope": "OF documentation and F14 deterministic follow-up; adopter F14 ownership consistency",
+  "status": "local-verified-uncommitted",
+  "base_head": "f6f5f40596c2dee486ecd157961c5aaebad92e1e",
+  "released_reference_version": "0.6.4",
+  "qualified_time_status": "unreleased-offline-fixture",
+  "checks": [
+    {
+      "command": "npm test",
+      "exit_code": 0,
+      "f14_synthetic_checks": 60,
+      "implementation_status_drift_mutations": 15
+    },
+    {
+      "command": "npm run verify:federation",
+      "exit_code": 0,
+      "requires_everyailaw_pending_mapping": true
+    },
+    {
+      "command": "npm run validate:contracts",
+      "exit_code": 0
+    },
+    {
+      "command": "npm run validate:published",
+      "exit_code": 0
+    },
+    {
+      "command": "immutable release and agent-byte comparison",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "live_reference_surfaces": [
+    {
+      "url": "https://obligationfirst.org/",
+      "http": "200",
+      "curl_exit": 0,
+      "sha256": "bfb072eb5b8cd0e4d4e4e02e9c6df8e4ac72e36a83c5fc96d11542fbc7ad9db2",
+      "matches_HEAD": true
+    },
+    {
+      "url": "https://obligationfirst.org/agents.json",
+      "http": "200",
+      "curl_exit": 0,
+      "sha256": "81d5f6210a519fa221d4e23af57416282e32732b09490a766562d5917f8ab5db",
+      "matches_HEAD": true
+    },
+    {
+      "url": "https://obligationfirst.org/llms.txt",
+      "http": "200",
+      "curl_exit": 0,
+      "sha256": "79c1780c11587719c498208b2e2ea5361f50134af0f5a492bc6539fb1dc8430f",
+      "matches_HEAD": true
+    },
+    {
+      "url": "https://obligationfirst.org/llms-full.txt",
+      "http": "200",
+      "curl_exit": 0,
+      "sha256": "894ec9afbcdea0c5036aa6ef10a88b79fbee96760877a44c5e3780dde67c68a3",
+      "matches_HEAD": true
+    },
+    {
+      "url": "https://obligationfirst.org/.well-known/assistant-guide.txt",
+      "http": "200",
+      "curl_exit": 0,
+      "sha256": "3953f5a26e64a0510183618aa6bffad3cba9c3c254277cf4d9db7d24ce1db841",
+      "matches_HEAD": true
+    },
+    {
+      "url": "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt",
+      "http": "200",
+      "curl_exit": 0,
+      "sha256": "98903af6846c6c3a9bdaaac639f8bb48812bab5597854e6a4c2eda3abac90def",
+      "matches_HEAD": true
+    }
+  ],
+  "namespace_checks": [
+    {
+      "url": "https://w3id.org/of/v1/",
+      "http": 404
+    },
+    {
+      "url": "https://w3id.org/of/v1/Instrument",
+      "http": 404
+    }
+  ],
+  "local_file_sha256": {
+    "INTENT.md": "47595559a1d8076186a561f631dcb179dd519ef6969250d71e144c398115acaf",
+    "MANIFEST.yaml": "ae8f7f0b9d9d673c9ae0e1c1cb8789cd86dd2c96f1117f5395b46e24142ab111",
+    "PROJECT_CONTEXT.md": "63316c4be25f606ea3476888918b3acfbd0cac58297b7afa652ef8a563abb234",
+    "README.md": "158d242b2077be61646803d726310ee255b9118171553af286692b4a8e8c4946",
+    "ROADMAP.md": "4afa34d72f000efd5118bec06163b631f269ed647e8fc1d7aafe332b3bae31f4",
+    "docs/evaluation-status.json": "fef05667a9e96707617147840fe04a344b5411e70e96197630772e80b522c00d",
+    "docs/index.html": "f7073ea165696abc413ebab414fb9ff9dbd0dcfd3dd9849a3a4058c09092621e",
+    "docs/v1/examples/colorado-sb24-205/README.md": "a77df0ce52de546039f662c4ad424e384216c130009cd9e90da02254ecfddc67",
+    "docs/v1/index.html": "3be22e1ebd19e0155aab8ce272ad59c259e9bb5cd43f50fb2c7d6c546c3bbf03",
+    "examples/colorado-sb24-205/README.md": "a77df0ce52de546039f662c4ad424e384216c130009cd9e90da02254ecfddc67",
+    "reference/F14-acceptance-2026-09-05.json": "d2ba124e30e83842506d90c949544b1539f0f4d7b7cb5ecc9d6770d8c3f8fae5",
+    "reference/README.md": "420244ff161a5528868387276fe5eb21235685b3a3609fe34b6812381ae68e47",
+    "reference/adopter-kit.md": "e64f7170cfb83a9dbda605726ebdba0f53ff897c9c961453cebe849ce0bee5fb",
+    "reference/contracts/qualified-time-fixture-v1.md": "b9c56ec72a1addbe72362d3f4691b52d0c3348676242751af159f9d6459e8056",
+    "reference/contracts/qualified-time-fixture-v1.schema.json": "b4e3ed509ff3ab33fb633bc382deb9b3e127ee3a7c974adcd8b271e682021c37",
+    "reference/documentation-audit-2026-09-05.md": "43d36e5dbf15630a0271cc8302e2dad1a5febb2efb6af25a4bfa16e58ae3485e",
+    "reference/fixtures/qualified-time-v1/README.md": "b7ede242caa458f3a73f3dd16de60950ab058fda1cf8bd9f49b93ac0dc50bf3b",
+    "reference/fixtures/qualified-time-v1/pending-amendment.json": "ffec46c2f2956624d208e38c2f2498f5db684127eb95d20bb9b9b69588560f0c",
+    "reference/implementation-status.json": "fef05667a9e96707617147840fe04a344b5411e70e96197630772e80b522c00d",
+    "reference/release-preparation-v0.6.4.md": "ea0c6b3a7a49ceb2a1a63609a96a86ac018bac2cc8c4b466508ab432810d1b2f",
+    "reference/w3id-pr.md": "a84186e9f0e42235eef7460b276413819d99ccbc5e279bf9f7c2d029adf64f38",
+    "scripts/check-implementation-status.mjs": "90ec79bd2e174fec6dd122ba791a91a242c57b0e7dfb6c8fe93a708b9d37d239",
+    "scripts/check-qualified-time-adopter.mjs": "d924bd54085400b7ed482e505497bf196654a7739ae03d1f16d8cd3bb9b8d56e",
+    "scripts/lib/qualified-time.mjs": "5f7fadda28cf9dde021ff1c69f3dd7c120b3ce16c7f928a29f8b3dbcd21b2f38",
+    "scripts/test-hardening-regressions.mjs": "4fe611f052eaf1f6cf2272f996a53d0244f4f55abd933372d6aa1bf494a4afc2",
+    "scripts/test-implementation-status.mjs": "4d897bee800ce3c99af4b5b3409b4483888dfb07463d9206d12e9e7f703ff2dd",
+    "scripts/test-qualified-time.mjs": "484defcd940b32fef7479e0d6420fda0fa3f535dc4291fa9d44cfa1d4a3febdc",
+    "scripts/validate-adopter-records.mjs": "2dd0010f04af7902309d23683ca45fbda07144e1582d7e40c9ad1268ca5dc129",
+    "scripts/validate-examples.mjs": "24d5faf4e3377fef9322137f1e3c732de3d0918e82c59b59c09178cf292206b0",
+    "scripts/validate-repo-contracts.mjs": "626aae41fee3a05d76e9f57ac02b4c947207d96079254e0f81b6b669cce327e8",
+    "scripts/verify-federation.mjs": "b509d9406531a53e3a91636864859147fc48c0877e157102a3aee7ac36787d2b"
+  },
+  "limits": [
+    "Website source changes and docs/evaluation-status.json are not deployed.",
+    "Released agents.json, llms files, GuideCheck guide/manifest and immutable v0.6.4 package bytes were preserved.",
+    "No version bump, delivery commit, push, release, deployment, external filing, or Pro dispatch.",
+    "Earlier F14-acceptance-2026-09-05.json identifies the earlier 42-check candidate; this follow-up identifies current edits.",
+    "Current hosted CI was not refreshed; direct HTTP byte identity establishes only the six named live surfaces.",
+    "No additional adopter code or website edits in this follow-up; prior approved local adopter changes remain."
+  ]
+}

@@ -25,6 +25,22 @@ Scope evaluator v1 checks exact territorial and institutional identifiers agains
 
 Run `npm run test:scope` for the deterministic shared evals. Adopter checks require an explicit reviewed inventory and baseline; they do not infer expected values from current output.
 
+## Implementation status beyond the release package
+
+<!-- implementation-status:start -->
+The v0.6.4 reference package includes scope continuity evaluation. F14 qualified-time evaluation is unreleased offline tooling: expected/fallback branches and evidence/date boundaries are tested, while the v0.6 record schema and production serialization are unchanged. These fixtures do not determine legal applicability or predecessor operative history.
+<!-- implementation-status:end -->
+
+The [machine-readable evaluation status](https://obligationfirst.org/evaluation-status.json) supplements the release-versioned agent files. Its repository source is [implementation-status.json](reference/implementation-status.json); the served copy becomes available after deployment. It is not evidence of deployment or an immutable release manifest. See the [F14 contract](reference/contracts/qualified-time-fixture-v1.md), [reference index](reference/README.md), and [documentation audit](reference/documentation-audit-2026-09-05.md).
+
+Run the standalone synthetic fixture checks from the repository root. They also run in `npm run test:hardening` and `npm test`.
+
+Literal
+```bash
+node scripts/test-qualified-time.mjs
+```
+`npm run verify:federation` additionally requires EveryAILaw and PubLedge's owner fixtures at `tests/fixtures/of-qualified-time.json`, alongside all three adopter checkouts. AI Incident Law participates in existing regression checks; it does not yet provide an F14 sidecar.
+
 ## Who this is for
 
 Anyone modeling laws, cases, or agreements for machines — legal-graph builders, compliance-tool developers, and ontologists who need normative content to be queryable across sources.
@@ -83,18 +99,26 @@ If you'd like to bind your project to the current draft, see [Quick start](#quic
 
 1. **Reference the canonical `@context`** — set `@context: "https://obligationfirst.org/v1/context.jsonld"` on every record. Repo-local extensions go in a second context object.
 2. **Validate shape and graph contracts** — run every record through the schema for its Obligation-First `@type`, then run graph validation for inverse links, relation domains and ranges, lifecycle coherence, category membership, identity retirement, and defeasibility cycles. The public schema directory contains 11 entity schemas, the executable-encoding and naming-profile contracts, and their shared dependency.
-3. **Cite [obligationfirst.org](https://obligationfirst.org/) as the canonical reference** — adopter sites and documentation should link back. The IRI prefix is permanent.
+3. **Cite [obligationfirst.org](https://obligationfirst.org/) as the canonical reference** — adopter sites and documentation should link back. Preserve record identifiers; the separate w3id vocabulary redirect remains pending.
 
-To validate your own records locally:
+To install the reference checkout and validate its bundled examples:
+Literal
 ```bash
 git clone https://github.com/snapsynapse/obligation-first.git
 cd obligation-first
-npm install
+npm ci
 npm run validate    # runs scripts/validate-examples.mjs
 ```
-The validator walks `examples/*/records/` and checks every JSON record against the appropriate schema. Adopters can drop their own records into a directory of the same shape and reuse the script.
+The validator walks JSON files under `examples/`, including migration fixtures, and checks their record shapes. To validate your own export, use the adopter CLI, which also checks graph rules.
+
+Replace: RECORDS_DIR -> the absolute path to your export's record directory.
+Customize
+```bash
+node scripts/validate-adopter-records.mjs RECORDS_DIR
+```
 
 For a complete local check before opening a PR or publishing docs:
+Literal
 ```bash
 npm test
 ```
@@ -103,6 +127,7 @@ The full suite validates worked examples, graph constraints, adopter-kit helpers
 ## Assistant-assisted setup
 
 If you use a coding assistant to install, validate, or modify this repo, start from the GuideCheck guide:
+Literal
 ```bash
 curl https://obligationfirst.org/.well-known/assistant-guide.txt
 ```
@@ -112,7 +137,7 @@ Conformance is not safety. Read the guide, confirm the reported hash, and keep n
 
 ## Machine-readable endpoints
 
-Every artifact an adopter or agent needs is dereferenceable at a stable URL:
+The released record and discovery artifacts are served at the URLs below. The planned w3id vocabulary redirect and unreleased tooling have separate status; this inventory does not establish their publication.
 
 | Endpoint | Purpose |
 |---|---|

@@ -25,7 +25,7 @@ Obligation-First is therefore the integration layer for PAICE legal projects, no
 1. **Bind, don't reinvent.** Where standards exist (Semantic Arts gist, LegalRuleML deontic operators, Akoma Ntoso source-text IRIs, ELI, ECLI), Obligation-First references them. It does not duplicate them.
 2. **Small core, explicit extension points.** The shared core admits semantics used by more than one adopter. Domain-specific risk tiers, search metadata, editorial tags, and workflow details remain in named adopter contexts.
 3. **Three real adopters before v1.0.** EveryAILaw, PubLedge, and AI Incident Law are all live adopters. Their shared graph and migration fixtures now gate v1.0.
-4. **Permanent IRIs.** Stable references via w3id.org redirect; obligationfirst.org is the resolution target, not the canonical IRI.
+4. **Permanent IRIs.** Preserve the existing w3id.org vocabulary identifiers. Their redirect is planned, not yet filed; obligationfirst.org hosts the context and is the intended resolution target. Dereferenceability is a separate readiness gate.
 5. **Drafting in public.** Every revision is a commit. Material changes are documented in CHANGELOG.md.
 
 ## Scope
@@ -61,6 +61,8 @@ The project has two operating modes:
 All three adopters publish v0.6 projections from their native sources. The shared schema, deterministic migration fixture, graph checks, and naming-profile ranges are released and validated as one federated contract.
 
 The [scope inventory evaluator contract v1](reference/contracts/scope-contract-v1.md) adds independently versioned, adopter-owned recognition and coverage declarations with exact scope continuity. This evaluator extension preserves the released schema and each adopter's vocabulary ownership; its implementation and delivery status are recorded in that contract.
+
+The [implementation status](reference/implementation-status.json) distinguishes released tooling from the unreleased [F14 offline fixture](reference/contracts/qualified-time-fixture-v1.md). F14 exercises qualified date comparisons; it does not expand the record schema, implement production serialization, or resolve predecessor operative history. The existing second-adopter requirement still governs a future schema proposal.
 
 ## Implemented semantic direction
 

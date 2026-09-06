@@ -740,3 +740,5 @@ console.log("Hardening regression checks passed.");
 await import("./test-semantic-federation.mjs");
 await import("./test-relation-coverage.mjs");
 await import("./test-scope-contract.mjs");
+await import("./test-qualified-time.mjs");
+await import("./test-implementation-status.mjs");
