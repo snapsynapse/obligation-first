@@ -47,7 +47,7 @@ README for spec version and licenses.
 ## Current status
 
 - <!-- of-version: project-context-current -->
-  Spec version v0.6.3, pre-v1.0.
+  Spec version v0.6.4, pre-v1.0.
 - Three adopters live and bound (EveryAILaw, PubLedge, AI Incident Law).
 - Remaining v1.0 gates are tracked in ROADMAP.md; the w3id.org redirect for
   `https://w3id.org/of/v1/` remains planned rather than live.

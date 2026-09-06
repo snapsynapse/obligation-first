@@ -1,0 +1,119 @@
+[
+  {
+    "@context": "https://obligationfirst.org/v1/context.jsonld",
+    "@id": "https://example.com/iso",
+    "@type": "of:Authority",
+    "organization": {
+      "@type": "gist:Organization",
+      "name": "International Organization for Standardization"
+    },
+    "jurisdiction": {
+      "@type": "of:Jurisdiction",
+      "institutional_scope": [
+        "International Organization for Standardization"
+      ]
+    }
+  },
+  {
+    "@context": "https://obligationfirst.org/v1/context.jsonld",
+    "@id": "https://example.com/oecd",
+    "@type": "of:Authority",
+    "organization": {
+      "@type": "gist:Organization",
+      "name": "Organisation for Economic Co-operation and Development"
+    },
+    "jurisdiction": {
+      "@type": "of:Jurisdiction",
+      "institutional_scope": [
+        "Organisation for Economic Co-operation and Development"
+      ]
+    }
+  },
+  {
+    "@context": "https://obligationfirst.org/v1/context.jsonld",
+    "@id": "https://example.com/administrator",
+    "@type": "of:Authority",
+    "organization": {
+      "@type": "gist:Organization",
+      "name": "Illustrative administrator"
+    }
+  },
+  {
+    "@context": "https://obligationfirst.org/v1/context.jsonld",
+    "@id": "https://example.com/enforcer",
+    "@type": "of:Authority",
+    "organization": {
+      "@type": "gist:GovernmentOrganization",
+      "name": "Illustrative enforcer"
+    }
+  },
+  {
+    "@context": "https://obligationfirst.org/v1/context.jsonld",
+    "@id": "https://example.com/standard",
+    "@type": "of:Instrument",
+    "title": "Synthetic ISO-issued standard",
+    "normative_force": "voluntary",
+    "issuedBy": "https://example.com/iso",
+    "administeredBy": "https://example.com/administrator"
+  },
+  {
+    "@context": "https://obligationfirst.org/v1/context.jsonld",
+    "@id": "https://example.com/bc",
+    "@type": "of:Jurisdiction",
+    "name": "British Columbia scope fixture",
+    "territorial_scope": [
+      "ca-bc"
+    ]
+  },
+  {
+    "@context": "https://obligationfirst.org/v1/context.jsonld",
+    "@id": "https://example.com/local",
+    "@type": "of:Instrument",
+    "title": "Illustrative local reference",
+    "jurisdiction": "https://example.com/bc"
+  },
+  {
+    "@context": "https://obligationfirst.org/v1/context.jsonld",
+    "@id": "https://example.com/territories",
+    "@type": "of:Instrument",
+    "title": "Illustrative multi-territory scope",
+    "territorial_scope": [
+      "ca",
+      "ca-bc"
+    ]
+  },
+  {
+    "@context": "https://obligationfirst.org/v1/context.jsonld",
+    "@id": "https://example.com/legacy",
+    "@type": "of:Authority",
+    "organization": {
+      "@type": "gist:Organization",
+      "name": "Illustrative legacy scope"
+    },
+    "jurisdiction": {
+      "@type": "gist:Jurisdiction",
+      "ref": "ca"
+    }
+  },
+  {
+    "@context": "https://obligationfirst.org/v1/context.jsonld",
+    "@id": "https://example.com/uncovered",
+    "@type": "of:Instrument",
+    "title": "Recognition does not assert modeled duties",
+    "jurisdiction": {
+      "@type": "of:Jurisdiction",
+      "territorial_scope": [
+        "zz-uncovered"
+      ]
+    }
+  },
+  {
+    "@context": "https://obligationfirst.org/v1/context.jsonld",
+    "@id": "https://example.com/institutional-jurisdiction",
+    "@type": "of:Jurisdiction",
+    "name": "Synthetic institutional scope fixture",
+    "institutional_scope": [
+      "International Organization for Standardization"
+    ]
+  }
+]

@@ -16,11 +16,13 @@ import {
   validatePublishingSurfaces,
   validateReleaseManifestContract,
   validateReleasePackage,
+  validateScopeDiscovery,
 } from "./validate-repo-contracts.mjs";
 import { validateHashManifest } from "./validate-hashes.mjs";
 import { RELEASE_STATE_SURFACES, validateReleaseState } from "./validate-release-state.mjs";
 import { rewriteManagedSurface, staleClaims, versionForms } from "./sync-version.mjs";
 import { satisfies } from "./lib/version-range.mjs";
+import { scopeArtifactInventory } from "./lib/contract-inventory.mjs";
 
 const failures = [];
 
@@ -30,6 +32,42 @@ function assert(condition, message) {
 
 function hasFailure(items, needle) {
   return items.some((item) => item.includes(needle));
+}
+
+// Release hashes must cover the scope tools without retroactively changing
+// historical release inventories. Discovery must expose all three resources.
+{
+  const inventory = scopeArtifactInventory("0.6.4");
+  assert(scopeArtifactInventory("0.6.3").length === 0, "scope artifacts changed the historical release inventory");
+  for (const rel of ["scripts/lib/scope-contract.mjs", "scripts/check-scope-contract.mjs",
+    "scripts/check-scope-inventories.mjs", "scripts/test-scope-contract.mjs",
+    "reference/contracts/scope-inventory-v1.schema.json", "reference/fixtures/scope-contract-v1/baseline.json"]) {
+    assert(inventory.some((item) => item.path === rel), `release omits scope artifact ${rel}`);
+  }
+  const base = "https://github.com/snapsynapse/obligation-first";
+  const endpoints = {
+    contract: `${base}/blob/main/reference/contracts/scope-contract-v1.md`,
+    inventory_schema: `${base}/blob/main/reference/contracts/scope-inventory-v1.schema.json`,
+    fixtures: `${base}/tree/main/reference/fixtures/scope-contract-v1`,
+  };
+  const agents = { capabilities: ["exact-scope-continuity-evaluation"], endpoints: { scope_evaluator: endpoints } };
+  const text = Object.values(endpoints).join("\n");
+  const valid = [];
+  validateScopeDiscovery(valid, agents, { "fixture.md": text });
+  assert(valid.length === 0, "complete scope discovery was rejected");
+  for (const [name, url] of Object.entries(endpoints)) {
+    const missingLink = [];
+    validateScopeDiscovery(missingLink, agents, { "fixture.md": text.replace(url, "") });
+    assert(hasFailure(missingLink, `fixture.md: missing scope evaluator endpoint ${name}`), `missing scope link ${name} was accepted`);
+    const altered = structuredClone(agents);
+    delete altered.endpoints.scope_evaluator[name];
+    const missingAgent = [];
+    validateScopeDiscovery(missingAgent, altered, { "fixture.md": text });
+    assert(hasFailure(missingAgent, `docs/agents.json: missing scope evaluator endpoint ${name}`), `missing agent scope endpoint ${name} was accepted`);
+  }
+  const missingCapability = [];
+  validateScopeDiscovery(missingCapability, { ...agents, capabilities: [] }, { "fixture.md": text });
+  assert(hasFailure(missingCapability, "missing scope evaluator capability"), "missing scope capability was accepted");
 }
 
 function stableFailures(items) {
@@ -701,3 +739,4 @@ console.log("Hardening regression checks passed.");
 // Cross-repository semantics are tested with synthetic, redistributable fixtures.
 await import("./test-semantic-federation.mjs");
 await import("./test-relation-coverage.mjs");
+await import("./test-scope-contract.mjs");

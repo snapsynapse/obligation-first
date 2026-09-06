@@ -1,7 +1,7 @@
 {
   "name": "Obligation-First",
   "description": "An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist.",
-  "version": "v0.6.3",
+  "version": "v0.6.4",
   "url": "https://obligationfirst.org/",
   "publisher": {
     "name": "PAICE.work PBC",
@@ -9,7 +9,7 @@
   },
   "license": {
     "spec": "https://creativecommons.org/licenses/by/4.0/",
-    "code": "https://www.apache.org/licenses/LICENSE-2.0"
+    "code": "https://apache.org/licenses/LICENSE-2.0"
   },
   "endpoints": {
     "context": "https://obligationfirst.org/v1/context.jsonld",
@@ -33,9 +33,14 @@
     "assistant_guide_manifest": "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt",
     "spec": "https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md",
     "llms_txt": "https://obligationfirst.org/llms.txt",
-    "release_package": "https://obligationfirst.org/releases/v0.6.3/",
+    "release_package": "https://obligationfirst.org/releases/v0.6.4/",
     "sitemap": "https://obligationfirst.org/sitemap.xml",
-    "repo": "https://github.com/snapsynapse/obligation-first"
+    "repo": "https://github.com/snapsynapse/obligation-first",
+    "scope_evaluator": {
+      "contract": "https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/scope-contract-v1.md",
+      "inventory_schema": "https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/scope-inventory-v1.schema.json",
+      "fixtures": "https://github.com/snapsynapse/obligation-first/tree/main/reference/fixtures/scope-contract-v1"
+    }
   },
   "capabilities": [
     "json-ld-context-resolution",
@@ -46,7 +51,8 @@
     "gist-binding",
     "legalruleml-crosswalk",
     "akoma-ntoso-iri-compatibility",
-    "eli-ecli-iri-compatibility"
+    "eli-ecli-iri-compatibility",
+    "exact-scope-continuity-evaluation"
   ],
   "concepts": {
     "spine": {
@@ -68,7 +74,12 @@
       "Allegation": "https://obligationfirst.org/v1/schema/allegation.schema.json",
       "Determination": "https://obligationfirst.org/v1/schema/determination.schema.json"
     },
-    "deontic_quartet": ["Requirement", "Restriction", "Permission", "Reparation"],
+    "deontic_quartet": [
+      "Requirement",
+      "Restriction",
+      "Permission",
+      "Reparation"
+    ],
     "vocabulary_prefix": "https://w3id.org/of/v1/ is the planned permanent vocabulary prefix. It will resolve to https://obligationfirst.org/v1/ once the w3id.org redirect is filed. Until then, https://obligationfirst.org/v1/ is the live CI-verified resolution target and records should use @context: https://obligationfirst.org/v1/context.jsonld.",
     "id_federation": "Record @id values are adopter-local, opaque, and permanent. An @id identifies the adopter's record about a legal entity, not the entity's canonical external identifier. Obligation-First does not prescribe slug grammar; each adopter declares its own. A namespace reorganization MUST keep the old @id resolving via HTTP 301 (W3C 'Cool URIs Don't Change'); a rename is therefore not a breaking change. Added in v0.3.",
     "identifier_crosswalks": "Standard identifiers ride as typed crosswalks on the record, never as the @id. Cross-adopter joins key on crosswalks, not slugs. Matrix (RFC 2119, conditional on coverage): ELI (eli_uri, MUST for instruments where the jurisdiction issues ELIs), ECLI / neutral_citation (MUST for citable court decisions), Akoma Ntoso (akn_uri, SHOULD/MAY where an AKN representation exists), urn:lex (MAY, fallback where no ELI), Wikidata QID (sameAs, SHOULD for authorities with an entry), EuroVoc concept (sameAs/exactMatch, SHOULD where the subject has a concept). Added in v0.3.",
@@ -101,11 +112,27 @@
       "supersedes": "Instrument → Instrument[] — post-enactment whole-Instrument replacement",
       "wouldSupersede": "Instrument → Instrument[] — subjunctive form for proposed Instruments",
       "executableEncoding": "Term | Obligation → typed reference (Catala / Blawx / OpenFisca / others)"
-    }
+    },
+    "scope_evaluation": "Scope evaluator v1 checks exact territorial and institutional identifiers against adopter-owned inventories and continuity baselines. Recognition, modeled coverage, uncovered scope, and unknown evidence remain distinct. It complements schema and fingerprint checks without changing the v0.6 record contract or certifying legal applicability."
   },
   "adopters": [
-    { "name": "EveryAILaw", "url": "https://everyailaw.com/", "status": "live", "binding": "statutory and regulatory obligations" },
-    { "name": "PubLedge", "url": "https://publedge.org/", "status": "live", "binding": "joint-interpretation instruments, terms, obligations, determinations" },
-    { "name": "AI Incident Law", "url": "https://aiincidentlaw.org/", "status": "live", "binding": "proceedings, allegations, determinations, authorities" }
+    {
+      "name": "EveryAILaw",
+      "url": "https://everyailaw.com/",
+      "status": "live",
+      "binding": "statutory and regulatory obligations"
+    },
+    {
+      "name": "PubLedge",
+      "url": "https://publedge.org/",
+      "status": "live",
+      "binding": "joint-interpretation instruments, terms, obligations, determinations"
+    },
+    {
+      "name": "AI Incident Law",
+      "url": "https://aiincidentlaw.org/",
+      "status": "live",
+      "binding": "proceedings, allegations, determinations, authorities"
+    }
   ]
 }

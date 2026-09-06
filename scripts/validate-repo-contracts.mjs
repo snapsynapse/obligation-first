@@ -234,9 +234,34 @@ function endpointVisible(text, endpoint) {
   return text.includes(endpoint) || text.includes(url.pathname);
 }
 
+export function validateScopeDiscovery(failures, agents, surfaces) {
+  const base = "https://github.com/snapsynapse/obligation-first";
+  const endpoints = {
+    contract: `${base}/blob/main/reference/contracts/scope-contract-v1.md`,
+    inventory_schema: `${base}/blob/main/reference/contracts/scope-inventory-v1.schema.json`,
+    fixtures: `${base}/tree/main/reference/fixtures/scope-contract-v1`,
+  };
+  if (!agents.capabilities?.includes("exact-scope-continuity-evaluation")) {
+    failures.push("docs/agents.json: missing scope evaluator capability");
+  }
+  for (const [name, url] of Object.entries(endpoints)) {
+    if (agents.endpoints?.scope_evaluator?.[name] !== url) {
+      failures.push(`docs/agents.json: missing scope evaluator endpoint ${name}`);
+    }
+    for (const [rel, text] of Object.entries(surfaces)) {
+      if (!text.includes(url)) failures.push(`${rel}: missing scope evaluator endpoint ${name}`);
+    }
+  }
+}
+
 async function validateEndpointInventory(failures) {
   const coreEndpoints = await coreEndpointInventory(repoRoot);
   const agents = JSON.parse(await readFile(path.join(repoRoot, "docs/agents.json"), "utf8"));
+  const scopeSurfaces = {};
+  for (const rel of ["README.md", "docs/index.html", "docs/llms.txt", "docs/llms-full.txt"]) {
+    scopeSurfaces[rel] = await readFile(path.join(repoRoot, rel), "utf8");
+  }
+  validateScopeDiscovery(failures, agents, scopeSurfaces);
   const agentEndpoints = [
     agents.endpoints.context,
     agents.endpoints.assistant_guide,
@@ -397,7 +422,7 @@ export async function validateAssistantGuide(failures, root = repoRoot) {
   // version requires editing this constant alongside the guide + manifest.
   const expectedManifest = {
     "guide-path": "/.well-known/assistant-guide.txt",
-    "guide-version": "0.1.3",
+    "guide-version": "0.1.4",
     "guide-sha256": guideSha256,
     "guide-bytes": String(rootBytes.length),
     "immutable-release-url": `https://api.github.com/repos/snapsynapse/obligation-first/git/blobs/${gitBlobSha1}`,

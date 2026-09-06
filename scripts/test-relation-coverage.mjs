@@ -13,7 +13,7 @@ const EXCLUSIONS = {
   asserted_by_adopter: 'Top-level asserting-adopter evidence is retained in provenance_claims.',
   adopter: 'Naming-profile identity is retained as fingerprint.adopter, not a record edge.',
   'void:uriSpace': 'Nested naming-profile namespace metadata is outside record-edge capture.',
-  jurisdiction: 'Legacy object and IRI jurisdiction forms require a separate scope policy; P1 retains shape only.',
+  jurisdiction: 'Exact scope values and local jurisdiction references are checked by the separate versioned scope contract; fingerprint v2 retains shape only.',
   instrument_ref: 'Nested authority_basis/binding_basis references need path-qualified capture; outside P1 top-level edges.',
   party: 'Nested actor_roles.party needs path-qualified capture; top-level parties and role IRIs are captured.',
   obligation: 'Nested remedy.obligation needs path-qualified capture; outside P1 top-level edges.',

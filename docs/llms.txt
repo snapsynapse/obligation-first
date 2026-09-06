@@ -3,7 +3,17 @@
 > An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist.
 
 <!-- of-version: llms-current -->
-Obligation-First is a small upper schema and JSON-LD context for normative content. It defines the Authority / Instrument / Term / Obligation spine, the Proceeding / Allegation / Determination strand, ObligationCategory concepts, and Party / Jurisdiction / Tombstone support. v0.6.3 is the current release. Its v0.6 semantic contract is implemented across EveryAILaw, PubLedge, and AI Incident Law. It separates issuer, administrator, enforcer, and hearing forum; separates normative force, lifecycle, operative effect, and enforcement; reserves Term.text for exact source text; and adds shared provenance plus graph-level validation. Legacy v0.5 shapes remain schema-valid. Migrated projections declare `obligation-first >=0.6.0 <0.7.0`.
+Obligation-First is a small upper schema and JSON-LD context for normative content. It defines the Authority / Instrument / Term / Obligation spine, the Proceeding / Allegation / Determination strand, ObligationCategory concepts, and Party / Jurisdiction / Tombstone support. v0.6.4 is the current release. Its v0.6 semantic contract is implemented across EveryAILaw, PubLedge, and AI Incident Law. It separates issuer, administrator, enforcer, and hearing forum; separates normative force, lifecycle, operative effect, and enforcement; reserves Term.text for exact source text; and adds shared provenance plus graph-level validation. Legacy v0.5 shapes remain schema-valid. Migrated projections declare `obligation-first >=0.6.0 <0.7.0`.
+
+## Scope continuity evaluation
+
+Scope evaluator v1 checks exact territorial and institutional identifiers against adopter-owned inventories and continuity baselines. Recognition, modeled coverage, uncovered scope, and unknown evidence remain distinct. It complements schema and fingerprint checks without changing the v0.6 record contract or certifying legal applicability.
+
+- Contract and diagnostics: https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/scope-contract-v1.md
+- Inventory tooling schema: https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/scope-inventory-v1.schema.json
+- Synthetic evaluation fixtures: https://github.com/snapsynapse/obligation-first/tree/main/reference/fixtures/scope-contract-v1
+
+Run `npm run test:scope` for the deterministic shared evals. Adopter checks require an explicit reviewed inventory and baseline; they do not infer expected values from current output.
 
 ## Key concepts
 
@@ -44,7 +54,7 @@ Obligation-First is a small upper schema and JSON-LD context for normative conte
 - Executable encoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
 - Naming profile schema: https://obligationfirst.org/v1/schema/naming-profile.schema.json
 <!-- of-version: llms-release-url -->
-- Release package: https://obligationfirst.org/releases/v0.6.3/
+- Release package: https://obligationfirst.org/releases/v0.6.4/
 - Assistant guide: https://obligationfirst.org/.well-known/assistant-guide.txt
 - Assistant guide manifest: https://obligationfirst.org/.well-known/assistant-guide-manifest.txt
 
@@ -80,5 +90,5 @@ Assistants should fetch `https://obligationfirst.org/.well-known/assistant-guide
 ## Contact
 
 - Repo: https://github.com/snapsynapse/obligation-first
-- Author: Sam Rogers — https://www.linkedin.com/in/samrogers
+- Author: Sam Rogers — https://linkedin.com/in/samrogers
 - Publisher: PAICE.work PBC — https://paice.work/

@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+## [0.6.4] - 2026-09-05
+
+### Added
+
+- Independently versioned scope inventory contract, tooling schema, and adopter-owned recognition, coverage, and exact scope continuity checks with stable OF-SCOPE diagnostics.
+- Deterministic synthetic evals for schema-valid scope substitutions, ISO/OECD institutional identity, British Columbia specificity, unknown versus uncovered evidence, legacy forms, local references, cross-owner conflicts, and baseline overwrite refusal.
+- Scope declarations and baselines are required by the federation gate. EveryAILaw source-vocabulary checks and adopter fingerprint wrappers retain their owning responsibilities.
+- `npm run test:scope`, evaluator artifact hashes in the release inventory, and scope discovery links on the website and agent surfaces. Assistant guide advances independently to 0.1.4.
+
+### Compatibility
+
+No record schema shape, JSON-LD mapping, IRI, legal semantic, migration, or adopter corpus change. The context comment advances only its version metadata. Existing `obligation-first >=0.6.0 <0.7.0` ranges and fingerprint v2 baselines remain compatible. The opt-in scope evaluator is stricter than schema validity: unresolved external jurisdiction references require a future explicit resolution contract. Adopter CI adoption requires the exact OF checker revision containing these tools.
+
 ## [0.6.3] - 2026-08-04
 
 Repairs public and agent-facing discovery surfaces and adds deterministic drift gates without changing v0.6 semantics.

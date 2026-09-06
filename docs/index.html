@@ -36,7 +36,7 @@
   <meta property="og:url" content="https://obligationfirst.org/">
   <meta property="og:locale" content="en_US">
   <meta property="article:published_time" content="2026-05-04T00:00:00Z">
-  <meta property="article:modified_time" content="2026-08-04T00:00:00Z">
+  <meta property="article:modified_time" content="2026-09-05T00:00:00Z">
   <meta property="article:author" content="Sam Rogers">
   <meta property="article:publisher" content="https://paice.work/">
   <meta property="article:section" content="Open Standards">
@@ -56,7 +56,7 @@
 
   <!-- IndieWeb rel=me -->
   <link rel="me" href="https://github.com/snapsynapse">
-  <link rel="me" href="https://www.linkedin.com/in/samrogers">
+  <link rel="me" href="https://linkedin.com/in/samrogers">
 
   <!-- JSON-LD: TechArticle -->
   <script type="application/ld+json">
@@ -70,7 +70,7 @@
     "url": "https://obligationfirst.org/",
     "mainEntityOfPage": { "@type": "WebPage", "@id": "https://obligationfirst.org/" },
     "datePublished": "2026-05-04",
-    "dateModified": "2026-08-04",
+    "dateModified": "2026-09-05",
     "author": {
       "@type": "Person",
       "name": "Sam Rogers",
@@ -359,14 +359,14 @@
     <h1>Map the world by obligation, not by text.</h1>
     <p class="subtitle">An open upper schema for laws, cases, and joint interpretations. Bound to <a href="https://semanticarts.com/gist/" target="_blank" rel="noopener">Semantic Arts gist</a>. Aligned with <a href="https://docs.oasis-open.org/legalruleml/" target="_blank" rel="noopener">LegalRuleML</a>.</p>
     <p class="byline">
-      By <a href="https://www.linkedin.com/in/samrogers" target="_blank" rel="noopener author">Sam Rogers</a>, <a href="https://paice.work/" target="_blank" rel="noopener">PAICE.work PBC</a>
+      By <a href="https://linkedin.com/in/samrogers" target="_blank" rel="noopener author">Sam Rogers</a>, <a href="https://paice.work/" target="_blank" rel="noopener">PAICE.work PBC</a>
       <span class="sep">&middot;</span>
       Published <time datetime="2026-05-04">May 4, 2026</time>
       <span class="sep">&middot;</span>
-      Updated <time datetime="2026-08-04">August 4, 2026</time>
+      Updated <time datetime="2026-09-05">September 5, 2026</time>
       <span class="sep">&middot;</span>
       <!-- of-version: homepage-byline -->
-      <span class="version">v0.6.3</span>
+      <span class="version">v0.6.4</span>
       <span class="sep">&middot;</span>
       <a href="https://creativecommons.org/licenses/by/4.0/" rel="license" target="_blank">CC&nbsp;BY&nbsp;4.0</a>
     </p>
@@ -492,6 +492,10 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
       </div>
     </div>
 
+    <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Scope continuity evaluation</h3>
+    <p>Scope evaluator v1 checks exact territorial and institutional identifiers against adopter-owned inventories and continuity baselines. Recognition, modeled coverage, uncovered scope, and unknown evidence remain distinct. It complements schema and fingerprint checks without changing the v0.6 record contract or certifying legal applicability.</p>
+    <p>Review the <a href="https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/scope-contract-v1.md">scope contract and diagnostics</a>, <a href="https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/scope-inventory-v1.schema.json">inventory tooling schema</a>, and <a href="https://github.com/snapsynapse/obligation-first/tree/main/reference/fixtures/scope-contract-v1">synthetic evaluation fixtures</a>. The deterministic evals cover scope substitutions, institutional and territorial confusion, lost specificity, and unknown evidence.</p>
+
     <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Three steps to bind a dataset</h3>
     <ol style="padding-left: 1.5rem; line-height: 1.9; color: var(--text-muted);">
       <li><strong>Reference the canonical <code>@context</code></strong> — set <code>@context: "https://obligationfirst.org/v1/context.jsonld"</code> on every record. Repo-local extensions go in a second context object.</li>
@@ -568,15 +572,16 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
 
     <aside class="canonical-note" role="note">
       <!-- of-version: homepage-canonical -->
-      <strong>Canonical reference.</strong> This page describes the live v0.6.3 release of Obligation-First.
+      <strong>Canonical reference.</strong> This page describes the v0.6.4 reference package of Obligation-First.
       Authoritative source is <a href="https://github.com/snapsynapse/obligation-first/blob/main/PROTOCOL.md" target="_blank" rel="noopener">PROTOCOL.md</a> in the GitHub repo. The schema is drafting in public; breaking changes are allowed pre-freeze and recorded in
       <a href="https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md" target="_blank" rel="noopener">CHANGELOG.md</a>.
-      Last revision: <time datetime="2026-08-04">2026-08-04</time>.
+      Last revision: <time datetime="2026-09-05">2026-09-05</time>.
       <a href="https://github.com/snapsynapse/obligation-first/commits/main/PROTOCOL.md" target="_blank" rel="noopener">Revision history &rarr;</a>
     </aside>
 
     <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Release archive</h3>
     <p>Immutable release packages:
+      <a href="/releases/v0.6.4/">v0.6.4</a>,
       <a href="/releases/v0.6.3/">v0.6.3</a>,
       <a href="/releases/v0.6.2/">v0.6.2</a>,
       <a href="/releases/v0.6.1/">v0.6.1</a>,
@@ -601,8 +606,8 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
     <div class="footer-grid">
       <div class="footer-meta">
         <!-- of-version: homepage-footer -->
-        <p>Obligation-First v0.6.3 &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license" target="_blank">CC BY 4.0</a> (spec) &middot; <a href="https://github.com/snapsynapse/obligation-first/blob/main/LICENSE-APACHE" target="_blank" rel="noopener">Apache 2.0</a> (code)</p>
-        <p>A <a href="https://paice.foundation/" target="_blank" rel="noopener">PAICE.work PBC</a> open standard by <a href="https://www.linkedin.com/in/samrogers" target="_blank" rel="noopener author">Sam Rogers</a>.</p>
+        <p>Obligation-First v0.6.4 &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license" target="_blank">CC BY 4.0</a> (spec) &middot; <a href="https://github.com/snapsynapse/obligation-first/blob/main/LICENSE-APACHE" target="_blank" rel="noopener">Apache 2.0</a> (code)</p>
+        <p>A <a href="https://paice.foundation/" target="_blank" rel="noopener">PAICE.work PBC</a> open standard by <a href="https://linkedin.com/in/samrogers" target="_blank" rel="noopener author">Sam Rogers</a>.</p>
         <p style="margin-top: 0.5rem;"><strong>Adopters in the PAICE legal graph:</strong> <a href="https://everyailaw.com/" target="_blank" rel="noopener">EveryAILaw</a> &middot; <a href="https://publedge.org/" target="_blank" rel="noopener">PubLedge</a> &middot; <a href="https://aiincidentlaw.org/" target="_blank" rel="noopener">AI Incident Law</a></p>
       </div>
       <div class="footer-links">

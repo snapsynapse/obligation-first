@@ -1,9 +1,19 @@
 # Obligation-First — full LLM context
 
 <!-- of-version: llms-full-current -->
-> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.6.3 is the current released specification. Record `@id` values are adopter-local, opaque, and permanent. Jurisdiction represents legal competence, with territorial and institutional scope modeled independently.
+> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.6.4 is the current released specification. Record `@id` values are adopter-local, opaque, and permanent. Jurisdiction represents legal competence, with territorial and institutional scope modeled independently.
 
 This file is the deeper companion to llms.txt. Where llms.txt gives a one-screen summary, this file is the full context an LLM-powered tool needs to reason about Obligation-First, generate adopter records, or answer detailed questions without scraping.
+
+## Scope continuity evaluation
+
+Scope evaluator v1 checks exact territorial and institutional identifiers against adopter-owned inventories and continuity baselines. Recognition, modeled coverage, uncovered scope, and unknown evidence remain distinct. It complements schema and fingerprint checks without changing the v0.6 record contract or certifying legal applicability.
+
+- Contract and diagnostics: https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/scope-contract-v1.md
+- Inventory tooling schema: https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/scope-inventory-v1.schema.json
+- Synthetic evaluation fixtures: https://github.com/snapsynapse/obligation-first/tree/main/reference/fixtures/scope-contract-v1
+
+Run `npm run test:scope` for the deterministic shared evals. Adopter checks require an explicit reviewed inventory and baseline; they do not infer expected values from current output.
 
 ## Specification
 
@@ -198,7 +208,7 @@ The Level 4 manifest is at `https://obligationfirst.org/.well-known/assistant-gu
 - ExecutableEncoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
 - Naming profile schema: https://obligationfirst.org/v1/schema/naming-profile.schema.json
 <!-- of-version: llms-full-release-url -->
-- Release package: https://obligationfirst.org/releases/v0.6.3/
+- Release package: https://obligationfirst.org/releases/v0.6.4/
 - Assistant guide: https://obligationfirst.org/.well-known/assistant-guide.txt
 - Assistant guide manifest: https://obligationfirst.org/.well-known/assistant-guide-manifest.txt
 - Sitemap: https://obligationfirst.org/sitemap.xml
@@ -216,5 +226,5 @@ https://github.com/snapsynapse/obligation-first
 
 ## Contact
 
-- Author: Sam Rogers — https://www.linkedin.com/in/samrogers
+- Author: Sam Rogers — https://linkedin.com/in/samrogers
 - Publisher: PAICE.work PBC — https://paice.foundation/

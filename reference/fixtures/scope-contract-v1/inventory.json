@@ -1,0 +1,47 @@
+{
+  "contract_version": 1,
+  "inventory_version": "1.0.0",
+  "owner": "https://example.com/",
+  "source": "Synthetic evaluator fixture, CC BY 4.0",
+  "entries": [
+    {
+      "id": "ca",
+      "kind": "territorial",
+      "extension": false,
+      "source": "Synthetic fixture; no applicability assertion"
+    },
+    {
+      "id": "ca-bc",
+      "kind": "territorial",
+      "extension": true,
+      "source": "Synthetic fixture; no applicability assertion",
+      "parent": "ca"
+    },
+    {
+      "id": "zz-uncovered",
+      "kind": "territorial",
+      "extension": true,
+      "source": "Synthetic fixture; no applicability assertion"
+    },
+    {
+      "id": "International Organization for Standardization",
+      "kind": "institutional",
+      "extension": false,
+      "source": "Synthetic fixture; no applicability assertion"
+    },
+    {
+      "id": "Organisation for Economic Co-operation and Development",
+      "kind": "institutional",
+      "extension": false,
+      "source": "Synthetic fixture; no applicability assertion"
+    }
+  ],
+  "coverage": [
+    {
+      "id": "zz-uncovered",
+      "kind": "territorial",
+      "status": "uncovered",
+      "source": "Explicit synthetic coverage declaration"
+    }
+  ]
+}

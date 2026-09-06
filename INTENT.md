@@ -1,8 +1,8 @@
 ---
 title: "Obligation-First INTENT"
 # of-version: intent-frontmatter
-version: "0.6.3"
-last_updated: 2026-08-04
+version: "0.6.4"
+last_updated: 2026-09-05
 status: working-hypothesis
 description: "Standards-level strategy for the Obligation-First upper schema. Defines scope, design constraints, adoption order, and governance posture."
 tags: [intent, strategy, obligation-first, ontology, gist, standards]
@@ -49,7 +49,7 @@ Deferred or extension-scoped work:
 - Cross-jurisdictional equivalence relation (`of:correspondsTo`) (still deferred post-v0.3; the v0.3 crosswalk matrix carries cross-adopter joins for now)
 - Multi-language source text handling
 - A formal SHACL validator (deferred to v1.0)
-- Conformance test suite (deferred to v1.0)
+- External conformance certification (deferred to v1.0); JSON Schema, graph, JSON-LD and semantic mutation checks are implemented
 
 ## Integration role
 
@@ -59,6 +59,8 @@ The project has two operating modes:
 2. **Interstitial mode.** Provide the cross-project contract that lets PAICE legal products join through stable `@id` values, `anchors`, shared schemas, and common validation.
 
 All three adopters publish v0.6 projections from their native sources. The shared schema, deterministic migration fixture, graph checks, and naming-profile ranges are released and validated as one federated contract.
+
+The [scope inventory evaluator contract v1](reference/contracts/scope-contract-v1.md) adds independently versioned, adopter-owned recognition and coverage declarations with exact scope continuity. This evaluator extension preserves the released schema and each adopter's vocabulary ownership; its implementation and delivery status are recorded in that contract.
 
 ## Implemented semantic direction
 

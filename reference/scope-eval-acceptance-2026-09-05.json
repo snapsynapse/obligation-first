@@ -1,0 +1,174 @@
+{
+  "as_of": "2026-09-05",
+  "status": "release-prepared-locally-not-delivered",
+  "scope": [
+    "F11 evaluator contract",
+    "issue 7 shared institutional fixture",
+    "related F16 documentation reconciliation"
+  ],
+  "contract_version": 1,
+  "of_spec_version": "0.6.4",
+  "fingerprint_version": 2,
+  "validation": {
+    "of_npm_test": "passed with release package; final metadata-only date changes rechecked by validate:contracts and validate:hashes",
+    "final_scope_hardening": "passed; 26 counted mutation cases plus baseline, cross-owner and compatibility controls",
+    "federation": "passed on final original working checkouts with OF 0.6.4; 1467 scope claims across all three adopters",
+    "every_ai_law_verify_ci": "passed in fresh disposable release snapshot against OF 0.6.4 with CHECK_OF_REQUIRED=1",
+    "publedge_verify_ci": "passed in fresh disposable release snapshot against OF 0.6.4 with CHECK_OF_REQUIRED=1",
+    "ai_incident_law_verify_ci": "passed in fresh disposable release snapshot against OF 0.6.4 with CHECK_OF_REQUIRED=1",
+    "pro_filter_vocabulary": "3 tests passed",
+    "owning_wrapper_mutations": "all three adopter wrappers reject recognized scope substitutions with OF-SCOPE-DRIFT before --write can change fingerprint v2",
+    "release_discovery": "passed; release artifact inventory and seven missing discovery/capability mutations"
+  },
+  "boundaries": [
+    "No source-repository commits, pushes, releases, deployments or external submissions. Disposable test commits are not delivery revisions.",
+    "No record schema shape, context mapping, corpus projection JSON, or existing fingerprint-v2 baseline changed. OF context version comment advances to 0.6.4; PubLedge provenance manifests and scope note are generated through the owning builder.",
+    "Adopter inventories are reviewed admission/continuity declarations, not independent legal-source certification.",
+    "CI pins still need the exact delivered OF checker revision before coordinated delivery."
+  ],
+  "repositories": {
+    "obligation-first": {
+      "base_head": "b40380366e390828bff2965b17154c3b9ec86d68",
+      "candidate_files_sha256": {
+        "CHANGELOG.md": "6f0910a26879729ebf44e77c841c85a77d88c2e0e4113c24dae4aed62c665ff5",
+        "CLAUDE.md": "c0f64cb8b380938215f3c1348d65b6948ccecb6c13be41922f2d9f8d67830d37",
+        "INTENT.md": "2d209c8655c218d49741b3091ee1388aae54c8f53e0038ba94854999edc87d1f",
+        "MANIFEST.yaml": "64e562738196719cdf2cd144d352486d1c5ddca9df07ab118d0725ca188841e2",
+        "PROJECT_CONTEXT.md": "6bed93eb5bba43fcb974632cbe11a46a5ddcb633fb6f9c0a856d572291865d45",
+        "PROTOCOL.md": "ff29e7636b25ef8879660ecc368ec30ac070d42a8ce82e67e291176c76f5d0b9",
+        "README.md": "0977179604cc7882c1e9047f0dcea39169335d0a5dd2c9cde98bc2b90b66ed48",
+        "ROADMAP.md": "ffabac1cff5ad8178b4d57557a427739c6aff7a515c74b2cce3da42da8465702",
+        "SECURITY.md": "e6c83378575f92d28b95608398d93d24c5aca2bdf4c19a6fe413b10dab0ee694",
+        "assistant-guide-manifest.txt": "98903af6846c6c3a9bdaaac639f8bb48812bab5597854e6a4c2eda3abac90def",
+        "assistant-guide.txt": "3953f5a26e64a0510183618aa6bffad3cba9c3c254277cf4d9db7d24ce1db841",
+        "docs/.well-known/assistant-guide-manifest.txt": "98903af6846c6c3a9bdaaac639f8bb48812bab5597854e6a4c2eda3abac90def",
+        "docs/.well-known/assistant-guide.txt": "3953f5a26e64a0510183618aa6bffad3cba9c3c254277cf4d9db7d24ce1db841",
+        "docs/agents.json": "81d5f6210a519fa221d4e23af57416282e32732b09490a766562d5917f8ab5db",
+        "docs/atom.xml": "3891baa4820c2af117980629b1fc9620089f7a976fdece283c18942805557770",
+        "docs/feed.xml": "4e431ee011de2ef059f14c1818e936c558869e90e96f687cb26094c722c6c72a",
+        "docs/index.html": "bfb072eb5b8cd0e4d4e4e02e9c6df8e4ac72e36a83c5fc96d11542fbc7ad9db2",
+        "docs/llms-full.txt": "894ec9afbcdea0c5036aa6ef10a88b79fbee96760877a44c5e3780dde67c68a3",
+        "docs/llms.txt": "79c1780c11587719c498208b2e2ea5361f50134af0f5a492bc6539fb1dc8430f",
+        "docs/releases/v0.6.4/RELEASE_NOTES-v0.6.4.md": "0d1d7aefe91b7cc97a69a4f990c40e4f1d737dab7e44d075d77d6883cf1eb916",
+        "docs/releases/v0.6.4/index.html": "27b2e54d6a671c92083976f8f3ea9ae8147c515e23217dc2792ed780f6df19b3",
+        "docs/releases/v0.6.4/manifest.json": "faa212624520e3f1f5856d9c0dd2bab6551a238a29f752eef57adc79feaa4d95",
+        "docs/releases/v0.6.4/sha256.txt": "ff9b1428ed35c485a454a088c3db9049658c382bcd90d534bca5834a49e95531",
+        "docs/sitemap.xml": "21ca9e26763cccce7bd567bf9ca2f382d713363e8201cccabf9dbdee22507743",
+        "docs/v1/context.jsonld": "21ca8c4b6e9fd48e79e120b2e60e7ad6788a37b77fb05448f0a102f18a5fe8fb",
+        "docs/v1/index.html": "9862fc240d4b63fd9f6bf485b95f85339fdecd7a6d8c68b27fff32b62aecd064",
+        "package-lock.json": "9cee2df30cb909f13ab28f9a50a0390926c5a62ed861a406743f6060f8844eaf",
+        "package.json": "798dcf68709346cd9d026ba71f62a00ba4eb04dd3927cc9259a38c065682bb0d",
+        "reference/contracts/scope-contract-v1.md": "1c92364b6a50020686d3b560c5cf343ad5f3ffdbc427386e998c3fdff3680d41",
+        "reference/contracts/scope-inventory-v1.schema.json": "8170c93f7943aed704fcb192e848d5d50171e7c163de3ace5fb2b2ac430932b9",
+        "reference/fixtures/scope-contract-v1/README.md": "2df0775b50f3c40017737dcd0d2ceb748bb959a78dd1ed3734bc7415fcf22924",
+        "reference/fixtures/scope-contract-v1/baseline.json": "16c55404f5064fc23b75554589bfb5ba749390071f9828e1ba4ea9dc53c9d025",
+        "reference/fixtures/scope-contract-v1/inventory.json": "98a5730a72a9548bcda1f325e54896cecffee1299f94927e11ba11ce85e77c48",
+        "reference/fixtures/scope-contract-v1/profile.json": "30d015cd24bd588eba72ee2484a60df0998c8f767e6b85f94e8d393aa30aa4ad",
+        "reference/fixtures/scope-contract-v1/records.json": "ba597ca1ee49f7e24a9db8a32e1555a791832082a470ddc55cdf4a8695ccc2f3",
+        "reference/review/external-review-questions.md": "0d90cd127a61347fe264c52163a6c31d25974863ea80aa21812a1c8b746b0db9",
+        "schema/context.jsonld": "21ca8c4b6e9fd48e79e120b2e60e7ad6788a37b77fb05448f0a102f18a5fe8fb",
+        "scripts/check-scope-contract.mjs": "5dce7d6f1e66bd604cbbcc4f4ca8c02f929d850580157e242067b9509f4aeb3a",
+        "scripts/check-scope-inventories.mjs": "5e77944ab85baf63f0f6ac1a930a99c39f7eb2f701e8cae4213fe4f44de98191",
+        "scripts/lib/contract-inventory.mjs": "6c3390243eedbdc5ad5ae5113039e43b3169d610838f8f259a9a49331e11fe2a",
+        "scripts/lib/scope-contract.mjs": "48463f9b8197456f5ece12b541ce2a34f48dfe68f3e2e4163c7671e92105bd5a",
+        "scripts/test-hardening-regressions.mjs": "70b817dc695304780f5e05b3df79007bf1311ef7bba02ea84b741a117033133e",
+        "scripts/test-relation-coverage.mjs": "9b8ad4fd4d97f569cae1463972d89ad9628868f5401bc739dbc5473bb22db782",
+        "scripts/test-scope-contract.mjs": "df319aa0c83330f94f558be59d2de9f39e31eeb2c9223488445056a21a116566",
+        "scripts/validate-repo-contracts.mjs": "020cd968133ce8a1a50879c7d70580902765a6d0e7d14457e2a47b0210fbc11d",
+        "scripts/verify-federation.mjs": "8532d8cf5002ca8933b11d6d84f8744115f82f20bbe6ad2794b42d2cb7030d4d"
+      }
+    },
+    "every-ai-law": {
+      "base_head": "b8b67bf340f21194f6abc28d40f8011277a07f6f",
+      "candidate_files_sha256": {
+        "CHANGELOG.md": "4fbc29ea88e9668744d9dfc3ef2bf14a189fff241ab29c417f17863b296fcfd6",
+        "design/SCOPE-CONTRACT.md": "eaf69a68990fb8817059590bd1158dd57edcfaa2d6622b7a14986a2b952844ca",
+        "scripts/check-of-fingerprint.js": "b722469ea8a3a27bdd81819d2375107c7e937f0e38e9549d845dad7279886baa",
+        "scripts/check-of-scope-vocabulary.js": "8f40c4325fa850d2747e27a75bdadf58ad6cd62dee276eea222ec7f8fc60e0ef",
+        "tests/fixtures/of-scope-baseline.json": "67b3a91b08116a9eac9157f0ca1b1afd54fb7cfceff2fabb547f408d0b5dd4ab",
+        "tests/fixtures/of-scope-inventory.json": "257f5ac3c2a2cff34c5080985f9424149151caefe3fa20ba6a64419b1665a5f6"
+      }
+    },
+    "publedge": {
+      "base_head": "a20eb9e2e53f3fdad5b8739cfc480dcd64f9fad0",
+      "candidate_files_sha256": {
+        "CHANGELOG.md": "60955a1ca4b8eb4883d1843d49151f51f572bb904c3fe01e6e34be315f04f102",
+        "MANIFEST.yaml": "30881936b9f4a77b4fdb32619fafa7ae071397c1a7198550178a5a3bba6b2a90",
+        "docs/MANIFEST.yaml": "30881936b9f4a77b4fdb32619fafa7ae071397c1a7198550178a5a3bba6b2a90",
+        "docs/reference/SCOPE-CONTRACT.md": "85b153cd119eb8474635f731180e0b7fb6cd9fc9e76b234dc6fb952a775a4d41",
+        "reference/SCOPE-CONTRACT.md": "85b153cd119eb8474635f731180e0b7fb6cd9fc9e76b234dc6fb952a775a4d41",
+        "scripts/check-of-fingerprint.js": "144fb4ba15c09f100a546df09e78aa7a503c69637ec554fc5774b7688617dd79",
+        "tests/fixtures/of-scope-baseline.json": "b938a1b5f7f9cee977726fee7036586a98e72f378351ce1bfcc0ba4bdb3f1983",
+        "tests/fixtures/of-scope-inventory.json": "e9680571631417f36527011225141f7eef2d956a27fd217f983a15503e35d6fa"
+      }
+    },
+    "ai-incident-law": {
+      "base_head": "c9b5335f9f6f1f6887b362a39c2803a122bc4b12",
+      "candidate_files_sha256": {
+        "CHANGELOG.md": "f82f7181a03d81fedd1ed97d38409c8ef2396ccf516ea738d350a13fb80f5dc7",
+        "docs/SCOPE-CONTRACT.md": "135ef852edd5a02720b71af9f850e1fd446129f126e43f08bc5d6af32bcd7b86",
+        "scripts/check-of-fingerprint.mjs": "85ddde752e7bab0c42089fbb0d9ba07a02fdfbc46e8f97a64c08e7e65edad683",
+        "tests/fixtures/of-scope-baseline.json": "a02b3272b57e78be0ed91fc8da89212ae469cd83114d6b6c407140ea1141379a",
+        "tests/fixtures/of-scope-inventory.json": "eb7dae07a2c9e66b80fe8b55396b8f0af78fa3735495ff9e833abb750edbf294"
+      }
+    },
+    "every-ai-law-pro": {
+      "base_head": "365045a29dc62972402dd08f0b85a85859691c37",
+      "candidate_files_sha256": {
+        "lib/filter-vocabulary.test.ts": "5fe7972249283bfaf32d55825e08dd72fcbd9e8f148a8465fa63e495bf95d849"
+      }
+    }
+  },
+  "evidence_scope": "Current candidate file digests below replace the earlier implementation-only snapshot. Delivery revisions and hosted acceptance remain unestablished.",
+  "digest_exclusions": [
+    "reference/release-preparation-v0.6.4.json",
+    "reference/release-preparation-v0.6.4.md",
+    "reference/scope-eval-acceptance-2026-09-05.json"
+  ],
+  "package_boundary_checks": [
+    {
+      "repo": "every-ai-law",
+      "version": "0.8.1",
+      "package_files": 30,
+      "changed_packaged_paths": []
+    },
+    {
+      "repo": "publedge",
+      "version": "0.2.1",
+      "package_files": 75,
+      "changed_packaged_paths": []
+    },
+    {
+      "repo": "ai-incident-law",
+      "version": "0.4.0",
+      "package_files": 355,
+      "changed_packaged_paths": []
+    }
+  ],
+  "local_logs": [
+    {
+      "path": "/tmp/p2-release-of-test.log",
+      "sha256": "20ef964e3c2394c39cd05db750f212b8f77827b4d5fd31b66590d2c772d1edeb"
+    },
+    {
+      "path": "/tmp/p2-release-federation.log",
+      "sha256": "43c3a9962acb8ffd46ed60e042560a4d0dade69e1eb0369ca2aa5218642e1c06"
+    },
+    {
+      "path": "/tmp/p2-release-every-ai-law-ci.log",
+      "sha256": "0d647f492738a0d316068b87551b0694ea0b3247bd450bed6d8fc1b15731f22d"
+    },
+    {
+      "path": "/tmp/p2-release-publedge-ci.log",
+      "sha256": "45f5334f0c8c8e5c46b2357aa3773c963e8f531c7d23f261fabb2bada1089a39"
+    },
+    {
+      "path": "/tmp/p2-release-ai-incident-law-ci.log",
+      "sha256": "dd0ad043a14ba084a478a64386ff0abda623f758beec82b07fa8724b291b3fcd"
+    },
+    {
+      "path": "/tmp/p2-release-pro-test.log",
+      "sha256": "89301b97f76ccfa87fb647fdceca597bcdb16caccb5805675108dfbf354ec308"
+    }
+  ]
+}

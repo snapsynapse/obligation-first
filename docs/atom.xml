@@ -5,13 +5,23 @@
   <link href="https://obligationfirst.org/atom.xml" rel="self"/>
   <link href="https://obligationfirst.org/" rel="alternate"/>
   <id>https://obligationfirst.org/</id>
-  <updated>2026-08-04T12:00:00Z</updated>
+  <updated>2026-09-05T12:00:00Z</updated>
   <author>
     <name>Sam Rogers</name>
     <uri>https://www.linkedin.com/in/samrogers</uri>
   </author>
   <rights>CC BY 4.0 (spec) / Apache 2.0 (code)</rights>
   <generator uri="https://obligationfirst.org/">Obligation-First</generator>
+
+  <entry>
+    <title>Obligation-First v0.6.4 released</title>
+    <link href="https://obligationfirst.org/changelog.html" rel="alternate"/>
+    <id>https://obligationfirst.org/releases/v0.6.4</id>
+    <updated>2026-09-05T12:00:00Z</updated>
+    <published>2026-09-05T12:00:00Z</published>
+    <summary>Exact scope continuity, adopter-owned inventories, and deterministic semantic evals without changing v0.6 record semantics.</summary>
+    <category term="release"/>
+  </entry>
 
   <entry>
     <title>Obligation-First v0.6.3 released</title>

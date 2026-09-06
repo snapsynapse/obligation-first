@@ -15,6 +15,7 @@ const adopters = [
     profile: "docs/.well-known/obligation-first-naming-profile.jsonld",
     fingerprint: "tests/fixtures/of-contract-fingerprint.json",
     continuity: "tests/fixtures/of-identifier-continuity.json",
+    scopeSourceCheck: "scripts/check-of-scope-vocabulary.js",
   },
   {
     name: "PubLedge",
@@ -78,6 +79,8 @@ run(
 );
 
 for (const adopter of adopters) {
+  if (adopter.scopeSourceCheck) run(`${adopter.name} scope inventory source agreement`, process.execPath,
+    [path.join(adopter.root, adopter.scopeSourceCheck), "--self-test"]);
   run(
     `${adopter.name} naming-profile range`,
     npm,
@@ -110,7 +113,19 @@ for (const adopter of adopters) {
       "--baseline", path.join(adopter.root, adopter.continuity),
     ],
   );
+  run(`${adopter.name} jurisdiction identity and coverage`, process.execPath, [
+    path.join(obligationFirst, "scripts/check-scope-contract.mjs"),
+    "--records", path.join(adopter.root, adopter.records),
+    "--profile", path.join(adopter.root, adopter.profile),
+    "--inventory", path.join(adopter.root, "tests/fixtures/of-scope-inventory.json"),
+    "--baseline", path.join(adopter.root, "tests/fixtures/of-scope-baseline.json"),
+  ]);
 }
+
+run("Compare declared scope identities across owners", process.execPath, [
+  path.join(obligationFirst, "scripts/check-scope-inventories.mjs"),
+  ...adopters.map(adopter => path.join(adopter.root, "tests/fixtures/of-scope-inventory.json")),
+]);
 
 run("Compare declared instrument correspondences", process.execPath, [
   path.join(obligationFirst, "scripts/check-entity-agreement.mjs"),

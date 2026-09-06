@@ -1,0 +1,7 @@
+{
+  "adopter": "https://example.com/",
+  "jurisdiction": {
+    "@type": "gist:Jurisdiction",
+    "ref": "ca"
+  }
+}

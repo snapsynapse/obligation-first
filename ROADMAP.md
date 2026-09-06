@@ -1,7 +1,9 @@
 # Roadmap
 
 <!-- of-version: roadmap-current -->
-## v0.6.3 (current)
+## v0.6.4 (current)
+
+Current evaluator work: [scope inventory contract v1](reference/contracts/scope-contract-v1.md) implements F11 and the issue 7 non-territorial issuer regression in the v0.6.4 reference package. Adopter inventories and exact scope baselines preserve recognition independently from coverage. Coordinated delivery and CI pin updates remain pending.
 
 The v0.6 semantic contract is released through five implemented decision records:
 
@@ -86,9 +88,9 @@ Landed in v0.2.1-draft (2026-05-26):
 - [x] `of:violationOf` symmetric/inverse predicate of `triggers_on_violation_of` added so the violation relation can be queried from either side.
 - [x] Confirmed `of:executableEncoding` accepts both Term and Obligation as domain (already true in v0.1 schemas; documented).
 
-Still planned for v0.2:
+Remaining directions from the historical v0.2 plan:
 
-- [ ] Provision lifecycle state machine (effective / amended / sunset / repealed) — drives the visualization layer
+- [x] Lifecycle and operative-state fields implemented in v0.6; qualified date branches remain the separate issue 4 fixture work
 - [ ] Cross-jurisdictional equivalence relation (`of:correspondsTo`) — drives the cross-jurisdictional diff visualization
 - [ ] Akoma Ntoso element-level binding (formalized, not just IRI compatibility)
 - [ ] Multi-language source text handling
@@ -101,7 +103,8 @@ Still planned for v0.2:
 - [x] EveryAILaw, PubLedge, AI Incident Law all bound to v0.1
 - [ ] w3id.org/of/v1/ permanent redirect filed and live
 - [ ] SHACL validator
-- [ ] Conformance test suite
+- [x] JSON Schema, local graph, JSON-LD and deterministic semantic regression suites
+- [ ] External conformance certification
 - [ ] At least one external (non-PAICE) adopter
 
 ## Deferred decisions
@@ -160,7 +163,7 @@ Obligation-First should now be treated as the shared contract between PAICE lega
 3. PubLedge is the joint-interpretation source of truth for negotiated Instruments, re-allocated Obligations, and administrative issuance Determinations attached to its Instruments.
 4. Obligation-First owns the common `@context`, JSON Schemas, crosswalks, and validation harness that let those records join without centralizing the products.
 
-Near-term integration work belongs in the adopter repos, using the handoffs in `reference/handoffs/` as the execution checklist. This repo should remain the stable vocabulary and conformance source.
+Near-term integration work belongs in the adopter repos. Durable contracts and acceptance evidence live in tracked reference documents; remaining session queues live temporarily in ignored `handoffs/`. This repo remains the stable vocabulary and conformance source.
 
 ### EU AI Act as collaboration vector
 

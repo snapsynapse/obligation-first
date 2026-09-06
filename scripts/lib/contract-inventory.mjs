@@ -16,6 +16,22 @@ const FIXED_RELEASE_ARTIFACTS = [
   { path: "package-lock.json", url: `${REPOSITORY}/blob/main/package-lock.json` },
 ];
 
+// Tooling contracts are separate from the normative /v1/schema inventory.
+export function scopeArtifactInventory(version) {
+  const [major, minor, patch] = version.split(".").map(Number);
+  if (major === 0 && (minor < 6 || (minor === 6 && patch < 4))) return [];
+  return [
+    "reference/contracts/scope-contract-v1.md",
+    "reference/contracts/scope-inventory-v1.schema.json",
+    ...["README.md", "records.json", "profile.json", "inventory.json", "baseline.json"]
+      .map((file) => `reference/fixtures/scope-contract-v1/${file}`),
+    "scripts/lib/scope-contract.mjs",
+    "scripts/check-scope-contract.mjs",
+    "scripts/check-scope-inventories.mjs",
+    "scripts/test-scope-contract.mjs",
+  ].map((artifactPath) => ({ path: artifactPath, url: `${REPOSITORY}/blob/main/${artifactPath}` }));
+}
+
 export async function schemaArtifactInventory(root) {
   const schemaDir = path.join(root, "schema");
   const schemaFiles = (await readdir(schemaDir))
@@ -42,6 +58,7 @@ export async function releaseArtifactInventory(root, version) {
     { path: notesPath, url: `${SITE}/releases/v${version}/RELEASE_NOTES-v${version}.md` },
     ...await schemaArtifactInventory(root),
     ...FIXED_RELEASE_ARTIFACTS.slice(1),
+    ...scopeArtifactInventory(version),
   ];
 }
 

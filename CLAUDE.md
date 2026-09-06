@@ -15,7 +15,7 @@ Terms/Obligations). This repo owns the shared `@context`, JSON Schemas,
 crosswalks, and validation harness — it does not centralize adopter data.
 
 <!-- of-version: claude-current -->
-Current spec version: v0.6.3, pre-v1.0. See ROADMAP.md for freeze gates and
+Current spec version: v0.6.4, pre-v1.0. See ROADMAP.md for freeze gates and
 CHANGELOG.md for version history.
 
 ## Tech stack
@@ -86,7 +86,7 @@ CHANGELOG → release:package → hashes:update → `npm test`) — see AGENTS.m
 ## Current state
 
 - <!-- of-version: claude-state-current -->
-  Spec at v0.6.3. Three adopters (EveryAILaw, PubLedge, AI Incident Law)
+  Spec at v0.6.4. Three adopters (EveryAILaw, PubLedge, AI Incident Law)
   publish local projections against the shared contract.
 - Remaining v1.0 gates are tracked in ROADMAP.md. The
   `https://w3id.org/of/v1/` redirect remains planned rather than live.

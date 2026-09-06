@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scope inventory evaluator contract v1 (not an OF record schema)",
+  "type": "object",
+  "required": ["contract_version", "inventory_version", "owner", "source", "entries", "coverage"],
+  "additionalProperties": false,
+  "properties": {
+    "contract_version": { "const": 1 },
+    "inventory_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "owner": { "type": "string", "format": "uri", "pattern": "^https://" },
+    "source": { "type": "string", "minLength": 1 },
+    "entries": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/entry" } },
+    "coverage": { "type": "array", "items": { "$ref": "#/$defs/coverage" } }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "source", "extension"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["territorial", "institutional"] },
+        "source": { "type": "string", "minLength": 1 },
+        "extension": { "type": "boolean" },
+        "parent": { "type": "string", "minLength": 1 }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "status", "source"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["territorial", "institutional"] },
+        "status": { "enum": ["modeled", "uncovered", "unknown"] },
+        "source": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

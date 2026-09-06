@@ -1,0 +1,18 @@
+{
+  "baseline_version": 1,
+  "contract_version": 1,
+  "owner": "https://example.com/",
+  "inventory_version": "1.0.0",
+  "inventory_sha256": "b3e6d6751ce220063e04ff0a73191f66547462d183dbe44cd00e3141ffcc005b",
+  "claims": [
+    ["@naming-profile","jurisdiction/ref",["ca"]],
+    ["https://example.com/bc","territorial_scope",["ca-bc"]],
+    ["https://example.com/institutional-jurisdiction","institutional_scope",["International Organization for Standardization"]],
+    ["https://example.com/iso","jurisdiction/institutional_scope",["International Organization for Standardization"]],
+    ["https://example.com/legacy","jurisdiction/ref",["ca"]],
+    ["https://example.com/local","jurisdiction","https://example.com/bc"],
+    ["https://example.com/oecd","jurisdiction/institutional_scope",["Organisation for Economic Co-operation and Development"]],
+    ["https://example.com/territories","territorial_scope",["ca","ca-bc"]],
+    ["https://example.com/uncovered","jurisdiction/territorial_scope",["zz-uncovered"]]
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "repository": "https://github.com/snapsynapse/obligation-first",
+  "profile": "open-spec",
+  "authority": "R2",
+  "start_head": "b40380366e390828bff2965b17154c3b9ec86d68",
+  "candidate_head": null,
+  "candidate_version": "0.6.4",
+  "updated_at": "2026-09-06T00:52:16.864618+00:00",
+  "steps": [
+    {
+      "id": "version-and-surface-preparation",
+      "status": "completed",
+      "evidence": "OF 0.6.4 patch; guide 0.1.4; unchanged adopter package bytes verified. See release-preparation-v0.6.4.md."
+    },
+    {
+      "id": "local-release-verification",
+      "status": "completed",
+      "evidence": "npm test, final contract/hash checks, federation, three fresh adopter CI snapshots, and Pro filter tests passed. Candidate digests: scope-eval-acceptance-2026-09-05.json."
+    },
+    {
+      "id": "scoped-staging-plan",
+      "status": "ready",
+      "evidence": "Exact path inventory in release-preparation-v0.6.4.md. All original indexes remain empty."
+    },
+    {
+      "id": "commit-and-push-of",
+      "status": "not_started",
+      "evidence": "Preparation requested; no original repository commits or pushes. OF must be available before adopter enforcement."
+    },
+    {
+      "id": "adopter-checker-pins",
+      "status": "not_started",
+      "evidence": "Needs actual OF delivery commit SHA; five workflow files contain six old-SHA references. Rebuild PubLedge manifests after pin change."
+    },
+    {
+      "id": "commit-and-push-adopters",
+      "status": "not_started",
+      "evidence": "Deliver PubLedge and AI Incident Law before EveryAILaw federation. Pro test-only change is independent."
+    },
+    {
+      "id": "exact-head-hosted-verification",
+      "status": "not_started",
+      "evidence": "Require exact source heads, successful owned workflows and Pages revisions, artifact hashes, and compatible federation tuple after delivery."
+    },
+    {
+      "id": "tag-and-github-release",
+      "status": "not_started",
+      "evidence": "Proposed tag/title v0.6.4 / Obligation-First v0.6.4. Separate publication action; no tag or GitHub Release created."
+    },
+    {
+      "id": "npm-publication",
+      "status": "not_applicable",
+      "evidence": "OF is a private-marked spec repository; adopter packaged files are byte-identical to their current HEADs."
+    }
+  ]
+}
