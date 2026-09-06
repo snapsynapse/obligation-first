@@ -52,7 +52,7 @@ README for spec version and licenses.
 - Remaining v1.0 gates are tracked in ROADMAP.md; the w3id.org redirect for
   `https://w3id.org/of/v1/` remains planned rather than live.
 - CI covers the full validation suite, GitHub Pages deploy, and a monthly a11y
-  audit. Dated hosted acceptance is in `reference/release-delivery-v0.6.4.json`;
+  audit. Dated hosted acceptance is in `reference/release-delivery-v0.6.5.json`;
   it is not a continuously refreshed CI claim.
 - F14 ships in v0.6.5 as offline reference tooling, with owner sidecars in EveryAILaw and
   PubLedge. It does not change the v0.6 record contract or production exports.

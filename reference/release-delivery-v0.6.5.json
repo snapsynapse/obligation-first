@@ -1,0 +1,635 @@
+{
+  "schema_version": 1,
+  "status": "delivered-and-verified",
+  "verified_at": "2026-09-06T03:08:51.704420+00:00",
+  "release_commit": "a848817d9331bb3aa17cb0d6c5cd059d3ca53c1c",
+  "release_tag": "v0.6.5",
+  "repositories": {
+    "obligation-first": {
+      "head": "a848817d9331bb3aa17cb0d6c5cd059d3ca53c1c",
+      "remote_main": "a848817d9331bb3aa17cb0d6c5cd059d3ca53c1c",
+      "runs": [
+        {
+          "conclusion": "success",
+          "databaseId": 34007267425,
+          "headSha": "a848817d9331bb3aa17cb0d6c5cd059d3ca53c1c",
+          "name": "Test",
+          "status": "completed",
+          "url": "https://github.com/snapsynapse/obligation-first/actions/runs/34007267425"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 34007267402,
+          "headSha": "a848817d9331bb3aa17cb0d6c5cd059d3ca53c1c",
+          "name": "Deploy to GitHub Pages",
+          "status": "completed",
+          "url": "https://github.com/snapsynapse/obligation-first/actions/runs/34007267402"
+        }
+      ],
+      "release": {
+        "assets": [
+          {
+            "apiUrl": "https://api.github.com/repos/snapsynapse/obligation-first/releases/assets/546633129",
+            "contentType": "application/json",
+            "createdAt": "2026-09-06T02:47:27Z",
+            "digest": "sha256:190ebd8953aea5e7bf42f650467dbce80fee156233f38505f683aea59fdfb292",
+            "downloadCount": 1,
+            "id": "RA_kwDOSUUkB84glPWp",
+            "label": "",
+            "name": "manifest.json",
+            "size": 13613,
+            "state": "uploaded",
+            "updatedAt": "2026-09-06T02:47:27Z",
+            "url": "https://github.com/snapsynapse/obligation-first/releases/download/v0.6.5/manifest.json",
+            "download_verified_sha256": "190ebd8953aea5e7bf42f650467dbce80fee156233f38505f683aea59fdfb292"
+          },
+          {
+            "apiUrl": "https://api.github.com/repos/snapsynapse/obligation-first/releases/assets/546633130",
+            "contentType": "text/plain; charset=utf-8",
+            "createdAt": "2026-09-06T02:47:27Z",
+            "digest": "sha256:0ca306ad4e3b8e9cf3070fee17f585dece3d01dce858f151b5527ef913076c9f",
+            "downloadCount": 1,
+            "id": "RA_kwDOSUUkB84glPWq",
+            "label": "",
+            "name": "sha256.txt",
+            "size": 4851,
+            "state": "uploaded",
+            "updatedAt": "2026-09-06T02:47:27Z",
+            "url": "https://github.com/snapsynapse/obligation-first/releases/download/v0.6.5/sha256.txt",
+            "download_verified_sha256": "0ca306ad4e3b8e9cf3070fee17f585dece3d01dce858f151b5527ef913076c9f"
+          }
+        ],
+        "isDraft": false,
+        "isPrerelease": false,
+        "publishedAt": "2026-09-06T02:47:28Z",
+        "tagName": "v0.6.5",
+        "url": "https://github.com/snapsynapse/obligation-first/releases/tag/v0.6.5"
+      },
+      "annotated_tag_object": "b76ea29ddae9d871f192dd01be9c86784adfd8a2",
+      "tag_commit": "a848817d9331bb3aa17cb0d6c5cd059d3ca53c1c"
+    },
+    "every-ai-law": {
+      "head": "6e1da59a73feeae47588704abb308746e83b4023",
+      "remote_main": "6e1da59a73feeae47588704abb308746e83b4023",
+      "runs": [
+        {
+          "conclusion": "success",
+          "databaseId": 34007332428,
+          "headSha": "6e1da59a73feeae47588704abb308746e83b4023",
+          "name": "Production Search",
+          "status": "completed",
+          "url": "https://github.com/snapsynapse/every-ai-law/actions/runs/34007332428"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 34007332154,
+          "headSha": "6e1da59a73feeae47588704abb308746e83b4023",
+          "name": "Pro Change Dispatch",
+          "status": "completed",
+          "url": "https://github.com/snapsynapse/every-ai-law/actions/runs/34007332154"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 34007309348,
+          "headSha": "6e1da59a73feeae47588704abb308746e83b4023",
+          "name": "Federation",
+          "status": "completed",
+          "url": "https://github.com/snapsynapse/every-ai-law/actions/runs/34007309348"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 34007309367,
+          "headSha": "6e1da59a73feeae47588704abb308746e83b4023",
+          "name": "Build",
+          "status": "completed",
+          "url": "https://github.com/snapsynapse/every-ai-law/actions/runs/34007309367"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 34007309400,
+          "headSha": "6e1da59a73feeae47588704abb308746e83b4023",
+          "name": "Scan Secrets",
+          "status": "completed",
+          "url": "https://github.com/snapsynapse/every-ai-law/actions/runs/34007309400"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 34007308547,
+          "headSha": "6e1da59a73feeae47588704abb308746e83b4023",
+          "name": "pages build and deployment",
+          "status": "completed",
+          "url": "https://github.com/snapsynapse/every-ai-law/actions/runs/34007308547"
+        }
+      ],
+      "release": {
+        "assets": [],
+        "isDraft": false,
+        "isPrerelease": false,
+        "publishedAt": "2026-09-06T02:54:15Z",
+        "tagName": "v0.8.2",
+        "url": "https://github.com/snapsynapse/every-ai-law/releases/tag/v0.8.2"
+      },
+      "annotated_tag_object": "4c77c7ee64a0269ce2225e5d45ef5a83d0073bb6",
+      "tag_commit": "6e1da59a73feeae47588704abb308746e83b4023",
+      "npm": {
+        "version": "0.8.2",
+        "latest": "0.8.2",
+        "integrity": "sha512-vAj8lUXjEJ7yi1FdAV1Kqzgu67t7fQVmCKlWFqjT8jl/c1oWNRJJ+VAD18C+XHd0A/UXjEJj0OL7kIQsUQMVOg==",
+        "shasum": "179176267a6bbafb985253f474af47c6e3c72597",
+        "tarball": "https://registry.npmjs.org/every-ai-law/-/every-ai-law-0.8.2.tgz",
+        "fileCount": 30,
+        "unpackedSize": 3197776,
+        "signatures": [
+          {
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+            "sig": "MEUCIAo3qM9yIUSXhEJovfiw/MR3X06A4NO0HecTe9NyolgJAiEA862x9KlDn6JJC16kNUTtfQkZI5lBzH3Yl3Q1b5IkoX4="
+          }
+        ],
+        "tested_tarball_integrity_matches_registry": true
+      },
+      "mcp_registry": {
+        "server": {
+          "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+          "name": "io.github.snapsynapse/every-ai-law",
+          "description": "AI law obligations, evidence, deadlines, saved profiles, audit trails, and signed change alerts.",
+          "title": "EveryAILaw",
+          "repository": {
+            "url": "https://github.com/snapsynapse/every-ai-law",
+            "source": "github"
+          },
+          "version": "0.8.2",
+          "websiteUrl": "https://everyailaw.com/",
+          "packages": [
+            {
+              "registryType": "npm",
+              "registryBaseUrl": "https://registry.npmjs.org",
+              "identifier": "every-ai-law",
+              "version": "0.8.2",
+              "transport": {
+                "type": "stdio"
+              }
+            }
+          ],
+          "_meta": {
+            "io.modelcontextprotocol.registry/publisher-provided": {
+              "agents_json": "https://everyailaw.com/agents.json",
+              "authenticated_mcp_status": "limited_production",
+              "change_impact_evidence_sample": "https://app.everyailaw.com/samples/change-impact-evidence-package.json",
+              "commercial_agent_discovery": "https://app.everyailaw.com/agents.json",
+              "commercial_offer_catalog": "https://app.everyailaw.com/offers.json",
+              "discovery": "https://everyailaw.com/.well-known/mcp.json",
+              "legal_graph_layer": "ai-obligation-registry",
+              "legal_graph_narrative": "https://aiincidentlaw.org/docs/legal-graph.html",
+              "legal_graph_position": 2,
+              "license": "Free tier: EveryAILaw Data License v1.4.1 (free for agents, research, evaluation). Commercial redistribution requires agreement.",
+              "monitoring_product_url": "https://app.everyailaw.com/",
+              "publisher": "PAICE.work PBC",
+              "publisher_url": "https://paice.work/"
+            }
+          }
+        },
+        "_meta": {
+          "io.modelcontextprotocol.registry/official": {
+            "status": "active",
+            "statusChangedAt": "2026-09-06T03:08:21.271038Z",
+            "publishedAt": "2026-09-06T03:08:21.271038Z",
+            "updatedAt": "2026-09-06T03:08:21.271038Z",
+            "isLatest": true
+          }
+        }
+      }
+    },
+    "publedge": {
+      "head": "e906f907b606bebbeb389e889c32d6004cefdd8f",
+      "remote_main": "e906f907b606bebbeb389e889c32d6004cefdd8f",
+      "runs": [
+        {
+          "conclusion": "success",
+          "databaseId": 34007605443,
+          "headSha": "e906f907b606bebbeb389e889c32d6004cefdd8f",
+          "name": "CI",
+          "status": "completed",
+          "url": "https://github.com/snapsynapse/publedge/actions/runs/34007605443"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 34007604924,
+          "headSha": "e906f907b606bebbeb389e889c32d6004cefdd8f",
+          "name": "pages build and deployment",
+          "status": "completed",
+          "url": "https://github.com/snapsynapse/publedge/actions/runs/34007604924"
+        }
+      ],
+      "release": {
+        "assets": [
+          {
+            "apiUrl": "https://api.github.com/repos/snapsynapse/publedge/releases/assets/546641777",
+            "contentType": "application/x-gtar",
+            "createdAt": "2026-09-06T02:58:01Z",
+            "digest": "sha256:5ecae6af169060577b84ef74b3e4431ee7bd2f3c2853267736c85d1094fc7a94",
+            "downloadCount": 0,
+            "id": "RA_kwDOSGgcxs4glRdx",
+            "label": "",
+            "name": "publedge-v0.2.2-source.tar.gz",
+            "size": 6287652,
+            "state": "uploaded",
+            "updatedAt": "2026-09-06T02:58:09Z",
+            "url": "https://github.com/snapsynapse/publedge/releases/download/v0.2.2/publedge-v0.2.2-source.tar.gz",
+            "download_verified_sha256": "5ecae6af169060577b84ef74b3e4431ee7bd2f3c2853267736c85d1094fc7a94"
+          },
+          {
+            "apiUrl": "https://api.github.com/repos/snapsynapse/publedge/releases/assets/546641779",
+            "contentType": "application/zip",
+            "createdAt": "2026-09-06T02:58:02Z",
+            "digest": "sha256:19877a5baa7e4b79afd1dc918beb7439f6b7db002358ed9d32f638fd0670fdb9",
+            "downloadCount": 0,
+            "id": "RA_kwDOSGgcxs4glRdz",
+            "label": "",
+            "name": "publedge-v0.2.2-source.zip",
+            "size": 7856713,
+            "state": "uploaded",
+            "updatedAt": "2026-09-06T02:58:09Z",
+            "url": "https://github.com/snapsynapse/publedge/releases/download/v0.2.2/publedge-v0.2.2-source.zip",
+            "download_verified_sha256": "19877a5baa7e4b79afd1dc918beb7439f6b7db002358ed9d32f638fd0670fdb9"
+          },
+          {
+            "apiUrl": "https://api.github.com/repos/snapsynapse/publedge/releases/assets/546641778",
+            "contentType": "application/octet-stream",
+            "createdAt": "2026-09-06T02:58:02Z",
+            "digest": "sha256:c45e001488ef378375d7cb395a5d059356484130309e4d4c1037bd1ad16b6502",
+            "downloadCount": 0,
+            "id": "RA_kwDOSGgcxs4glRdy",
+            "label": "",
+            "name": "RELEASE_NOTES-v0.2.2.md",
+            "size": 427,
+            "state": "uploaded",
+            "updatedAt": "2026-09-06T02:58:02Z",
+            "url": "https://github.com/snapsynapse/publedge/releases/download/v0.2.2/RELEASE_NOTES-v0.2.2.md",
+            "download_verified_sha256": "c45e001488ef378375d7cb395a5d059356484130309e4d4c1037bd1ad16b6502"
+          }
+        ],
+        "isDraft": false,
+        "isPrerelease": false,
+        "publishedAt": "2026-09-06T02:58:10Z",
+        "tagName": "v0.2.2",
+        "url": "https://github.com/snapsynapse/publedge/releases/tag/v0.2.2"
+      },
+      "annotated_tag_object": "8b2b74c0914e316f210b45b1d9f60641dc06dd88",
+      "tag_commit": "e906f907b606bebbeb389e889c32d6004cefdd8f",
+      "npm": {
+        "version": "0.2.2",
+        "latest": "0.2.2",
+        "integrity": "sha512-fERUpnJQ4iki0Me25lUrGYJjzwjquREFD04y9bFOpJ1Kp/kPcgv49d8Z4XHGsQnbpSAMbYSx/dUH/yKPFo/f5w==",
+        "shasum": "27d17af9b29b039cb4e59e36e9aec2a97698e16f",
+        "tarball": "https://registry.npmjs.org/publedge/-/publedge-0.2.2.tgz",
+        "fileCount": 75,
+        "unpackedSize": 290366,
+        "signatures": [
+          {
+            "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+            "sig": "MEUCIHwtUQoXa2aFWQzxEWBn81UPVY3E2cj4+XjekKnATW1PAiEA50JpA0xrw0Amk39+qGorIj6QUOBIPInGDfqyHEnPi0s="
+          }
+        ],
+        "tested_tarball_integrity_matches_registry": true
+      },
+      "mcp_registry": {
+        "server": {
+          "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+          "name": "io.github.snapsynapse/publedge",
+          "description": "Open recordkeeping protocol for JIAs, RMAs, no-action letters, and analogous instruments.",
+          "title": "PubLedge",
+          "repository": {
+            "url": "https://github.com/snapsynapse/publedge",
+            "source": "github"
+          },
+          "version": "0.2.2",
+          "websiteUrl": "https://publedge.org/",
+          "packages": [
+            {
+              "registryType": "npm",
+              "registryBaseUrl": "https://registry.npmjs.org",
+              "identifier": "publedge",
+              "version": "0.2.2",
+              "transport": {
+                "type": "stdio"
+              }
+            }
+          ],
+          "_meta": {
+            "io.modelcontextprotocol.registry/publisher-provided": {
+              "agents_json": "https://publedge.org/agents.json",
+              "discovery": "https://publedge.org/.well-known/mcp.json",
+              "legal_graph_layer": "verifiable-records",
+              "legal_graph_narrative": "https://aiincidentlaw.org/docs/legal-graph.html",
+              "legal_graph_position": 3,
+              "license": "Apache-2.0 (code) / CC BY 4.0 (content)",
+              "protocol_spec": "https://publedge.org/PROTOCOL.md",
+              "publisher": "PAICE.work PBC",
+              "publisher_url": "https://paice.work/",
+              "spec_version": "v0.2.0"
+            }
+          }
+        },
+        "_meta": {
+          "io.modelcontextprotocol.registry/official": {
+            "status": "active",
+            "statusChangedAt": "2026-09-06T03:08:31.84186Z",
+            "publishedAt": "2026-09-06T03:08:31.84186Z",
+            "updatedAt": "2026-09-06T03:08:31.84186Z",
+            "isLatest": true
+          }
+        }
+      }
+    },
+    "ai-incident-law": {
+      "head": "a5526f740fa7d0e1579e0aed3d0d5181c78497b1",
+      "remote_main": "a5526f740fa7d0e1579e0aed3d0d5181c78497b1",
+      "runs": [
+        {
+          "conclusion": "success",
+          "databaseId": 34007590306,
+          "headSha": "a5526f740fa7d0e1579e0aed3d0d5181c78497b1",
+          "name": "Validate",
+          "status": "completed",
+          "url": "https://github.com/snapsynapse/ai-incident-law/actions/runs/34007590306"
+        },
+        {
+          "conclusion": "success",
+          "databaseId": 34007590143,
+          "headSha": "a5526f740fa7d0e1579e0aed3d0d5181c78497b1",
+          "name": "pages build and deployment",
+          "status": "completed",
+          "url": "https://github.com/snapsynapse/ai-incident-law/actions/runs/34007590143"
+        }
+      ]
+    }
+  },
+  "federation_acceptance": {
+    "run_id": 34007309348,
+    "attempt": 2,
+    "checked_out_heads_verified_from_hosted_log": {
+      "obligation-first": "a848817d9331bb3aa17cb0d6c5cd059d3ca53c1c",
+      "every-ai-law": "6e1da59a73feeae47588704abb308746e83b4023",
+      "publedge": "e906f907b606bebbeb389e889c32d6004cefdd8f",
+      "ai-incident-law": "a5526f740fa7d0e1579e0aed3d0d5181c78497b1"
+    },
+    "result": "success"
+  },
+  "live_artifacts": [
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "70d6a8dfcbd605a3ff752edea9b4b224abcb01ba6e4c001a8300bb5b6ae3a5cb"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/agents.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "bffa7f186284c952b4936e8ad2fb46bb698579f2405f45bfa97f228bec8cdfbe"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/llms.txt",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "b92118bfad743da96bed16d65ce18ae7c6db615e0a6a687a4dc73bc821adac5e"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/evaluation-status.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "f82ccd82b88754f42a02afcc305a7f22e651d79da4a249de0ced9eea2d39083c"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/vocabulary/",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "eb2eab56ae03dd8c02f3fe0e91b64b9b47ba194b6e551f3736f2ebbab30e3d93"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/vocabulary/terms.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "ca29be2b1dd3914ef4fb97b9569624775de3bd3fac0a74f081d565ef03e6ca38"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/context.jsonld",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "5b5c9bd157289ca3b9f75211ffab78edb577f4638bae2ec15a8f4996c26e0ef3"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/releases/v0.6.5/manifest.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "190ebd8953aea5e7bf42f650467dbce80fee156233f38505f683aea59fdfb292"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/releases/v0.6.5/sha256.txt",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "0ca306ad4e3b8e9cf3070fee17f585dece3d01dce858f151b5527ef913076c9f"
+    },
+    {
+      "repo": "every-ai-law",
+      "url": "https://everyailaw.com/agents.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "296b43a8f57345be9a100bb18fa68507aa77be5e8346691a85ec001afba00d1f"
+    },
+    {
+      "repo": "every-ai-law",
+      "url": "https://everyailaw.com/.well-known/mcp.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "abdeaec1613df60d254f41f1cd21042e33b7532422840ad272c497af0ed789b6"
+    },
+    {
+      "repo": "every-ai-law",
+      "url": "https://everyailaw.com/api/v1/regulations.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "ee3bdbbe6613f0564636bc16bccbd43635f18fe12b298417c3b166d47d1cf714"
+    },
+    {
+      "repo": "every-ai-law",
+      "url": "https://everyailaw.com/regulation/colorado-sb24-205/",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "513f3e24c3fe0c8e74540c2e38fcf7ae673a92ef4efc3de0c78b6bb2bf2ab971"
+    },
+    {
+      "repo": "publedge",
+      "url": "https://publedge.org/agents.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "bd3382e2e38b5745ba44aedb9752a5db1f0b8784fa8b012b6b25965772495506"
+    },
+    {
+      "repo": "publedge",
+      "url": "https://publedge.org/llms.txt",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "263d06b3d49b616059da4dd5ee4c662be3997e7e5d91bc4c57f7a18596667620"
+    },
+    {
+      "repo": "publedge",
+      "url": "https://publedge.org/api/v1/primaries.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "704919087236afddcbfed5187222678cc537d0718b32fa7e5d56e03bec3d5055"
+    },
+    {
+      "repo": "publedge",
+      "url": "https://publedge.org/api/v1/of/records/us-co-legislature-statute-2025-sb25b-004.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "8c83fae3094ecbec3a8d45b33029082c7ecefc9f898b1e131876e7edc403dfde"
+    },
+    {
+      "repo": "publedge",
+      "url": "https://publedge.org/primary/high-risk-ai-impact-assessment/",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "27b7fb7ec0fbdaf77339564566c640e26b2ba85042f12f3b9005d8f907e30d80"
+    },
+    {
+      "repo": "publedge",
+      "url": "https://publedge.org/ROADMAP.md",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "5e06f10e42cf71236e44257a4aacddb23af8a62d3c78840e76ef0fdae5a7b9ff"
+    },
+    {
+      "repo": "publedge",
+      "url": "https://publedge.org/MANIFEST.yaml",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "1a1d1196643293a5029f001a45120ea69a49a35e50cc842da07d8a19d9a7dcd0"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/schema/proceeding.schema.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "4f4be2ad9d27438fef7f039b042d54f1f92d2da050663e90ba7e63b5ee38f0b8"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/schema/naming-profile.schema.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "ce25421aea6a758a8b1cc60bf871588cdc28f3f1dcd80574cbafcd5a47351a70"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/schema/jurisdiction.schema.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "fc6f7a6badd0e3a96d62c8ee62711979b597eac36fa50bddc408a9e7f4098054"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/schema/authority.schema.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "ede988f066a778bac22a148a64243fe1a80b5cc4362b68bad722dcae5bc74450"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/schema/tombstone.schema.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "e4bcfb9cd8f17409b33eeb5f4fb692155c4413fad8862e4035c73fbe5d8eb3f5"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/schema/common.schema.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "cd3380f994135dbd0cc5553552a3073929dfdea55c83f56e784e8da85375f5e1"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/schema/obligation.schema.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "eec4293dd5208d38fb7fcd2a78064c6f5abefe6d5c853954842579f0bf91e924"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/schema/term.schema.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "56520814d7eaaa7e2117b7abfa744120140b575b79e04f2e84c5e85c8875d682"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/schema/obligation-category.schema.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "2e2b06d0df7ca959492ada5711b9dc2e62addf3470b65bf7f2bc305bbd301354"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/schema/determination.schema.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "8cb1766fe2bcc31dceb6b54656a8764405e7a082010b44f9393ada89eddf0c39"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/schema/allegation.schema.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "f1166364f71bcd59177504e769a8037117600b2a78b4f33e0494f6e00cd44b12"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/schema/instrument.schema.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "dea85420c2fa47f461022023355acdd1478d5dff2ed2ef6cd3f3d1c4861eecb2"
+    },
+    {
+      "repo": "obligation-first",
+      "url": "https://obligationfirst.org/v1/schema/party.schema.json",
+      "curl_exit": 0,
+      "matches_source": true,
+      "sha256": "851daf4cbd7b24089bc3ba4ac7cc6f60866742d0b0b896e1db4413e82bd48192"
+    }
+  ],
+  "local_verification": [
+    "OF npm test, including 60 qualified-time tests, 15 status mutations, and 136 vocabulary terms",
+    "Apache redirect execution: 136 term 303s, 14 schema 302s, four resource 302s, four unknown 404s",
+    "EveryAILaw and PubLedge canonical CI verification; exact-head hosted gates listed above",
+    "Both exact npm tarballs installed outside the checkout; MCP initialize version and tools/list passed",
+    "PubLedge source tar and zip archives agree on 969 files; release notes, manifest and package source bytes verified",
+    "EveryAILaw live release contract verifies npm, MCP Registry, GitHub Release, public metadata and read-only Pro commercial boundaries"
+  ],
+  "boundaries": [
+    "F14 is released offline reference tooling; the shared record schema and production qualified-time serialization remain unchanged.",
+    "F13 target pages and tested contribution are released; external w3id filing and live namespace resolution remain pending and were excluded from approval.",
+    "Colorado court and codification evidence, predecessor operative-history review, wider temporal causality and F15 traversals remain in their owning queues.",
+    "The OF tag pins the release commit; a later evidence-only commit records delivery without changing release-pinned artifacts.",
+    "AI Incident Law changed only its shared checker workflow pin; no package release was needed.",
+    "EveryAILaw Pro source was unchanged; existing automatic post-deployment dispatch ran, with no manual replay or customer receipt claim."
+  ],
+  "live_artifacts_verified_at": "2026-09-06T02:58:44.057226+00:00"
+}

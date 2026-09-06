@@ -11,6 +11,7 @@ Current usage is indexed in the repository README; remaining work is in ROADMAP.
 | [Qualified-time fixture v1](contracts/qualified-time-fixture-v1.md) | Released offline F14 evaluator, date/evidence boundaries and owner sidecars |
 | [F14 contract decision](F14-contract-decision-2026-09-05.md) | Keep the bounded fixture; production schema expansion awaits demonstrated second-owner need |
 | [F14 source reconciliation](F14-source-reconciliation-2026-09-05.json) | Tested local corrections, candidate hashes, and remaining court/codification gaps |
+| [v0.6.5 delivery](release-delivery-v0.6.5.json) | F13/F14 release heads, hosted gates, npm/MCP publication, asset and live-byte verification |
 | [v0.6.4 delivery](release-delivery-v0.6.4.json) | Accepted source heads and dated hosted evidence |
 | [v0.6.4 preparation](release-preparation-v0.6.4.md) | Historical preparation; later delivery is authoritative for completion |
 | [Initial F14 acceptance](F14-acceptance-2026-09-05.json) | Historical first local verification; hashes identify that earlier candidate |
