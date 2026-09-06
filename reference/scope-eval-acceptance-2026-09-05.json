@@ -1,6 +1,6 @@
 {
   "as_of": "2026-09-05",
-  "status": "release-prepared-locally-not-delivered",
+  "status": "delivered-and-verified",
   "scope": [
     "F11 evaluator contract",
     "issue 7 shared institutional fixture",
@@ -21,10 +21,10 @@
     "release_discovery": "passed; release artifact inventory and seven missing discovery/capability mutations"
   },
   "boundaries": [
-    "No source-repository commits, pushes, releases, deployments or external submissions. Disposable test commits are not delivery revisions.",
+    "The preparation snapshot preceded delivery; final publication and hosted acceptance evidence is in release-delivery-v0.6.4.json.",
     "No record schema shape, context mapping, corpus projection JSON, or existing fingerprint-v2 baseline changed. OF context version comment advances to 0.6.4; PubLedge provenance manifests and scope note are generated through the owning builder.",
     "Adopter inventories are reviewed admission/continuity declarations, not independent legal-source certification.",
-    "CI pins still need the exact delivered OF checker revision before coordinated delivery."
+    "All six adopter checker references now pin the delivered OF release revision."
   ],
   "repositories": {
     "obligation-first": {
@@ -119,7 +119,7 @@
       }
     }
   },
-  "evidence_scope": "Current candidate file digests below replace the earlier implementation-only snapshot. Delivery revisions and hosted acceptance remain unestablished.",
+  "evidence_scope": "Candidate digests and base heads retain the prepared snapshot. Final delivered revisions, exact hosted workflows, assets and live hashes are recorded separately in release-delivery-v0.6.4.json.",
   "digest_exclusions": [
     "reference/release-preparation-v0.6.4.json",
     "reference/release-preparation-v0.6.4.md",
@@ -170,5 +170,6 @@
       "path": "/tmp/p2-release-pro-test.log",
       "sha256": "89301b97f76ccfa87fb647fdceca597bcdb16caccb5805675108dfbf354ec308"
     }
-  ]
+  ],
+  "delivery_evidence": "release-delivery-v0.6.4.json"
 }

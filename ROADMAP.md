@@ -3,7 +3,7 @@
 <!-- of-version: roadmap-current -->
 ## v0.6.4 (current)
 
-Current evaluator work: [scope inventory contract v1](reference/contracts/scope-contract-v1.md) implements F11 and the issue 7 non-territorial issuer regression in the v0.6.4 reference package. Adopter inventories and exact scope baselines preserve recognition independently from coverage. Coordinated delivery and CI pin updates remain pending.
+Current evaluator work: [scope inventory contract v1](reference/contracts/scope-contract-v1.md) implements F11 and the issue 7 non-territorial issuer regression in the v0.6.4 reference package. Adopter inventories and exact scope baselines preserve recognition independently from coverage. Coordinated delivery and exact CI pins are verified in the [v0.6.4 delivery record](reference/release-delivery-v0.6.4.json).
 
 The v0.6 semantic contract is released through five implemented decision records:
 
