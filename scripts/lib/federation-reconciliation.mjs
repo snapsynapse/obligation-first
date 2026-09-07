@@ -57,7 +57,11 @@ export function reconcileFederation(evidence, { previous = null, asOf = new Date
     if (projection.source_commit !== source.commit || !SHA.test(projection.exact_edges_sha256 || "") || !SHA.test(projection.artifact_sha256 || "")) {
       problems.push(problem("OF-RECONCILIATION-PROJECTION-STALE", name, "projection must identify the current source commit, exact-edge digest, and artifact hash"));
     }
-    if (deployed.source_commit !== source.commit || deployed.exact_edges_sha256 !== projection.exact_edges_sha256 || deployed.artifact_sha256 !== projection.artifact_sha256 || !SHA.test(deployed.artifact_sha256 || "")) {
+    // Full artifact equality can establish equivalence to checked-out bytes
+    // without claiming a remotely attested deployment revision.
+    const deployedSource = deployed.source_commit ??
+      (deployed.identity === "byte_equivalent_to_checked_out_source" ? deployed.equivalent_source_commit : null);
+    if (deployedSource !== source.commit || deployed.exact_edges_sha256 !== projection.exact_edges_sha256 || deployed.artifact_sha256 !== projection.artifact_sha256 || !SHA.test(deployed.artifact_sha256 || "")) {
       problems.push(problem("OF-RECONCILIATION-DEPLOYED-SOURCE-MISMATCH", name, "deployed artifact must identify the same source, exact-edge digest, and artifact hash"));
     }
     if (adopter.accepted_exact_edges_sha256 !== projection.exact_edges_sha256) {

@@ -67,3 +67,11 @@ try {
   await rm(directory, { recursive: true, force: true });
 }
 console.log("Federation reconciliation rejects edge, freshness, compatibility, deployment, boundary, and review-due mutations without repeat alerts.");
+
+const equivalent = healthy();
+equivalent.adopters[0].deployed.source_commit = null;
+equivalent.adopters[0].deployed.equivalent_source_commit = commit;
+equivalent.adopters[0].deployed.identity = "byte_equivalent_to_checked_out_source";
+assert.equal(reconcile(equivalent).status, "healthy");
+equivalent.adopters[0].deployed.identity = "unknown";
+assert.ok(codes(reconcile(equivalent)).includes("OF-RECONCILIATION-DEPLOYED-SOURCE-MISMATCH"));
