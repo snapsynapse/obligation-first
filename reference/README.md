@@ -5,6 +5,7 @@ Current usage is indexed in the repository README; remaining work is in ROADMAP.
 | Reference | Scope and authority |
 |---|---|
 | [Implementation status](implementation-status.json) | Current released-reference and offline-tooling boundary; mirrored to `/evaluation-status.json` |
+| [Federation reconciliation](federation-reconciliation-v1.md) | Operational evidence evaluator; EveryAILaw owns collection and scheduling, independently of the released record schema |
 | [Adopter kit](adopter-kit.md) | Current schema, graph validation, and export writer usage |
 | [Semantic decisions](decisions/README.md) | Five implemented v0.6 decisions |
 | [Scope continuity v1](contracts/scope-contract-v1.md) | Released v0.6.4 tooling; independent of record-schema semantics |

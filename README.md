@@ -33,6 +33,8 @@ The v0.6.5 reference package includes scope continuity evaluation. F14 qualified
 
 The [machine-readable evaluation status](https://obligationfirst.org/evaluation-status.json) supplements the release-versioned agent files. Its repository source is [implementation-status.json](reference/implementation-status.json); the served copy becomes available after deployment. It is not evidence of deployment or an immutable release manifest. See the [F14 contract](reference/contracts/qualified-time-fixture-v1.md), [reference index](reference/README.md), and [documentation audit](reference/documentation-audit-2026-09-05.md).
 
+The [operational reconciliation companion](reference/federation-reconciliation-v1.md) supplements the v0.6.5 reference package. Operational federation reconciliation checks supplied source, projection, exact-edge and deployed-artifact evidence for EveryAILaw, PubLedge and AI Incident Law. EveryAILaw owns collection and scheduling; EveryAILaw Pro is a downstream service, not an adopter. Byte equivalence is not deployment attestation or proof that legal content is current. Independent missing-run notification and live recovery acceptance remain open.
+
 Run the standalone synthetic fixture checks from the repository root. They also run in `npm run test:hardening` and `npm test`.
 
 Literal

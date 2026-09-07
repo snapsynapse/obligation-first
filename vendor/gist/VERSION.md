@@ -1,36 +1,20 @@
-# gist — Pinned Vendor Snapshot
+# gist pinned vendor snapshot
 
-This directory bundles a snapshot of [Semantic Arts gist](https://github.com/semanticarts/gist), the upper ontology PubLedge schemas bind to.
+This directory bundles Semantic Arts gist for Obligation-First vocabulary bindings and reproducible local validation.
 
-## Snapshot details
+## Snapshot identity
 
-- Source: https://github.com/semanticarts/gist (develop branch)
-- Snapshot date: 2026-04-18
-- Local source path at vendoring time: `~/Git/_vendors/gist-develop/`
-- Files bundled:
-  - `gistCore.ttl` — core OWL 2 DL ontology (Turtle)
-  - `LICENSE.txt` — CC-BY 4.0
-  - `UPSTREAM-README.md` — copy of upstream README at snapshot time
+- Upstream: https://github.com/semanticarts/gist
+- Original snapshot date: 2026-04-18.
+- Reconciled release: [v14.1.0](https://github.com/semanticarts/gist/releases/tag/v14.1.0), published 2026-04-17.
+- On 2026-09-07, the local `gistCore.ttl` matched the tagged `ontologies/gistCore.ttl` Git blob `194b55a04730cf4b053c69572e6974b8382182cb` exactly. No ontology bytes were changed by this documentation correction.
+- The tagged ontology itself retains `https://w3id.org/semanticarts/ontology/gistCoreX.x.x` as its version IRI. That placeholder does not prove that these bytes differ from the release.
+- `UPSTREAM-README.md` and `LICENSE.txt` remain the original vendored companion files; the ontology comparison does not attest their equivalence to the tagged companions.
 
-The upstream `gistCore.ttl` declares its `owl:versionIRI` as `https://w3id.org/semanticarts/ontology/gistCoreX.x.x` — version placeholder unfilled because the snapshot is from the develop branch, not a tagged release. When PubLedge cuts v0.1, replace this snapshot with the latest tagged release of gist and update this note with the resolved version IRI.
+## Scope and updates
 
-## Why bundled
-
-PubLedge pins gist for reproducibility. Validators (`scripts/validate.js`) and the JSON-LD context (`schema/json/context.jsonld`) resolve gist IRIs against this local snapshot first, falling back to the live `w3id.org` resolution only when needed. This matches PubLedge's skill-provenance posture: every external dependency is hash-pinned and locally fetchable.
+The snapshot supports the gist crosswalks in this repository. It does not establish that upstream has remained unchanged or that downstream records are current. Review upstream releases separately; select and record a concrete tag before replacing files, then refresh MANIFEST.yaml and run the repository validation gate. Do not silently replace a pinned dependency with the default branch.
 
 ## License
 
-gist is released under [CC-BY 4.0](LICENSE.txt). PubLedge cites Semantic Arts in `ATTRIBUTION.md` per the license terms.
-
-## Updating the snapshot
-
-```bash
-# Fetch latest tagged release
-git -C ~/Git/_vendors clone --depth 1 https://github.com/semanticarts/gist.git
-cp ~/Git/_vendors/gist/ontologies/gistCore.ttl vendor/gist/
-cp ~/Git/_vendors/gist/LICENSE.txt vendor/gist/
-cp ~/Git/_vendors/gist/README.md vendor/gist/UPSTREAM-README.md
-
-# Update this VERSION.md with the new tag and date
-# Re-run skill-provenance verifier to refresh hashes
-```
+gist is released under [CC BY 4.0](LICENSE.txt). See the repository attribution and license files.

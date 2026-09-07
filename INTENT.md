@@ -62,7 +62,7 @@ All three adopters publish v0.6 projections from their native sources. The share
 
 The [scope inventory evaluator contract v1](reference/contracts/scope-contract-v1.md) adds independently versioned, adopter-owned recognition and coverage declarations with exact scope continuity. This evaluator extension preserves the released schema and each adopter's vocabulary ownership; its implementation and delivery status are recorded in that contract.
 
-The [implementation status](reference/implementation-status.json) distinguishes released tooling from the unreleased [F14 offline fixture](reference/contracts/qualified-time-fixture-v1.md). F14 exercises qualified date comparisons; it does not expand the record schema, implement production serialization, or resolve predecessor operative history. The existing second-adopter requirement still governs a future schema proposal.
+The [implementation status](reference/implementation-status.json) describes released tooling including the [F14 offline fixture](reference/contracts/qualified-time-fixture-v1.md). F14 exercises qualified date comparisons; it does not expand the record schema, implement production serialization, or resolve predecessor operative history. The existing second-adopter requirement still governs a future schema proposal.
 
 ## Implemented semantic direction
 

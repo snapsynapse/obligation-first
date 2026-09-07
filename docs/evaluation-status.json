@@ -16,9 +16,32 @@
     "federation_command": "npm run verify:federation",
     "contract_path": "reference/contracts/qualified-time-fixture-v1.md",
     "owner_sidecar_path": "tests/fixtures/of-qualified-time.json",
-    "owners": ["every-ai-law", "publedge"],
-    "regression_only_adopters": ["ai-incident-law"]
+    "owners": [
+      "every-ai-law",
+      "publedge"
+    ],
+    "regression_only_adopters": [
+      "ai-incident-law"
+    ]
   },
   "publication_scope": "Supplement to the released agents.json, llms.txt, llms-full.txt and assistant guide; not an immutable release manifest or proof of deployment.",
-  "namespace_redirect": "pending-external-filing"
+  "namespace_redirect": "pending-external-filing",
+  "operational_reconciliation": {
+    "status": "repository-tooling",
+    "contract_path": "reference/federation-reconciliation-v1.md",
+    "collector_owner": "every-ai-law",
+    "adopters": [
+      "every-ai-law",
+      "publedge",
+      "ai-incident-law"
+    ],
+    "excluded_downstream": [
+      "every-ai-law-pro"
+    ],
+    "included_in_immutable_reference_package": false,
+    "byte_equivalence_is_deployment_attestation": false,
+    "certifies_content_currentness": false,
+    "independent_missing_run_notification": "not_accepted",
+    "live_recovery_acceptance": "pending"
+  }
 }

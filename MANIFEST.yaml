@@ -98,7 +98,7 @@ files:
   examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json: 749c13ccef70be61f07e5f1deb6e65bf5e90ede28157651ada105c770fb13611
   examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json: 015868fca5d44d63506acd0935fde7cfeaf6b65273fe08f0dcf4c2e978b7e0a2
   examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json: bc83ea309c09c51d3068b841fcafc9cd45beb36199d740655eb7406bf607c312
-  INTENT.md: b6640380e08fa8fb467e7da88f95a5c14358c3d42f603b31aeea6a7ae531c991
+  INTENT.md: 255038be536e5eba0a2623f522c23db12f4070a960425abf1eb1b1c4fadc24e4
   LICENSE-APACHE: 3cbeb832e52ede2c154d4977567b70f204a853342e51d843458f9b785771f069
   LICENSE-CC-BY-4.0: 62a68518848c2fdcd108ff5cc11ba1516440c507bf425d5e76ad36886fd5752a
   NOTICE: 3f2ce598a6a3764e500c61e46ab707606ab3aa911eb780f28b87455dffece286
@@ -127,4 +127,4 @@ files:
   vendor/gist/gistCore.ttl: 0d8230f3a4df9aa7782ec79bfa83def34a13a066f60d5f5ef0f00b9cecce08b1
   vendor/gist/LICENSE.txt: 9e5f1b3c610b9c2da5c313bf81d577a7d1acec686bdb0384edefa6df0f90cd94
   vendor/gist/UPSTREAM-README.md: e7c54a4678c09fe90ad4d6a4bdf82f0e4d89130648bb2df2404e638a3760f9a7
-  vendor/gist/VERSION.md: 1bd18183661c4b62b6e0134380d0559460d419c8eff36d1def309dd194426363
+  vendor/gist/VERSION.md: 7601c9fa029e08b7cf3c08f7f25069da931f950624268105ef9af1f69fc26be2

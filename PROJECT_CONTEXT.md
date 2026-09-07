@@ -59,6 +59,10 @@ README for spec version and licenses.
   `reference/implementation-status.json` owns that boundary and is mirrored to
   `docs/evaluation-status.json`.
 
+## Operational maintenance scope
+
+Operational federation reconciliation checks supplied source, projection, exact-edge and deployed-artifact evidence for EveryAILaw, PubLedge and AI Incident Law. EveryAILaw owns collection and scheduling; EveryAILaw Pro is a downstream service, not an adopter. Byte equivalence is not deployment attestation or proof that legal content is current. Independent missing-run notification and live recovery acceptance remain open. The operational checker is repository tooling outside the immutable v0.6.5 artifact inventory; its contract is `reference/federation-reconciliation-v1.md`.
+
 ## Documentation audit map
 
 - `README.md` indexes current usage; `ROADMAP.md` indexes pending work.
