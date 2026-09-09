@@ -2,6 +2,7 @@ import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import { mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { causalDateDiagnostics, CAUSAL_DIAGNOSTIC_CODES } from './causal-dates.mjs';
 
 export const OF_CONTEXT = "https://obligationfirst.org/v1/context.jsonld";
 
@@ -46,6 +47,7 @@ export const DEFAULT_COMPANION_DIRS = {
 };
 
 export const GRAPH_DIAGNOSTIC_CODES = Object.freeze({
+  ...CAUSAL_DIAGNOSTIC_CODES,
   MISSING_ID: "OF-GRAPH-MISSING-ID",
   DUPLICATE_ID: "OF-GRAPH-DUPLICATE-ID",
   MISSING_LOCAL_REFERENCE: "OF-GRAPH-MISSING-LOCAL-REFERENCE",
@@ -241,7 +243,7 @@ function validateReference({ from, field, targetId, expectedType, byId, fail, re
 }
 
 export function validateRecordGraphDetailed(entries) {
-  const failures = [];
+  const failures = causalDateDiagnostics(entries);
   const byId = new Map();
   const fail = (code, message, details = {}) => failures.push({ code, message, ...details });
 

@@ -53,6 +53,9 @@ function run(label, command, args, options = {}) {
 }
 
 for (const adopter of adopters) {
+  run(`${adopter.name} source admission and retained legacy debt`, process.execPath, [
+    path.join(obligationFirst, "scripts/check-adopter-admission.mjs"), adopter.root,
+  ]);
   run(`${adopter.name} source projection freshness`, process.execPath, [
     path.join(obligationFirst, "scripts/check-projection-freshness.mjs"),
     adopter.root, path.dirname(adopter.records),
@@ -149,6 +152,12 @@ run(
     ...adopters.map((adopter) => path.dirname(path.join(adopter.root, adopter.records))),
   ],
 );
+
+run("Replay the three bounded consumer graph journeys", process.execPath, [
+  path.join(obligationFirst, "scripts/check-consumer-traversals.mjs"),
+  path.join(obligationFirst, "reference/fixtures/consumer-traversals-2026-09-09.json"),
+  ...adopters.map(adopter => path.join(adopter.root, adopter.records)),
+]);
 
 for (const repository of [{ name: "Obligation-First", root: obligationFirst }, ...adopters]) {
   run(`${repository.name} patch whitespace`, "git", ["diff", "--check"], { cwd: repository.root });

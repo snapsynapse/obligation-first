@@ -2,11 +2,11 @@ import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
-import { buildAdopterFingerprint, RELATION_FIELDS } from './lib/adopter-fingerprint.mjs';
+import { buildAdopterFingerprint, RELATION_FIELDS, NESTED_RELATION_FIELDS } from './lib/adopter-fingerprint.mjs';
 
 // The expected inventory comes from the schema and JSON-LD contract, never
 // from RELATION_FIELDS. These exclusions document the bounded top-level
-// record-edge scope; they are not claims that the excluded values are hashed.
+// record-edge scope. Consequential nested predicates are captured separately.
 const EXCLUSIONS = {
   '@id': 'Record identity is retained separately in id_inventory.',
   source: 'Top-level source evidence is retained in provenance_claims, not exact_edges.',
@@ -14,9 +14,6 @@ const EXCLUSIONS = {
   adopter: 'Naming-profile identity is retained as fingerprint.adopter, not a record edge.',
   'void:uriSpace': 'Nested naming-profile namespace metadata is outside record-edge capture.',
   jurisdiction: 'Exact scope values and local jurisdiction references are checked by the separate versioned scope contract; fingerprint v2 retains shape only.',
-  instrument_ref: 'Nested authority_basis/binding_basis references need path-qualified capture; outside P1 top-level edges.',
-  party: 'Nested actor_roles.party needs path-qualified capture; top-level parties and role IRIs are captured.',
-  obligation: 'Nested remedy.obligation needs path-qualified capture; outside P1 top-level edges.',
   uri: 'Nested executableEncoding artifact references are outside P1 top-level record edges.',
   akn_uri: 'External legal identifier crosswalk, outside P1 exact record-edge inventory.',
   eli_uri: 'External legal identifier crosswalk, outside P1 exact record-edge inventory.',
@@ -62,15 +59,20 @@ function discoverIriFields(schemas, context) {
   return fields;
 }
 
-function assertCoverage(authoritativeFields, implementation) {
+function assertCoverage(authoritativeFields, implementation, nested = NESTED_RELATION_FIELDS) {
   const implemented = new Set(implementation);
+  const nestedFields = new Set(Object.values(nested));
   assert.equal(implemented.size, implementation.length, 'duplicate implementation relation');
   for (const [field, reason] of Object.entries(EXCLUSIONS)) {
     assert.ok(reason.length > 20, `${field} needs an explicit exclusion rationale`);
     assert.ok(authoritativeFields.has(field), `stale exclusion: ${field}`);
     assert.ok(!implemented.has(field), `${field} is both captured and excluded`);
   }
-  const expected = [...authoritativeFields].filter(field => !Object.hasOwn(EXCLUSIONS, field)).sort();
+  for (const field of nestedFields) {
+    assert.ok(authoritativeFields.has(field), `stale nested predicate: ${field}`);
+    assert.ok(!implemented.has(field) && !Object.hasOwn(EXCLUSIONS, field), `duplicate nested classification: ${field}`);
+  }
+  const expected = [...authoritativeFields].filter(field => !Object.hasOwn(EXCLUSIONS, field) && !nestedFields.has(field)).sort();
   assert.deepEqual([...implemented].sort(), expected,
     'Schema/context IRI fields require exact-edge capture or an explicit justified exclusion');
   return expected;
@@ -88,6 +90,8 @@ const expected = assertCoverage(authoritativeFields, RELATION_FIELDS);
 // the expected inventory along with the implementation's own test loop.
 assert.throws(() => assertCoverage(authoritativeFields,
   RELATION_FIELDS.filter(field => field !== 'exactMatch')), /require exact-edge capture/);
+assert.throws(() => assertCoverage(authoritativeFields, RELATION_FIELDS,
+  { authority_basis: 'instrument_ref', binding_basis: 'instrument_ref', actor_roles: 'party' }), /require exact-edge capture/);
 
 // New schema-only or context-only IRI predicates each require classification.
 const extraSchema = {
@@ -121,4 +125,4 @@ try {
   await rm(temporary, { recursive: true, force: true });
 }
 
-console.log(`Independent relation coverage: ${expected.length} captured predicates, ${Object.keys(EXCLUSIONS).length} justified exclusions; omitted/new relation mutations rejected.`);
+console.log(`Independent relation coverage: ${expected.length} top-level and ${new Set(Object.values(NESTED_RELATION_FIELDS)).size} nested predicates, ${Object.keys(EXCLUSIONS).length} justified exclusions; omitted/new relation mutations rejected.`);

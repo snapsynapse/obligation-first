@@ -59,6 +59,38 @@ export const RELATION_FIELDS = [
   "related_to_party",
 ];
 
+// Bounded record semantics formerly excluded from the top-level edge inventory.
+// Keep the containing object as well as its edge: a role, exception, locator or
+// source version belongs to a particular relationship, not to a global bag.
+export const NESTED_RELATION_FIELDS = {
+  authority_basis: 'instrument_ref',
+  binding_basis: 'instrument_ref',
+  actor_roles: 'party',
+  remedy: 'obligation',
+};
+
+function nestedSemantics(record) {
+  const claims = {};
+  const edges = [];
+  for (const [container, field] of Object.entries(NESTED_RELATION_FIELDS)) {
+    if (!Object.hasOwn(record, container)) continue;
+    claims[container] = record[container];
+    const groups = Array.isArray(record[container])
+      ? record[container].map((value, index) => [value, `/${container}/${index}`])
+      : [[record[container], `/${container}`]];
+    for (const [group, pointer] of groups) {
+      if (!group || typeof group !== 'object') continue;
+      const targets = Array.isArray(group[field])
+        ? group[field].map((value, index) => [value, `${pointer}/${field}/${index}`])
+        : [[group[field], `${pointer}/${field}`]];
+      for (const [target, location] of targets) if (typeof target === 'string') {
+        edges.push(JSON.stringify([record['@id'], location, target]));
+      }
+    }
+  }
+  return { claims, edges };
+}
+
 const EXPLICIT_UNKNOWN = new Set([
   "unknown",
   "not-known",
@@ -131,6 +163,8 @@ export async function buildAdopterFingerprint({ recordsDir, profilePath }) {
   const exactEdges = [];
   const provenanceDates = {};
   const provenanceClaims = {};
+  const nestedClaims = {};
+  const nestedEdges = [];
   const actorRoles = {};
   const jurisdictionShapes = {};
   const tombstoneFormerTypes = {};
@@ -138,6 +172,9 @@ export async function buildAdopterFingerprint({ recordsDir, profilePath }) {
 
   for (const entry of entries) {
     const record = entry.record;
+    const nested = nestedSemantics(record);
+    if (Object.keys(nested.claims).length) nestedClaims[record['@id']] = nested.claims;
+    nestedEdges.push(...nested.edges);
     const type = obligationFirstType(record) || "untyped";
     types.set(type, (types.get(type) || 0) + 1);
     if (!filesByType.has(type)) filesByType.set(type, []);
@@ -163,7 +200,10 @@ export async function buildAdopterFingerprint({ recordsDir, profilePath }) {
       }
     }
 
-    const claims = Object.fromEntries(["source", "source_locator", "source_citation", "source_version", "evidence_type", "asserted_by_adopter"].filter(field => record[field] !== undefined).map(field => [field, record[field]]));
+    const claims = Object.fromEntries(["source", "source_locator", "source_citation", "source_version", "evidence_type", "asserted_by_adopter",
+      "projection_basis", "admission_status", "source_review_conflicts", "source_review_unresolved", "canonical_source_conflicted",
+      "pub:source_review_state", "pub:source_review_unresolved", "pub:evidence_inputs",
+      "eal:source_review_record", "eal:source_record_sha256", "eal:source_review_receipt_sha256", "eal:source_review_evidence"].filter(field => record[field] !== undefined).map(field => [field, record[field]]));
     if (Object.keys(claims).length) provenanceClaims[record["@id"]] = claims;
     for (const field of ["verified", "retrieved"]) {
       if (record[field]) provenanceDates[`${record["@id"]}|${field}`] = record[field];
@@ -238,7 +278,7 @@ export async function buildAdopterFingerprint({ recordsDir, profilePath }) {
   }
 
   return sortedObject({
-    fingerprint_version: 2,
+    fingerprint_version: 3,
     adopter: profile.adopter,
     applies_to: profile.appliesTo,
     naming_profile_version: profile.profileVersion,
@@ -256,6 +296,9 @@ export async function buildAdopterFingerprint({ recordsDir, profilePath }) {
     exact_edges: [...exactEdges].sort().map(edge => JSON.parse(edge)),
     provenance_claims: provenanceClaims,
     provenance_dates: provenanceDates,
+    nested_edges_sha256: hashStrings(nestedEdges),
+    nested_edges: [...nestedEdges].sort().map(edge => JSON.parse(edge)),
+    nested_semantics: nestedClaims,
     actor_roles: actorRoles,
     jurisdiction_shapes: jurisdictionShapes,
     tombstones: {

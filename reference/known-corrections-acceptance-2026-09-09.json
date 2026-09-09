@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-09T18:39:05.780167Z",
+  "status": "local-working-tree-acceptance",
+  "release_hold": true,
+  "owners": {
+    "every-ai-law": {
+      "head": "225fa1c1645303de3cdaad6f5248bc9216d9cd0c",
+      "branch": "codex/known-corrections-2026-09-09",
+      "tracked_diff_sha256": "9f1df03c16c6132074862232f550b512c150ade7847515caf47d7684737a3b8c",
+      "graph": {
+        "files": 598,
+        "inventory_sha256": "08e90d22183deaf47f2a66b4e108107bdc6ab7d74c5572795e15b45f7724c6a6"
+      },
+      "fingerprint_sha256": "edb0a81d5fadf9a7fe6d28a2e13d48d666ca14edc3a79d06ca6bf00b3b343864",
+      "source_admission_receipts_sha256": "61d37a349aa587a014d1e3e5effa0553f406c14278c19f5f3b2f355ab10271c1",
+      "source_admission": {
+        "status": "passed",
+        "total_records": 188,
+        "legacy_unreviewed_records": 174,
+        "records_with_reviewed_changes": 14,
+        "changed_units_reviewed": 183
+      },
+      "full_test_suite": {
+        "passed": 631,
+        "failed": 0
+      }
+    },
+    "ai-incident-law": {
+      "head": "8d8c7913d2015c05ea133f0846c3472807b68005",
+      "branch": "codex/known-corrections-2026-09-09",
+      "tracked_diff_sha256": "4042f14a5b092953dfa54a765a54c31c86d231da25d7cff9d7e1efc065c8b83c",
+      "graph": {
+        "files": 332,
+        "inventory_sha256": "f3354d1070d484710d14f59dd2f973f31e14e75195c06d73cd5a6fdcfe114d6b"
+      },
+      "fingerprint_sha256": "4082325d209be4f5ea687f456f1a8f663add0fd2fda77259337479f0bd6edf80",
+      "source_admission_receipts_sha256": "2595a6c0fc1c96e1485a7b951e980aaa01aa7b48b09cfbe25831ec5719b35f34",
+      "source_admission": {
+        "status": "passed",
+        "total_records": 116,
+        "legacy_unreviewed_records": 111,
+        "records_with_reviewed_changes": 5,
+        "changed_units_reviewed": 23
+      }
+    },
+    "publedge": {
+      "head": "3a07bba0b9f2b51c298a84fc50a42b66b341ad43",
+      "branch": "codex/known-corrections-2026-09-09",
+      "tracked_diff_sha256": "17fb04ac674e1dd69fe5c915838b0055c34e95a5d860fe9a9f6accd84204077e",
+      "graph": {
+        "files": 130,
+        "inventory_sha256": "ecce27422d69ccf5f0c5a65ca4b6f0b12337925cd71eb7ec4a48f3e6b84f6336"
+      },
+      "fingerprint_sha256": "1d561d86b1d3152a3707b907667ad2067ce7f74160727a000944faa8172d4633",
+      "source_admission_receipts_sha256": "7081929f5ee53f8ea6b898b35485aaa208204fec4840cb92f09013c6b6cd8ea7",
+      "source_admission": {
+        "status": "passed",
+        "total_records": 62,
+        "legacy_unreviewed_records": 59,
+        "records_with_reviewed_changes": 3,
+        "changed_units_reviewed": 13
+      }
+    }
+  },
+  "shared": {
+    "head": "eefe360226b842fac327d88afc7118971ae59fe4",
+    "tracked_diff_sha256": "0642154760f2bbc6d028ec80ee24636fd3ed58dc30b654d90a0dbd66aed11c47",
+    "full_test_log_sha256": "6082051b6ce9a9e40839d11953ef6f30421d6ee5d5e4ebd297ef5ffdc817fcb8",
+    "federation_log_sha256": "46c1ea9ce47d21ee217b618a237ec389ee31b2d57a51e2678c1d10e92776d6b2",
+    "test_status": "passed",
+    "federation_status": "passed",
+    "relationship_migration_cases": 35,
+    "source_meaning_exact_matches": 20,
+    "source_meaning_cases": 22,
+    "source_meaning_score_sha256": "7d3f1a093cc1bae33b814142206cd45832a0e928a71dc2afb1ad7406b3da5457",
+    "federated_records": 1060,
+    "resolved_anchors": 66,
+    "factual_correspondence_comparisons": 6,
+    "explicit_unknown_checks": 2
+  },
+  "pro": {
+    "current_contract": "passed",
+    "current_contract_log_sha256": "501242a3157d9257f1180f3b46d1c77a33ebbc8cade3031a87b673224fe8f780",
+    "full_suite": {
+      "passed": 240,
+      "failed": 1,
+      "remaining_failure": "Historical pinned public snapshot retains pre-correction metadata; reviewed committed compatibility delivery is pending."
+    },
+    "database_and_observer_activation": "deferred"
+  },
+  "limits": [
+    "Dirty local working trees, not committed, pinned, packaged, published or deployed acceptance.",
+    "Tracked diff hashes and graph inventories do not represent every untracked source file; source-admission packets separately bind reviewed native and retained evidence bytes.",
+    "Reviewed changes do not certify unchanged legacy content, source entailment, court currentness or authenticated human approval.",
+    "Existing source, policy, reviewer-capacity, host/channel and external delivery blockers remain in the LocalBrain mitigation map."
+  ]
+}

@@ -745,3 +745,10 @@ await import("./test-implementation-status.mjs");
 await import("./test-federation-reconciliation.mjs");
 
 await import("./test-vocabulary.mjs");
+await import("./test-adopter-admission.mjs");
+await import("./test-nested-fingerprint.mjs");
+await import("./test-causal-dates.mjs");
+await import("./test-consumer-traversal.mjs");
+await import("./test-relationship-migrations.mjs");
+await import("./test-source-meaning-scoring.mjs");
+await import("./test-term-boundaries.mjs");

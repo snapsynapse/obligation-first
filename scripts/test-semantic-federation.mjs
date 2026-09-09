@@ -18,7 +18,7 @@ try {
   await writeFile(file, JSON.stringify({ ...record, anchors: ['https://example.com/category/b'] }));
   const after = await buildAdopterFingerprint({ recordsDir, profilePath });
   assert.notEqual(before.exact_edges_sha256, after.exact_edges_sha256, 'same-host retarget must change fingerprint');
-  assert.equal(after.fingerprint_version, 2);
+  assert.equal(after.fingerprint_version, 3);
   for (const field of RELATION_FIELDS) {
     await writeFile(file, JSON.stringify({ ...record, [field]: ['https://example.com/target/a'] }));
     const original = await buildAdopterFingerprint({ recordsDir, profilePath });
@@ -26,12 +26,17 @@ try {
     const retargeted = await buildAdopterFingerprint({ recordsDir, profilePath });
     assert.notEqual(original.exact_edges_sha256, retargeted.exact_edges_sha256, `${field} retarget must change fingerprint`);
   }
-  for (const field of ['source', 'source_locator', 'source_citation', 'source_version', 'evidence_type', 'asserted_by_adopter']) {
+  for (const field of ['source', 'source_locator', 'source_citation', 'source_version', 'evidence_type', 'asserted_by_adopter', 'projection_basis', 'admission_status', 'source_review_conflicts', 'source_review_unresolved', 'pub:source_review_state', 'pub:source_review_unresolved', 'pub:evidence_inputs', 'eal:source_review_record', 'eal:source_record_sha256', 'eal:source_review_receipt_sha256', 'eal:source_review_evidence', 'canonical_source_conflicted']) {
     await writeFile(file, JSON.stringify({ ...record, [field]: 'original' }));
     const original = await buildAdopterFingerprint({ recordsDir, profilePath });
     await writeFile(file, JSON.stringify({ ...record, [field]: 'changed' }));
     const changed = await buildAdopterFingerprint({ recordsDir, profilePath });
     assert.notDeepEqual(original.provenance_claims, changed.provenance_claims, `${field} claim must be retained exactly`);
+    if (field === 'canonical_source_conflicted') for (const value of ['', undefined]) {
+      await writeFile(file, JSON.stringify({ ...record, [field]: value }));
+      const cleared = await buildAdopterFingerprint({ recordsDir, profilePath });
+      assert.notDeepEqual(original.provenance_claims, cleared.provenance_claims, 'Canonical material description cannot be cleared silently');
+    }
   }
   const expected = path.join(dir, 'expected.json');
   await writeFile(expected, JSON.stringify(before));
@@ -68,6 +73,28 @@ try {
   assert.equal(unknownCoverage.counts.unknown_fields, 4);
   assert.deepEqual(unknownCoverage.conflicts, [], 'unknown must not be called a conflict or equality');
   assert.match(unknownCoverage.requirement_errors[0], /OF-ENTITY-REQUIRED-FIELD/);
+  const uncertaintyRequirement = [{ ...requiredPairs[0], expected_unknown_fields: ['operative_status'], unknown_reason: 'The retained conditional court order does not establish current statutory operation.' }];
+  const uncertainA = { ...a, operative_status: 'unknown' };
+  const uncertainB = { ...matching, operative_status: 'unknown' };
+  const uncertainty = entityAgreement([uncertainA, uncertainB], { requiredPairs: uncertaintyRequirement });
+  assert.deepEqual(uncertainty.requirement_errors, []);
+  assert.equal(uncertainty.counts.compared_fields, 1, 'Unknown operation is not an agreement comparison');
+  assert.equal(uncertainty.expected_unknown_checks[0].status, 'explicit-unknown-retained');
+  for (const value of [undefined, null, 'inactive', 'operative']) {
+    const failed = entityAgreement([uncertainA, { ...uncertainB, operative_status: value }], { requiredPairs: uncertaintyRequirement });
+    assert.match(failed.requirement_errors.join('\n'), /OF-ENTITY-EXPECTED-UNKNOWN/);
+  }
+  assert.match(entityAgreement([{ ...uncertainA, operative_status: 'inactive' }, { ...uncertainB, operative_status: 'inactive' }], { requiredPairs: uncertaintyRequirement }).requirement_errors.join('\n'), /OF-ENTITY-EXPECTED-UNKNOWN/, 'Matching unsupported certainty is still rejected');
+  const bothUnknown = [{ ...uncertaintyRequirement[0], expected_unknown_fields: ['operative_status', 'enforcement_status'] }];
+  const enforcedA = { ...uncertainA, enforcement_status: 'unknown' };
+  const enforcedB = { ...uncertainB, enforcement_status: 'unknown' };
+  assert.deepEqual(entityAgreement([enforcedA, enforcedB], { requiredPairs: bothUnknown }).requirement_errors, []);
+  for (const value of [undefined, null, 'not-enforceable', 'constrained', 'enforceable']) {
+    assert.match(entityAgreement([enforcedA, { ...enforcedB, enforcement_status: value }], { requiredPairs: bothUnknown }).requirement_errors.join('\n'), /OF-ENTITY-EXPECTED-UNKNOWN/);
+  }
+  for (const alteration of [{ unknown_reason: '' }, { fields: ['lifecycle_status', 'operative_status'] }, { expected_unknown_fields: ['effective'] }]) {
+    assert.throws(() => entityAgreement([uncertainA, uncertainB], { requiredPairs: [{ ...uncertaintyRequirement[0], ...alteration }] }), /OF-ENTITY-REQUIRED-CONFIG/);
+  }
   const external = entityAgreement([{ ...a, describesSameEntityAs: ['https://example.org/external'] }]);
   assert.equal(external.counts.unresolved_targets, 1);
   assert.equal(external.counts.compared_pairs, 0);

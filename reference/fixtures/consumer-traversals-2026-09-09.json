@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "reviewed_on": "2026-09-09",
+  "scope": "Public identifiers and declared graph boundaries only; no restricted source text. Exact target sets are reviewed continuity fixtures, not applicability conclusions.",
+  "cases": [
+    {
+      "id": "mata-category-related-duties",
+      "start": "https://aiincidentlaw.org/determination/aiel-2023-002-determination.json",
+      "steps": [
+        {
+          "direction": "forward",
+          "predicate": "anchors",
+          "expected": [
+            "https://everyailaw.com/obligation-category/human-oversight.json"
+          ]
+        },
+        {
+          "direction": "inverse",
+          "predicate": "isCategorizedBy",
+          "expected": [
+            "https://everyailaw.com/obligation/br-ai-bill-oversight-human-oversight.json",
+            "https://everyailaw.com/obligation/california-ab3030-oversight-human-oversight.json",
+            "https://everyailaw.com/obligation/california-sb1120-physician-supervision-human-oversight.json",
+            "https://everyailaw.com/obligation/cms-medicare-clinician-oversight-human-oversight.json",
+            "https://everyailaw.com/obligation/coe-cets-225-human-oversight.json",
+            "https://everyailaw.com/obligation/colorado-cpa-rules-human-oversight.json",
+            "https://everyailaw.com/obligation/colorado-sb24-205-human-review-human-oversight.json",
+            "https://everyailaw.com/obligation/colorado-sb26-189-human-review-human-oversight.json",
+            "https://everyailaw.com/obligation/eu-ai-act-human-oversight.json",
+            "https://everyailaw.com/obligation/g7-hiroshima-governance-human-oversight.json",
+            "https://everyailaw.com/obligation/georgia-sb540-parental-tools-human-oversight.json",
+            "https://everyailaw.com/obligation/hawaii-sb3001-minor-protections-human-oversight.json",
+            "https://everyailaw.com/obligation/idaho-s1297-parental-controls-human-oversight.json",
+            "https://everyailaw.com/obligation/iso-38507-human-oversight.json",
+            "https://everyailaw.com/obligation/it-ai-law-human-oversight.json",
+            "https://everyailaw.com/obligation/kr-ai-basic-act-oversight-human-oversight.json",
+            "https://everyailaw.com/obligation/maine-ai-mental-health-licensed-delivery-human-oversight.json",
+            "https://everyailaw.com/obligation/maine-ai-mental-health-permitted-use-human-oversight.json",
+            "https://everyailaw.com/obligation/mt-ai-regulations-human-oversight.json",
+            "https://everyailaw.com/obligation/mx-lfpdppp-human-oversight.json",
+            "https://everyailaw.com/obligation/oecd-ai-principles-accountability-human-oversight.json",
+            "https://everyailaw.com/obligation/oregon-sb1546-minor-protection-human-oversight.json",
+            "https://everyailaw.com/obligation/pe-ai-law-human-oversight.json",
+            "https://everyailaw.com/obligation/qa-qcb-ai-guideline-human-oversight.json",
+            "https://everyailaw.com/obligation/rhode-island-ai-mental-health-oversight-human-oversight.json",
+            "https://everyailaw.com/obligation/rhode-island-healthcare-ai-notice-review-human-oversight.json",
+            "https://everyailaw.com/obligation/sg-ai-governance-oversight-human-oversight.json",
+            "https://everyailaw.com/obligation/uk-dpa-2018-adm-human-oversight.json",
+            "https://everyailaw.com/obligation/utah-sb149-chatbot-safety-policy-human-oversight.json",
+            "https://everyailaw.com/obligation/uz-ai-amendments-human-oversight.json",
+            "https://everyailaw.com/obligation/vermont-act156-licensed-delivery-human-oversight.json",
+            "https://everyailaw.com/obligation/vermont-act156-review-approval-human-oversight.json",
+            "https://everyailaw.com/obligation/vn-ai-law-oversight-human-oversight.json",
+            "https://everyailaw.com/obligation/washington-hb2225-minor-protection-human-oversight.json"
+          ]
+        }
+      ],
+      "expected_boundaries": {
+        "https://aiincidentlaw.org/determination/aiel-2023-002-determination.json": {
+          "source": "https://storage.courtlistener.com/recap/gov.uscourts.nysd.575368/gov.uscourts.nysd.575368.54.0_8.pdf",
+          "evidence_type": "primary record",
+          "projection_basis": "curated-legal-graph",
+          "admission_status": "legacy-unreviewed",
+          "source_review_unresolved": null
+        }
+      }
+    },
+    {
+      "id": "draft-publedge-term-statutory-records",
+      "start": "https://publedge.org/term/utah-mental-health-chatbot-disclosure-2026q2-first-session.json",
+      "steps": [
+        {
+          "direction": "forward",
+          "predicate": "anchors",
+          "expected": [
+            "https://everyailaw.com/term/utah-sb149-chatbot-disclosure.json"
+          ]
+        },
+        {
+          "direction": "forward",
+          "predicate": "parent_instrument",
+          "expected": [
+            "https://everyailaw.com/instrument/utah-sb149.json"
+          ]
+        },
+        {
+          "from": 1,
+          "direction": "forward",
+          "predicate": "creates",
+          "expected": [
+            "https://everyailaw.com/obligation/utah-sb149-chatbot-disclosure-transparency.json"
+          ]
+        }
+      ],
+      "expected_boundaries": {
+        "https://publedge.org/term/utah-mental-health-chatbot-disclosure-2026q2-first-session.json": {
+          "lifecycle_status": "draft",
+          "operative_status": "future",
+          "enforcement_status": "unsignaled",
+          "evidence_type": "legacy-unreviewed-source-reference",
+          "admission_status": "legacy-unreviewed",
+          "projection_basis": "native-record-projection",
+          "pub:source_review_state": "known-and-unknown",
+          "pub:source_review_unresolved": [
+            "The PubLedge JIA and its 30-minute re-display term remain an unpublished draft and are not statutory terms.",
+            "Utah HB 452 section 13-72a-203 uses a seven-day interaction condition rather than the draft JIA 30-minute resumption condition.",
+            "The EveryAILaw target identities and cross-owner existence remain federation assertions; this receipt does not make EveryAILaw an issuing authority or certify current law."
+          ]
+        }
+      },
+      "term_comparisons": [
+        {
+          "source": "https://publedge.org/term/utah-mental-health-chatbot-disclosure-2026q2-first-session.json",
+          "target": "https://everyailaw.com/term/utah-sb149-chatbot-disclosure.json",
+          "as_of": "2026-09-09",
+          "expected": {
+            "source": {
+              "id": "https://publedge.org/term/utah-mental-health-chatbot-disclosure-2026q2-first-session.json",
+              "source": "https://commerce.utah.gov/ai/learning-lab/",
+              "locator": "Utah Code §13-72a-203",
+              "source_version": null,
+              "lifecycle_status": "draft",
+              "operative_status": "future",
+              "enforcement_status": "unsignaled",
+              "effective": "2026-04-15",
+              "computed_as_of": null,
+              "parent_id": "https://publedge.org/instrument/us-ut-oaip-jia-2026-001.json",
+              "parent_effective": null,
+              "effective_vs_parent": "unknown",
+              "effective_vs_as_of": "before"
+            },
+            "target": {
+              "id": "https://everyailaw.com/term/utah-sb149-chatbot-disclosure.json",
+              "source": "https://le.utah.gov/~2025/bills/static/HB0452.html",
+              "locator": "§13-72a-203",
+              "source_version": null,
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "enforcement_status": "enforceable",
+              "effective": "2025-05-07",
+              "computed_as_of": null,
+              "parent_id": "https://everyailaw.com/instrument/utah-sb149.json",
+              "parent_effective": "2024-05-01",
+              "effective_vs_parent": "after",
+              "effective_vs_as_of": "before"
+            },
+            "source_territory": [
+              "us-ut"
+            ],
+            "target_territory": [
+              "us-ut"
+            ],
+            "source_exceptions": null,
+            "target_exceptions": null,
+            "common_declared_codes": [
+              "us-ut"
+            ],
+            "intersection_after_declared_exceptions": null,
+            "territory_result": "unknown",
+            "source_effective_vs_target": "after",
+            "as_of": "2026-09-09",
+            "legal_applicability": "unknown",
+            "limits": "Exact declared codes only; no country/subdivision expansion or inference of geographic disjointness. Missing exceptions are unknown, not empty. Date comparisons preserve original precision and do not establish operation, enforcement or an invalid retroactive term. Drafts and missing locators remain explicit."
+          }
+        }
+      ]
+    },
+    {
+      "id": "legacy-transparency-tombstone-replacement",
+      "start": "https://everyailaw.com/obligation/transparency.json",
+      "steps": [
+        {
+          "direction": "forward",
+          "predicate": "replaced_by",
+          "expected": [
+            "https://everyailaw.com/obligation-category/transparency.json"
+          ]
+        }
+      ]
+    }
+  ]
+}

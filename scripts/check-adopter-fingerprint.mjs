@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { checkRelationshipMigrations } from './lib/relationship-migrations.mjs';
 import {
   buildAdopterFingerprint,
   fingerprintDifferences,
@@ -44,6 +45,13 @@ const regressions = Object.entries(prior?.provenance_dates || {}).filter(([key, 
 if (regressions.length) {
   console.error(`OF-PROVENANCE-REGRESSION: ${regressions.map(([key]) => key).join(", ")}`);
   console.error("Restore verified evidence; a backward-date correction requires a separately reviewed baseline edit.");
+  process.exit(1);
+}
+try {
+  await checkRelationshipMigrations({ expectedPath: options.expectedPath, actual, prior, recordsDir: options.recordsDir });
+} catch (error) {
+  console.error(`OF-RELATIONSHIP-MIGRATION: ${error.message}`);
+  console.error('An intentional migration requires exact old/new targets, a dated reason and an admitted source-review reference. Rewriting the fingerprint alone is insufficient.');
   process.exit(1);
 }
 if (options.write) {
