@@ -170,7 +170,7 @@ The released record and discovery artifacts are served at the URLs below. The pl
 | [`/.well-known/security.txt`](https://obligationfirst.org/.well-known/security.txt) | Security disclosure (RFC 9116) |
 | [`/changelog.html`](https://obligationfirst.org/changelog.html) | Changelog (redirects to GitHub `CHANGELOG.md`) |
 
-The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. `https://w3id.org/of/v1/` is the planned permanent vocabulary prefix and will resolve to `https://obligationfirst.org/v1/` once the w3id.org redirect is filed before v1.0 freeze.
+The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. `https://w3id.org/of/v1/` is the planned permanent vocabulary prefix. The w3id.org contribution is prepared under `reference/w3id/of/` and tested locally, but it has not been filed; `https://w3id.org/of/v1/` returned HTTP 404 as of 2026-09-09. It will resolve to `https://obligationfirst.org/v1/` only after the contribution is filed, accepted by the w3id.org maintainers, and deployed, which are external actions targeted before v1.0 freeze.
 
 ## Repository layout
 
@@ -180,7 +180,7 @@ The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. 
 | [PRIOR-ART.md](PRIOR-ART.md) | Survey of legal ontologies, deontic logic foundations, and rules-as-code projects |
 | [ROADMAP.md](ROADMAP.md) | Versioning plan, resolved-in-v0.1 and resolved-in-v0.2 tables, deferred decisions |
 | [CHANGELOG.md](CHANGELOG.md) | Material changes per version |
-| `schema/context.jsonld` | The JSON-LD `@context` for v1 (canonical source — copied to `docs/v1/` by CI) |
+| `schema/context.jsonld` | The JSON-LD `@context` for v1 (canonical source; copied to `docs/v1/context.jsonld` by the Pages deploy workflow `.github/workflows/pages.yml`, and checked for parity by `npm run validate:published`) |
 | `schema/*.schema.json` | JSON Schemas for each entity |
 | `scripts/validate-examples.mjs` | Validation harness: every JSON record under `examples/*/records/` is checked against the appropriate schema |
 | `scripts/lib/adopter-kit.mjs` | Reusable adopter helper for schema validation, graph validation, and aggregate record bundles |
@@ -213,7 +213,7 @@ The v0.6 release and adopter-publication gates are complete. The remaining v1.0 
 
 For anchor enrichment, run `npm run report:anchors` against the worked examples or `node scripts/report-anchor-graph.mjs <adopter-export> [...]` against sibling adopter exports.
 
-The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. `https://w3id.org/of/v1/` is the planned permanent vocabulary prefix; the w3id PR is targeted for filing before v1.0 freeze.
+The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. `https://w3id.org/of/v1/` is the planned permanent vocabulary prefix. The w3id.org contribution is prepared but not yet filed (HTTP 404 as of 2026-09-09); filing is targeted before v1.0 freeze, and resolution also depends on acceptance and deployment by w3id.org.
 
 ## License
 

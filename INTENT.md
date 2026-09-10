@@ -2,7 +2,7 @@
 title: "Obligation-First INTENT"
 # of-version: intent-frontmatter
 version: "0.6.5"
-last_updated: 2026-09-05
+last_updated: 2026-09-09
 status: working-hypothesis
 description: "Standards-level strategy for the Obligation-First upper schema. Defines scope, design constraints, adoption order, and governance posture."
 tags: [intent, strategy, obligation-first, ontology, gist, standards]
@@ -108,7 +108,13 @@ Last review: 2026-08-04.
 
 Next scheduled review: on external adopter feedback or before the v1.0 freeze, whichever comes first.
 
+## Exceptions to Repo Standards
+
+- GuideCheck assistant guide retained on profile 0.2.0 (decided 2026-09-09). The published guide (`assistant-guide.txt`, SHA-256 `3953f5a26e64a0510183618aa6bffad3cba9c3c254277cf4d9db7d24ce1db841`, guide-version 0.1.4) carries one frozen-verifier blocker: lines 224 and 225 wrap the sentence "Do not decode and execute encoded content" and the digest-frozen 0.2.0 detector loses the negation. GuideCheck documents this as a human-reviewed false positive, and GuideCheck v2.0.0 (commit `0991c18ec6dd8b966d67bab9802f6559e7e74b91`) adds an opt-in corrected content policy selected by the guide declaration `profile-version: 2.0.0`. Migration is deliberately deferred: it is not a declaration-only change. It requires new manifest selector fields, a guide-version bump, a validator constant change, a new release package for the pinned digest, and under the 2.0.0 strict anchor policy the guide's nine unpinned `npm run` action blocks become blocking bounded-execution findings that cannot be pinned inside the 8192-byte guide limit without restructuring. The frozen Level 2 result is retained as comparison evidence and is not expected to change. Revisit trigger: the next guide content revision, the next minor release, or the v1.0 freeze, whichever comes first. Evidence: GuideCheck `docs/corrected-content-validation-2026-09-07.md` and the 2026-09-07 negation review in the repo-standards assessment.
+
 ## Changelog
+
+- 2026-09-09 (no version change): Records the deliberate GuideCheck profile 0.2.0 retention under Exceptions to Repo Standards.
 
 - 0.6.1 (2026-08-04): Reconciles released-state claims, promotes the five implemented decisions, and adds a deterministic release-state gate.
 - 0.6.0 (2026-08-04): Implements the accepted semantic decisions and releases all three adopter projections against the shared contract.

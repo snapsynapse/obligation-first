@@ -136,6 +136,12 @@ export async function checkRelationshipMigrations({ expectedPath, actual, prior,
     assert.ok(base === 'HEAD' || /^[a-f0-9]{40}$/i.test(base), 'Migration comparison base must be HEAD or a full commit');
     const resolved = git(['rev-parse', '--verify', `${base}^{commit}`]);
     assert.equal(resolved.status, 0, 'Migration comparison commit unavailable');
+    if (process.env.SOURCE_ADMISSION_BASE) {
+      // An explicit base equal to the commit under review compares a change with itself.
+      const head = git(['rev-parse', '--verify', 'HEAD^{commit}']);
+      assert.ok(head.status === 0 && head.stdout.trim() !== resolved.stdout.trim(),
+        'Migration comparison commit equals the owner HEAD; supply the PR base or push-before commit, not the commit under review');
+    }
     const canonicalExpected = path.join(await realpath(directory), path.basename(expectedPath));
     const relative = path.relative(root, canonicalExpected).split(path.sep).join('/');
     const committed = git(['show', `${resolved.stdout.trim()}:${relative}`]);

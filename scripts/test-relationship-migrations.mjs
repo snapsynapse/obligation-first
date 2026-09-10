@@ -101,6 +101,29 @@ try {
   let omittedBase = check([], { CI: 'true', SOURCE_ADMISSION_BASE: '' });
   assert.equal(omittedBase.status, 1); assert.match(omittedBase.stderr, /CI requires an explicit/); cases++;
   assert.equal(check([], { CI: 'true' }).status, 1, 'CI base still detects the committed rewrite'); cases++;
+  // The comparison base is an exact full committed SHA. Abbreviated SHAs,
+  // symbolic refs and revision expressions fail closed in both modes; CI also
+  // rejects the local HEAD default and an unset value. A well-formed SHA that
+  // the owner history does not contain fails closed before any comparison.
+  for (const malformed of [base.slice(0, 7), base.slice(0, 12), 'main', 'HEAD~1', 'refs/heads/main', `${base}~1`]) {
+    let rejected = check([], { SOURCE_ADMISSION_BASE: malformed });
+    assert.equal(rejected.status, 1, malformed); assert.match(rejected.stderr, /must be HEAD or a full commit/); cases++;
+    rejected = check([], { CI: 'true', SOURCE_ADMISSION_BASE: malformed });
+    assert.equal(rejected.status, 1, malformed); assert.match(rejected.stderr, /CI requires an explicit/); cases++;
+  }
+  for (const env of [{ CI: 'true', SOURCE_ADMISSION_BASE: 'HEAD' }, { CI: 'true', SOURCE_ADMISSION_BASE: undefined }]) {
+    const rejected = check([], env); assert.equal(rejected.status, 1); assert.match(rejected.stderr, /CI requires an explicit/); cases++;
+  }
+  for (const env of [{ SOURCE_ADMISSION_BASE: 'deadbeef'.repeat(5) }, { CI: 'true', SOURCE_ADMISSION_BASE: 'deadbeef'.repeat(5) }]) {
+    const rejected = check([], env); assert.equal(rejected.status, 1); assert.match(rejected.stderr, /comparison commit unavailable/); cases++;
+  }
+  // An explicit base equal to the commit under review compares the rewrite
+  // with itself and would erase the review requirement; it fails closed even
+  // though HEAD's SHA is well formed and present.
+  const selfBase = spawnSync('git', ['-C', root, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).stdout.trim();
+  for (const env of [{ SOURCE_ADMISSION_BASE: selfBase }, { CI: 'true', SOURCE_ADMISSION_BASE: selfBase }]) {
+    const rejected = check([], env); assert.equal(rejected.status, 1, 'self-comparison'); assert.match(rejected.stderr, /equals the owner HEAD/); cases++;
+  }
   await writeFile(path.join(root, 'of-relationship-migrations.json'), JSON.stringify(receipts));
   let result = check([]); assert.equal(result.status, 0, result.stderr); cases++;
   result = check(['--write']); assert.equal(result.status, 0, result.stderr); cases++;

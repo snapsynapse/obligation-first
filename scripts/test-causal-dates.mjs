@@ -23,4 +23,16 @@ for (const unknown of [undefined, null, '2020', '2020-01', 'unknown', '2020-02-3
 assert.deepEqual(causal([vacating]), [], 'unresolved references do not invent dates; graph reference validation handles them');
 // Commencement is not universally causal: a later amendment can be retrospective.
 assert.deepEqual(causal([{ '@id': id('i'), '@type': 'of:Instrument', enacted: '2020-02-01', effective: '2020-01-01' }]), []);
-console.log('Causal date regressions passed (filing/decision, vacating/decision, future evidence; precision and retrospective limits retained).');
+// Sunset mirror: the record's own as-of after its own exact sunset day contradicts an operative claim.
+const sunsetting = { '@id': id('s'), '@type': 'of:Instrument', operative_status: 'operative', sunset: '2026-12-31', computed_as_of: '2026-06-01' };
+assert.deepEqual(causal([sunsetting]), []);
+assert.ok(causal([{ ...sunsetting, computed_as_of: '2027-01-01' }]).some(item => item.code === 'OF-TIME-SUNSET-OPERATIVE'));
+assert.deepEqual(causal([{ ...sunsetting, computed_as_of: '2026-12-31' }]), [], 'same-day sunset has no clock order');
+for (const variant of [{ sunset: '2026' }, { sunset: '2026-12' }, { computed_as_of: '2027' }, { sunset: undefined }, { computed_as_of: undefined }, { sunset: '2026-13-01' }]) {
+  assert.deepEqual(causal([{ ...sunsetting, computed_as_of: '2027-01-01', ...variant }]), [], 'partial/missing/invalid dates cannot imply a lapsed sunset');
+}
+for (const status of ['future', 'inactive', 'unknown', undefined]) {
+  assert.deepEqual(causal([{ ...sunsetting, computed_as_of: '2027-01-01', operative_status: status }]), [], 'only an operative claim contradicts a passed sunset');
+}
+assert.deepEqual(causal([{ ...sunsetting, sunset: '2026-01-01', computed_as_of: undefined, verified: '2026-06-01', retrieved: '2026-06-01' }]), [], 'verified/retrieved are not substituted for the record\'s own computed_as_of');
+console.log('Causal date regressions passed (filing/decision, vacating/decision, future evidence, lapsed sunset; precision and retrospective limits retained).');
