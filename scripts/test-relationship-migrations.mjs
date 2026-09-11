@@ -90,7 +90,7 @@ try {
   const base = spawnSync('git', ['-C', root, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).stdout.trim();
   await writeFile(path.join(recordsDir, 'a.json'), JSON.stringify({ ...native, anchors: ['https://example.com/new'] }));
   const checker = path.resolve('scripts/check-adopter-fingerprint.mjs');
-  const check = (flags, env = {}) => spawnSync(process.execPath, [checker, '--records', recordsDir, '--profile', profilePath, '--expected', expectedPath, ...flags], { encoding: 'utf8', env: { ...process.env, SOURCE_ADMISSION_BASE: base, ...env } });
+  const check = (flags, env = {}) => spawnSync(process.execPath, [checker, '--records', recordsDir, '--profile', profilePath, '--expected', expectedPath, ...flags], { encoding: 'utf8', env: { ...process.env, CI: 'false', SOURCE_ADMISSION_BASE: base, ...env } });
   for (const flags of [[], ['--write']]) {
     const result = check(flags); assert.equal(result.status, 1); assert.match(result.stderr, /OF-RELATIONSHIP-MIGRATION/); cases++;
   }
