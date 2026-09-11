@@ -14,6 +14,8 @@ Scheduled and publication-triggered observations replay the checked-out owner's 
 
 CI federation requires OF_ADMISSION_BASES to identify a JSON file containing exactly every-ai-law, publedge and ai-incident-law, each mapped to its own full comparison SHA. Every source-admission and relationship-fingerprint invocation receives that owner's base. Local calls without the file retain the existing working-tree mode and are not committed-diff acceptance.
 
+Independent review found two lower-level entry points requiring the same protection. Federation now rejects an inherited single-owner SOURCE_ADMISSION_BASE unless the full owner map is supplied. Direct relationship-migration checks reject a divergent comparison commit even when its fingerprint happens to match. A synthetic regression reproduced that acceptance before the fix; the strict owner-history check remains active outside CI too.
+
 Candidate integration uses explicitly reviewed owner main-base SHAs and exact candidate commits. EveryAILaw owns private candidate CI and the final tuple receipt. The production federation workflow continues checking moving sibling mains and remains blocked until coordinated delivery; candidate success does not replace that gate.
 
 ## Remaining decisions

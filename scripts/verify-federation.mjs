@@ -10,6 +10,7 @@ const portfolioRoot = path.dirname(obligationFirst);
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
 const admissionBases = process.env.OF_ADMISSION_BASES
   ? JSON.parse(readFileSync(process.env.OF_ADMISSION_BASES, 'utf8')) : null;
+if (!admissionBases && process.env.SOURCE_ADMISSION_BASE) throw new Error('Federation cannot reuse a single-owner SOURCE_ADMISSION_BASE; supply OF_ADMISSION_BASES for all three owners');
 if (process.env.CI && process.env.CI !== 'false' && !admissionBases) throw new Error('CI federation requires OF_ADMISSION_BASES with one committed comparison base per owner');
 if (admissionBases) {
   if (JSON.stringify(Object.keys(admissionBases).sort()) !== JSON.stringify([...ADMISSION_OWNERS].sort())) throw new Error('Admission bases must name exactly the three federation owners');

@@ -141,6 +141,8 @@ export async function checkRelationshipMigrations({ expectedPath, actual, prior,
       const head = git(['rev-parse', '--verify', 'HEAD^{commit}']);
       assert.ok(head.status === 0 && head.stdout.trim() !== resolved.stdout.trim(),
         'Migration comparison commit equals the owner HEAD; supply the PR base or push-before commit, not the commit under review');
+      assert.equal(git(['merge-base', '--is-ancestor', resolved.stdout.trim(), head.stdout.trim()]).status, 0,
+        'Migration comparison commit must be an ancestor of the owner HEAD');
     }
     const canonicalExpected = path.join(await realpath(directory), path.basename(expectedPath));
     const relative = path.relative(root, canonicalExpected).split(path.sep).join('/');
