@@ -8,6 +8,7 @@ import { loadRecordDir } from './adopter-kit.mjs';
 import { validateEveryAiLawMaltaAssessmentWithdrawal, EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL } from './eal-category-retirement.mjs';
 import { validateEveryAiLawItalyAgidEnforcerWithdrawal, EVERY_AI_LAW_ITALY_AGID_ENFORCER_WITHDRAWAL } from './eal-authority-retirement.mjs';
 import { validateEveryAiLawSourceCategoryWithdrawal, EVERY_AI_LAW_SOURCE_CATEGORY_WITHDRAWAL } from './eal-source-category-withdrawal.mjs';
+import { validateEveryAiLawSourceRoleCorrection, EVERY_AI_LAW_SOURCE_ROLE_CORRECTION } from './eal-source-role-correction.mjs';
 
 export function canonical(value) {
   if (Array.isArray(value)) return value.map(canonical);
@@ -85,7 +86,7 @@ export async function validateMigrationReceipts({ root, changes, receipts, recor
     const groups = new Map();
     for (const entry of adapterEntries) {
       const name = entry.source_admission.adapter.name;
-      assert.ok([EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL, EVERY_AI_LAW_ITALY_AGID_ENFORCER_WITHDRAWAL, EVERY_AI_LAW_SOURCE_CATEGORY_WITHDRAWAL].includes(name), `Unknown derived migration adapter: ${name}`);
+      assert.ok([EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL, EVERY_AI_LAW_ITALY_AGID_ENFORCER_WITHDRAWAL, EVERY_AI_LAW_SOURCE_CATEGORY_WITHDRAWAL, EVERY_AI_LAW_SOURCE_ROLE_CORRECTION].includes(name), `Unknown derived migration adapter: ${name}`);
       if (!groups.has(name)) groups.set(name, []);
       groups.get(name).push(entry);
     }
@@ -99,7 +100,8 @@ export async function validateMigrationReceipts({ root, changes, receipts, recor
       };
       if (name === EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL) await validateEveryAiLawMaltaAssessmentWithdrawal(params);
       else if (name === EVERY_AI_LAW_ITALY_AGID_ENFORCER_WITHDRAWAL) await validateEveryAiLawItalyAgidEnforcerWithdrawal(params);
-      else await validateEveryAiLawSourceCategoryWithdrawal(params);
+      else if (name === EVERY_AI_LAW_SOURCE_CATEGORY_WITHDRAWAL) await validateEveryAiLawSourceCategoryWithdrawal(params);
+      else await validateEveryAiLawSourceRoleCorrection(params);
     }
   }
   for (const change of changes) {
@@ -120,6 +122,7 @@ export async function validateMigrationReceipts({ root, changes, receipts, recor
     if (subject.ai_incident_law_record_id) nativeKey = `included/${subject.ai_incident_law_record_id}`;
     else if (subject['eal:source_file']) nativeKey = subject['eal:source_file'];
     else if (subject['@type'] === 'of:Instrument' && subject['eal:id']) nativeKey = `data/instruments/${subject['eal:id']}.md`;
+    else if (ref.adapter?.name === EVERY_AI_LAW_SOURCE_ROLE_CORRECTION) nativeKey = ref.adapter.native_identity.source_file;
     assert.ok(nativeKey, 'Migration needs a supported owner-native identity mapping');
     assert.equal(ref.pointer, `/records/${nativeKey.replace(/~/g, '~0').replace(/\//g, '~1')}`, 'Source admission receipt belongs to another projected subject');
     const admitted = await readAdmissionReference(root, ref);
