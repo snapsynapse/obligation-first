@@ -7,6 +7,7 @@ import { runAdopterAdmission } from './adopter-admission.mjs';
 import { loadRecordDir } from './adopter-kit.mjs';
 import { validateEveryAiLawMaltaAssessmentWithdrawal, EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL } from './eal-category-retirement.mjs';
 import { validateEveryAiLawItalyAgidEnforcerWithdrawal, EVERY_AI_LAW_ITALY_AGID_ENFORCER_WITHDRAWAL } from './eal-authority-retirement.mjs';
+import { validateEveryAiLawSourceCategoryWithdrawal, EVERY_AI_LAW_SOURCE_CATEGORY_WITHDRAWAL } from './eal-source-category-withdrawal.mjs';
 
 export function canonical(value) {
   if (Array.isArray(value)) return value.map(canonical);
@@ -84,7 +85,7 @@ export async function validateMigrationReceipts({ root, changes, receipts, recor
     const groups = new Map();
     for (const entry of adapterEntries) {
       const name = entry.source_admission.adapter.name;
-      assert.ok([EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL, EVERY_AI_LAW_ITALY_AGID_ENFORCER_WITHDRAWAL].includes(name), `Unknown derived migration adapter: ${name}`);
+      assert.ok([EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL, EVERY_AI_LAW_ITALY_AGID_ENFORCER_WITHDRAWAL, EVERY_AI_LAW_SOURCE_CATEGORY_WITHDRAWAL].includes(name), `Unknown derived migration adapter: ${name}`);
       if (!groups.has(name)) groups.set(name, []);
       groups.get(name).push(entry);
     }
@@ -97,7 +98,8 @@ export async function validateMigrationReceipts({ root, changes, receipts, recor
         readAdmission: ref => readAdmissionReference(root, ref),
       };
       if (name === EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL) await validateEveryAiLawMaltaAssessmentWithdrawal(params);
-      else await validateEveryAiLawItalyAgidEnforcerWithdrawal(params);
+      else if (name === EVERY_AI_LAW_ITALY_AGID_ENFORCER_WITHDRAWAL) await validateEveryAiLawItalyAgidEnforcerWithdrawal(params);
+      else await validateEveryAiLawSourceCategoryWithdrawal(params);
     }
   }
   for (const change of changes) {
