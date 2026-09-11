@@ -5,6 +5,8 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { runAdopterAdmission } from './adopter-admission.mjs';
 import { loadRecordDir } from './adopter-kit.mjs';
+import { validateEveryAiLawMaltaAssessmentWithdrawal, EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL } from './eal-category-retirement.mjs';
+import { validateEveryAiLawItalyAgidEnforcerWithdrawal, EVERY_AI_LAW_ITALY_AGID_ENFORCER_WITHDRAWAL } from './eal-authority-retirement.mjs';
 
 export function canonical(value) {
   if (Array.isArray(value)) return value.map(canonical);
@@ -61,9 +63,43 @@ async function ownedFile(root, relative) {
   return resolved;
 }
 
+async function readAdmissionReference(root, ref) {
+  assert.equal(ref?.path, 'data/admission/receipts.json', 'Migration admission reference must use the canonical owner inventory');
+  const source = JSON.parse(await readFile(await ownedFile(root, ref.path), 'utf8'));
+  const admitted = pointer(source, ref.pointer);
+  assert.equal(ref.sha256, digest(admitted), 'Source admission receipt digest is stale');
+  return admitted;
+}
+
 export async function validateMigrationReceipts({ root, changes, receipts, records = [] }) {
   assert.equal(receipts?.schema_version, 1, 'Migration receipt schema missing');
   assert.ok(Array.isArray(receipts.entries), 'Migration entries missing');
+  const matchedEntries = changes.map(change => {
+    const matches = receipts.entries.filter(entry => equal(entry.change, change));
+    assert.equal(matches.length, 1, `Exactly one current migration receipt required: ${change.subject} ${change.predicate}`);
+    return matches[0];
+  });
+  const adapterEntries = matchedEntries.filter(entry => entry.source_admission?.adapter);
+  if (adapterEntries.length > 0) {
+    const groups = new Map();
+    for (const entry of adapterEntries) {
+      const name = entry.source_admission.adapter.name;
+      assert.ok([EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL, EVERY_AI_LAW_ITALY_AGID_ENFORCER_WITHDRAWAL].includes(name), `Unknown derived migration adapter: ${name}`);
+      if (!groups.has(name)) groups.set(name, []);
+      groups.get(name).push(entry);
+    }
+    for (const [name, entries] of groups) {
+      const adapterChanges = entries.map(entry => entry.change);
+      const params = {
+        changes: adapterChanges,
+        records,
+        entries,
+        readAdmission: ref => readAdmissionReference(root, ref),
+      };
+      if (name === EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL) await validateEveryAiLawMaltaAssessmentWithdrawal(params);
+      else await validateEveryAiLawItalyAgidEnforcerWithdrawal(params);
+    }
+  }
   for (const change of changes) {
     const matches = receipts.entries.filter(entry => equal(entry.change, change));
     assert.equal(matches.length, 1, `Exactly one current migration receipt required: ${change.subject} ${change.predicate}`);
@@ -84,9 +120,7 @@ export async function validateMigrationReceipts({ root, changes, receipts, recor
     else if (subject['@type'] === 'of:Instrument' && subject['eal:id']) nativeKey = `data/instruments/${subject['eal:id']}.md`;
     assert.ok(nativeKey, 'Migration needs a supported owner-native identity mapping');
     assert.equal(ref.pointer, `/records/${nativeKey.replace(/~/g, '~0').replace(/\//g, '~1')}`, 'Source admission receipt belongs to another projected subject');
-    const source = JSON.parse(await readFile(await ownedFile(root, ref?.path), 'utf8'));
-    const admitted = pointer(source, ref.pointer);
-    assert.equal(ref.sha256, digest(admitted), 'Source admission receipt digest is stale');
+    const admitted = await readAdmissionReference(root, ref);
     assert.ok(['source-consistency-reviewed', 'source-consistency-reviewed-changes'].includes(admitted.review?.decision), 'Referenced source admission review is not accepted');
     assert.ok(realTime(admitted.review.reviewed_at), 'Source admission review time invalid');
     assert.ok(Date.parse(entry.review.reviewed_at) >= Date.parse(admitted.review.reviewed_at), 'Migration review predates source admission');
@@ -94,6 +128,10 @@ export async function validateMigrationReceipts({ root, changes, receipts, recor
     for (const unit of ref.reviewed_units) {
       assert.ok(Object.hasOwn(admitted.units || {}, unit), 'Migration refers to an unreviewed source unit');
       assert.ok(Array.isArray(admitted.units[unit].evidence) && admitted.units[unit].evidence.length, 'Source-reviewed unit lacks evidence');
+    }
+    if (ref.adapter) {
+      assert.equal(ref.relationship_unit, `adapter:${ref.adapter.name}`, 'Adapter relationship unit must name the declared adapter');
+      continue;
     }
     // A review of unrelated prose cannot authorize a relationship rewrite.
     // Direct native relation fields bind both values to the owner's admitted
