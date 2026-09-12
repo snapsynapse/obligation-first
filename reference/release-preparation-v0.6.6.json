@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "repository": "https://github.com/snapsynapse/obligation-first",
+  "profile": "open-spec",
+  "authority": "R2",
+  "start_head": "81df02431f218a4f93ed84f778461ca2168d9692",
+  "candidate_head": null,
+  "candidate_version": "0.6.6",
+  "updated_at": "2026-09-12T17:41:23.180572+00:00",
+  "steps": [
+    {
+      "id": "dependency-repair",
+      "status": "completed",
+      "evidence": "Undici 6.28.1 installed from exact lockfile; audit upload disabled",
+      "head": null
+    },
+    {
+      "id": "local-gates",
+      "status": "completed",
+      "evidence": "All 33 test scripts passed through npm test after handoff removal. Search21 pages, schema63 records, graphs5 sets, mirrors, package49 artifacts, selected hashes101, sync/date, vocabulary, whitespace and publication hygiene passed.",
+      "head": null
+    },
+    {
+      "id": "standalone-source-consumer",
+      "status": "completed",
+      "evidence": "Fresh post-cleanup451-file source copy without Git or preseeded node_modules passed npm ci --ignore-scripts --no-audit --no-fund and full npm test; handoff-consumer-install.log and handoff-consumer-test.log retained locally.",
+      "head": null
+    },
+    {
+      "id": "candidate-federation",
+      "status": "completed",
+      "evidence": "Rerun after approved improvements: explicit owner comparison bases, 1061 records, 66 anchors, 3 journeys, 2 mandatory unknown assertions; local improvements-federation-final.log.",
+      "head": null
+    },
+    {
+      "id": "candidate-artifacts",
+      "status": "ready",
+      "evidence": "49-artifact reference manifest and101-entry selected hash ledger valid. Source fingerprint e0d144005d4403eaa7063c835f84b27c7b0434d1f0f0a26d17dfae3a039d2e73; see release-candidate-v0.6.6-inventory.json.",
+      "head": null
+    },
+    {
+      "id": "exact-candidate-ci",
+      "status": "not_started",
+      "evidence": "Candidate uncommitted; require CI on final published commit, local runtime Node 26.7.0 vs workflow Node 20",
+      "head": null
+    },
+    {
+      "id": "commit-push-merge",
+      "status": "ready",
+      "evidence": "User explicitly authorized stage, commit, push and release after npm login refresh on2026-09-12. Required exact-commit CI and independent provider acceptance remain subsequent gates.",
+      "head": null
+    },
+    {
+      "id": "tag-github-release",
+      "status": "ready",
+      "evidence": "User explicitly authorized stage, commit, push and release after npm login refresh on2026-09-12. Required exact-commit CI and independent provider acceptance remain subsequent gates.",
+      "head": null
+    },
+    {
+      "id": "pages-deployment-verification",
+      "status": "not_started",
+      "evidence": "New release not deployed; verify exact bytes after approved delivery",
+      "head": null
+    },
+    {
+      "id": "npm-mcp-publication",
+      "status": "not_applicable",
+      "evidence": "OF package is private and publishes reference artifacts through repository/Pages",
+      "head": null
+    },
+    {
+      "id": "bulk-audit",
+      "status": "blocked",
+      "evidence": "Earlier automatic review rejected dependency inventory upload; not retried, public advisory verified",
+      "head": null
+    },
+    {
+      "id": "prepublication-documentation-review",
+      "status": "completed",
+      "evidence": "Historical review and factual repo/site/agent corrections followed by approved E1-E6. Current example index and homepage excerpt reflect Colorado companion; original13 record bytes retained. See prepublication audit.",
+      "head": null
+    },
+    {
+      "id": "checker-improvement-decision",
+      "status": "completed",
+      "evidence": "User approved and all E1-E6 implemented locally, with integrated deterministic tests. Colorado presentation decision implemented as original snapshot plus separately identified evolution companion; unresolved lifecycle and source history remain explicit.",
+      "head": null
+    },
+    {
+      "id": "handoff-exclusion",
+      "status": "completed",
+      "evidence": "Four processed OF handoffs removed after verified provenance migration. Candidate source check and isolated prospective-index staged check pass. Actual staging area unchanged; staged check required again on final real index before any separately authorized commit.",
+      "head": null
+    }
+  ]
+}

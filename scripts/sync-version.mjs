@@ -4,6 +4,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { isValidReleaseDate } from "./lib/release-metadata.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -46,6 +47,21 @@ export const VERSION_SURFACES = Object.freeze([
   ["docs/index.html", "<!-- of-version: homepage-footer -->", "vfull"],
 ]);
 
+const IMPLEMENTATION_STATUS_START = "<!-- implementation-status:start -->";
+const IMPLEMENTATION_STATUS_END = "<!-- implementation-status:end -->";
+
+export function implementationSummary(version) {
+  return `The v${version} reference package includes scope continuity evaluation. F14 qualified-time evaluation is released offline reference tooling: expected/fallback branches and evidence/date boundaries are tested, while the v0.6 record schema and production serialization are unchanged. These fixtures do not determine legal applicability or predecessor operative history.`;
+}
+
+export const STATUS_SURFACES = Object.freeze([
+  ["README.md", (summary) => summary],
+  ["docs/index.html", (summary) => `    <p>${summary}</p>`],
+  ["docs/v1/index.html", (summary) => `<p><a href="/evaluation-status.json">Evaluation implementation status</a>. ${summary}</p>`],
+  ["docs/llms.txt", (summary) => `${summary} Machine status: https://obligationfirst.org/evaluation-status.json`],
+  ["docs/llms-full.txt", (summary) => `${summary} Machine status: https://obligationfirst.org/evaluation-status.json`],
+]);
+
 const FULL = /\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?/;
 const VFULL = /v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?/;
 const VMINOR = /v\d+\.\d+(?!\.\d)/g;
@@ -76,6 +92,21 @@ export function rewriteManagedSurface(content, { marker, mode }, forms) {
   }
   lines[target] = rewritten;
   return { content: lines.join("\n"), targetLine: target };
+}
+
+export function rewriteManagedBlock(content, { startMarker, endMarker, replacement }) {
+  const lines = content.split("\n");
+  const starts = lines.flatMap((line, index) => line.includes(startMarker) ? [index] : []);
+  const ends = lines.flatMap((line, index) => line.includes(endMarker) ? [index] : []);
+  if (starts.length !== 1) return { content, problem: `${startMarker}: expected exactly one marker, found ${starts.length}` };
+  if (ends.length !== 1) return { content, problem: `${endMarker}: expected exactly one marker, found ${ends.length}` };
+  if (ends[0] <= starts[0]) return { content, problem: `${startMarker}: end marker must follow start marker` };
+  const replacementLines = replacement.split("\n");
+  lines.splice(starts[0] + 1, ends[0] - starts[0] - 1, ...replacementLines);
+  return {
+    content: lines.join("\n"),
+    targetLines: replacementLines.map((_, index) => starts[0] + 1 + index),
+  };
 }
 
 function rewriteJson(file, content, forms) {
@@ -119,7 +150,23 @@ export function staleClaims(content, managedLines = new Set()) {
   return problems;
 }
 
-async function transformedFiles(root, forms) {
+function rewriteImplementationStatus(content, forms, dateIso) {
+  const status = JSON.parse(content);
+  if (typeof status.released_reference_version !== "string" || typeof status.status_as_of !== "string") {
+    throw new Error("reference/implementation-status.json: expected released_reference_version and status_as_of string fields");
+  }
+  status.released_reference_version = forms.full;
+  status.status_as_of = dateIso;
+  return `${JSON.stringify(status, null, 2)}\n`;
+}
+
+function rewriteBundleDate(content, dateIso) {
+  const matches = content.match(/^bundle_date:[ \t]*\d{4}-\d{2}-\d{2}[ \t]*$/gm) || [];
+  if (matches.length !== 1) throw new Error(`MANIFEST.yaml: expected exactly one bundle_date field, found ${matches.length}`);
+  return content.replace(/^bundle_date:[ \t]*\d{4}-\d{2}-\d{2}[ \t]*$/m, `bundle_date: ${dateIso}`);
+}
+
+async function transformedFiles(root, forms, dateIso) {
   const byFile = new Map();
   const managedLines = new Map();
   for (const [file, marker, mode] of VERSION_SURFACES) {
@@ -130,6 +177,20 @@ async function transformedFiles(root, forms) {
     if (!managedLines.has(file)) managedLines.set(file, new Set());
     managedLines.get(file).add(result.targetLine);
   }
+  byFile.set("MANIFEST.yaml", rewriteBundleDate(byFile.get("MANIFEST.yaml"), dateIso));
+  const summary = implementationSummary(forms.full);
+  for (const [file, render] of STATUS_SURFACES) {
+    if (!byFile.has(file)) byFile.set(file, await readFile(path.join(root, file), "utf8"));
+    const result = rewriteManagedBlock(byFile.get(file), {
+      startMarker: IMPLEMENTATION_STATUS_START,
+      endMarker: IMPLEMENTATION_STATUS_END,
+      replacement: render(summary),
+    });
+    if (result.problem) throw new Error(`${file}: ${result.problem}`);
+    byFile.set(file, result.content);
+    if (!managedLines.has(file)) managedLines.set(file, new Set());
+    for (const targetLine of result.targetLines) managedLines.get(file).add(targetLine);
+  }
   for (const file of ["schema/context.jsonld", "docs/v1/context.jsonld", "docs/agents.json"]) {
     const content = await readFile(path.join(root, file), "utf8");
     byFile.set(file, rewriteJson(file, content, forms));
@@ -138,6 +199,10 @@ async function transformedFiles(root, forms) {
   if (embedded.problem) throw new Error(embedded.problem);
   byFile.set("docs/index.html", embedded.content);
   managedLines.get("docs/index.html").add(embedded.targetLine);
+  byFile.set("docs/index.html", updateDate(byFile.get("docs/index.html"), dateIso));
+  const status = rewriteImplementationStatus(await readFile(path.join(root, "reference/implementation-status.json"), "utf8"), forms, dateIso);
+  byFile.set("reference/implementation-status.json", status);
+  byFile.set("docs/evaluation-status.json", status);
   for (const [file, content] of byFile) {
     const stale = staleClaims(content, managedLines.get(file) || new Set());
     if (stale.length > 0) throw new Error(`${file}: unmanaged current-version claim or release URL at line(s) ${stale.join(", ")}`);
@@ -145,53 +210,86 @@ async function transformedFiles(root, forms) {
   return byFile;
 }
 
-export async function checkVersions(root = repoRoot) {
-  const forms = await versionForms(root);
-  let transformed;
-  try { transformed = await transformedFiles(root, forms); } catch (error) { return [error.message]; }
+async function guideProblems(root, forms) {
   const problems = [];
-  for (const [file, expected] of transformed) {
-    const actual = await readFile(path.join(root, file), "utf8");
-    if (actual !== expected) problems.push(`${file}: version drift, run node scripts/sync-version.mjs to match package.json (${forms.full})`);
-  }
   const expectedGuideRange = `applies-to: obligation-first >=${forms.vmm.slice(1)}.0 <${Number(forms.core.split(".")[0])}.${Number(forms.core.split(".")[1]) + 1}.0`;
   for (const file of ["assistant-guide.txt", "docs/.well-known/assistant-guide.txt"]) {
     const guide = await readFile(path.join(root, file), "utf8");
-    if (!guide.includes(expectedGuideRange)) {
-      problems.push(`${file}: expected current-minor guide scope ${expectedGuideRange}`);
-    }
+    if (!guide.includes(expectedGuideRange)) problems.push(`${file}: expected current-minor guide scope ${expectedGuideRange}; update the guide only with guide authority`);
   }
   return problems;
 }
 
+async function checkedDate(root, requestedDate) {
+  const manifest = await readFile(path.join(root, "MANIFEST.yaml"), "utf8");
+  const matches = [...manifest.matchAll(/^bundle_date:[ \t]*(\S+)[ \t]*$/gm)];
+  if (matches.length !== 1) throw new Error(`MANIFEST.yaml: expected exactly one bundle_date field, found ${matches.length}`);
+  const dateIso = requestedDate ?? matches[0][1];
+  if (!isValidReleaseDate(dateIso)) throw new Error(`${requestedDate === undefined ? "MANIFEST.yaml bundle_date" : "--date"} must be a real YYYY-MM-DD calendar date`);
+  return dateIso;
+}
+
+export async function checkVersions(root = repoRoot, options = {}) {
+  const forms = await versionForms(root);
+  let dateIso;
+  try { dateIso = await checkedDate(root, options.date); } catch (error) { return [error.message]; }
+  let transformed;
+  try { transformed = await transformedFiles(root, forms, dateIso); } catch (error) { return [error.message]; }
+  const problems = [];
+  for (const [file, expected] of transformed) {
+    const actual = await readFile(path.join(root, file), "utf8");
+    if (actual !== expected) problems.push(`${file}: version, date, or implementation-status drift; run node scripts/sync-version.mjs to match package.json (${forms.full})`);
+  }
+  problems.push(...await guideProblems(root, forms));
+  return problems;
+}
+
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+function replaceExactlyOne(content, pattern, replacement, label) {
+  const matches = content.match(pattern) || [];
+  if (matches.length !== 1) throw new Error(`docs/index.html: expected exactly one ${label} date surface, found ${matches.length}`);
+  return content.replace(pattern, replacement);
+}
+
 function updateDate(content, iso) {
   const [year, month, day] = iso.split("-").map(Number);
   const human = `${MONTHS[month - 1]} ${day}, ${year}`;
-  return content
-    .replace(/(article:modified_time" content=")\d{4}-\d{2}-\d{2}(T)/g, `$1${iso}$2`)
-    .replace(/("dateModified": ")\d{4}-\d{2}-\d{2}(")/g, `$1${iso}$2`)
-    .replace(/(Updated <time datetime=")\d{4}-\d{2}-\d{2}(">)[^<]*(<\/time>)/g, `$1${iso}$2${human}$3`)
-    .replace(/(Last revision: <time datetime=")\d{4}-\d{2}-\d{2}("\>)\d{4}-\d{2}-\d{2}(<\/time>)/g, `$1${iso}$2${iso}$3`);
+  let updated = replaceExactlyOne(content, /(article:modified_time" content=")\d{4}-\d{2}-\d{2}(T)/g, `$1${iso}$2`, "article:modified_time");
+  updated = replaceExactlyOne(updated, /("dateModified": ")\d{4}-\d{2}-\d{2}(")/g, `$1${iso}$2`, "JSON-LD dateModified");
+  updated = replaceExactlyOne(updated, /(Updated <time datetime=")\d{4}-\d{2}-\d{2}(">)[^<]*(<\/time>)/g, `$1${iso}$2${human}$3`, "visible updated");
+  return replaceExactlyOne(updated, /(Last revision: <time datetime=")\d{4}-\d{2}-\d{2}("\>)\d{4}-\d{2}-\d{2}(<\/time>)/g, `$1${iso}$2${iso}$3`, "last revision");
 }
 
-async function write(root, dateIso) {
+export async function syncVersion(root = repoRoot, dateIso = new Date().toISOString().slice(0, 10)) {
+  if (!isValidReleaseDate(dateIso)) throw new Error("--date must be a real YYYY-MM-DD calendar date");
   const forms = await versionForms(root);
-  const transformed = await transformedFiles(root, forms);
-  transformed.set("docs/index.html", updateDate(transformed.get("docs/index.html"), dateIso));
+  const guides = await guideProblems(root, forms);
+  if (guides.length > 0) throw new Error(`Version sync refused before writing:\n${guides.map((problem) => `- ${problem}`).join("\n")}`);
+  const transformed = await transformedFiles(root, forms, dateIso);
   for (const [file, content] of transformed) await writeFile(path.join(root, file), content);
   console.log(`Synced version ${forms.full} and date ${dateIso} across ${transformed.size} files.`);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = process.argv.slice(2);
-  if (args.includes("--check")) {
-    const problems = await checkVersions();
+  const check = args.includes("--check");
+  const dateIndexes = args.flatMap((arg, index) => arg === "--date" ? [index] : []);
+  const allowed = new Set(["--check", "--date"]);
+  const unknown = args.filter((arg, index) => !allowed.has(arg) && !dateIndexes.includes(index - 1));
+  if (dateIndexes.length > 1 || unknown.length > 0 || (dateIndexes.length === 1 && !args[dateIndexes[0] + 1])) {
+    console.error("sync-version: usage: node scripts/sync-version.mjs [--check] [--date YYYY-MM-DD]");
+    process.exit(2);
+  }
+  const requested = dateIndexes.length === 1 ? args[dateIndexes[0] + 1] : undefined;
+  if (requested !== undefined && !isValidReleaseDate(requested)) {
+    console.error("sync-version: --date must be a real YYYY-MM-DD calendar date");
+    process.exit(2);
+  }
+  if (check) {
+    const problems = await checkVersions(repoRoot, { date: requested });
     if (problems.length > 0) { console.error(`Version drift:\n${problems.map((problem) => `- ${problem}`).join("\n")}`); process.exit(1); }
-    console.log("Version strings are in sync with package.json.");
+    console.log(`Version strings, dates, and implementation status are in sync with package.json${requested ? ` for ${requested}` : ""}.`);
   } else {
-    const requested = args.includes("--date") ? args[args.indexOf("--date") + 1] : new Date().toISOString().slice(0, 10);
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(requested || "")) { console.error("sync-version: --date requires a YYYY-MM-DD value"); process.exit(2); }
-    await write(repoRoot, requested);
+    await syncVersion(repoRoot, requested);
   }
 }

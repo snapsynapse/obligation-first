@@ -1,6 +1,6 @@
 {
   "status_schema_version": 1,
-  "released_reference_version": "0.6.5",
+  "released_reference_version": "0.6.6",
   "record_contract": "v0.6",
   "scope_continuity": {
     "status": "released-reference-tooling",
@@ -44,5 +44,5 @@
     "independent_missing_run_notification": "not_accepted",
     "live_recovery_acceptance": "pending"
   },
-  "status_as_of": "2026-09-07"
+  "status_as_of": "2026-09-12"
 }

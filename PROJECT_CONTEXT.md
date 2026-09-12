@@ -47,13 +47,16 @@ README for spec version and licenses.
 ## Current status
 
 - <!-- of-version: project-context-current -->
-  Spec version v0.6.5, pre-v1.0.
+  Source candidate version v0.6.6, pre-v1.0; hosted acceptance remains v0.6.5
+  until later release evidence is recorded.
 - Three adopters live and bound (EveryAILaw, PubLedge, AI Incident Law).
 - Remaining v1.0 gates are tracked in ROADMAP.md; the w3id.org redirect for
   `https://w3id.org/of/v1/` remains planned rather than live.
-- CI covers the full validation suite, GitHub Pages deploy, and a monthly a11y
-  audit. Dated hosted acceptance is in `reference/release-delivery-v0.6.5.json`;
-  it is not a continuously refreshed CI claim.
+- `test.yml` and `pages.yml` run `npm test`, which includes the search contract
+  before all other checks. Pages build and deployment depend on that gate. A monthly
+  a11y audit is separate. Dated hosted acceptance is in
+  `reference/release-delivery-v0.6.5.json`; it is not a continuously refreshed
+  CI claim.
 - F14 ships in v0.6.5 as offline reference tooling, with owner sidecars in EveryAILaw and
   PubLedge. It does not change the v0.6 record contract or production exports.
   `reference/implementation-status.json` owns that boundary and is mirrored to
@@ -61,14 +64,14 @@ README for spec version and licenses.
 
 ## Operational maintenance scope
 
-Operational federation reconciliation checks supplied source, projection, exact-edge and deployed-artifact evidence for EveryAILaw, PubLedge and AI Incident Law. EveryAILaw owns collection and scheduling; EveryAILaw Pro is a downstream service, not an adopter. Byte equivalence is not deployment attestation or proof that legal content is current. Independent missing-run notification and live recovery acceptance remain open. The operational checker is repository tooling outside the immutable v0.6.5 artifact inventory; its contract is `reference/federation-reconciliation-v1.md`.
+Operational federation reconciliation checks supplied source, projection, exact-edge and deployed-artifact evidence for EveryAILaw, PubLedge and AI Incident Law. EveryAILaw owns collection and scheduling; EveryAILaw Pro is a downstream service, not an adopter. Byte equivalence is not deployment attestation or proof that legal content is current. Independent missing-run notification and live recovery acceptance remain open. The operational checker is repository tooling outside the immutable reference-package artifact inventory; its contract is `reference/federation-reconciliation-v1.md`.
 
 ## Documentation audit map
 
 - `README.md` indexes current usage; `ROADMAP.md` indexes pending work.
 - `reference/README.md` indexes reference contracts, decisions, and dated evidence.
 - `reference/decisions/README.md` indexes the implemented semantic decisions.
-- `docs/index.html` is hand-edited website source. `docs/v1/` mirrors schema and
+- `docs/index.html` is hand-authored with sync-managed version/summary/date spans. `docs/v1/` mirrors schema and
   example sources. `docs/agents.json`, `docs/llms*.txt`, and the assistant guide
   describe the immutable reference package and are release-pinned.
 - `handoffs/` contains ignored, temporary queues. Remove a queue only after all

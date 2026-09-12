@@ -16,7 +16,7 @@ The five implemented records dated 2026-08-04 are:
 4. [Actors and deontic grounding](actors-and-deontic-grounding.md)
 5. [Provenance, extensions, and conformance](provenance-extensions-and-conformance.md)
 
-Together they reconcile D1 through D13 from `handoffs/2026-08-04-everyailaw-alignment-remediation.md` with the still-open portions of `handoffs/2026-06-09-semantic-review.md`.
+Together they preserve the durable resolutions of D1 through D13 from the former alignment-remediation and semantic-review handoff queues. Those temporary handoffs were consumed after their decisions moved into these tracked records; this index is the durable reference.
 
 The earlier [IRI naming and crosswalk decision](../iri-naming-and-crosswalks.md) remains authoritative where these records do not refine it.
 

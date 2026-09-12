@@ -313,6 +313,7 @@ async function testReleasePackageStaleHash() {
 
     const releaseFailures = [];
     await validateReleasePackage(releaseFailures, root, {
+      expectedDate: "2026-09-12",
       expectedArtifacts: [{ path: "artifact.txt", url: "https://example.com/artifact.txt" }],
     });
     assert(
@@ -351,6 +352,7 @@ async function testReleasePackageExactInventory() {
 
     const releaseFailures = [];
     await validateReleasePackage(releaseFailures, root, {
+      expectedDate: "2026-09-12",
       expectedArtifacts: [
         { path: "artifact.txt", url: "https://example.com/artifact.txt" },
         { path: "missing.txt", url: "https://example.com/missing.txt" },
@@ -374,6 +376,9 @@ function testPatchReleaseCompatibility() {
   const expectedCurrent = "native v0.6 conformance after schema-and-graph validation";
   const legacy = "schema-valid during the v0.6 migration window; migrate for v0.6 conformance";
   const base = {
+    name: "obligation-first",
+    repository: "https://github.com/snapsynapse/obligation-first",
+    release_date: "2026-09-12",
     version,
     canonical_url: "https://obligationfirst.org/releases/v0.6.1/",
     summary: "Fixture release",
@@ -757,3 +762,12 @@ await import("./test-eal-authority-retirement.mjs");
 await import("./test-admission-base.mjs");
 await import("./test-source-meaning-scoring.mjs");
 await import("./test-term-boundaries.mjs");
+
+await import("./test-release-metadata.mjs");
+await import("./test-core-gates.mjs");
+await import("./test-version-sync.mjs");
+await import("./test-executable-doc-examples.mjs");
+await import("./test-source-meaning-replay.mjs");
+await import("./test-hosted-artifact-verifier.mjs");
+await import("./test-colorado-evolution-companion.mjs");
+await import("./test-publication-hygiene.mjs");

@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.6.6 - 2026-09-12
+
+- Update the transitive Undici dependency from 6.28.0 to 6.28.1, fixing GHSA-rfgv-xxqx-mfg5.
+- Capture the merged source-bound relationship migration, explicit-unknown, owner-specific comparison-base and pinned-history federation checks in the repository release.
+- Refresh reference-package hashes and version surfaces; reconcile offline-tooling and prepared namespace wording.
+- Correct contributor, namespace, machine-discovery and release instructions; distinguish current guidance from historical fixtures and validate the synthetic LegalRuleML extension example. Add complete version/date/status synchronization, broader documentation parity, executable documentation checks, a canonical search gate, strict release metadata checks, immutable-source/hosted-byte verification, and replay of frozen initial/final source-meaning scores. Preserve the Colorado snapshot beside a separately identified evolution companion.
+- Remove processed binding handoffs after preserving verified provenance in the adopter kit; enforce handoff exclusion for candidate source and the actual commit index.
+- Preserve v0.6 record shapes, JSON-LD mappings, adopter naming ranges and the existing assistant-guide profile. Operational reconciliation remains repository tooling outside the immutable reference manifest.
+
 ## v0.6.5 - 2026-09-06
 
 - Distribute the F14 offline qualified-time evaluator and source-boundary fixtures without changing the v0.6 record schema or production serialization.

@@ -1,8 +1,8 @@
 ---
 title: "Obligation-First INTENT"
 # of-version: intent-frontmatter
-version: "0.6.5"
-last_updated: 2026-09-09
+version: "0.6.6"
+last_updated: 2026-09-12
 status: working-hypothesis
 description: "Standards-level strategy for the Obligation-First upper schema. Defines scope, design constraints, adoption order, and governance posture."
 tags: [intent, strategy, obligation-first, ontology, gist, standards]

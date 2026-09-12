@@ -4,7 +4,7 @@ Obligation-First is drafting in public. Contributions are welcome.
 
 ## What we want
 
-- **Adopter feedback.** If you bind an existing dataset to v0.1 and something doesn't fit, file an issue. Adopter pain is the strongest design signal.
+- **Adopter feedback.** If you bind an existing dataset to the current v0.6 release line and something doesn't fit, file an issue. Adopter pain is the strongest design signal.
 - **Crosswalk improvements.** If a mapping in `reference/crosswalks/` is wrong or incomplete, send a PR.
 - **Worked examples.** New examples in `examples/` that exercise edge cases are welcome.
 - **Standards review.** If you work on Akoma Ntoso, LegalRuleML, ELI, ECLI, gist, Catala, Blawx, or any adjacent standard and notice we've misrepresented your work, please correct us.

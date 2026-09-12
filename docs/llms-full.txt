@@ -1,7 +1,7 @@
 # Obligation-First — full LLM context
 
 <!-- of-version: llms-full-current -->
-> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.6.5 is the current released specification. Record `@id` values are adopter-local, opaque, and permanent. Jurisdiction represents legal competence, with territorial and institutional scope modeled independently.
+> An open upper schema for normative content (laws, cases, joint interpretations) bound to Semantic Arts gist. v0.6.6 is the current released specification. Record `@id` values are adopter-local, opaque, and permanent. Jurisdiction represents legal competence, with territorial and institutional scope modeled independently.
 
 This file is the deeper companion to llms.txt. Where llms.txt gives a one-screen summary, this file is the full context an LLM-powered tool needs to reason about Obligation-First, generate adopter records, or answer detailed questions without scraping.
 
@@ -135,14 +135,19 @@ Tests: Authority + 2 Parties + Proceeding + 2 Allegations + Determination + reco
 
 Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/air-canada/README.md
 
-### Colorado SB 24-205 — three-layer reality
+### Colorado SB 24-205 — preserved three-layer historical fixture
 
 Tests:
-- Layer 1 (legislation): 2 Authorities + 1 Instrument (status: enacted, enforcement_status: constrained) + 1 Term + 1 Requirement + 1 Reparation.
-- Layer 2 (enforcement): Proceeding + Allegation + 2 Determinations (federal stay + AG non-enforcement statement).
-- Layer 3 (political direction): 2nd Instrument, SB26-189 Automated Decision-Making Technology (status: proposed until signed), with wouldSupersede pointing at SB 24-205. 3rd Authority (Colorado AI Policy Work Group) with non-government authority_basis.
+- Retained teaching records for legislation, a synthetic enforcement proceeding, and an enacted successor Instrument.
+- Historical narrative and legacy status fields are not current legal-status assertions. The fixture does not establish predecessor operative or enforcement history.
 
 Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/colorado-sb24-205/README.md
+
+### Colorado evolution companion — synthetic current-contract boundary
+
+Tests: two current-contract Instrument representations at fixed `2026-09-05`: a predecessor with no lifecycle label pending owner decision and an `enacted` successor with evidenced `supersedes`. Both retain `operative_status: unknown` and `enforcement_status: unknown`; unknown does not claim absence. The successor's `2026-05-14` enactment and section 5(1) `2027-01-01` general date come from the frozen F14 evidence boundary, not a refresh or a whole-instrument operation conclusion. The companion deliberately omits scalar `effective` because section 5 has scoped exceptions. Independent owner descriptions use `describesSameEntityAs`, never `sameAs`.
+
+Source: https://github.com/snapsynapse/obligation-first/blob/main/examples/colorado-evolution/README.md
 
 ### Utah OAIP JIA — joint interpretation
 
@@ -188,7 +193,7 @@ Required ceremony:
 4. Ask the user to confirm they have read the guide and approve proceeding under the reported level.
 5. Do not execute actions before confirmation.
 
-The Level 4 manifest is at `https://obligationfirst.org/.well-known/assistant-guide-manifest.txt`. It pins the guide SHA-256 and byte count and uses the public repository copy at `assistant-guide.txt` as the repository-file anchor. This is a provenance check, not a safety claim.
+The integrity manifest is at `https://obligationfirst.org/.well-known/assistant-guide-manifest.txt`. It pins the guide SHA-256 and byte count and uses the public repository copy at `assistant-guide.txt` as the repository-file anchor. This is a provenance check, not a safety claim. The sidecar alone does not establish the achieved conformance level; consult the repository INTENT.md for the retained profile and frozen-verifier exception.
 
 ## Endpoints
 
@@ -208,7 +213,7 @@ The Level 4 manifest is at `https://obligationfirst.org/.well-known/assistant-gu
 - ExecutableEncoding schema: https://obligationfirst.org/v1/schema/executable-encoding.schema.json
 - Naming profile schema: https://obligationfirst.org/v1/schema/naming-profile.schema.json
 <!-- of-version: llms-full-release-url -->
-- Release package: https://obligationfirst.org/releases/v0.6.5/
+- Release package: https://obligationfirst.org/releases/v0.6.6/
 - Assistant guide: https://obligationfirst.org/.well-known/assistant-guide.txt
 - Assistant guide manifest: https://obligationfirst.org/.well-known/assistant-guide-manifest.txt
 - Sitemap: https://obligationfirst.org/sitemap.xml
@@ -231,6 +236,8 @@ https://github.com/snapsynapse/obligation-first
 
 ## Offline evaluation and vocabulary documentation
 
-The v0.6.5 reference package includes F14 qualified-time fixtures. They do not determine legal applicability or predecessor operative history and do not change production serialization. Machine status: https://obligationfirst.org/evaluation-status.json
+<!-- implementation-status:start -->
+The v0.6.6 reference package includes scope continuity evaluation. F14 qualified-time evaluation is released offline reference tooling: expected/fallback branches and evidence/date boundaries are tested, while the v0.6 record schema and production serialization are unchanged. These fixtures do not determine legal applicability or predecessor operative history. Machine status: https://obligationfirst.org/evaluation-status.json
+<!-- implementation-status:end -->
 
 Vocabulary documentation: https://obligationfirst.org/v1/vocabulary/ . The w3id contribution is prepared but has not been submitted; permanent-IRI resolution remains pending.

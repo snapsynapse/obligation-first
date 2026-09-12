@@ -2,6 +2,14 @@
 
 This is a historical modeling fixture, not a current legal-status report. Its schema and graph checks establish the encoded relationships, not the predecessor's complete operative or enforcement history. The [F14 fixture contract](https://github.com/snapsynapse/obligation-first/blob/main/reference/contracts/qualified-time-fixture-v1.md) separately distinguishes section-specific dates and preserves unknown history. Source review remains necessary before relying on this narrative as a statement of law.
 
+For the separately identified current-contract teaching representation, see the [Colorado evolution companion](../colorado-evolution/README.md). It preserves these historical records while modeling the bounded successor evidence and explicit unknown operation and enforcement.
+
+## Known limits of this historical fixture
+
+The retained records use legacy `status`, a teaching `enforcement_status: constrained`, and `sameAs` links to independent EveryAILaw records. Schema validity does not make these current v0.6 semantic guidance. In particular, the current source-bound predecessor projections retain explicit unknown operation and enforcement; this fixture does not establish that an active period occurred. The v0.6 identity contract reserves `sameAs` for genuine identity with property merging and uses `describesSameEntityAs` for independently maintained records about the same entity. The fixture's stronger identity links require a separate record-level review and must not be copied as the recommended correspondence pattern.
+
+The narrative and snippets below are retained teaching history, including their earlier live-record and enforcement claims. They are not refreshed legal evidence. See [the source-bound correction boundary](https://github.com/snapsynapse/obligation-first/blob/main/reference/known-corrections-2026-09-09.md), [the identity contract](https://github.com/snapsynapse/obligation-first/blob/main/reference/decisions/identity-and-classification.md), and [the prepublication audit](https://github.com/snapsynapse/obligation-first/blob/main/reference/prepublication-audit-2026-09-12.md) for current implementation and unresolved record-level work.
+
 The example models three interacting layers:
 
 | Layer | Condition modeled by the fixture | Interpretation boundary |
@@ -14,7 +22,7 @@ A schema that can only model "the law" and not "the law's actual operating postu
 
 The good news: it can. The spine handles legislation. The proceeding strand handles enforcement. A second `enacted` Instrument with a `supersedes` relationship handles the legislative succession. The example below shows each layer round-tripped, then closes with a section on what this exercise revealed about the schema's strengths and the items that still need work.
 
-## Record convention (v0.6)
+## Retained record convention (legacy-compatible fixture)
 
 Every record in this example follows the worked-example record convention:
 

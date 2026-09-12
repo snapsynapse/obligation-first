@@ -26,8 +26,8 @@
 
 bundle: obligation-first
 # of-version: manifest-bundle
-bundle_version: 0.6.5
-bundle_date: 2026-09-06
+bundle_version: 0.6.6
+bundle_date: 2026-09-12
 
 files:
   examples/air-canada/README.md: 080e01a8e1c90e9d06f9f6d1ac8dfdee1ca3b5d1394ac77e4a6bbd9909805874
@@ -39,7 +39,10 @@ files:
   examples/air-canada/records/party-air-canada.json: 964468675f4f45376ef5acbc318ea176cddbe21e70baf28c73168d76ad8c3d81
   examples/air-canada/records/party-moffatt.json: e127bcf1d62e855ce85c5f6690512a627dfc119ed34c782f1a25b209270b4962
   examples/air-canada/records/proceeding-moffatt.json: ac66d10d644b4e4386b7737c76bbd5f6b4a8b482f870db056ac3f2ab17897169
-  examples/colorado-sb24-205/README.md: a77df0ce52de546039f662c4ad424e384216c130009cd9e90da02254ecfddc67
+  examples/colorado-evolution/README.md: 698531c763616736fca6897466f74098c7112fcd7ec3b388bd00b4605661c43b
+  examples/colorado-evolution/records/instrument-co-sb24-205-predecessor.json: 16794eadf43d66071a771fb4f8b294082f0359f9adef48c79b8491d2313ca97e
+  examples/colorado-evolution/records/instrument-co-sb26-189-successor.json: c5d01a13d4390432406beca71f1ed4af385ab8b70f6d2400fe74a932bb57f0fd
+  examples/colorado-sb24-205/README.md: 2ab0304e3a5da9978b2fbbddbd1da00abdc70ed9ffed808a17d06a0d16495551
   examples/colorado-sb24-205/records/allegation-co-sb24-205-enforcement-challenge.json: 866898ae6a1c190d3f85f0e313db7d32cee1adf7a6659e60d3fd06ccf892d593
   examples/colorado-sb24-205/records/authority-co-attorney-general.json: 15cd2958316f53401d8c7681ebd1b92986085cde78d2f3dc33091dedac510d18
   examples/colorado-sb24-205/records/authority-co-general-assembly.json: d8fa2a40081c47a5892aee77b6b98a32613a8a426485dd2525ac3aff09395ff5
@@ -98,21 +101,21 @@ files:
   examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json: 749c13ccef70be61f07e5f1deb6e65bf5e90ede28157651ada105c770fb13611
   examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json: 015868fca5d44d63506acd0935fde7cfeaf6b65273fe08f0dcf4c2e978b7e0a2
   examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json: bc83ea309c09c51d3068b841fcafc9cd45beb36199d740655eb7406bf607c312
-  INTENT.md: e12bdd95b8c23900933ef1e38716fd80b0e58a831a9427bfa55a31f4de25f548
+  INTENT.md: ee14c143596f200f2fb6b67b20de1c589efc60ea2862b3b1969a7829b2e3972b
   LICENSE-APACHE: 3cbeb832e52ede2c154d4977567b70f204a853342e51d843458f9b785771f069
   LICENSE-CC-BY-4.0: 62a68518848c2fdcd108ff5cc11ba1516440c507bf425d5e76ad36886fd5752a
   NOTICE: 3f2ce598a6a3764e500c61e46ab707606ab3aa911eb780f28b87455dffece286
   PRIOR-ART.md: 52aad9656267bfd90cbe0056d2433e5879aa589d90f80eafb4e2c77725bc447f
-  PROTOCOL.md: 393c0e6cfc27ed66f406c683382804ea202e2766798996770709675c84e6f026
+  PROTOCOL.md: efa3fe546d72ae7cc6d468e9f42cc61d186cf88f95029c1c0818dbf4a34b88ff
   reference/crosswalks/akomantoso.md: 9c1e5519788708f25ad084a0fe73aa3402ff39e9f7942c350d23b2b95720d3e4
   reference/crosswalks/eli-ecli.md: 04d72007db68ee1e6f1532e7b53089e48af6ee8ce58b1ab92d59481f0d58a3e9
   reference/crosswalks/gist.md: 7878e5a3662f6f1a6b3a84edbf1dc4ab8032cf893ae2afef5c1e3d95e6c28452
-  reference/crosswalks/legalruleml.md: 1c5de936f376251f6cf69ca02e090e4351647073ca5efa25342245e7855d0eda
-  ROADMAP.md: cc843de871d8fb9192cbd819d8c6062e0bbb296db54b33708a153843da70fc56
+  reference/crosswalks/legalruleml.md: 5b57f45eeab19f58ca8babecd3b0fa5f9893e4464a7459073d2644eb587560c4
+  ROADMAP.md: c0d6da4f7b377f51b5b322967c6911d6f92f954945de4d3cb76bea400bfbebd3
   schema/allegation.schema.json: f1166364f71bcd59177504e769a8037117600b2a78b4f33e0494f6e00cd44b12
   schema/authority.schema.json: ede988f066a778bac22a148a64243fe1a80b5cc4362b68bad722dcae5bc74450
   schema/common.schema.json: cd3380f994135dbd0cc5553552a3073929dfdea55c83f56e784e8da85375f5e1
-  schema/context.jsonld: 5b5c9bd157289ca3b9f75211ffab78edb577f4638bae2ec15a8f4996c26e0ef3
+  schema/context.jsonld: 469bad782d04e9a1e2a01d36ba27809eed21d5f09d3d0f8a31737e9b53a26e39
   schema/determination.schema.json: 8cb1766fe2bcc31dceb6b54656a8764405e7a082010b44f9393ada89eddf0c39
   schema/executable-encoding.schema.json: 4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810
   schema/instrument.schema.json: dea85420c2fa47f461022023355acdd1478d5dff2ed2ef6cd3f3d1c4861eecb2

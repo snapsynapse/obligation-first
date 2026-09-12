@@ -2,6 +2,8 @@
 
 Scope: local shared validation and consumer checks for the approved PAICE legal-graph mitigation session. Source admission and legal interpretation remain owned by each adopter. This is implementation evidence, not a release or source-currentness certification.
 
+> Historical implementation record. The completed source delivery and runtime receipts are recorded separately; current package state is [v0.6.6 preparation](release-preparation-v0.6.6.md). The unresolved owner, notification, source-history, and publication boundaries below remain limitations, not a new execution queue in this file.
+
 ## Shared changes
 
 - Federation invokes each owner's `check:admission`, validates the process exit and JSON report, and retains explicit legacy-unreviewed and reviewed-change counts. A zero-review legacy report can pass structural admission without certifying historical records. Missing commands, failed exits, malformed reports, dishonest accounting and omitted limits fail.

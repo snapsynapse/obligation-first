@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { STATUS_FILES, implementationStatusFailures } from './check-implementation-status.mjs';
+import { STATUS_FILES, STATUS_SURFACE_INVENTORY, implementationStatusFailures } from './check-implementation-status.mjs';
 
 const root = new URL('../', import.meta.url);
 const files = Object.fromEntries(await Promise.all(STATUS_FILES.map(async rel => [rel, await readFile(new URL(rel, root), 'utf8')])));
@@ -24,6 +24,11 @@ fault('public status mirror drift', f => { f['docs/evaluation-status.json'] += '
 fault('website makes an unsupported scope claim', f => { f['docs/index.html'] = f['docs/index.html'].replace('released offline reference tooling', 'released production serializer'); }, 'OF-STATUS-PROSE:');
 fault('README loses the current scope block', f => { f['README.md'] = f['README.md'].replace('implementation-status:start', 'removed'); }, 'OF-STATUS-PROSE:');
 fault('machine status becomes undiscoverable', f => { f['docs/index.html'] = f['docs/index.html'].replaceAll('https://obligationfirst.org/evaluation-status.json', '/missing.json'); }, 'OF-STATUS-DISCOVERY:');
+for (const surface of STATUS_SURFACE_INVENTORY.filter(surface => !surface.machine)) {
+  fault(`${surface.rel} loses its managed status block`, f => { f[surface.rel] = f[surface.rel].replace('implementation-status:start', 'removed'); }, `OF-STATUS-PROSE: ${surface.rel}`);
+  fault(`${surface.rel} loses its status discovery`, f => { f[surface.rel] = f[surface.rel].replaceAll(surface.discovery, '/missing.json'); }, `OF-STATUS-DISCOVERY: ${surface.rel}`);
+}
+fault('agent discovery omits machine status', f => { const a = JSON.parse(f['docs/agents.json']); delete a.endpoints.evaluation_status; f['docs/agents.json'] = JSON.stringify(a); }, 'OF-STATUS-DISCOVERY: docs/agents.json');
 fault('agent version drift', f => { const a = JSON.parse(f['docs/agents.json']); a.version = 'v0.0.0'; f['docs/agents.json'] = JSON.stringify(a); }, 'OF-STATUS-VERSION:');
 fault('production serialization overclaim in both copies', f => alterStatus(f, s => { s.qualified_time.production_serialization = true; }), 'OF-STATUS-F14:');
 fault('schema expansion overclaim', f => alterStatus(f, s => { s.qualified_time.changes_record_schema = true; }), 'OF-STATUS-F14:');
