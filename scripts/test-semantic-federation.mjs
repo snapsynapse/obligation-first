@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
+import { mkdtemp, mkdir, writeFile, readFile, symlink, rm } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -137,8 +138,37 @@ try {
   await writeFile(path.join(fixture, 'projection/record.json'), '{"effective":"2027-01-01"}');
   await writeFile(path.join(fixture, 'build.cjs'), "require('fs').copyFileSync('source.json', 'projection/record.json')");
   assert.equal(spawnSync('git', ['init', '-q', fixture]).status, 0);
+  const fixtureGit = args => {
+    const result = spawnSync('git', ['-C', fixture, ...args], { encoding: 'utf8' });
+    assert.equal(result.status, 0, result.stderr);
+    return result.stdout.trim();
+  };
+  fixtureGit(['add', 'source.json']);
+  fixtureGit(['-c', 'user.name=Synthetic Test', '-c', 'user.email=test@example.com', '-c', 'commit.gpgsign=false', '-c', 'core.hooksPath=/dev/null', 'commit', '-qm', 'Pin synthetic source']);
+  const pinnedRevision = fixtureGit(['rev-parse', 'HEAD']);
+  const originalIndex = await readFile(path.join(fixture, '.git/index'));
+  const originalRefs = fixtureGit(['show-ref']);
+  await writeFile(path.join(fixture, 'build.cjs'), `
+const assert = require('node:assert/strict');
+const cp = require('node:child_process');
+const fs = require('node:fs');
+assert.equal(cp.execFileSync('git', ['show', '${pinnedRevision}:source.json'], {encoding:'utf8'}), '{"effective":"2027-01-01"}');
+assert.ok(!fs.existsSync('projection/record.json'));
+cp.execFileSync('git', ['update-ref', 'refs/heads/temporary-build', '${pinnedRevision}']);
+cp.execFileSync('git', ['add', 'source.json']);
+fs.copyFileSync('source.json', 'projection/record.json');
+`);
   const { checkProjection } = await import('./check-projection-freshness.mjs');
   await checkProjection(fixture, 'projection', 'build.cjs');
+  assert.deepEqual(await readFile(path.join(fixture, '.git/index')), originalIndex);
+  assert.equal(fixtureGit(['show-ref']), originalRefs);
+  const linkedChecker = path.join(dir, 'linked-checker.mjs');
+  await symlink(fileURLToPath(new URL('./check-projection-freshness.mjs', import.meta.url)), linkedChecker);
+  for (const flags of [[], ['--preserve-symlinks-main']]) {
+    const linkedResult = spawnSync(process.execPath, [...flags, linkedChecker, fixture, 'projection', 'build.cjs'], { encoding: 'utf8' });
+    assert.equal(linkedResult.status, 0, linkedResult.stderr);
+    assert.match(linkedResult.stdout, /Source projection fresh:/);
+  }
   await writeFile(path.join(fixture, 'source.json'), '{"effective":"2027-01-02"}');
   await assert.rejects(checkProjection(fixture, 'projection', 'build.cjs'), /OF-PROJECTION-STALE/);
   await writeFile(path.join(fixture, 'source.json'), '{"effective":"2027-01-01"}');
