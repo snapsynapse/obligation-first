@@ -745,3 +745,15 @@ await import("./test-implementation-status.mjs");
 await import("./test-federation-reconciliation.mjs");
 
 await import("./test-vocabulary.mjs");
+await import("./test-adopter-admission.mjs");
+await import("./test-nested-fingerprint.mjs");
+await import("./test-causal-dates.mjs");
+await import("./test-consumer-traversal.mjs");
+await import("./test-relationship-migrations.mjs");
+await import("./test-eal-category-retirement.mjs");
+await import("./test-eal-source-category-withdrawal.mjs");
+await import("./test-eal-source-role-correction.mjs");
+await import("./test-eal-authority-retirement.mjs");
+await import("./test-admission-base.mjs");
+await import("./test-source-meaning-scoring.mjs");
+await import("./test-term-boundaries.mjs");

@@ -26,6 +26,10 @@ function paired(code, valid, mutate) {
 }
 
 export const GRAPH_RULE_MUTATIONS = [
+  paired(C.FUTURE_EVIDENCE, [entry("authority", "of:Authority", { verified: "2020-01-01" })], (records) => { records[0].record.verified = "9999-01-01"; }),
+  paired(C.DECISION_BEFORE_FILING, [instrument(), determination("determination", { issued_date: "2020-02-02" }), entry("proceeding", "of:Proceeding", { filed_date: "2020-02-01", hasDetermination: id("determination") })], (records) => { records[1].record.issued_date = "2020-01-31"; }),
+  paired(C.VACATES_BEFORE_DECISION, [instrument(), determination("prior", { issued_date: "2020-02-01" }), determination("later", { issued_date: "2020-03-01", vacates: id("prior") })], (records) => { records[2].record.issued_date = "2020-01-01"; }),
+  paired(C.SUNSET_OPERATIVE, [instrument("instrument", { sunset: "2026-12-31", computed_as_of: "2026-06-01", operative_status: "operative" })], (records) => { records[0].record.computed_as_of = "2027-01-01"; }),
   paired(C.MISSING_ID, [authority()], (records) => delete records[0].record["@id"]),
   paired(C.DUPLICATE_ID, [authority(), entry("party", "of:Party")], (records) => { records[1].record["@id"] = records[0].record["@id"]; }),
   paired(C.MISSING_LOCAL_REFERENCE, [authority(), instrument("instrument", { issuedBy: id("authority") })], (records) => { records[1].record.issuedBy = id("absent"); }),

@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "dataset_sha256": "0a99b2929b672c0a19807542e2ffe997ebc394c46fe3182733d8031cd4653393",
+  "evaluator": "Codex /root/publedge_preflight gold-label-blind source review 2026-09-09",
+  "label_authority": "Provisional coordinator labels; independent source review and dispute disposition required.",
+  "cases": 22,
+  "scored_cases": 22,
+  "disputed_cases": [],
+  "exact_matches": 19,
+  "false_accepts": 0,
+  "false_rejects": 1,
+  "abstentions": 3,
+  "warranted_abstentions": 3,
+  "unwarranted_abstentions": 0,
+  "incorrect_rejections_of_insufficient_evidence": 2,
+  "confusion_matrix": {
+    "supported": {
+      "supported": 9,
+      "contradicted": 1,
+      "insufficient_evidence": 0
+    },
+    "contradicted": {
+      "supported": 0,
+      "contradicted": 7,
+      "insufficient_evidence": 0
+    },
+    "insufficient_evidence": {
+      "supported": 0,
+      "contradicted": 2,
+      "insufficient_evidence": 3
+    }
+  },
+  "by_error_class": {
+    "wrong-document": {
+      "cases": 2,
+      "exact": 2
+    },
+    "exception": {
+      "cases": 7,
+      "exact": 6
+    },
+    "unsupported-negative": {
+      "cases": 2,
+      "exact": 2
+    },
+    "event": {
+      "cases": 4,
+      "exact": 3
+    },
+    "commencement": {
+      "cases": 3,
+      "exact": 2
+    },
+    "version": {
+      "cases": 2,
+      "exact": 2
+    },
+    "translation": {
+      "cases": 2,
+      "exact": 2
+    }
+  },
+  "results": [
+    {
+      "id": "SM-002",
+      "expected": "supported",
+      "predicted": "supported",
+      "match": true
+    },
+    {
+      "id": "SM-006",
+      "expected": "supported",
+      "predicted": "supported",
+      "match": true
+    },
+    {
+      "id": "SM-013",
+      "expected": "insufficient_evidence",
+      "predicted": "insufficient_evidence",
+      "match": true
+    },
+    {
+      "id": "SM-016",
+      "expected": "insufficient_evidence",
+      "predicted": "insufficient_evidence",
+      "match": true
+    },
+    {
+      "id": "SM-019",
+      "expected": "insufficient_evidence",
+      "predicted": "contradicted",
+      "match": false
+    },
+    {
+      "id": "SM-009",
+      "expected": "supported",
+      "predicted": "contradicted",
+      "match": false
+    },
+    {
+      "id": "SM-007",
+      "expected": "contradicted",
+      "predicted": "contradicted",
+      "match": true
+    },
+    {
+      "id": "SM-015",
+      "expected": "supported",
+      "predicted": "supported",
+      "match": true
+    },
+    {
+      "id": "SM-008",
+      "expected": "contradicted",
+      "predicted": "contradicted",
+      "match": true
+    },
+    {
+      "id": "SM-005",
+      "expected": "contradicted",
+      "predicted": "contradicted",
+      "match": true
+    },
+    {
+      "id": "SM-021",
+      "expected": "contradicted",
+      "predicted": "contradicted",
+      "match": true
+    },
+    {
+      "id": "SM-001",
+      "expected": "contradicted",
+      "predicted": "contradicted",
+      "match": true
+    },
+    {
+      "id": "SM-014",
+      "expected": "insufficient_evidence",
+      "predicted": "insufficient_evidence",
+      "match": true
+    },
+    {
+      "id": "SM-003",
+      "expected": "contradicted",
+      "predicted": "contradicted",
+      "match": true
+    },
+    {
+      "id": "SM-017",
+      "expected": "contradicted",
+      "predicted": "contradicted",
+      "match": true
+    },
+    {
+      "id": "SM-022",
+      "expected": "supported",
+      "predicted": "supported",
+      "match": true
+    },
+    {
+      "id": "SM-018",
+      "expected": "supported",
+      "predicted": "supported",
+      "match": true
+    },
+    {
+      "id": "SM-020",
+      "expected": "supported",
+      "predicted": "supported",
+      "match": true
+    },
+    {
+      "id": "SM-010",
+      "expected": "insufficient_evidence",
+      "predicted": "contradicted",
+      "match": false
+    },
+    {
+      "id": "SM-004",
+      "expected": "supported",
+      "predicted": "supported",
+      "match": true
+    },
+    {
+      "id": "SM-011",
+      "expected": "supported",
+      "predicted": "supported",
+      "match": true
+    },
+    {
+      "id": "SM-012",
+      "expected": "supported",
+      "predicted": "supported",
+      "match": true
+    }
+  ],
+  "limits": "Bounded selected-case evaluation with stated label authority. No corpus accuracy, legal approval, production evaluator acceptance, or general model benchmark is established. Synthetic cases remain distinct from official-source cases."
+}

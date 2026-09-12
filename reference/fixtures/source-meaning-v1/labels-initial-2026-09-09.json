@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "dataset_sha256": "0a99b2929b672c0a19807542e2ffe997ebc394c46fe3182733d8031cd4653393",
+  "label_authority": "Provisional coordinator labels; independent source review and dispute disposition required.",
+  "cases": [
+    {
+      "id": "SM-001",
+      "class": "wrong-document",
+      "expected": "contradicted",
+      "reason": "The identified instrument is the Business & Commerce Code, not the Government Code.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-002",
+      "class": "wrong-document",
+      "expected": "supported",
+      "reason": "The current Business & Commerce provision states that intent-based prohibition.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-003",
+      "class": "exception",
+      "expected": "contradicted",
+      "reason": "The exception is limited to providing insurance services and being subject to the specified insurance laws.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-004",
+      "class": "exception",
+      "expected": "supported",
+      "reason": "Subsection (e) expressly includes both laws and regulations.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-005",
+      "class": "exception",
+      "expected": "contradicted",
+      "reason": "The conditional clause appears only in the internal-review alternative (D).",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-006",
+      "class": "exception",
+      "expected": "supported",
+      "reason": "Subsection (e)(2)(D) binds the framework condition to internal review.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-007",
+      "class": "exception",
+      "expected": "contradicted",
+      "reason": "This is a qualified defense in an action under this section, not blanket legal immunity.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-008",
+      "class": "commencement",
+      "expected": "contradicted",
+      "reason": "The stated bar lasts until the 60th day.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-009",
+      "class": "commencement",
+      "expected": "supported",
+      "reason": "The alternatives and required elements are explicit in section 552.104(b)(2).",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-010",
+      "class": "exception",
+      "expected": "insufficient_evidence",
+      "reason": "The source directs publication of a filer list excluding contacts; it does not establish access to the filings themselves.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-011",
+      "class": "exception",
+      "expected": "supported",
+      "reason": "The two ownership clauses have different thresholds and histories.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-012",
+      "class": "commencement",
+      "expected": "supported",
+      "reason": "The amendment replaces the prior relative effective-date clause with January 1, 2027.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-013",
+      "class": "unsupported-negative",
+      "expected": "insufficient_evidence",
+      "reason": "A bounded section excerpt cannot establish absence across other New York law.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-014",
+      "class": "event",
+      "expected": "insufficient_evidence",
+      "reason": "The header identifies the issue date, not the filing date.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-015",
+      "class": "event",
+      "expected": "supported",
+      "reason": "The header explicitly labels Date Issued.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-016",
+      "class": "unsupported-negative",
+      "expected": "insufficient_evidence",
+      "reason": "The source says its nature was not supplied, and does not establish those controls absent.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-017",
+      "class": "translation",
+      "expected": "contradicted",
+      "reason": "The rendering drops nicht and reverses the original negative finding.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-018",
+      "class": "translation",
+      "expected": "supported",
+      "reason": "The original negates the finding rather than affirming AI attribution.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-019",
+      "class": "event",
+      "expected": "insufficient_evidence",
+      "reason": "A complaint and requested relief do not establish an adjudication, order or imposition date.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-020",
+      "class": "event",
+      "expected": "supported",
+      "reason": "The source explicitly describes requested relief as an allegation-stage event.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-021",
+      "class": "version",
+      "expected": "contradicted",
+      "reason": "The enacted version B replaces that introduced-bill date.",
+      "adjudication": "coordinator-provisional-source-review"
+    },
+    {
+      "id": "SM-022",
+      "class": "version",
+      "expected": "supported",
+      "reason": "The claim is bounded to the supplied documents and retains the amendment event.",
+      "adjudication": "coordinator-provisional-source-review"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "dataset_sha256": "0a99b2929b672c0a19807542e2ffe997ebc394c46fe3182733d8031cd4653393",
+  "evaluator": "Codex /root/publedge_preflight gold-label-blind source review 2026-09-09",
+  "cases": [
+    { "id": "SM-002", "label": "supported", "reason": "Subsection (b) prohibits developing or deploying an AI system with intent to unlawfully discriminate against a protected class." },
+    { "id": "SM-006", "label": "supported", "reason": "Subsection (e)(2)(D) makes substantial compliance with the named NIST profile or another recognized framework a condition of the internal-review discovery route." },
+    { "id": "SM-013", "label": "insufficient_evidence", "reason": "The supplied section establishes one New York disclosure duty but cannot establish that no other New York law imposes one." },
+    { "id": "SM-016", "label": "insufficient_evidence", "reason": "Paragraph 14 identifies an automated chatbot and lack of disclosed nature, but says nothing about escalation controls or technical guardrails." },
+    { "id": "SM-019", "label": "contradicted", "reason": "The evidence is only a complaint requesting a penalty and explicitly contains no adjudication or order imposing one." },
+    { "id": "SM-009", "label": "contradicted", "reason": "The attorney general may not bring the action before day 60 regardless of cure; cure plus the complete written statement prevents the action after notice under the separate condition." },
+    { "id": "SM-007", "label": "contradicted", "reason": "The excerpt provides limited defenses in an action under this section, not immunity for every NIST-compliant system from all legal liability." },
+    { "id": "SM-015", "label": "supported", "reason": "The official header states Date Issued: February 14, 2024." },
+    { "id": "SM-008", "label": "contradicted", "reason": "Subsection (b)(1) expressly bars the described action before the 60th day after notice." },
+    { "id": "SM-005", "label": "contradicted", "reason": "Feedback, testing, and agency-guideline routes are separate alternatives; NIST compliance qualifies only the internal-review route." },
+    { "id": "SM-021", "label": "contradicted", "reason": "The supplied enacted amendment replaces July 1, 2026 with January 1, 2027." },
+    { "id": "SM-001", "label": "contradicted", "reason": "The source identifies section 552.056 as Texas Business & Commerce Code, not Government Code." },
+    { "id": "SM-014", "label": "insufficient_evidence", "reason": "The header gives the issuance date, not the filing date." },
+    { "id": "SM-003", "label": "contradicted", "reason": "The exemption is limited to insurance services by an entity subject to specified insurance regulation, not all activities of every insurance entity." },
+    { "id": "SM-017", "label": "contradicted", "reason": "The English rendering reverses the German negation and therefore does not preserve the original statement." },
+    { "id": "SM-022", "label": "supported", "reason": "The enacted version B expressly replaces the earlier July 1, 2026 commencement with January 1, 2027." },
+    { "id": "SM-018", "label": "supported", "reason": "The German sentence states that the court did not establish the defendant's use of artificial intelligence." },
+    { "id": "SM-020", "label": "supported", "reason": "The synthetic complaint evidence expressly says the complainant requests a monetary penalty." },
+    { "id": "SM-010", "label": "contradicted", "reason": "Section 1428 requires publication of a list of filers while excluding contact details; it does not require publishing the filed statements themselves." },
+    { "id": "SM-004", "label": "supported", "reason": "Subsection (e) deems a federally insured financial institution compliant when it complies with all federal and state banking laws and regulations." },
+    { "id": "SM-011", "label": "supported", "reason": "Paragraph (3)(c) states a 5 percent threshold for private or closely held ownership and a 50 percent threshold for publicly traded ownership." },
+    { "id": "SM-012", "label": "supported", "reason": "The amendment states that the act takes effect January 1, 2027." }
+  ]
+}

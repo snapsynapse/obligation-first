@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "dataset_sha256": "0a99b2929b672c0a19807542e2ffe997ebc394c46fe3182733d8031cd4653393",
+  "initial_labels_sha256": "14afda4d64dc5f38161238352fa2c8f79857958ec755c1e4db7edc33c2319a73",
+  "blind_predictions_sha256": "246255c4510ebc8e481151ca8be0e1c779915a1eebfb16f552fe3e335cc23809",
+  "final_labels_sha256": "e9c4c55a4f7045868086921a2046aec59665dc3a6c4d731bc00747beff537d80",
+  "recorded_at": "2026-09-09T17:16:30.041858+00:00",
+  "actors": [
+    "Codex coordinator",
+    "Codex /root/publedge_preflight (gpt-5.6-sol, medium)"
+  ],
+  "human_approval": false,
+  "label_blinding": "Evaluator read cases.json only before its initial predictions. Labels became known during the subsequent disagreement discussion. Initial predictions and initial score are retained unchanged.",
+  "disagreements": [
+    {
+      "id": "SM-009",
+      "initial_label": "supported",
+      "initial_prediction": "contradicted",
+      "adjudicated_label": "contradicted",
+      "reason": "Coordinator withdrew its original label. Section552.104(b)(1) prohibits action before day60 regardless of cure; the claim made cure necessary for that period."
+    },
+    {
+      "id": "SM-010",
+      "initial_label": "insufficient_evidence",
+      "initial_prediction": "contradicted",
+      "adjudicated_label": "insufficient_evidence",
+      "reason": "Filer-list publication does not itself establish or disprove a duty to publish the filings. Evaluator accepted that absent support is not an incompatible proposition."
+    },
+    {
+      "id": "SM-019",
+      "initial_label": "insufficient_evidence",
+      "initial_prediction": "contradicted",
+      "adjudicated_label": "insufficient_evidence",
+      "reason": "No order included in an evidence packet is not proof that the agency never imposed a penalty. Evaluator accepted the evidence-boundary correction."
+    }
+  ],
+  "limits": [
+    "Twenty-two selected regressions, including six synthetic controls; no corpus-wide accuracy estimate.",
+    "The same evaluator helped implement owner corrections before this label-blind run; this was not a blind audit of the entire task.",
+    "Two initial evaluator answers remain incorrect against the adjudicated labels. Discussion-time corrections are not counted as new blind successes.",
+    "No production inference model, autonomous source-admission decision or human review was accepted by this evaluation."
+  ]
+}

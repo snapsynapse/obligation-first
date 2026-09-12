@@ -17,7 +17,7 @@ export function entityAgreement(records, { requiredPairs = [] } = {}) {
   const byId = new Map(records.map(record => [record['@id'], record]));
   const report = {
     counts: { declared_links: 0, resolved_pairs: 0, compared_pairs: 0, compared_fields: 0, unknown_fields: 0, unresolved_targets: 0, required_pairs: requiredPairs.length },
-    pairs: [], unresolved_targets: [], conflicts: [], requirement_errors: [],
+    pairs: [], unresolved_targets: [], conflicts: [], requirement_errors: [], expected_unknown_checks: [],
   };
   const pairs = new Map();
   for (const record of records) {
@@ -52,6 +52,12 @@ export function entityAgreement(records, { requiredPairs = [] } = {}) {
         !Array.isArray(required.fields) || !required.fields.length || required.fields.some(field => !ENTITY_FIELDS.includes(field))) {
       throw new Error('OF-ENTITY-REQUIRED-CONFIG: each pair needs distinct source/target IDs and nonempty supported fields');
     }
+    const expectedUnknown = required.expected_unknown_fields ?? [];
+    if (!Array.isArray(expectedUnknown) || new Set(expectedUnknown).size !== expectedUnknown.length ||
+        expectedUnknown.some(field => !['operative_status', 'enforcement_status'].includes(field) || required.fields.includes(field)) ||
+        (expectedUnknown.length && (typeof required.unknown_reason !== 'string' || !required.unknown_reason.trim()))) {
+      throw new Error('OF-ENTITY-REQUIRED-CONFIG: expected unknown operation or enforcement needs a separate field assertion and review reason');
+    }
     const label = `${required.source} <-> ${required.target}`;
     if (!byId.has(required.source) || !byId.has(required.target)) {
       report.requirement_errors.push(`OF-ENTITY-REQUIRED-TARGET: ${label} must resolve both records`);
@@ -66,6 +72,15 @@ export function entityAgreement(records, { requiredPairs = [] } = {}) {
     const missing = required.fields.filter(field => !comparable.has(field));
     if (missing.length) {
       report.requirement_errors.push(`OF-ENTITY-REQUIRED-FIELD: ${label} lacks comparable assertions for ${missing.join(', ')}`);
+    }
+    for (const field of expectedUnknown) {
+      const sourceValue = byId.get(required.source)[field];
+      const targetValue = byId.get(required.target)[field];
+      const retained = sourceValue === 'unknown' && targetValue === 'unknown';
+      report.expected_unknown_checks.push({ source: required.source, target: required.target, field,
+        source_value: sourceValue ?? null, target_value: targetValue ?? null,
+        status: retained ? 'explicit-unknown-retained' : 'failed', reason: required.unknown_reason });
+      if (!retained) report.requirement_errors.push(`OF-ENTITY-EXPECTED-UNKNOWN: ${label} must explicitly retain unknown ${field} on both records`);
     }
   }
   report.counts.resolved_pairs = report.pairs.length;

@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "name": "source-meaning-v1",
+  "scope": "Bounded regression evaluation of source support, not current-law or corpus certification. Classify solely from supplied evidence. supported means the claim follows; contradicted means the evidence establishes an incompatible proposition; insufficient_evidence means the evidence does not settle it.",
+  "sources": {
+    "tx-discrimination": {
+      "title": "Texas Business & Commerce Code Chapter 552, section 552.056",
+      "source_url": "https://tcss.legis.texas.gov/resources/BC/pdf/BC.552.pdf",
+      "original_sha256": "eac83ae470f5ffd262cfcc6c1a744a5a85d771ff64ba4c191dd96c3315d3b01b",
+      "kind": "official-primary-excerpt",
+      "excerpt": "Sec.A552.056.AAUNLAWFUL             DISCRIMINATION.               (a)AAIn          this\n\nsection:\n\n\n                                          4\n\f              (1)AA\"Financial institution\" has the meaning assigned\n\nby Section 201.101, Finance Code.\n\n              (2)AA\"Insurance entity\" means:\n\n                   (A)AAan      entity   described       by    Section       82.002(a),\n\nInsurance Code;\n\n                   (B)AAa fraternal benefit society regulated under\n\nChapter 885, Insurance Code; or\n\n                   (C)AAthe developer of an artificial intelligence\n\nsystem used by an entity described by Paragraph (A) or (B).\n\n              (3)AA\"Protected      class\"    means       a     group    or       class   of\n\npersons with a characteristic, quality, belief, or status protected\n\nfrom discrimination by state or federal civil rights laws, and\n\nincludes   race,   color,   national      origin,       sex,    age,    religion,        or\n\ndisability.\n\n      (b)AAA    person   may     not    develop    or    deploy        an    artificial\n\nintelligence    system   with    the    intent    to    unlawfully      discriminate\n\nagainst a protected class in violation of state or federal law.\n\n      (c)AAFor purposes of this section, a disparate impact is not\n\nsufficient by itself to demonstrate an intent to discriminate.\n\n      (d)AAThis section does not apply to an insurance entity for\n\npurposes of providing insurance services if the entity is subject\n\nto applicable statutes regulating unfair discrimination, unfair\n\nmethods of competition, or unfair or deceptive acts or practices\n\nrelated to the business of insurance.\n\n      (e)AAA federally insured financial institution is considered\n\nto be in compliance with this section if the institution complies\n\nwith all federal and state banking laws and regulations.\n\nAdded by Acts 2025, 89th Leg., R.S., Ch. 1174 (H.B. 149), Sec. 4,\n\neff. January 1, 2026.\n\n\n\n      ",
+      "excerpt_sha256": "1e912ad780d077913854ef8dbab9420e8d58afcee9199392232ccd089c4298bc"
+    },
+    "tx-defenses": {
+      "title": "Texas Business & Commerce Code Chapter 552, section 552.105(e)-(f)",
+      "source_url": "https://tcss.legis.texas.gov/resources/BC/pdf/BC.552.pdf",
+      "original_sha256": "eac83ae470f5ffd262cfcc6c1a744a5a85d771ff64ba4c191dd96c3315d3b01b",
+      "kind": "official-primary-excerpt",
+      "excerpt": "(e)AAA defendant in an action under this section may not be\n\n\n                                       8\n\ffound liable if:\n\n              (1)AAanother person uses the artificial intelligence\n\nsystem affiliated with the defendant in a manner prohibited by this\n\nchapter; or\n\n              (2)AAthe     defendant      discovers      a    violation             of   this\n\nchapter through:\n\n                       (A)AAfeedback from a developer, deployer, or other\n\nperson who believes a violation has occurred;\n\n                       (B)AAtesting,     including      adversarial           testing      or\n\nred-team testing;\n\n                       (C)AAfollowing guidelines set by applicable state\n\nagencies; or\n\n                       (D)AAif the defendant substantially complies with\n\nthe   most   recent     version    of   the   \"Artificial      Intelligence              Risk\n\nManagement Framework: Generative Artificial Intelligence Profile\"\n\npublished by the National Institute of Standards and Technology or\n\nanother nationally or internationally recognized risk management\n\nframework for artificial intelligence systems, an internal review\n\nprocess.\n\n       (f)AAThe attorney general may not bring an action to collect\n\na   civil    penalty    under   this    section   against          a       person    for   an\n\nartificial intelligence system that has not been deployed.\n\nAdded by Acts 2025, 89th Leg., R.S., Ch. 1174 (H.B. 149), Sec. 4,\n\neff. January 1, 2026.\n\n\n\n       ",
+      "excerpt_sha256": "80711f34826ca81ca0ebfdd29af070cf7427b9f97c0809754dea59937bd8b337"
+    },
+    "tx-cure": {
+      "title": "Texas Business & Commerce Code Chapter 552, section 552.104",
+      "source_url": "https://tcss.legis.texas.gov/resources/BC/pdf/BC.552.pdf",
+      "original_sha256": "eac83ae470f5ffd262cfcc6c1a744a5a85d771ff64ba4c191dd96c3315d3b01b",
+      "kind": "official-primary-excerpt",
+      "excerpt": "Sec.A552.104.AANOTICE       OF   VIOLATION;    OPPORTUNITY     TO   CURE.\n\n(a)AAIf the attorney general determines that a person has violated\n\nor is violating this chapter, the attorney general shall notify the\n\nperson in writing of the determination, identifying the specific\n\nprovisions of this chapter the attorney general alleges have been\n\nor are being violated.\n\n      (b)AAThe attorney general may not bring an action against the\n\nperson:\n\n           (1)AAbefore the 60th day after the date the attorney\n\ngeneral provides the notice under Subsection (a); or\n\n           (2)AAif, before the 60th day after the date the attorney\n\ngeneral provides the notice under Subsection (a), the person:\n\n\n                                       7\n\f                 (A)AAcures the identified violation; and\n\n                 (B)AAprovides the attorney general with a written\n\nstatement that the person has:\n\n                            (i)AAcured the alleged violation;\n\n                            (ii)AAprovided supporting documentation to\n\nshow the manner in which the person cured the violation; and\n\n                            (iii)AAmade     any    necessary       changes    to\n\ninternal policies to reasonably prevent further violation of this\n\nchapter.\n\nAdded by Acts 2025, 89th Leg., R.S., Ch. 1174 (H.B. 149), Sec. 4,\n\neff. January 1, 2026.\n\n\n\n      ",
+      "excerpt_sha256": "7fc73266d30e9bf9b081a040c54fe0ddb2e8b408455658bcd9c8804d82361ea8"
+    },
+    "ny-disclosure": {
+      "title": "New York S8828, Chapter 96 amendment, section 1428 and commencement",
+      "source_url": "https://legislation.nysenate.gov/pdf/bills/2025/s8828",
+      "original_sha256": "e5907e1818b457880b30110ba662f1b277a0c8b5f4fefe6d7a686fb905da4ea8",
+      "kind": "official-primary-excerpt",
+      "excerpt": "§ 1428. Large frontier developer disclosure. 1. Except as otherwise\n25   provided in this section, no large frontier developer may develop,\n26   deploy, or operate a frontier model, in whole or in part in New York\n27   state, without having a current disclosure statement filed with the\n28   office and paying the required share.\n29     2. The disclosure statement shall be filed in the form and the manner\n30   prescribed by the office and shall contain all the information required\n31   by the office. It shall be renewed every two years, whenever ownership\n32   of the frontier model is transferred or whenever there is a material\n33   change to the information reported in the previously filed disclosure\n34   statement, whichever occurs earlier.\n35     3. Such disclosure statement shall identify:\n36     (a) the identity of the large frontier developer and all names under\n37   which such large frontier developer conducts business;\n38     (b) the address of the principal place of business and the address of\n39   each office it maintains in New York state;\n40     (c) in the event such large frontier developer or the ultimate parent\n41   of such large frontier developer is a privately or closely held company,\n42   a list of all persons or entities that beneficially own a five percent\n43   or greater interest in such large frontier developer at the time of the\n44   filing of the disclosure statement and a list of persons who formerly\n45   beneficially owned a five percent or greater interest in such owner or\n46   its predecessors in the preceding five years. In the event such owner or\n47   the ultimate parent is a publicly traded company, such owner shall file\n48   a list of all persons or entities that beneficially own a fifty percent\n49   or greater interest in the large frontier developer at the time of\n50   registration; and\n51     (d) the name and contact information of a point of contact, secondary\n52   contact, and tertiary contact for such large frontier developer. Such\n53   point of contact shall be responsible for receiving inquiries relating\n54   to this article from the office or other governmental entities.\n55     4. Large frontier developers shall be assessed in pro rata shares by\n56   the department to defray the operating expenses, including all direct\n\f     S. 8828                             9\n\n 1   and indirect costs, of administering the obligations imposed by this\n 2   article.\n 3     5. If any person develops, deploys, or operates a large frontier model\n 4   in part in New York state without a current disclosure filed with the\n 5   office as required by this section, submits false information in its\n 6   disclosure or fails to timely pay any assessment required by this arti-\n 7   cle, in addition to any other penalty or liability that may be imposed\n 8   under this article, the office may, after notice and hearing, levy civil\n 9   penalties, fees, and costs as follows:\n10     (a) a civil penalty of one thousand dollars for each day the entity\n11   fails to file a disclosure as required by this section or fails to\n12   correct false information; and\n13     (b) an amount equal to the assessments owed.\n14     6. The office shall maintain and publish a list of large frontier\n15   developers who have filed disclosure statements, however such publica-\n16   tion shall not include the contact information set forth in paragraph\n17   (d) of subdivision three of this section.\n18     § 1429. Rulemaking authority. The office is hereby authorized to adopt\n19   rules and regulations to implement the provisions of this article as\n20   needed. To the extent the office determines that doing so will facili-\n21   tate safety and transparency consistent with the underlying purpose of\n22   this article, the office may consider additional reporting or publica-\n23   tion requirements for information to facilitate safety and transparency,\n24   including but not limited to, post-critical safety incident information,\n25   sharing plans and protocols, and the transmission of frontier AI frame-\n26   works to the office.\n27     § 3. Section 3 of a chapter of the laws of 2025 amending the general\n28   business law relating to the training and use of artificial intelligence\n29   frontier models, as proposed in legislative bills numbers S. 6953-B and\n30   A. 6453-B, is amended to read as follows:\n31     § 3. This act shall take effect [on the ninetieth day after it shall\n32   have become a law] January 1, 2027.\n33",
+      "excerpt_sha256": "1ffc5eaad9693d0f6afd8414de0d452ff25d2628686250405440ba7617d6b594"
+    },
+    "moffatt-header": {
+      "title": "Moffatt v. Air Canada, 2024 BCCRT 149, issued header",
+      "source_url": "https://decisions.civilresolutionbc.ca/crt/crtd/en/525448/1/document.do",
+      "original_sha256": "4dd97ce46d0d3f858488dd5ddfac85ec6fb993fcf7ba85567bd2875548f7e394",
+      "kind": "official-primary-excerpt",
+      "excerpt": "                                                           Date Issued: February 14, 2024\n\n                                                                    File: SC-2023-005609\n\n                                                                      Type: Small Claims\n\n\n                               Civil Resolution Tribunal\n\n                 Indexed as: Moffatt v. Air Canada, 2024 BCCRT 149\n\n\n  ",
+      "excerpt_sha256": "f00c27c09873b7c4ddaa2864b5ebc654fa2154912e0cd01d2fd8a3769a3b7403"
+    },
+    "moffatt-nature": {
+      "title": "Moffatt v. Air Canada, 2024 BCCRT 149, paragraph 14",
+      "source_url": "https://decisions.civilresolutionbc.ca/crt/crtd/en/525448/1/document.do",
+      "original_sha256": "4dd97ce46d0d3f858488dd5ddfac85ec6fb993fcf7ba85567bd2875548f7e394",
+      "kind": "official-primary-excerpt",
+      "excerpt": "14. Mr. Moffat says while using Air Canada’s website, they interacted with a support\n    chatbot. While Air Canada did not provide any information about the nature of its\n    chatbot, generally speaking, a chatbot is an automated system that provides\n    information to a person using a website in response to that person’s prompts and\n    input. The parties implicitly agree that Mr. Moffatt was not chatting with an Air Canada\n    employee.\n\n\n\n\n                                             3",
+      "excerpt_sha256": "0f523a1c708133db78c36a265c1f34c9d4bf4ac990cb821eb52732f7906672fe"
+    },
+    "synthetic-translation": {
+      "title": "Synthetic translation-control fixture; not an actual court record",
+      "source_url": null,
+      "original_sha256": null,
+      "kind": "synthetic-language-fixture",
+      "excerpt": "Original German: Das Gericht hat nicht festgestellt, dass der Beklagte künstliche Intelligenz verwendet hat.\nEnglish rendering supplied by the candidate: The court established that the defendant used artificial intelligence.",
+      "excerpt_sha256": "e2ae768c7dd0edeb1e6410825bccc75a80b7b7769c2a1edff4e43560e72b185d"
+    },
+    "synthetic-events": {
+      "title": "Synthetic administrative event fixture; not an actual agency record",
+      "source_url": null,
+      "original_sha256": null,
+      "kind": "synthetic-event-fixture",
+      "excerpt": "Document: Complaint filed 2026-01-10. The complainant alleges the company misled consumers and requests a monetary penalty. No adjudication or order is included in this evidence packet.",
+      "excerpt_sha256": "5931a4e01b913bb54915ed4691efbac73d8e2c772ee392fd9bfb653b7c47ac96"
+    },
+    "synthetic-versions": {
+      "title": "Synthetic enacted amendment fixture; not an actual statute",
+      "source_url": null,
+      "original_sha256": null,
+      "kind": "synthetic-version-fixture",
+      "excerpt": "Retained documents: Introduced bill, version A, 2025-01-10: Commencement July 1, 2026. Enacted amendment, version B, 2025-05-15: Section 3 replaces the July 1, 2026 commencement with January 1, 2027. No subsequent enactments are included.",
+      "excerpt_sha256": "413b907c0a333fffda210fd0f2dbb564d8a596ee59e518b3e7923972d2f44e50"
+    }
+  },
+  "cases": [
+    {
+      "id": "SM-002",
+      "source_id": "tx-discrimination",
+      "claim": "The supplied section 552.056 prohibits intentional unlawful discrimination in developing or deploying an AI system."
+    },
+    {
+      "id": "SM-006",
+      "source_id": "tx-defenses",
+      "claim": "Substantial compliance with the stated NIST profile or another nationally or internationally recognized AI risk framework qualifies the internal-review discovery route."
+    },
+    {
+      "id": "SM-013",
+      "source_id": "ny-disclosure",
+      "claim": "No other New York law imposes an AI disclosure duty."
+    },
+    {
+      "id": "SM-016",
+      "source_id": "moffatt-nature",
+      "claim": "The decision establishes that the chatbot had no escalation controls or technical guardrails."
+    },
+    {
+      "id": "SM-019",
+      "source_id": "synthetic-events",
+      "claim": "The agency imposed a monetary penalty on January 10, 2026."
+    },
+    {
+      "id": "SM-009",
+      "source_id": "tx-cure",
+      "claim": "Avoiding the described action before day 60 requires an actual cure and the written statement with supporting documentation and necessary internal-policy changes."
+    },
+    {
+      "id": "SM-007",
+      "source_id": "tx-defenses",
+      "claim": "Any NIST-compliant system is immune from all legal liability."
+    },
+    {
+      "id": "SM-015",
+      "source_id": "moffatt-header",
+      "claim": "The decision was issued on February 14, 2024."
+    },
+    {
+      "id": "SM-008",
+      "source_id": "tx-cure",
+      "claim": "The attorney general can bring the described action 30 days after notice even if the person is still within the cure period."
+    },
+    {
+      "id": "SM-005",
+      "source_id": "tx-defenses",
+      "claim": "NIST framework compliance is required for every discovery defense, including feedback and testing."
+    },
+    {
+      "id": "SM-021",
+      "source_id": "synthetic-versions",
+      "claim": "The latest supplied enacted version commences on July 1, 2026."
+    },
+    {
+      "id": "SM-001",
+      "source_id": "tx-discrimination",
+      "claim": "The supplied section 552.056 is a provision of the Texas Government Code."
+    },
+    {
+      "id": "SM-014",
+      "source_id": "moffatt-header",
+      "claim": "The supplied header establishes that this proceeding was filed on February 14, 2024."
+    },
+    {
+      "id": "SM-003",
+      "source_id": "tx-discrimination",
+      "claim": "All activities of every insurance entity are exempt from section 552.056."
+    },
+    {
+      "id": "SM-017",
+      "source_id": "synthetic-translation",
+      "claim": "The supplied English rendering preserves the original German statement about what the court established."
+    },
+    {
+      "id": "SM-022",
+      "source_id": "synthetic-versions",
+      "claim": "Among the supplied versions, the enacted amendment replaces the earlier commencement date with January 1, 2027."
+    },
+    {
+      "id": "SM-018",
+      "source_id": "synthetic-translation",
+      "claim": "The original German says the court did not establish that the defendant used artificial intelligence."
+    },
+    {
+      "id": "SM-020",
+      "source_id": "synthetic-events",
+      "claim": "The complaint requests a monetary penalty."
+    },
+    {
+      "id": "SM-010",
+      "source_id": "ny-disclosure",
+      "claim": "Section 1428 requires publication of the filed disclosure statements themselves."
+    },
+    {
+      "id": "SM-004",
+      "source_id": "tx-discrimination",
+      "claim": "Section 552.056 treats a federally insured financial institution as compliant if it complies with all federal and state banking laws and regulations."
+    },
+    {
+      "id": "SM-011",
+      "source_id": "ny-disclosure",
+      "claim": "Section 1428 distinguishes the 5 percent ownership reporting threshold for private or closely held entities from the 50 percent threshold for publicly traded entities."
+    },
+    {
+      "id": "SM-012",
+      "source_id": "ny-disclosure",
+      "claim": "The amendment states a January 1, 2027 effective date."
+    }
+  ]
+}

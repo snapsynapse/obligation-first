@@ -2,10 +2,21 @@
 import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { readFileSync } from "node:fs";
+import { ADMISSION_OWNERS, validateAdmissionBase } from "./lib/admission-base.mjs";
 
 const obligationFirst = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const portfolioRoot = path.dirname(obligationFirst);
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
+const admissionBases = process.env.OF_ADMISSION_BASES
+  ? JSON.parse(readFileSync(process.env.OF_ADMISSION_BASES, 'utf8')) : null;
+if (!admissionBases && process.env.SOURCE_ADMISSION_BASE) throw new Error('Federation cannot reuse a single-owner SOURCE_ADMISSION_BASE; supply OF_ADMISSION_BASES for all three owners');
+if (process.env.CI && process.env.CI !== 'false' && !admissionBases) throw new Error('CI federation requires OF_ADMISSION_BASES with one committed comparison base per owner');
+if (admissionBases) {
+  if (JSON.stringify(Object.keys(admissionBases).sort()) !== JSON.stringify([...ADMISSION_OWNERS].sort())) throw new Error('Admission bases must name exactly the three federation owners');
+  for (const owner of ADMISSION_OWNERS) validateAdmissionBase(path.join(portfolioRoot, owner), admissionBases[owner]);
+}
+const admissionEnv = adopter => admissionBases ? { SOURCE_ADMISSION_BASE: admissionBases[path.basename(adopter.root)] } : {};
 
 const adopters = [
   {
@@ -53,6 +64,9 @@ function run(label, command, args, options = {}) {
 }
 
 for (const adopter of adopters) {
+  run(`${adopter.name} source admission and retained legacy debt`, process.execPath, [
+    path.join(obligationFirst, "scripts/check-adopter-admission.mjs"), adopter.root,
+  ], { env: admissionEnv(adopter) });
   run(`${adopter.name} source projection freshness`, process.execPath, [
     path.join(obligationFirst, "scripts/check-projection-freshness.mjs"),
     adopter.root, path.dirname(adopter.records),
@@ -91,6 +105,7 @@ for (const adopter of adopters) {
         OBLIGATION_FIRST_DIR: obligationFirst,
         OF_SCHEMA_DIR: path.join(obligationFirst, "schema"),
         CHECK_OF_REQUIRED: "1",
+        ...admissionEnv(adopter),
       },
     },
   );
@@ -103,6 +118,7 @@ for (const adopter of adopters) {
       "--profile", path.join(adopter.root, adopter.profile),
       "--expected", path.join(adopter.root, adopter.fingerprint),
     ],
+    { env: admissionEnv(adopter) },
   );
   run(
     `${adopter.name} identifier continuity`,
@@ -149,6 +165,12 @@ run(
     ...adopters.map((adopter) => path.dirname(path.join(adopter.root, adopter.records))),
   ],
 );
+
+run("Replay the three bounded consumer graph journeys", process.execPath, [
+  path.join(obligationFirst, "scripts/check-consumer-traversals.mjs"),
+  path.join(obligationFirst, "reference/fixtures/consumer-traversals-2026-09-09.json"),
+  ...adopters.map(adopter => path.join(adopter.root, adopter.records)),
+]);
 
 for (const repository of [{ name: "Obligation-First", root: obligationFirst }, ...adopters]) {
   run(`${repository.name} patch whitespace`, "git", ["diff", "--check"], { cwd: repository.root });
