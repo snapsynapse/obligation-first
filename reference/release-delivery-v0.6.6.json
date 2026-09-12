@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "status": "delivered-and-verified",
+  "verified_at": "2026-09-12T17:50:23.687649+00:00",
+  "release_commit": "e5b87e981cc9b8635ed3206172a5b92ef55d3a09",
+  "release_tag": "v0.6.6",
+  "annotated_tag_object": "15f62204c607cbf1a78974375f36afa667986ba9",
+  "tag_signature": {
+    "verified": true,
+    "format": "ssh",
+    "key_fingerprint": "SHA256:e01ClOG6x4+h/LA0nobyQrQpCRrAYmFSIF2DmLR93pM"
+  },
+  "pull_request": "https://github.com/snapsynapse/obligation-first/pull/9",
+  "ci": [
+    {
+      "conclusion": "success",
+      "databaseId": 34709001759,
+      "headSha": "d3131dd96f9fed7df0c97e3c6331b0a62505be55",
+      "name": "Test",
+      "status": "completed",
+      "url": "https://github.com/snapsynapse/obligation-first/actions/runs/34709001759"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 34709080408,
+      "headSha": "e5b87e981cc9b8635ed3206172a5b92ef55d3a09",
+      "name": "Test",
+      "status": "completed",
+      "url": "https://github.com/snapsynapse/obligation-first/actions/runs/34709080408"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 34709080451,
+      "headSha": "e5b87e981cc9b8635ed3206172a5b92ef55d3a09",
+      "name": "Deploy to GitHub Pages",
+      "status": "completed",
+      "url": "https://github.com/snapsynapse/obligation-first/actions/runs/34709080451"
+    }
+  ],
+  "github_release": {
+    "assets": [
+      {
+        "apiUrl": "https://api.github.com/repos/snapsynapse/obligation-first/releases/assets/559682592",
+        "contentType": "application/json",
+        "createdAt": "2026-09-12T17:47:28Z",
+        "digest": "sha256:3523029d33d10ab04cc61158aad0ba394b6c803bf51a89337ef822017581dd88",
+        "downloadCount": 0,
+        "id": "RA_kwDOSUUkB84hXBQg",
+        "label": "",
+        "name": "manifest.json",
+        "size": 13775,
+        "state": "uploaded",
+        "updatedAt": "2026-09-12T17:47:28Z",
+        "url": "https://github.com/snapsynapse/obligation-first/releases/download/v0.6.6/manifest.json",
+        "download_verified_sha256": "3523029d33d10ab04cc61158aad0ba394b6c803bf51a89337ef822017581dd88"
+      },
+      {
+        "apiUrl": "https://api.github.com/repos/snapsynapse/obligation-first/releases/assets/559682588",
+        "contentType": "text/plain; charset=utf-8",
+        "createdAt": "2026-09-12T17:47:28Z",
+        "digest": "sha256:64de8d81e3fd080c424f30e27782a132a1d6a3bc6cef046d07bd6a895298ef76",
+        "downloadCount": 0,
+        "id": "RA_kwDOSUUkB84hXBQc",
+        "label": "",
+        "name": "sha256.txt",
+        "size": 4851,
+        "state": "uploaded",
+        "updatedAt": "2026-09-12T17:47:28Z",
+        "url": "https://github.com/snapsynapse/obligation-first/releases/download/v0.6.6/sha256.txt",
+        "download_verified_sha256": "64de8d81e3fd080c424f30e27782a132a1d6a3bc6cef046d07bd6a895298ef76"
+      }
+    ],
+    "isDraft": false,
+    "isPrerelease": false,
+    "publishedAt": "2026-09-12T17:47:29Z",
+    "tagName": "v0.6.6",
+    "url": "https://github.com/snapsynapse/obligation-first/releases/tag/v0.6.6"
+  },
+  "hosted_acceptance": {
+    "source_revision": "e5b87e981cc9b8635ed3206172a5b92ef55d3a09",
+    "artifact_checks": 244,
+    "all_passed": true,
+    "report_path": "reference/evidence/hosted-artifacts-v0.6.6-2026-09-12.json",
+    "report_sha256": "6a3c553cef97475d509b6ce449ae7d0a4a513fd043e0de989517d1118bad72a6",
+    "scope": "Exact immutable source and canonical served bytes for49 manifest artifacts and87 supplemental surfaces. This is not legal-currentness or external standards certification."
+  },
+  "npm": "not_applicable: private reference-tooling package; existing distribution is GitHub and Pages",
+  "mcp_registry": "not_applicable: no existing MCP runtime or registry identity",
+  "preservation": {
+    "original_colorado_record_count": 13,
+    "source_and_served_bytes_unchanged": true,
+    "historical_release_directories_unchanged": true,
+    "temporary_handoffs_excluded": true
+  },
+  "remaining_separate_work": [
+    "OF npm/MCP channel evaluation remains in ignored local queue; no new channel introduced.",
+    "External w3id acceptance and unresolved legal-history/production-semantics decisions remain in their owning records."
+  ]
+}

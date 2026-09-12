@@ -15,8 +15,8 @@ Terms/Obligations). This repo owns the shared `@context`, JSON Schemas,
 crosswalks, and validation harness — it does not centralize adopter data.
 
 <!-- of-version: claude-current -->
-The source candidate declares v0.6.6, pre-v1.0. Read the current release
-preparation record for hosted and publication status; see ROADMAP.md for freeze
+The repository declares v0.6.6, pre-v1.0. Read the current release
+delivery record for dated hosted and publication evidence; see ROADMAP.md for freeze
 gates and CHANGELOG.md for version history.
 
 ## Tech stack
@@ -95,9 +95,9 @@ hashes:update → `npm test`) — see AGENTS.md
 ## Current state
 
 - <!-- of-version: claude-state-current -->
-  The source candidate declares v0.6.6. Three adopters (EveryAILaw, PubLedge,
+  The repository declares v0.6.6. Three adopters (EveryAILaw, PubLedge,
   AI Incident Law) publish local projections against the shared contract;
-  consult the release preparation record before asserting hosted v0.6.6 status.
+  hosted and release evidence is recorded in `reference/release-delivery-v0.6.6.json`.
 - Remaining v1.0 gates are tracked in ROADMAP.md. The
   `https://w3id.org/of/v1/` redirect remains planned rather than live.
 - `scripts/make-release.mjs` contains intentional `TODO` placeholder text

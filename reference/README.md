@@ -13,7 +13,8 @@ Current usage is indexed in the repository README; remaining work is in ROADMAP.
 | [Semantic decisions](decisions/README.md) | Five implemented v0.6 decisions |
 | [Scope continuity v1](contracts/scope-contract-v1.md) | Released v0.6.4 tooling; independent of record-schema semantics |
 | [Qualified-time fixture v1](contracts/qualified-time-fixture-v1.md) | Released offline F14 evaluator, date/evidence boundaries and owner sidecars |
-| [v0.6.6 preparation](release-preparation-v0.6.6.md) | Current R1 local release candidate; tag, GitHub Release, and hosted verification remain separate |
+| [v0.6.6 delivery](release-delivery-v0.6.6.json) | Verified signed tag, GitHub Release assets, exact-main CI/Pages and 244 source/hosted-byte checks |
+| [v0.6.6 preparation](release-preparation-v0.6.6.md) | Historical preparation and authorization evidence; completed delivery is recorded separately |
 | [Hosted artifact verifier](hosted-artifact-verifier.md) | Post-publication byte checks tied to an exact source commit and tag; separate from HEAD reachability |
 | [Prepublication documentation audit](prepublication-audit-2026-09-12.md) | Current coverage ledger, factual corrections, preserved historical boundaries, and unresolved documentation findings |
 | [F14 contract decision](F14-contract-decision-2026-09-05.md) | Keep the bounded fixture; production schema expansion awaits demonstrated second-owner need |

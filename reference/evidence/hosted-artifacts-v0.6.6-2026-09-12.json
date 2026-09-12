@@ -1,0 +1,4052 @@
+{
+  "schema_version": "1.0",
+  "verifier": "of-hosted-artifact-verifier",
+  "identity": {
+    "name": "obligation-first",
+    "version": "0.6.6",
+    "expected_root": "https://github.com/snapsynapse/obligation-first",
+    "source_tag": "v0.6.6",
+    "source_revision": "e5b87e981cc9b8635ed3206172a5b92ef55d3a09"
+  },
+  "manifest": {
+    "version": "0.6.6",
+    "status": "draft",
+    "canonical_url": "https://obligationfirst.org/releases/v0.6.6/"
+  },
+  "source_tag": {
+    "ok": true,
+    "tag": "v0.6.6",
+    "ref_url": "https://api.github.com/repos/snapsynapse/obligation-first/git/ref/tags/v0.6.6",
+    "tag_object": "15f62204c607cbf1a78974375f36afa667986ba9",
+    "tag_type": "tag",
+    "resolved_revision": "e5b87e981cc9b8635ed3206172a5b92ef55d3a09"
+  },
+  "artifacts": [
+    {
+      "kind": "source",
+      "path": "PROTOCOL.md",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/PROTOCOL.md",
+      "expected_sha256": "efa3fe546d72ae7cc6d468e9f42cc61d186cf88f95029c1c0818dbf4a34b88ff",
+      "expected_content_types": [
+        "text/plain",
+        "text/markdown"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/PROTOCOL.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 48071,
+      "sha256": "efa3fe546d72ae7cc6d468e9f42cc61d186cf88f95029c1c0818dbf4a34b88ff"
+    },
+    {
+      "kind": "source",
+      "path": "docs/releases/v0.6.6/RELEASE_NOTES-v0.6.6.md",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/releases/v0.6.6/RELEASE_NOTES-v0.6.6.md",
+      "expected_sha256": "eb9926f58662a7fd94ab9a07588de201df0f0d3a14cf92bab73e515e7397a32e",
+      "expected_content_types": [
+        "text/plain",
+        "text/markdown"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/releases/v0.6.6/RELEASE_NOTES-v0.6.6.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 3202,
+      "sha256": "eb9926f58662a7fd94ab9a07588de201df0f0d3a14cf92bab73e515e7397a32e"
+    },
+    {
+      "kind": "canonical",
+      "path": "docs/releases/v0.6.6/RELEASE_NOTES-v0.6.6.md",
+      "expected_url": "https://obligationfirst.org/releases/v0.6.6/RELEASE_NOTES-v0.6.6.md",
+      "expected_sha256": "eb9926f58662a7fd94ab9a07588de201df0f0d3a14cf92bab73e515e7397a32e",
+      "expected_content_types": [
+        "text/markdown",
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/releases/v0.6.6/RELEASE_NOTES-v0.6.6.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/markdown",
+      "bytes": 3202,
+      "sha256": "eb9926f58662a7fd94ab9a07588de201df0f0d3a14cf92bab73e515e7397a32e"
+    },
+    {
+      "kind": "source",
+      "path": "schema/context.jsonld",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/context.jsonld",
+      "expected_sha256": "469bad782d04e9a1e2a01d36ba27809eed21d5f09d3d0f8a31737e9b53a26e39",
+      "expected_content_types": [
+        "text/plain",
+        "application/ld+json",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/context.jsonld",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 10535,
+      "sha256": "469bad782d04e9a1e2a01d36ba27809eed21d5f09d3d0f8a31737e9b53a26e39"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/context.jsonld",
+      "expected_url": "https://obligationfirst.org/v1/context.jsonld",
+      "expected_sha256": "469bad782d04e9a1e2a01d36ba27809eed21d5f09d3d0f8a31737e9b53a26e39",
+      "expected_content_types": [
+        "application/ld+json",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/context.jsonld",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/ld+json",
+      "bytes": 10535,
+      "sha256": "469bad782d04e9a1e2a01d36ba27809eed21d5f09d3d0f8a31737e9b53a26e39"
+    },
+    {
+      "kind": "source",
+      "path": "schema/allegation.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/allegation.schema.json",
+      "expected_sha256": "f1166364f71bcd59177504e769a8037117600b2a78b4f33e0494f6e00cd44b12",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/allegation.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 2410,
+      "sha256": "f1166364f71bcd59177504e769a8037117600b2a78b4f33e0494f6e00cd44b12"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/allegation.schema.json",
+      "expected_url": "https://obligationfirst.org/v1/schema/allegation.schema.json",
+      "expected_sha256": "f1166364f71bcd59177504e769a8037117600b2a78b4f33e0494f6e00cd44b12",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/allegation.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 2410,
+      "sha256": "f1166364f71bcd59177504e769a8037117600b2a78b4f33e0494f6e00cd44b12"
+    },
+    {
+      "kind": "source",
+      "path": "schema/authority.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/authority.schema.json",
+      "expected_sha256": "ede988f066a778bac22a148a64243fe1a80b5cc4362b68bad722dcae5bc74450",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/authority.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 2565,
+      "sha256": "ede988f066a778bac22a148a64243fe1a80b5cc4362b68bad722dcae5bc74450"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/authority.schema.json",
+      "expected_url": "https://obligationfirst.org/v1/schema/authority.schema.json",
+      "expected_sha256": "ede988f066a778bac22a148a64243fe1a80b5cc4362b68bad722dcae5bc74450",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/authority.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 2565,
+      "sha256": "ede988f066a778bac22a148a64243fe1a80b5cc4362b68bad722dcae5bc74450"
+    },
+    {
+      "kind": "source",
+      "path": "schema/common.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/common.schema.json",
+      "expected_sha256": "cd3380f994135dbd0cc5553552a3073929dfdea55c83f56e784e8da85375f5e1",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/common.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 4698,
+      "sha256": "cd3380f994135dbd0cc5553552a3073929dfdea55c83f56e784e8da85375f5e1"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/common.schema.json",
+      "expected_url": "https://obligationfirst.org/v1/schema/common.schema.json",
+      "expected_sha256": "cd3380f994135dbd0cc5553552a3073929dfdea55c83f56e784e8da85375f5e1",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/common.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 4698,
+      "sha256": "cd3380f994135dbd0cc5553552a3073929dfdea55c83f56e784e8da85375f5e1"
+    },
+    {
+      "kind": "source",
+      "path": "schema/determination.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/determination.schema.json",
+      "expected_sha256": "8cb1766fe2bcc31dceb6b54656a8764405e7a082010b44f9393ada89eddf0c39",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/determination.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 4285,
+      "sha256": "8cb1766fe2bcc31dceb6b54656a8764405e7a082010b44f9393ada89eddf0c39"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/determination.schema.json",
+      "expected_url": "https://obligationfirst.org/v1/schema/determination.schema.json",
+      "expected_sha256": "8cb1766fe2bcc31dceb6b54656a8764405e7a082010b44f9393ada89eddf0c39",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/determination.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 4285,
+      "sha256": "8cb1766fe2bcc31dceb6b54656a8764405e7a082010b44f9393ada89eddf0c39"
+    },
+    {
+      "kind": "source",
+      "path": "schema/executable-encoding.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/executable-encoding.schema.json",
+      "expected_sha256": "4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/executable-encoding.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1348,
+      "sha256": "4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/executable-encoding.schema.json",
+      "expected_url": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json",
+      "expected_sha256": "4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/executable-encoding.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1348,
+      "sha256": "4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810"
+    },
+    {
+      "kind": "source",
+      "path": "schema/instrument.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/instrument.schema.json",
+      "expected_sha256": "dea85420c2fa47f461022023355acdd1478d5dff2ed2ef6cd3f3d1c4861eecb2",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/instrument.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 4769,
+      "sha256": "dea85420c2fa47f461022023355acdd1478d5dff2ed2ef6cd3f3d1c4861eecb2"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/instrument.schema.json",
+      "expected_url": "https://obligationfirst.org/v1/schema/instrument.schema.json",
+      "expected_sha256": "dea85420c2fa47f461022023355acdd1478d5dff2ed2ef6cd3f3d1c4861eecb2",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/instrument.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 4769,
+      "sha256": "dea85420c2fa47f461022023355acdd1478d5dff2ed2ef6cd3f3d1c4861eecb2"
+    },
+    {
+      "kind": "source",
+      "path": "schema/jurisdiction.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/jurisdiction.schema.json",
+      "expected_sha256": "fc6f7a6badd0e3a96d62c8ee62711979b597eac36fa50bddc408a9e7f4098054",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/jurisdiction.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1652,
+      "sha256": "fc6f7a6badd0e3a96d62c8ee62711979b597eac36fa50bddc408a9e7f4098054"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/jurisdiction.schema.json",
+      "expected_url": "https://obligationfirst.org/v1/schema/jurisdiction.schema.json",
+      "expected_sha256": "fc6f7a6badd0e3a96d62c8ee62711979b597eac36fa50bddc408a9e7f4098054",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/jurisdiction.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1652,
+      "sha256": "fc6f7a6badd0e3a96d62c8ee62711979b597eac36fa50bddc408a9e7f4098054"
+    },
+    {
+      "kind": "source",
+      "path": "schema/naming-profile.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/naming-profile.schema.json",
+      "expected_sha256": "ce25421aea6a758a8b1cc60bf871588cdc28f3f1dcd80574cbafcd5a47351a70",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/naming-profile.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 3826,
+      "sha256": "ce25421aea6a758a8b1cc60bf871588cdc28f3f1dcd80574cbafcd5a47351a70"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/naming-profile.schema.json",
+      "expected_url": "https://obligationfirst.org/v1/schema/naming-profile.schema.json",
+      "expected_sha256": "ce25421aea6a758a8b1cc60bf871588cdc28f3f1dcd80574cbafcd5a47351a70",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/naming-profile.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 3826,
+      "sha256": "ce25421aea6a758a8b1cc60bf871588cdc28f3f1dcd80574cbafcd5a47351a70"
+    },
+    {
+      "kind": "source",
+      "path": "schema/obligation-category.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/obligation-category.schema.json",
+      "expected_sha256": "2e2b06d0df7ca959492ada5711b9dc2e62addf3470b65bf7f2bc305bbd301354",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/obligation-category.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1802,
+      "sha256": "2e2b06d0df7ca959492ada5711b9dc2e62addf3470b65bf7f2bc305bbd301354"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/obligation-category.schema.json",
+      "expected_url": "https://obligationfirst.org/v1/schema/obligation-category.schema.json",
+      "expected_sha256": "2e2b06d0df7ca959492ada5711b9dc2e62addf3470b65bf7f2bc305bbd301354",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/obligation-category.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1802,
+      "sha256": "2e2b06d0df7ca959492ada5711b9dc2e62addf3470b65bf7f2bc305bbd301354"
+    },
+    {
+      "kind": "source",
+      "path": "schema/obligation.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/obligation.schema.json",
+      "expected_sha256": "eec4293dd5208d38fb7fcd2a78064c6f5abefe6d5c853954842579f0bf91e924",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/obligation.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 7601,
+      "sha256": "eec4293dd5208d38fb7fcd2a78064c6f5abefe6d5c853954842579f0bf91e924"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/obligation.schema.json",
+      "expected_url": "https://obligationfirst.org/v1/schema/obligation.schema.json",
+      "expected_sha256": "eec4293dd5208d38fb7fcd2a78064c6f5abefe6d5c853954842579f0bf91e924",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/obligation.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 7601,
+      "sha256": "eec4293dd5208d38fb7fcd2a78064c6f5abefe6d5c853954842579f0bf91e924"
+    },
+    {
+      "kind": "source",
+      "path": "schema/party.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/party.schema.json",
+      "expected_sha256": "851daf4cbd7b24089bc3ba4ac7cc6f60866742d0b0b896e1db4413e82bd48192",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/party.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1852,
+      "sha256": "851daf4cbd7b24089bc3ba4ac7cc6f60866742d0b0b896e1db4413e82bd48192"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/party.schema.json",
+      "expected_url": "https://obligationfirst.org/v1/schema/party.schema.json",
+      "expected_sha256": "851daf4cbd7b24089bc3ba4ac7cc6f60866742d0b0b896e1db4413e82bd48192",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/party.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1852,
+      "sha256": "851daf4cbd7b24089bc3ba4ac7cc6f60866742d0b0b896e1db4413e82bd48192"
+    },
+    {
+      "kind": "source",
+      "path": "schema/proceeding.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/proceeding.schema.json",
+      "expected_sha256": "4f4be2ad9d27438fef7f039b042d54f1f92d2da050663e90ba7e63b5ee38f0b8",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/proceeding.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 2893,
+      "sha256": "4f4be2ad9d27438fef7f039b042d54f1f92d2da050663e90ba7e63b5ee38f0b8"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/proceeding.schema.json",
+      "expected_url": "https://obligationfirst.org/v1/schema/proceeding.schema.json",
+      "expected_sha256": "4f4be2ad9d27438fef7f039b042d54f1f92d2da050663e90ba7e63b5ee38f0b8",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/proceeding.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 2893,
+      "sha256": "4f4be2ad9d27438fef7f039b042d54f1f92d2da050663e90ba7e63b5ee38f0b8"
+    },
+    {
+      "kind": "source",
+      "path": "schema/term.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/term.schema.json",
+      "expected_sha256": "56520814d7eaaa7e2117b7abfa744120140b575b79e04f2e84c5e85c8875d682",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/term.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 4288,
+      "sha256": "56520814d7eaaa7e2117b7abfa744120140b575b79e04f2e84c5e85c8875d682"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/term.schema.json",
+      "expected_url": "https://obligationfirst.org/v1/schema/term.schema.json",
+      "expected_sha256": "56520814d7eaaa7e2117b7abfa744120140b575b79e04f2e84c5e85c8875d682",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/term.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 4288,
+      "sha256": "56520814d7eaaa7e2117b7abfa744120140b575b79e04f2e84c5e85c8875d682"
+    },
+    {
+      "kind": "source",
+      "path": "schema/tombstone.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/tombstone.schema.json",
+      "expected_sha256": "e4bcfb9cd8f17409b33eeb5f4fb692155c4413fad8862e4035c73fbe5d8eb3f5",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/schema/tombstone.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1443,
+      "sha256": "e4bcfb9cd8f17409b33eeb5f4fb692155c4413fad8862e4035c73fbe5d8eb3f5"
+    },
+    {
+      "kind": "canonical",
+      "path": "schema/tombstone.schema.json",
+      "expected_url": "https://obligationfirst.org/v1/schema/tombstone.schema.json",
+      "expected_sha256": "e4bcfb9cd8f17409b33eeb5f4fb692155c4413fad8862e4035c73fbe5d8eb3f5",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/tombstone.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1443,
+      "sha256": "e4bcfb9cd8f17409b33eeb5f4fb692155c4413fad8862e4035c73fbe5d8eb3f5"
+    },
+    {
+      "kind": "source",
+      "path": "docs/agents.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/agents.json",
+      "expected_sha256": "518aeb8e7c40665739dcfd599d47b0bafd745383389c5c1175d8826df9ecf15e",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/agents.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 10434,
+      "sha256": "518aeb8e7c40665739dcfd599d47b0bafd745383389c5c1175d8826df9ecf15e"
+    },
+    {
+      "kind": "canonical",
+      "path": "docs/agents.json",
+      "expected_url": "https://obligationfirst.org/agents.json",
+      "expected_sha256": "518aeb8e7c40665739dcfd599d47b0bafd745383389c5c1175d8826df9ecf15e",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/agents.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 10434,
+      "sha256": "518aeb8e7c40665739dcfd599d47b0bafd745383389c5c1175d8826df9ecf15e"
+    },
+    {
+      "kind": "source",
+      "path": "docs/llms.txt",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/llms.txt",
+      "expected_sha256": "3fce53a7f37a4a128b83db9b978caff1e2bf0e9a8759def603d20dc712f6627d",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/llms.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 10381,
+      "sha256": "3fce53a7f37a4a128b83db9b978caff1e2bf0e9a8759def603d20dc712f6627d"
+    },
+    {
+      "kind": "canonical",
+      "path": "docs/llms.txt",
+      "expected_url": "https://obligationfirst.org/llms.txt",
+      "expected_sha256": "3fce53a7f37a4a128b83db9b978caff1e2bf0e9a8759def603d20dc712f6627d",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/llms.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 10381,
+      "sha256": "3fce53a7f37a4a128b83db9b978caff1e2bf0e9a8759def603d20dc712f6627d"
+    },
+    {
+      "kind": "source",
+      "path": "docs/llms-full.txt",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/llms-full.txt",
+      "expected_sha256": "bfcb6257151f17c603fbb3d63d85d92e166d55bef858b215e872396d3b9221f5",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/llms-full.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 19021,
+      "sha256": "bfcb6257151f17c603fbb3d63d85d92e166d55bef858b215e872396d3b9221f5"
+    },
+    {
+      "kind": "canonical",
+      "path": "docs/llms-full.txt",
+      "expected_url": "https://obligationfirst.org/llms-full.txt",
+      "expected_sha256": "bfcb6257151f17c603fbb3d63d85d92e166d55bef858b215e872396d3b9221f5",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/llms-full.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 19021,
+      "sha256": "bfcb6257151f17c603fbb3d63d85d92e166d55bef858b215e872396d3b9221f5"
+    },
+    {
+      "kind": "source",
+      "path": "assistant-guide.txt",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/assistant-guide.txt",
+      "expected_sha256": "3953f5a26e64a0510183618aa6bffad3cba9c3c254277cf4d9db7d24ce1db841",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/assistant-guide.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 8007,
+      "sha256": "3953f5a26e64a0510183618aa6bffad3cba9c3c254277cf4d9db7d24ce1db841"
+    },
+    {
+      "kind": "canonical",
+      "path": "assistant-guide.txt",
+      "expected_url": "https://obligationfirst.org/.well-known/assistant-guide.txt",
+      "expected_sha256": "3953f5a26e64a0510183618aa6bffad3cba9c3c254277cf4d9db7d24ce1db841",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/.well-known/assistant-guide.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 8007,
+      "sha256": "3953f5a26e64a0510183618aa6bffad3cba9c3c254277cf4d9db7d24ce1db841"
+    },
+    {
+      "kind": "source",
+      "path": "assistant-guide-manifest.txt",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/assistant-guide-manifest.txt",
+      "expected_sha256": "98903af6846c6c3a9bdaaac639f8bb48812bab5597854e6a4c2eda3abac90def",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/assistant-guide-manifest.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 295,
+      "sha256": "98903af6846c6c3a9bdaaac639f8bb48812bab5597854e6a4c2eda3abac90def"
+    },
+    {
+      "kind": "canonical",
+      "path": "assistant-guide-manifest.txt",
+      "expected_url": "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt",
+      "expected_sha256": "98903af6846c6c3a9bdaaac639f8bb48812bab5597854e6a4c2eda3abac90def",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/.well-known/assistant-guide-manifest.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 295,
+      "sha256": "98903af6846c6c3a9bdaaac639f8bb48812bab5597854e6a4c2eda3abac90def"
+    },
+    {
+      "kind": "source",
+      "path": "CHANGELOG.md",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/CHANGELOG.md",
+      "expected_sha256": "7702e8de295566a737665ab3bcad1fc6874b08044508f25ec49f5c634ffbc3f8",
+      "expected_content_types": [
+        "text/plain",
+        "text/markdown"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/CHANGELOG.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 57146,
+      "sha256": "7702e8de295566a737665ab3bcad1fc6874b08044508f25ec49f5c634ffbc3f8"
+    },
+    {
+      "kind": "source",
+      "path": "package.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/package.json",
+      "expected_sha256": "af008a0f85ae70cf916a41eca5d755b9e656476bec5f7acf7b983d057b80cd0b",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/package.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 3463,
+      "sha256": "af008a0f85ae70cf916a41eca5d755b9e656476bec5f7acf7b983d057b80cd0b"
+    },
+    {
+      "kind": "source",
+      "path": "package-lock.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/package-lock.json",
+      "expected_sha256": "51facd63dc9eaa5c973e124b4db9422e5ad6bc7d361f1e702d47cc770e305d2d",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/package-lock.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 6499,
+      "sha256": "51facd63dc9eaa5c973e124b4db9422e5ad6bc7d361f1e702d47cc770e305d2d"
+    },
+    {
+      "kind": "source",
+      "path": "reference/contracts/scope-contract-v1.md",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/contracts/scope-contract-v1.md",
+      "expected_sha256": "1c92364b6a50020686d3b560c5cf343ad5f3ffdbc427386e998c3fdff3680d41",
+      "expected_content_types": [
+        "text/plain",
+        "text/markdown"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/contracts/scope-contract-v1.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 8713,
+      "sha256": "1c92364b6a50020686d3b560c5cf343ad5f3ffdbc427386e998c3fdff3680d41"
+    },
+    {
+      "kind": "source",
+      "path": "reference/contracts/scope-inventory-v1.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/contracts/scope-inventory-v1.schema.json",
+      "expected_sha256": "8170c93f7943aed704fcb192e848d5d50171e7c163de3ace5fb2b2ac430932b9",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/contracts/scope-inventory-v1.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1595,
+      "sha256": "8170c93f7943aed704fcb192e848d5d50171e7c163de3ace5fb2b2ac430932b9"
+    },
+    {
+      "kind": "source",
+      "path": "reference/fixtures/scope-contract-v1/README.md",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/fixtures/scope-contract-v1/README.md",
+      "expected_sha256": "2df0775b50f3c40017737dcd0d2ceb748bb959a78dd1ed3734bc7415fcf22924",
+      "expected_content_types": [
+        "text/plain",
+        "text/markdown"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/fixtures/scope-contract-v1/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 827,
+      "sha256": "2df0775b50f3c40017737dcd0d2ceb748bb959a78dd1ed3734bc7415fcf22924"
+    },
+    {
+      "kind": "source",
+      "path": "reference/fixtures/scope-contract-v1/records.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/fixtures/scope-contract-v1/records.json",
+      "expected_sha256": "ba597ca1ee49f7e24a9db8a32e1555a791832082a470ddc55cdf4a8695ccc2f3",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/fixtures/scope-contract-v1/records.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 3422,
+      "sha256": "ba597ca1ee49f7e24a9db8a32e1555a791832082a470ddc55cdf4a8695ccc2f3"
+    },
+    {
+      "kind": "source",
+      "path": "reference/fixtures/scope-contract-v1/profile.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/fixtures/scope-contract-v1/profile.json",
+      "expected_sha256": "30d015cd24bd588eba72ee2484a60df0998c8f767e6b85f94e8d393aa30aa4ad",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/fixtures/scope-contract-v1/profile.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 115,
+      "sha256": "30d015cd24bd588eba72ee2484a60df0998c8f767e6b85f94e8d393aa30aa4ad"
+    },
+    {
+      "kind": "source",
+      "path": "reference/fixtures/scope-contract-v1/inventory.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/fixtures/scope-contract-v1/inventory.json",
+      "expected_sha256": "98a5730a72a9548bcda1f325e54896cecffee1299f94927e11ba11ce85e77c48",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/fixtures/scope-contract-v1/inventory.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1228,
+      "sha256": "98a5730a72a9548bcda1f325e54896cecffee1299f94927e11ba11ce85e77c48"
+    },
+    {
+      "kind": "source",
+      "path": "reference/fixtures/scope-contract-v1/baseline.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/fixtures/scope-contract-v1/baseline.json",
+      "expected_sha256": "16c55404f5064fc23b75554589bfb5ba749390071f9828e1ba4ea9dc53c9d025",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/fixtures/scope-contract-v1/baseline.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1019,
+      "sha256": "16c55404f5064fc23b75554589bfb5ba749390071f9828e1ba4ea9dc53c9d025"
+    },
+    {
+      "kind": "source",
+      "path": "scripts/lib/scope-contract.mjs",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/lib/scope-contract.mjs",
+      "expected_sha256": "48463f9b8197456f5ece12b541ce2a34f48dfe68f3e2e4163c7671e92105bd5a",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/lib/scope-contract.mjs",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 9436,
+      "sha256": "48463f9b8197456f5ece12b541ce2a34f48dfe68f3e2e4163c7671e92105bd5a"
+    },
+    {
+      "kind": "source",
+      "path": "scripts/check-scope-contract.mjs",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/check-scope-contract.mjs",
+      "expected_sha256": "5dce7d6f1e66bd604cbbcc4f4ca8c02f929d850580157e242067b9509f4aeb3a",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/check-scope-contract.mjs",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 2189,
+      "sha256": "5dce7d6f1e66bd604cbbcc4f4ca8c02f929d850580157e242067b9509f4aeb3a"
+    },
+    {
+      "kind": "source",
+      "path": "scripts/check-scope-inventories.mjs",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/check-scope-inventories.mjs",
+      "expected_sha256": "5e77944ab85baf63f0f6ac1a930a99c39f7eb2f701e8cae4213fe4f44de98191",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/check-scope-inventories.mjs",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 801,
+      "sha256": "5e77944ab85baf63f0f6ac1a930a99c39f7eb2f701e8cae4213fe4f44de98191"
+    },
+    {
+      "kind": "source",
+      "path": "scripts/test-scope-contract.mjs",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/test-scope-contract.mjs",
+      "expected_sha256": "df319aa0c83330f94f558be59d2de9f39e31eeb2c9223488445056a21a116566",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/test-scope-contract.mjs",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 12290,
+      "sha256": "df319aa0c83330f94f558be59d2de9f39e31eeb2c9223488445056a21a116566"
+    },
+    {
+      "kind": "source",
+      "path": "reference/contracts/qualified-time-fixture-v1.md",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/contracts/qualified-time-fixture-v1.md",
+      "expected_sha256": "8894656ece14c98bb023188937a15eaf2a4782f332304af997d7e79ea4f093fb",
+      "expected_content_types": [
+        "text/plain",
+        "text/markdown"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/contracts/qualified-time-fixture-v1.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 7198,
+      "sha256": "8894656ece14c98bb023188937a15eaf2a4782f332304af997d7e79ea4f093fb"
+    },
+    {
+      "kind": "source",
+      "path": "reference/contracts/qualified-time-fixture-v1.schema.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/contracts/qualified-time-fixture-v1.schema.json",
+      "expected_sha256": "b4e3ed509ff3ab33fb633bc382deb9b3e127ee3a7c974adcd8b271e682021c37",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/contracts/qualified-time-fixture-v1.schema.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 4484,
+      "sha256": "b4e3ed509ff3ab33fb633bc382deb9b3e127ee3a7c974adcd8b271e682021c37"
+    },
+    {
+      "kind": "source",
+      "path": "reference/fixtures/qualified-time-v1/README.md",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/fixtures/qualified-time-v1/README.md",
+      "expected_sha256": "b7ede242caa458f3a73f3dd16de60950ab058fda1cf8bd9f49b93ac0dc50bf3b",
+      "expected_content_types": [
+        "text/plain",
+        "text/markdown"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/fixtures/qualified-time-v1/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 652,
+      "sha256": "b7ede242caa458f3a73f3dd16de60950ab058fda1cf8bd9f49b93ac0dc50bf3b"
+    },
+    {
+      "kind": "source",
+      "path": "reference/fixtures/qualified-time-v1/pending-amendment.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/fixtures/qualified-time-v1/pending-amendment.json",
+      "expected_sha256": "ffec46c2f2956624d208e38c2f2498f5db684127eb95d20bb9b9b69588560f0c",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/fixtures/qualified-time-v1/pending-amendment.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 952,
+      "sha256": "ffec46c2f2956624d208e38c2f2498f5db684127eb95d20bb9b9b69588560f0c"
+    },
+    {
+      "kind": "source",
+      "path": "scripts/lib/qualified-time.mjs",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/lib/qualified-time.mjs",
+      "expected_sha256": "5f7fadda28cf9dde021ff1c69f3dd7c120b3ce16c7f928a29f8b3dbcd21b2f38",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/lib/qualified-time.mjs",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 3239,
+      "sha256": "5f7fadda28cf9dde021ff1c69f3dd7c120b3ce16c7f928a29f8b3dbcd21b2f38"
+    },
+    {
+      "kind": "source",
+      "path": "scripts/check-qualified-time-adopter.mjs",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/check-qualified-time-adopter.mjs",
+      "expected_sha256": "d924bd54085400b7ed482e505497bf196654a7739ae03d1f16d8cd3bb9b8d56e",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/check-qualified-time-adopter.mjs",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 5153,
+      "sha256": "d924bd54085400b7ed482e505497bf196654a7739ae03d1f16d8cd3bb9b8d56e"
+    },
+    {
+      "kind": "source",
+      "path": "scripts/test-qualified-time.mjs",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/test-qualified-time.mjs",
+      "expected_sha256": "484defcd940b32fef7479e0d6420fda0fa3f535dc4291fa9d44cfa1d4a3febdc",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/test-qualified-time.mjs",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 11132,
+      "sha256": "484defcd940b32fef7479e0d6420fda0fa3f535dc4291fa9d44cfa1d4a3febdc"
+    },
+    {
+      "kind": "source",
+      "path": "scripts/build-vocabulary.mjs",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/build-vocabulary.mjs",
+      "expected_sha256": "0b83065b6732a392709952a6078dd7b143de31c0d9fa40f651eeab267d2aabee",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/build-vocabulary.mjs",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 4615,
+      "sha256": "0b83065b6732a392709952a6078dd7b143de31c0d9fa40f651eeab267d2aabee"
+    },
+    {
+      "kind": "source",
+      "path": "scripts/test-vocabulary.mjs",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/test-vocabulary.mjs",
+      "expected_sha256": "24f7afb03bbb3752d6f7f963be2a32d22eb2003d23871dedbc9cae1f4e5f6313",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/scripts/test-vocabulary.mjs",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1576,
+      "sha256": "24f7afb03bbb3752d6f7f963be2a32d22eb2003d23871dedbc9cae1f4e5f6313"
+    },
+    {
+      "kind": "source",
+      "path": "docs/v1/vocabulary/index.html",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/vocabulary/index.html",
+      "expected_sha256": "eb2eab56ae03dd8c02f3fe0e91b64b9b47ba194b6e551f3736f2ebbab30e3d93",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/vocabulary/index.html",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 24787,
+      "sha256": "eb2eab56ae03dd8c02f3fe0e91b64b9b47ba194b6e551f3736f2ebbab30e3d93"
+    },
+    {
+      "kind": "source",
+      "path": "docs/v1/vocabulary/terms.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/vocabulary/terms.json",
+      "expected_sha256": "ca29be2b1dd3914ef4fb97b9569624775de3bd3fac0a74f081d565ef03e6ca38",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/vocabulary/terms.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 29099,
+      "sha256": "ca29be2b1dd3914ef4fb97b9569624775de3bd3fac0a74f081d565ef03e6ca38"
+    },
+    {
+      "kind": "source",
+      "path": "reference/w3id/of/.htaccess",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/w3id/of/.htaccess",
+      "expected_sha256": "26847305d279d09b21c051141e29c8a111dda7a1dd74a19245de3cc2aa738ba3",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/w3id/of/.htaccess",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 15091,
+      "sha256": "26847305d279d09b21c051141e29c8a111dda7a1dd74a19245de3cc2aa738ba3"
+    },
+    {
+      "kind": "source",
+      "path": "reference/w3id/of/README.md",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/w3id/of/README.md",
+      "expected_sha256": "eb49bfeefb2eaefec158bd5f01d140106ad5f4cfcd021d8b2f04b91e2b854998",
+      "expected_content_types": [
+        "text/plain",
+        "text/markdown"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/reference/w3id/of/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 924,
+      "sha256": "eb49bfeefb2eaefec158bd5f01d140106ad5f4cfcd021d8b2f04b91e2b854998"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/index.html",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/index.html",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/index.html",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 45193,
+      "sha256": "499af4ca516cb902926f2e8efd776c1e36b6c335d594a3a3fbe89a6d63950968"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/index.html",
+      "expected_url": "https://obligationfirst.org/",
+      "expected_sha256": "499af4ca516cb902926f2e8efd776c1e36b6c335d594a3a3fbe89a6d63950968",
+      "expected_content_types": [
+        "text/html"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 45193,
+      "sha256": "499af4ca516cb902926f2e8efd776c1e36b6c335d594a3a3fbe89a6d63950968",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/index.html",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/index.html",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/index.html",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 10622,
+      "sha256": "99bcd425026a3d91a327d101e14a2e6dcd509f12432856c12d472c941e9bf719"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/index.html",
+      "expected_url": "https://obligationfirst.org/v1/",
+      "expected_sha256": "99bcd425026a3d91a327d101e14a2e6dcd509f12432856c12d472c941e9bf719",
+      "expected_content_types": [
+        "text/html"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 10622,
+      "sha256": "99bcd425026a3d91a327d101e14a2e6dcd509f12432856c12d472c941e9bf719",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/schema/index.html",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/schema/index.html",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/schema/index.html",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 4121,
+      "sha256": "f1f49f25b9ca0072145abed75cb634c7548dbd785a7a810a3b4c64a81b3a5b4d"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/schema/index.html",
+      "expected_url": "https://obligationfirst.org/v1/schema/",
+      "expected_sha256": "f1f49f25b9ca0072145abed75cb634c7548dbd785a7a810a3b4c64a81b3a5b4d",
+      "expected_content_types": [
+        "text/html"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/schema/",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 4121,
+      "sha256": "f1f49f25b9ca0072145abed75cb634c7548dbd785a7a810a3b4c64a81b3a5b4d",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/index.html",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/index.html",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/index.html",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 4544,
+      "sha256": "8d76c3cfda8266c8a66b61784e34861289935fcbbc71fec53c60163f2d795a0b"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/index.html",
+      "expected_url": "https://obligationfirst.org/v1/examples/",
+      "expected_sha256": "8d76c3cfda8266c8a66b61784e34861289935fcbbc71fec53c60163f2d795a0b",
+      "expected_content_types": [
+        "text/html"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 4544,
+      "sha256": "8d76c3cfda8266c8a66b61784e34861289935fcbbc71fec53c60163f2d795a0b",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/vocabulary/index.html",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/vocabulary/index.html",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/vocabulary/index.html",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 24787,
+      "sha256": "eb2eab56ae03dd8c02f3fe0e91b64b9b47ba194b6e551f3736f2ebbab30e3d93"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/vocabulary/index.html",
+      "expected_url": "https://obligationfirst.org/v1/vocabulary/",
+      "expected_sha256": "eb2eab56ae03dd8c02f3fe0e91b64b9b47ba194b6e551f3736f2ebbab30e3d93",
+      "expected_content_types": [
+        "text/html"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/vocabulary/",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 24787,
+      "sha256": "eb2eab56ae03dd8c02f3fe0e91b64b9b47ba194b6e551f3736f2ebbab30e3d93",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/vocabulary/terms.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/vocabulary/terms.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/vocabulary/terms.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 29099,
+      "sha256": "ca29be2b1dd3914ef4fb97b9569624775de3bd3fac0a74f081d565ef03e6ca38"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/vocabulary/terms.json",
+      "expected_url": "https://obligationfirst.org/v1/vocabulary/terms.json",
+      "expected_sha256": "ca29be2b1dd3914ef4fb97b9569624775de3bd3fac0a74f081d565ef03e6ca38",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/vocabulary/terms.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 29099,
+      "sha256": "ca29be2b1dd3914ef4fb97b9569624775de3bd3fac0a74f081d565ef03e6ca38",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/evaluation-status.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/evaluation-status.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/evaluation-status.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1666,
+      "sha256": "b8e50557d99d8df8828a1b3fb4a5cd657b0d837ab9e3e49996366606f7ce5d02"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/evaluation-status.json",
+      "expected_url": "https://obligationfirst.org/evaluation-status.json",
+      "expected_sha256": "b8e50557d99d8df8828a1b3fb4a5cd657b0d837ab9e3e49996366606f7ce5d02",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/evaluation-status.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1666,
+      "sha256": "b8e50557d99d8df8828a1b3fb4a5cd657b0d837ab9e3e49996366606f7ce5d02",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/robots.txt",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/robots.txt",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/robots.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 771,
+      "sha256": "7be499827b7b1c3922c96d77538b658afa90817f20a875c1103db67838686f3c"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/robots.txt",
+      "expected_url": "https://obligationfirst.org/robots.txt",
+      "expected_sha256": "7be499827b7b1c3922c96d77538b658afa90817f20a875c1103db67838686f3c",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/robots.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 771,
+      "sha256": "7be499827b7b1c3922c96d77538b658afa90817f20a875c1103db67838686f3c",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/sitemap.xml",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/sitemap.xml",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/sitemap.xml",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 3724,
+      "sha256": "7f26979e04fe3014e26ca80f3d239ceaff8632407152676a4d1061324cd313ed"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/sitemap.xml",
+      "expected_url": "https://obligationfirst.org/sitemap.xml",
+      "expected_sha256": "7f26979e04fe3014e26ca80f3d239ceaff8632407152676a4d1061324cd313ed",
+      "expected_content_types": [
+        "application/xml",
+        "text/xml"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/sitemap.xml",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/xml",
+      "bytes": 3724,
+      "sha256": "7f26979e04fe3014e26ca80f3d239ceaff8632407152676a4d1061324cd313ed",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/feed.xml",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/feed.xml",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/feed.xml",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 12615,
+      "sha256": "1ce648331c67f38ca2e134c63be0b5875a69f9ca54f5262ee46f031e3694733b"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/feed.xml",
+      "expected_url": "https://obligationfirst.org/feed.xml",
+      "expected_sha256": "1ce648331c67f38ca2e134c63be0b5875a69f9ca54f5262ee46f031e3694733b",
+      "expected_content_types": [
+        "application/xml",
+        "text/xml"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/feed.xml",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/xml",
+      "bytes": 12615,
+      "sha256": "1ce648331c67f38ca2e134c63be0b5875a69f9ca54f5262ee46f031e3694733b",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/atom.xml",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/atom.xml",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/atom.xml",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 12615,
+      "sha256": "6e0e23f16a69e92f38b94b37a1e86c19fe4cb69fc9dbc1c722c09bbfd13af787"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/atom.xml",
+      "expected_url": "https://obligationfirst.org/atom.xml",
+      "expected_sha256": "6e0e23f16a69e92f38b94b37a1e86c19fe4cb69fc9dbc1c722c09bbfd13af787",
+      "expected_content_types": [
+        "application/xml",
+        "text/xml"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/atom.xml",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/xml",
+      "bytes": 12615,
+      "sha256": "6e0e23f16a69e92f38b94b37a1e86c19fe4cb69fc9dbc1c722c09bbfd13af787",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/changelog.html",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/changelog.html",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/changelog.html",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1608,
+      "sha256": "75478bb7f2d8302c6227a032c09972f9fffca0b9c8ec5548f530b98a9069e011"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/changelog.html",
+      "expected_url": "https://obligationfirst.org/changelog.html",
+      "expected_sha256": "75478bb7f2d8302c6227a032c09972f9fffca0b9c8ec5548f530b98a9069e011",
+      "expected_content_types": [
+        "text/html"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/changelog.html",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 1608,
+      "sha256": "75478bb7f2d8302c6227a032c09972f9fffca0b9c8ec5548f530b98a9069e011",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/.well-known/security.txt",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/.well-known/security.txt",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/.well-known/security.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 351,
+      "sha256": "594ebfb91f802d2e6c7153ed5af382a7ecd22e3286fbad6cca0ecbd63667ae20"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/.well-known/security.txt",
+      "expected_url": "https://obligationfirst.org/.well-known/security.txt",
+      "expected_sha256": "594ebfb91f802d2e6c7153ed5af382a7ecd22e3286fbad6cca0ecbd63667ae20",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/.well-known/security.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 351,
+      "sha256": "594ebfb91f802d2e6c7153ed5af382a7ecd22e3286fbad6cca0ecbd63667ae20",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/releases/v0.6.6/index.html",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/releases/v0.6.6/index.html",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/releases/v0.6.6/index.html",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1738,
+      "sha256": "088d169473304ac67525e53c2c0ea228c332f4d4a60319f5e14679d24d33ee2c"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/releases/v0.6.6/index.html",
+      "expected_url": "https://obligationfirst.org/releases/v0.6.6/",
+      "expected_sha256": "088d169473304ac67525e53c2c0ea228c332f4d4a60319f5e14679d24d33ee2c",
+      "expected_content_types": [
+        "text/html"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/releases/v0.6.6/",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 1738,
+      "sha256": "088d169473304ac67525e53c2c0ea228c332f4d4a60319f5e14679d24d33ee2c",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/releases/v0.6.6/manifest.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/releases/v0.6.6/manifest.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/releases/v0.6.6/manifest.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 13775,
+      "sha256": "3523029d33d10ab04cc61158aad0ba394b6c803bf51a89337ef822017581dd88"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/releases/v0.6.6/manifest.json",
+      "expected_url": "https://obligationfirst.org/releases/v0.6.6/manifest.json",
+      "expected_sha256": "3523029d33d10ab04cc61158aad0ba394b6c803bf51a89337ef822017581dd88",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/releases/v0.6.6/manifest.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 13775,
+      "sha256": "3523029d33d10ab04cc61158aad0ba394b6c803bf51a89337ef822017581dd88",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/releases/v0.6.6/sha256.txt",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/releases/v0.6.6/sha256.txt",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/releases/v0.6.6/sha256.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 4851,
+      "sha256": "64de8d81e3fd080c424f30e27782a132a1d6a3bc6cef046d07bd6a895298ef76"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/releases/v0.6.6/sha256.txt",
+      "expected_url": "https://obligationfirst.org/releases/v0.6.6/sha256.txt",
+      "expected_sha256": "64de8d81e3fd080c424f30e27782a132a1d6a3bc6cef046d07bd6a895298ef76",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/releases/v0.6.6/sha256.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 4851,
+      "sha256": "64de8d81e3fd080c424f30e27782a132a1d6a3bc6cef046d07bd6a895298ef76",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/air-canada/README.md",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/README.md",
+      "expected_content_types": [
+        "text/plain",
+        "text/markdown"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1344,
+      "sha256": "080e01a8e1c90e9d06f9f6d1ac8dfdee1ca3b5d1394ac77e4a6bbd9909805874"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/air-canada/README.md",
+      "expected_url": "https://obligationfirst.org/v1/examples/air-canada/README.md",
+      "expected_sha256": "080e01a8e1c90e9d06f9f6d1ac8dfdee1ca3b5d1394ac77e4a6bbd9909805874",
+      "expected_content_types": [
+        "text/markdown",
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/air-canada/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/markdown",
+      "bytes": 1344,
+      "sha256": "080e01a8e1c90e9d06f9f6d1ac8dfdee1ca3b5d1394ac77e4a6bbd9909805874",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/air-canada/records/allegation-misrep.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/allegation-misrep.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/allegation-misrep.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 964,
+      "sha256": "620a5b6ea741776f26796be91cf622a14180c2f05116dfa4eb6956145d52b702"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/air-canada/records/allegation-misrep.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/air-canada/records/allegation-misrep.json",
+      "expected_sha256": "620a5b6ea741776f26796be91cf622a14180c2f05116dfa4eb6956145d52b702",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/air-canada/records/allegation-misrep.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 964,
+      "sha256": "620a5b6ea741776f26796be91cf622a14180c2f05116dfa4eb6956145d52b702",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/air-canada/records/allegation-reliance.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/allegation-reliance.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/allegation-reliance.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 521,
+      "sha256": "cbfb2f720bbb9941563e65223c36aff20e9da0158c91c458bd639248e46aa5e4"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/air-canada/records/allegation-reliance.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/air-canada/records/allegation-reliance.json",
+      "expected_sha256": "cbfb2f720bbb9941563e65223c36aff20e9da0158c91c458bd639248e46aa5e4",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/air-canada/records/allegation-reliance.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 521,
+      "sha256": "cbfb2f720bbb9941563e65223c36aff20e9da0158c91c458bd639248e46aa5e4",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/air-canada/records/authority-bccrt.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/authority-bccrt.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/authority-bccrt.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 589,
+      "sha256": "680e4a20e8e208f8d05b7629301285d83f8c22ffafe041cd4b9d15f4762d91ca"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/air-canada/records/authority-bccrt.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/air-canada/records/authority-bccrt.json",
+      "expected_sha256": "680e4a20e8e208f8d05b7629301285d83f8c22ffafe041cd4b9d15f4762d91ca",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/air-canada/records/authority-bccrt.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 589,
+      "sha256": "680e4a20e8e208f8d05b7629301285d83f8c22ffafe041cd4b9d15f4762d91ca",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/air-canada/records/determination-bccrt-149.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/determination-bccrt-149.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/determination-bccrt-149.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1322,
+      "sha256": "ed0ece29b69ca0432697d823141b32dadd461551be04a93ee570d9d5f3ecd91f"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/air-canada/records/determination-bccrt-149.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/air-canada/records/determination-bccrt-149.json",
+      "expected_sha256": "ed0ece29b69ca0432697d823141b32dadd461551be04a93ee570d9d5f3ecd91f",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/air-canada/records/determination-bccrt-149.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1322,
+      "sha256": "ed0ece29b69ca0432697d823141b32dadd461551be04a93ee570d9d5f3ecd91f",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/air-canada/records/obligation-reasonable-care.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/obligation-reasonable-care.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/obligation-reasonable-care.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1098,
+      "sha256": "36dd7c934c6f5ffbf0b33f68dd18073d9a746d36e3644df366e3cc5e086222aa"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/air-canada/records/obligation-reasonable-care.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/air-canada/records/obligation-reasonable-care.json",
+      "expected_sha256": "36dd7c934c6f5ffbf0b33f68dd18073d9a746d36e3644df366e3cc5e086222aa",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/air-canada/records/obligation-reasonable-care.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1098,
+      "sha256": "36dd7c934c6f5ffbf0b33f68dd18073d9a746d36e3644df366e3cc5e086222aa",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/air-canada/records/party-air-canada.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/party-air-canada.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/party-air-canada.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 342,
+      "sha256": "964468675f4f45376ef5acbc318ea176cddbe21e70baf28c73168d76ad8c3d81"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/air-canada/records/party-air-canada.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/air-canada/records/party-air-canada.json",
+      "expected_sha256": "964468675f4f45376ef5acbc318ea176cddbe21e70baf28c73168d76ad8c3d81",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/air-canada/records/party-air-canada.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 342,
+      "sha256": "964468675f4f45376ef5acbc318ea176cddbe21e70baf28c73168d76ad8c3d81",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/air-canada/records/party-moffatt.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/party-moffatt.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/party-moffatt.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 307,
+      "sha256": "e127bcf1d62e855ce85c5f6690512a627dfc119ed34c782f1a25b209270b4962"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/air-canada/records/party-moffatt.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/air-canada/records/party-moffatt.json",
+      "expected_sha256": "e127bcf1d62e855ce85c5f6690512a627dfc119ed34c782f1a25b209270b4962",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/air-canada/records/party-moffatt.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 307,
+      "sha256": "e127bcf1d62e855ce85c5f6690512a627dfc119ed34c782f1a25b209270b4962",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/air-canada/records/proceeding-moffatt.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/proceeding-moffatt.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/air-canada/records/proceeding-moffatt.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1309,
+      "sha256": "ac66d10d644b4e4386b7737c76bbd5f6b4a8b482f870db056ac3f2ab17897169"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/air-canada/records/proceeding-moffatt.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/air-canada/records/proceeding-moffatt.json",
+      "expected_sha256": "ac66d10d644b4e4386b7737c76bbd5f6b4a8b482f870db056ac3f2ab17897169",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/air-canada/records/proceeding-moffatt.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1309,
+      "sha256": "ac66d10d644b4e4386b7737c76bbd5f6b4a8b482f870db056ac3f2ab17897169",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-evolution/README.md",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-evolution/README.md",
+      "expected_content_types": [
+        "text/plain",
+        "text/markdown"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-evolution/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 2730,
+      "sha256": "698531c763616736fca6897466f74098c7112fcd7ec3b388bd00b4605661c43b"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-evolution/README.md",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-evolution/README.md",
+      "expected_sha256": "698531c763616736fca6897466f74098c7112fcd7ec3b388bd00b4605661c43b",
+      "expected_content_types": [
+        "text/markdown",
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-evolution/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/markdown",
+      "bytes": 2730,
+      "sha256": "698531c763616736fca6897466f74098c7112fcd7ec3b388bd00b4605661c43b",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-evolution/records/instrument-co-sb24-205-predecessor.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-evolution/records/instrument-co-sb24-205-predecessor.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-evolution/records/instrument-co-sb24-205-predecessor.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1287,
+      "sha256": "16794eadf43d66071a771fb4f8b294082f0359f9adef48c79b8491d2313ca97e"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-evolution/records/instrument-co-sb24-205-predecessor.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-evolution/records/instrument-co-sb24-205-predecessor.json",
+      "expected_sha256": "16794eadf43d66071a771fb4f8b294082f0359f9adef48c79b8491d2313ca97e",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-evolution/records/instrument-co-sb24-205-predecessor.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1287,
+      "sha256": "16794eadf43d66071a771fb4f8b294082f0359f9adef48c79b8491d2313ca97e",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-evolution/records/instrument-co-sb26-189-successor.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-evolution/records/instrument-co-sb26-189-successor.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-evolution/records/instrument-co-sb26-189-successor.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1560,
+      "sha256": "c5d01a13d4390432406beca71f1ed4af385ab8b70f6d2400fe74a932bb57f0fd"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-evolution/records/instrument-co-sb26-189-successor.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-evolution/records/instrument-co-sb26-189-successor.json",
+      "expected_sha256": "c5d01a13d4390432406beca71f1ed4af385ab8b70f6d2400fe74a932bb57f0fd",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-evolution/records/instrument-co-sb26-189-successor.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1560,
+      "sha256": "c5d01a13d4390432406beca71f1ed4af385ab8b70f6d2400fe74a932bb57f0fd",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/README.md",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/README.md",
+      "expected_content_types": [
+        "text/plain",
+        "text/markdown"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 20209,
+      "sha256": "2ab0304e3a5da9978b2fbbddbd1da00abdc70ed9ffed808a17d06a0d16495551"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/README.md",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/README.md",
+      "expected_sha256": "2ab0304e3a5da9978b2fbbddbd1da00abdc70ed9ffed808a17d06a0d16495551",
+      "expected_content_types": [
+        "text/markdown",
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/markdown",
+      "bytes": 20209,
+      "sha256": "2ab0304e3a5da9978b2fbbddbd1da00abdc70ed9ffed808a17d06a0d16495551",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/allegation-co-sb24-205-enforcement-challenge.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/allegation-co-sb24-205-enforcement-challenge.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/allegation-co-sb24-205-enforcement-challenge.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 549,
+      "sha256": "866898ae6a1c190d3f85f0e313db7d32cee1adf7a6659e60d3fd06ccf892d593"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/allegation-co-sb24-205-enforcement-challenge.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/allegation-co-sb24-205-enforcement-challenge.json",
+      "expected_sha256": "866898ae6a1c190d3f85f0e313db7d32cee1adf7a6659e60d3fd06ccf892d593",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/allegation-co-sb24-205-enforcement-challenge.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 549,
+      "sha256": "866898ae6a1c190d3f85f0e313db7d32cee1adf7a6659e60d3fd06ccf892d593",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/authority-co-attorney-general.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/authority-co-attorney-general.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/authority-co-attorney-general.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 634,
+      "sha256": "15cd2958316f53401d8c7681ebd1b92986085cde78d2f3dc33091dedac510d18"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/authority-co-attorney-general.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/authority-co-attorney-general.json",
+      "expected_sha256": "15cd2958316f53401d8c7681ebd1b92986085cde78d2f3dc33091dedac510d18",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/authority-co-attorney-general.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 634,
+      "sha256": "15cd2958316f53401d8c7681ebd1b92986085cde78d2f3dc33091dedac510d18",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/authority-co-general-assembly.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/authority-co-general-assembly.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/authority-co-general-assembly.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 565,
+      "sha256": "d8fa2a40081c47a5892aee77b6b98a32613a8a426485dd2525ac3aff09395ff5"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/authority-co-general-assembly.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/authority-co-general-assembly.json",
+      "expected_sha256": "d8fa2a40081c47a5892aee77b6b98a32613a8a426485dd2525ac3aff09395ff5",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/authority-co-general-assembly.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 565,
+      "sha256": "d8fa2a40081c47a5892aee77b6b98a32613a8a426485dd2525ac3aff09395ff5",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/authority-us-co-ai-policy-work-group.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/authority-us-co-ai-policy-work-group.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/authority-us-co-ai-policy-work-group.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 615,
+      "sha256": "2d179a76d10c93b39f733007c6f40a8ba2d9522efdbc98acd9b3a01b138ff1e8"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/authority-us-co-ai-policy-work-group.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/authority-us-co-ai-policy-work-group.json",
+      "expected_sha256": "2d179a76d10c93b39f733007c6f40a8ba2d9522efdbc98acd9b3a01b138ff1e8",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/authority-us-co-ai-policy-work-group.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 615,
+      "sha256": "2d179a76d10c93b39f733007c6f40a8ba2d9522efdbc98acd9b3a01b138ff1e8",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/authority-us-co-federal-district-court.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/authority-us-co-federal-district-court.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/authority-us-co-federal-district-court.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 717,
+      "sha256": "e6045da16011895a898783d287475dc4db6c60a5c52598c0c41f272d5fb88368"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/authority-us-co-federal-district-court.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/authority-us-co-federal-district-court.json",
+      "expected_sha256": "e6045da16011895a898783d287475dc4db6c60a5c52598c0c41f272d5fb88368",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/authority-us-co-federal-district-court.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 717,
+      "sha256": "e6045da16011895a898783d287475dc4db6c60a5c52598c0c41f272d5fb88368",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/determination-co-ag-non-enforcement-statement.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/determination-co-ag-non-enforcement-statement.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/determination-co-ag-non-enforcement-statement.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 994,
+      "sha256": "b423b13e5eecbfea99daf2f68305b495b67eacda9421191869100d2b2809ff3b"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/determination-co-ag-non-enforcement-statement.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/determination-co-ag-non-enforcement-statement.json",
+      "expected_sha256": "b423b13e5eecbfea99daf2f68305b495b67eacda9421191869100d2b2809ff3b",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/determination-co-ag-non-enforcement-statement.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 994,
+      "sha256": "b423b13e5eecbfea99daf2f68305b495b67eacda9421191869100d2b2809ff3b",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/determination-co-sb24-205-stay-order.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/determination-co-sb24-205-stay-order.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/determination-co-sb24-205-stay-order.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1044,
+      "sha256": "764e5989da1603689293f5ed6747f2a7b265cadc1570dc785c27f323975f918d"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/determination-co-sb24-205-stay-order.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/determination-co-sb24-205-stay-order.json",
+      "expected_sha256": "764e5989da1603689293f5ed6747f2a7b265cadc1570dc785c27f323975f918d",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/determination-co-sb24-205-stay-order.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1044,
+      "sha256": "764e5989da1603689293f5ed6747f2a7b265cadc1570dc785c27f323975f918d",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/instrument-co-sb24-205.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/instrument-co-sb24-205.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/instrument-co-sb24-205.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 982,
+      "sha256": "c3c4205ce3ce6bd56c10fd8245428222431712ce010c45bd808a1ae192a93eae"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/instrument-co-sb24-205.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/instrument-co-sb24-205.json",
+      "expected_sha256": "c3c4205ce3ce6bd56c10fd8245428222431712ce010c45bd808a1ae192a93eae",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/instrument-co-sb24-205.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 982,
+      "sha256": "c3c4205ce3ce6bd56c10fd8245428222431712ce010c45bd808a1ae192a93eae",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/instrument-co-sb26-189.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/instrument-co-sb26-189.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/instrument-co-sb26-189.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 738,
+      "sha256": "e006797fd3f7667921064b816d8816007efb86cb63273eb5b442b67c6373b9e6"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/instrument-co-sb26-189.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/instrument-co-sb26-189.json",
+      "expected_sha256": "e006797fd3f7667921064b816d8816007efb86cb63273eb5b442b67c6373b9e6",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/instrument-co-sb26-189.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 738,
+      "sha256": "e006797fd3f7667921064b816d8816007efb86cb63273eb5b442b67c6373b9e6",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/obligation-reasonable-care.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/obligation-reasonable-care.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/obligation-reasonable-care.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 592,
+      "sha256": "96d92a430e1b5f12d11dd1150901688bc320f726808bc1c8a31e6c2e1619ef58"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/obligation-reasonable-care.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/obligation-reasonable-care.json",
+      "expected_sha256": "96d92a430e1b5f12d11dd1150901688bc320f726808bc1c8a31e6c2e1619ef58",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/obligation-reasonable-care.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 592,
+      "sha256": "96d92a430e1b5f12d11dd1150901688bc320f726808bc1c8a31e6c2e1619ef58",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/obligation-violation-reparation.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/obligation-violation-reparation.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/obligation-violation-reparation.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 772,
+      "sha256": "123c63ed5724cf5fd1cb441eda27b680133b4257a44023fba6ee73e217799b30"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/obligation-violation-reparation.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/obligation-violation-reparation.json",
+      "expected_sha256": "123c63ed5724cf5fd1cb441eda27b680133b4257a44023fba6ee73e217799b30",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/obligation-violation-reparation.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 772,
+      "sha256": "123c63ed5724cf5fd1cb441eda27b680133b4257a44023fba6ee73e217799b30",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/proceeding-co-sb24-205-federal-litigation.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/proceeding-co-sb24-205-federal-litigation.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/proceeding-co-sb24-205-federal-litigation.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1001,
+      "sha256": "8752a611ed81fa3804207c6a9d0fc358009e689ec39d9013f7c77bae64109fd3"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/proceeding-co-sb24-205-federal-litigation.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/proceeding-co-sb24-205-federal-litigation.json",
+      "expected_sha256": "8752a611ed81fa3804207c6a9d0fc358009e689ec39d9013f7c77bae64109fd3",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/proceeding-co-sb24-205-federal-litigation.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1001,
+      "sha256": "8752a611ed81fa3804207c6a9d0fc358009e689ec39d9013f7c77bae64109fd3",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/term-co-sb24-205-1703-duty-of-care.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/term-co-sb24-205-1703-duty-of-care.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/colorado-sb24-205/records/term-co-sb24-205-1703-duty-of-care.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 817,
+      "sha256": "82295c26debea1591a33119e2d14b2840e7d271b28fdd74483c721a4c04a55c3"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/colorado-sb24-205/records/term-co-sb24-205-1703-duty-of-care.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/term-co-sb24-205-1703-duty-of-care.json",
+      "expected_sha256": "82295c26debea1591a33119e2d14b2840e7d271b28fdd74483c721a4c04a55c3",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/colorado-sb24-205/records/term-co-sb24-205-1703-duty-of-care.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 817,
+      "sha256": "82295c26debea1591a33119e2d14b2840e7d271b28fdd74483c721a4c04a55c3",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/README.md",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/README.md",
+      "expected_content_types": [
+        "text/plain",
+        "text/markdown"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 12239,
+      "sha256": "08bcb045f4ea49cb99dd7b26d5105cccbc64c75d6e406572b95d85c7ff576634"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/README.md",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/README.md",
+      "expected_sha256": "08bcb045f4ea49cb99dd7b26d5105cccbc64c75d6e406572b95d85c7ff576634",
+      "expected_content_types": [
+        "text/markdown",
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/markdown",
+      "bytes": 12239,
+      "sha256": "08bcb045f4ea49cb99dd7b26d5105cccbc64c75d6e406572b95d85c7ff576634",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/authority-eu-commission.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/authority-eu-commission.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/authority-eu-commission.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 659,
+      "sha256": "d426646a3ec3a5dd0ca6f5bc99af26a761e4e43de77cc9446637261f5280a2bf"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/authority-eu-commission.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/authority-eu-commission.json",
+      "expected_sha256": "d426646a3ec3a5dd0ca6f5bc99af26a761e4e43de77cc9446637261f5280a2bf",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/authority-eu-commission.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 659,
+      "sha256": "d426646a3ec3a5dd0ca6f5bc99af26a761e4e43de77cc9446637261f5280a2bf",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/authority-eu-parliament-council.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/authority-eu-parliament-council.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/authority-eu-parliament-council.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1167,
+      "sha256": "842453e40e07ed3c20b473f59fa01f82bca615cc2afd83c2b339cbad24d82dbe"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/authority-eu-parliament-council.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/authority-eu-parliament-council.json",
+      "expected_sha256": "842453e40e07ed3c20b473f59fa01f82bca615cc2afd83c2b339cbad24d82dbe",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/authority-eu-parliament-council.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1167,
+      "sha256": "842453e40e07ed3c20b473f59fa01f82bca615cc2afd83c2b339cbad24d82dbe",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/instrument-eu-ai-act.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/instrument-eu-ai-act.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/instrument-eu-ai-act.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 2373,
+      "sha256": "6858180e604a280027d94c786508d8c3a00fb1ed1c3862cbb9b0b6e367944412"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/instrument-eu-ai-act.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/instrument-eu-ai-act.json",
+      "expected_sha256": "6858180e604a280027d94c786508d8c3a00fb1ed1c3862cbb9b0b6e367944412",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/instrument-eu-ai-act.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 2373,
+      "sha256": "6858180e604a280027d94c786508d8c3a00fb1ed1c3862cbb9b0b6e367944412",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/instrument-eu-art50-cop.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/instrument-eu-art50-cop.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/instrument-eu-art50-cop.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1358,
+      "sha256": "6a6a11e44bd60a97145599dcf983819879785ff3cbc39b9eea9af2df16bfc59c"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/instrument-eu-art50-cop.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/instrument-eu-art50-cop.json",
+      "expected_sha256": "6a6a11e44bd60a97145599dcf983819879785ff3cbc39b9eea9af2df16bfc59c",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/instrument-eu-art50-cop.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1358,
+      "sha256": "6a6a11e44bd60a97145599dcf983819879785ff3cbc39b9eea9af2df16bfc59c",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/instrument-eu-art50-guidelines.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/instrument-eu-art50-guidelines.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/instrument-eu-art50-guidelines.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1921,
+      "sha256": "0862eea01a1125278cfd4be71f023535afd53c2d3767efb6803c99585758730b"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/instrument-eu-art50-guidelines.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/instrument-eu-art50-guidelines.json",
+      "expected_sha256": "0862eea01a1125278cfd4be71f023535afd53c2d3767efb6803c99585758730b",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/instrument-eu-art50-guidelines.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1921,
+      "sha256": "0862eea01a1125278cfd4be71f023535afd53c2d3767efb6803c99585758730b",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/obligation-deployer-disclose-ai-interaction.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/obligation-deployer-disclose-ai-interaction.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/obligation-deployer-disclose-ai-interaction.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 809,
+      "sha256": "2f0ce597ec0ac635ac4c18655e47beee3526b913a93f45dd2527ee6dcbb86d1b"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/obligation-deployer-disclose-ai-interaction.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/obligation-deployer-disclose-ai-interaction.json",
+      "expected_sha256": "2f0ce597ec0ac635ac4c18655e47beee3526b913a93f45dd2527ee6dcbb86d1b",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/obligation-deployer-disclose-ai-interaction.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 809,
+      "sha256": "2f0ce597ec0ac635ac4c18655e47beee3526b913a93f45dd2527ee6dcbb86d1b",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/obligation-disclose-ai-generated-text.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/obligation-disclose-ai-generated-text.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/obligation-disclose-ai-generated-text.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 905,
+      "sha256": "1d9fa7fe60fdbf5259335c6c7c9adb5340077ab0361eb769bb85a1b878b0662e"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/obligation-disclose-ai-generated-text.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/obligation-disclose-ai-generated-text.json",
+      "expected_sha256": "1d9fa7fe60fdbf5259335c6c7c9adb5340077ab0361eb769bb85a1b878b0662e",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/obligation-disclose-ai-generated-text.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 905,
+      "sha256": "1d9fa7fe60fdbf5259335c6c7c9adb5340077ab0361eb769bb85a1b878b0662e",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/obligation-disclose-emotion-biometric.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/obligation-disclose-emotion-biometric.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/obligation-disclose-emotion-biometric.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 819,
+      "sha256": "d5acab84a27af8c75362d44ce1cdf4dfca706cc64d36e0a98bdfbdf450b7ac3c"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/obligation-disclose-emotion-biometric.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/obligation-disclose-emotion-biometric.json",
+      "expected_sha256": "d5acab84a27af8c75362d44ce1cdf4dfca706cc64d36e0a98bdfbdf450b7ac3c",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/obligation-disclose-emotion-biometric.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 819,
+      "sha256": "d5acab84a27af8c75362d44ce1cdf4dfca706cc64d36e0a98bdfbdf450b7ac3c",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/obligation-label-deepfake-content.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/obligation-label-deepfake-content.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/obligation-label-deepfake-content.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 873,
+      "sha256": "300deb1acfa1be523d547554ed4a5ed869e4ab9fb16fbc0cbae3fa981084e680"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/obligation-label-deepfake-content.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/obligation-label-deepfake-content.json",
+      "expected_sha256": "300deb1acfa1be523d547554ed4a5ed869e4ab9fb16fbc0cbae3fa981084e680",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/obligation-label-deepfake-content.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 873,
+      "sha256": "300deb1acfa1be523d547554ed4a5ed869e4ab9fb16fbc0cbae3fa981084e680",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/obligation-mark-synthetic-content.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/obligation-mark-synthetic-content.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/obligation-mark-synthetic-content.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 827,
+      "sha256": "26c3136d56fe725109e55e957fc0a084b095e61ecbd56d7c5bf602f44d6d9113"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/obligation-mark-synthetic-content.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/obligation-mark-synthetic-content.json",
+      "expected_sha256": "26c3136d56fe725109e55e957fc0a084b095e61ecbd56d7c5bf602f44d6d9113",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/obligation-mark-synthetic-content.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 827,
+      "sha256": "26c3136d56fe725109e55e957fc0a084b095e61ecbd56d7c5bf602f44d6d9113",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/obligation-provider-design-for-disclosure.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/obligation-provider-design-for-disclosure.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/obligation-provider-design-for-disclosure.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 811,
+      "sha256": "b0cea9ff6a4e2aff4c6dda1e03a216d61699d1d701418dacd4cc2f16f8e8768d"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/obligation-provider-design-for-disclosure.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/obligation-provider-design-for-disclosure.json",
+      "expected_sha256": "b0cea9ff6a4e2aff4c6dda1e03a216d61699d1d701418dacd4cc2f16f8e8768d",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/obligation-provider-design-for-disclosure.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 811,
+      "sha256": "b0cea9ff6a4e2aff4c6dda1e03a216d61699d1d701418dacd4cc2f16f8e8768d",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-art-50-1.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-art-50-1.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-art-50-1.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1371,
+      "sha256": "2082a4986c63c8c6958ffa481fd3799d31d4b0860591cbc391eeb80c07321b80"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-art-50-1.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-art-50-1.json",
+      "expected_sha256": "2082a4986c63c8c6958ffa481fd3799d31d4b0860591cbc391eeb80c07321b80",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-art-50-1.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1371,
+      "sha256": "2082a4986c63c8c6958ffa481fd3799d31d4b0860591cbc391eeb80c07321b80",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-art-50-2.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-art-50-2.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-art-50-2.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1369,
+      "sha256": "82cf895e9ce137555d1a74413e2198e82534366aad8dbcad403225d19295c3a6"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-art-50-2.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-art-50-2.json",
+      "expected_sha256": "82cf895e9ce137555d1a74413e2198e82534366aad8dbcad403225d19295c3a6",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-art-50-2.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1369,
+      "sha256": "82cf895e9ce137555d1a74413e2198e82534366aad8dbcad403225d19295c3a6",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-art-50-3.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-art-50-3.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-art-50-3.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1072,
+      "sha256": "77f30b3cdd078b26e2469fff278c4535f516808cabccc81f8bc19d3afa0fd338"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-art-50-3.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-art-50-3.json",
+      "expected_sha256": "77f30b3cdd078b26e2469fff278c4535f516808cabccc81f8bc19d3afa0fd338",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-art-50-3.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1072,
+      "sha256": "77f30b3cdd078b26e2469fff278c4535f516808cabccc81f8bc19d3afa0fd338",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-art-50-4.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-art-50-4.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-art-50-4.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1044,
+      "sha256": "4af6a0270ec65ffd6acd49d197cd8098e862a02371f6192780d3103caaec5556"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-art-50-4.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-art-50-4.json",
+      "expected_sha256": "4af6a0270ec65ffd6acd49d197cd8098e862a02371f6192780d3103caaec5556",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-art-50-4.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1044,
+      "sha256": "4af6a0270ec65ffd6acd49d197cd8098e862a02371f6192780d3103caaec5556",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-art-50-5.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-art-50-5.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-art-50-5.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 922,
+      "sha256": "40b3cdf1d1153607934e056f9e4833b217109088594afa59242cbbd1e9ec4814"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-art-50-5.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-art-50-5.json",
+      "expected_sha256": "40b3cdf1d1153607934e056f9e4833b217109088594afa59242cbbd1e9ec4814",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-art-50-5.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 922,
+      "sha256": "40b3cdf1d1153607934e056f9e4833b217109088594afa59242cbbd1e9ec4814",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-4-2-1-para69.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-4-2-1-para69.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-4-2-1-para69.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 999,
+      "sha256": "ba2031c9d2dde51016299c963b180c4ad5b9fe5e1c0e8baa3d828deaccf32745"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-4-2-1-para69.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-guidelines-4-2-1-para69.json",
+      "expected_sha256": "ba2031c9d2dde51016299c963b180c4ad5b9fe5e1c0e8baa3d828deaccf32745",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-guidelines-4-2-1-para69.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 999,
+      "sha256": "ba2031c9d2dde51016299c963b180c4ad5b9fe5e1c0e8baa3d828deaccf32745",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-3-chatbot-disclosure.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-3-chatbot-disclosure.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-3-chatbot-disclosure.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1343,
+      "sha256": "ebdf0037e55112ae362ca6f6c1b145c862624eb1539a5b05b0d6fb0dc765252f"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-3-chatbot-disclosure.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-3-chatbot-disclosure.json",
+      "expected_sha256": "ebdf0037e55112ae362ca6f6c1b145c862624eb1539a5b05b0d6fb0dc765252f",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-3-chatbot-disclosure.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1343,
+      "sha256": "ebdf0037e55112ae362ca6f6c1b145c862624eb1539a5b05b0d6fb0dc765252f",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-5-emotion-biometric.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-5-emotion-biometric.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-5-emotion-biometric.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1330,
+      "sha256": "f12aa289244cca1a41bb635b3362e7c4e812039b0d2e8fb2ff9e99d4c095997f"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-5-emotion-biometric.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-5-emotion-biometric.json",
+      "expected_sha256": "f12aa289244cca1a41bb635b3362e7c4e812039b0d2e8fb2ff9e99d4c095997f",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-5-emotion-biometric.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1330,
+      "sha256": "f12aa289244cca1a41bb635b3362e7c4e812039b0d2e8fb2ff9e99d4c095997f",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-6-deepfakes.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-6-deepfakes.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-6-deepfakes.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1282,
+      "sha256": "abdb764c2a074249dd5f6963f10f9e60809dcb1c12172e4e4f31ff344de19372"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-6-deepfakes.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-6-deepfakes.json",
+      "expected_sha256": "abdb764c2a074249dd5f6963f10f9e60809dcb1c12172e4e4f31ff344de19372",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-6-deepfakes.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1282,
+      "sha256": "abdb764c2a074249dd5f6963f10f9e60809dcb1c12172e4e4f31ff344de19372",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-7-ai-text.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-7-ai-text.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-7-ai-text.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1319,
+      "sha256": "d420621a50b5fde754160e3e258988ec8c5844a0a374e7cf5bf65d459e594ade"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-7-ai-text.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-7-ai-text.json",
+      "expected_sha256": "d420621a50b5fde754160e3e258988ec8c5844a0a374e7cf5bf65d459e594ade",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-guidelines-section-7-ai-text.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1319,
+      "sha256": "d420621a50b5fde754160e3e258988ec8c5844a0a374e7cf5bf65d459e594ade",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-recital-132.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-recital-132.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-recital-132.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1240,
+      "sha256": "1beedc7fcdf29612eeb1c768001ac8e3fa9847244907d14b8be8d315e88f1ba1"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-recital-132.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-recital-132.json",
+      "expected_sha256": "1beedc7fcdf29612eeb1c768001ac8e3fa9847244907d14b8be8d315e88f1ba1",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-recital-132.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1240,
+      "sha256": "1beedc7fcdf29612eeb1c768001ac8e3fa9847244907d14b8be8d315e88f1ba1",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-recital-133.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-recital-133.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-recital-133.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 924,
+      "sha256": "cdc3de1993a9453d1d5ba151d4b1e77940fb0a604ba47edc4c7a8a637ca943f2"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-recital-133.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-recital-133.json",
+      "expected_sha256": "cdc3de1993a9453d1d5ba151d4b1e77940fb0a604ba47edc4c7a8a637ca943f2",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-recital-133.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 924,
+      "sha256": "cdc3de1993a9453d1d5ba151d4b1e77940fb0a604ba47edc4c7a8a637ca943f2",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-recital-134.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-recital-134.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-recital-134.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1070,
+      "sha256": "b8f135fb2532108e2f6f3fa519a32c4486def68d0b44f9b01ffee8a306090d66"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-recital-134.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-recital-134.json",
+      "expected_sha256": "b8f135fb2532108e2f6f3fa519a32c4486def68d0b44f9b01ffee8a306090d66",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-recital-134.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1070,
+      "sha256": "b8f135fb2532108e2f6f3fa519a32c4486def68d0b44f9b01ffee8a306090d66",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-recital-135.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-recital-135.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-recital-135.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1128,
+      "sha256": "364e64a4f4a88c3cb006ab65e7a3bea425023f2b0abb839b97ec97475cb1b9d0"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-recital-135.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-recital-135.json",
+      "expected_sha256": "364e64a4f4a88c3cb006ab65e7a3bea425023f2b0abb839b97ec97475cb1b9d0",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-recital-135.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1128,
+      "sha256": "364e64a4f4a88c3cb006ab65e7a3bea425023f2b0abb839b97ec97475cb1b9d0",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-recital-136.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-recital-136.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/eu-ai-act-article-50/records/term-recital-136.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1091,
+      "sha256": "c020b01c785780cd6bbfc45b064c0dece624b827b1eaa4b05df4ca76cfa1e9b7"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/eu-ai-act-article-50/records/term-recital-136.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-recital-136.json",
+      "expected_sha256": "c020b01c785780cd6bbfc45b064c0dece624b827b1eaa4b05df4ca76cfa1e9b7",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/eu-ai-act-article-50/records/term-recital-136.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1091,
+      "sha256": "c020b01c785780cd6bbfc45b064c0dece624b827b1eaa4b05df4ca76cfa1e9b7",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/README.md",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/README.md",
+      "expected_content_types": [
+        "text/plain",
+        "text/markdown"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1164,
+      "sha256": "424683527fda8e3f0c657723b33a7ceafbf377b031d03d249d2b4467a4a825e8"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/README.md",
+      "expected_url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/README.md",
+      "expected_sha256": "424683527fda8e3f0c657723b33a7ceafbf377b031d03d249d2b4467a4a825e8",
+      "expected_content_types": [
+        "text/markdown",
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/markdown",
+      "bytes": 1164,
+      "sha256": "424683527fda8e3f0c657723b33a7ceafbf377b031d03d249d2b4467a4a825e8",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/input/category.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/input/category.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/input/category.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 183,
+      "sha256": "59c725b816db708afa999557e512fb08cba1f9320ab70df2e709694553e7d846"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/input/category.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/input/category.json",
+      "expected_sha256": "59c725b816db708afa999557e512fb08cba1f9320ab70df2e709694553e7d846",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/input/category.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 183,
+      "sha256": "59c725b816db708afa999557e512fb08cba1f9320ab70df2e709694553e7d846",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/input/deprecated-obligation.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/input/deprecated-obligation.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/input/deprecated-obligation.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 440,
+      "sha256": "107b21838a2ccbbbf6df9c870074fe49e0970d0aa2db4acf7cd9dc4e8a3ba49d"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/input/deprecated-obligation.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/input/deprecated-obligation.json",
+      "expected_sha256": "107b21838a2ccbbbf6df9c870074fe49e0970d0aa2db4acf7cd9dc4e8a3ba49d",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/input/deprecated-obligation.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 440,
+      "sha256": "107b21838a2ccbbbf6df9c870074fe49e0970d0aa2db4acf7cd9dc4e8a3ba49d",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/input/obligation.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/input/obligation.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/input/obligation.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 376,
+      "sha256": "d09edfdb6060fefe65f1fb8e9b81d42282a0d3224d2cfc2d12989cababf55aa2"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/input/obligation.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/input/obligation.json",
+      "expected_sha256": "d09edfdb6060fefe65f1fb8e9b81d42282a0d3224d2cfc2d12989cababf55aa2",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/input/obligation.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 376,
+      "sha256": "d09edfdb6060fefe65f1fb8e9b81d42282a0d3224d2cfc2d12989cababf55aa2",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/input/proceeding.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/input/proceeding.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/input/proceeding.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 310,
+      "sha256": "a1ce73728af2c1cce978260516b6ebe0d49c8bc1273cf27decf1aebb3b5cdb8b"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/input/proceeding.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/input/proceeding.json",
+      "expected_sha256": "a1ce73728af2c1cce978260516b6ebe0d49c8bc1273cf27decf1aebb3b5cdb8b",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/input/proceeding.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 310,
+      "sha256": "a1ce73728af2c1cce978260516b6ebe0d49c8bc1273cf27decf1aebb3b5cdb8b",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/input/term.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/input/term.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/input/term.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 270,
+      "sha256": "3f48c0098cea0d36bd10e91bc905a95aa6c985a4c26e09f7c991371716e391d0"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/input/term.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/input/term.json",
+      "expected_sha256": "3f48c0098cea0d36bd10e91bc905a95aa6c985a4c26e09f7c991371716e391d0",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/input/term.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 270,
+      "sha256": "3f48c0098cea0d36bd10e91bc905a95aa6c985a4c26e09f7c991371716e391d0",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/output/category.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/output/category.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/output/category.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 183,
+      "sha256": "59c725b816db708afa999557e512fb08cba1f9320ab70df2e709694553e7d846"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/output/category.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/output/category.json",
+      "expected_sha256": "59c725b816db708afa999557e512fb08cba1f9320ab70df2e709694553e7d846",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/output/category.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 183,
+      "sha256": "59c725b816db708afa999557e512fb08cba1f9320ab70df2e709694553e7d846",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/output/deprecated-obligation.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/output/deprecated-obligation.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/output/deprecated-obligation.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 361,
+      "sha256": "963ca5fc5dbac46487c9d481a61921e4da5eb28ee7a75f0a6b44db2e110c4fcc"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/output/deprecated-obligation.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/output/deprecated-obligation.json",
+      "expected_sha256": "963ca5fc5dbac46487c9d481a61921e4da5eb28ee7a75f0a6b44db2e110c4fcc",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/output/deprecated-obligation.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 361,
+      "sha256": "963ca5fc5dbac46487c9d481a61921e4da5eb28ee7a75f0a6b44db2e110c4fcc",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/output/obligation.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/output/obligation.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/output/obligation.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 315,
+      "sha256": "c1532a96558d68d3a7458db4389e1718507c936dd17c7084ebbc74f05ca0e5aa"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/output/obligation.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/output/obligation.json",
+      "expected_sha256": "c1532a96558d68d3a7458db4389e1718507c936dd17c7084ebbc74f05ca0e5aa",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/output/obligation.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 315,
+      "sha256": "c1532a96558d68d3a7458db4389e1718507c936dd17c7084ebbc74f05ca0e5aa",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/output/proceeding.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/output/proceeding.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/output/proceeding.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 345,
+      "sha256": "d0e1d78534f8d631bcc57c45037adc457a728c39c013d98d492887ca18a149d1"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/output/proceeding.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/output/proceeding.json",
+      "expected_sha256": "d0e1d78534f8d631bcc57c45037adc457a728c39c013d98d492887ca18a149d1",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/output/proceeding.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 345,
+      "sha256": "d0e1d78534f8d631bcc57c45037adc457a728c39c013d98d492887ca18a149d1",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/output/term.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/output/term.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/migration-v0.5-v0.6/output/term.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 244,
+      "sha256": "26a9b1b5e331ef9b8a2c7f625659849bc052c45620bf33d060eb219a62be824f"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/migration-v0.5-v0.6/output/term.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/output/term.json",
+      "expected_sha256": "26a9b1b5e331ef9b8a2c7f625659849bc052c45620bf33d060eb219a62be824f",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/migration-v0.5-v0.6/output/term.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 244,
+      "sha256": "26a9b1b5e331ef9b8a2c7f625659849bc052c45620bf33d060eb219a62be824f",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/naming-profiles/everyailaw-manifest.txt",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/naming-profiles/everyailaw-manifest.txt",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/naming-profiles/everyailaw-manifest.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 465,
+      "sha256": "1a4d666d6c54eb4ac68abd097b4d723066e0c8c046892b9d93099ff3c37f3fcc"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/naming-profiles/everyailaw-manifest.txt",
+      "expected_url": "https://obligationfirst.org/v1/examples/naming-profiles/everyailaw-manifest.txt",
+      "expected_sha256": "1a4d666d6c54eb4ac68abd097b4d723066e0c8c046892b9d93099ff3c37f3fcc",
+      "expected_content_types": [
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/naming-profiles/everyailaw-manifest.txt",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 465,
+      "sha256": "1a4d666d6c54eb4ac68abd097b4d723066e0c8c046892b9d93099ff3c37f3fcc",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/naming-profiles/everyailaw.jsonld",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/naming-profiles/everyailaw.jsonld",
+      "expected_content_types": [
+        "text/plain",
+        "application/ld+json",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/naming-profiles/everyailaw.jsonld",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1944,
+      "sha256": "19b88128e0e9a1c53c637cba83e85fb2758e4d1bb1899ab97096f5a9f1cc159e"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/naming-profiles/everyailaw.jsonld",
+      "expected_url": "https://obligationfirst.org/v1/examples/naming-profiles/everyailaw.jsonld",
+      "expected_sha256": "19b88128e0e9a1c53c637cba83e85fb2758e4d1bb1899ab97096f5a9f1cc159e",
+      "expected_content_types": [
+        "application/ld+json",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/naming-profiles/everyailaw.jsonld",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/ld+json",
+      "bytes": 1944,
+      "sha256": "19b88128e0e9a1c53c637cba83e85fb2758e4d1bb1899ab97096f5a9f1cc159e",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/publedge-jia-utah-72/README.md",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/publedge-jia-utah-72/README.md",
+      "expected_content_types": [
+        "text/plain",
+        "text/markdown"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/publedge-jia-utah-72/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 6200,
+      "sha256": "e0a8a786efded738c017a3a24180f053ac670cceb0bdf49e6f3100354d993d31"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/publedge-jia-utah-72/README.md",
+      "expected_url": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/README.md",
+      "expected_sha256": "e0a8a786efded738c017a3a24180f053ac670cceb0bdf49e6f3100354d993d31",
+      "expected_content_types": [
+        "text/markdown",
+        "text/plain"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/README.md",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/markdown",
+      "bytes": 6200,
+      "sha256": "e0a8a786efded738c017a3a24180f053ac670cceb0bdf49e6f3100354d993d31",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/publedge-jia-utah-72/records/authority-us-ut-oaip.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/publedge-jia-utah-72/records/authority-us-ut-oaip.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/publedge-jia-utah-72/records/authority-us-ut-oaip.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 619,
+      "sha256": "8ab802ea13a571ccd48c2978f03fd2fd4d93e3bf03bddebb75383c62b5f58513"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/publedge-jia-utah-72/records/authority-us-ut-oaip.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/records/authority-us-ut-oaip.json",
+      "expected_sha256": "8ab802ea13a571ccd48c2978f03fd2fd4d93e3bf03bddebb75383c62b5f58513",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/records/authority-us-ut-oaip.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 619,
+      "sha256": "8ab802ea13a571ccd48c2978f03fd2fd4d93e3bf03bddebb75383c62b5f58513",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 805,
+      "sha256": "749c13ccef70be61f07e5f1deb6e65bf5e90ede28157651ada105c770fb13611"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json",
+      "expected_sha256": "749c13ccef70be61f07e5f1deb6e65bf5e90ede28157651ada105c770fb13611",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 805,
+      "sha256": "749c13ccef70be61f07e5f1deb6e65bf5e90ede28157651ada105c770fb13611",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 756,
+      "sha256": "015868fca5d44d63506acd0935fde7cfeaf6b65273fe08f0dcf4c2e978b7e0a2"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json",
+      "expected_sha256": "015868fca5d44d63506acd0935fde7cfeaf6b65273fe08f0dcf4c2e978b7e0a2",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 756,
+      "sha256": "015868fca5d44d63506acd0935fde7cfeaf6b65273fe08f0dcf4c2e978b7e0a2",
+      "expected_sha256_origin": "immutable-source"
+    },
+    {
+      "kind": "source-supplemental",
+      "path": "docs/v1/examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json",
+      "expected_url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json",
+      "expected_content_types": [
+        "text/plain",
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://raw.githubusercontent.com/snapsynapse/obligation-first/e5b87e981cc9b8635ed3206172a5b92ef55d3a09/docs/v1/examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 723,
+      "sha256": "bc83ea309c09c51d3068b841fcafc9cd45beb36199d740655eb7406bf607c312"
+    },
+    {
+      "kind": "canonical-supplemental",
+      "path": "docs/v1/examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json",
+      "expected_url": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json",
+      "expected_sha256": "bc83ea309c09c51d3068b841fcafc9cd45beb36199d740655eb7406bf607c312",
+      "expected_content_types": [
+        "application/json"
+      ],
+      "ok": true,
+      "url": "https://obligationfirst.org/v1/examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json",
+      "redirects": [],
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 723,
+      "sha256": "bc83ea309c09c51d3068b841fcafc9cd45beb36199d740655eb7406bf607c312",
+      "expected_sha256_origin": "immutable-source"
+    }
+  ],
+  "errors": []
+}
