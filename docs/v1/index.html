@@ -44,7 +44,7 @@
 
   <h1>v1 namespace</h1>
   <!-- of-version: namespace-release-line -->
-  <p class="lede">Stable URIs for the Obligation-First specification, currently on the v0.6.5 release line. Under the bind-by-major policy the <code style="font-family: var(--mono); color: var(--accent);">/v1/</code> namespace serves the entire v0.x&rarr;1.x major, so records bound today keep resolving as the spec advances toward 1.0. The v0.6 contract is implemented and published across EveryAILaw, PubLedge, and AI Incident Law. Adopters fetch the context at <code style="font-family: var(--mono); color: var(--accent);">https://obligationfirst.org/v1/context.jsonld</code>; terms expand under the planned permanent <code style="font-family: var(--mono); color: var(--accent);">https://w3id.org/of/v1/</code> vocabulary prefix once the w3id.org redirect is filed.</p>
+  <p class="lede">Stable URIs for the Obligation-First specification, currently on the v0.6.6 release line. Under the bind-by-major policy the <code style="font-family: var(--mono); color: var(--accent);">/v1/</code> namespace serves the entire v0.x&rarr;1.x major, so records bound today keep resolving as the spec advances toward 1.0. The v0.6 contract is implemented and published across EveryAILaw, PubLedge, and AI Incident Law. Adopters fetch the context at <code style="font-family: var(--mono); color: var(--accent);">https://obligationfirst.org/v1/context.jsonld</code>; terms already expand under the permanent <code style="font-family: var(--mono); color: var(--accent);">https://w3id.org/of/v1/</code> vocabulary prefix. Dereferencing those IRIs remains pending external redirect acceptance and live verification.</p>
 
   <h2>Vocabulary documentation</h2>
   <p><a href="/v1/vocabulary/">Browse all expanded terms and their context aliases</a>. Term documentation is hosted here; the w3id contribution is prepared but not submitted.</p>
@@ -73,15 +73,16 @@
   </ul>
 
   <h2>Worked-example records</h2>
-  <p>Four real record sets round-tripped through the current draft, served as JSON for direct fetch and validation. Every record carries a neutral <code style="font-family: var(--mono); color: var(--accent);">https://obligationfirst.org/</code> identifier; where an example corresponds to a real adopter entity, that adopter's published IRI appears only as a crosswalk (via <code style="font-family: var(--mono); color: var(--accent);">sameAs</code> or <code style="font-family: var(--mono); color: var(--accent);">anchors</code>), never as the record's own <code style="font-family: var(--mono); color: var(--accent);">@id</code>. GitHub Pages serves no directory listings, so each link below resolves to one concrete record; browse the rest of a set from its README.</p>
+  <p>Five worked record sets round-tripped through the current draft, served as JSON for direct fetch and validation. The Colorado evolution companion is explicitly synthetic and evidence-bounded. Every record carries a neutral <code style="font-family: var(--mono); color: var(--accent);">https://obligationfirst.org/</code> identifier; where an example corresponds to a real adopter entity, that adopter's published IRI appears only as a crosswalk (via <code style="font-family: var(--mono); color: var(--accent);">sameAs</code>, <code style="font-family: var(--mono); color: var(--accent);">describesSameEntityAs</code>, or <code style="font-family: var(--mono); color: var(--accent);">anchors</code>), never as the record's own <code style="font-family: var(--mono); color: var(--accent);">@id</code>. GitHub Pages serves no directory listings, so each link below resolves to one concrete record; browse the rest of a set from its README.</p>
   <p><a href="/v1/examples/">Browse the worked-example index</a> for the published record inventory and validation context.</p>
   <ul>
     <li><a href="/v1/examples/colorado-sb24-205/records/authority-co-general-assembly.json"><code>colorado-sb24-205/records/authority-co-general-assembly.json</code></a> <span class="desc">13 records - Colorado AI Act, three-layer reality</span></li>
+    <li><a href="/v1/examples/colorado-evolution/records/instrument-co-sb26-189-successor.json"><code>colorado-evolution/records/instrument-co-sb26-189-successor.json</code></a> <span class="desc">2 records - synthetic current-contract succession with unknown operation and enforcement</span></li>
     <li><a href="/v1/examples/air-canada/records/authority-bccrt.json"><code>air-canada/records/authority-bccrt.json</code></a> <span class="desc">8 records - Moffatt v. Air Canada, Parties and common-law recognition</span></li>
     <li><a href="/v1/examples/publedge-jia-utah-72/records/authority-us-ut-oaip.json"><code>publedge-jia-utah-72/records/authority-us-ut-oaip.json</code></a> <span class="desc">4 records - Utah OAIP JIA contractual Term</span></li>
     <li><a href="/v1/examples/eu-ai-act-article-50/records/authority-eu-commission.json"><code>eu-ai-act-article-50/records/authority-eu-commission.json</code></a> <span class="desc">26 records - EU AI Act Article 50 transparency obligations</span></li>
   </ul>
-  <p>Set READMEs on GitHub: <a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/colorado-sb24-205/README.md"><code>colorado-sb24-205</code></a>, <a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/air-canada/README.md"><code>air-canada</code></a>, <a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/publedge-jia-utah-72/README.md"><code>publedge-jia-utah-72</code></a>, <a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/eu-ai-act-article-50/README.md"><code>eu-ai-act-article-50</code></a>.</p>
+  <p>Set READMEs on GitHub: <a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/colorado-sb24-205/README.md"><code>colorado-sb24-205</code></a>, <a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/colorado-evolution/README.md"><code>colorado-evolution</code></a>, <a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/air-canada/README.md"><code>air-canada</code></a>, <a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/publedge-jia-utah-72/README.md"><code>publedge-jia-utah-72</code></a>, <a href="https://github.com/snapsynapse/obligation-first/blob/main/examples/eu-ai-act-article-50/README.md"><code>eu-ai-act-article-50</code></a>.</p>
 
   <h2>Source-of-truth links</h2>
   <ul>
@@ -89,9 +90,11 @@
     <li><a href="https://github.com/snapsynapse/obligation-first/tree/main/reference/crosswalks"><code>reference/crosswalks/</code></a> <span class="desc">gist, LegalRuleML, Akoma Ntoso, ELI/ECLI</span></li>
     <li><a href="https://github.com/snapsynapse/obligation-first/blob/main/CHANGELOG.md"><code>CHANGELOG.md</code></a> <span class="desc">Version history</span></li>
     <li><a href="/.well-known/assistant-guide.txt"><code>/.well-known/assistant-guide.txt</code></a> <span class="desc">GuideCheck Human-Verifiable Assistant Guide for assistant-assisted repo work</span></li>
-    <li><a href="/.well-known/assistant-guide-manifest.txt"><code>/.well-known/assistant-guide-manifest.txt</code></a> <span class="desc">GuideCheck Level 4 sidecar manifest</span></li>
+    <li><a href="/.well-known/assistant-guide-manifest.txt"><code>/.well-known/assistant-guide-manifest.txt</code></a> <span class="desc">GuideCheck integrity sidecar manifest</span></li>
   </ul>
 </main>
-<p><a href="/evaluation-status.json">Evaluation implementation status</a> distinguishes the released reference tooling from the unreleased F14 fixture. The record schema remains v0.6; the fixture is not a production temporal serializer.</p>
+<!-- implementation-status:start -->
+<p><a href="/evaluation-status.json">Evaluation implementation status</a>. The v0.6.6 reference package includes scope continuity evaluation. F14 qualified-time evaluation is released offline reference tooling: expected/fallback branches and evidence/date boundaries are tested, while the v0.6 record schema and production serialization are unchanged. These fixtures do not determine legal applicability or predecessor operative history.</p>
+<!-- implementation-status:end -->
 </body>
 </html>

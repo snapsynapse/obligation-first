@@ -40,7 +40,7 @@ jobs:
       - name: Install puppeteer + axe-core
         if: env.SKIP_AUDIT != 'true'
         run: |
-          npm install --no-save puppeteer@25.3.0 @axe-core/puppeteer@4.12.1
+          npm install --no-save --no-audit --no-fund puppeteer@25.3.0 @axe-core/puppeteer@4.12.1
 
       - name: Run axe scan
         if: env.SKIP_AUDIT != 'true'

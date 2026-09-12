@@ -1,0 +1,29 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "@type": "of:Instrument",
+  "@id": "https://obligationfirst.org/v1/examples/colorado-evolution/instrument/successor",
+  "title": "Colorado SB 26-189 successor, current-contract teaching representation",
+  "kind": "statute",
+  "lifecycle_status": "enacted",
+  "operative_status": "unknown",
+  "enforcement_status": "unknown",
+  "computed_as_of": "2026-09-05",
+  "enacted": "2026-05-14",
+  "supersedes": [
+    "https://obligationfirst.org/v1/examples/colorado-evolution/instrument/predecessor"
+  ],
+  "jurisdiction": {
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "us-co"
+    ]
+  },
+  "source": "https://leg.colorado.gov/bill_files/116489/download",
+  "source_citation": "Colorado SB 26-189 signed act, sections 1 and 5",
+  "source_locator": "Section 1 replacement relationship; section 5(1) general January 1, 2027 date. This companion deliberately omits a scalar effective field because section 5 contains scoped exceptions. The fixed F14 sidecar does not establish whole-instrument operation or enforcement.",
+  "describesSameEntityAs": [
+    "https://everyailaw.com/instrument/colorado-sb26-189.json",
+    "https://publedge.org/instrument/us-co-legislature-statute-2026-sb26-189.json"
+  ],
+  "notes": "Synthetic current-contract companion record. The external records are independently maintained descriptions of the successor, not property-merge identity claims. Enactment and a section-specific date do not convert unknown operation or enforcement into a certainty."
+}

@@ -23,6 +23,7 @@ import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { isValidReleaseDate, readBundleDate, RELEASE_NAME, RELEASE_REPOSITORY } from "./lib/release-metadata.mjs";
 import { releaseArtifactInventory } from "./lib/contract-inventory.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -44,7 +45,7 @@ function parseArgs(argv) {
     opts[want] = value;
     i += 1;
   }
-  if (opts.date && !/^\d{4}-\d{2}-\d{2}$/.test(opts.date)) fail("--date must be YYYY-MM-DD");
+  if (opts.date !== undefined && !isValidReleaseDate(opts.date)) fail("--date must be a real YYYY-MM-DD calendar date");
   return opts;
 }
 
@@ -75,10 +76,6 @@ async function findPriorRelease(version) {
   }
   if (!best) fail(`no prior release with a manifest.json found below v${version} in docs/releases/`);
   return best.join(".");
-}
-
-function retargetVersion(text, priorVersion, version) {
-  return text.split(priorVersion).join(version);
 }
 
 function deriveCompatibility(prior, priorVersion, version) {
@@ -272,6 +269,9 @@ async function main() {
   const pkg = JSON.parse(await readFile(path.join(repoRoot, "package.json"), "utf8"));
   const version = pkg.version;
   const date = opts.date ?? new Date().toISOString().slice(0, 10);
+  if (pkg.name !== RELEASE_NAME) fail(`package.json name must be ${RELEASE_NAME}`);
+  const bundleDate = readBundleDate(await readFile(path.join(repoRoot, "MANIFEST.yaml"), "utf8"));
+  if (!isValidReleaseDate(bundleDate) || bundleDate !== date) fail("release date must match a valid MANIFEST.yaml bundle_date; run sync-version with --date first");
 
   const priorVersion = await findPriorRelease(version);
   const prior = JSON.parse(
@@ -302,12 +302,12 @@ async function main() {
   }
 
   const manifest = {
-    name: prior.name,
+    name: RELEASE_NAME,
     version,
     status: opts.status ?? prior.status,
     release_date: date,
-    canonical_url: retargetVersion(prior.canonical_url, priorVersion, version),
-    repository: prior.repository,
+    canonical_url: `https://obligationfirst.org/releases/v${version}/`,
+    repository: RELEASE_REPOSITORY,
     summary: opts.summary ?? `TODO: summarize the v${version} release.`,
     compatibility: deriveCompatibility(prior, priorVersion, version),
     artifacts,

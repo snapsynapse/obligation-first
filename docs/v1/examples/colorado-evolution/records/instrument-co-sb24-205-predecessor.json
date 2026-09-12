@@ -1,0 +1,23 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "@type": "of:Instrument",
+  "@id": "https://obligationfirst.org/v1/examples/colorado-evolution/instrument/predecessor",
+  "title": "Colorado SB 24-205 predecessor, current-contract teaching representation",
+  "kind": "statute",
+  "operative_status": "unknown",
+  "enforcement_status": "unknown",
+  "computed_as_of": "2026-09-05",
+  "jurisdiction": {
+    "@type": "of:Jurisdiction",
+    "territorial_scope": [
+      "us-co"
+    ]
+  },
+  "source": "https://leg.colorado.gov/bill_files/116489/download",
+  "source_citation": "Colorado SB 26-189 signed act, section 1",
+  "source_locator": "Section 1 repeal-and-reenactment relationship; this evidence does not establish predecessor operation or enforcement history.",
+  "describesSameEntityAs": [
+    "https://obligationfirst.org/v1/examples/colorado-sb24-205/instrument/sb24-205"
+  ],
+  "notes": "Synthetic current-contract companion record. It is an independently maintained description of the historical fixture's subject, so it uses describesSameEntityAs rather than sameAs. The successor relation does not decide the predecessor lifecycle label. Unknown operation and enforcement mean the frozen evidence does not establish either state; they do not claim absence."
+}

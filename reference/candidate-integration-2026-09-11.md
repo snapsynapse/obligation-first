@@ -2,6 +2,8 @@
 
 Session 1 prepares correction branches and draft PRs. Main merges, deployment, release packaging, paid providers and dispatch remain held.
 
+> Historical candidate-preparation record. The correction source subsequently landed on main and deployed; this text preserves the pre-delivery state. Current release preparation is [v0.6.6 preparation](release-preparation-v0.6.6.md), and current relationship controls are in [relationship migration review](relationship-migration-review.md).
+
 ## Checker review
 
 The reviewed 34efddc repair rejects an explicit relationship-migration comparison against the owner HEAD and adds the bounded sunset/operative diagnostic. Existing tests cover malformed/unavailable/self bases and partial/same-day/unknown temporal states. The stray tests/verification-workflow.test.js belonged to AI Tool Watch, whose tracked test supersedes its scenarios; the redundant local copy was removed after inspection, with a temporary recovery copy outside the repository.

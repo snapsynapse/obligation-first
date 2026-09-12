@@ -8,9 +8,9 @@ Status: v0.6 repository helper. It is versioned with the specification and is no
 
 - `scripts/lib/adopter-kit.mjs`: shared helpers for loading records, validating schemas, validating local graph links, and writing aggregate JSON bundles.
 - `scripts/validate-adopter-records.mjs`: CLI validator for one or more record directories.
-- `npm run validate:adopter-kit`: validates the four worked record sets discovered under `examples/*/records/`.
+- `npm run validate:adopter-kit`: validates the five worked record sets discovered under `examples/*/records/`.
 
-F14's [qualified-time fixture](contracts/qualified-time-fixture-v1.md) is separate unreleased tooling. It is not an addition to the writer's production record shape. The full federation command requires EveryAILaw/PubLedge owner sidecars and requires EveryAILaw's native two-date mapping; AI Incident Law participates in the existing regression lanes.
+F14's [qualified-time fixture](contracts/qualified-time-fixture-v1.md) is separate offline reference tooling distributed since v0.6.5. It is not an addition to the writer's production record shape. The full federation command requires EveryAILaw/PubLedge owner sidecars and requires EveryAILaw's native two-date mapping; AI Incident Law participates in the existing regression lanes.
 
 ## Validator use
 
@@ -34,7 +34,16 @@ The validator checks two layers:
 1. JSON Schema conformance for each record's `@type`.
 2. Local graph coherence for links that should resolve inside the same record set.
 
-External `anchors` are allowed to point outside the local record set. This is intentional: under the v0.3 federation model, cross-adopter links are typed crosswalks (`anchors` / `sameAs`) that target the other adopter's real published IRI — the actual `@id` resolved from that adopter's live export or its `.well-known` naming profile. A PubLedge anchor points at EveryAILaw's real published Term, Obligation, or ObligationCategory `@id`, and an AI Incident Law Determination does the same. The join keys on those real IRIs and on shared standard identifiers, never on a slug guessed from a naming convention.
+External `anchors` are allowed to point outside the local record set. This is intentional: under the v0.3 federation model, cross-adopter links target the other adopter's real published IRI — the actual `@id` resolved from that adopter's live export or its `.well-known` naming profile. `sameAs` is reserved for genuine property-merge identity; independently maintained records about the same external entity use `describesSameEntityAs`. A PubLedge anchor points at EveryAILaw's real published Term, Obligation, or ObligationCategory `@id`, and an AI Incident Law Determination does the same. The join keys on those real IRIs and on shared standard identifiers, never on a slug guessed from a naming convention.
+
+## Historical first-binding provenance
+
+These local Git commits identify the first export-oriented bindings. They are historical provenance, not evidence of a current deployment, release, source review, CI result, or record count.
+
+- Obligation-First reusable adopter kit: `bff0e97ceb9f0ac472bce856688c188a1d1c1ea1` (`2026-05-13`, `Add adopter kit for Obligation-First bindings`).
+- EveryAILaw first binding export: `a12f250dade94dcbbd01ec9c27352e4c5158ebbf` (`2026-05-13`, `Add Obligation-First binding export`).
+- PubLedge first binding export: `790b0a8b7c7d5f28a4da02549ed947ea7ed125ef` (`2026-05-13`, `Add Obligation-First binding export`).
+- AI Incident Law first proceeding export: `6594ed713bf51e800eb0c17db2b1ce115b7609f0` (`2026-05-13`, `Add Obligation-First proceeding export`).
 
 ## Naming profile
 

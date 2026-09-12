@@ -9,10 +9,10 @@ Scope: how Obligation-First record `@id` values relate to each other and to exte
 A worked example (EU AI Act Article 50) was found minting `everyailaw.com` IRIs that do not match what EveryAILaw actually publishes (`eu-commission` vs the live `european-commission`, suffixless vs `.json`, plus ~15 invented term and obligation IRIs). A four-way audit across the three live adopters (EveryAILaw, PubLedge, AI Incident Law) and all four worked examples showed the problem is systemic, not local:
 
 - Because of the `.json` suffix alone, zero of the 50 example `@id` values resolve against any live adopter.
-- The examples were authored to match the binding handoffs in `reference/handoffs/`. All three adopters then implemented differently from their own handoffs, and from each other. One Colorado statute has three different IRIs across the ecosystem.
+- The examples were authored to match then-prescriptive adopter slug schemes. All three adopters then implemented differently from those prescriptions, and from each other. One Colorado statute has three different IRIs across the ecosystem.
 - The divergences are of three kinds: true drift (same entity, same adopter, different IRI), legitimate adopter editorial autonomy (EveryAILaw spells out states, PubLedge uses full issuance IDs, AI Incident Law uses opaque `aiel-` sequences), and same-law-different-role (EveryAILaw models the law, PubLedge models its issuance instrument; correctly distinct, joined by `anchors`).
 
-The root cause is twofold: PROTOCOL told authors example `@id` values were "aspirational" predictions of adopter IRIs (a license to guess), and the binding handoffs prescribed schemes no adopter follows. Nothing reconciled prediction against live data once an adopter went live.
+The root cause is twofold: PROTOCOL told authors example `@id` values were "aspirational" predictions of adopter IRIs (a license to guess), and the v0.1 binding prescriptions did not match adopter practice. Nothing reconciled prediction against live data once an adopter went live.
 
 ## The decision
 
@@ -24,7 +24,7 @@ Obligation-First is a public standard, optimized for adoption ease even at the s
 
 3. Permanence with redirects. Once published, an `@id` does not change. A namespace reorganization MUST keep the old `@id` resolving via HTTP 301 (W3C "Cool URIs Don't Change"). A rename is therefore not a breaking change as long as the redirect persists. This is what lets canonical identity and "do not restructure anyone's files" coexist.
 
-4. Each adopter publishes a naming profile. At a `.well-known` location, using VoID `uriSpace` and `uriRegexPattern` plus an RFC 6570 URI Template and a declared list of supplied crosswalks. The profile is adopter-owned and adopter-published; Obligation-First consumes and validates against it, and never prescribes it. This is deliberate: the handoffs failed precisely because they were a spec-held prescription that drifted from adopter reality. ELI is the proof the pattern works: every EU member state publishes its own ELI URI template and a registry collects them. We borrow ELI's governance pattern, not just its identifiers.
+4. Each adopter publishes a naming profile. At a `.well-known` location, using VoID `uriSpace` and `uriRegexPattern` plus an RFC 6570 URI Template and a declared list of supplied crosswalks. The profile is adopter-owned and adopter-published; Obligation-First consumes and validates against it, and never prescribes it. This is deliberate: spec-held slug prescriptions drifted from adopter reality. ELI is the proof the pattern works: every EU member state publishes its own ELI URI template and a registry collects them. We borrow ELI's governance pattern, not just its identifiers.
 
 5. Jurisdiction is separate from the slug. The v0.3 decision used typed ISO 3166 identifiers. v0.6 refines that shape to `of:Jurisdiction`, a legal-competence object with `territorial_scope` and `institutional_scope`. ISO 3166 remains preferred for territories it describes, but is not treated as a universal legal-order vocabulary. A record omits jurisdiction when the source does not support it.
 
@@ -104,11 +104,13 @@ Every worked-example record MUST follow this shape:
 - The obligation-abstraction model (EuroVoc bridge accepted; the model is not).
 - Naming-profile expressiveness (loose regex vs generative template) and a public conformance tool.
 
-The three binding handoffs were reconciled to live adopter data in v0.3.1 (they previously prescribed schemes no adopter followed).
+The three v0.1 binding plans were reconciled to live adopter data in v0.3.1; their earlier slug prescriptions did not match adopter practice.
 
-## Implementation plan
+## Initial implementation plan (historical)
 
-Landing now: this design note, and PROTOCOL amendments (reverse the Term-`@id`-is-standard-IRI guidance, add the federation and permanence rules, add the naming-profile and crosswalk section, update the worked-example paragraph, redefine Level 2 and Level 3). Deferred to later rounds with their own decisions: schema and `context.jsonld` crosswalk fields, the `.well-known` profile format and its schema, the conformance validator, handoff reconciliation, and example realignment.
+The plan below records the accepted 2026-06-02 delivery sequence. Current adopter and checker behavior is governed by the naming-profile, scope, relationship-migration, and release references indexed in [reference/README.md](README.md); do not treat the deferred items below as an active implementation queue without checking those current contracts.
+
+Landing now: this design note, and PROTOCOL amendments (reverse the Term-`@id`-is-standard-IRI guidance, add the federation and permanence rules, add the naming-profile and crosswalk section, update the worked-example paragraph, redefine Level 2 and Level 3). Deferred to later rounds with their own decisions: schema and `context.jsonld` crosswalk fields, the `.well-known` profile format and its schema, the conformance validator, adopter mapping reconciliation, and example realignment.
 
 ## Prior art referenced
 

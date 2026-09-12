@@ -14,6 +14,7 @@ import { createHash } from "node:crypto";
 import { checkVersions } from "./sync-version.mjs";
 import { validateReleaseState } from "./validate-release-state.mjs";
 import { validateImplementationStatus } from "./check-implementation-status.mjs";
+import { releaseMetadataErrors, readBundleDate } from "./lib/release-metadata.mjs";
 import { parseKeyValueManifest } from "./lib/manifest.mjs";
 import {
   coreEndpointInventory,
@@ -490,9 +491,10 @@ function releaseCompatibilityKey(version) {
 
 export function validateReleaseManifestContract(
   failures,
-  { manifest, expectedArtifacts, shaPaths, releaseNotes, version },
+  { manifest, expectedArtifacts, shaPaths, releaseNotes, version, expectedDate },
 ) {
   const rel = `docs/releases/v${version}`;
+  for (const error of releaseMetadataErrors(manifest, expectedDate)) failures.push(`${rel}/manifest.json: ${error}`);
   const artifacts = Array.isArray(manifest.artifacts) ? manifest.artifacts : [];
   const expectedByPath = new Map(expectedArtifacts.map((artifact) => [artifact.path, artifact]));
   const seenPaths = new Set();
@@ -627,6 +629,7 @@ export async function validateReleasePackage(failures, root = repoRoot, options 
     shaPaths,
     releaseNotes,
     version,
+    expectedDate: options.expectedDate ?? readBundleDate(await readFile(path.join(root, "MANIFEST.yaml"), "utf8")),
   });
 
   for (const artifact of manifest.artifacts || []) {

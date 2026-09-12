@@ -2,6 +2,8 @@
 
 Scope: Obligation-First current documentation, website source and agent discovery, with the EveryAILaw/PubLedge F14 notes checked for the same ownership boundary. Date: 2026-09-05 America/Denver. This is local work; no delivery commit, push, release, deployment, or external filing is authorized by this record.
 
+> Historical documentation and evaluation record. Its dated findings and local results remain evidence for the 2026-09-05 candidate; current release state and later delivery evidence are indexed in [reference/README.md](README.md).
+
 ## Additional checks worth adding now
 
 | Check | Failure prevented | Result |

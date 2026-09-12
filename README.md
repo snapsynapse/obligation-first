@@ -3,7 +3,7 @@
 ![Obligation-First — an open upper schema for normative content. Bound to gist. Aligned with LegalRuleML.](imgs/og.png)
 
 <!-- of-version: readme-badge -->
-[![Spec](https://img.shields.io/badge/spec-v0.6.5-orange)](PROTOCOL.md)
+[![Spec](https://img.shields.io/badge/spec-v0.6.6-orange)](PROTOCOL.md)
 [![Content license: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-lightgrey)](LICENSE-CC-BY-4.0)
 [![Code license: Apache 2.0](https://img.shields.io/badge/code-Apache%202.0-lightgrey)](LICENSE-APACHE)
 [![Bound to gist](https://img.shields.io/badge/ontology-gist-green)](https://semanticarts.com/gist/)
@@ -13,7 +13,7 @@ A shared upper schema for normative content, including laws, cases, and agreemen
 Obligation-First is a methodology and a JSON-LD context. The methodology says that normative content is best modeled by what it requires, not what it says. The schema gives that methodology a machine-readable shape.
 
 <!-- of-version: readme-live -->
-**Live at [obligationfirst.org](https://obligationfirst.org/). This repository describes the v0.6.5 reference package. Its v0.6 semantic contract is implemented across EveryAILaw, PubLedge, and AI Incident Law. Remaining v1.0 gates are tracked in [ROADMAP.md](ROADMAP.md).**
+**Live at [obligationfirst.org](https://obligationfirst.org/). This repository describes the v0.6.6 reference package. Its v0.6 semantic contract is implemented across EveryAILaw, PubLedge, and AI Incident Law. Remaining v1.0 gates are tracked in [ROADMAP.md](ROADMAP.md).**
 
 ## Scope continuity evaluation
 
@@ -28,12 +28,12 @@ Run `npm run test:scope` for the deterministic shared evals. Adopter checks requ
 ## Implementation status beyond the release package
 
 <!-- implementation-status:start -->
-The v0.6.5 reference package includes scope continuity evaluation. F14 qualified-time evaluation is released offline reference tooling: expected/fallback branches and evidence/date boundaries are tested, while the v0.6 record schema and production serialization are unchanged. These fixtures do not determine legal applicability or predecessor operative history.
+The v0.6.6 reference package includes scope continuity evaluation. F14 qualified-time evaluation is released offline reference tooling: expected/fallback branches and evidence/date boundaries are tested, while the v0.6 record schema and production serialization are unchanged. These fixtures do not determine legal applicability or predecessor operative history.
 <!-- implementation-status:end -->
 
 The [machine-readable evaluation status](https://obligationfirst.org/evaluation-status.json) supplements the release-versioned agent files. Its repository source is [implementation-status.json](reference/implementation-status.json); the served copy becomes available after deployment. It is not evidence of deployment or an immutable release manifest. See the [F14 contract](reference/contracts/qualified-time-fixture-v1.md), [reference index](reference/README.md), and [documentation audit](reference/documentation-audit-2026-09-05.md).
 
-The [operational reconciliation companion](reference/federation-reconciliation-v1.md) supplements the v0.6.5 reference package. Operational federation reconciliation checks supplied source, projection, exact-edge and deployed-artifact evidence for EveryAILaw, PubLedge and AI Incident Law. EveryAILaw owns collection and scheduling; EveryAILaw Pro is a downstream service, not an adopter. Byte equivalence is not deployment attestation or proof that legal content is current. Independent missing-run notification and live recovery acceptance remain open.
+The [operational reconciliation companion](reference/federation-reconciliation-v1.md) supplements the v0.6.6 reference package. Operational federation reconciliation checks supplied source, projection, exact-edge and deployed-artifact evidence for EveryAILaw, PubLedge and AI Incident Law. EveryAILaw owns collection and scheduling; EveryAILaw Pro is a downstream service, not an adopter. Byte equivalence is not deployment attestation or proof that legal content is current. Independent missing-run notification and live recovery acceptance remain open.
 
 Run the standalone synthetic fixture checks from the repository root. They also run in `npm run test:hardening` and `npm test`.
 
@@ -124,7 +124,7 @@ Literal
 ```bash
 npm test
 ```
-The full suite validates worked examples, graph constraints, adopter-kit helpers, published artifacts, URL conventions, endpoint inventories, and GuideCheck assistant-guide provenance.
+The full suite validates search, worked and explicitly inventoried documentation examples, graph constraints, adopter-kit helpers, published artifacts, version/date/status parity, release metadata, frozen score replay, hosted-verifier failure cases, and GuideCheck assistant-guide provenance. Hosted acceptance itself runs separately after publication.
 
 ## Assistant-assisted setup
 
@@ -133,7 +133,7 @@ Literal
 ```bash
 curl https://obligationfirst.org/.well-known/assistant-guide.txt
 ```
-Verify it with https://guidecheck.org/verify or another conformant verifier before asking the assistant to act. The guide is published with a Level 4 sidecar manifest at `https://obligationfirst.org/.well-known/assistant-guide-manifest.txt`; the same guide bytes are also present at repository root as `assistant-guide.txt`.
+Verify it with https://guidecheck.org/verify or another conformant verifier before asking the assistant to act. The guide is published with an integrity sidecar manifest at `https://obligationfirst.org/.well-known/assistant-guide-manifest.txt`; the same guide bytes are also present at repository root as `assistant-guide.txt`. The sidecar supplies provenance evidence, not an achieved conformance level. The retained profile and frozen-verifier exception are documented in [INTENT.md](INTENT.md#exceptions-to-repo-standards).
 
 Conformance is not safety. Read the guide, confirm the reported hash, and keep normal sandboxing, least privilege, and human approval in place.
 
@@ -162,9 +162,9 @@ The released record and discovery artifacts are served at the URLs below. The pl
 | [`/llms.txt`](https://obligationfirst.org/llms.txt), [`/llms-full.txt`](https://obligationfirst.org/llms-full.txt) | LLM-readable summary + full context |
 | [`/agents.json`](https://obligationfirst.org/agents.json) | Agent capabilities and endpoint inventory |
 <!-- of-version: readme-release-url -->
-| [`/releases/v0.6.5/`](https://obligationfirst.org/releases/v0.6.5/) | Current release package manifest and checksums |
+| [`/releases/v0.6.6/`](https://obligationfirst.org/releases/v0.6.6/) | Current release package manifest and checksums |
 | [`/.well-known/assistant-guide.txt`](https://obligationfirst.org/.well-known/assistant-guide.txt) | GuideCheck Human-Verifiable Assistant Guide for assistant-assisted repo work |
-| [`/.well-known/assistant-guide-manifest.txt`](https://obligationfirst.org/.well-known/assistant-guide-manifest.txt) | GuideCheck Level 4 sidecar manifest for the assistant guide |
+| [`/.well-known/assistant-guide-manifest.txt`](https://obligationfirst.org/.well-known/assistant-guide-manifest.txt) | GuideCheck hash and byte-count sidecar for the assistant guide |
 | [`/feed.xml`](https://obligationfirst.org/feed.xml) | Atom feed of releases |
 | [`/sitemap.xml`](https://obligationfirst.org/sitemap.xml), [`/robots.txt`](https://obligationfirst.org/robots.txt) | SEO + AI-crawler allow-list |
 | [`/.well-known/security.txt`](https://obligationfirst.org/.well-known/security.txt) | Security disclosure (RFC 9116) |
@@ -192,7 +192,7 @@ The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. 
 | `reference/review/` | Public external review questions — including v0.2 resolutions from Semantic Arts |
 | `reference/w3id-pr.md` | Prepared w3id.org permanent identifier PR notes |
 | `reference/og-image-prompt.md` | Structured prompt for generating the OG social-card image |
-| `examples/{air-canada,colorado-sb24-205,publedge-jia-utah-72,eu-ai-act-article-50}/` | Four worked record sets with 51 canonical JSON records. The v0.6 Air Canada set exercises Party, recognized common-law duties, and remedy grounding. |
+| `examples/{air-canada,colorado-sb24-205,colorado-evolution,publedge-jia-utah-72,eu-ai-act-article-50}/` | Five worked record sets with 53 canonical JSON records. `colorado-sb24-205` is a preserved historical fixture; `colorado-evolution` is a two-record synthetic current-contract companion with bounded successor evidence and explicit unknown operation and enforcement. The v0.6 Air Canada set exercises Party, recognized common-law duties, and remedy grounding. |
 | `docs/` | Published website served by GitHub Pages from `main /docs` (canonical at obligationfirst.org) |
 | `.github/workflows/` | CI: validation on every push (`test.yml`), Pages deploy (`pages.yml`), monthly a11y audit (`a11y.yml`) |
 | `_workshop/` | Design conversation archives |
@@ -207,7 +207,7 @@ The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. 
 ## Status
 
 <!-- of-version: readme-current -->
-v0.6.5 is the current release. The v0.6 semantic contract is implemented across Obligation-First, EveryAILaw, PubLedge, and AI Incident Law. It separates issuance, administration, enforcement, and adjudication; separates force, lifecycle, operative effect, and enforcement; distinguishes source text from editorial summary; adds Party, Jurisdiction, and Tombstone; and makes shared provenance and graph coherence testable. Legacy v0.5 record shapes remain schema-valid, while migrated profiles declare the v0.6 range and use the deterministic migration contract.
+v0.6.6 is the current release. The v0.6 semantic contract is implemented across Obligation-First, EveryAILaw, PubLedge, and AI Incident Law. It separates issuance, administration, enforcement, and adjudication; separates force, lifecycle, operative effect, and enforcement; distinguishes source text from editorial summary; adds Party, Jurisdiction, and Tombstone; and makes shared provenance and graph coherence testable. Legacy v0.5 record shapes remain schema-valid, while migrated profiles declare the v0.6 range and use the deterministic migration contract.
 
 The v0.6 release and adopter-publication gates are complete. The remaining v1.0 gates include LegalRuleML community feedback, the permanent w3id.org redirect, SHACL and conformance work, and an external adopter.
 
@@ -219,6 +219,6 @@ The IRI prefix `https://obligationfirst.org/v1/` is the live resolution target. 
 
 Spec text and reference material under [CC BY 4.0](LICENSE-CC-BY-4.0). Code (schemas, scripts, examples) under [Apache 2.0](LICENSE-APACHE).
 
-Note on adopter references: as of v0.3.1, example records under `examples/` carry neutral `https://obligationfirst.org/` identifiers and reproduce no EveryAILaw corpus content. Where an example corresponds to a real adopter entity, it references the adopter's published IRI only as a crosswalk (`sameAs` / `anchors`). Those references are citations, not reproductions, and grant no rights in the EveryAILaw corpus, which is licensed separately and restrictively. See [NOTICE](NOTICE) and https://everyailaw.com/.
+Note on adopter references: example records under `examples/` carry neutral `https://obligationfirst.org/` identifiers and reproduce no EveryAILaw corpus content. Historical fixtures can retain legacy `sameAs` assertions, but new independently maintained records use `describesSameEntityAs` for correspondence. `sameAs` asserts genuine identity and permits property merging; `anchors` identifies a scoped relationship. These crosswalks are citations, not reproductions, and grant no rights in the EveryAILaw corpus, which is licensed separately and restrictively. See [NOTICE](NOTICE) and https://everyailaw.com/.
 
 Stewarded by PAICE.work PBC. Transition to an independent steward (PAICE Foundation) is anticipated.

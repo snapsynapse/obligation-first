@@ -1,5 +1,7 @@
 # Colorado AI Law Briefing for PAICE.work
 
+> Historical PAICE product briefing, not a current legal-status report. Its local `[cite:n]` markers have no source list in this repository. Do not reuse its currentness, enforcement, or product conclusions without a fresh owner-source review. The later [known-corrections implementation](known-corrections-2026-09-09.md) records the narrower ECF24 boundary and preserves unknown predecessor operation and enforcement.
+
 ## Overview
 
 Colorado's AI regulatory posture is currently best understood as a three-layer problem: an enacted statute still exists, enforcement is paused pending rulemaking, and a politically favored replacement framework is moving in a different direction.[cite:17][cite:20][cite:23] For a product like PAICE.work, the main challenge is not simply compliance mapping but sensemaking across conflicting legal, enforcement, and policy signals.[cite:20][cite:21][cite:24]

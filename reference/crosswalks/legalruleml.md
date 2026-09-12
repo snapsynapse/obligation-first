@@ -36,30 +36,39 @@ LegalRuleML does not formally model proceedings, allegations, or determinations 
 
 ## Recommended interop pattern
 
-For an adopter using both standards:
+This synthetic Term demonstrates an inline adopter extension that passes the current Term schema and JSON-LD validator. It does not claim a real encoding exists. A complete graph also needs its referenced Instrument. The LegalRuleML XML namespace is not a JSON-LD context and is not an allowed remote context in the local validator.
 
-```yaml
-"@context":
-  - https://obligationfirst.org/v1/context.jsonld
-  - http://docs.oasis-open.org/legalruleml/ns/v1.0/
-
-"@type": of:Term
-"@id": https://everyailaw.com/term/colorado-sb24-205-transparency.json
-jurisdiction:
-  "@type": of:Jurisdiction
-  territorial_scope:
-    - us-co
-text: "A developer ... shall use reasonable care ..."
-creates:
-  - https://everyailaw.com/obligation/colorado-sb24-205-transparency.json
-lrml_encoded_as: https://everyailaw.com/lrml/colorado-sb24-205-transparency.xml
+Literal
+<!-- executable-example:start id="legalruleml-term" classification="synthetic-current" schema="term.schema.json" jsonld="roundtrip" -->
+```json
+{
+  "@context": [
+    "https://obligationfirst.org/v1/context.jsonld",
+    {
+      "lrml_encoded_as": {
+        "@id": "https://example.com/vocab/legalRuleMLEncoding",
+        "@type": "@id"
+      }
+    }
+  ],
+  "@type": "of:Term",
+  "@id": "https://example.com/term/t1",
+  "parent_instrument": "https://example.com/instrument/i1",
+  "summary": "Synthetic provision with an adopter-owned LegalRuleML encoding link.",
+  "lrml_encoded_as": "https://example.com/rules/r1.xml"
+}
 ```
+<!-- executable-example:end id="legalruleml-term" -->
 
-The Term's `@id` is adopter-local and opaque, following the adopter's `.well-known` naming profile, and never a jurisdiction-encoded slug. Jurisdiction is an `of:Jurisdiction` legal-competence object, never part of the slug. The LegalRuleML encoding rides as the typed `lrml_encoded_as` crosswalk that points from the Obligation-First Term to the LegalRuleML XML encoding of its rule logic, never as the `@id`. The field is conditional: present where a LegalRuleML encoding exists, absent otherwise.
+The Term's `@id` is adopter-local and opaque, following the adopter's `.well-known` naming profile, and never a jurisdiction-encoded slug. Jurisdiction is an `of:Jurisdiction` legal-competence object, never part of the slug. In this example, the LegalRuleML encoding rides as the explicitly defined adopter extension `lrml_encoded_as` that points from the Obligation-First Term to the LegalRuleML XML encoding of its rule logic, never as the `@id`. The field is conditional: present where a LegalRuleML encoding exists, absent otherwise.
 
-## Open questions
+## Current status of the original questions
+
+<!-- executable-snippet:start id="legalruleml-original-questions" classification="historical" -->
+The shared `of:legalRuleMLEncoding` predicate remains deferred under ROADMAP item 14 until a Term has an authoritative LegalRuleML encoding. The rebut/undercut subtypes landed in v0.2 and are present in the context and Term schema; priority hierarchies remain deferred. The following questions preserve the original discussion, not the current implementation queue. LegalRuleML community feedback remains a separate v1.0 gate.
 
 1. Should Obligation-First formalize a `of:legalRuleMLEncoding` predicate in v0.1 (parallel to `of:executableEncoding`), or defer to v0.2?
 2. LegalRuleML has richer defeasibility constructs than `of:defeats` alone (priority hierarchies, rebut/undercut distinction). Should `of:defeats` carry sub-types, or stay binary?
 
-Both forwarded to LegalRuleML community for review.
+The original note records that both questions were forwarded to the LegalRuleML community for review; it is not evidence of a response or external acceptance.
+<!-- executable-snippet:end id="legalruleml-original-questions" -->
