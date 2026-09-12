@@ -47,15 +47,15 @@ README for spec version and licenses.
 ## Current status
 
 - <!-- of-version: project-context-current -->
-  Source candidate version v0.6.6, pre-v1.0; hosted acceptance remains v0.6.5
-  until later release evidence is recorded.
+  Source version v0.6.6, pre-v1.0. Delivery and hosted-byte acceptance were
+  verified on 2026-09-12; see the dated release-delivery record.
 - Three adopters live and bound (EveryAILaw, PubLedge, AI Incident Law).
 - Remaining v1.0 gates are tracked in ROADMAP.md; the w3id.org redirect for
   `https://w3id.org/of/v1/` remains planned rather than live.
 - `test.yml` and `pages.yml` run `npm test`, which includes the search contract
   before all other checks. Pages build and deployment depend on that gate. A monthly
   a11y audit is separate. Dated hosted acceptance is in
-  `reference/release-delivery-v0.6.5.json`; it is not a continuously refreshed
+  `reference/release-delivery-v0.6.6.json`; it is not a continuously refreshed
   CI claim.
 - F14 ships in v0.6.5 as offline reference tooling, with owner sidecars in EveryAILaw and
   PubLedge. It does not change the v0.6 record contract or production exports.
