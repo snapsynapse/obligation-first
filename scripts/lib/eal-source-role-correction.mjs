@@ -68,6 +68,18 @@ const CASES = new Map([
     language: 'vi',
     verified: '2026-07-11',
   })],
+  ['uk-osa-transparency', definition({
+    id: 'uk-osa-transparency',
+    regulation: 'uk-online-safety-act',
+    heading: 'AI-Generated Content Duties',
+    before: Object.freeze({ native: 'provider, deployer', targets: Object.freeze([ROLE('deployer'), ROLE('provider')]) }),
+    after: Object.freeze({ native: 'provider', targets: Object.freeze([ROLE('provider')]) }),
+    actor: 'Codex integrated source review',
+    source: 'https://legislation.gov.uk/ukpga/2023/50/contents',
+    locator: 'Part 3 ss. 4, 7, 9-12, 24, 26-29, 55, 57, 77; Sch. 8; s. 216A (regulation-making power)',
+    language: 'en',
+    verified: '2026-08-15',
+  })],
 ]);
 
 const canonical = value => Array.isArray(value) ? value.map(canonical)

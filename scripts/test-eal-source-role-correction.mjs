@@ -50,6 +50,14 @@ const cases = [
     source: 'https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/01/luat134.signed.pdf',
     locator: 'Article 7, Article 11, Articles 13-14', language: 'vi', verified: '2026-07-11',
   }),
+  item({
+    id: 'uk-osa-transparency', regulation: 'uk-online-safety-act', heading: 'AI-Generated Content Duties',
+    beforeNative: 'provider, deployer', beforeTargets: [role('deployer'), role('provider')], afterNative: 'provider',
+    afterTargets: [role('provider')], actor: 'Codex integrated source review',
+    source: 'https://legislation.gov.uk/ukpga/2023/50/contents',
+    locator: 'Part 3 ss. 4, 7, 9-12, 24, 26-29, 55, 57, 77; Sch. 8; s. 216A (regulation-making power)',
+    language: 'en', verified: '2026-08-15',
+  }),
 ];
 
 function sourceUnit(current) {
@@ -174,6 +182,10 @@ await rejects('wrong prior roles', f => { f.changes[0].old_targets = [role('prov
 await rejects('wrong current roles', f => { f.records.find(record => record['@id'] === cases[0].obligationId).duty_holder_roles = [role('controller')]; });
 await rejects('declared native after mismatch', f => { f.entries[0].source_admission.adapter.native_roles_after = 'controller'; });
 await rejects('source unit candidate mismatch', f => { f.admissions.get('au-privacy-act-adm').units[cases[0].rolesUnit].candidate_content = 'government'; });
+await rejects('UK OSA retains the removed deployer role', f => {
+  const ukOsa = cases.find(current => current.id === 'uk-osa-transparency');
+  f.records.find(record => record['@id'] === ukOsa.obligationId).duty_holder_roles = [role('deployer'), role('provider')];
+});
 
 const root = await mkdtemp(path.join(os.tmpdir(), 'of-eal-source-role-correction-'));
 try {
