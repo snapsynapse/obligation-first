@@ -8,7 +8,7 @@
  *   node scripts/validate-adopter-records.mjs           # auto-discover examples/*\/records
  */
 
-import { readFile, readdir } from "node:fs/promises";
+import { readFile, readdir, stat } from "node:fs/promises";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import path from "node:path";
@@ -52,6 +52,47 @@ async function discoverExampleRecordDirs() {
   return dirs.sort();
 }
 
+/**
+ * Detect an aggregate export directory: an `index.json` without `@type` whose
+ * `files` map names per-kind aggregate files. Those files hold arrays of
+ * records, so validating them as single records only reports "missing @type".
+ * Returns null for an ordinary record directory.
+ */
+export async function detectAggregateExport(dir) {
+  let index;
+  try {
+    index = JSON.parse(await readFile(path.join(dir, "index.json"), "utf8"));
+  } catch {
+    return null;
+  }
+  if (!index || typeof index !== "object" || index["@type"]) return null;
+  const files = index.files;
+  if (!files || typeof files !== "object" || Array.isArray(files)) return null;
+  const aggregateFiles = Object.values(files).filter((value) => typeof value === "string");
+  if (aggregateFiles.length === 0) return null;
+
+  const recordsDir = path.join(dir, "records");
+  let hasRecordsDir = false;
+  try {
+    hasRecordsDir = (await stat(recordsDir)).isDirectory();
+  } catch (err) {
+    if (err.code !== "ENOENT") throw err;
+  }
+  return { aggregateFiles, recordsDir: hasRecordsDir ? recordsDir : null };
+}
+
+export function aggregateExportHint(dir, aggregate) {
+  const lines = [
+    `✗ ${dir}: this is an aggregate export (index.json lists ${aggregate.aggregateFiles.join(", ")}), not a record directory`,
+  ];
+  if (aggregate.recordsDir) {
+    lines.push(`  Validate its per-record files instead: ${aggregate.recordsDir}`);
+  } else {
+    lines.push("  Pass the export's records/ directory of one-record-per-file JSON, or split each aggregate array into one file per record.");
+  }
+  return lines;
+}
+
 export function validateAdopterRecordSet(entries, schemas) {
   return {
     shapeFailures: validateRecordShapes(entries, schemas),
@@ -75,6 +116,12 @@ async function main() {
 
   for (const dirArg of dirs) {
     const recordsDir = path.resolve(process.cwd(), dirArg);
+    const aggregate = await detectAggregateExport(recordsDir);
+    if (aggregate) {
+      for (const line of aggregateExportHint(path.relative(repoRoot, recordsDir), aggregate)) console.log(line);
+      failed += 1;
+      continue;
+    }
     let entries;
     try {
       entries = await loadRecordDir(recordsDir, { root: repoRoot });

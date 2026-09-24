@@ -34,6 +34,8 @@ The validator checks two layers:
 1. JSON Schema conformance for each record's `@type`.
 2. Local graph coherence for links that should resolve inside the same record set.
 
+Pass a directory of one-record-per-file JSON, such as an export's `records/` directory. If the directory is an aggregate export root (an `index.json` whose `files` map names per-kind arrays), the validator fails with a hint that names the export's `records/` directory when present, rather than reporting each aggregate file as a record missing `@type`.
+
 External `anchors` are allowed to point outside the local record set. This is intentional: under the v0.3 federation model, cross-adopter links target the other adopter's real published IRI — the actual `@id` resolved from that adopter's live export or its `.well-known` naming profile. `sameAs` is reserved for genuine property-merge identity; independently maintained records about the same external entity use `describesSameEntityAs`. A PubLedge anchor points at EveryAILaw's real published Term, Obligation, or ObligationCategory `@id`, and an AI Incident Law Determination does the same. The join keys on those real IRIs and on shared standard identifiers, never on a slug guessed from a naming convention.
 
 ## Historical first-binding provenance
