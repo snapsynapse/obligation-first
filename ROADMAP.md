@@ -56,11 +56,13 @@ Done:
 - [x] CI: validation on every push (test.yml), Pages deploy (pages.yml), monthly a11y audit (a11y.yml)
 - [x] Schema additions surfaced by the Colorado example landed in v0.1 — see "Resolved in v0.1" below
 
-## v0.1 freeze (target: within 90 days)
+## v0.1 freeze gates (historical plan)
 
 **Gate:** external review feedback incorporated or explicitly deferred; first adopter binding live; w3id PR filed.
 
-Current assessment as of 2026-05-26: local repo deliverables for v0.1 are complete and tests are green. EveryAILaw, PubLedge, and AI Incident Law publish Obligation-First bindings. Semantic Arts review has come back and is absorbed into v0.2. Remaining v0.1-freeze gates are LegalRuleML community feedback, permanent IRI filing, and cross-project anchor enrichment.
+Status: the original plan targeted a v0.1 freeze within 90 days of the 2026-05-04 draft. No separate v0.1 freeze was declared. Development continued in public through the v0.2 to v0.6 releases under the pre-v1.0 versioning policy below, and the open items in this list carry forward as v1.0 gates.
+
+Assessment recorded 2026-05-26 (historical): local repo deliverables for v0.1 are complete and tests are green. EveryAILaw, PubLedge, and AI Incident Law publish Obligation-First bindings. Semantic Arts review has come back and is absorbed into v0.2. Remaining v0.1-freeze gates are LegalRuleML community feedback, permanent IRI filing, and cross-project anchor enrichment.
 
 - [x] PROTOCOL.md complete
 - [x] context.jsonld validated against the three worked examples (npm run validate green)
@@ -74,7 +76,7 @@ Current assessment as of 2026-05-26: local repo deliverables for v0.1 are comple
 - [ ] w3id.org PR filed for permanent `https://w3id.org/of/v1/` IRI
 - [x] CHANGELOG.md captures all changes from -draft to current state
 
-## v0.2 (target: 6 months after v0.1 freeze)
+## v0.2 (historical plan)
 
 Adds what we deferred from v0.1, plus binding-only refinements landed mid-cycle.
 
@@ -100,11 +102,13 @@ Remaining directions from the historical v0.2 plan:
 - [ ] Multi-language source text handling
 - [x] Second adopter (PubLedge) has bound
 
-## v1.0 (target: 12 months after v0.1 freeze)
+## v1.0
 
 **Gate:** three live adopters, conformance suite, w3id permanent IRI.
 
-- [x] EveryAILaw, PubLedge, AI Incident Law all bound to v0.1
+Target date: not set. The original target of 12 months after a v0.1 freeze no longer applies because that freeze was not declared separately. v1.0 is gated on the open items below, not on a calendar date.
+
+- [x] EveryAILaw, PubLedge, AI Incident Law all bound; each publishes a v0.6 projection
 - [ ] w3id.org/of/v1/ permanent redirect filed and live
 - [ ] SHACL validator
 - [x] JSON Schema, local graph, JSON-LD and deterministic semantic regression suites
@@ -192,15 +196,21 @@ Public-good standards should be machine-translatable without paying API tolls. A
 
 This means EveryAILaw, AI Incident Law, PubLedge, and any other Obligation-First adopter can publish multilingual sites by default, with the translation cost amortized to build time and the model artifact pinned for reproducibility.
 
-### Multilingual, a11y-audited, agent-friendly from the beginning
+### Multilingual, a11y-audited, agent-friendly by design
 
-All Obligation-First-adopting offerings ship with three properties baseline, not retrofitted:
+Obligation-First-adopting offerings target three baseline properties, designed in rather than retrofitted:
 
 1. **Multilingual** — at minimum the EU official languages plus ES (US), ZH (CN/TW), JA. Build-time translation per the previous direction.
-2. **A11y-audited** — WCAG 2.1 AA via pa11y-ci or equivalent in CI. Failing builds block merge.
+2. **A11y-audited** — WCAG 2.1 AA via pa11y-ci or equivalent in CI.
 3. **Agent-friendly** — `llms.txt`, `agents.json`, JSON-LD, structured RSS/Atom, and explicit AI-crawler `robots.txt` allow-lists from day one. Obligation-First itself is a static discovery and validation surface, not an MCP service. Interactive adopters may publish MCP servers when they expose tool calls. Aligned with [Siteline](https://siteline.to/) audits.
 
-The cost of adding these later is high; the cost of designing for them at v0.1 is low. The ROADMAP commits to this as a non-negotiable design constraint.
+Current status for obligationfirst.org:
+
+- [ ] Multilingual: not implemented. The site and canonical documents are English only, and the build-time translation pipeline above has not been built.
+- [x] A11y-audited: a scheduled monthly audit runs in `a11y.yml` and can be run on demand. It does not yet block merges.
+- [x] Agent-friendly: `llms.txt`, `llms-full.txt`, `agents.json`, JSON-LD, Atom feed, sitemap and the AI-crawler `robots.txt` allow-list are served.
+
+The cost of adding these later is high, and the cost of designing for them early is low. Multilingual delivery and merge-blocking a11y checks remain open design commitments, not completed properties.
 
 ## Versioning policy
 
