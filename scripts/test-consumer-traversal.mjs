@@ -5,7 +5,8 @@ const id = value => `https://example.com/${value}`;
 const records = [
   { '@id': id('decision'), anchors: [id('category')], projection_basis: 'curated-legal-graph', admission_status: 'legacy-unreviewed', source_review_unresolved: ['Unresolved document version'] },
   { '@id': id('category') }, { '@id': id('duty'), isCategorizedBy: [id('category')] },
-  { '@id': id('pub-term'), anchors: [id('stat-term')], lifecycle_status: 'draft', operative_status: 'future' },
+  { '@id': id('pub-term'), anchors: [id('stat-term')], creates: [id('pub-duty')], lifecycle_status: 'draft', operative_status: 'future' },
+  { '@id': id('pub-duty'), lifecycle_status: 'draft', operative_status: 'future' },
   { '@id': id('stat-term'), parent_instrument: id('statute'), creates: [id('stat-duty')], operative_status: 'operative' },
   { '@id': id('statute') }, { '@id': id('stat-duty') }, { '@id': id('old'), replaced_by: [id('category')] },
 ];
@@ -46,6 +47,7 @@ set('duty', { '@type': 'of:Obligation', duty_holder_roles: [id('role/provider')]
 set('pub-term', { '@type': 'of:Term', jurisdiction: { territorial_scope: ['us-ut'] }, admission_status: 'source-consistency-reviewed-changes', 'pub:source_review_unresolved': ['Authority sign-off pending'] });
 set('stat-term', { '@type': 'of:Term' });
 set('stat-duty', { '@type': 'of:Obligation', operative_status: 'operative', admission_status: 'source-consistency-reviewed-changes' });
+set('pub-duty', { '@type': 'of:Requirement', jurisdiction: { territorial_scope: ['us-ut'] }, admission_status: 'source-consistency-reviewed-changes' });
 const answerCase = (base, question, layers) => {
   const fixture = { ...structuredClone(base), answer: { question, duty_layers: layers } };
   fixture.answer.expected = JSON.parse(JSON.stringify(traverseConsumerCase(typed, { ...fixture, answer: { ...fixture.answer, expected: null } }).answer));
@@ -53,7 +55,10 @@ const answerCase = (base, question, layers) => {
 };
 const categoryAnswer = answerCase(cases[0], 'Which duties does the decision relate to?', [2]);
 const draftAnswer = answerCase(cases[1], 'What statutory duty does the draft rest on?', [3]);
-for (const fixture of [categoryAnswer, draftAnswer]) {
+// The draft's own proposed duty joins the answer only as a draft.
+const ownDutyCase = { ...structuredClone(cases[1]), id: 'pub-term-statute-and-own-duty', steps: [...structuredClone(cases[1].steps), { from: 0, direction: 'forward', predicate: 'creates', expected: [id('pub-duty')] }] };
+const ownDutyAnswer = answerCase(ownDutyCase, 'What does the draft rest on and what does it propose?', [3, 4]);
+for (const fixture of [categoryAnswer, draftAnswer, ownDutyAnswer]) {
   const result = traverseConsumerCase(typed, fixture);
   assert.equal(result.status, 'passed', result.errors.join('; '));
   assert.deepEqual(JSON.parse(JSON.stringify(result.answer)), fixture.answer.expected, 'answer must survive consumer serialization');
@@ -66,6 +71,9 @@ const stat = draftAnswer.answer.expected.duties[0];
 assert.equal(stat.deontic, 'unclassified', 'unknown deontic operator must not default to Requirement');
 assert.equal(stat.territorial_scope, 'unknown', 'missing scope must stay unknown');
 assert.equal(stat.duty_holders, 'unknown', 'missing actor must stay unknown');
+const own = ownDutyAnswer.answer.expected.duties.find(duty => duty.id === id('pub-duty'));
+assert.deepEqual([own.deontic, own.lifecycle_status, own.operative_status], ['of:Requirement', 'draft', 'future'], 'draft-created duty keeps the draft state');
+assert.equal(own.duty_holder_roles, 'unknown', 'no role is borrowed from the statutory duty');
 const fails = (fixture, mutate, needle, message) => {
   const recordsCopy = structuredClone(typed), fixtureCopy = structuredClone(fixture);
   mutate(recordsCopy, fixtureCopy);
@@ -84,6 +92,9 @@ fails(draftAnswer, list => { delete rec(list, 'pub-term')['pub:source_review_unr
 fails(draftAnswer, list => { rec(list, 'pub-term')['pub:source_review_unresolved'] = ['Authority sign-off complete']; }, 'differs from the reviewed expectation', 'unresolved evidence rewritten');
 fails(draftAnswer, list => { rec(list, 'stat-duty')['@type'] = 'of:Requirement'; }, 'differs from the reviewed expectation', 'unknown deontic operator defaulted to Requirement');
 fails(categoryAnswer, list => { rec(list, 'duty').duty_holders = [id('party/acme')]; }, 'differs from the reviewed expectation', 'actor invented for an unknown duty holder');
+fails(ownDutyAnswer, list => { rec(list, 'pub-duty').lifecycle_status = 'in-force'; }, 'differs from the reviewed expectation', 'draft-created duty promoted to in force');
+fails(ownDutyAnswer, list => { rec(list, 'pub-duty').duty_holder_roles = [id('role/provider')]; }, 'differs from the reviewed expectation', 'statutory role copied onto the draft-created duty');
+fails(ownDutyAnswer, list => { rec(list, 'pub-term').creates = []; }, 'expected IRI set differs', 'draft-created duty silently dropped from the journey');
 assert.throws(() => traverseConsumerCase(typed, { ...categoryAnswer, answer: { ...categoryAnswer.answer, question: ' ' } }), /finite question/);
 assert.throws(() => traverseConsumerCase(typed, { ...categoryAnswer, answer: { ...categoryAnswer.answer, duty_layers: [9] } }), /traversed layers/);
-console.log('Consumer traversal regressions passed (three journeys; retargeting, missing/conflicted/inferred evidence and draft boundaries; EV02 answer contract with 10 meaning-strengthening controls).');
+console.log('Consumer traversal regressions passed (three journeys; retargeting, missing/conflicted/inferred evidence and draft boundaries; EV02 answer contract with 13 meaning-strengthening controls, including a draft-created duty).');
