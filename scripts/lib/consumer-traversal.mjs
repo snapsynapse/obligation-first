@@ -8,8 +8,9 @@ const DUTY_TYPES = new Set(['of:Obligation', ...DEONTIC]);
 const DRAFT_STATES = new Set(['draft', 'proposed']);
 const types = record => asArray(record?.['@type']);
 const known = value => value == null || (Array.isArray(value) && !value.length) ? 'unknown' : value;
+const provenanceOf = record => ({ source: known(record?.source), source_locator: known(record?.source_locator), source_version: known(record?.source_version) });
 const unresolvedOf = record => ['source_review_unresolved', 'pub:source_review_unresolved'].flatMap(field => asArray(record?.[field]));
-export const ANSWER_LIMITS = 'Declared relationships only. applicability is never asserted by traversal; a category association is not application of any listed duty. A draft stays a draft after joining operative law. unknown means absent evidence, not a negative finding. Unresolved source questions are carried as count and SHA-256 of their verbatim text so owner wording is preserved without republishing it.';
+export const ANSWER_LIMITS = 'Declared relationships only. applicability is never asserted by traversal; a category association is not application of any listed duty. A draft stays a draft after joining operative law. unknown means absent evidence, not a negative finding. Unresolved source questions are carried as count and SHA-256 of their verbatim text so owner wording is preserved without republishing it. source, source_locator and source_version report what the owning record claims about provenance; they do not verify the source text.';
 
 // EV02 answer contract: serialize one bounded consumer answer from a traversal
 // without strengthening relation, draft state, review scope, actors, scope or time.
@@ -23,7 +24,7 @@ export function buildConsumerAnswer(byId, fixture, layers) {
     const deontic = DEONTIC.find(type => types(record).includes(type)) ?? (types(record).includes('of:Obligation') ? 'unclassified' : null);
     return { id, deontic, duty_holders: known(record?.duty_holders), duty_holder_roles: known(record?.duty_holder_roles),
       territorial_scope: known(record?.jurisdiction?.territorial_scope), lifecycle_status: known(record?.lifecycle_status),
-      operative_status: known(record?.operative_status), effective: known(record?.effective), source_version: known(record?.source_version),
+      operative_status: known(record?.operative_status), effective: known(record?.effective), ...provenanceOf(record),
       admission_status: known(record?.admission_status) };
   }).sort((a, b) => a.id.localeCompare(b.id));
   const visited = [...new Set(layers.flat())].sort();
@@ -34,7 +35,7 @@ export function buildConsumerAnswer(byId, fixture, layers) {
     question: fixture.answer.question,
     subject: { id: fixture.start, lifecycle_status: known(subject?.lifecycle_status), operative_status: known(subject?.operative_status),
       enforcement_status: known(subject?.enforcement_status), binding: DRAFT_STATES.has(subject?.lifecycle_status) ? `${subject.lifecycle_status}-not-in-force` : 'not-evaluated',
-      territorial_scope: known(subject?.jurisdiction?.territorial_scope), admission_status: known(subject?.admission_status) },
+      territorial_scope: known(subject?.jurisdiction?.territorial_scope), ...provenanceOf(subject), admission_status: known(subject?.admission_status) },
     relation: { kinds: [...kinds].sort(), direct_duty_relations: anchorTargets.filter(target => types(target).some(type => type === 'of:Term' || DUTY_TYPES.has(type))).length, applicability: 'not-asserted' },
     duties,
     unresolved,

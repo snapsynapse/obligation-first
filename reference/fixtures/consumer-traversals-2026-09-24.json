@@ -86,6 +86,9 @@
             "territorial_scope": [
               "us-ny"
             ],
+            "source": "https://storage.courtlistener.com/recap/gov.uscourts.nysd.575368/gov.uscourts.nysd.575368.54.0_8.pdf",
+            "source_locator": "Mata v. Avianca, Inc., No. 22-cv-1461",
+            "source_version": "unknown",
             "admission_status": "legacy-unreviewed"
           },
           "relation": {
@@ -110,6 +113,8 @@
               "lifecycle_status": "proposed",
               "operative_status": "future",
               "effective": "unknown",
+              "source": "https://www25.senado.leg.br/web/atividade/materias/-/materia/157233",
+              "source_locator": "Articles 6, 8-11",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -126,6 +131,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2025-01-01",
+              "source": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB3030",
+              "source_locator": "Cal. Health & Safety Code § 1339.75",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -142,6 +149,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2025-01-01",
+              "source": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB1120",
+              "source_locator": "Health and Safety Code § 1367.01; Insurance Code § 10123.135",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -158,6 +167,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2024-01-01",
+              "source": "https://federalregister.gov/documents/2023/04/12/2023-07115/medicare-program",
+              "source_locator": "CMS-4201-F (42 CFR Parts 417, 422, 423, 460)",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -173,6 +184,8 @@
               "lifecycle_status": "future",
               "operative_status": "future",
               "effective": "unknown",
+              "source": "https://rm.coe.int/1680afae3c",
+              "source_locator": "Articles 14, 15",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -189,6 +202,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2023-07-01",
+              "source": "https://coag.gov/colorado-privacy-act-rulemaking/",
+              "source_locator": "Rules 2.02, 9.04(B)-(C)",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -205,6 +220,8 @@
               "lifecycle_status": "repealed",
               "operative_status": "unknown",
               "effective": "2026-06-30",
+              "source": "https://leg.colorado.gov/bills/sb24-205",
+              "source_locator": "C.R.S. § 6-1-1703(4)(b)(III)",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -221,6 +238,8 @@
               "lifecycle_status": "enacted",
               "operative_status": "unknown",
               "effective": "2027-01-01",
+              "source": "https://leg.colorado.gov/bills/sb26-189",
+              "source_locator": "C.R.S. § 6-1-1705",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -238,6 +257,8 @@
               "lifecycle_status": "enacted",
               "operative_status": "unknown",
               "effective": "2027-12-02",
+              "source": "https://eur-lex.europa.eu/eli/reg/2024/1689",
+              "source_locator": "Article 14, Article 26(2)",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -252,6 +273,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "not-applicable",
               "effective": "2023-10-30",
+              "source": "https://www.mofa.go.jp/files/100573473.pdf",
+              "source_locator": "Action 5",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -268,6 +291,8 @@
               "lifecycle_status": "enacted",
               "operative_status": "unknown",
               "effective": "2027-07-01",
+              "source": "https://gov.georgia.gov/document/2026-signed-legislation/sb-540/download",
+              "source_locator": "O.C.G.A. § 39-5-6(a)(6), (a)(7), (i)",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -284,6 +309,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2026-07-14",
+              "source": "https://data.capitol.hawaii.gov/sessions/session2026/bills/SB3001_CD1_.HTM",
+              "source_locator": "Haw. Rev. Stat. ch. 481B, pt. I (Act 248, SLH 2026) § (d), § (i)",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -300,6 +327,8 @@
               "lifecycle_status": "future",
               "operative_status": "future",
               "effective": "2027-07-01",
+              "source": "https://legislature.idaho.gov/sessioninfo/2026/legislation/S1297/",
+              "source_locator": "Idaho Code § 48-2104(5)",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -314,6 +343,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "not-applicable",
               "effective": "2022-04-01",
+              "source": "https://www.iso.org/standard/56641.html",
+              "source_locator": "Clauses 4–6",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -330,6 +361,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2025-10-10",
+              "source": "https://gazzettaufficiale.it/eli/id/2025/09/25/25G00143/SG",
+              "source_locator": "Art. 7, commi 3, 5 e 6 (patient information; clinical support and physician-retained decision; reliability, periodic verification and updating)",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -347,6 +380,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2026-01-22",
+              "source": "https://law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%EB%B0%9C%EC%A0%84%EA%B3%BC%EC%8B%A0%EB%A2%B0%EA%B8%B0%EB%B0%98%EC%A1%B0%EC%84%B1%EB%93%B1%EC%97%90%EA%B4%80%ED%95%9C%EA%B8%B0%EB%B3%B8%EB%B2%95",
+              "source_locator": "Articles 34, 36, 40",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -364,6 +399,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2026-07-29",
+              "source": "https://legislature.maine.gov/legis/bills/getPDF.asp?item=3&paper=HP1397&snum=132",
+              "source_locator": "10 M.R.S. § 1500-EE(1), § 1500-EE(2), § 1500-EE(3), § 1500-EE(4)",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -381,6 +418,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2026-07-29",
+              "source": "https://legislature.maine.gov/legis/bills/getPDF.asp?item=3&paper=HP1397&snum=132",
+              "source_locator": "32 M.R.S. § 2113(1), § 2113(2), § 2113(4), § 2113(6), § 2113(7), § 2113(8), § 2113(10)",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -397,6 +436,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2026-08-02",
+              "source": "https://legislation.mt/eli/ln/2025/227/eng",
+              "source_locator": "S.L. 586.14 (LN 227/2025) under the Data Protection Act (Cap. 586) — reg. 3 (IDPC designation for listed high-risk AI systems), reg. 6 (real-time remote biometric ID), reg. 7 (post-remote biometric ID; Magistrate authorisation, 48-hour rule), reg. 8 (IDPC as notified body), reg. 11 (registry for reg. 3 systems)",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -413,6 +454,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2025-03-21",
+              "source": "https://diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf",
+              "source_locator": "Article 26(II)",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -428,6 +471,8 @@
               "lifecycle_status": "unknown",
               "operative_status": "not-applicable",
               "effective": "2019-05-22",
+              "source": "https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0449",
+              "source_locator": "Principle 1.5",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -444,6 +489,8 @@
               "lifecycle_status": "enacted",
               "operative_status": "unknown",
               "effective": "2027-01-01",
+              "source": "https://www.oregonlegislature.gov/bills_laws/lawsstatutes/2026orLaw0085.pdf",
+              "source_locator": "Or. Laws 2026, ch. 85, § 1(4)(a), § 1(4)(b)(C), § 1(4)(c)",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -461,6 +508,8 @@
               "lifecycle_status": "future",
               "operative_status": "future",
               "effective": "2026-09-10",
+              "source": "https://busquedas.elperuano.pe/dispositivo/NL/2192926-1",
+              "source_locator": "Reglamento (D.S. 115-2025-PCM) Art. 31.4; Art. 7(h)",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -477,6 +526,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2024-09-04",
+              "source": "https://qcb.gov.qa/Services/Financial%20Technology/QCB_Artificial_Intelligence_Guideline.pdf",
+              "source_locator": "Clauses 7.1, 13.1, 13.2, 13.3, 13.4, 13.4.1, 13.4.2, 13.4.3 and 13.4.4",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -495,6 +546,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2026-06-22",
+              "source": "https://webserver.rilegislature.gov/PublicLaws/law26/law26374.htm",
+              "source_locator": "R.I. Gen. Laws §§ 40.1-5.5-2(1), 40.1-5.5-2(6), 40.1-5.5-2(8), 40.1-5.5-2(9), 40.1-5.5-3(b), 40.1-5.5-3(c), 40.1-5.5-3(d), 40.1-5.5-5(c)",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -512,6 +565,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2026-06-22",
+              "source": "https://webserver.rilegislature.gov/PublicLaws/law26/law26372.htm",
+              "source_locator": "R.I. Gen. Laws §§ 23-108-2, 23-108-3",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -529,6 +584,8 @@
               "lifecycle_status": "unknown",
               "operative_status": "not-applicable",
               "effective": "2019-01-23",
+              "source": "https://www.pdpc.gov.sg/help-and-resources/2020/01/model-ai-governance-framework",
+              "source_locator": "Section 2: Decision-Making Models",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -545,6 +602,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2026-02-05",
+              "source": "https://legislation.gov.uk/ukpga/2018/12/contents",
+              "source_locator": "Articles 22A-22D UK GDPR; DPA 2018 s.14",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -561,6 +620,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2025-05-07",
+              "source": "https://le.utah.gov/~2025/bills/static/HB0452.html",
+              "source_locator": "§58-60-118",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -577,6 +638,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2026-01-21",
+              "source": "https://lex.uz/docs/8011930",
+              "source_locator": "Art. 1(4) of LRU-1115, inserting Art. 7-1 into Law No. 560-II \"On Informatization\"",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -594,6 +657,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2026-06-17",
+              "source": "https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT156/ACT156%20As%20Enacted.pdf",
+              "source_locator": "18 V.S.A. § 7115(a)(2)-(5), § 7115(b), § 7115(c)",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -611,6 +676,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2026-06-17",
+              "source": "https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT156/ACT156%20As%20Enacted.pdf",
+              "source_locator": "18 V.S.A. § 7115(d); 3 V.S.A. § 129a(a)(30); 26 V.S.A. § 1354(a)(3)",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             },
@@ -628,6 +695,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2026-03-01",
+              "source": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/01/luat134.signed.pdf",
+              "source_locator": "Article 4; Article 7(4); Article 14(1)(d), 14(2)(b); Articles 26-27",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -644,6 +713,8 @@
               "lifecycle_status": "enacted",
               "operative_status": "unknown",
               "effective": "2027-01-01",
+              "source": "https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Session%20Laws/House/2225-S.sl.pdf",
+              "source_locator": "Laws of 2026, ch. 168, Sec. 2(3), Sec. 4(1)-(3)",
               "source_version": "unknown",
               "admission_status": "legacy-unreviewed"
             }
@@ -698,7 +769,7 @@
               "sha256": "e7e47005b60234ffec12182c0c1f19b0730ac4a3587da732b2cc4eeaccfb59fb"
             }
           },
-          "limits": "Declared relationships only. applicability is never asserted by traversal; a category association is not application of any listed duty. A draft stays a draft after joining operative law. unknown means absent evidence, not a negative finding. Unresolved source questions are carried as count and SHA-256 of their verbatim text so owner wording is preserved without republishing it."
+          "limits": "Declared relationships only. applicability is never asserted by traversal; a category association is not application of any listed duty. A draft stays a draft after joining operative law. unknown means absent evidence, not a negative finding. Unresolved source questions are carried as count and SHA-256 of their verbatim text so owner wording is preserved without republishing it. source, source_locator and source_version report what the owning record claims about provenance; they do not verify the source text."
         }
       }
     },
@@ -771,8 +842,8 @@
           "expected": {
             "source": {
               "id": "https://publedge.org/term/utah-mental-health-chatbot-disclosure-2026q2-first-session.json",
-              "source": "https://commerce.utah.gov/ai/",
-              "locator": "Utah Code §13-72a-203",
+              "source": "https://publedge.org/us/utah/oaip/jia/2026-001/",
+              "locator": "First-Session Disclosure (§13-72a-203)",
               "source_version": null,
               "lifecycle_status": "draft",
               "operative_status": "future",
@@ -837,6 +908,9 @@
             "territorial_scope": [
               "us-ut"
             ],
+            "source": "https://publedge.org/us/utah/oaip/jia/2026-001/",
+            "source_locator": "First-Session Disclosure (§13-72a-203)",
+            "source_version": "unknown",
             "admission_status": "source-consistency-reviewed-changes"
           },
           "relation": {
@@ -860,6 +934,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2025-05-07",
+              "source": "https://le.utah.gov/~2025/bills/static/HB0452.html",
+              "source_locator": "§13-72a-203",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -874,6 +950,8 @@
               "lifecycle_status": "draft",
               "operative_status": "future",
               "effective": "unknown",
+              "source": "https://publedge.org/us/utah/oaip/jia/2026-001/",
+              "source_locator": "First-Session Disclosure (§13-72a-203)",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             }
@@ -900,7 +978,7 @@
               "sha256": "b0ffb5eae2c18f56c7461dfc180ae19c2a8d848677cc79766a485ba4e8cf9d07"
             }
           },
-          "limits": "Declared relationships only. applicability is never asserted by traversal; a category association is not application of any listed duty. A draft stays a draft after joining operative law. unknown means absent evidence, not a negative finding. Unresolved source questions are carried as count and SHA-256 of their verbatim text so owner wording is preserved without republishing it."
+          "limits": "Declared relationships only. applicability is never asserted by traversal; a category association is not application of any listed duty. A draft stays a draft after joining operative law. unknown means absent evidence, not a negative finding. Unresolved source questions are carried as count and SHA-256 of their verbatim text so owner wording is preserved without republishing it. source, source_locator and source_version report what the owning record claims about provenance; they do not verify the source text."
         }
       }
     },

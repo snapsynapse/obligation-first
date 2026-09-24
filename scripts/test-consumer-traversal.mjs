@@ -44,9 +44,9 @@ const typed = structuredClone(records);
 const set = (key, fields) => Object.assign(typed.find(record => record['@id'] === id(key)), fields);
 set('category', { '@type': 'of:ObligationCategory' });
 set('duty', { '@type': 'of:Obligation', duty_holder_roles: [id('role/provider')], jurisdiction: { territorial_scope: ['us-co'] }, admission_status: 'source-consistency-reviewed-changes' });
-set('pub-term', { '@type': 'of:Term', jurisdiction: { territorial_scope: ['us-ut'] }, admission_status: 'source-consistency-reviewed-changes', 'pub:source_review_unresolved': ['Authority sign-off pending'] });
+set('pub-term', { '@type': 'of:Term', jurisdiction: { territorial_scope: ['us-ut'] }, admission_status: 'source-consistency-reviewed-changes', 'pub:source_review_unresolved': ['Authority sign-off pending'], source: id('draft-record'), source_locator: 'Draft section 1' });
 set('stat-term', { '@type': 'of:Term' });
-set('stat-duty', { '@type': 'of:Obligation', operative_status: 'operative', admission_status: 'source-consistency-reviewed-changes' });
+set('stat-duty', { '@type': 'of:Obligation', operative_status: 'operative', admission_status: 'source-consistency-reviewed-changes', source: id('enrolled-statute'), source_locator: 'Section 5' });
 set('pub-duty', { '@type': 'of:Requirement', jurisdiction: { territorial_scope: ['us-ut'] }, admission_status: 'source-consistency-reviewed-changes' });
 const answerCase = (base, question, layers) => {
   const fixture = { ...structuredClone(base), answer: { question, duty_layers: layers } };
@@ -74,6 +74,8 @@ assert.equal(stat.duty_holders, 'unknown', 'missing actor must stay unknown');
 const own = ownDutyAnswer.answer.expected.duties.find(duty => duty.id === id('pub-duty'));
 assert.deepEqual([own.deontic, own.lifecycle_status, own.operative_status], ['of:Requirement', 'draft', 'future'], 'draft-created duty keeps the draft state');
 assert.equal(own.duty_holder_roles, 'unknown', 'no role is borrowed from the statutory duty');
+assert.deepEqual([draftAnswer.answer.expected.subject.source, draftAnswer.answer.expected.subject.source_locator, draftAnswer.answer.expected.subject.source_version], [id('draft-record'), 'Draft section 1', 'unknown'], 'subject provenance survives; a missing version stays unknown');
+assert.deepEqual([stat.source, stat.source_locator, stat.source_version], [id('enrolled-statute'), 'Section 5', 'unknown'], 'duty provenance survives; a missing version stays unknown');
 const fails = (fixture, mutate, needle, message) => {
   const recordsCopy = structuredClone(typed), fixtureCopy = structuredClone(fixture);
   mutate(recordsCopy, fixtureCopy);
@@ -95,6 +97,9 @@ fails(categoryAnswer, list => { rec(list, 'duty').duty_holders = [id('party/acme
 fails(ownDutyAnswer, list => { rec(list, 'pub-duty').lifecycle_status = 'in-force'; }, 'differs from the reviewed expectation', 'draft-created duty promoted to in force');
 fails(ownDutyAnswer, list => { rec(list, 'pub-duty').duty_holder_roles = [id('role/provider')]; }, 'differs from the reviewed expectation', 'statutory role copied onto the draft-created duty');
 fails(ownDutyAnswer, list => { rec(list, 'pub-term').creates = []; }, 'expected IRI set differs', 'draft-created duty silently dropped from the journey');
+fails(draftAnswer, list => { delete rec(list, 'stat-duty').source; }, 'differs from the reviewed expectation', 'duty source dropped from the answer');
+fails(draftAnswer, list => { rec(list, 'stat-duty').source_version = '2025 enrolled copy'; }, 'differs from the reviewed expectation', 'source version invented for an unversioned duty');
+fails(draftAnswer, list => { rec(list, 'pub-term').source_locator = 'Section 5'; }, 'differs from the reviewed expectation', 'draft locator replaced by the statutory locator');
 assert.throws(() => traverseConsumerCase(typed, { ...categoryAnswer, answer: { ...categoryAnswer.answer, question: ' ' } }), /finite question/);
 assert.throws(() => traverseConsumerCase(typed, { ...categoryAnswer, answer: { ...categoryAnswer.answer, duty_layers: [9] } }), /traversed layers/);
-console.log('Consumer traversal regressions passed (three journeys; retargeting, missing/conflicted/inferred evidence and draft boundaries; EV02 answer contract with 13 meaning-strengthening controls, including a draft-created duty).');
+console.log('Consumer traversal regressions passed (three journeys; retargeting, missing/conflicted/inferred evidence and draft boundaries; EV02 answer contract with 16 meaning-strengthening controls, including a draft-created duty and source provenance).');
