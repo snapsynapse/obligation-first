@@ -269,13 +269,17 @@
     .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
     .btn-primary:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
 
-    .code-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
-    .code-block { text-align: left; }
+    .code-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+    .code-block { text-align: left; min-width: 0; }
+    .table-scroll { overflow-x: auto; margin-bottom: 1.5rem; }
+    .table-scroll table { margin-bottom: 0; }
+    .table-scroll:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
     .code-block h3 { font-size: 0.95rem; margin-bottom: 0.75rem; }
     .code-block .annotation { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.75rem; font-style: italic; }
 
     pre { background: var(--code-bg); color: var(--code-text); padding: 1.25rem; border-radius: 8px; overflow-x: auto; font-family: var(--mono); font-size: 0.8rem; line-height: 1.5; border: 1px solid var(--border); }
     code { font-family: var(--mono); font-size: 0.88em; color: var(--accent); }
+    p code, li code { overflow-wrap: anywhere; }
 
     table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; }
     th, td { text-align: left; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; vertical-align: top; }
@@ -308,7 +312,7 @@
       h1 { font-size: 2rem; }
       .hero { padding: 3rem 0 2.5rem; }
       .pillars, .adopters, .examples { grid-template-columns: 1fr; }
-      .code-grid { grid-template-columns: 1fr; }
+      .code-grid { grid-template-columns: minmax(0, 1fr); }
       .spine-display { font-size: 0.78rem; padding: 1.1rem 0.75rem; }
       nav .links { display: none; }
       nav .links.mobile-compact { display: flex; gap: 0.75rem; }
@@ -411,40 +415,46 @@
     </div>
 
     <h3 style="margin-top: 2rem; margin-bottom: 1rem;">The four-role spine</h3>
-    <table>
-      <thead>
-        <tr><th>Role</th><th>Term</th><th>gist binding</th><th>What it is</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Authority</td><td class="entity">of:Authority</td><td><code>gist:Organization</code></td><td>An organization exercising an evidenced legal, administrative, adjudicative, enforcement, or standards role. Unsupported bases are omitted.</td></tr>
-        <tr><td>Container</td><td class="entity">of:Instrument</td><td><code>gist:Agreement</code> / <code>gist:Specification</code></td><td>The artifact with binding force &mdash; a law, agreement, or ruling.</td></tr>
-        <tr><td>Secondary</td><td class="entity">of:Term</td><td><code>gist:Specification</code>; contractual Terms may also assert <code>gist:ContractTerm</code></td><td>A clause or provision within an Instrument.</td></tr>
-        <tr><td>Primary</td><td class="entity">of:Obligation</td><td>explicit unclassified state or deontic quartet*</td><td>A source-grounded normative position. Unknown classification never silently defaults to Requirement.</td></tr>
-      </tbody>
-    </table>
+    <div class="table-scroll" role="region" aria-label="The four-role spine table" tabindex="0">
+      <table>
+        <thead>
+          <tr><th>Role</th><th>Term</th><th>gist binding</th><th>What it is</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Authority</td><td class="entity">of:Authority</td><td><code>gist:Organization</code></td><td>An organization exercising an evidenced legal, administrative, adjudicative, enforcement, or standards role. Unsupported bases are omitted.</td></tr>
+          <tr><td>Container</td><td class="entity">of:Instrument</td><td><code>gist:Agreement</code> / <code>gist:Specification</code></td><td>The artifact with binding force &mdash; a law, agreement, or ruling.</td></tr>
+          <tr><td>Secondary</td><td class="entity">of:Term</td><td><code>gist:Specification</code>; contractual Terms may also assert <code>gist:ContractTerm</code></td><td>A clause or provision within an Instrument.</td></tr>
+          <tr><td>Primary</td><td class="entity">of:Obligation</td><td>explicit unclassified state or deontic quartet*</td><td>A source-grounded normative position. Unknown classification never silently defaults to Requirement.</td></tr>
+        </tbody>
+      </table>
+    </div>
     <p style="font-size: 0.85rem; color: var(--text-muted);">*Aligned with <a href="https://docs.oasis-open.org/legalruleml/" target="_blank" rel="noopener">LegalRuleML 1.0</a> &sect;5.3 deontic operators.</p>
 
     <h3 style="margin-top: 2rem; margin-bottom: 1rem;">The proceeding strand</h3>
-    <table>
-      <thead>
-        <tr><th>Role</th><th>Term</th><th>gist binding</th><th>What it is</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Matter</td><td class="entity">of:Proceeding</td><td><code>of:LegalProceeding</code> over <code>gist:Event</code></td><td>The legal matter &mdash; case, action, or enforcement docket.</td></tr>
-        <tr><td>Asserted</td><td class="entity">of:Allegation</td><td><code>gist:Content</code> + <code>gist:Intention</code> (when intent-bearing)</td><td>Asserted but unverified facts. Not authoritative until decided.</td></tr>
-        <tr><td>Decided</td><td class="entity">of:Determination</td><td><code>gist:Determination</code></td><td>An Authority's ruling. Resolves Allegations and anchors to Obligations.</td></tr>
-      </tbody>
-    </table>
+    <div class="table-scroll" role="region" aria-label="The proceeding strand table" tabindex="0">
+      <table>
+        <thead>
+          <tr><th>Role</th><th>Term</th><th>gist binding</th><th>What it is</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Matter</td><td class="entity">of:Proceeding</td><td><code>of:LegalProceeding</code> over <code>gist:Event</code></td><td>The legal matter &mdash; case, action, or enforcement docket.</td></tr>
+          <tr><td>Asserted</td><td class="entity">of:Allegation</td><td><code>gist:Content</code> + <code>gist:Intention</code> (when intent-bearing)</td><td>Asserted but unverified facts. Not authoritative until decided.</td></tr>
+          <tr><td>Decided</td><td class="entity">of:Determination</td><td><code>gist:Determination</code></td><td>An Authority's ruling. Resolves Allegations and anchors to Obligations.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <h3 style="margin-top: 2rem; margin-bottom: 1rem;">The category layer</h3>
-    <table>
-      <thead>
-        <tr><th>Role</th><th>Term</th><th>gist binding</th><th>What it is</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Concept</td><td class="entity">of:ObligationCategory</td><td><code>gist:Category</code></td><td>A jurisdiction-neutral duty concept &mdash; human oversight, incident reporting. What makes a Colorado transparency duty comparable to a Utah one.</td></tr>
-      </tbody>
-    </table>
+    <div class="table-scroll" role="region" aria-label="The category layer table" tabindex="0">
+      <table>
+        <thead>
+          <tr><th>Role</th><th>Term</th><th>gist binding</th><th>What it is</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Concept</td><td class="entity">of:ObligationCategory</td><td><code>gist:Category</code></td><td>A jurisdiction-neutral duty concept &mdash; human oversight, incident reporting. What makes a Colorado transparency duty comparable to a Utah one.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <p style="margin-top: 1.5rem;">A Category is deliberately not a duty: no jurisdiction, no duty holder, no <code>created_by</code>, and nobody can comply with one. Obligations join categories through <code>gist:isCategorizedBy</code>; <code>skos:exactMatch</code> remains concept-to-concept only. A ruling that concerns a concept generally rather than one statute's version of it <code>anchors</code> the Category.</p>
 
@@ -513,16 +523,18 @@ curl https://obligationfirst.org/v1/schema/proceeding.schema.json
     <p>For assistant-assisted repository work, start with the GuideCheck artifact at <a href="/.well-known/assistant-guide.txt"><code>/.well-known/assistant-guide.txt</code></a>. Verify it with <a href="https://guidecheck.org/verify" target="_blank" rel="noopener">GuideCheck</a> or another conformant verifier before the assistant acts. The Level 4 sidecar manifest is published at <a href="/.well-known/assistant-guide-manifest.txt"><code>/.well-known/assistant-guide-manifest.txt</code></a>. Conformance verifies form and provenance, not safety.</p>
 
     <h3 style="margin-top: 2rem; margin-bottom: 0.75rem;">Conformance levels</h3>
-    <table>
-      <thead>
-        <tr><th>Level</th><th>Bar</th><th>Required</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><strong>L1</strong></td><td>IRI-only</td><td><code>@id</code> and <code>@type</code> use canonical <code>of:</code> IRIs. <code>@context</code> references this domain.</td></tr>
-        <tr><td><strong>L2</strong></td><td>Schema-and-graph-conformant <em>(recommended)</em></td><td>L1 plus record shape, graph coherence, publication-surface parity, validator identity, a published naming profile, and typed legal competence where supported.</td></tr>
-        <tr><td><strong>L3</strong></td><td>Crosswalk-conformant</td><td>L2 plus every crosswalk the adopter's naming profile declares is present on every applicable record. Recommended baseline is the crosswalk matrix: Wikidata (SHOULD for authorities), ELI (MUST for instruments where issued), ECLI / neutral citation for cases, urn:lex (MAY), Akoma Ntoso, EuroVoc.</td></tr>
-      </tbody>
-    </table>
+    <div class="table-scroll" role="region" aria-label="Conformance levels table" tabindex="0">
+      <table>
+        <thead>
+          <tr><th>Level</th><th>Bar</th><th>Required</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>L1</strong></td><td>IRI-only</td><td><code>@id</code> and <code>@type</code> use canonical <code>of:</code> IRIs. <code>@context</code> references this domain.</td></tr>
+          <tr><td><strong>L2</strong></td><td>Schema-and-graph-conformant <em>(recommended)</em></td><td>L1 plus record shape, graph coherence, publication-surface parity, validator identity, a published naming profile, and typed legal competence where supported.</td></tr>
+          <tr><td><strong>L3</strong></td><td>Crosswalk-conformant</td><td>L2 plus every crosswalk the adopter's naming profile declares is present on every applicable record. Recommended baseline is the crosswalk matrix: Wikidata (SHOULD for authorities), ELI (MUST for instruments where issued), ECLI / neutral citation for cases, urn:lex (MAY), Akoma Ntoso, EuroVoc.</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
