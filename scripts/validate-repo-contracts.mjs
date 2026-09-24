@@ -107,6 +107,13 @@ const ALLOWED_WWW_HOSTS = new Set([
   "www.sitemaps.org",
   "www.linkedin.com",
   "www.apache.org",
+  // Official third-party sources recorded verbatim in adopter records that the
+  // EV02 consumer-answer fixture reproduces; rewriting them would misstate the
+  // owner's provenance claim.
+  "www.mofa.go.jp",
+  "www.iso.org",
+  "www.oregonlegislature.gov",
+  "www.pdpc.gov.sg",
 ]);
 
 const ASSISTANT_GUIDE_ENDPOINT = "https://obligationfirst.org/.well-known/assistant-guide.txt";
