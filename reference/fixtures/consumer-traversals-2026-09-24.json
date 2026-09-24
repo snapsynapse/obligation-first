@@ -727,6 +727,14 @@
           "expected": [
             "https://everyailaw.com/obligation/utah-sb149-chatbot-disclosure-transparency.json"
           ]
+        },
+        {
+          "from": 0,
+          "direction": "forward",
+          "predicate": "creates",
+          "expected": [
+            "https://publedge.org/obligation/utah-mental-health-chatbot-disclosure-2026q2-first-session-disclose-genai-on-first-session.json"
+          ]
         }
       ],
       "expected_boundaries": {
@@ -747,6 +755,12 @@
             "The sb149-learning-lab-and-ai-defense and hb452-mental-health-chatbot-stack mappings are kept and qualified, not removed; whether to remap them is a human decision.",
             "The disclose-genai-on-first-session obligation id and name still say 'first session'; its text was corrected in a separate receipt."
           ]
+        },
+        "https://publedge.org/obligation/utah-mental-health-chatbot-disclosure-2026q2-first-session-disclose-genai-on-first-session.json": {
+          "lifecycle_status": "draft",
+          "operative_status": "future",
+          "enforcement_status": "unsignaled",
+          "admission_status": "source-consistency-reviewed-changes"
         }
       },
       "term_comparisons": [
@@ -806,13 +820,14 @@
         }
       ],
       "answer": {
-        "question": "What Utah statutory duty does the draft OAIP chatbot-disclosure interpretation rest on, and how far can a consumer rely on the interpretation?",
+        "question": "What Utah statutory duty does the draft OAIP chatbot-disclosure interpretation rest on, what duty does the draft itself propose, and how far can a consumer rely on either?",
         "duty_layers": [
-          3
+          3,
+          4
         ],
         "expected": {
           "version": 1,
-          "question": "What Utah statutory duty does the draft OAIP chatbot-disclosure interpretation rest on, and how far can a consumer rely on the interpretation?",
+          "question": "What Utah statutory duty does the draft OAIP chatbot-disclosure interpretation rest on, what duty does the draft itself propose, and how far can a consumer rely on either?",
           "subject": {
             "id": "https://publedge.org/term/utah-mental-health-chatbot-disclosure-2026q2-first-session.json",
             "lifecycle_status": "draft",
@@ -847,6 +862,20 @@
               "effective": "2025-05-07",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://publedge.org/obligation/utah-mental-health-chatbot-disclosure-2026q2-first-session-disclose-genai-on-first-session.json",
+              "deontic": "of:Requirement",
+              "duty_holders": "unknown",
+              "duty_holder_roles": "unknown",
+              "territorial_scope": [
+                "us-ut"
+              ],
+              "lifecycle_status": "draft",
+              "operative_status": "future",
+              "effective": "unknown",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
             }
           ],
           "unresolved": {
@@ -861,6 +890,10 @@
             "https://everyailaw.com/term/utah-sb149-chatbot-disclosure.json": {
               "count": 5,
               "sha256": "e512520664a8e0b2fda64efc96588766faeb5ad9e9f13cb810b1b1b9cc07a0ce"
+            },
+            "https://publedge.org/obligation/utah-mental-health-chatbot-disclosure-2026q2-first-session-disclose-genai-on-first-session.json": {
+              "count": 9,
+              "sha256": "c83901e19c5145ffc3f0aba119ecfb846c94468441e58936503d1f2ee3972ff4"
             },
             "https://publedge.org/term/utah-mental-health-chatbot-disclosure-2026q2-first-session.json": {
               "count": 7,
