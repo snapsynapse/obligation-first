@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import assert from 'node:assert/strict';
-import { traverseConsumerCase } from './lib/consumer-traversal.mjs';
+import { answerContractErrors, traverseConsumerCase } from './lib/consumer-traversal.mjs';
 const id = value => `https://example.com/${value}`;
 const records = [
   { '@id': id('decision'), anchors: [id('category')], projection_basis: 'curated-legal-graph', admission_status: 'legacy-unreviewed', source_review_unresolved: ['Unresolved document version'] },
@@ -37,4 +37,53 @@ const altered = structuredClone(records); altered[3].operative_status = 'operati
 assert.equal(traverseConsumerCase(altered, cases[1]).status, 'failed', 'statutory target cannot confer operative force on a draft');
 const inferred = structuredClone(records); inferred[0].projection_basis = 'legacy-filing-status-inference';
 assert.equal(traverseConsumerCase(inferred, cases[0]).boundaries[id('decision')].projection_basis, 'legacy-filing-status-inference');
-console.log('Consumer traversal regressions passed (three journeys; retargeting, missing/conflicted/inferred evidence and draft boundaries).');
+// EV02 answer contract: one bounded answer per journey, frozen, with negative
+// controls that fail where meaning would be strengthened.
+const typed = structuredClone(records);
+const set = (key, fields) => Object.assign(typed.find(record => record['@id'] === id(key)), fields);
+set('category', { '@type': 'of:ObligationCategory' });
+set('duty', { '@type': 'of:Obligation', duty_holder_roles: [id('role/provider')], jurisdiction: { territorial_scope: ['us-co'] }, admission_status: 'source-consistency-reviewed-changes' });
+set('pub-term', { '@type': 'of:Term', jurisdiction: { territorial_scope: ['us-ut'] }, admission_status: 'source-consistency-reviewed-changes', 'pub:source_review_unresolved': ['Authority sign-off pending'] });
+set('stat-term', { '@type': 'of:Term' });
+set('stat-duty', { '@type': 'of:Obligation', operative_status: 'operative', admission_status: 'source-consistency-reviewed-changes' });
+const answerCase = (base, question, layers) => {
+  const fixture = { ...structuredClone(base), answer: { question, duty_layers: layers } };
+  fixture.answer.expected = JSON.parse(JSON.stringify(traverseConsumerCase(typed, { ...fixture, answer: { ...fixture.answer, expected: null } }).answer));
+  return fixture;
+};
+const categoryAnswer = answerCase(cases[0], 'Which duties does the decision relate to?', [2]);
+const draftAnswer = answerCase(cases[1], 'What statutory duty does the draft rest on?', [3]);
+for (const fixture of [categoryAnswer, draftAnswer]) {
+  const result = traverseConsumerCase(typed, fixture);
+  assert.equal(result.status, 'passed', result.errors.join('; '));
+  assert.deepEqual(JSON.parse(JSON.stringify(result.answer)), fixture.answer.expected, 'answer must survive consumer serialization');
+  assert.deepEqual(answerContractErrors(fixture.answer.expected), []);
+}
+assert.equal(categoryAnswer.answer.expected.relation.direct_duty_relations, 0, 'zero direct relations is an allowed coverage result');
+assert.deepEqual(categoryAnswer.answer.expected.relation.kinds, ['category-association']);
+assert.equal(draftAnswer.answer.expected.subject.binding, 'draft-not-in-force');
+const stat = draftAnswer.answer.expected.duties[0];
+assert.equal(stat.deontic, 'unclassified', 'unknown deontic operator must not default to Requirement');
+assert.equal(stat.territorial_scope, 'unknown', 'missing scope must stay unknown');
+assert.equal(stat.duty_holders, 'unknown', 'missing actor must stay unknown');
+const fails = (fixture, mutate, needle, message) => {
+  const recordsCopy = structuredClone(typed), fixtureCopy = structuredClone(fixture);
+  mutate(recordsCopy, fixtureCopy);
+  const result = traverseConsumerCase(recordsCopy, fixtureCopy);
+  assert.equal(result.status, 'failed', message);
+  assert(result.errors.some(error => error.includes(needle)), `${message}: ${result.errors.join('; ')}`);
+};
+const rec = (list, key) => list.find(record => record['@id'] === id(key));
+fails(categoryAnswer, (_, f) => { f.answer.expected.relation.applicability = 'applied'; }, 'strengthens meaning', 'category promoted to statutory application');
+fails(categoryAnswer, (_, f) => { f.answer.expected.relation.direct_duty_relations = 1; }, 'direct duty relation', 'category counted as a direct duty relation');
+fails(draftAnswer, (_, f) => { f.answer.expected.subject.binding = 'not-evaluated'; }, 'Draft subject promoted', 'draft promoted to binding duty');
+fails(draftAnswer, list => { rec(list, 'pub-term').lifecycle_status = 'in-force'; }, 'differs from the reviewed expectation', 'projection drops draft state');
+fails(draftAnswer, (_, f) => { f.answer.expected.duties[0].territorial_scope = 'unrestricted'; }, 'unrestricted', 'missing scope changed to unrestricted');
+fails(draftAnswer, list => { rec(list, 'stat-duty').admission_status = 'source-reviewed'; }, 'Whole-record review', 'reviewed-change receipt promoted to fully reviewed');
+fails(draftAnswer, list => { delete rec(list, 'pub-term')['pub:source_review_unresolved']; }, 'differs from the reviewed expectation', 'unresolved evidence removed');
+fails(draftAnswer, list => { rec(list, 'pub-term')['pub:source_review_unresolved'] = ['Authority sign-off complete']; }, 'differs from the reviewed expectation', 'unresolved evidence rewritten');
+fails(draftAnswer, list => { rec(list, 'stat-duty')['@type'] = 'of:Requirement'; }, 'differs from the reviewed expectation', 'unknown deontic operator defaulted to Requirement');
+fails(categoryAnswer, list => { rec(list, 'duty').duty_holders = [id('party/acme')]; }, 'differs from the reviewed expectation', 'actor invented for an unknown duty holder');
+assert.throws(() => traverseConsumerCase(typed, { ...categoryAnswer, answer: { ...categoryAnswer.answer, question: ' ' } }), /finite question/);
+assert.throws(() => traverseConsumerCase(typed, { ...categoryAnswer, answer: { ...categoryAnswer.answer, duty_layers: [9] } }), /traversed layers/);
+console.log('Consumer traversal regressions passed (three journeys; retargeting, missing/conflicted/inferred evidence and draft boundaries; EV02 answer contract with 10 meaning-strengthening controls).');

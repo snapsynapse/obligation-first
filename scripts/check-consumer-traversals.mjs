@@ -13,6 +13,7 @@ const records = (await Promise.all(process.argv.slice(3).map(root => loadRecordD
 const results = fixture.cases.map(item => traverseConsumerCase(records, item));
 for (const result of results) {
   console.log(`${result.status}: ${result.id}; layer sizes ${result.layers.map(layer => layer.length).join(' -> ')}`);
+  if (result.answer) console.log(`  answer: ${result.answer.relation.kinds.join(', ') || 'no anchors'}; direct duty relations ${result.answer.relation.direct_duty_relations}; duties ${result.answer.duties.length}; subject ${result.answer.subject.binding}; applicability ${result.answer.relation.applicability}`);
   for (const error of result.errors) console.error(error);
 }
 console.log('Declared graph journeys only; category matches are not applicability and statutory anchors do not promote draft terms.');

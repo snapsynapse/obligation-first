@@ -10,6 +10,7 @@ Current usage is indexed in the repository README; remaining work is in ROADMAP.
 | [IRI federation and crosswalks](iri-naming-and-crosswalks.md) | Accepted identifier and naming-profile decision; its initial implementation plan is historical |
 | [Relationship migration review](relationship-migration-review.md) | Current source-bound relationship-change and owner-comparison contract |
 | [Term boundary checks](term-boundary-checks.md) | Current bounded consumer-traversal and date-precision contract |
+| [Consumer answer contract](consumer-answer-contract.md) | EV02 bounded consumer answers that preserve relation strength, draft state, review scope and unknowns |
 | [Semantic decisions](decisions/README.md) | Five implemented v0.6 decisions |
 | [Scope continuity v1](contracts/scope-contract-v1.md) | Released v0.6.4 tooling; independent of record-schema semantics |
 | [Qualified-time fixture v1](contracts/qualified-time-fixture-v1.md) | Released offline F14 evaluator, date/evidence boundaries and owner sidecars |

@@ -2,6 +2,11 @@
   "version": 1,
   "reviewed_on": "2026-09-24",
   "scope": "Public identifiers and declared graph boundaries only; no restricted source text. Exact target sets are reviewed continuity fixtures, not applicability conclusions.",
+  "answer_tuple": {
+    "every-ai-law": "bfac4b310fe3de3ec8174a6aed728cf7c0418260",
+    "publedge": "278405640123abd0785703dda7b02b2bea33c60a",
+    "ai-incident-law": "2098609900c5aa60279ee7da4b6c50d39b62a5c4"
+  },
   "cases": [
     {
       "id": "mata-category-related-duties",
@@ -62,6 +67,638 @@
           "projection_basis": "curated-legal-graph",
           "admission_status": "legacy-unreviewed",
           "source_review_unresolved": null
+        }
+      },
+      "answer": {
+        "question": "Which statutory duties does the Mata v. Avianca sanctions determination relate to, and does the graph say the court applied any of them?",
+        "duty_layers": [
+          2
+        ],
+        "expected": {
+          "version": 1,
+          "question": "Which statutory duties does the Mata v. Avianca sanctions determination relate to, and does the graph say the court applied any of them?",
+          "subject": {
+            "id": "https://aiincidentlaw.org/determination/aiel-2023-002-determination.json",
+            "lifecycle_status": "unknown",
+            "operative_status": "unknown",
+            "enforcement_status": "unknown",
+            "binding": "not-evaluated",
+            "territorial_scope": [
+              "us-ny"
+            ],
+            "admission_status": "legacy-unreviewed"
+          },
+          "relation": {
+            "kinds": [
+              "category-association"
+            ],
+            "direct_duty_relations": 0,
+            "applicability": "not-asserted"
+          },
+          "duties": [
+            {
+              "id": "https://everyailaw.com/obligation/br-ai-bill-oversight-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider",
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "br"
+              ],
+              "lifecycle_status": "proposed",
+              "operative_status": "future",
+              "effective": "unknown",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/california-ab3030-oversight-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/healthcare-provider"
+              ],
+              "territorial_scope": [
+                "us-ca"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2025-01-01",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/california-sb1120-physician-supervision-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/insurer"
+              ],
+              "territorial_scope": [
+                "us-ca"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2025-01-01",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/cms-medicare-clinician-oversight-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/insurer"
+              ],
+              "territorial_scope": [
+                "us"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2024-01-01",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/coe-cets-225-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider",
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": "unknown",
+              "lifecycle_status": "future",
+              "operative_status": "future",
+              "effective": "unknown",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/colorado-cpa-rules-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/controller"
+              ],
+              "territorial_scope": [
+                "us-co"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2023-07-01",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/colorado-sb24-205-human-review-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "us-co"
+              ],
+              "lifecycle_status": "repealed",
+              "operative_status": "unknown",
+              "effective": "2026-06-30",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/colorado-sb26-189-human-review-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "us-co"
+              ],
+              "lifecycle_status": "enacted",
+              "operative_status": "unknown",
+              "effective": "2027-01-01",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/eu-ai-act-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider",
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "eu"
+              ],
+              "lifecycle_status": "enacted",
+              "operative_status": "unknown",
+              "effective": "2027-12-02",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/g7-hiroshima-governance-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider"
+              ],
+              "territorial_scope": "unknown",
+              "lifecycle_status": "in-force",
+              "operative_status": "not-applicable",
+              "effective": "2023-10-30",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/georgia-sb540-parental-tools-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider"
+              ],
+              "territorial_scope": [
+                "us-ga"
+              ],
+              "lifecycle_status": "enacted",
+              "operative_status": "unknown",
+              "effective": "2027-07-01",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/hawaii-sb3001-minor-protections-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider"
+              ],
+              "territorial_scope": [
+                "us-hi"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-07-14",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/idaho-s1297-parental-controls-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider"
+              ],
+              "territorial_scope": [
+                "us-id"
+              ],
+              "lifecycle_status": "future",
+              "operative_status": "future",
+              "effective": "2027-07-01",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/iso-38507-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": "unknown",
+              "lifecycle_status": "in-force",
+              "operative_status": "not-applicable",
+              "effective": "2022-04-01",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/it-ai-law-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "it"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2025-10-10",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/kr-ai-basic-act-oversight-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider",
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "kr"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-01-22",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/maine-ai-mental-health-licensed-delivery-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer",
+                "https://everyailaw.com/ont/role/provider"
+              ],
+              "territorial_scope": [
+                "us-me"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-07-29",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/maine-ai-mental-health-permitted-use-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/healthcare-provider",
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "us-me"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-07-29",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/mt-ai-regulations-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "mt"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-08-02",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/mx-lfpdppp-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "mx"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2025-03-21",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/oecd-ai-principles-accountability-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider",
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": "unknown",
+              "lifecycle_status": "unknown",
+              "operative_status": "not-applicable",
+              "effective": "2019-05-22",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/oregon-sb1546-minor-protection-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider"
+              ],
+              "territorial_scope": [
+                "us-or"
+              ],
+              "lifecycle_status": "enacted",
+              "operative_status": "unknown",
+              "effective": "2027-01-01",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/pe-ai-law-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider",
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "pe"
+              ],
+              "lifecycle_status": "future",
+              "operative_status": "future",
+              "effective": "2026-09-10",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/qa-qcb-ai-guideline-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "qa"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2024-09-04",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/rhode-island-ai-mental-health-oversight-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/healthcare-provider",
+                "https://everyailaw.com/ont/role/deployer",
+                "https://everyailaw.com/ont/role/provider"
+              ],
+              "territorial_scope": [
+                "us-ri"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-06-22",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/rhode-island-healthcare-ai-notice-review-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/healthcare-provider",
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "us-ri"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-06-22",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/sg-ai-governance-oversight-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider",
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "sg"
+              ],
+              "lifecycle_status": "unknown",
+              "operative_status": "not-applicable",
+              "effective": "2019-01-23",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/uk-dpa-2018-adm-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "uk"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-02-05",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/utah-sb149-chatbot-safety-policy-human-oversight.json",
+              "deontic": "of:Permission",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider"
+              ],
+              "territorial_scope": [
+                "us-ut"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2025-05-07",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/uz-ai-amendments-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "uz"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-01-21",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/vermont-act156-licensed-delivery-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer",
+                "https://everyailaw.com/ont/role/provider"
+              ],
+              "territorial_scope": [
+                "us-vt"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-06-17",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/vermont-act156-review-approval-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/healthcare-provider",
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "us-vt"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-06-17",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/vn-ai-law-oversight-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider",
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "vn"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-03-01",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/washington-hb2225-minor-protection-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider"
+              ],
+              "territorial_scope": [
+                "us-wa"
+              ],
+              "lifecycle_status": "enacted",
+              "operative_status": "unknown",
+              "effective": "2027-01-01",
+              "source_version": "unknown",
+              "admission_status": "legacy-unreviewed"
+            }
+          ],
+          "unresolved": {
+            "https://everyailaw.com/obligation/coe-cets-225-human-oversight.json": {
+              "count": 2,
+              "sha256": "170025ea15817893a516f5927804e19c77436aaed9b01cb91c820a4ed47ea319"
+            },
+            "https://everyailaw.com/obligation/colorado-cpa-rules-human-oversight.json": {
+              "count": 2,
+              "sha256": "2ae3d38ad4f87fb9e300de08e983ddcaf6b12b621cd43f1c3ce6f0d5b7af2463"
+            },
+            "https://everyailaw.com/obligation/colorado-sb24-205-human-review-human-oversight.json": {
+              "count": 3,
+              "sha256": "d22bfa8b2491fa251c5f9a1cbcac376e9df2b7f61bef9f382b86a9531bc1f56a"
+            },
+            "https://everyailaw.com/obligation/eu-ai-act-human-oversight.json": {
+              "count": 3,
+              "sha256": "31bb2002005658e9b0be887993b5a6bcf955c66d9928b3227ba1c446d5c1df20"
+            },
+            "https://everyailaw.com/obligation/it-ai-law-human-oversight.json": {
+              "count": 3,
+              "sha256": "5424306aa9f047191f90bcbeb5047bfb4142ec8a9c4ff6161ce6d63a7280981e"
+            },
+            "https://everyailaw.com/obligation/mt-ai-regulations-human-oversight.json": {
+              "count": 3,
+              "sha256": "cd00536db43395c2575c57f5e767ffe4789642140c93f060e80f894d3ca969eb"
+            },
+            "https://everyailaw.com/obligation/mx-lfpdppp-human-oversight.json": {
+              "count": 3,
+              "sha256": "b32c4b872a2a32b9ccacbe86307ef8bac9f5d629ea0f0a64cfcf65213b59c2a5"
+            },
+            "https://everyailaw.com/obligation/qa-qcb-ai-guideline-human-oversight.json": {
+              "count": 4,
+              "sha256": "7bcc20a4304f31faad01239ede5e53462406c316d41644bdf160e198ff53a3e2"
+            },
+            "https://everyailaw.com/obligation/rhode-island-healthcare-ai-notice-review-human-oversight.json": {
+              "count": 1,
+              "sha256": "faad4e034765bff2978251023d374ba6a93f6d0a2ca17090498d86d3a1927e21"
+            },
+            "https://everyailaw.com/obligation/uk-dpa-2018-adm-human-oversight.json": {
+              "count": 1,
+              "sha256": "741cda5656922d3135568373e2e711e3603b07c857620a0a14c0457c7766911b"
+            },
+            "https://everyailaw.com/obligation/utah-sb149-chatbot-safety-policy-human-oversight.json": {
+              "count": 5,
+              "sha256": "e512520664a8e0b2fda64efc96588766faeb5ad9e9f13cb810b1b1b9cc07a0ce"
+            },
+            "https://everyailaw.com/obligation/vn-ai-law-oversight-human-oversight.json": {
+              "count": 5,
+              "sha256": "e7e47005b60234ffec12182c0c1f19b0730ac4a3587da732b2cc4eeaccfb59fb"
+            }
+          },
+          "limits": "Declared relationships only. applicability is never asserted by traversal; a category association is not application of any listed duty. A draft stays a draft after joining operative law. unknown means absent evidence, not a negative finding. Unresolved source questions are carried as count and SHA-256 of their verbatim text so owner wording is preserved without republishing it."
         }
       }
     },
@@ -167,7 +804,72 @@
             "limits": "Exact declared codes only; no country/subdivision expansion or inference of geographic disjointness. Missing exceptions are unknown, not empty. Date comparisons preserve original precision and do not establish operation, enforcement or an invalid retroactive term. Drafts and missing locators remain explicit."
           }
         }
-      ]
+      ],
+      "answer": {
+        "question": "What Utah statutory duty does the draft OAIP chatbot-disclosure interpretation rest on, and how far can a consumer rely on the interpretation?",
+        "duty_layers": [
+          3
+        ],
+        "expected": {
+          "version": 1,
+          "question": "What Utah statutory duty does the draft OAIP chatbot-disclosure interpretation rest on, and how far can a consumer rely on the interpretation?",
+          "subject": {
+            "id": "https://publedge.org/term/utah-mental-health-chatbot-disclosure-2026q2-first-session.json",
+            "lifecycle_status": "draft",
+            "operative_status": "future",
+            "enforcement_status": "unsignaled",
+            "binding": "draft-not-in-force",
+            "territorial_scope": [
+              "us-ut"
+            ],
+            "admission_status": "source-consistency-reviewed-changes"
+          },
+          "relation": {
+            "kinds": [
+              "direct-anchor"
+            ],
+            "direct_duty_relations": 1,
+            "applicability": "not-asserted"
+          },
+          "duties": [
+            {
+              "id": "https://everyailaw.com/obligation/utah-sb149-chatbot-disclosure-transparency.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider"
+              ],
+              "territorial_scope": [
+                "us-ut"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2025-05-07",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            }
+          ],
+          "unresolved": {
+            "https://everyailaw.com/instrument/utah-sb149.json": {
+              "count": 5,
+              "sha256": "e512520664a8e0b2fda64efc96588766faeb5ad9e9f13cb810b1b1b9cc07a0ce"
+            },
+            "https://everyailaw.com/obligation/utah-sb149-chatbot-disclosure-transparency.json": {
+              "count": 5,
+              "sha256": "e512520664a8e0b2fda64efc96588766faeb5ad9e9f13cb810b1b1b9cc07a0ce"
+            },
+            "https://everyailaw.com/term/utah-sb149-chatbot-disclosure.json": {
+              "count": 5,
+              "sha256": "e512520664a8e0b2fda64efc96588766faeb5ad9e9f13cb810b1b1b9cc07a0ce"
+            },
+            "https://publedge.org/term/utah-mental-health-chatbot-disclosure-2026q2-first-session.json": {
+              "count": 7,
+              "sha256": "b0ffb5eae2c18f56c7461dfc180ae19c2a8d848677cc79766a485ba4e8cf9d07"
+            }
+          },
+          "limits": "Declared relationships only. applicability is never asserted by traversal; a category association is not application of any listed duty. A draft stays a draft after joining operative law. unknown means absent evidence, not a negative finding. Unresolved source questions are carried as count and SHA-256 of their verbatim text so owner wording is preserved without republishing it."
+        }
+      }
     },
     {
       "id": "legacy-transparency-tombstone-replacement",
