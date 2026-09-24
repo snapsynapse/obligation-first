@@ -168,7 +168,7 @@ run(
 
 run("Replay the three bounded consumer graph journeys", process.execPath, [
   path.join(obligationFirst, "scripts/check-consumer-traversals.mjs"),
-  path.join(obligationFirst, "reference/fixtures/consumer-traversals-2026-09-09.json"),
+  path.join(obligationFirst, "reference/fixtures/consumer-traversals-2026-09-24.json"),
   ...adopters.map(adopter => path.join(adopter.root, adopter.records)),
 ]);
 
