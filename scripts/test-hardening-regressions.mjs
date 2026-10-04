@@ -755,6 +755,7 @@ await import("./test-adopter-cli-aggregate.mjs");
 await import("./test-nested-fingerprint.mjs");
 await import("./test-causal-dates.mjs");
 await import("./test-consumer-traversal.mjs");
+await import("./test-consumer-report.mjs");
 await import("./test-relationship-migrations.mjs");
 await import("./test-eal-category-retirement.mjs");
 await import("./test-eal-source-category-withdrawal.mjs");
