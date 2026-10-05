@@ -3,7 +3,7 @@
   "reviewed_on": "2026-09-24",
   "scope": "Public identifiers and declared graph boundaries only; no restricted source text. Exact target sets are reviewed continuity fixtures, not applicability conclusions.",
   "answer_tuple": {
-    "every-ai-law": "bfac4b310fe3de3ec8174a6aed728cf7c0418260",
+    "every-ai-law": "b711882cd10372bf344a2c3c85089a6c66ee7335",
     "publedge": "278405640123abd0785703dda7b02b2bea33c60a",
     "ai-incident-law": "2098609900c5aa60279ee7da4b6c50d39b62a5c4"
   },
@@ -761,8 +761,8 @@
               "sha256": "741cda5656922d3135568373e2e711e3603b07c857620a0a14c0457c7766911b"
             },
             "https://everyailaw.com/obligation/utah-sb149-chatbot-safety-policy-human-oversight.json": {
-              "count": 5,
-              "sha256": "e512520664a8e0b2fda64efc96588766faeb5ad9e9f13cb810b1b1b9cc07a0ce"
+              "count": 7,
+              "sha256": "47ad5c7f7b3b7574cfd109e343d8d65c22e65624746d0b73b9e2410eb6d7c60f"
             },
             "https://everyailaw.com/obligation/vn-ai-law-oversight-human-oversight.json": {
               "count": 5,
@@ -958,16 +958,16 @@
           ],
           "unresolved": {
             "https://everyailaw.com/instrument/utah-sb149.json": {
-              "count": 5,
-              "sha256": "e512520664a8e0b2fda64efc96588766faeb5ad9e9f13cb810b1b1b9cc07a0ce"
+              "count": 7,
+              "sha256": "47ad5c7f7b3b7574cfd109e343d8d65c22e65624746d0b73b9e2410eb6d7c60f"
             },
             "https://everyailaw.com/obligation/utah-sb149-chatbot-disclosure-transparency.json": {
-              "count": 5,
-              "sha256": "e512520664a8e0b2fda64efc96588766faeb5ad9e9f13cb810b1b1b9cc07a0ce"
+              "count": 7,
+              "sha256": "47ad5c7f7b3b7574cfd109e343d8d65c22e65624746d0b73b9e2410eb6d7c60f"
             },
             "https://everyailaw.com/term/utah-sb149-chatbot-disclosure.json": {
-              "count": 5,
-              "sha256": "e512520664a8e0b2fda64efc96588766faeb5ad9e9f13cb810b1b1b9cc07a0ce"
+              "count": 7,
+              "sha256": "47ad5c7f7b3b7574cfd109e343d8d65c22e65624746d0b73b9e2410eb6d7c60f"
             },
             "https://publedge.org/obligation/utah-mental-health-chatbot-disclosure-2026q2-first-session-disclose-genai-on-first-session.json": {
               "count": 9,
