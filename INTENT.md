@@ -83,6 +83,11 @@ The v0.6 implementation preserves v0.5 schema validity while requiring migrated 
 3. **AI Incident Law is live** on the proceeding strand and owns adjudicative Determinations for public matters.
 4. EveryAILaw, PubLedge, and AI Incident Law each exercise a different portion of the v0.6 contract, and cross-repository validation checks the combined graph.
 
+## Distribution
+
+- Evaluate an Obligation-First npm package or MCP server only on a concrete consumer need; otherwise continue GitHub/Pages reference distribution.
+- Publishing namespace if one is created: `snapsynapse`. The September 12 inventory found no public OF npm package or Official MCP namespace entry; availability is not reserved, so recheck at proposal time.
+
 ## Relationship to other components
 
 - **Knowledge-as-Code** (https://knowledge-as-code.com/): the methodology family. Obligation-First is one specific KaC schema for normative content. Other KaC schemas may emerge for other domains.

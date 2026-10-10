@@ -218,3 +218,41 @@ The cost of adding these later is high, and the cost of designing for them early
 - **v0.1 → v0.x:** additive changes preferred. Breaking changes require a 14-day comment window if any external adopter has bound.
 - **v0.x → v1.0:** no breaking changes after the v1.0 freeze. v2.0 path required for breaking changes thereafter.
 - IRI scheme: `https://w3id.org/of/v1/` for v1.x; `https://w3id.org/of/v2/` for v2.x.
+
+## Loose ends 2026-10-09
+
+Found while retiring the 2026-09-09 issue-reconciliation draft. Recorded, not fixed.
+
+- `examples/colorado-sb24-205/records/instrument-co-sb24-205.json` line 12 still uses legacy `"status": "repealed"` rather than `lifecycle_status`. Any new issue 6 lifecycle rule must update this example in the same change.
+- `reference/known-corrections-2026-09-09.md` now says 28 graph diagnostic codes (the draft recorded 27). A grep of `scripts` finds 24 distinct `OF-GRAPH-*` identifiers; the remainder are presumably other prefixes such as `OF-TIME-*`. Reconcile the stated count with the actual code inventory.
+- `tests/verification-workflow.test.js` (untracked per the draft) no longer exists in this checkout, and the working tree is clean. It referenced `scripts/finalize-verification-workflow.js` and `.github/workflows/verify-features.yml`, which never existed here, so it was likely an adopter-repo file. Nothing to action unless it resurfaces.
+
+## Open items from 2026-09-14 assessment
+
+Design, inputs and acceptance limits live in `paice-foundation/portfolio/legal-graph/plans/cross-repo-evals.md`. Owner here: Obligation-First (F02, F09; shared support F01/F03/F05/F08; repo-local F11/F12). EV02 is delivered (commit 194ea649e04f, `reference/consumer-answer-contract.md`).
+
+### OF-1 / EV01: entity agreement contract (issue #6 owns lifecycle policy)
+
+Mitigation steps in `scripts/check-entity-agreement.mjs` and the caller's `tests/fixtures/of-required-entity-pairs.json`:
+
+1. Decide which fields and relationship targets the next shared slice compares, including enforcement where sources support it. Specify known/unknown/missing behavior.
+2. Compare successor/amendment/repeal targets through a reviewed correspondence map, preserving relation type and direction. Never compare raw cross-host IDs as if they must match.
+3. Report deterministic potential overlap (for example shared normalized source identity) and require a disposition (same entity, different granularity, different version, unresolved) only for an explicitly scoped candidate set. A shared URL never creates `sameAs`.
+4. Extend the existing comparator and mutation tests; public fixtures stay synthetic.
+
+Acceptance: opposite comparable enforcement values, relation direction errors, missing required fields and changed mapped targets are detected; expected unknowns and reviewed different-granularity records stay distinguishable; no claim that probes bypass all admission/fingerprint gates. Utah is admitted to the pair set only after its granularity mapping is reviewed.
+
+Negative controls: opposite known enforcement on the Colorado successor pair; reversed amendment edge; target replacement without its correspondence; missing required field; an amended stack and an individual amending act that share a source reference but must not be equated. Existing effective-date mismatch stays a positive control.
+
+### OF-3 / EV07: namespace and release acceptance
+
+`https://w3id.org/of/v1/` returned 404 on 2026-09-14 while `https://obligationfirst.org/v1/context.jsonld` returned 200; `reference/implementation-status.json` records external filing as pending. Prepare the redirect/representation packet without renaming identifiers and extend the hosted verifier with bounded namespace checks, tested first with injected HTTP fixtures. Acceptance is observed intended resolution, not a reachable context file. External filing needs its own authority.
+
+Verifier negative controls: namespace 404 despite a reachable context; HTML error body with HTTP 200; wrong-origin redirect; bundle matches while the selected record route serves different bytes; deployment source asserted merely from byte equality.
+
+### OF-4: repo hygiene
+
+- Scanner reported missing `.vercel/` and `working/` ignore patterns; confirm applicability against repo standards and INTENT exceptions before a small repair.
+- Served `docs/agents.json` has no repo-root companion; confirm applicability.
+- Preserve immutable releases; assess whether release-pinned content changes need a new package through the documented flow (commits after a tag do not by themselves require one).
+- Branch pruning needs exact-tip integration and recovery evidence; the seven local branches are not a pruning list.
