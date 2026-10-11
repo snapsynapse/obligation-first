@@ -256,3 +256,14 @@ Verifier negative controls: namespace 404 despite a reachable context; HTML erro
 - Served `docs/agents.json` has no repo-root companion; confirm applicability.
 - Preserve immutable releases; assess whether release-pinned content changes need a new package through the documented flow (commits after a tag do not by themselves require one).
 - Branch pruning needs exact-tip integration and recovery evidence; the seven local branches are not a pruning list.
+
+## Foundation external-supply comparison (2026-10-11)
+
+The PAICE Foundation 2026-09-22 Legal Graph decision compares adopter scope with legitimate external supply. Obligation-First supplies the interoperability input: [external-supply compatibility criteria](reference/external-supply-compatibility-criteria.md) covering identifiers, source/time/authority semantics, licensing, versioning, uncertainty, deontic content and adopter-specific fields, with eight named interoperability gaps (G1 to G8) and a scorecard template.
+
+- [x] Criteria, gaps and scorecard recorded
+- [ ] Foundation selects candidate sources and consumer tasks for comparison
+- [ ] Bounded offline fixture for any candidate proposed as `replace`
+- [ ] Shared-contract proposal for a gap only after a second adopter demonstrates the need (governance window applies)
+
+This item does not change the schema, naming profiles, release packages or v1.0 gates. Source admission, legal meaning and currentness stay with each adopter.
