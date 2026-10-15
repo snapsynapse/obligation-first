@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { readFile, realpath } from 'node:fs/promises';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { validatePubledgeProposalIssuerWithdrawal, PUBLEDGE_PROPOSAL_ISSUER_WITHDRAWAL, PUBLEDGE_PROPOSAL_SOURCE } from './publedge-proposal-issuer-withdrawal.mjs';
 import { runAdopterAdmission } from './adopter-admission.mjs';
 import { loadRecordDir } from './adopter-kit.mjs';
 import { validateEveryAiLawMaltaAssessmentWithdrawal, EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL } from './eal-category-retirement.mjs';
@@ -86,7 +87,7 @@ export async function validateMigrationReceipts({ root, changes, receipts, recor
     const groups = new Map();
     for (const entry of adapterEntries) {
       const name = entry.source_admission.adapter.name;
-      assert.ok([EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL, EVERY_AI_LAW_ITALY_AGID_ENFORCER_WITHDRAWAL, EVERY_AI_LAW_SOURCE_CATEGORY_WITHDRAWAL, EVERY_AI_LAW_SOURCE_ROLE_CORRECTION].includes(name), `Unknown derived migration adapter: ${name}`);
+      assert.ok([EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL, EVERY_AI_LAW_ITALY_AGID_ENFORCER_WITHDRAWAL, EVERY_AI_LAW_SOURCE_CATEGORY_WITHDRAWAL, EVERY_AI_LAW_SOURCE_ROLE_CORRECTION, PUBLEDGE_PROPOSAL_ISSUER_WITHDRAWAL].includes(name), `Unknown derived migration adapter: ${name}`);
       if (!groups.has(name)) groups.set(name, []);
       groups.get(name).push(entry);
     }
@@ -101,6 +102,7 @@ export async function validateMigrationReceipts({ root, changes, receipts, recor
       if (name === EVERY_AI_LAW_MALTA_ASSESSMENT_WITHDRAWAL) await validateEveryAiLawMaltaAssessmentWithdrawal(params);
       else if (name === EVERY_AI_LAW_ITALY_AGID_ENFORCER_WITHDRAWAL) await validateEveryAiLawItalyAgidEnforcerWithdrawal(params);
       else if (name === EVERY_AI_LAW_SOURCE_CATEGORY_WITHDRAWAL) await validateEveryAiLawSourceCategoryWithdrawal(params);
+      else if (name === PUBLEDGE_PROPOSAL_ISSUER_WITHDRAWAL) await validatePubledgeProposalIssuerWithdrawal(params);
       else await validateEveryAiLawSourceRoleCorrection(params);
     }
   }
@@ -123,6 +125,7 @@ export async function validateMigrationReceipts({ root, changes, receipts, recor
     else if (subject['eal:source_file']) nativeKey = subject['eal:source_file'];
     else if (subject['@type'] === 'of:Instrument' && subject['eal:id']) nativeKey = `data/instruments/${subject['eal:id']}.md`;
     else if (ref.adapter?.name === EVERY_AI_LAW_SOURCE_ROLE_CORRECTION) nativeKey = ref.adapter.native_identity.source_file;
+    else if (ref.adapter?.name === PUBLEDGE_PROPOSAL_ISSUER_WITHDRAWAL) nativeKey = PUBLEDGE_PROPOSAL_SOURCE;
     assert.ok(nativeKey, 'Migration needs a supported owner-native identity mapping');
     assert.equal(ref.pointer, `/records/${nativeKey.replace(/~/g, '~0').replace(/\//g, '~1')}`, 'Source admission receipt belongs to another projected subject');
     const admitted = await readAdmissionReference(root, ref);

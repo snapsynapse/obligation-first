@@ -132,3 +132,4 @@ try {
   assert.ok((await readFile(expectedPath, 'utf8')).includes('https://example.com/new'));
 } finally { await rm(root, { recursive: true, force: true }); }
 console.log(`Relationship migration checks passed (${cases} cases; committed baseline, exact transition, receipt and owner admission).`);
+await import('./test-publedge-proposal-issuer-withdrawal.mjs');
