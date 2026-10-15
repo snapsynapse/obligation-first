@@ -1,0 +1,10 @@
+# PubLedge proposal issuer correction, October 14, 2026
+## Scope
+Sam first authorized a narrow companion checker fix in an isolated Obligation First worktree, then authorized committing, pushing and opening coordinated PRs for this companion and PubLedge. Merge and deployment remain unapproved. Base: `c24f7bc94f7080228bff652eae4bb2a458db16fe`.
+The existing migration checker has owner-native mappings for EveryAILaw and AI Incident Law, but none for PubLedge. Its generic relation-unit path cannot bind PubLedge's structured `issued_by` object to the derived `issuedBy` authority URI. The result is a fail-closed rejection of an otherwise admitted issuer correction on an unissued proposal.
+## Implementation
+`scripts/lib/publedge-proposal-issuer-withdrawal.mjs` validates one fixed transition: remove OAIP as issuer of `us-ut-oaip-jia-2026-001`. It requires the exact subject and old target, no new target, proposed/draft lifecycle, unchanged verification date, no issuance fields, the precise provenance-unit successor and original human receipt, and a matching projected native evidence input. It does not admit a different record, arbitrary retargeting, changed terms or renewed verification.
+`scripts/lib/relationship-migrations.mjs` registers only that adapter and maps its exact owner-native source. Existing canonical receipt-digest, review-packet, reviewed-unit, owner-admission and committed-baseline checks still run.
+## Evidence
+Full `npm test` passes. The existing relationship-migration suite passes 53 cases; the new proposal-specific suite passes 24 cases covering acceptance and rejection mutations. PubLedge's actual candidate migration receipt and fingerprint pass against this checker.
+No schema, release version, release-pinned artifact, published package or baseline source-law interpretation changed. PubLedge must pin the exact delivered companion commit before remote CI can accept its new migration. The coordinated PRs will retain their own exact-head check results; this local record does not establish remote CI or deployment acceptance.
