@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "reviewed_on": "2026-09-24",
+  "reviewed_on": "2026-10-18",
   "scope": "Public identifiers and declared graph boundaries only; no restricted source text. Exact target sets are reviewed continuity fixtures, not applicability conclusions.",
   "answer_tuple": {
-    "every-ai-law": "b711882cd10372bf344a2c3c85089a6c66ee7335",
-    "publedge": "278405640123abd0785703dda7b02b2bea33c60a",
-    "ai-incident-law": "2098609900c5aa60279ee7da4b6c50d39b62a5c4"
+    "every-ai-law": "0244d53e600872574b39c111e5f808433d9f2a15",
+    "publedge": "2475ff6d974d2da6982f194c58e43f8dec90883a",
+    "ai-incident-law": "b1e56d4a87f0a52d36af86c0f73e60136a2fe7ec"
   },
   "cases": [
     {
@@ -824,7 +824,10 @@
             "Utah HB 452 section 13-72a-203 uses a seven-day interaction condition rather than the draft JIA 30-minute resumption condition.",
             "The EveryAILaw target identities and cross-owner existence remain federation assertions; this receipt does not make EveryAILaw an issuing authority or certify current law.",
             "The sb149-learning-lab-and-ai-defense and hb452-mental-health-chatbot-stack mappings are kept and qualified, not removed; whether to remap them is a human decision.",
-            "The disclose-genai-on-first-session obligation id and name still say 'first session'; its text was corrected in a separate receipt."
+            "The disclose-genai-on-first-session obligation id and name still say 'first session'; its text was corrected in a separate receipt.",
+            "This is selected-clause source consistency, not a complete current-law/applicability or agency-interpretation certification. No human verification date renewed.",
+            "SB226 current-codification locator/identity gap remains outside this HB452-only tranche; no new acceptance of its unchanged general-disclosure clauses.",
+            "Prior unresolved strings are retained verbatim as dated historical review evidence. This packet addresses only selected Chapter77 and Division13-2-102 locator coverage; it does not establish the full renumbering history, current division rules, complete incorporated-definition or later-amendment coverage, bill status/votes, annual reports, criminal/principal/foreseeability/third-party assertions, or human legal acceptance."
           ]
         },
         "https://publedge.org/obligation/utah-mental-health-chatbot-disclosure-2026q2-first-session-disclose-genai-on-first-session.json": {
@@ -970,12 +973,12 @@
               "sha256": "47ad5c7f7b3b7574cfd109e343d8d65c22e65624746d0b73b9e2410eb6d7c60f"
             },
             "https://publedge.org/obligation/utah-mental-health-chatbot-disclosure-2026q2-first-session-disclose-genai-on-first-session.json": {
-              "count": 9,
-              "sha256": "c83901e19c5145ffc3f0aba119ecfb846c94468441e58936503d1f2ee3972ff4"
+              "count": 12,
+              "sha256": "8a7ebeb768ddb0d021e6711e590719a14d81950f5f9d7e667f604b4a4a198377"
             },
             "https://publedge.org/term/utah-mental-health-chatbot-disclosure-2026q2-first-session.json": {
-              "count": 7,
-              "sha256": "b0ffb5eae2c18f56c7461dfc180ae19c2a8d848677cc79766a485ba4e8cf9d07"
+              "count": 10,
+              "sha256": "4ed74fb9c8f85e20ec5e37d07847454cfdfba15b3798904efe071a7a55b17022"
             }
           },
           "limits": "Declared relationships only. applicability is never asserted by traversal; a category association is not application of any listed duty. A draft stays a draft after joining operative law. unknown means absent evidence, not a negative finding. Unresolved source questions are carried as count and SHA-256 of their verbatim text so owner wording is preserved without republishing it. source, source_locator and source_version report what the owning record claims about provenance; they do not verify the source text."
