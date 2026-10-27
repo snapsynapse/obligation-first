@@ -9,6 +9,7 @@ Current usage is indexed in the repository README; remaining work is in ROADMAP.
 | [Adopter kit](adopter-kit.md) | Current schema, graph validation, and export writer usage |
 | [IRI federation and crosswalks](iri-naming-and-crosswalks.md) | Accepted identifier and naming-profile decision; its initial implementation plan is historical |
 | [Relationship migration review](relationship-migration-review.md) | Current source-bound relationship-change and owner-comparison contract |
+| [Lifecycle relationship checks](lifecycle-relationship-checks.md) | Candidate target-agreement and predecessor-review policy for issue 6; issue 4 production-evidence assessment |
 | [Term boundary checks](term-boundary-checks.md) | Current bounded consumer-traversal and date-precision contract |
 | [Consumer answer contract](consumer-answer-contract.md) | EV02 bounded consumer answers that preserve relation strength, draft state, review scope and unknowns |
 | [External-supply compatibility criteria](external-supply-compatibility-criteria.md) | Planning criteria and interoperability gaps for the Foundation external-supply comparison; selects no source and changes no schema |
