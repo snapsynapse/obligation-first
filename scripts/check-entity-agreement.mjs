@@ -4,6 +4,56 @@ import { pathToFileURL } from 'node:url';
 import { readFile } from 'node:fs/promises';
 
 export const ENTITY_FIELDS = ['lifecycle_status', 'operative_status', 'effective', 'enacted'];
+export const ENTITY_RELATIONS = ['supersedes', 'wouldSupersede', 'repeals', 'amends'];
+const isInstrument = record => asArray(record?.['@type']).includes('of:Instrument');
+
+// Correspondence components are used only to compare targets. They do not
+// merge records or propagate scalar assertions, sameAs, dates or legal effect.
+function targetClasses(records, byId) {
+  const parent = new Map(records.filter(isInstrument).map(record => [record['@id'], record['@id']]));
+  function root(id) {
+    if (parent.get(id) !== id) parent.set(id, root(parent.get(id)));
+    return parent.get(id);
+  }
+  for (const record of records.filter(isInstrument)) for (const target of asArray(record.describesSameEntityAs)) {
+    if (!isInstrument(byId.get(target))) continue;
+    const [first, second] = [root(record['@id']), root(target)].sort();
+    parent.set(second, first);
+  }
+  return id => parent.has(id) ? root(id) : null;
+}
+
+function relationTargets(value, classify) {
+  const targets = asArray(value);
+  if (!targets.length) return { reason: 'missing-assertion' };
+  if (targets.some(target => typeof target !== 'string' || !target.trim())) return { reason: 'malformed-assertion' };
+  const classes = targets.map(classify);
+  if (classes.includes(null)) return { reason: 'unresolved-target' };
+  return { targets: [...new Set(classes)].sort() };
+}
+
+function lifecycleReview(records, report) {
+  const byId = new Map(records.map(record => [record['@id'], record]));
+  for (const record of records.filter(isInstrument)) {
+    const lifecycle = record.lifecycle_status || record.status;
+    for (const field of ENTITY_RELATIONS) for (const target of asArray(record[field])) {
+      if (typeof target !== 'string') continue;
+      if (target === record['@id']) report.conflicts.push(`OF-RELATION-SELF: ${record['@id']} ${field} cannot target itself`);
+      if (field === 'supersedes' && ['draft', 'proposed'].includes(lifecycle)) {
+        report.conflicts.push(`OF-RELATION-STAGE: ${record['@id']} ${lifecycle} replacement must use wouldSupersede, not supersedes`);
+      }
+      if (field === 'supersedes' && asArray(record.repeals).includes(target)) {
+        report.conflicts.push(`OF-RELATION-KIND-CONFLICT: ${record['@id']} cannot both supersede and purely repeal ${target}`);
+      }
+      const expected = { supersedes: 'superseded', repeals: 'repealed' }[field];
+      const predecessor = byId.get(target);
+      const actual = predecessor?.lifecycle_status || predecessor?.status;
+      if (expected && isInstrument(predecessor) && asserted(actual) && actual !== expected) {
+        report.warnings.push(`OF-LIFECYCLE-REVIEW: ${record['@id']} ${field} ${target}, whose lifecycle is ${actual}; review ${expected} disposition, scope and timing with the source owner`);
+      }
+    }
+  }
+}
 
 function asserted(value) {
   return value !== undefined && value !== null && value !== '' && value !== 'unknown';
@@ -15,9 +65,10 @@ function pairKey(source, target) {
 
 export function entityAgreement(records, { requiredPairs = [] } = {}) {
   const byId = new Map(records.map(record => [record['@id'], record]));
+  const classify = targetClasses(records, byId);
   const report = {
     counts: { declared_links: 0, resolved_pairs: 0, compared_pairs: 0, compared_fields: 0, unknown_fields: 0, unresolved_targets: 0, required_pairs: requiredPairs.length },
-    pairs: [], unresolved_targets: [], conflicts: [], requirement_errors: [], expected_unknown_checks: [],
+    pairs: [], unresolved_targets: [], conflicts: [], warnings: [], requirement_errors: [], expected_unknown_checks: [],
   };
   const pairs = new Map();
   for (const record of records) {
@@ -31,7 +82,7 @@ export function entityAgreement(records, { requiredPairs = [] } = {}) {
       if (!asArray(record['@type']).includes('of:Instrument') || !asArray(other['@type']).includes('of:Instrument')) continue;
       const key = pairKey(record['@id'], target);
       if (pairs.has(key)) continue;
-      const pair = { source: record['@id'], target, compared_fields: [], unknown_fields: [] };
+      const pair = { source: record['@id'], target, compared_fields: [], unknown_fields: [], compared_relations: [], unknown_relations: [] };
       for (const field of ENTITY_FIELDS) {
         if (!asserted(record[field]) || !asserted(other[field])) {
           pair.unknown_fields.push({ field, source_value: record[field] ?? null, target_value: other[field] ?? null });
@@ -43,18 +94,46 @@ export function entityAgreement(records, { requiredPairs = [] } = {}) {
           report.conflicts.push(`OF-ENTITY-CONFLICT: ${record['@id']} ${field}=${record[field]} differs from ${target} (${other[field]})`);
         }
       }
+      for (const field of ENTITY_RELATIONS) {
+        const source = relationTargets(record[field], classify);
+        const destination = relationTargets(other[field], classify);
+        const values = { field, source_value: record[field] ?? null, target_value: other[field] ?? null };
+        if ([source.reason, destination.reason].includes('malformed-assertion')) {
+          report.conflicts.push(`OF-ENTITY-RELATION-SHAPE: ${record['@id']} <-> ${target} ${field} requires nonempty target IRIs`);
+        }
+        if (source.reason || destination.reason) {
+          pair.unknown_relations.push({ ...values, reason: source.reason || destination.reason });
+          continue;
+        }
+        const equal = JSON.stringify(source.targets) === JSON.stringify(destination.targets);
+        pair.compared_relations.push({ ...values, equal });
+        if (!equal) report.conflicts.push(`OF-ENTITY-RELATION-CONFLICT: ${record['@id']} ${field} targets differ from ${target} after declared correspondence`);
+      }
+      // Missing fields are unknown, but two explicit, incompatible kinds for
+      // the same target still disagree even when neither field is shared.
+      for (const [left, right] of [['supersedes', 'repeals'], ['repeals', 'supersedes']]) {
+        const source = relationTargets(record[left], classify);
+        const destination = relationTargets(other[right], classify);
+        if (source.targets?.some(id => destination.targets?.includes(id))) {
+          report.conflicts.push(`OF-ENTITY-RELATION-KIND: ${record['@id']} ${left} conflicts with ${target} ${right} for a corresponding target`);
+        }
+      }
       pairs.set(key, pair);
       report.pairs.push(pair);
     }
   }
   for (const required of requiredPairs) {
+    const fields = required?.fields ?? [];
+    const relations = required?.relations ?? [];
     if (!required || typeof required.source !== 'string' || typeof required.target !== 'string' || required.source === required.target ||
-        !Array.isArray(required.fields) || !required.fields.length || required.fields.some(field => !ENTITY_FIELDS.includes(field))) {
-      throw new Error('OF-ENTITY-REQUIRED-CONFIG: each pair needs distinct source/target IDs and nonempty supported fields');
+        !Array.isArray(fields) || !Array.isArray(relations) || !(fields.length + relations.length) ||
+        fields.some(field => !ENTITY_FIELDS.includes(field)) || relations.some(field => !ENTITY_RELATIONS.includes(field)) ||
+        new Set(relations).size !== relations.length) {
+      throw new Error('OF-ENTITY-REQUIRED-CONFIG: each pair needs distinct source/target IDs and supported fields or relations');
     }
     const expectedUnknown = required.expected_unknown_fields ?? [];
     if (!Array.isArray(expectedUnknown) || new Set(expectedUnknown).size !== expectedUnknown.length ||
-        expectedUnknown.some(field => !['operative_status', 'enforcement_status'].includes(field) || required.fields.includes(field)) ||
+        expectedUnknown.some(field => !['operative_status', 'enforcement_status'].includes(field) || fields.includes(field)) ||
         (expectedUnknown.length && (typeof required.unknown_reason !== 'string' || !required.unknown_reason.trim()))) {
       throw new Error('OF-ENTITY-REQUIRED-CONFIG: expected unknown operation or enforcement needs a separate field assertion and review reason');
     }
@@ -69,10 +148,13 @@ export function entityAgreement(records, { requiredPairs = [] } = {}) {
       continue;
     }
     const comparable = new Set(pair.compared_fields.map(item => item.field));
-    const missing = required.fields.filter(field => !comparable.has(field));
+    const missing = fields.filter(field => !comparable.has(field));
     if (missing.length) {
       report.requirement_errors.push(`OF-ENTITY-REQUIRED-FIELD: ${label} lacks comparable assertions for ${missing.join(', ')}`);
     }
+    const comparableRelations = new Set(pair.compared_relations.map(item => item.field));
+    const missingRelations = relations.filter(field => !comparableRelations.has(field));
+    if (missingRelations.length) report.requirement_errors.push(`OF-ENTITY-REQUIRED-RELATION: ${label} lacks comparable targets for ${missingRelations.join(', ')}`);
     for (const field of expectedUnknown) {
       const sourceValue = byId.get(required.source)[field];
       const targetValue = byId.get(required.target)[field];
@@ -83,6 +165,7 @@ export function entityAgreement(records, { requiredPairs = [] } = {}) {
       if (!retained) report.requirement_errors.push(`OF-ENTITY-EXPECTED-UNKNOWN: ${label} must explicitly retain unknown ${field} on both records`);
     }
   }
+  lifecycleReview(records, report);
   report.counts.resolved_pairs = report.pairs.length;
   report.counts.compared_pairs = report.pairs.filter(pair => pair.compared_fields.length).length;
   report.counts.compared_fields = report.pairs.reduce((sum, pair) => sum + pair.compared_fields.length, 0);

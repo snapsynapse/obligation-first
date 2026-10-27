@@ -743,6 +743,7 @@ console.log("Hardening regression checks passed.");
 
 // Cross-repository semantics are tested with synthetic, redistributable fixtures.
 await import("./test-semantic-federation.mjs");
+await import("./test-lifecycle-relations.mjs");
 await import("./test-relation-coverage.mjs");
 await import("./test-scope-contract.mjs");
 await import("./test-qualified-time.mjs");
