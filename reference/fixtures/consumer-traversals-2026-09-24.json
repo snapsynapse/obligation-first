@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "reviewed_on": "2026-10-18",
+  "reviewed_on": null,
   "scope": "Public identifiers and declared graph boundaries only; no restricted source text. Exact target sets are reviewed continuity fixtures, not applicability conclusions.",
   "answer_tuple": {
-    "every-ai-law": "0244d53e600872574b39c111e5f808433d9f2a15",
-    "publedge": "2475ff6d974d2da6982f194c58e43f8dec90883a",
-    "ai-incident-law": "b1e56d4a87f0a52d36af86c0f73e60136a2fe7ec"
+    "every-ai-law": "2c9a1eec28c8cb123bea6cad0ebb2d13ea1953d1",
+    "ai-incident-law": "b1dd128bf444dc7f5f7677e6549627b320768cb1",
+    "publedge": "9f4387ebcdda1d60b4e4f1cb89f4d8b8a96a577d"
   },
   "cases": [
     {
@@ -330,7 +330,7 @@
               "source": "https://legislature.idaho.gov/sessioninfo/2026/legislation/S1297/",
               "source_locator": "Idaho Code § 48-2104(5)",
               "source_version": "unknown",
-              "admission_status": "legacy-unreviewed"
+              "admission_status": "source-consistency-reviewed-changes"
             },
             {
               "id": "https://everyailaw.com/obligation/iso-38507-human-oversight.json",
@@ -660,7 +660,7 @@
               "source": "https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT156/ACT156%20As%20Enacted.pdf",
               "source_locator": "18 V.S.A. § 7115(a)(2)-(5), § 7115(b), § 7115(c)",
               "source_version": "unknown",
-              "admission_status": "legacy-unreviewed"
+              "admission_status": "source-consistency-reviewed-changes"
             },
             {
               "id": "https://everyailaw.com/obligation/vermont-act156-review-approval-human-oversight.json",
@@ -679,7 +679,7 @@
               "source": "https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT156/ACT156%20As%20Enacted.pdf",
               "source_locator": "18 V.S.A. § 7115(d); 3 V.S.A. § 129a(a)(30); 26 V.S.A. § 1354(a)(3)",
               "source_version": "unknown",
-              "admission_status": "legacy-unreviewed"
+              "admission_status": "source-consistency-reviewed-changes"
             },
             {
               "id": "https://everyailaw.com/obligation/vn-ai-law-oversight-human-oversight.json",
@@ -736,6 +736,10 @@
               "count": 3,
               "sha256": "31bb2002005658e9b0be887993b5a6bcf955c66d9928b3227ba1c446d5c1df20"
             },
+            "https://everyailaw.com/obligation/idaho-s1297-parental-controls-human-oversight.json": {
+              "count": 7,
+              "sha256": "8ea4db6f29bfdd541c12530bd6878b54313a778fd3a214c7b134c3eb65d215a8"
+            },
             "https://everyailaw.com/obligation/it-ai-law-human-oversight.json": {
               "count": 3,
               "sha256": "5424306aa9f047191f90bcbeb5047bfb4142ec8a9c4ff6161ce6d63a7280981e"
@@ -757,12 +761,20 @@
               "sha256": "faad4e034765bff2978251023d374ba6a93f6d0a2ca17090498d86d3a1927e21"
             },
             "https://everyailaw.com/obligation/uk-dpa-2018-adm-human-oversight.json": {
-              "count": 1,
-              "sha256": "741cda5656922d3135568373e2e711e3603b07c857620a0a14c0457c7766911b"
+              "count": 5,
+              "sha256": "0d1f1849d9a2a7f75d7df10c223d33605ecb6e0e9227d0e18bf1587f1037ef0b"
             },
             "https://everyailaw.com/obligation/utah-sb149-chatbot-safety-policy-human-oversight.json": {
               "count": 7,
               "sha256": "47ad5c7f7b3b7574cfd109e343d8d65c22e65624746d0b73b9e2410eb6d7c60f"
+            },
+            "https://everyailaw.com/obligation/vermont-act156-licensed-delivery-human-oversight.json": {
+              "count": 7,
+              "sha256": "d3859aaefcbfee3f64fb7d02fc47b3d8160d585e29fbca401c8a14933b8f0de0"
+            },
+            "https://everyailaw.com/obligation/vermont-act156-review-approval-human-oversight.json": {
+              "count": 7,
+              "sha256": "d3859aaefcbfee3f64fb7d02fc47b3d8160d585e29fbca401c8a14933b8f0de0"
             },
             "https://everyailaw.com/obligation/vn-ai-law-oversight-human-oversight.json": {
               "count": 5,
@@ -998,5 +1010,22 @@
         }
       ]
     }
-  ]
+  ],
+  "prior_fixture": {
+    "path": "reference/fixtures/consumer-traversals-2026-09-24.json",
+    "base": "5305c29fb5174df33b0c8bf183b849f75b25505f",
+    "sha256": "759766193491730371c0642053ef4beb3c626a8e7e64f22a8549bc0df38fa5aa",
+    "reviewed_on": "2026-10-18",
+    "review_kind": "prior human expected-answer approval, not inherited by this successor",
+    "review_record": "reference/reviews/consumer-expectation-2026-10-18.md"
+  },
+  "technical_review": {
+    "actor_type": "agent",
+    "reviewed_on": "2026-11-01",
+    "reviewer": "Codex graph_finish",
+    "scope": "Eleven provenance and uncertainty expected-value scalars on the exact answer_tuple; no duty/source/legal acceptance",
+    "human_approved": false,
+    "expected_cases_sha256": "1383434dca71bc58ebbc4eeba6ce77575c0b5a4a45e0b6092731aa6d7a368810",
+    "review_record": "reference/reviews/consumer-provenance-2026-11-01.md"
+  }
 }
