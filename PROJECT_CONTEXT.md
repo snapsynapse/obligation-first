@@ -47,7 +47,7 @@ README for spec version and licenses.
 ## Current status
 
 - <!-- of-version: project-context-current -->
-  Source version v0.6.6, pre-v1.0. Delivery and hosted-byte acceptance were
+  Source version v0.6.7, pre-v1.0. Delivery and hosted-byte acceptance were
   verified on 2026-09-12; see the dated release-delivery record.
 - Three adopters live and bound (EveryAILaw, PubLedge, AI Incident Law).
 - Remaining v1.0 gates are tracked in ROADMAP.md; the w3id.org redirect for

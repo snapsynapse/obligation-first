@@ -1,7 +1,7 @@
 # Roadmap
 
 <!-- of-version: roadmap-current -->
-## v0.6.6 (current)
+## v0.6.7 (current)
 
 Current evaluator work: [scope inventory contract v1](reference/contracts/scope-contract-v1.md) implements F11 and the issue 7 non-territorial issuer regression in the v0.6.4 reference package. Adopter inventories and exact scope baselines preserve recognition independently from coverage. Coordinated delivery and exact CI pins are verified in the [v0.6.4 delivery record](reference/release-delivery-v0.6.4.json).
 

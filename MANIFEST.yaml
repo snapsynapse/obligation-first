@@ -26,8 +26,8 @@
 
 bundle: obligation-first
 # of-version: manifest-bundle
-bundle_version: 0.6.6
-bundle_date: 2026-09-12
+bundle_version: 0.6.7
+bundle_date: 2026-11-08
 
 files:
   examples/air-canada/README.md: 080e01a8e1c90e9d06f9f6d1ac8dfdee1ca3b5d1394ac77e4a6bbd9909805874
@@ -101,21 +101,21 @@ files:
   examples/publedge-jia-utah-72/records/instrument-us-ut-oaip-jia-2026-001.json: 749c13ccef70be61f07e5f1deb6e65bf5e90ede28157651ada105c770fb13611
   examples/publedge-jia-utah-72/records/obligation-us-ut-oaip-jia-2026-001-display-disclosure.json: 015868fca5d44d63506acd0935fde7cfeaf6b65273fe08f0dcf4c2e978b7e0a2
   examples/publedge-jia-utah-72/records/term-us-ut-oaip-jia-2026-001-1.json: bc83ea309c09c51d3068b841fcafc9cd45beb36199d740655eb7406bf607c312
-  INTENT.md: e1dad3aacf529ab4b4e17bb54dec7b24c69d4cdfdde270c8dcdc7bc95bbb2c93
+  INTENT.md: 1fd47e47a9ccb519a9ffdc91960a33d7e36aa73cf98c94c7378097446144e696
   LICENSE-APACHE: 3cbeb832e52ede2c154d4977567b70f204a853342e51d843458f9b785771f069
   LICENSE-CC-BY-4.0: 62a68518848c2fdcd108ff5cc11ba1516440c507bf425d5e76ad36886fd5752a
   NOTICE: 3f2ce598a6a3764e500c61e46ab707606ab3aa911eb780f28b87455dffece286
   PRIOR-ART.md: 52aad9656267bfd90cbe0056d2433e5879aa589d90f80eafb4e2c77725bc447f
-  PROTOCOL.md: efa3fe546d72ae7cc6d468e9f42cc61d186cf88f95029c1c0818dbf4a34b88ff
+  PROTOCOL.md: 55446ed367d13ff3e3aecc38825173ed691fc16874745ea9eaf77c6186709ebf
   reference/crosswalks/akomantoso.md: 9c1e5519788708f25ad084a0fe73aa3402ff39e9f7942c350d23b2b95720d3e4
   reference/crosswalks/eli-ecli.md: 04d72007db68ee1e6f1532e7b53089e48af6ee8ce58b1ab92d59481f0d58a3e9
   reference/crosswalks/gist.md: 7878e5a3662f6f1a6b3a84edbf1dc4ab8032cf893ae2afef5c1e3d95e6c28452
   reference/crosswalks/legalruleml.md: 5b57f45eeab19f58ca8babecd3b0fa5f9893e4464a7459073d2644eb587560c4
-  ROADMAP.md: e0e667aef70063e7f1c9a8b62cda525f153ca1440cac7422126adaacef36d1c2
+  ROADMAP.md: dbe04eed7a2b8d41114f708cfa85fc5ddc6d8b2aa24ebeff6044aa44f84268e0
   schema/allegation.schema.json: f1166364f71bcd59177504e769a8037117600b2a78b4f33e0494f6e00cd44b12
   schema/authority.schema.json: ede988f066a778bac22a148a64243fe1a80b5cc4362b68bad722dcae5bc74450
   schema/common.schema.json: cd3380f994135dbd0cc5553552a3073929dfdea55c83f56e784e8da85375f5e1
-  schema/context.jsonld: 469bad782d04e9a1e2a01d36ba27809eed21d5f09d3d0f8a31737e9b53a26e39
+  schema/context.jsonld: d2655e0de009ea6f32e227efb2ab1793e593619f3ade3e6987a36e40724bc27e
   schema/determination.schema.json: 8cb1766fe2bcc31dceb6b54656a8764405e7a082010b44f9393ada89eddf0c39
   schema/executable-encoding.schema.json: 4311262cb07d3feb2fee8a42ac1bb83e490a4c1285a79d8da13e38b42c032810
   schema/instrument.schema.json: dea85420c2fa47f461022023355acdd1478d5dff2ed2ef6cd3f3d1c4861eecb2

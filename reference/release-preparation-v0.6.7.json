@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "repository": "https://github.com/snapsynapse/obligation-first",
+  "profile": "open-spec",
+  "authority": "R2",
+  "start_head": "53a8d2cf0954ec8f998e2d931c2618d37a9f4eb4",
+  "candidate_head": null,
+  "candidate_version": "0.6.7",
+  "updated_at": "2026-11-09T02:40:55.123179+00:00",
+  "steps": [
+    {
+      "id": "security-dependency-repair",
+      "status": "completed",
+      "evidence": "Retained 38fb5a7 lockfile patch applied on current main: fast-uri 3.1.5 to 3.1.9, Undici 6.28.1 to 6.29.1. Installed offline with npm ci --ignore-scripts --no-audit --no-fund.",
+      "head": null
+    },
+    {
+      "id": "versioned-reference-package",
+      "status": "completed",
+      "evidence": "Generated docs/releases/v0.6.7 for 2026-11-08 from final authored notes; 49 artifacts and 101 selected-content hashes. All historical release directories remain unchanged.",
+      "head": null
+    },
+    {
+      "id": "local-gates",
+      "status": "completed",
+      "evidence": "Full npm test passed after adding the new release page to the homepage inventory; first orphan-page failure retained. Explicit sync/date check 2026-11-08 and whitespace passed. Historical release directories, examples, consumer fixtures, context mapping and schema shapes preserved. Actual staged hygiene remains required immediately before commit.",
+      "head": null
+    },
+    {
+      "id": "standalone-source-consumer",
+      "status": "completed",
+      "evidence": "Clean476-file source copy without Git or preseeded dependencies passed offline npm ci --ignore-scripts --no-audit --no-fund and full npm test. Source inventory SHA256=6ad5b1420e0189b3d74540778c9a20931c28bdc4f54d343f1a3070b46b81e8dd; test log SHA256=8e91e6e5b9a22bd56b4d52056d69d7ac7ffb79934639539a9892af7b604b9419. This preceded final verification-metadata updates only; required PR CI checks the committed candidate.",
+      "head": null
+    },
+    {
+      "id": "independent-simplicity-review",
+      "status": "not_started",
+      "evidence": "Local different-vendor Qwen review required on final committed PR diff; previous adopter waivers do not apply.",
+      "head": null
+    },
+    {
+      "id": "commit-push-pr-merge",
+      "status": "ready",
+      "evidence": "Sam explicitly authorized release-compatible OF security packaging, then PR and merge after checks pass on 2026-11-08.",
+      "head": null
+    },
+    {
+      "id": "automatic-pages-verification",
+      "status": "not_started",
+      "evidence": "Observe exact-merge Test and Pages, then compare named served bytes with the generated manifest and exact source commit.",
+      "head": null
+    },
+    {
+      "id": "tag-and-github-release",
+      "status": "not_started",
+      "evidence": "Not selected by the package/PR/merge request. No tag or GitHub Release publication is claimed.",
+      "head": null
+    },
+    {
+      "id": "npm-mcp-publication",
+      "status": "not_applicable",
+      "evidence": "Private reference-tooling package; no registry publication selected.",
+      "head": null
+    },
+    {
+      "id": "dependency-inventory-audit",
+      "status": "not_started",
+      "evidence": "No audit upload selected; no clean-audit or zero-vulnerability claim.",
+      "head": null
+    }
+  ]
+}

@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.6.7 - 2026-11-08
+
+- Carry the retained lockfile security repair: fast-uri 3.1.5 to 3.1.9 and Undici 6.28.1 to 6.29.1.
+- Generate fresh v0.6.7 reference-package hashes and synchronize managed versions and dates without rewriting any historical release directory.
+- Retain the already-merged lifecycle and reviewed consumer-provenance tooling on current main. Preserve v0.6 record shapes, JSON-LD mappings, example records, adopter naming ranges, source-review qualifications and human dates.
+
 ## v0.6.6 - 2026-09-12
 
 - Update the transitive Undici dependency from 6.28.0 to 6.28.1, fixing GHSA-rfgv-xxqx-mfg5.
