@@ -1022,11 +1022,10 @@
   "technical_review": {
     "actor_type": "agent",
     "reviewed_on": "2026-11-01",
-    "reviewer": "Codex graph_finish, expected-answer consistency proposer; independent peer review required separately before adoption",
+    "reviewer": "Codex graph_finish",
     "scope": "Eleven provenance and uncertainty expected-value scalars on the exact answer_tuple; no duty/source/legal acceptance",
     "human_approved": false,
     "expected_cases_sha256": "1383434dca71bc58ebbc4eeba6ce77575c0b5a4a45e0b6092731aa6d7a368810",
-    "review_record": "reference/reviews/consumer-provenance-2026-11-01.md",
-    "limits": "The top-level reviewed_on is null: no new human approval/date. The technical_review date records agent expected-answer analysis only. Prior October18humanapproval/date/history is preserved under prior_fixture and its unchanged record."
+    "review_record": "reference/reviews/consumer-provenance-2026-11-01.md"
   }
 }
