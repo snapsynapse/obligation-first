@@ -1,0 +1,16 @@
+# Maintenance queue
+Date: 2026-11-18. Scope: Obligation-First maintenance and local handoff reconciliation.
+
+## Selected direction and preserved gates
+Maintenance-only includes security, compatibility and evidence-backed adopter corrections. Issue [4](https://github.com/snapsynapse/obligation-first/issues/4) remains gated on demonstrated second-adopter production information loss and semantic/compatibility decisions. Issue [6](https://github.com/snapsynapse/obligation-first/issues/6) retains predecessor/source-owner history requirements; technical tooling is delivered. No source acceptance, human-date renewal, IRI/schema expansion or release is inferred.
+
+The signed v0.6.7 security release is delivered through PR23, merge `2fb2e1accffdb1e633ec9979bcc29a6f96a8e95f`. The preserved primary security branch `38fb5a7` is not unfinished delivery. Its clean divergence from current main is retained under Sam's approval for isolated local preparation. Preserve all original refs/worktree registrations, including local-only documentation commit `77145ea`; no cleanup or integration is selected.
+
+## Search decoder correction
+Both `scripts/check-search.mjs` and `scripts/check-production-search.mjs` now match upstream `snapsynapse/skills` commit `5d94121`, asset v7, byte for byte. Search contract v4 is unchanged. The single-pass decoder preserves nested escapes, handles apostrophes and numeric references, trims sitemap locations, and decodes production canonical hrefs before comparison.
+The regression in the existing canonical `scripts/test-core-gates.mjs` first failed against the old decoder on `&amp;lt;tag&amp;gt;`, then passed with v7. It covers ordinary ampersands, XML/numeric apostrophes, numeric nested escapes, padded URLs and invalid code points. The existing seeded search defect test still proves a bad canonical blocks the gate.
+This is local preparation on `codex/handoff-maintenance-20261118` from fetched origin/main `2fb2e1a`. Full `npm test` passed, including search, publication hygiene, lockfile dry-run, examples, graph/adopter/JSON-LD/continuity/hardening/migration checks, published mirrors, URL contracts and hashes. Log: `/private/tmp/of-handoff-maintenance-20261118-tests.log`. Tests reused the primary checkout's installed dependency bytes; no fresh install or dependency-audit submission is claimed. Independent precommit review found no issues. No hosted acceptance is claimed. CHANGELOG/package/schema/release artifacts remain unchanged, avoiding a maintenance patch that implicitly cuts another release. A release-pinned changelog entry belongs to a separately selected release.
+
+## Delivery and queue lifecycle
+Sam authorized local commits after checks. Push, PR, merge, release, deployment and production search verification remain separate. The decoder handoff stays until its explicit merge/postmerge completion condition is met. The repository-state review handoff is consumed once this queue and INTENT have been verified; its durable decisions and preserved-state requirements are above.
+Cross-component source/human requirements remain owned by Foundation's `portfolio/legal-graph/plans/currentness-delivery-and-review-2026-11-08.md`. This queue does not replace it, repeat completed technical delivery or admit legal sources.

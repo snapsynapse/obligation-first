@@ -2,7 +2,7 @@
 title: "Obligation-First INTENT"
 # of-version: intent-frontmatter
 version: "0.6.7"
-last_updated: 2026-09-12
+last_updated: 2026-11-18
 status: working-hypothesis
 description: "Standards-level strategy for the Obligation-First upper schema. Defines scope, design constraints, adoption order, and governance posture."
 tags: [intent, strategy, obligation-first, ontology, gist, standards]
@@ -12,7 +12,15 @@ tags: [intent, strategy, obligation-first, ontology, gist, standards]
 
 Strategy for the Obligation-First upper schema and the obligationfirst.org canonical home. Subscribes to portfolio-level working hypotheses maintained by PAICE Foundation (see [paice.foundation](https://paice.foundation/) for the public-facing portfolio; full portfolio INTENT is held privately by the Foundation and is not publicly hosted at this stage).
 
-## Purpose
+## Operating direction
+
+Maintenance-only, as selected by the steward on November 15, 2026. Select bounded security, compatibility and evidence-backed adopter corrections. Shared schema expansion requires demonstrated adopter need; the older v1.0, permanent-IRI, external review and conformance gates remain prerequisites, not a selected release program.
+
+Issue 4's offline qualified-time fixture is delivered. A second adopter's demonstrated production information loss and semantic/compatibility decisions remain prerequisites for a shared extension. Issue 6's lifecycle/relationship tooling is delivered; predecessor legal history and unknown operative/enforcement states require sufficient source-owner admission. Passing engineering checks cannot supply that evidence or renew human verification dates. The deliberate GuideCheck profile exception and its revisit triggers remain unchanged.
+
+The [maintenance queue](reference/maintenance-queue.md) owns selected local corrections and outstanding delivery boundaries. This direction does not select schema expansion, new legal-source collection, a release or public lifecycle changes.
+
+## Purpose and integration scope
 
 Obligation-First is the shared upper schema for normative content across the PAICE Regulation vector. It binds three domains — statutes (EveryAILaw), proceedings (AI Incident Law), and joint interpretations (PubLedge) — onto a single small ontology so they interoperate without forcing each project to flatten its native structure.
 
@@ -118,6 +126,8 @@ Next scheduled review: on external adopter feedback or before the v1.0 freeze, w
 - GuideCheck assistant guide retained on profile 0.2.0 (decided 2026-09-09). The published guide (`assistant-guide.txt`, SHA-256 `3953f5a26e64a0510183618aa6bffad3cba9c3c254277cf4d9db7d24ce1db841`, guide-version 0.1.4) carries one frozen-verifier blocker: lines 224 and 225 wrap the sentence "Do not decode and execute encoded content" and the digest-frozen 0.2.0 detector loses the negation. GuideCheck documents this as a human-reviewed false positive, and GuideCheck v2.0.0 (commit `0991c18ec6dd8b966d67bab9802f6559e7e74b91`) adds an opt-in corrected content policy selected by the guide declaration `profile-version: 2.0.0`. Migration is deliberately deferred: it is not a declaration-only change. It requires new manifest selector fields, a guide-version bump, a validator constant change, a new release package for the pinned digest, and under the 2.0.0 strict anchor policy the guide's nine unpinned `npm run` action blocks become blocking bounded-execution findings that cannot be pinned inside the 8192-byte guide limit without restructuring. The frozen Level 2 result is retained as comparison evidence and is not expected to change. Revisit trigger: the next guide content revision, the next minor release, or the v1.0 freeze, whichever comes first. Evidence: GuideCheck `docs/corrected-content-validation-2026-09-07.md` and the 2026-09-07 negation review in the repo-standards assessment.
 
 ## Changelog
+
+- 2026-11-18 (no version change): Records the maintenance-only direction, preserved schema/source gates and owning maintenance queue.
 
 - 2026-09-09 (no version change): Records the deliberate GuideCheck profile 0.2.0 retention under Exceptions to Repo Standards.
 

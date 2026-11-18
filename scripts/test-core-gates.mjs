@@ -3,6 +3,24 @@ import { readFile, cp, mkdtemp, writeFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import vm from "node:vm";
+
+// Exercise the actual vendored helpers: nested escapes must remain encoded after one pass.
+for (const file of ["check-search.mjs", "check-production-search.mjs"]) {
+  const source = await readFile(`scripts/${file}`, "utf8");
+  const helper = source.match(/function decode\(value\) \{[\s\S]*?\n\}/)?.[0];
+  assert(helper, `${file}: missing decoder`);
+  const entities = source.match(/const XML_ENTITIES = [^;]+;/)?.[0] || "";
+  const decode = vm.runInNewContext(`${entities}\n${helper}\ndecode`);
+  for (const [encoded, expected] of [
+    ["&amp;lt;tag&amp;gt;", "&lt;tag&gt;"],
+    ["a=1&amp;b=2", "a=1&b=2"],
+    ["&lt;b&gt; &quot;q&quot; &apos;s&#39; &#x27;", "<b> \"q\" 's' '"],
+    ["&#38;amp;", "&amp;"],
+    ["\n https://obligationfirst.org/ \n", "https://obligationfirst.org/"],
+    ["&#0; &#xD800; &#1114112; &unknown;", "&#0; &#xD800; &#1114112; &unknown;"],
+  ]) assert.equal(decode(encoded), expected, `${file}: ${encoded}`);
+}
 
 function gateErrors(pkg, pages) {
   const errors = [];
