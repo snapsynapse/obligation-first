@@ -14,3 +14,8 @@ This is local preparation on `codex/handoff-maintenance-20261118` from fetched o
 ## Delivery and queue lifecycle
 Sam authorized local commits after checks. Push, PR, merge, release, deployment and production search verification remain separate. The decoder handoff stays until its explicit merge/postmerge completion condition is met. The repository-state review handoff is consumed once this queue and INTENT have been verified; its durable decisions and preserved-state requirements are above.
 Cross-component source/human requirements remain owned by Foundation's `portfolio/legal-graph/plans/currentness-delivery-and-review-2026-11-08.md`. This queue does not replace it, repeat completed technical delivery or admit legal sources.
+
+## Production search request boundary candidate
+The local production checker rejects noncanonical sitemap page locations before enqueueing them, uses manual redirects, allows only configured root-domain redirect probes to the canonical origin, and caps body bytes, sitemap count, page count and total requests. The canonical core gate exercises forbidden loopback locations and redirects, an oversized sitemap and a valid page; it asserts that rejected targets were never requested. Full `npm test` and staged publication hygiene passed after removing the temporary security-review handoff from the candidate Git index. The handoff remains locally available while cross-owner work is open.
+
+This is local source preparation only. DNS resolution is still performed inside native `fetch`, so mixed DNS answers and rebinding are not covered by these request-target checks. There is no hosted production-search verification, publication, source admission or release claim.

@@ -59,16 +59,64 @@ const canonicalOrigin = new URL(config.canonicalOrigin);
 const base = new URL(BASE_ARG ? BASE_ARG.slice(7) : canonicalOrigin.href);
 if (!base.pathname.endsWith('/')) base.pathname += '/';
 const production = base.href === canonicalOrigin.href;
+const MAX_RESPONSE_BYTES = 4 * 1024 * 1024;
+const MAX_REQUESTS = 256;
+const MAX_SITEMAPS = 32;
+const MAX_PAGES = 200;
+let requests = 0;
 
-async function request(url) {
+function approvedTarget(url) {
+    let parsed;
+    try { parsed = new URL(url); }
+    catch { return false; }
+    return parsed.protocol === base.protocol && parsed.origin === base.origin &&
+        !parsed.username && !parsed.password && !parsed.hash && parsed.href === url;
+}
+
+async function request(url, explicitRedirect = null) {
+    const redirectSource = explicitRedirect && (() => {
+        try {
+            const source = new URL(explicitRedirect.from);
+            return url === source.href && explicitRedirect.to === canonicalOrigin.href &&
+                ['http:', 'https:'].includes(source.protocol) &&
+                [canonicalOrigin.hostname, `www.${canonicalOrigin.hostname}`].includes(source.hostname) &&
+                source.pathname === '/' && !source.search && !source.hash &&
+                !source.username && !source.password;
+        } catch { return false; }
+    })();
+    if (!approvedTarget(url) && !redirectSource) {
+        report('defect', `${url}: request target is outside the approved origin`);
+        return null;
+    }
     let lastError;
     for (let attempt = 1; attempt <= 3; attempt++) {
+        if (++requests > MAX_REQUESTS) {
+            report('infrastructure', `request budget exceeded (${MAX_REQUESTS})`);
+            return null;
+        }
         try {
-            return await fetch(url, {
-                redirect: 'follow',
+            const response = await fetch(url, {
+                redirect: 'manual',
                 headers: { 'user-agent': 'portfolio-search-contract/4' },
                 signal: AbortSignal.timeout(15000)
             });
+            if (response.status >= 300 && response.status < 400) {
+                const location = response.headers.get('location');
+                if (!location) { report('defect', `${url}: redirect has no location`); return null; }
+                let next;
+                try { next = new URL(location, url).href; }
+                catch { report('defect', `${url}: invalid redirect location`); return null; }
+                if (!explicitRedirect || next !== explicitRedirect.to || !approvedTarget(next)) {
+                    report('defect', `${url}: redirect to unapproved target ${next}`);
+                    return null;
+                }
+                return request(next);
+            }
+            if (response.url && response.url !== url) {
+                report('defect', `${url}: transport returned unexpected URL ${response.url}`);
+                return null;
+            }
+            return response;
         } catch (error) {
             lastError = error;
             if (attempt < 3) await new Promise(resolve => setTimeout(resolve, attempt * 150));
@@ -95,7 +143,27 @@ function false404(body, url) {
 async function fetchText(url, rule = {}) {
     const response = await request(url);
     if (!response) return null;
-    const body = await response.text();
+    let body;
+    try {
+        if (!response.body?.getReader) throw new Error('response stream unavailable');
+        const reader = response.body.getReader();
+        const chunks = [];
+        let bytes = 0;
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            bytes += value.byteLength;
+            if (bytes > MAX_RESPONSE_BYTES) {
+                await reader.cancel();
+                throw new Error(`response exceeds ${MAX_RESPONSE_BYTES} bytes`);
+            }
+            chunks.push(value);
+        }
+        body = new TextDecoder().decode(Buffer.concat(chunks));
+    } catch (error) {
+        report('infrastructure', `${url}: ${error.message}`);
+        return null;
+    }
     if (!response.ok) report('defect', `${url}: HTTP ${response.status}`);
     const type = response.headers.get('content-type') || '';
     if (rule.contentTypes?.length && !rule.contentTypes.some(expected => type.toLowerCase().includes(expected.toLowerCase()))) {
@@ -112,6 +180,10 @@ const sitemapBodies = new Map();
 
 async function fetchSitemap(canonical, seen = new Set()) {
     if (seen.has(canonical)) return;
+    if (seen.size >= MAX_SITEMAPS) {
+        report('infrastructure', `sitemap budget exceeded (${MAX_SITEMAPS})`);
+        return;
+    }
     seen.add(canonical);
     const target = deployedUrl(canonical);
     const result = await fetchText(target, { contentTypes: ['xml'] });
@@ -164,14 +236,19 @@ for (const [sitemap, body] of sitemapBodies) {
         let url;
         try { url = new URL(canonical); }
         catch { report('defect', `${sitemap}: invalid page location ${canonical}`); continue; }
-        if (url.origin !== canonicalOrigin.origin || url.href !== canonical) {
+        if (url.protocol !== 'https:' || url.origin !== canonicalOrigin.origin || url.href !== canonical) {
             report('defect', `${sitemap}: noncanonical page location ${canonical}`);
+            continue;
+        }
+        if (canonicals.length >= MAX_PAGES) {
+            report('infrastructure', `page budget exceeded (${MAX_PAGES})`);
+            break;
         }
         canonicals.push(canonical);
         sitemapLastmods.set(canonical, lastmod);
     }
 }
-if (!canonicals.length) report('infrastructure', 'live sitemaps contain no page locations');
+if (!canonicals.length && !defects) report('infrastructure', 'live sitemaps contain no page locations');
 
 function repositoryCanonicals() {
     const output = path.resolve(ROOT, config.outputDir || '');
@@ -294,7 +371,7 @@ await mapLimit([...new Set(canonicals)], 8, checkPage);
 
 if (production) {
     for (const redirect of config.redirects || []) {
-        const response = await request(redirect.from);
+        const response = await request(redirect.from, redirect);
         if (response && response.url !== redirect.to) {
             report('defect', `${redirect.from}: final URL is ${response.url}, expected ${redirect.to}`);
         }
