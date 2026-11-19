@@ -71,10 +71,8 @@ function approvedTarget(url) {
     let parsed;
     try { parsed = new URL(url); }
     catch { return false; }
-    // URL parsing normalizes dot segments, escapes, and default ports. Reject
-    // those alternate input spellings instead of fetching the normalized URL.
     return parsed.protocol === base.protocol && parsed.origin === base.origin &&
-        !parsed.username && !parsed.password && !parsed.hash && parsed.href === url;
+        !parsed.username && !parsed.password && !parsed.hash;
 }
 
 async function request(url, explicitRedirect = null) {

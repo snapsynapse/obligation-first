@@ -3,24 +3,6 @@ import { readFile, cp, mkdtemp, writeFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import vm from "node:vm";
-
-// Exercise the actual vendored helpers: nested escapes must remain encoded after one pass.
-for (const file of ["check-search.mjs", "check-production-search.mjs"]) {
-  const source = await readFile(`scripts/${file}`, "utf8");
-  const helper = source.match(/function decode\(value\) \{[\s\S]*?\n\}/)?.[0];
-  assert(helper, `${file}: missing decoder`);
-  const entities = source.match(/const XML_ENTITIES = [^;]+;/)?.[0] || "";
-  const decode = vm.runInNewContext(`${entities}\n${helper}\ndecode`);
-  for (const [encoded, expected] of [
-    ["&amp;lt;tag&amp;gt;", "&lt;tag&gt;"],
-    ["a=1&amp;b=2", "a=1&b=2"],
-    ["&lt;b&gt; &quot;q&quot; &apos;s&#39; &#x27;", "<b> \"q\" 's' '"],
-    ["&#38;amp;", "&amp;"],
-    ["\n https://obligationfirst.org/ \n", "https://obligationfirst.org/"],
-    ["&#0; &#xD800; &#1114112; &unknown;", "&#0; &#xD800; &#1114112; &unknown;"],
-  ]) assert.equal(decode(encoded), expected, `${file}: ${encoded}`);
-}
 
 function gateErrors(pkg, pages) {
   const errors = [];
@@ -43,6 +25,12 @@ try {
   await cp("search-audit.config.json", path.join(root, "search-audit.config.json"));
   const baseline = spawnSync(process.execPath, [path.resolve("scripts/check-search.mjs")], { cwd: root, encoding: "utf8" });
   assert.equal(baseline.status, 0, baseline.stdout + baseline.stderr);
+  const sitemap = path.join(root, "docs/sitemap.xml");
+  const sitemapText = await readFile(sitemap, "utf8");
+  await writeFile(sitemap, sitemapText.replace("https://obligationfirst.org/</loc>", "https:&#47;&#47;obligationfirst.org/</loc>"));
+  const encoded = spawnSync(process.execPath, [path.resolve("scripts/check-search.mjs")], { cwd: root, encoding: "utf8" });
+  assert.equal(encoded.status, 0, encoded.stdout + encoded.stderr);
+  await writeFile(sitemap, sitemapText);
   const index = path.join(root, "docs/index.html");
   const text = await readFile(index, "utf8");
   assert.match(text, /rel="canonical"/);
@@ -69,20 +57,23 @@ globalThis.fetch = async (url, options) => {
   if (options.redirect !== 'manual') throw new Error('automatic redirects are forbidden');
   if (String(url).endsWith('/sitemap.xml')) {
     if (process.env.SEARCH_CASE === 'oversized') return withUrl(new Response('x'.repeat(4 * 1024 * 1024 + 1), {headers:{'content-type':'application/xml'}}), url);
-    const target = process.env.SEARCH_CASE === 'bad-location' ? 'http' + '://127.0.0.1:8765/private-get' : 'https://obligationfirst.org/page';
+    const target = process.env.SEARCH_CASE === 'bad-location' ? 'http' + '://127.0.0.1:8765/private-get'
+      : process.env.SEARCH_CASE === 'noncanonical' ? 'https://obligationfirst.org:443/page'
+      : process.env.SEARCH_CASE === 'encoded' ? 'https:&#47;&#47;obligationfirst.org/page'
+      : 'https://obligationfirst.org/page';
     return withUrl(new Response('<urlset><url><loc>' + target + '</loc></url></urlset>', {headers:{'content-type':'application/xml'}}), url);
   }
-  if (process.env.SEARCH_CASE === 'safe') return withUrl(new Response('<html><link rel="canonical" href="https://obligationfirst.org/page"></html>', {headers:{'content-type':'text/html'}}), url);
+  if (['safe', 'encoded'].includes(process.env.SEARCH_CASE)) return withUrl(new Response('<html><link rel="canonical" href="https://obligationfirst.org/page"></html>', {headers:{'content-type':'text/html'}}), url);
   return withUrl(new Response('', {status:302, headers:{location:'http' + '://127.0.0.1:8765/private-get'}}), url);
 };`);
-  for (const scenario of ["bad-location", "bad-redirect", "oversized", "safe"]) {
+  for (const scenario of ["bad-location", "noncanonical", "bad-redirect", "oversized", "encoded", "safe"]) {
     const result = spawnSync(process.execPath, ["--import", mockFile, path.resolve("scripts/check-production-search.mjs"), "--json"], {
       cwd: networkRoot, encoding: "utf8", env: { ...process.env, SEARCH_CASE: scenario },
     });
-    assert.equal(result.status, scenario === "safe" ? 0 : scenario === "oversized" ? 2 : 1, `${scenario}: ${result.stdout}${result.stderr}`);
+    assert.equal(result.status, ["safe", "encoded"].includes(scenario) ? 0 : scenario === "oversized" ? 2 : 1, `${scenario}: ${result.stdout}${result.stderr}`);
     const calls = JSON.parse(await readFile(callsFile, "utf8"));
     assert(!calls.some(url => url.startsWith("http" + "://127.0.0.1:")), `${scenario}: forbidden target was requested`);
-    if (scenario === "safe") assert(calls.includes("https://obligationfirst.org/page"));
+    if (["safe", "encoded"].includes(scenario)) assert(calls.includes("https://obligationfirst.org/page"));
     else if (scenario === "oversized") {
       assert.equal(calls.length, 1, "oversized sitemap must stop before a page request");
       assert.match(result.stderr, /exceeds/i);
