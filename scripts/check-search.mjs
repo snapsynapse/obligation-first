@@ -25,6 +25,8 @@ function report(kind, message) {
 }
 
 const XML_ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'" };
+// Keep this decoder local to the vendored checker: each search script also runs
+// alone from an isolated audit root, without a shared scripts/lib directory.
 // One pass over the five XML entities and numeric references, so decoded text is never
 // decoded again (&amp;lt; stays &lt;). Invalid code points stay encoded. Surrounding
 // whitespace is trimmed so a pretty-printed <loc> compares equal to its URL.
