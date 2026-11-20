@@ -56,6 +56,7 @@ globalThis.fetch = async (url, options) => {
   fs.writeFileSync(${JSON.stringify(callsFile)}, JSON.stringify(calls));
   if (options.redirect !== 'manual') throw new Error('automatic redirects are forbidden');
   if (String(url).endsWith('/sitemap.xml')) {
+    if (process.env.SEARCH_CASE === 'null-body') return withUrl(new Response(null, {status:204}), url);
     if (process.env.SEARCH_CASE === 'oversized') return withUrl(new Response('x'.repeat(4 * 1024 * 1024 + 1), {headers:{'content-type':'application/xml'}}), url);
     const target = process.env.SEARCH_CASE === 'bad-location' ? 'http' + '://127.0.0.1:8765/private-get'
       : process.env.SEARCH_CASE === 'noncanonical' ? 'https://obligationfirst.org:443/page'
@@ -66,17 +67,20 @@ globalThis.fetch = async (url, options) => {
   if (['safe', 'encoded'].includes(process.env.SEARCH_CASE)) return withUrl(new Response('<html><link rel="canonical" href="https://obligationfirst.org/page"></html>', {headers:{'content-type':'text/html'}}), url);
   return withUrl(new Response('', {status:302, headers:{location:'http' + '://127.0.0.1:8765/private-get'}}), url);
 };`);
-  for (const scenario of ["bad-location", "noncanonical", "bad-redirect", "oversized", "encoded", "safe"]) {
+  for (const scenario of ["bad-location", "noncanonical", "bad-redirect", "oversized", "null-body", "encoded", "safe"]) {
     const result = spawnSync(process.execPath, ["--import", mockFile, path.resolve("scripts/check-production-search.mjs"), "--json"], {
       cwd: networkRoot, encoding: "utf8", env: { ...process.env, SEARCH_CASE: scenario },
     });
-    assert.equal(result.status, ["safe", "encoded"].includes(scenario) ? 0 : scenario === "oversized" ? 2 : 1, `${scenario}: ${result.stdout}${result.stderr}`);
+    assert.equal(result.status, ["safe", "encoded"].includes(scenario) ? 0 : ["oversized", "null-body"].includes(scenario) ? 2 : 1, `${scenario}: ${result.stdout}${result.stderr}`);
     const calls = JSON.parse(await readFile(callsFile, "utf8"));
     assert(!calls.some(url => url.startsWith("http" + "://127.0.0.1:")), `${scenario}: forbidden target was requested`);
     if (["safe", "encoded"].includes(scenario)) assert(calls.includes("https://obligationfirst.org/page"));
     else if (scenario === "oversized") {
       assert.equal(calls.length, 1, "oversized sitemap must stop before a page request");
       assert.match(result.stderr, /exceeds/i);
+    } else if (scenario === "null-body") {
+      assert.equal(calls.length, 1, "a bodyless sitemap must stop before a page request");
+      assert.match(result.stderr, /response stream unavailable/i);
     } else assert.match(result.stderr, /noncanonical|unapproved/i);
   }
 } finally { await rm(networkRoot, { recursive: true, force: true }); }

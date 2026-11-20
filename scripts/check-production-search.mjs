@@ -75,18 +75,20 @@ function approvedTarget(url) {
         !parsed.username && !parsed.password && !parsed.hash;
 }
 
+function approvedRedirectSource(url, redirect) {
+    if (!redirect) return false;
+    try {
+        const source = new URL(redirect.from);
+        if (url !== source.href || redirect.to !== canonicalOrigin.href) return false;
+        if (!['http:', 'https:'].includes(source.protocol) ||
+            ![canonicalOrigin.hostname, `www.${canonicalOrigin.hostname}`].includes(source.hostname)) return false;
+        return source.pathname === '/' && !source.search && !source.hash &&
+            !source.username && !source.password;
+    } catch { return false; }
+}
+
 async function request(url, explicitRedirect = null) {
-    const redirectSource = explicitRedirect && (() => {
-        try {
-            const source = new URL(explicitRedirect.from);
-            return url === source.href && explicitRedirect.to === canonicalOrigin.href &&
-                ['http:', 'https:'].includes(source.protocol) &&
-                [canonicalOrigin.hostname, `www.${canonicalOrigin.hostname}`].includes(source.hostname) &&
-                source.pathname === '/' && !source.search && !source.hash &&
-                !source.username && !source.password;
-        } catch { return false; }
-    })();
-    if (!approvedTarget(url) && !redirectSource) {
+    if (!approvedTarget(url) && !approvedRedirectSource(url, explicitRedirect)) {
         report('defect', `${url}: request target is outside the approved origin`);
         return null;
     }
