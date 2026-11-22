@@ -13,11 +13,11 @@ const BASE = 'https://everyailaw.com';
 const RECEIPT_PATH = 'data/admission/receipts.json';
 const role = name => `${BASE}/ont/role/${name}`;
 
-function item({ id, regulation, heading, beforeNative, beforeTargets, afterNative, afterTargets, actor, source, locator, language, verified }) {
+function item({ id, regulation, heading, beforeNative, beforeTargets, afterNative, afterTargets, actor, actorType = 'agent', source, locator, language, verified }) {
   const instrumentPath = `data/instruments/${regulation}.md`;
   return {
     id, regulation, heading, beforeNative, beforeTargets, afterNative, afterTargets,
-    actor, source, locator, language, verified, instrumentPath,
+    actor, actorType, source, locator, language, verified, instrumentPath,
     instrumentPointer: `/records/${instrumentPath.replaceAll('/', '~1')}`,
     rolesUnit: `section:${heading}/property:Roles`,
     termId: `${BASE}/term/${id}.json`,
@@ -58,6 +58,15 @@ const cases = [
     locator: 'Part 3 ss. 4, 7, 9-12, 24, 26-29, 55, 57, 77; Sch. 8; s. 216A (regulation-making power)',
     language: 'en', verified: '2026-08-15',
   }),
+  ...[
+    ['us-eo-14319-procurement-transparency', 'LLM Procurement Documentation Requirements'],
+    ['us-eo-14319-data-governance', 'Training Data and Risk Governance for Federal AI'],
+  ].map(([id, heading]) => item({
+    id, heading, regulation: 'us-eo-14319', beforeNative: 'provider', beforeTargets: [role('provider')],
+    afterNative: 'government', afterTargets: [role('government')], actorType: 'human', actor: 'Sam Rogers',
+    source: 'https://whitehouse.gov/presidential-actions/2025/07/preventing-woke-ai-in-the-federal-government/',
+    locator: 'EO 14319 § 4; OMB M-26-04', language: 'en', verified: '2026-03-27',
+  })),
 ];
 
 function sourceUnit(current) {
@@ -74,7 +83,7 @@ function makeAdmissions() {
   for (const current of cases) {
     if (!admissions.has(current.regulation)) admissions.set(current.regulation, {
       review: {
-        actor_type: 'agent', actor: current.actor, decision: 'source-consistency-reviewed',
+        actor_type: current.actorType, actor: current.actor, decision: 'source-consistency-reviewed',
         reviewed_at: '2026-09-11T20:00:00.000Z', packet_sha256: 'a'.repeat(64),
       },
       units: {},
@@ -185,6 +194,14 @@ await rejects('source unit candidate mismatch', f => { f.admissions.get('au-priv
 await rejects('UK OSA retains the removed deployer role', f => {
   const ukOsa = cases.find(current => current.id === 'uk-osa-transparency');
   f.records.find(record => record['@id'] === ukOsa.obligationId).duty_holder_roles = [role('deployer'), role('provider')];
+});
+
+await rejects('EO 14319 admission actor type drifted', f => {
+  const admission = f.admissions.get('us-eo-14319');
+  admission.review.actor_type = 'agent';
+  for (const entry of f.entries.filter(entry => entry.source_admission.adapter.native_identity.regulation === 'us-eo-14319')) {
+    entry.source_admission.sha256 = digest(admission);
+  }
 });
 
 const root = await mkdtemp(path.join(os.tmpdir(), 'of-eal-source-role-correction-'));
