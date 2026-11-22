@@ -3,7 +3,7 @@
   "reviewed_on": null,
   "scope": "Public identifiers and declared graph boundaries only; no restricted source text. Exact target sets are reviewed continuity fixtures, not applicability conclusions.",
   "answer_tuple": {
-    "every-ai-law": "aa95c13a9e775d84415d8eb8c03168e6d9a445fb",
+    "every-ai-law": "b1ad4d73540e345edce02580cd08bf7f8e70fd62",
     "ai-incident-law": "a4b141be3e7fe1ac3affd7e09c45344ee96f5941",
     "publedge": "647716f15e08e0eade0e0d94caa0032c9fa2a2a8"
   },
@@ -23,6 +23,7 @@
           "direction": "inverse",
           "predicate": "isCategorizedBy",
           "expected": [
+            "https://everyailaw.com/obligation/alabama-sb63-clinical-judgment-on-prior-authorization-human-oversight.json",
             "https://everyailaw.com/obligation/br-ai-bill-oversight-human-oversight.json",
             "https://everyailaw.com/obligation/california-ab3030-oversight-human-oversight.json",
             "https://everyailaw.com/obligation/california-sb1120-physician-supervision-human-oversight.json",
@@ -38,11 +39,13 @@
             "https://everyailaw.com/obligation/idaho-s1297-parental-controls-human-oversight.json",
             "https://everyailaw.com/obligation/iso-38507-human-oversight.json",
             "https://everyailaw.com/obligation/it-ai-law-human-oversight.json",
+            "https://everyailaw.com/obligation/kg-digital-code-ai-heightened-danger-user-oversight-human-oversight.json",
             "https://everyailaw.com/obligation/kr-ai-basic-act-oversight-human-oversight.json",
             "https://everyailaw.com/obligation/maine-ai-mental-health-licensed-delivery-human-oversight.json",
             "https://everyailaw.com/obligation/maine-ai-mental-health-permitted-use-human-oversight.json",
             "https://everyailaw.com/obligation/mt-ai-regulations-human-oversight.json",
             "https://everyailaw.com/obligation/mx-lfpdppp-human-oversight.json",
+            "https://everyailaw.com/obligation/new-york-integrated-companion-settings-parental-override-human-oversight.json",
             "https://everyailaw.com/obligation/oecd-ai-principles-accountability-human-oversight.json",
             "https://everyailaw.com/obligation/oregon-sb1546-minor-protection-human-oversight.json",
             "https://everyailaw.com/obligation/pe-ai-law-human-oversight.json",
@@ -99,6 +102,24 @@
             "applicability": "not-asserted"
           },
           "duties": [
+            {
+              "id": "https://everyailaw.com/obligation/alabama-sb63-clinical-judgment-on-prior-authorization-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "us-al"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-10-01",
+              "source": "https://alison.legislature.state.al.us/files/pdf/SearchableInstruments/2026RS/SB63-enr.pdf",
+              "source_locator": "§1(b)(1), (3)",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
             {
               "id": "https://everyailaw.com/obligation/br-ai-bill-oversight-human-oversight.json",
               "deontic": "unclassified",
@@ -367,6 +388,24 @@
               "admission_status": "source-consistency-reviewed-changes"
             },
             {
+              "id": "https://everyailaw.com/obligation/kg-digital-code-ai-heightened-danger-user-oversight-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "kg"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-02-05",
+              "source": "https://reestr.dpa.gov.kg/ru/npa/59",
+              "source_locator": "Article 196(1), (2), (5)",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
               "id": "https://everyailaw.com/obligation/kr-ai-basic-act-oversight-human-oversight.json",
               "deontic": "unclassified",
               "duty_holders": "unknown",
@@ -460,6 +499,24 @@
               "admission_status": "source-consistency-reviewed-changes"
             },
             {
+              "id": "https://everyailaw.com/obligation/new-york-integrated-companion-settings-parental-override-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider"
+              ],
+              "territorial_scope": [
+                "us-ny"
+              ],
+              "lifecycle_status": "enacted",
+              "operative_status": "unknown",
+              "effective": "2027-01-01",
+              "source": "https://nysenate.gov/legislation/laws/GBS/1540",
+              "source_locator": "N.Y. Gen. Bus. Law §§ 1539(2)–(4), (7), (10)–(12), 1540(7), 1543, 1547",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
               "id": "https://everyailaw.com/obligation/oecd-ai-principles-accountability-human-oversight.json",
               "deontic": "unclassified",
               "duty_holders": "unknown",
@@ -511,7 +568,7 @@
               "source": "https://busquedas.elperuano.pe/dispositivo/NL/2192926-1",
               "source_locator": "Reglamento (D.S. 115-2025-PCM) Art. 31.4; Art. 7(h)",
               "source_version": "unknown",
-              "admission_status": "legacy-unreviewed"
+              "admission_status": "source-consistency-reviewed-changes"
             },
             {
               "id": "https://everyailaw.com/obligation/qa-qcb-ai-guideline-human-oversight.json",
@@ -1013,19 +1070,19 @@
   ],
   "prior_fixture": {
     "path": "reference/fixtures/consumer-traversals-2026-09-24.json",
-    "base": "2fb2e1accffdb1e633ec9979bcc29a6f96a8e95f",
-    "sha256": "eb26ae87f3129cf81f7be14f79b091bccc5ce27bee79d93750293c1cc27f2e01",
+    "base": "9d6d4ddcef116359f77db92fb02375626facb7a9",
+    "sha256": "1dc8c38c9e9eb985dbfd44a7d850d0d29549280152ad7c7c5f66ff18d0efe371",
     "reviewed_on": null,
     "review_kind": "Prior technical expected-answer review. Human approval is not inherited.",
-    "review_record": "reference/reviews/consumer-provenance-2026-11-01.md"
+    "review_record": "reference/reviews/consumer-provenance-2026-11-21.md"
   },
   "technical_review": {
     "actor_type": "agent",
     "reviewed_on": "2026-11-21",
     "reviewer": "Codex",
-    "scope": "Four ISO/IEC 38507 projection fields for the Mata category journey on the exact answer tuple.",
+    "scope": "Three added category-associated duties and one record-level admission label in the Mata journey on the exact answer tuple.",
     "human_approved": false,
-    "expected_cases_sha256": "83a14a493fe0ab22651a343e2c1063df0a79d7211be1df065d963cc67ed50799",
-    "review_record": "reference/reviews/consumer-provenance-2026-11-21.md"
+    "expected_cases_sha256": "dd1fe329f2f61cf60b8815652e4c659518841acc81bf5fadc53f3cafefe9405e",
+    "review_record": "reference/reviews/consumer-seven-records-2026-11-21.md"
   }
 }
