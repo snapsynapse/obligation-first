@@ -3,9 +3,9 @@
   "reviewed_on": null,
   "scope": "Public identifiers and declared graph boundaries only; no restricted source text. Exact target sets are reviewed continuity fixtures, not applicability conclusions.",
   "answer_tuple": {
-    "every-ai-law": "2c9a1eec28c8cb123bea6cad0ebb2d13ea1953d1",
-    "ai-incident-law": "b1dd128bf444dc7f5f7677e6549627b320768cb1",
-    "publedge": "9f4387ebcdda1d60b4e4f1cb89f4d8b8a96a577d"
+    "every-ai-law": "aa95c13a9e775d84415d8eb8c03168e6d9a445fb",
+    "ai-incident-law": "a4b141be3e7fe1ac3affd7e09c45344ee96f5941",
+    "publedge": "647716f15e08e0eade0e0d94caa0032c9fa2a2a8"
   },
   "cases": [
     {
@@ -340,13 +340,13 @@
                 "https://everyailaw.com/ont/role/deployer"
               ],
               "territorial_scope": "unknown",
-              "lifecycle_status": "in-force",
+              "lifecycle_status": "unknown",
               "operative_status": "not-applicable",
-              "effective": "2022-04-01",
-              "source": "https://www.iso.org/standard/56641.html",
+              "effective": "2022-04-08",
+              "source": "https://iso.org/standard/56641.html",
               "source_locator": "Clauses 4–6",
               "source_version": "unknown",
-              "admission_status": "legacy-unreviewed"
+              "admission_status": "source-consistency-reviewed-changes"
             },
             {
               "id": "https://everyailaw.com/obligation/it-ai-law-human-oversight.json",
@@ -1013,19 +1013,19 @@
   ],
   "prior_fixture": {
     "path": "reference/fixtures/consumer-traversals-2026-09-24.json",
-    "base": "5305c29fb5174df33b0c8bf183b849f75b25505f",
-    "sha256": "759766193491730371c0642053ef4beb3c626a8e7e64f22a8549bc0df38fa5aa",
-    "reviewed_on": "2026-10-18",
-    "review_kind": "prior human expected-answer approval, not inherited by this successor",
-    "review_record": "reference/reviews/consumer-expectation-2026-10-18.md"
+    "base": "2fb2e1accffdb1e633ec9979bcc29a6f96a8e95f",
+    "sha256": "eb26ae87f3129cf81f7be14f79b091bccc5ce27bee79d93750293c1cc27f2e01",
+    "reviewed_on": null,
+    "review_kind": "Prior technical expected-answer review. Human approval is not inherited.",
+    "review_record": "reference/reviews/consumer-provenance-2026-11-01.md"
   },
   "technical_review": {
     "actor_type": "agent",
-    "reviewed_on": "2026-11-01",
-    "reviewer": "Codex graph_finish",
-    "scope": "Eleven provenance and uncertainty expected-value scalars on the exact answer_tuple; no duty/source/legal acceptance",
+    "reviewed_on": "2026-11-21",
+    "reviewer": "Codex",
+    "scope": "Four ISO/IEC 38507 projection fields for the Mata category journey on the exact answer tuple.",
     "human_approved": false,
-    "expected_cases_sha256": "1383434dca71bc58ebbc4eeba6ce77575c0b5a4a45e0b6092731aa6d7a368810",
-    "review_record": "reference/reviews/consumer-provenance-2026-11-01.md"
+    "expected_cases_sha256": "83a14a493fe0ab22651a343e2c1063df0a79d7211be1df065d963cc67ed50799",
+    "review_record": "reference/reviews/consumer-provenance-2026-11-21.md"
   }
 }
