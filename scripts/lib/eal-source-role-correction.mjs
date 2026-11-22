@@ -1,15 +1,13 @@
 import assert from 'node:assert/strict';
 import { digest } from './eal-category-retirement.mjs';
 
-// Closed adapter for three section-scoped Roles corrections in EAL's Session 6
-// source review. Markdown section properties are not generic OF fields, so this
-// adapter binds each exact native unit to its one generated obligation edge.
+// Bind each accepted native Roles correction to its one generated obligation edge.
 export const EVERY_AI_LAW_SOURCE_ROLE_CORRECTION = 'every-ai-law-source-role-correction-v1';
 const RECEIPT_PATH = 'data/admission/receipts.json';
 const BASE = 'https://everyailaw.com';
 const ROLE = name => `${BASE}/ont/role/${name}`;
 
-function definition({ id, regulation, heading, before, after, actor, source, locator, language, verified }) {
+function definition({ id, regulation, heading, before, after, actor, actorType = 'agent', source, locator, language, verified }) {
   const instrumentPath = `data/instruments/${regulation}.md`;
   return Object.freeze({
     id,
@@ -18,6 +16,7 @@ function definition({ id, regulation, heading, before, after, actor, source, loc
     before,
     after,
     actor,
+    actorType,
     source,
     locator,
     language,
@@ -80,6 +79,17 @@ const CASES = new Map([
     language: 'en',
     verified: '2026-08-15',
   })],
+  ...[
+    ['us-eo-14319-procurement-transparency', 'LLM Procurement Documentation Requirements'],
+    ['us-eo-14319-data-governance', 'Training Data and Risk Governance for Federal AI'],
+  ].map(([id, heading]) => [id, definition({
+    id, heading, regulation: 'us-eo-14319',
+    before: Object.freeze({ native: 'provider', targets: Object.freeze([ROLE('provider')]) }),
+    after: Object.freeze({ native: 'government', targets: Object.freeze([ROLE('government')]) }),
+    actorType: 'human', actor: 'Sam Rogers',
+    source: 'https://whitehouse.gov/presidential-actions/2025/07/preventing-woke-ai-in-the-federal-government/',
+    locator: 'EO 14319 § 4; OMB M-26-04', language: 'en', verified: '2026-03-27',
+  })]),
 ]);
 
 const canonical = value => Array.isArray(value) ? value.map(canonical)
@@ -119,7 +129,7 @@ function requireProjection(records, item) {
 function requireAdmission(admitted, item, reviewedAt) {
   assert.ok(admitted && typeof admitted === 'object', `${item.id} source admission missing`);
   assert.ok(['source-consistency-reviewed', 'source-consistency-reviewed-changes'].includes(admitted.review?.decision), `${item.id} source admission is not accepted`);
-  assert.equal(admitted.review?.actor_type, 'agent', `${item.id} source admission actor type drifted`);
+  assert.equal(admitted.review?.actor_type, item.actorType, `${item.id} source admission actor type drifted`);
   assert.equal(admitted.review?.actor, item.actor, `${item.id} source admission actor drifted`);
   assert.match(admitted.review?.packet_sha256 || '', /^[a-f0-9]{64}$/, `${item.id} accepted source packet digest missing`);
   assert.ok(Date.parse(admitted.review?.reviewed_at) <= Date.parse(reviewedAt), `${item.id} source admission is after migration review`);
