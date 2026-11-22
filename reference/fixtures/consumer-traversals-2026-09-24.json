@@ -3,7 +3,7 @@
   "reviewed_on": null,
   "scope": "Public identifiers and declared graph boundaries only; no restricted source text. Exact target sets are reviewed continuity fixtures, not applicability conclusions.",
   "answer_tuple": {
-    "every-ai-law": "8f9ba55baf160dfc3ac8de74ce86e37ba653acfb",
+    "every-ai-law": "3067a3e74b43a985e3e1b63f024033984bb97edc",
     "ai-incident-law": "924ff67e5ddffcc286e1536faf45f39a14abf1a4",
     "publedge": "f08300f2aaf607e43b976cf9a7714223fc7af5a2"
   },
@@ -33,6 +33,7 @@
             "https://everyailaw.com/obligation/colorado-sb24-205-human-review-human-oversight.json",
             "https://everyailaw.com/obligation/colorado-sb26-189-human-review-human-oversight.json",
             "https://everyailaw.com/obligation/eu-ai-act-human-oversight.json",
+            "https://everyailaw.com/obligation/eu-platform-work-directive-human-oversight.json",
             "https://everyailaw.com/obligation/g7-hiroshima-governance-human-oversight.json",
             "https://everyailaw.com/obligation/georgia-sb540-parental-tools-human-oversight.json",
             "https://everyailaw.com/obligation/hawaii-sb3001-minor-protections-human-oversight.json",
@@ -54,6 +55,7 @@
             "https://everyailaw.com/obligation/rhode-island-ai-mental-health-oversight-human-oversight.json",
             "https://everyailaw.com/obligation/rhode-island-healthcare-ai-notice-review-human-oversight.json",
             "https://everyailaw.com/obligation/sg-ai-governance-oversight-human-oversight.json",
+            "https://everyailaw.com/obligation/sk-platform-work-act-human-oversight.json",
             "https://everyailaw.com/obligation/uk-dpa-2018-adm-human-oversight.json",
             "https://everyailaw.com/obligation/us-in-hea1271-claim-submission-review-human-oversight.json",
             "https://everyailaw.com/obligation/us-in-hea1271-medical-record-review-human-oversight.json",
@@ -283,6 +285,24 @@
               "effective": "2027-12-02",
               "source": "https://eur-lex.europa.eu/eli/reg/2024/1689",
               "source_locator": "Article 14, Article 26(2)",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
+              "id": "https://everyailaw.com/obligation/eu-platform-work-directive-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "eu"
+              ],
+              "lifecycle_status": "enacted",
+              "operative_status": "unknown",
+              "effective": "unknown",
+              "source": "https://eur-lex.europa.eu/eli/dir/2024/2831/oj/eng",
+              "source_locator": "Article 10",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -668,6 +688,24 @@
               "admission_status": "legacy-unreviewed"
             },
             {
+              "id": "https://everyailaw.com/obligation/sk-platform-work-act-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "sk"
+              ],
+              "lifecycle_status": "enacted",
+              "operative_status": "future",
+              "effective": "2026-12-02",
+              "source": "https://static.slov-lex.sk/pdf/SK/ZZ/2026/262/ZZ_2026_262.pdf",
+              "source_locator": "Article I §9",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
               "id": "https://everyailaw.com/obligation/uk-dpa-2018-adm-human-oversight.json",
               "deontic": "unclassified",
               "duty_holders": "unknown",
@@ -850,6 +888,10 @@
               "count": 3,
               "sha256": "31bb2002005658e9b0be887993b5a6bcf955c66d9928b3227ba1c446d5c1df20"
             },
+            "https://everyailaw.com/obligation/eu-platform-work-directive-human-oversight.json": {
+              "count": 1,
+              "sha256": "f1bf3f5648f5d19fc5ae7e728e8d3dcfa3ed63e95d0f90675fca26ba50f1de1b"
+            },
             "https://everyailaw.com/obligation/idaho-s1297-parental-controls-human-oversight.json": {
               "count": 7,
               "sha256": "8ea4db6f29bfdd541c12530bd6878b54313a778fd3a214c7b134c3eb65d215a8"
@@ -873,6 +915,10 @@
             "https://everyailaw.com/obligation/rhode-island-healthcare-ai-notice-review-human-oversight.json": {
               "count": 1,
               "sha256": "faad4e034765bff2978251023d374ba6a93f6d0a2ca17090498d86d3a1927e21"
+            },
+            "https://everyailaw.com/obligation/sk-platform-work-act-human-oversight.json": {
+              "count": 1,
+              "sha256": "2ee7aba9af3a15330ea0233f8311fa3041312f99560c2ffccb3990138b880fa9"
             },
             "https://everyailaw.com/obligation/uk-dpa-2018-adm-human-oversight.json": {
               "count": 5,
@@ -1127,19 +1173,19 @@
   ],
   "prior_fixture": {
     "path": "reference/fixtures/consumer-traversals-2026-09-24.json",
-    "base": "c778a66d7bd86be4897be85a3817efd4c7019a54",
-    "sha256": "a1daaecd7f37693f51b78dd59285dab6477dfab21233b4db03c80e401908be01",
+    "base": "2cf28b8c0e3c5628fd49cde35b06a816fe40b2e8",
+    "sha256": "2f794656636ed6d8ec07df78e87557c0f8fd5d76faf400984a511a7639daa9d0",
     "reviewed_on": null,
     "review_kind": "Prior technical expected-answer review. Human approval is not inherited.",
-    "review_record": "reference/reviews/consumer-indiana-2026-11-22.md"
+    "review_record": "reference/reviews/consumer-vietnam-provenance-2026-11-22.md"
   },
   "technical_review": {
     "actor_type": "agent",
     "reviewed_on": "2026-11-22",
     "reviewer": "Codex",
-    "scope": "Updated digest of the five source-review qualifications on the Vietnam human-oversight duty in the Mata journey.",
+    "scope": "Added the two platform-work human-oversight duties to the Mata category traversal after the EU and Slovak source admissions. Earlier answers and the other two journeys retain their expected results.",
     "human_approved": false,
-    "expected_cases_sha256": "c4b7606014262efc0f4391d86d3767255d4b6c4b610be3e735f61ea8d618cf94",
-    "review_record": "reference/reviews/consumer-vietnam-provenance-2026-11-22.md"
+    "expected_cases_sha256": "0094c4a449636671df46bb79047a725359efb112cb9b21b017cd5a514a63a58a",
+    "review_record": "reference/reviews/consumer-platform-work-2026-11-22.md"
   }
 }
