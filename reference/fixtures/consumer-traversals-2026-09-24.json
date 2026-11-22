@@ -3,8 +3,8 @@
   "reviewed_on": null,
   "scope": "Public identifiers and declared graph boundaries only; no restricted source text. Exact target sets are reviewed continuity fixtures, not applicability conclusions.",
   "answer_tuple": {
-    "every-ai-law": "b1ad4d73540e345edce02580cd08bf7f8e70fd62",
-    "ai-incident-law": "a4b141be3e7fe1ac3affd7e09c45344ee96f5941",
+    "every-ai-law": "20caca7a4d1379f6badee89fcc9feaf508edb181",
+    "ai-incident-law": "924ff67e5ddffcc286e1536faf45f39a14abf1a4",
     "publedge": "647716f15e08e0eade0e0d94caa0032c9fa2a2a8"
   },
   "cases": [
@@ -43,9 +43,10 @@
             "https://everyailaw.com/obligation/kr-ai-basic-act-oversight-human-oversight.json",
             "https://everyailaw.com/obligation/maine-ai-mental-health-licensed-delivery-human-oversight.json",
             "https://everyailaw.com/obligation/maine-ai-mental-health-permitted-use-human-oversight.json",
+            "https://everyailaw.com/obligation/minnesota-ch124-utilization-review-clinician-review-human-oversight.json",
             "https://everyailaw.com/obligation/mt-ai-regulations-human-oversight.json",
             "https://everyailaw.com/obligation/mx-lfpdppp-human-oversight.json",
-            "https://everyailaw.com/obligation/new-york-integrated-companion-settings-parental-override-human-oversight.json",
+            "https://everyailaw.com/obligation/new-york-safe-by-design-act-parental-override-human-oversight.json",
             "https://everyailaw.com/obligation/oecd-ai-principles-accountability-human-oversight.json",
             "https://everyailaw.com/obligation/oregon-sb1546-minor-protection-human-oversight.json",
             "https://everyailaw.com/obligation/pe-ai-law-human-oversight.json",
@@ -463,6 +464,24 @@
               "admission_status": "legacy-unreviewed"
             },
             {
+              "id": "https://everyailaw.com/obligation/minnesota-ch124-utilization-review-clinician-review-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "us-mn"
+              ],
+              "lifecycle_status": "future",
+              "operative_status": "future",
+              "effective": "2027-01-01",
+              "source": "https://revisor.mn.gov/laws/2026/0/Session+Law/Chapter/124/",
+              "source_locator": "Minn. Stat. §62M.09, subd. 3(a)–(f); chapter 124, art. 3, §6",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
               "id": "https://everyailaw.com/obligation/mt-ai-regulations-human-oversight.json",
               "deontic": "unclassified",
               "duty_holders": "unknown",
@@ -499,7 +518,7 @@
               "admission_status": "source-consistency-reviewed-changes"
             },
             {
-              "id": "https://everyailaw.com/obligation/new-york-integrated-companion-settings-parental-override-human-oversight.json",
+              "id": "https://everyailaw.com/obligation/new-york-safe-by-design-act-parental-override-human-oversight.json",
               "deontic": "unclassified",
               "duty_holders": "unknown",
               "duty_holder_roles": [
@@ -1070,19 +1089,19 @@
   ],
   "prior_fixture": {
     "path": "reference/fixtures/consumer-traversals-2026-09-24.json",
-    "base": "9d6d4ddcef116359f77db92fb02375626facb7a9",
-    "sha256": "1dc8c38c9e9eb985dbfd44a7d850d0d29549280152ad7c7c5f66ff18d0efe371",
+    "base": "bb58c6043bb944ee42e8b93da5b89f48e3054de1",
+    "sha256": "96f051c40203a69b2113d6b2b3b08e4af65688f6d37d7bc973471fe6ed01e7ff",
     "reviewed_on": null,
     "review_kind": "Prior technical expected-answer review. Human approval is not inherited.",
-    "review_record": "reference/reviews/consumer-provenance-2026-11-21.md"
+    "review_record": "reference/reviews/consumer-human-oversight-2026-11-21.md"
   },
   "technical_review": {
     "actor_type": "agent",
     "reviewed_on": "2026-11-21",
     "reviewer": "Codex",
-    "scope": "Three added category-associated duties and one record-level admission label in the Mata journey on the exact answer tuple.",
+    "scope": "One future Minnesota category-associated duty and the New York duty identifier in the Mata journey on the exact answer tuple.",
     "human_approved": false,
-    "expected_cases_sha256": "dd1fe329f2f61cf60b8815652e4c659518841acc81bf5fadc53f3cafefe9405e",
-    "review_record": "reference/reviews/consumer-human-oversight-2026-11-21.md"
+    "expected_cases_sha256": "210c1f879247b3c7abb2cc0f5c8a309bac27a35c41a3f5f5cdacf178d4d3de85",
+    "review_record": "reference/reviews/consumer-minnesota-new-york-2026-11-21.md"
   }
 }
