@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { digest } from './eal-category-retirement.mjs';
 
-// Bind each accepted native Roles correction to its one generated obligation edge.
+// Markdown section properties are not generic OF fields. This closed adapter binds
+// each accepted native Roles correction to its one generated obligation edge.
 export const EVERY_AI_LAW_SOURCE_ROLE_CORRECTION = 'every-ai-law-source-role-correction-v1';
 const RECEIPT_PATH = 'data/admission/receipts.json';
 const BASE = 'https://everyailaw.com';

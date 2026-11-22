@@ -196,13 +196,13 @@ await rejects('UK OSA retains the removed deployer role', f => {
   f.records.find(record => record['@id'] === ukOsa.obligationId).duty_holder_roles = [role('deployer'), role('provider')];
 });
 
-const eo = fixture();
-const eoAdmission = eo.admissions.get('us-eo-14319');
-eoAdmission.review.actor_type = 'agent';
-for (const entry of eo.entries.filter(entry => entry.source_admission.adapter.native_identity.regulation === 'us-eo-14319')) {
-  entry.source_admission.sha256 = digest(eoAdmission);
-}
-await assert.rejects(validateEveryAiLawSourceRoleCorrection(eo), /source admission actor type drifted/);
+await rejects('EO 14319 admission actor type drifted', f => {
+  const admission = f.admissions.get('us-eo-14319');
+  admission.review.actor_type = 'agent';
+  for (const entry of f.entries.filter(entry => entry.source_admission.adapter.native_identity.regulation === 'us-eo-14319')) {
+    entry.source_admission.sha256 = digest(admission);
+  }
+});
 
 const root = await mkdtemp(path.join(os.tmpdir(), 'of-eal-source-role-correction-'));
 try {
