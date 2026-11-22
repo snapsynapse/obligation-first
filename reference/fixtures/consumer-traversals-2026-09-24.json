@@ -3,9 +3,9 @@
   "reviewed_on": null,
   "scope": "Public identifiers and declared graph boundaries only; no restricted source text. Exact target sets are reviewed continuity fixtures, not applicability conclusions.",
   "answer_tuple": {
-    "every-ai-law": "a6d8af59bac9849f3e9e8dd85b09d33bb6ed4345",
+    "every-ai-law": "8f9ba55baf160dfc3ac8de74ce86e37ba653acfb",
     "ai-incident-law": "924ff67e5ddffcc286e1536faf45f39a14abf1a4",
-    "publedge": "647716f15e08e0eade0e0d94caa0032c9fa2a2a8"
+    "publedge": "f08300f2aaf607e43b976cf9a7714223fc7af5a2"
   },
   "cases": [
     {
@@ -892,7 +892,7 @@
             },
             "https://everyailaw.com/obligation/vn-ai-law-oversight-human-oversight.json": {
               "count": 5,
-              "sha256": "e7e47005b60234ffec12182c0c1f19b0730ac4a3587da732b2cc4eeaccfb59fb"
+              "sha256": "4ed6b4794b96b3f3af978023130c8635cab6fae365d337521b8ea6f668ce9370"
             }
           },
           "limits": "Declared relationships only. applicability is never asserted by traversal; a category association is not application of any listed duty. A draft stays a draft after joining operative law. unknown means absent evidence, not a negative finding. Unresolved source questions are carried as count and SHA-256 of their verbatim text so owner wording is preserved without republishing it. source, source_locator and source_version report what the owning record claims about provenance; they do not verify the source text."
@@ -1127,19 +1127,19 @@
   ],
   "prior_fixture": {
     "path": "reference/fixtures/consumer-traversals-2026-09-24.json",
-    "base": "903bf59cda866a8727984b094217674fda7a3af5",
-    "sha256": "765c7bd2d1c2b6287b303bdfb104bd3e3f2812a6a550472e79d7bb62671c45bc",
+    "base": "c778a66d7bd86be4897be85a3817efd4c7019a54",
+    "sha256": "a1daaecd7f37693f51b78dd59285dab6477dfab21233b4db03c80e401908be01",
     "reviewed_on": null,
     "review_kind": "Prior technical expected-answer review. Human approval is not inherited.",
-    "review_record": "reference/reviews/consumer-minnesota-new-york-2026-11-21.md"
+    "review_record": "reference/reviews/consumer-indiana-2026-11-22.md"
   },
   "technical_review": {
     "actor_type": "agent",
     "reviewed_on": "2026-11-22",
     "reviewer": "Codex",
-    "scope": "Two Indiana claim-review duties associated with human oversight in the Mata category journey on the recorded adopter revisions.",
+    "scope": "Updated digest of the five source-review qualifications on the Vietnam human-oversight duty in the Mata journey.",
     "human_approved": false,
-    "expected_cases_sha256": "9f93303a20eeac050f2cee3cf87140c79982b61c0e7b973e0f828593b34c5580",
-    "review_record": "reference/reviews/consumer-indiana-2026-11-22.md"
+    "expected_cases_sha256": "c4b7606014262efc0f4391d86d3767255d4b6c4b610be3e735f61ea8d618cf94",
+    "review_record": "reference/reviews/consumer-vietnam-provenance-2026-11-22.md"
   }
 }
