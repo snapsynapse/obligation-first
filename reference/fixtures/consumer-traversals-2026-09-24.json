@@ -3,7 +3,7 @@
   "reviewed_on": null,
   "scope": "Public identifiers and declared graph boundaries only; no restricted source text. Exact target sets are reviewed continuity fixtures, not applicability conclusions.",
   "answer_tuple": {
-    "every-ai-law": "8f57d9afa15f0572d3a80723c02cc72267aa2867",
+    "every-ai-law": "8f9ba55baf160dfc3ac8de74ce86e37ba653acfb",
     "ai-incident-law": "924ff67e5ddffcc286e1536faf45f39a14abf1a4",
     "publedge": "f08300f2aaf607e43b976cf9a7714223fc7af5a2"
   },
