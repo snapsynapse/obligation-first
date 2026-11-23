@@ -91,6 +91,8 @@ Most legal data models center on the document. Obligation-First centers on what 
 
 ## Adopters
 
+For RUML users, the [RUML quickstart](reference/ruml-quickstart.md) connects a synthetic rulemap to OF legal context using the existing schema. It includes an offline fixture check and an [experimental crosswalk](reference/crosswalks/ruml.md); runtime conformance remains separate.
+
 - [EveryAILaw](https://everyailaw.com/) — AI law and obligation tracker, now publishing an Obligation-First binding for statutory and regulatory obligations.
 - [PubLedge](https://publedge.org/) — open recordkeeping protocol for joint interpretations, now publishing Obligation-First records for authorities, instruments, terms, obligations, and determinations.
 - [AI Incident Law](https://aiincidentlaw.org/) — public-record corpus of AI-related cases, now publishing Obligation-First proceedings, allegations, determinations, and authorities.

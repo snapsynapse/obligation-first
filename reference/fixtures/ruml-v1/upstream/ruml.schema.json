@@ -1,0 +1,3088 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ruml.org/1.0.0/schemas/ruml.schema.json",
+  "title": "RUML — Rulemapping Logic Format",
+  "description": "Open, JSON-based file format for the machine-readable representation of laws, regulations, and decision logic.",
+  "x-ruml-format": "RUML",
+  "x-ruml-spec-version": "1.0",
+  "type": "object",
+  "properties": {
+    "$format": {
+      "type": "string",
+      "const": "RUML",
+      "description": "Format discriminator identifying this as a RUML file"
+    },
+    "$specVersion": {
+      "type": "string",
+      "description": "RUML spec version this file conforms to",
+      "enum": ["1.0"]
+    },
+    "metadata": {
+      "description": "Metadata about the RUML file itself",
+      "$ref": "#/$defs/Metadata"
+    },
+    "capabilities": {
+      "description": "Root-level capability declarations, keyed by capability id",
+      "$ref": "#/$defs/Capabilities"
+    },
+    "rulemap": {
+      "description": "The decision logic tree",
+      "$ref": "#/$defs/Rulemap"
+    }
+  },
+  "required": ["$format", "$specVersion", "metadata", "rulemap"],
+  "additionalProperties": false,
+  "$defs": {
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "DatapointDateTime": {
+      "type": "string",
+      "description": "Date and time of day for a datapoint: YYYY-MM-DDTHH:MM, optionally with seconds, a fraction of a second and an offset (§4.7.1, §4.7.3)",
+      "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])[Tt](?:[01][0-9]|2[0-3]):[0-5][0-9](?::(?:[0-5][0-9]|60)(?:\\.[0-9]+)?)?(?:[Zz]|[+-](?:[01][0-9]|2[0-3])(?::?[0-5][0-9])?)?$"
+    },
+    "DatapointTime": {
+      "type": "string",
+      "description": "Time of day without a date: HH:MM, optionally with seconds, a fraction of a second and an offset (§4.7.1, §4.7.3)",
+      "pattern": "^(?:[01][0-9]|2[0-3]):[0-5][0-9](?::(?:[0-5][0-9]|60)(?:\\.[0-9]+)?)?(?:[Zz]|[+-](?:[01][0-9]|2[0-3])(?::?[0-5][0-9])?)?$"
+    },
+    "Uuid": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "DocumentStatus": {
+      "type": "string",
+      "enum": ["draft", "review", "approved", "inForce", "suspended", "expired", "replaced"]
+    },
+    "DocumentType": {
+      "type": "string",
+      "enum": [
+        "law",
+        "regulation",
+        "guideline",
+        "decision",
+        "procedure",
+        "form",
+        "documentGeneration",
+        "other"
+      ]
+    },
+    "Metadata": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the RUML file",
+          "$ref": "#/$defs/Uuid"
+        },
+        "title": {
+          "description": "Title of the rulemap",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of what the rulemap represents",
+          "type": "string"
+        },
+        "version": {
+          "type": "string",
+          "description": "Content version"
+        },
+        "created": {
+          "description": "Creation timestamp",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "modified": {
+          "description": "Timestamp of the last modification",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "status": {
+          "description": "The status of a RUML file",
+          "$ref": "#/$defs/DocumentStatus"
+        },
+        "documentType": {
+          "description": "The type of the document",
+          "$ref": "#/$defs/DocumentType"
+        },
+        "authors": {
+          "description": "List of authors",
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the author"
+              },
+              "email": {
+                "description": "Optional email of the author",
+                "type": "string",
+                "format": "email",
+                "pattern": "^.+@[^\\s@]+$"
+              },
+              "organization": {
+                "description": "Refers to the institutional affiliation of the author - not the publishing organization of the document",
+                "type": "string"
+              }
+            },
+            "required": ["name"],
+            "additionalProperties": false,
+            "description": "Author metadata"
+          }
+        },
+        "organization": {
+          "description": "Publishing organization who is institutionally responsible for the document",
+          "type": "string"
+        },
+        "jurisdiction": {
+          "description": "Jurisdiction",
+          "type": "string",
+          "pattern": "^[A-Z]{2}(?:-[A-Z0-9]+)*$"
+        },
+        "legalDomain": {
+          "description": "Legal domain",
+          "type": "string"
+        },
+        "tags": {
+          "description": "Categorization/tagging",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "derivedFrom": {
+          "description": "Derivation of the document",
+          "type": "object",
+          "properties": {
+            "originalId": {
+              "description": "The id of the original document",
+              "$ref": "#/$defs/Uuid"
+            },
+            "originalHash": {
+              "description": "The hash of the original document",
+              "type": "string",
+              "pattern": "^(?:sha3-256|sha256|blake3):[0-9a-f]{64}$"
+            },
+            "originalStatus": {
+              "description": "The status of the original at the time of copying",
+              "$ref": "#/$defs/DocumentStatus"
+            },
+            "derivationType": {
+              "type": "string",
+              "enum": ["workingCopy", "amendment", "revision"],
+              "description": "How this document was derived from the original"
+            },
+            "derivedAt": {
+              "description": "The timestamp of the copy creation",
+              "$ref": "#/$defs/Timestamp"
+            },
+            "derivedBy": {
+              "description": "Creating entity/person",
+              "type": "string"
+            }
+          },
+          "required": ["originalId", "originalStatus", "derivationType", "derivedAt"],
+          "additionalProperties": false
+        },
+        "language": {
+          "description": "Language",
+          "type": "string",
+          "pattern": "^[a-z]{2}$"
+        },
+        "validFrom": {
+          "description": "Validity start date",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "validUntil": {
+          "description": "Validity end date",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "replaces": {
+          "description": "Reference a replaced version",
+          "$ref": "#/$defs/Uuid"
+        },
+        "replacedBy": {
+          "description": "Reference a successor version",
+          "$ref": "#/$defs/Uuid"
+        },
+        "comment": {
+          "description": "Free-text comment on the document, e.g. the reason for status suspended (§3.3.3)",
+          "type": "string"
+        }
+      },
+      "required": ["id", "version", "created", "modified", "status"],
+      "additionalProperties": false,
+      "description": "The metadata object contains all information about the RUML file itself.",
+      "allOf": [
+        {
+          "title": "§3.3.3 — status inForce requires validFrom",
+          "if": {
+            "type": "object",
+            "required": ["status"],
+            "properties": {
+              "status": {
+                "const": "inForce"
+              }
+            }
+          },
+          "then": {
+            "required": ["validFrom"]
+          }
+        },
+        {
+          "title": "§3.3.3 — status expired requires validUntil",
+          "if": {
+            "type": "object",
+            "required": ["status"],
+            "properties": {
+              "status": {
+                "const": "expired"
+              }
+            }
+          },
+          "then": {
+            "required": ["validUntil"]
+          }
+        },
+        {
+          "title": "§3.3.3 — status replaced requires replacedBy",
+          "if": {
+            "type": "object",
+            "required": ["status"],
+            "properties": {
+              "status": {
+                "const": "replaced"
+              }
+            }
+          },
+          "then": {
+            "required": ["replacedBy"]
+          }
+        }
+      ]
+    },
+    "Capabilities": {
+      "type": "array",
+      "description": "Declared capabilities, in order (§4.2); the order is significant",
+      "items": {
+        "$ref": "#/$defs/CapabilityEntry"
+      },
+      "allOf": [
+        {
+          "$ref": "#/$defs/UniqueOfficialCapabilityIds"
+        }
+      ]
+    },
+    "CapabilityId": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/OfficialCapabilityId"
+        },
+        {
+          "$ref": "#/$defs/DraftCapabilityId"
+        },
+        {
+          "$ref": "#/$defs/ReverseDomainCapabilityId"
+        }
+      ]
+    },
+    "OfficialCapabilityId": {
+      "type": "string",
+      "enum": [
+        "ruml:datapoints",
+        "ruml:text-reference",
+        "ruml:tree-reference",
+        "ruml:tree-include",
+        "ruml:context",
+        "ruml:query",
+        "ruml:ai-query",
+        "ruml:expression",
+        "ruml:actions",
+        "ruml:protocol"
+      ],
+      "description": "Official RUML capability id in the reserved `ruml:` namespace."
+    },
+    "DraftCapabilityId": {
+      "type": "string",
+      "maxLength": 128,
+      "pattern": "^ruml:draft(?:\\/[a-z0-9_-]+)+$",
+      "description": "Local draft capability id (e.g. `ruml:draft/my-capability`). Used for in-progress capabilities."
+    },
+    "ReverseDomainCapabilityId": {
+      "type": "string",
+      "maxLength": 128,
+      "pattern": "^[a-z0-9_-]+(?:\\.[a-z0-9_-]+)+(?:\\/[a-z0-9_-]+)+$",
+      "description": "Third-party capability id in reverse-domain form (e.g. `com.example/my-capability`)."
+    },
+    "LexId": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "Node": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the node",
+          "$ref": "#/$defs/Uuid"
+        },
+        "operator": {
+          "description": "Logical operator combining the outcomes of the child nodes",
+          "$ref": "#/$defs/Operator"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable label for the node"
+        },
+        "altText": {
+          "description": "Alternative short-form label or text for the node",
+          "type": "string"
+        },
+        "description": {
+          "description": "Longer explanation of what the node represents",
+          "type": "string",
+          "maxLength": 10000
+        },
+        "children": {
+          "description": "Ordered lexIds of the child nodes",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/LexId"
+          }
+        },
+        "capabilities": {
+          "description": "Node-level capability values, keyed by capability id",
+          "$ref": "#/$defs/NodeCapabilities"
+        },
+        "metadata": {
+          "description": "Free-form, implementation-defined node metadata",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": {}
+        },
+        "decisionMode": {
+          "description": "Combination mode for a leaf node with multiple decision capabilities",
+          "$ref": "#/$defs/DecisionMode"
+        },
+        "modular": {
+          "description": "Whether the node is a reusable, self-contained module",
+          "type": "boolean"
+        }
+      },
+      "required": ["id", "label"],
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "required": ["children"]
+          },
+          "then": {
+            "required": ["operator"]
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "Operator": {
+      "type": "string",
+      "enum": ["AND", "OR", "XOR", "NOT_AND", "NOT_OR", "NOT_XOR", "DELEGATED", "undefined"]
+    },
+    "NodeCapabilities": {
+      "type": "array",
+      "description": "Node-level capabilities, in order (§4.3); the order is significant",
+      "items": {
+        "$ref": "#/$defs/NodeCapabilityEntry"
+      },
+      "uniqueItems": true,
+      "allOf": [
+        {
+          "$ref": "#/$defs/UniqueNodeDataCapabilityIds"
+        }
+      ]
+    },
+    "DecisionMode": {
+      "type": "string",
+      "enum": ["fallback", "agreement", "majority"],
+      "default": "fallback",
+      "description": "Combination mode for a leaf node with multiple decision capabilities. It MUST be ignored on parent nodes."
+    },
+    "Rulemap": {
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/LexId"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/Node"
+          },
+          "description": "The rulemap nodes, keyed by lexId. §3.4 — MUST contain an entry with key \"1\" (the root node, LexID 1).",
+          "required": ["1"]
+        }
+      },
+      "required": ["nodes"],
+      "additionalProperties": false
+    },
+    "DatapointId": {
+      "type": "string",
+      "pattern": "^[a-z_][a-z0-9_]*$"
+    },
+    "Datapoint": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Human-readable name of the datapoint"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "number",
+            "boolean",
+            "date",
+            "datetime",
+            "time",
+            "integer",
+            "currency",
+            "percentage",
+            "duration",
+            "email",
+            "phone",
+            "location",
+            "identifier",
+            "iban",
+            "count",
+            "url",
+            "address",
+            "enum",
+            "object"
+          ],
+          "description": "Data type of the datapoint"
+        },
+        "description": {
+          "description": "Description of what the datapoint represents",
+          "type": "string"
+        },
+        "unit": {
+          "description": "Unit of the value; required for type 'currency', otherwise only applicable to types 'number' and 'percentage'",
+          "type": "string"
+        },
+        "sensitive": {
+          "default": false,
+          "description": "Whether the datapoint holds sensitive/personal data",
+          "type": "boolean"
+        },
+        "format": {
+          "description": "Format refining the type (e.g. taxId for identifier)",
+          "type": "string"
+        },
+        "options": {
+          "description": "Allowed options; required and non-empty for type 'enum'",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "Value of the option"
+              },
+              "label": {
+                "description": "Human-readable label for the option",
+                "type": "string"
+              }
+            },
+            "required": ["value"],
+            "additionalProperties": false
+          }
+        },
+        "binding": {
+          "description": "How the datapoint value is sourced (input, external or computed). `type` selects the kind; each kind's own properties are listed under `allOf`, as capability entries do (§4.2).",
+          "type": "object",
+          "properties": {
+            "type": {
+              "description": "Binding kind: `input` is supplied by the user, `external` is fetched from a source, `computed` is derived from other datapoints",
+              "type": "string",
+              "enum": ["input", "external", "computed"]
+            },
+            "hint": {
+              "description": "Hint shown to the user when entering the value",
+              "type": "string"
+            },
+            "placeholder": {
+              "description": "Placeholder text for the input field",
+              "type": "string"
+            },
+            "defaultValue": {
+              "description": "Default value pre-filled for the input"
+            },
+            "ref": {
+              "type": "string",
+              "description": "Symbolic reference to the external source"
+            },
+            "sourceType": {
+              "description": "Kind of external source the value is fetched from",
+              "type": "string",
+              "enum": ["api", "database", "file", "rulemap"]
+            },
+            "fallback": {
+              "description": "Input binding used when the external source cannot be reached",
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "const": "input",
+                  "description": "Binding kind: the value is supplied by user input"
+                },
+                "hint": {
+                  "description": "Hint shown to the user when entering the value",
+                  "type": "string"
+                },
+                "placeholder": {
+                  "description": "Placeholder text for the input field",
+                  "type": "string"
+                },
+                "defaultValue": {
+                  "description": "Default value pre-filled for the input"
+                }
+              },
+              "required": ["type"],
+              "additionalProperties": false
+            },
+            "expression": {
+              "type": "string",
+              "description": "JSONata expression; other datapoints are referenced by their id"
+            },
+            "description": {
+              "description": "Description of the external source or of the calculation",
+              "type": "string"
+            }
+          },
+          "required": ["type"],
+          "additionalProperties": false
+        },
+        "validation": {
+          "description": "Validation rules applied to the datapoint value",
+          "type": "object",
+          "properties": {
+            "required": {
+              "description": "Whether a value must be provided",
+              "type": "boolean"
+            },
+            "min": {
+              "description": "Minimum value (number, or ISO-8601 string for temporal types)",
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "max": {
+              "description": "Maximum value (number, or ISO-8601 string for temporal types)",
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "minLength": {
+              "description": "Minimum length of the value",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "maxLength": {
+              "description": "Maximum length of the value",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "pattern": {
+              "description": "Regular expression the value must match",
+              "type": "string",
+              "format": "regex"
+            },
+            "enum": {
+              "description": "Explicit set of allowed values",
+              "type": "array",
+              "items": {}
+            },
+            "message": {
+              "description": "Custom validation error message",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "set": {
+          "$ref": "#/$defs/SetId",
+          "description": "The set this datapoint instantiates; required when type is object, not applicable to other types"
+        },
+        "cardinality": {
+          "type": "object",
+          "description": "Repetition of the object; absent means a single object. Only applicable to type 'object'",
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": ["name", "type", "binding"],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "required": ["binding"],
+            "properties": {
+              "binding": {
+                "required": ["type"],
+                "properties": {
+                  "type": {
+                    "const": "input"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "binding": {
+                "propertyNames": {
+                  "enum": ["type", "hint", "placeholder", "defaultValue"]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": ["binding"],
+            "properties": {
+              "binding": {
+                "required": ["type"],
+                "properties": {
+                  "type": {
+                    "const": "external"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "binding": {
+                "required": ["ref"],
+                "propertyNames": {
+                  "enum": ["type", "ref", "sourceType", "fallback", "description"]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": ["binding"],
+            "properties": {
+              "binding": {
+                "required": ["type"],
+                "properties": {
+                  "type": {
+                    "const": "computed"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "binding": {
+                "required": ["expression"],
+                "propertyNames": {
+                  "enum": ["type", "expression", "description"]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "string"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "minLength": true,
+                  "maxLength": true,
+                  "pattern": true,
+                  "enum": true
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "number"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "min": {
+                    "type": "number"
+                  },
+                  "max": {
+                    "type": "number"
+                  },
+                  "enum": true
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "boolean"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "date"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "min": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "max": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "datetime"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "min": {
+                    "$ref": "#/$defs/DatapointDateTime"
+                  },
+                  "max": {
+                    "$ref": "#/$defs/DatapointDateTime"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "time"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "min": {
+                    "$ref": "#/$defs/DatapointTime"
+                  },
+                  "max": {
+                    "$ref": "#/$defs/DatapointTime"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "integer"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "min": {
+                    "type": "number"
+                  },
+                  "max": {
+                    "type": "number"
+                  },
+                  "enum": true
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "currency"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "min": {
+                    "type": "number"
+                  },
+                  "max": {
+                    "type": "number"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "set": false,
+              "cardinality": false
+            },
+            "required": ["unit"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "percentage"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "min": {
+                    "type": "number"
+                  },
+                  "max": {
+                    "type": "number"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "duration"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "min": {
+                    "type": "string",
+                    "format": "duration"
+                  },
+                  "max": {
+                    "type": "string",
+                    "format": "duration"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "email"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "pattern": true
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "phone"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "pattern": true
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "location"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "enum": true
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": {
+                "enum": ["country", "region", "union", "postal", "municipality", "coordinates"]
+              },
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "identifier"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "minLength": true,
+                  "maxLength": true,
+                  "pattern": true
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": {
+                "enum": [
+                  "taxId",
+                  "vatId",
+                  "socialSecurity",
+                  "passport",
+                  "nationalId",
+                  "commercial",
+                  "custom"
+                ]
+              },
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "iban"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "pattern": true
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "count"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "min": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "max": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "url"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true,
+                  "pattern": true
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "address"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "enum"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true
+                },
+                "additionalProperties": false
+              },
+              "options": {
+                "minItems": 1
+              },
+              "format": false,
+              "unit": false,
+              "set": false,
+              "cardinality": false
+            },
+            "required": ["options"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "object"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "validation": {
+                "properties": {
+                  "required": true,
+                  "message": true
+                },
+                "additionalProperties": false
+              },
+              "options": false,
+              "format": false,
+              "unit": false
+            }
+          }
+        },
+        {
+          "title": "§4.7.4 — an object datapoint instantiates a set",
+          "if": {
+            "type": "object",
+            "required": ["type"],
+            "properties": {
+              "type": {
+                "const": "object"
+              }
+            }
+          },
+          "then": {
+            "required": ["set"]
+          }
+        }
+      ]
+    },
+    "TextId": {
+      "type": "string",
+      "pattern": "^[a-z_][a-z0-9_]*$"
+    },
+    "Text": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable title of the text"
+        },
+        "uri": {
+          "type": "string",
+          "minLength": 1,
+          "description": "URI of the text as published by its source (see the URI convention in §4.12); omitted for texts written in the RUML file itself"
+        },
+        "timestamp": {
+          "description": "When the author retrieved and recorded this text",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "proposed", "enacted", "inForce", "amended", "repealed"],
+          "description": "Legislative status of the text"
+        },
+        "type": {
+          "default": "embedded",
+          "description": "How the text content is carried; 'external' is deprecated",
+          "type": "string",
+          "enum": ["embedded", "container", "url", "external"]
+        },
+        "text": {
+          "description": "Plain text; for embedded texts with status 'inForce', exactly one of text and content is required",
+          "type": "string"
+        },
+        "content": {
+          "description": "Structured text in RUML Text form (§4.12)",
+          "$ref": "#/$defs/RumlTextDocument"
+        },
+        "digest": {
+          "description": "SHA3-256 over the RFC 8785 form of content; required with content",
+          "$ref": "#/$defs/Sha3Digest"
+        },
+        "source": {
+          "description": "Provenance of content: the source document it was imported from",
+          "$ref": "#/$defs/TextSource"
+        },
+        "url": {
+          "description": "URL of the text; required for type 'url'",
+          "type": "string",
+          "format": "uri"
+        },
+        "containerPath": {
+          "description": "Path to the text inside the RUML container; required for type 'container'",
+          "type": "string",
+          "pattern": "^\\.texts\\/"
+        },
+        "ref": {
+          "description": "Symbolic reference; required for type 'external'",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the text",
+          "type": "string"
+        },
+        "validFrom": {
+          "description": "Validity start date",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "validUntil": {
+          "description": "Validity end date",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "language": {
+          "description": "ISO 639-1 language code",
+          "type": "string",
+          "pattern": "^[a-z]{2}$"
+        },
+        "isReferenced": {
+          "default": true,
+          "description": "Whether the text is referenced by at least one node",
+          "type": "boolean"
+        }
+      },
+      "required": ["title", "timestamp"],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "not": {
+              "required": ["content"]
+            }
+          },
+          "then": {
+            "required": ["status"]
+          }
+        },
+        {
+          "if": {
+            "required": ["content"]
+          },
+          "then": {
+            "required": ["digest"]
+          }
+        },
+        {
+          "not": {
+            "required": ["text", "content"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "embedded"
+              },
+              "status": {
+                "const": "inForce"
+              }
+            },
+            "required": ["status"]
+          },
+          "then": {
+            "anyOf": [
+              {
+                "required": ["text"],
+                "properties": {
+                  "text": {
+                    "minLength": 1
+                  }
+                }
+              },
+              {
+                "required": ["content"]
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "url"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "required": ["url"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "container"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "required": ["containerPath"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "external"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "required": ["ref"]
+          }
+        }
+      ]
+    },
+    "Sha3Digest": {
+      "type": "string",
+      "pattern": "^sha3-256:[0-9a-f]{64}$"
+    },
+    "TextSource": {
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string",
+          "minLength": 1,
+          "description": "URI of the source document the content was imported from"
+        },
+        "digest": {
+          "description": "Digest of the archived source document",
+          "$ref": "#/$defs/Sha3Digest"
+        },
+        "terms": {
+          "type": "string",
+          "minLength": 1,
+          "description": "URI of the source's reuse terms, where the source attaches any"
+        }
+      },
+      "required": ["uri"],
+      "additionalProperties": false
+    },
+    "RumlTextName": {
+      "type": "string",
+      "pattern": "^(?:[A-Za-z_][A-Za-z0-9._-]*:)?[A-Za-z_][A-Za-z0-9._-]*$",
+      "description": "Element or attribute name as in the XML, optionally with a prefix declared by an xmlns:<prefix> attribute in scope"
+    },
+    "RumlTextAttrs": {
+      "type": "object",
+      "description": "Attributes of an element, keyed by (prefixed) name",
+      "propertyNames": {
+        "$ref": "#/$defs/RumlTextName"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "RumlTextRootAttrs": {
+      "type": "object",
+      "description": "Attributes of the root element; xmlns declares the dialect's namespace as the default namespace",
+      "properties": {
+        "xmlns": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Namespace URI of the text's Akoma Ntoso dialect, e.g. http://Inhaltsdaten.LegalDocML.de/1.8.2/"
+        }
+      },
+      "required": ["xmlns"],
+      "propertyNames": {
+        "$ref": "#/$defs/RumlTextName"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "RumlTextContent": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/$defs/RumlTextNode"
+        }
+      ]
+    },
+    "RumlTextNode": {
+      "type": "object",
+      "description": "One element of the Akoma Ntoso tree",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/RumlTextName"
+        },
+        "attrs": {
+          "$ref": "#/$defs/RumlTextAttrs"
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RumlTextContent"
+          }
+        }
+      },
+      "required": ["type"],
+      "additionalProperties": false
+    },
+    "RumlTextDocument": {
+      "type": "object",
+      "description": "Root of a RUML Text document: the Akoma Ntoso root element, declaring the dialect's namespace as its default namespace (§4.12)",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/RumlTextName"
+        },
+        "attrs": {
+          "$ref": "#/$defs/RumlTextRootAttrs"
+        },
+        "content": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RumlTextContent"
+          }
+        }
+      },
+      "required": ["type", "attrs", "content"],
+      "additionalProperties": false
+    },
+    "TextAnchor": {
+      "type": "object",
+      "description": "Points at a text of this RUML's own ruml:text-reference data, or at one element of it (§4.12)",
+      "properties": {
+        "id": {
+          "description": "Key of the text entry in this RUML's own data",
+          "$ref": "#/$defs/TextId"
+        },
+        "element": {
+          "description": "GUID of an element of the entry's RUML Text; omitted for the whole text",
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "type": {
+          "description": "represents: the norm the node implements (at most one per node); refers-to: a text the node refers to",
+          "type": "string",
+          "enum": ["represents", "refers-to"]
+        }
+      },
+      "required": ["id", "type"],
+      "additionalProperties": false
+    },
+    "ContextId": {
+      "type": "string",
+      "pattern": "^[a-z_][a-z0-9_]*$"
+    },
+    "Context": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title of the context entry"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "courtDecision",
+            "commentary",
+            "administrativeGuidance",
+            "explanatoryMemorandum",
+            "example",
+            "literature",
+            "faq",
+            "history",
+            "rulemap",
+            "custom"
+          ],
+          "description": "Category of the context"
+        },
+        "type": {
+          "default": "embedded",
+          "description": "How the context content is carried",
+          "type": "string",
+          "enum": ["embedded", "container", "url", "external"]
+        },
+        "timestamp": {
+          "description": "Modification time of the context in ISO 8601 format",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "subject": {
+          "default": false,
+          "description": "Whether this context is the subject of the evaluation",
+          "type": "boolean"
+        },
+        "metadata": {
+          "description": "Free-form metadata about the context",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": {}
+        },
+        "content": {
+          "description": "Embedded context content",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": {}
+        },
+        "source": {
+          "description": "Free-form description of the context source",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": {}
+        },
+        "url": {
+          "description": "URL of the context; required for type 'url'",
+          "type": "string",
+          "format": "uri"
+        },
+        "containerPath": {
+          "description": "Path to the context inside the RUML container; required for type 'container'",
+          "type": "string",
+          "pattern": "^\\.context\\/"
+        },
+        "ref": {
+          "description": "Symbolic reference; required for type 'external'",
+          "type": "string"
+        },
+        "hash": {
+          "description": "Integrity hash, format <algorithm>:<value>",
+          "type": "string",
+          "pattern": "^(?:sha3-256|sha256|blake3):[0-9a-f]{64}$"
+        },
+        "accessDate": {
+          "description": "Date the context url was last accessed",
+          "type": "string",
+          "format": "date",
+          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+        }
+      },
+      "required": ["title", "category", "timestamp"],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "url"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "required": ["url"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "container"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "required": ["containerPath"]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "external"
+              }
+            },
+            "required": ["type"]
+          },
+          "then": {
+            "required": ["ref"]
+          }
+        }
+      ]
+    },
+    "CapabilityQuery": {
+      "type": "object",
+      "properties": {
+        "expression": {
+          "type": "string",
+          "minLength": 1,
+          "description": "JSONata expression computing the node's truth value"
+        },
+        "description": {
+          "description": "Optional explanation of what the expression evaluates",
+          "type": "string"
+        }
+      },
+      "required": ["expression"],
+      "additionalProperties": false
+    },
+    "CapabilityExpression": {
+      "type": "object",
+      "description": "Node-level value of `ruml:expression` (§4.14): the expression combining the results of a node's children.",
+      "properties": {
+        "expression": {
+          "type": "string",
+          "minLength": 1,
+          "description": "JSONata expression computing the node's status from `$children` and the datapoints"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable statement of the rule the expression encodes; required, because the operator alone no longer says what the node does"
+        }
+      },
+      "required": ["expression", "description"],
+      "additionalProperties": false
+    },
+    "Actions": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "description": "Description of the actions declared for the node",
+          "type": "string"
+        },
+        "onTrue": {
+          "description": "Action to run when the node evaluates to true",
+          "$ref": "#/$defs/Action"
+        },
+        "onFalse": {
+          "description": "Action to run when the node evaluates to false",
+          "$ref": "#/$defs/Action"
+        },
+        "onUndefined": {
+          "description": "Action to run when the node evaluates to undefined",
+          "$ref": "#/$defs/Action"
+        }
+      },
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "required": ["onTrue"]
+        },
+        {
+          "required": ["onFalse"]
+        },
+        {
+          "required": ["onUndefined"]
+        }
+      ]
+    },
+    "Action": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "description": "The operation to perform (open vocabulary)"
+        },
+        "ref": {
+          "type": "string",
+          "description": "Symbolic reference to the operation implementation"
+        },
+        "config": {
+          "description": "Optional, runtime-defined configuration for the action",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": {}
+        }
+      },
+      "required": ["operation", "ref"],
+      "additionalProperties": false
+    },
+    "ContextRefs": {
+      "type": "object",
+      "properties": {
+        "refs": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ContextId"
+          },
+          "description": "Ids of root-level context entries referenced by the node",
+          "uniqueItems": true
+        }
+      },
+      "required": ["refs"],
+      "additionalProperties": false
+    },
+    "CapabilityAiQueryNode": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Symbolic reference to the AI model, resolved by the tool at runtime"
+        },
+        "prompt": {
+          "description": "Prompt evaluated for this node",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of what the query determines",
+          "type": "string"
+        },
+        "inputs": {
+          "description": "Inputs (context, datapoints, texts) supplied to the query",
+          "type": "object",
+          "properties": {
+            "context": {
+              "description": "Context entries supplied as input to the query",
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "minLength": 1,
+                        "description": "Id of the referenced context entry"
+                      },
+                      "role": {
+                        "default": "reference",
+                        "description": "Role the context plays in the query (reference or subject)",
+                        "type": "string",
+                        "enum": ["reference", "subject"]
+                      }
+                    },
+                    "required": ["id"],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            },
+            "dataPoints": {
+              "description": "Ids of datapoints supplied as input to the query",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "texts": {
+              "description": "Ids of texts supplied as input to the query",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "config": {
+          "description": "Node-level configuration for the query",
+          "type": "object",
+          "properties": {
+            "deterministic": {
+              "description": "Whether the query should be evaluated deterministically",
+              "type": "boolean"
+            },
+            "effort": {
+              "default": "medium",
+              "description": "Effort the model should spend on the query (low, medium, high)",
+              "type": "string",
+              "enum": ["low", "medium", "high"]
+            },
+            "temperature": {
+              "description": "Sampling temperature for the query, between 0 and 1",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": ["model"],
+      "additionalProperties": false
+    },
+    "TextRefs": {
+      "type": "object",
+      "properties": {
+        "refs": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TextAnchor"
+          },
+          "description": "Anchors into this RUML's own texts; at most one of type represents",
+          "uniqueItems": true,
+          "contains": {
+            "properties": {
+              "type": {
+                "const": "represents"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        }
+      },
+      "required": ["refs"],
+      "additionalProperties": false
+    },
+    "NodeAnchor": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:[^#\\s]+#node/[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "Absolute anchor to a node of one version of another RUML file (§4.15): `<ruml-version-uri>#node/<id>`. Same-document anchors (`#node/…`) are not node anchors."
+    },
+    "NodeRef": {
+      "type": "object",
+      "description": "A reference to a node of another RUML file (§4.15).",
+      "properties": {
+        "uri": {
+          "$ref": "#/$defs/NodeAnchor"
+        }
+      },
+      "required": ["uri"],
+      "additionalProperties": false
+    },
+    "TreeRefs": {
+      "type": "object",
+      "description": "Node payload of ruml:tree-reference (§4.15): references to nodes of other RUML files.",
+      "properties": {
+        "represents": {
+          "$ref": "#/$defs/NodeRef",
+          "description": "The node of another RUML file this node stands for."
+        },
+        "refersTo": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/NodeRef"
+          },
+          "description": "Nodes of other RUML files this node refers to."
+        }
+      },
+      "minProperties": 1,
+      "additionalProperties": false
+    },
+    "TreeInclude": {
+      "type": "object",
+      "description": "Node payload of ruml:tree-include (§4.16): the node of another RUML file whose subtree is evaluated in place of this leaf.",
+      "properties": {
+        "uri": {
+          "$ref": "#/$defs/NodeAnchor"
+        }
+      },
+      "required": ["uri"],
+      "additionalProperties": false
+    },
+    "SetId": {
+      "type": "string",
+      "pattern": "^[a-z_][a-z0-9_]*$"
+    },
+    "DatapointSet": {
+      "type": "object",
+      "description": "A reusable structured type: a named group of datapoints (§4.7.4)",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Display name of the set"
+        },
+        "description": {
+          "type": "string",
+          "description": "What the set represents"
+        },
+        "fields": {
+          "type": "object",
+          "description": "Member datapoints, keyed by datapoint id; a field may itself be type: object (nesting)",
+          "propertyNames": {
+            "$ref": "#/$defs/DatapointId"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/Datapoint"
+          },
+          "minProperties": 1
+        }
+      },
+      "required": ["name", "fields"],
+      "additionalProperties": false
+    },
+    "DatapointsPayload": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "Datapoint definitions, keyed by datapoint id",
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/DatapointId"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/Datapoint"
+          }
+        },
+        "sets": {
+          "type": "object",
+          "description": "Reusable structured types, keyed by set id",
+          "propertyNames": {
+            "$ref": "#/$defs/SetId"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/DatapointSet"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "description": "Payload of datapoints (§4)"
+    },
+    "TextReferencePayload": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "Text definitions, keyed by text id (text_…)",
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/TextId"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/Text"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "description": "Payload of textreference (§4)"
+    },
+    "ContextPayload": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "Context entries, keyed by context id (ctx_…)",
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/ContextId"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/Context"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "description": "Payload of context (§4)"
+    },
+    "AiQueryPayload": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "description": "Root-level configuration for the AI query capability",
+          "type": "object",
+          "properties": {
+            "systemPrompt": {
+              "description": "System prompt applied to all AI queries in the document",
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false,
+      "description": "Payload of aiquery (§4)"
+    },
+    "ProtocolPayload": {
+      "type": "object",
+      "description": "Payload of protocol (§4)",
+      "properties": {
+        "config": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "level": {
+              "type": "string",
+              "enum": ["standard", "verbose"],
+              "default": "standard",
+              "description": "Verbosity of the recorded protocol"
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "PlainPayload": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "description": "Capability-specific configuration",
+          "type": "object",
+          "properties": {},
+          "additionalProperties": {}
+        }
+      },
+      "additionalProperties": false,
+      "description": "Payload of the capability (§4)"
+    },
+    "CapabilityEntry": {
+      "type": "object",
+      "description": "A declared capability (§4.2). Order is significant.",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/CapabilityId",
+          "description": "The capability this entry configures"
+        },
+        "payload": {
+          "type": "object",
+          "description": "Capability-defined content; everything here belongs to the capability"
+        },
+        "required": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the capability must be resolved to evaluate the file"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["data", "decision", "combiner", "reaction"],
+          "description": "The role the rulemap expects a non-official capability to play (§4.1). Official `ruml:` ids have a fixed role and MUST NOT declare one; every other id MUST declare it. A parser that implements the capability MUST reject a role that differs from its implementation. `decision` decides a leaf, `combiner` decides a node from its children."
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "title": "payload of ruml:datapoints",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:datapoints"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/DatapointsPayload"
+              }
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:text-reference",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:text-reference"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/TextReferencePayload"
+              }
+            }
+          }
+        },
+        {
+          "title": "ruml:tree-reference has no payload here",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:tree-reference"
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": ["payload"]
+            }
+          }
+        },
+        {
+          "title": "ruml:tree-include has no payload here",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:tree-include"
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": ["payload"]
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:context",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:context"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/ContextPayload"
+              }
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:ai-query",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:ai-query"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/AiQueryPayload"
+              }
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:protocol",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:protocol"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/ProtocolPayload"
+              }
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:query",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:query"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/PlainPayload"
+              }
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:expression",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:expression"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/PlainPayload"
+              }
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:actions",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:actions"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/PlainPayload"
+              }
+            }
+          }
+        },
+        {
+          "title": "CAP-05 — an official capability does not declare its role",
+          "description": "The role of a `ruml:` capability is fixed by its chapter; only a non-official id declares one.",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/OfficialCapabilityId"
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": ["role"]
+            }
+          }
+        },
+        {
+          "title": "CAP-03 — a non-official capability declares its role",
+          "description": "A `ruml:draft/` or reverse-domain capability has no role in this specification; its root entry states the role the rulemap expects.",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "not": {
+                  "$ref": "#/$defs/OfficialCapabilityId"
+                }
+              }
+            }
+          },
+          "then": {
+            "required": ["role"]
+          }
+        },
+        {
+          "title": "CAP-11 — ruml:expression is declared required",
+          "description": "A tool that cannot evaluate the combiner must reject the file under CAP-01, so the declaration states `required: true` explicitly; omitting it or setting it to `false` is invalid.",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:expression"
+              }
+            }
+          },
+          "then": {
+            "required": ["required"],
+            "properties": {
+              "required": {
+                "const": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    "NodeCapabilityEntry": {
+      "type": "object",
+      "description": "A capability carried by a node (§4.3): `id` and `payload` are both required. Order is significant.",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/CapabilityId",
+          "description": "The capability this entry configures"
+        },
+        "payload": {
+          "type": "object",
+          "description": "Capability-defined content; everything here belongs to the capability"
+        }
+      },
+      "required": ["id", "payload"],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "title": "payload of ruml:query",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:query"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/CapabilityQuery"
+              }
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:actions",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:actions"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/Actions"
+              }
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:context",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:context"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/ContextRefs"
+              }
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:ai-query",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:ai-query"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/CapabilityAiQueryNode"
+              }
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:expression",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:expression"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/CapabilityExpression"
+              }
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:text-reference",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:text-reference"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/TextRefs"
+              }
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:tree-reference",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:tree-reference"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/TreeRefs"
+              }
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:tree-include",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:tree-include"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/TreeInclude"
+              }
+            }
+          }
+        },
+        {
+          "title": "ruml:protocol MUST NOT appear on a node",
+          "description": "ruml:protocol has no node-level data (§4.13); it is declared at root only.",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:protocol"
+              }
+            }
+          },
+          "then": false
+        }
+      ]
+    },
+    "UniqueOfficialCapabilityIds": {
+      "description": "Each official `ruml:` capability id may appear at most once (§4.2, CAP-10). Only the `ruml:` ids defined by this spec version can be constrained here; duplicate `ruml:draft/…` and reverse-domain ids that differ in payload are not detectable in JSON Schema and MUST be rejected by the parser.",
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:datapoints"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:text-reference"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:tree-reference"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:tree-include"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:context"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:query"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:ai-query"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:actions"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:protocol"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:expression"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        }
+      ]
+    },
+    "UniqueNodeDataCapabilityIds": {
+      "description": "On a node, each official `ruml:` capability id with the `data` role may appear at most once; ids with the `decision` or `reaction` role may repeat (§4.3, CAP-06). Only the `ruml:` ids defined by this spec version can be constrained here; for `ruml:draft/…` and reverse-domain ids the role comes from the root declaration, so the parser MUST check them.",
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:datapoints"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:text-reference"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:tree-reference"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:context"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "title": "§1.3 — allow undefined operator in nodes",
+      "description": "Nodes may use the `undefined` operator only when `metadata.status` is `'draft'`.",
+      "if": {
+        "properties": {
+          "metadata": {
+            "properties": {
+              "status": {
+                "const": "draft"
+              }
+            }
+          }
+        }
+      },
+      "then": true,
+      "else": {
+        "properties": {
+          "rulemap": {
+            "properties": {
+              "nodes": {
+                "additionalProperties": {
+                  "properties": {
+                    "operator": {
+                      "not": {
+                        "const": "undefined"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "NODE-07 — no operator on a leaf node outside a draft",
+      "description": "Unless `metadata.status` is `'draft'`, a node without `children` must not have `operator`. In a draft, a leaf node may have any operator, which an evaluator ignores.",
+      "if": {
+        "properties": {
+          "metadata": {
+            "properties": {
+              "status": {
+                "const": "draft"
+              }
+            }
+          }
+        }
+      },
+      "then": true,
+      "else": {
+        "properties": {
+          "rulemap": {
+            "properties": {
+              "nodes": {
+                "additionalProperties": {
+                  "if": {
+                    "not": {
+                      "required": ["children"]
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "operator": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "CAP-14 — check node capabilities",
+      "description": "If the root `capabilities` field is absent or empty, no node may carry a `capabilities` field.",
+      "if": {
+        "anyOf": [
+          {
+            "not": {
+              "required": ["capabilities"]
+            }
+          },
+          {
+            "properties": {
+              "capabilities": {
+                "maxItems": 0
+              }
+            }
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "rulemap": {
+            "properties": {
+              "nodes": {
+                "additionalProperties": {
+                  "properties": {
+                    "capabilities": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "§4.8, §4.9, §4.16 — decision-capability nodes must be leaves",
+      "description": "A node carrying `capabilities[\"ruml:query\"]` , `capabilities[\"ruml:ai-query\"]` or `capabilities[\"ruml:tree-include\"]` must not have a non-empty `children` array.",
+      "properties": {
+        "rulemap": {
+          "properties": {
+            "nodes": {
+              "additionalProperties": {
+                "if": {
+                  "required": ["capabilities"],
+                  "properties": {
+                    "capabilities": {
+                      "contains": {
+                        "properties": {
+                          "id": {
+                            "enum": ["ruml:query", "ruml:ai-query", "ruml:tree-include"]
+                          }
+                        },
+                        "required": ["id"]
+                      }
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "children": {
+                      "maxItems": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "§3.6.4 — the DELEGATED operator and its combiner imply each other",
+      "description": "A node with `operator: \"DELEGATED\"` and children must carry the capability that combines them; a node carrying `ruml:expression` must use that operator and have children. A leaf node with that operator is rejected outside a draft by the NODE-07 entry; in a draft it is accepted and needs no combiner (rules NODE-07, OP-02). That the combiner is declared with `role: \"combiner\"` is a cross-reference into the root `capabilities` and is checked at the semantic layer (rule OP-02).",
+      "properties": {
+        "rulemap": {
+          "properties": {
+            "nodes": {
+              "additionalProperties": {
+                "allOf": [
+                  {
+                    "if": {
+                      "required": ["operator", "children"],
+                      "properties": {
+                        "operator": {
+                          "const": "DELEGATED"
+                        }
+                      }
+                    },
+                    "then": {
+                      "required": ["capabilities"],
+                      "properties": {
+                        "capabilities": {
+                          "minItems": 1,
+                          "contains": {
+                            "required": ["id"],
+                            "properties": {
+                              "id": {
+                                "const": "ruml:expression"
+                              }
+                            }
+                          },
+                          "minContains": 0,
+                          "maxContains": 1
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "if": {
+                      "required": ["capabilities"],
+                      "properties": {
+                        "capabilities": {
+                          "contains": {
+                            "required": ["id"],
+                            "properties": {
+                              "id": {
+                                "const": "ruml:expression"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "then": {
+                      "required": ["operator", "children"],
+                      "properties": {
+                        "operator": {
+                          "const": "DELEGATED"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "§4.16 — an including node does not also represent a node (TREE-08)",
+      "description": "A node carrying `ruml:tree-include` already stands for the included node and must not have `represents` in its `ruml:tree-reference` payload.",
+      "properties": {
+        "rulemap": {
+          "properties": {
+            "nodes": {
+              "additionalProperties": {
+                "if": {
+                  "required": ["capabilities"],
+                  "properties": {
+                    "capabilities": {
+                      "contains": {
+                        "required": ["id"],
+                        "properties": {
+                          "id": {
+                            "const": "ruml:tree-include"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "capabilities": {
+                      "not": {
+                        "contains": {
+                          "required": ["id", "payload"],
+                          "properties": {
+                            "id": {
+                              "const": "ruml:tree-reference"
+                            },
+                            "payload": {
+                              "required": ["represents"]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

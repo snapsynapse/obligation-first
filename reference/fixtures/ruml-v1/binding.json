@@ -1,0 +1,33 @@
+{
+  "fixture": "synthetic-ruml-of-v1",
+  "legal_source": "fictional draft; not admitted law",
+  "execution": "not-run; result files are author-written expectations",
+  "mode": "complete",
+  "encoding_uri": "https://example.org/ruml-demo/rules/acknowledgement-1.0.0.ruml",
+  "local_rulemap": "acknowledgement.ruml",
+  "obligation": "https://example.org/ruml-demo/obligation/acknowledge",
+  "term": "https://example.org/ruml-demo/term/section-1",
+  "node_id": "9fcff900-2e5f-4b16-98af-96349fb04111",
+  "node_path": "1",
+  "scope": "trigger-conditions-only",
+  "upstream": {
+    "repository": "https://github.com/Law-as-Code-Institute/ruml",
+    "commit": "d2ac818f6ed87c2bcf5b69430adf2efa8ba3c6a4",
+    "specification": "1.0.0",
+    "format_version": "1.0"
+  },
+  "sha256_file_bytes": {
+    "acknowledgement.ruml": "ae4155f116abb1014b84a21bf9cd04cbcfda78adeb7c72cfeed7cfd0346dedec",
+    "cases.json": "d5afae965afa3d18af9e6119f2968ae6a80fc28f0041356f67d1bb148648869b",
+    "complete.ruml-result": "5a76e8ffaa747f97196fb863681d702c242c2a043548d6c6632862ec10244d3d",
+    "ineligible.ruml-result": "e7e9c34f2a57666be1241790342d62b5744144c7474833aa99cb04afdf7d78fc",
+    "missing-eligibility.ruml-result": "a804093463837173c97e25f744da746978f39e7f3f1d2c178d3e90147575536b",
+    "records/instrument.json": "b054fcc80a11cd9c491952db1e3763a6fca2409af688b54e0b6f4ed37457e4bd",
+    "records/term.json": "525b30ed03f9270c4c14273e3ef884ccb622d52d786ea873e7a5140591c74e0f",
+    "records/obligation.json": "5bf5c319de178cce97961d9fbe9c6cb2ddb3496174ef980aa905ec18437530c0",
+    "records/party.json": "1831207d15630e9a7cbe3a635e4c00b40ede126d38004453764833f434bdaa17",
+    "upstream/ruml.schema.json": "27678378185886554d8c8eb601877ffaf532919656410f9d5ffb68d91acc893b",
+    "upstream/ruml-result.schema.json": "1f0d9038a99e1f0b88b36c99f67a630dc1b2900bca01931f1b4d78aa9b25a14c",
+    "upstream/LICENSE-APACHE": "074e6e32c86a4c0ef8b3ed25b721ca23aca83df277cd88106ef7177c354615ff"
+  }
+}

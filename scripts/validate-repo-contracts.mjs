@@ -94,6 +94,8 @@ const PROJECT_OWNED_HOSTS = new Set([
 ]);
 
 const ALLOWED_HTTP_PREFIXES = [
+  // Literal LegalDocML.de XML namespace in the pinned upstream RUML schema.
+  "http://Inhaltsdaten.LegalDocML.de/1.8.2/",
   "http://www.w3.org/",
   "http://docs.oasis-open.org/legaldocml/ns/akn/3.0",
   "http://docs.oasis-open.org/legalruleml/ns/v1.0/",

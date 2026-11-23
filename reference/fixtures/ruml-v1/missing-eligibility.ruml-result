@@ -1,0 +1,36 @@
+{
+  "$format": "RUML-Result",
+  "$specVersion": "1.0",
+  "rumlReference": {
+    "id": "67f684cd-73b1-4d2f-9a0b-b6debc67a444"
+  },
+  "evaluation": {
+    "id": "cb7f631a-47d5-4835-b226-8d3d59dd1102",
+    "timestamp": "2026-11-22T00:00:00Z",
+    "mode": "complete",
+    "caseId": "missing-eligibility",
+    "results": {
+      "1": {
+        "lexId": "1",
+        "status": "undefined",
+        "reason": {
+          "type": "default",
+          "message": "Eligibility input is absent."
+        }
+      },
+      "1.1": {
+        "lexId": "2",
+        "status": "undefined",
+        "reason": {
+          "type": "default",
+          "message": "Eligibility input is absent."
+        }
+      },
+      "1.2": {
+        "lexId": "3",
+        "status": "true",
+        "reason": "Author-written synthetic expectation; not an executed result."
+      }
+    }
+  }
+}

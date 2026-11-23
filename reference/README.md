@@ -7,6 +7,8 @@ Current usage is indexed in the repository README; remaining work is in ROADMAP.
 | [Implementation status](implementation-status.json) | Current released-reference and offline-tooling boundary; mirrored to `/evaluation-status.json` |
 | [Federation reconciliation](federation-reconciliation-v1.md) | Operational evidence evaluator; EveryAILaw owns collection and scheduling, independently of the released record schema |
 | [Adopter kit](adopter-kit.md) | Current schema, graph validation, and export writer usage |
+| [RUML quickstart](ruml-quickstart.md) | Experimental current-schema integration, synthetic fixture and structural checks; not evaluator certification |
+| [RUML crosswalk](crosswalks/ruml.md) | Directional mapping, identity, legal meaning and runtime qualifications for RUML 1.0.0 |
 | [IRI federation and crosswalks](iri-naming-and-crosswalks.md) | Accepted identifier and naming-profile decision; its initial implementation plan is historical |
 | [Relationship migration review](relationship-migration-review.md) | Current source-bound relationship-change and owner-comparison contract |
 | [Lifecycle relationship checks](lifecycle-relationship-checks.md) | Candidate target-agreement and predecessor-review policy for issue 6; issue 4 production-evidence assessment |

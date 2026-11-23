@@ -1,0 +1,108 @@
+{
+  "$format": "RUML",
+  "$specVersion": "1.0",
+  "metadata": {
+    "id": "67f684cd-73b1-4d2f-9a0b-b6debc67a444",
+    "version": "1.0.0",
+    "created": "2026-11-22T00:00:00Z",
+    "modified": "2026-11-22T00:00:00Z",
+    "status": "draft",
+    "title": "Synthetic acknowledgement trigger"
+  },
+  "capabilities": [
+    {
+      "id": "ruml:datapoints",
+      "required": true,
+      "payload": {
+        "data": {
+          "dp_eligible": {
+            "name": "Request is eligible",
+            "type": "boolean",
+            "binding": {
+              "type": "input"
+            }
+          },
+          "dp_evidence_complete": {
+            "name": "Evidence is complete",
+            "type": "boolean",
+            "binding": {
+              "type": "input"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ruml:query",
+      "required": true
+    },
+    {
+      "id": "ruml:text-reference",
+      "required": true,
+      "payload": {
+        "data": {
+          "text_policy": {
+            "title": "Synthetic section 1",
+            "uri": "https://example.org/ruml-demo/source#section-1",
+            "timestamp": "2026-11-22T00:00:00Z",
+            "text": "Synthetic section 1. When a request is eligible and its evidence is complete, Example Review Office must send an acknowledgement. This draft is a fictional teaching example, not law.",
+            "language": "en",
+            "status": "draft"
+          }
+        }
+      }
+    }
+  ],
+  "rulemap": {
+    "nodes": {
+      "1": {
+        "id": "9fcff900-2e5f-4b16-98af-96349fb04111",
+        "label": "Synthetic trigger conditions are satisfied",
+        "operator": "AND",
+        "children": [
+          "2",
+          "3"
+        ],
+        "capabilities": [
+          {
+            "id": "ruml:text-reference",
+            "payload": {
+              "refs": [
+                {
+                  "id": "text_policy",
+                  "type": "represents"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "2": {
+        "id": "875bf9ab-b00b-41fb-9c89-fc21ab875222",
+        "label": "Request is eligible",
+        "capabilities": [
+          {
+            "id": "ruml:query",
+            "payload": {
+              "expression": "$exists(dp_eligible) ? dp_eligible : ()",
+              "description": "Missing input yields no result (undefined), never false."
+            }
+          }
+        ]
+      },
+      "3": {
+        "id": "df8c6e3e-0bae-43fb-8e7c-8cf68fb63333",
+        "label": "Evidence is complete",
+        "capabilities": [
+          {
+            "id": "ruml:query",
+            "payload": {
+              "expression": "$exists(dp_evidence_complete) ? dp_evidence_complete : ()",
+              "description": "Missing input yields no result (undefined), never false."
+            }
+          }
+        ]
+      }
+    }
+  }
+}
