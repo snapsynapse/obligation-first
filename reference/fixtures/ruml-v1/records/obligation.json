@@ -1,0 +1,25 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "source": "https://example.org/ruml-demo/source#section-1",
+  "source_version": "synthetic-1.0.0",
+  "evidence_type": "synthetic-fixture",
+  "language": "en",
+  "@type": "of:Requirement",
+  "@id": "https://example.org/ruml-demo/obligation/acknowledge",
+  "title": "Send an acknowledgement when the synthetic trigger is satisfied",
+  "created_by": "https://example.org/ruml-demo/term/section-1",
+  "duty_holders": [
+    "https://example.org/ruml-demo/party/review-office"
+  ],
+  "trigger": "A request is eligible and its evidence is complete.",
+  "content": "Example Review Office must send an acknowledgement.",
+  "executableEncoding": {
+    "kind": "other",
+    "uri": "https://example.org/ruml-demo/rules/acknowledgement-1.0.0.ruml",
+    "version": "1.0.0",
+    "notes": "RUML 1.0; evaluates trigger conditions only, not performance of the duty. Synthetic URI; see binding.json for local file and node mapping."
+  },
+  "lifecycle_status": "draft",
+  "operative_status": "inactive",
+  "enforcement_status": "unknown"
+}

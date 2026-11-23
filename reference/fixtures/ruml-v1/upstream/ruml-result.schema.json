@@ -1,0 +1,624 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ruml.org/1.0.0/schemas/ruml-result.schema.json",
+  "title": "RUML-Result — RUML Evaluation Result Format",
+  "description": "JSON-based format capturing the result of evaluating a RUML rulemap against a case.",
+  "x-ruml-format": "RUML-Result",
+  "x-ruml-spec-version": "1.0",
+  "type": "object",
+  "properties": {
+    "$format": {
+      "type": "string",
+      "const": "RUML-Result",
+      "description": "Format discriminator identifying this as a RUML result"
+    },
+    "$specVersion": {
+      "type": "string",
+      "description": "RUML spec version this result conforms to",
+      "enum": ["1.0"]
+    },
+    "rumlReference": {
+      "description": "Reference to the source RUML document this result was produced from",
+      "$ref": "#/$defs/RumlReference"
+    },
+    "evaluation": {
+      "description": "The evaluation run and its per-node results, indexed by path",
+      "$ref": "#/$defs/Evaluation"
+    }
+  },
+  "required": ["$format", "$specVersion", "rumlReference", "evaluation"],
+  "additionalProperties": false,
+  "$defs": {
+    "Uuid": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "RumlReference": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Id of the source RUML document evaluated",
+          "$ref": "#/$defs/Uuid"
+        },
+        "hash": {
+          "description": "Integrity hash pinning the exact RUML content evaluated (`<algorithm>:<hex>`)",
+          "type": "string",
+          "pattern": "^(?:sha3-256|sha256|blake3):[0-9a-f]{64}$"
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+    },
+    "EvaluationMode": {
+      "type": "string",
+      "enum": ["optimized", "complete"],
+      "description": "Mode under which the rulemap was evaluated (e.g. `optimized` short-circuits branches)."
+    },
+    "CapabilityId": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/OfficialCapabilityId"
+        },
+        {
+          "$ref": "#/$defs/DraftCapabilityId"
+        },
+        {
+          "$ref": "#/$defs/ReverseDomainCapabilityId"
+        }
+      ]
+    },
+    "OfficialCapabilityId": {
+      "type": "string",
+      "enum": [
+        "ruml:datapoints",
+        "ruml:text-reference",
+        "ruml:context",
+        "ruml:query",
+        "ruml:ai-query",
+        "ruml:expression",
+        "ruml:actions",
+        "ruml:protocol"
+      ],
+      "description": "Official RUML capability id in the reserved `ruml:` namespace."
+    },
+    "DraftCapabilityId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^ruml:draft(?:\\/[A-Za-z0-9_-]+)+$",
+      "description": "Local draft capability id (e.g. `ruml:draft/my-capability`). Used for in-progress capabilities."
+    },
+    "ReverseDomainCapabilityId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9_-]+(?:\\.[A-Za-z0-9_-]+)+(?:\\/[A-Za-z0-9_-]+)+$",
+      "description": "Third-party capability id in reverse-domain form (e.g. `com.example/my-capability`)."
+    },
+    "NodePath": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*(\\.[1-9][0-9]*)*$"
+    },
+    "NodeResult": {
+      "description": "Result of one node instance; its status decides the shape of `reason`",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/TrueResult"
+        },
+        {
+          "$ref": "#/$defs/FalseResult"
+        },
+        {
+          "$ref": "#/$defs/UndefinedResult"
+        },
+        {
+          "$ref": "#/$defs/IgnoredResult"
+        }
+      ]
+    },
+    "NodeResultBase": {
+      "type": "object",
+      "description": "Fields shared by the results of every status",
+      "properties": {
+        "lexId": {
+          "description": "LexId of the node this result refers to",
+          "$ref": "#/$defs/LexId"
+        },
+        "evaluatedAt": {
+          "description": "Optional timestamp when the node was evaluated",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "capabilities": {
+          "description": "Optional resolved capability result values for the node",
+          "$ref": "#/$defs/ResultNodeCapabilities"
+        }
+      },
+      "required": ["lexId"]
+    },
+    "TrueResult": {
+      "description": "Result of a node with status `true`",
+      "allOf": [
+        {
+          "$ref": "#/$defs/NodeResultBase"
+        }
+      ],
+      "properties": {
+        "status": {
+          "description": "Final evaluated status of the node",
+          "const": "true"
+        },
+        "reason": {
+          "description": "Human-readable explanation of the outcome",
+          "type": "string"
+        }
+      },
+      "required": ["status", "reason"],
+      "unevaluatedProperties": false
+    },
+    "FalseResult": {
+      "description": "Result of a node with status `false`",
+      "allOf": [
+        {
+          "$ref": "#/$defs/NodeResultBase"
+        }
+      ],
+      "properties": {
+        "status": {
+          "description": "Final evaluated status of the node",
+          "const": "false"
+        },
+        "reason": {
+          "description": "Human-readable explanation of the outcome",
+          "type": "string"
+        }
+      },
+      "required": ["status", "reason"],
+      "unevaluatedProperties": false
+    },
+    "UndefinedResult": {
+      "description": "Result of a node with status `undefined`",
+      "allOf": [
+        {
+          "$ref": "#/$defs/NodeResultBase"
+        }
+      ],
+      "properties": {
+        "status": {
+          "description": "Final evaluated status of the node",
+          "const": "undefined"
+        },
+        "reason": {
+          "description": "Why the node is `undefined`",
+          "$ref": "#/$defs/UndefinedReason"
+        }
+      },
+      "required": ["status", "reason"],
+      "unevaluatedProperties": false
+    },
+    "IgnoredResult": {
+      "description": "Result of a node with status `ignored`",
+      "allOf": [
+        {
+          "$ref": "#/$defs/NodeResultBase"
+        }
+      ],
+      "properties": {
+        "status": {
+          "description": "Final evaluated status of the node",
+          "const": "ignored"
+        },
+        "reason": {
+          "description": "Why the node was ignored",
+          "$ref": "#/$defs/IgnoredReason"
+        }
+      },
+      "required": ["status", "reason"],
+      "unevaluatedProperties": false
+    },
+    "LexId": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$"
+    },
+    "ResultNodeCapabilities": {
+      "type": "array",
+      "description": "Node-level capability results, in order (§5.1); the order is significant",
+      "items": {
+        "$ref": "#/$defs/ResultNodeCapabilityEntry"
+      }
+    },
+    "CapabilityJson": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CapabilityJson"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/CapabilityJson"
+          }
+        }
+      ]
+    },
+    "IgnoredReason": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "Reason of why the node was ignored",
+          "$ref": "#/$defs/IgnoredReasonType"
+        },
+        "trigger": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Identifier of the sibling/node that caused the ignore"
+        },
+        "operator": {
+          "description": "Operator of the parent node; tools use it to display the result",
+          "$ref": "#/$defs/Operator"
+        },
+        "mode": {
+          "description": "Evaluation mode under which the node was ignored",
+          "$ref": "#/$defs/EvaluationMode"
+        }
+      },
+      "required": ["type", "trigger", "operator", "mode"],
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "type": {
+            "const": "shortCircuit"
+          }
+        },
+        "required": ["type"]
+      },
+      "then": {
+        "properties": {
+          "operator": {
+            "$ref": "#/$defs/ShortCircuitOperator"
+          }
+        }
+      }
+    },
+    "IgnoredReasonType": {
+      "type": "string",
+      "enum": ["shortCircuit", "manualSkip", "conditionalDeactivation"]
+    },
+    "ShortCircuitOperator": {
+      "type": "string",
+      "description": "Operator that short-circuited; OR, NOT_OR and DELEGATED cannot occur, since they MUST NOT short-circuit (§3.6.2, §3.6.4, §5.0)",
+      "enum": ["AND", "XOR", "NOT_AND", "NOT_XOR", "undefined"]
+    },
+    "UndefinedReason": {
+      "type": "object",
+      "description": "Why the node is `undefined`",
+      "properties": {
+        "type": {
+          "description": "Cause: `error` (a technical error, such as a failed API call, a timeout or exceeding the maximum recursion depth of §6.4) or `default` (any other cause)",
+          "enum": ["error", "default"]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable explanation"
+        }
+      },
+      "required": ["type", "message"],
+      "additionalProperties": false
+    },
+    "Operator": {
+      "type": "string",
+      "enum": ["AND", "OR", "XOR", "NOT_AND", "NOT_OR", "NOT_XOR", "DELEGATED", "undefined"]
+    },
+    "Evaluation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique id of this evaluation run",
+          "$ref": "#/$defs/Uuid"
+        },
+        "timestamp": {
+          "description": "Timestamp when the evaluation completed",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "mode": {
+          "description": "Mode under which the rulemap was evaluated",
+          "$ref": "#/$defs/EvaluationMode"
+        },
+        "caseId": {
+          "description": "Optional id of the case this evaluation belongs to",
+          "type": "string"
+        },
+        "userId": {
+          "description": "Optional id of the user who ran the evaluation",
+          "type": "string"
+        },
+        "toolId": {
+          "description": "Optional id of the tool that produced this result",
+          "type": "string"
+        },
+        "toolVersion": {
+          "description": "Optional version of the tool that produced this result",
+          "type": "string"
+        },
+        "startTimestamp": {
+          "description": "Optional timestamp when the evaluation started",
+          "$ref": "#/$defs/Timestamp"
+        },
+        "capabilities": {
+          "type": "array",
+          "description": "Capabilities active during evaluation, in order; the order is significant",
+          "items": {
+            "$ref": "#/$defs/ResultCapabilityEntry"
+          }
+        },
+        "results": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/NodePath"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/NodeResult"
+          },
+          "description": "Per-node evaluation results, keyed by node lex-path"
+        }
+      },
+      "required": ["id", "timestamp", "mode", "results"],
+      "additionalProperties": false
+    },
+    "CapabilityQueryResult": {
+      "type": "object",
+      "properties": {
+        "expression": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The query expression that was evaluated"
+        },
+        "inputs": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/CapabilityJson"
+          },
+          "description": "Resolved input values referenced by the expression"
+        },
+        "result": {
+          "type": "string",
+          "enum": ["true", "false", "undefined"],
+          "description": "Computed result of evaluating the expression. Same string vocabulary as node status, without 'ignored'."
+        }
+      },
+      "required": ["expression", "inputs", "result"],
+      "additionalProperties": false
+    },
+    "CapabilityExpressionResult": {
+      "type": "object",
+      "description": "Node-result payload of `ruml:expression` (§4.14): what the expression was evaluated against.",
+      "properties": {
+        "expression": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The expression that was evaluated"
+        },
+        "inputs": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/CapabilityJson"
+          },
+          "description": "Resolved datapoint values referenced by the expression; empty when it reads none"
+        },
+        "children": {
+          "type": "array",
+          "description": "The child results the expression saw, in `children` order",
+          "items": {
+            "type": "object",
+            "properties": {
+              "lexId": {
+                "$ref": "#/$defs/LexId"
+              },
+              "status": {
+                "type": "string",
+                "enum": ["true", "false"],
+                "description": "The child's status as the expression saw it; the expression does not run when a child is `undefined`, so this payload exists only when every child is `true` or `false`"
+              }
+            },
+            "required": ["lexId", "status"],
+            "additionalProperties": false
+          }
+        },
+        "result": {
+          "type": "string",
+          "enum": ["true", "false", "undefined"],
+          "description": "Computed result of evaluating the expression. Same string vocabulary as node status, without 'ignored'."
+        }
+      },
+      "required": ["expression", "inputs", "children", "result"],
+      "additionalProperties": false
+    },
+    "CloudEvent": {
+      "type": "object",
+      "description": "A CloudEvents v1.0 event under the RUML profile (§4.13). Extension attributes are permitted.",
+      "properties": {
+        "specversion": {
+          "const": "1.0"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique together with source"
+        },
+        "source": {
+          "type": "string",
+          "format": "uri-reference",
+          "minLength": 1,
+          "description": "Identifies the evaluating engine; an absolute URI is RECOMMENDED"
+        },
+        "type": {
+          "description": "A ruml.* event type, or a custom type not using the ruml. prefix",
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "ruml.evaluation.started",
+                "ruml.evaluation.completed",
+                "ruml.evaluation.aborted",
+                "ruml.node.evaluated",
+                "ruml.node.skipped",
+                "ruml.datapoint.resolved",
+                "ruml.action.triggered",
+                "ruml.warning",
+                "ruml.error"
+              ]
+            },
+            {
+              "type": "string",
+              "not": {
+                "pattern": "^ruml\\."
+              }
+            }
+          ]
+        },
+        "time": {
+          "$ref": "#/$defs/Timestamp",
+          "description": "REQUIRED in this profile, unlike in CloudEvents"
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Node path or datapoint id the event refers to"
+        },
+        "data": {
+          "description": "Event payload as a direct JSON value"
+        }
+      },
+      "required": ["specversion", "id", "source", "type", "time"]
+    },
+    "ProtocolResult": {
+      "type": "object",
+      "description": "The recorded evaluation protocol (§4.13)",
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["standard", "verbose"],
+          "description": "The verbosity the protocol was recorded at"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CloudEvent"
+          },
+          "description": "CloudEvents v1.0 JSON Batch Format"
+        }
+      },
+      "required": ["events"],
+      "additionalProperties": false
+    },
+    "ResultCapabilityEntry": {
+      "type": "object",
+      "description": "A capability active during evaluation (§5.1). Order is significant.",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/CapabilityId",
+          "description": "The capability this entry reports on"
+        },
+        "payload": {
+          "type": "object",
+          "description": "Capability-defined content produced by the evaluation"
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "title": "payload of ruml:protocol",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:protocol"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/ProtocolResult"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ResultNodeCapabilityEntry": {
+      "description": "A capability result carried by a node result (§5.1). Same entry shape as ResultCapabilityEntry, with node-level result payloads. Order is significant.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/ResultCapabilityEntry"
+        },
+        {
+          "title": "payload of ruml:query",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:query"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/CapabilityQueryResult"
+              }
+            }
+          }
+        },
+        {
+          "title": "payload of ruml:expression",
+          "if": {
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "const": "ruml:expression"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "payload": {
+                "$ref": "#/$defs/CapabilityExpressionResult"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

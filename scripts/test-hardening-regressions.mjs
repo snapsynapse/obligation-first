@@ -774,3 +774,4 @@ await import("./test-source-meaning-replay.mjs");
 await import("./test-hosted-artifact-verifier.mjs");
 await import("./test-colorado-evolution-companion.mjs");
 await import("./test-publication-hygiene.mjs");
+await import("./test-ruml-example.mjs");

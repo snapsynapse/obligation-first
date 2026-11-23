@@ -1,0 +1,17 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "source": "https://example.org/ruml-demo/source#section-1",
+  "source_version": "synthetic-1.0.0",
+  "evidence_type": "synthetic-fixture",
+  "language": "en",
+  "@type": "of:Term",
+  "@id": "https://example.org/ruml-demo/term/section-1",
+  "parent_instrument": "https://example.org/ruml-demo/instrument/policy",
+  "text": "Synthetic section 1. When a request is eligible and its evidence is complete, Example Review Office must send an acknowledgement. This draft is a fictional teaching example, not law.",
+  "creates": [
+    "https://example.org/ruml-demo/obligation/acknowledge"
+  ],
+  "lifecycle_status": "draft",
+  "operative_status": "inactive",
+  "enforcement_status": "unknown"
+}

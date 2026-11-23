@@ -1,0 +1,19 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "source": "https://example.org/ruml-demo/source#section-1",
+  "source_version": "synthetic-1.0.0",
+  "evidence_type": "synthetic-fixture",
+  "language": "en",
+  "@type": "of:Instrument",
+  "@id": "https://example.org/ruml-demo/instrument/policy",
+  "title": "Synthetic acknowledgement policy",
+  "kind": "synthetic-policy",
+  "normative_force": "nonbinding",
+  "hasTerm": [
+    "https://example.org/ruml-demo/term/section-1"
+  ],
+  "notes": "Fictional draft; jurisdiction and legal authority are not asserted.",
+  "lifecycle_status": "draft",
+  "operative_status": "inactive",
+  "enforcement_status": "unknown"
+}

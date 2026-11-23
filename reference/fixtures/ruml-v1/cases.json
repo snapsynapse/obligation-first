@@ -1,0 +1,41 @@
+{
+  "mode": "complete",
+  "origin": "author-written expectations; not evaluator output",
+  "cases": [
+    {
+      "id": "complete",
+      "inputs": {
+        "dp_eligible": true,
+        "dp_evidence_complete": true
+      },
+      "expected": {
+        "1": "true",
+        "1.1": "true",
+        "1.2": "true"
+      }
+    },
+    {
+      "id": "ineligible",
+      "inputs": {
+        "dp_eligible": false,
+        "dp_evidence_complete": true
+      },
+      "expected": {
+        "1": "false",
+        "1.1": "false",
+        "1.2": "true"
+      }
+    },
+    {
+      "id": "missing-eligibility",
+      "inputs": {
+        "dp_evidence_complete": true
+      },
+      "expected": {
+        "1": "undefined",
+        "1.1": "undefined",
+        "1.2": "true"
+      }
+    }
+  ]
+}

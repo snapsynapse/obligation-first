@@ -1,5 +1,7 @@
 # Adopter kit
 
+Using RUML? Start with the [RUML quickstart](ruml-quickstart.md), synthetic fixture and [experimental crosswalk](crosswalks/ruml.md). They use the current encoding reference without changing the shared schema or supplying a RUML evaluator.
+
 The adopter kit is the reusable path from a project-local model to Obligation-First v0.6 records. It exists because the EveryAILaw binding surfaced a repeatable pattern that PubLedge and AI Incident Law should not have to rediscover.
 
 Status: v0.6 repository helper. It is versioned with the specification and is not a separately published npm package.

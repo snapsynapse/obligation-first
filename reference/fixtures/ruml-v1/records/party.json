@@ -1,0 +1,8 @@
+{
+  "@context": "https://obligationfirst.org/v1/context.jsonld",
+  "@type": "of:Party",
+  "@id": "https://example.org/ruml-demo/party/review-office",
+  "name": "Example Review Office (fictional)",
+  "party_kind": "organization",
+  "notes": "Synthetic duty holder; no real institution or legal authority is asserted."
+}
