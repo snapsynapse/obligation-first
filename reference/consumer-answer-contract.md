@@ -15,7 +15,7 @@ A journey opts in with an `answer` block: a finite `question`, the traversal lay
 
 `reference/fixtures/consumer-traversals-2026-09-24.json` carries two answers, frozen on the adopter commits in its `answer_tuple`:
 
-- Mata v. Avianca sanctions determination: a category association with zero direct duty relations. The 40 human-oversight duties are related duties, not duties the court applied. Zero direct relations is an allowed coverage result; no edge is invented to change it. The [Vietnam review](reviews/consumer-vietnam-provenance-2026-11-22.md) records the revised source qualification on one associated duty.
+- The Mata v. Avianca sanctions determination reaches 44 duties through the human-oversight category. It has zero direct duty relations. The traversal establishes a category association and makes no finding that these laws applied to the case. The [source reconciliation](reviews/consumer-mata-reconciliation-2026-11-24.md) covers the prior 42 duties. The [three-country admission review](reviews/consumer-three-country-admissions-2026-11-24.md) covers the two additions.
 - Draft PubLedge Utah OAIP chatbot-disclosure term: one direct anchor to the EveryAILaw SB 149 term and its statutory disclosure duty. The draft stays `draft-not-in-force` after joining operative law, the statutory duty's deontic class stays `unclassified`, its duty-holder parties and source version stay `unknown`, and the draft's ten unresolved questions travel with the answer. The [October 18 fixture review](reviews/consumer-expectation-2026-10-18.md) accepts their preservation on the recorded tuple, separately from legal-content acceptance.
 
 Replay against sibling checkouts through `npm run verify:federation`, or directly:

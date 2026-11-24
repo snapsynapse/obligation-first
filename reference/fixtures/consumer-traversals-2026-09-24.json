@@ -3,9 +3,9 @@
   "reviewed_on": null,
   "scope": "Public identifiers and declared graph boundaries only; no restricted source text. Exact target sets are reviewed continuity fixtures, not applicability conclusions.",
   "answer_tuple": {
-    "every-ai-law": "3067a3e74b43a985e3e1b63f024033984bb97edc",
+    "every-ai-law": "719ed9e93dc0bdfd58005d4d0676691bb4df254b",
     "ai-incident-law": "924ff67e5ddffcc286e1536faf45f39a14abf1a4",
-    "publedge": "f08300f2aaf607e43b976cf9a7714223fc7af5a2"
+    "publedge": "48591eb18521f0cec744613e7da1cb932af480fb"
   },
   "cases": [
     {
@@ -40,6 +40,7 @@
             "https://everyailaw.com/obligation/idaho-s1297-parental-controls-human-oversight.json",
             "https://everyailaw.com/obligation/iso-38507-human-oversight.json",
             "https://everyailaw.com/obligation/it-ai-law-human-oversight.json",
+            "https://everyailaw.com/obligation/it-platform-work-decree-human-oversight.json",
             "https://everyailaw.com/obligation/kg-digital-code-ai-heightened-danger-user-oversight-human-oversight.json",
             "https://everyailaw.com/obligation/kr-ai-basic-act-oversight-human-oversight.json",
             "https://everyailaw.com/obligation/maine-ai-mental-health-licensed-delivery-human-oversight.json",
@@ -61,6 +62,7 @@
             "https://everyailaw.com/obligation/us-in-hea1271-medical-record-review-human-oversight.json",
             "https://everyailaw.com/obligation/utah-sb149-chatbot-safety-policy-human-oversight.json",
             "https://everyailaw.com/obligation/uz-ai-amendments-human-oversight.json",
+            "https://everyailaw.com/obligation/uz-ai-ethics-order-human-decisions-human-oversight.json",
             "https://everyailaw.com/obligation/vermont-act156-licensed-delivery-human-oversight.json",
             "https://everyailaw.com/obligation/vermont-act156-review-approval-human-oversight.json",
             "https://everyailaw.com/obligation/vn-ai-law-oversight-human-oversight.json",
@@ -193,8 +195,8 @@
               "lifecycle_status": "in-force",
               "operative_status": "operative",
               "effective": "2024-01-01",
-              "source": "https://federalregister.gov/documents/2023/04/12/2023-07115/medicare-program",
-              "source_locator": "CMS-4201-F (42 CFR Parts 417, 422, 423, 460)",
+              "source": "https://cms.gov/files/document/hpms-memo-faq-coverage-criteria-and-utilization-management-cms-4201-f-02-6-2024-pdf.pdf",
+              "source_locator": "42 CFR § 422.101(b)–(c), interpreted in the February 6, 2024 CMS coverage FAQ, Question 2",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -314,13 +316,13 @@
                 "https://everyailaw.com/ont/role/provider"
               ],
               "territorial_scope": "unknown",
-              "lifecycle_status": "in-force",
+              "lifecycle_status": "unknown",
               "operative_status": "not-applicable",
               "effective": "2023-10-30",
               "source": "https://www.mofa.go.jp/files/100573473.pdf",
               "source_locator": "Action 5",
               "source_version": "unknown",
-              "admission_status": "legacy-unreviewed"
+              "admission_status": "source-consistency-reviewed-changes"
             },
             {
               "id": "https://everyailaw.com/obligation/georgia-sb540-parental-tools-human-oversight.json",
@@ -356,7 +358,7 @@
               "source": "https://data.capitol.hawaii.gov/sessions/session2026/bills/SB3001_CD1_.HTM",
               "source_locator": "Haw. Rev. Stat. ch. 481B, pt. I (Act 248, SLH 2026) § (d), § (i)",
               "source_version": "unknown",
-              "admission_status": "legacy-unreviewed"
+              "admission_status": "source-consistency-reviewed-changes"
             },
             {
               "id": "https://everyailaw.com/obligation/idaho-s1297-parental-controls-human-oversight.json",
@@ -372,7 +374,7 @@
               "operative_status": "future",
               "effective": "2027-07-01",
               "source": "https://legislature.idaho.gov/sessioninfo/2026/legislation/S1297/",
-              "source_locator": "Idaho Code § 48-2104(5)",
+              "source_locator": "Idaho Code § 48-2104(5) (published Chapter 21 [22] also indexes these sections as 48-2204)",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -411,6 +413,24 @@
               "admission_status": "source-consistency-reviewed-changes"
             },
             {
+              "id": "https://everyailaw.com/obligation/it-platform-work-decree-human-oversight.json",
+              "deontic": "unclassified",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "it"
+              ],
+              "lifecycle_status": "enacted",
+              "operative_status": "future",
+              "effective": "2026-12-02",
+              "source": "https://gazzettaufficiale.it/eli/gu/2026/11/14/266/sg/pdf",
+              "source_locator": "Article 9",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
               "id": "https://everyailaw.com/obligation/kg-digital-code-ai-heightened-danger-user-oversight-human-oversight.json",
               "deontic": "unclassified",
               "duty_holders": "unknown",
@@ -445,7 +465,7 @@
               "source": "https://law.go.kr/%EB%B2%95%EB%A0%B9/%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5%EB%B0%9C%EC%A0%84%EA%B3%BC%EC%8B%A0%EB%A2%B0%EA%B8%B0%EB%B0%98%EC%A1%B0%EC%84%B1%EB%93%B1%EC%97%90%EA%B4%80%ED%95%9C%EA%B8%B0%EB%B3%B8%EB%B2%95",
               "source_locator": "Articles 34, 36, 40",
               "source_version": "unknown",
-              "admission_status": "legacy-unreviewed"
+              "admission_status": "source-consistency-reviewed-changes"
             },
             {
               "id": "https://everyailaw.com/obligation/maine-ai-mental-health-licensed-delivery-human-oversight.json",
@@ -464,7 +484,7 @@
               "source": "https://legislature.maine.gov/legis/bills/getPDF.asp?item=3&paper=HP1397&snum=132",
               "source_locator": "10 M.R.S. § 1500-EE(1), § 1500-EE(2), § 1500-EE(3), § 1500-EE(4)",
               "source_version": "unknown",
-              "admission_status": "legacy-unreviewed"
+              "admission_status": "source-consistency-reviewed-changes"
             },
             {
               "id": "https://everyailaw.com/obligation/maine-ai-mental-health-permitted-use-human-oversight.json",
@@ -483,7 +503,7 @@
               "source": "https://legislature.maine.gov/legis/bills/getPDF.asp?item=3&paper=HP1397&snum=132",
               "source_locator": "32 M.R.S. § 2113(1), § 2113(2), § 2113(4), § 2113(6), § 2113(7), § 2113(8), § 2113(10)",
               "source_version": "unknown",
-              "admission_status": "legacy-unreviewed"
+              "admission_status": "source-consistency-reviewed-changes"
             },
             {
               "id": "https://everyailaw.com/obligation/minnesota-ch124-utilization-review-clinician-review-human-oversight.json",
@@ -535,7 +555,7 @@
               "operative_status": "operative",
               "effective": "2025-03-21",
               "source": "https://diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf",
-              "source_locator": "Article 26(II)",
+              "source_locator": "Article 26(II); 2011 implementing regulation Article 112",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
             },
@@ -572,7 +592,7 @@
               "source": "https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0449",
               "source_locator": "Principle 1.5",
               "source_version": "unknown",
-              "admission_status": "legacy-unreviewed"
+              "admission_status": "source-consistency-reviewed-changes"
             },
             {
               "id": "https://everyailaw.com/obligation/oregon-sb1546-minor-protection-human-oversight.json",
@@ -590,7 +610,7 @@
               "source": "https://www.oregonlegislature.gov/bills_laws/lawsstatutes/2026orLaw0085.pdf",
               "source_locator": "Or. Laws 2026, ch. 85, § 1(4)(a), § 1(4)(b)(C), § 1(4)(c)",
               "source_version": "unknown",
-              "admission_status": "legacy-unreviewed"
+              "admission_status": "source-consistency-reviewed-changes"
             },
             {
               "id": "https://everyailaw.com/obligation/pe-ai-law-human-oversight.json",
@@ -603,10 +623,10 @@
               "territorial_scope": [
                 "pe"
               ],
-              "lifecycle_status": "future",
-              "operative_status": "future",
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
               "effective": "2026-09-10",
-              "source": "https://busquedas.elperuano.pe/dispositivo/NL/2192926-1",
+              "source": "https://busquedas.elperuano.pe/dispositivo/NL/2436426-1",
               "source_locator": "Reglamento (D.S. 115-2025-PCM) Art. 31.4; Art. 7(h)",
               "source_version": "unknown",
               "admission_status": "source-consistency-reviewed-changes"
@@ -682,10 +702,10 @@
               "lifecycle_status": "unknown",
               "operative_status": "not-applicable",
               "effective": "2019-01-23",
-              "source": "https://www.pdpc.gov.sg/help-and-resources/2020/01/model-ai-governance-framework",
-              "source_locator": "Section 2: Decision-Making Models",
+              "source": "https://imda.gov.sg/-/media/imda/files/infocomm-media-landscape/sg-digital/tech-pillars/artificial-intelligence/second-edition-of-the-model-ai-governance-framework.pdf",
+              "source_locator": "Second edition, part 3, §§3.8–3.18 on human involvement; Agentic AI v1.5 §2.2.2",
               "source_version": "unknown",
-              "admission_status": "legacy-unreviewed"
+              "admission_status": "source-consistency-reviewed-changes"
             },
             {
               "id": "https://everyailaw.com/obligation/sk-platform-work-act-human-oversight.json",
@@ -796,6 +816,25 @@
               "admission_status": "legacy-unreviewed"
             },
             {
+              "id": "https://everyailaw.com/obligation/uz-ai-ethics-order-human-decisions-human-oversight.json",
+              "deontic": "of:Requirement",
+              "duty_holders": "unknown",
+              "duty_holder_roles": [
+                "https://everyailaw.com/ont/role/provider",
+                "https://everyailaw.com/ont/role/deployer"
+              ],
+              "territorial_scope": [
+                "uz"
+              ],
+              "lifecycle_status": "in-force",
+              "operative_status": "operative",
+              "effective": "2026-06-17",
+              "source": "https://lex.uz/docs/8083233",
+              "source_locator": "Annex paragraphs 1, 2, 6, 11, 15 and 17",
+              "source_version": "unknown",
+              "admission_status": "source-consistency-reviewed-changes"
+            },
+            {
               "id": "https://everyailaw.com/obligation/vermont-act156-licensed-delivery-human-oversight.json",
               "deontic": "unclassified",
               "duty_holders": "unknown",
@@ -872,9 +911,13 @@
             }
           ],
           "unresolved": {
+            "https://everyailaw.com/obligation/cms-medicare-clinician-oversight-human-oversight.json": {
+              "count": 1,
+              "sha256": "c02101cdfa85f86ce8b16089dc82ceb7bdffcc5b9e3690ab2bd5a927e874bc78"
+            },
             "https://everyailaw.com/obligation/coe-cets-225-human-oversight.json": {
-              "count": 2,
-              "sha256": "170025ea15817893a516f5927804e19c77436aaed9b01cb91c820a4ed47ea319"
+              "count": 3,
+              "sha256": "3af27e772856e1191df998af7666ec49daa9246d5dc135a517e4e10e838e555d"
             },
             "https://everyailaw.com/obligation/colorado-cpa-rules-human-oversight.json": {
               "count": 2,
@@ -892,21 +935,65 @@
               "count": 1,
               "sha256": "f1bf3f5648f5d19fc5ae7e728e8d3dcfa3ed63e95d0f90675fca26ba50f1de1b"
             },
+            "https://everyailaw.com/obligation/g7-hiroshima-governance-human-oversight.json": {
+              "count": 1,
+              "sha256": "3f660e1dbc581c8bfbe4f92f2fe4f361eca5550e05755f6878acba07b35456f4"
+            },
+            "https://everyailaw.com/obligation/hawaii-sb3001-minor-protections-human-oversight.json": {
+              "count": 1,
+              "sha256": "4396f63d221ad537109183621ee397e1ca4c1d23152f9e69cca76f24437844b0"
+            },
             "https://everyailaw.com/obligation/idaho-s1297-parental-controls-human-oversight.json": {
-              "count": 7,
-              "sha256": "8ea4db6f29bfdd541c12530bd6878b54313a778fd3a214c7b134c3eb65d215a8"
+              "count": 2,
+              "sha256": "d0f240bb7b54a16e48b7cd810c6524bd48a17af25c1a3263ef6ef7fd7fd4eedc"
+            },
+            "https://everyailaw.com/obligation/iso-38507-human-oversight.json": {
+              "count": 1,
+              "sha256": "92e0429f7b4a34a3adebe3c55ad583158be75bbe23745790de0f380b905e7336"
             },
             "https://everyailaw.com/obligation/it-ai-law-human-oversight.json": {
               "count": 3,
               "sha256": "5424306aa9f047191f90bcbeb5047bfb4142ec8a9c4ff6161ce6d63a7280981e"
+            },
+            "https://everyailaw.com/obligation/it-platform-work-decree-human-oversight.json": {
+              "count": 1,
+              "sha256": "d77b512ebb3e3a5635de5afb12f260a6e6972f0fe9f79269346461265e9a13d8"
+            },
+            "https://everyailaw.com/obligation/kg-digital-code-ai-heightened-danger-user-oversight-human-oversight.json": {
+              "count": 1,
+              "sha256": "c65af74a1c8c66e2df29e2896526003cf4ab9ed37b303b0b72587e708b791838"
+            },
+            "https://everyailaw.com/obligation/kr-ai-basic-act-oversight-human-oversight.json": {
+              "count": 1,
+              "sha256": "10e752d66778622d74294d1dd3b613748782ffe1f8e9d34aec64f28f79e773a9"
+            },
+            "https://everyailaw.com/obligation/maine-ai-mental-health-licensed-delivery-human-oversight.json": {
+              "count": 1,
+              "sha256": "4396f63d221ad537109183621ee397e1ca4c1d23152f9e69cca76f24437844b0"
+            },
+            "https://everyailaw.com/obligation/maine-ai-mental-health-permitted-use-human-oversight.json": {
+              "count": 1,
+              "sha256": "4396f63d221ad537109183621ee397e1ca4c1d23152f9e69cca76f24437844b0"
             },
             "https://everyailaw.com/obligation/mt-ai-regulations-human-oversight.json": {
               "count": 3,
               "sha256": "cd00536db43395c2575c57f5e767ffe4789642140c93f060e80f894d3ca969eb"
             },
             "https://everyailaw.com/obligation/mx-lfpdppp-human-oversight.json": {
-              "count": 3,
-              "sha256": "b32c4b872a2a32b9ccacbe86307ef8bac9f5d629ea0f0a64cfcf65213b59c2a5"
+              "count": 5,
+              "sha256": "2e9cb45d19ee8e1276959df8aa02f0d4505680c8b0d8befe64851b02636b96f1"
+            },
+            "https://everyailaw.com/obligation/oecd-ai-principles-accountability-human-oversight.json": {
+              "count": 1,
+              "sha256": "ec99c952a26ca87260492857523a7e6c8a4d51103cc60497dc5df627cadc1b51"
+            },
+            "https://everyailaw.com/obligation/oregon-sb1546-minor-protection-human-oversight.json": {
+              "count": 1,
+              "sha256": "4396f63d221ad537109183621ee397e1ca4c1d23152f9e69cca76f24437844b0"
+            },
+            "https://everyailaw.com/obligation/pe-ai-law-human-oversight.json": {
+              "count": 2,
+              "sha256": "352a0c8de48b46015c6e916d3b20b0796e4d9c24961d74e6d5a514e70d7e481c"
             },
             "https://everyailaw.com/obligation/qa-qcb-ai-guideline-human-oversight.json": {
               "count": 4,
@@ -927,6 +1014,10 @@
             "https://everyailaw.com/obligation/utah-sb149-chatbot-safety-policy-human-oversight.json": {
               "count": 7,
               "sha256": "47ad5c7f7b3b7574cfd109e343d8d65c22e65624746d0b73b9e2410eb6d7c60f"
+            },
+            "https://everyailaw.com/obligation/uz-ai-ethics-order-human-decisions-human-oversight.json": {
+              "count": 2,
+              "sha256": "e8c5f2480e3cb67e754ec9e2c390a981a041d47a93d651f598f7828011eac78b"
             },
             "https://everyailaw.com/obligation/vermont-act156-licensed-delivery-human-oversight.json": {
               "count": 7,
@@ -1173,19 +1264,19 @@
   ],
   "prior_fixture": {
     "path": "reference/fixtures/consumer-traversals-2026-09-24.json",
-    "base": "2cf28b8c0e3c5628fd49cde35b06a816fe40b2e8",
-    "sha256": "2f794656636ed6d8ec07df78e87557c0f8fd5d76faf400984a511a7639daa9d0",
+    "base": "302700cca23cc2f52eea1b63808dc740a72f54b2",
+    "sha256": "77ca59cfd1d535643ea811b6bcc1eab1e2ca0ba99edf42408d5e79ea6efcf408",
     "reviewed_on": null,
     "review_kind": "Prior technical expected-answer review. Human approval is not inherited.",
-    "review_record": "reference/reviews/consumer-vietnam-provenance-2026-11-22.md"
+    "review_record": "reference/reviews/consumer-platform-work-2026-11-22.md"
   },
   "technical_review": {
     "actor_type": "agent",
-    "reviewed_on": "2026-11-22",
+    "reviewed_on": "2026-11-24",
     "reviewer": "Codex",
-    "scope": "Added the two platform-work human-oversight duties to the Mata category traversal after the EU and Slovak source admissions. Earlier answers and the other two journeys retain their expected results.",
+    "scope": "Reconciled 46 changed Mata fields against owner receipts and added the Italian and Uzbek human-oversight duties. Verified both other journeys on the recorded adopter revisions.",
     "human_approved": false,
-    "expected_cases_sha256": "0094c4a449636671df46bb79047a725359efb112cb9b21b017cd5a514a63a58a",
-    "review_record": "reference/reviews/consumer-platform-work-2026-11-22.md"
+    "expected_cases_sha256": "f39ccfcb4c92a7c323edfebd0a4a484eea8bacd54eabdd60d408b11520cec9bc",
+    "review_record": "reference/reviews/consumer-three-country-admissions-2026-11-24.md"
   }
 }

@@ -1,0 +1,9 @@
+# Italy, Brazil and Uzbekistan admission review, November 24, 2026
+
+The Mata category traversal now reaches 44 human-oversight duties. Italy’s Legislative Decree 208/2026, Article 9, requires platform oversight and reserves specified adverse decisions to people. The source permits a limited account suspension for up to 72 hours for the specified purposes. The decree commences December 2, 2026. The saved duty therefore carries a future operative status. [Italian Gazette](https://gazzettaufficiale.it/eli/gu/2026/11/14/266/sg/pdf)
+
+Uzbekistan’s ministerial Order 284-mh, registered as No. 3787, took effect June 17, 2026. Annex paragraph 17 requires developers and implementers to ensure human supervision, review and a human final decision. Paragraph 15 separately addresses sole reliance. The working English descriptions are qualified against the Uzbek original. [LexUZ register](https://lex.uz/docs/8083233) and [signed order](https://lex.uz/pdffile/8083233)
+
+Brazil’s Law 15.211/2025 and Decree 12.880/2026 add four provisions. Periodic expert review of AI tools under Article 17 §4(VIII) serves child protection and parental supervision. Under the owner’s category definitions it contributes no human-oversight edge. The decree’s mapped provisions concern transparency and risk assessment. [Consolidated statute](https://www2.camara.leg.br/legin/fed/lei/2025/lei-15211-17-setembro-2025-797997-normaatualizada-pl.html) and [decree](https://www2.camara.leg.br/legin/fed/decret/2026/decreto-12880-18-marco-2026-798813-publicacaooriginal-178481-pe.html)
+
+On the recorded local adopter revisions, the prior fixture detected the two additions. Comparison by duty identifier preserved the 42 prior duty answers and their qualifications. The sanctions determination has zero direct duty relations and the traversal makes no applicability finding. The draft Utah term and legacy transparency journeys retain their previous answers. No human verification date changed.
