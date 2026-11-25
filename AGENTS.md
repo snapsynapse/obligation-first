@@ -58,3 +58,9 @@ npm run validate:publication-hygiene:staged
 ```
 
 The staged check fails closed without this repository's Git index. Source archives are checked separately by the default publication-hygiene validator and do not need Git metadata.
+
+## Rules harvested from agent memory (2026-11-13)
+
+One line each, checked against this repo before promotion. Source: Claude auto memory for this repo. Log: LocalBrain `0_Across/Agent Memory Harvest Log 2026-11.md`.
+
+- For CI on the exact head of a non-main branch, run `gh workflow run test.yml --ref BRANCH`; the workflow has `workflow_dispatch`. The post-deploy probe job runs only on a push to main. Evidence: `.github/workflows/test.yml`.
