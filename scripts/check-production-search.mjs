@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 // skill_bundle: portfolio-search-indexing-audit
 // file_role: asset
-// version: 5
-// version_date: 2026-08-18
-// previous_version: 4
-// change_summary: Revalidated unchanged for the v5 bundle; the portable repository contract remains v4.
+// version: 7
+// version_date: 2026-11-08
+// previous_version: 6
+// change_summary: decode() also handles &apos; and numeric references and trims; repository contract remains v4.
 // Upstream: portfolio-search-indexing-audit contract v4.
 // Release-triggered HTTP validation. Exit 2 means infrastructure is unavailable.
 'use strict';
@@ -23,6 +23,20 @@ function report(kind, message) {
     if (kind === 'defect') defects++;
     else infrastructure++;
     console.error(`${kind === 'defect' ? 'LIVE' : 'NETWORK'}  ${message}`);
+}
+
+const XML_ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'" };
+// Keep this decoder local to the vendored checker: each search script also runs
+// alone from an isolated audit root, without a shared scripts/lib directory.
+// One pass over the five XML entities and numeric references, so decoded text is never
+// decoded again (&amp;lt; stays &lt;). Invalid code points stay encoded. Surrounding
+// whitespace is trimmed so a pretty-printed <loc> compares equal to its URL.
+function decode(value) {
+    return String(value || '').replace(/&(?:(amp|lt|gt|quot|apos)|#(\d+)|#[xX]([0-9a-fA-F]+));/g, (entity, name, decimal, hex) => {
+        if (name) return XML_ENTITIES[name];
+        const code = decimal ? Number(decimal) : parseInt(hex, 16);
+        return code > 0 && code <= 0x10ffff && (code < 0xd800 || code > 0xdfff) ? String.fromCodePoint(code) : entity;
+    }).trim();
 }
 
 function loadConfig() {
@@ -47,16 +61,66 @@ const canonicalOrigin = new URL(config.canonicalOrigin);
 const base = new URL(BASE_ARG ? BASE_ARG.slice(7) : canonicalOrigin.href);
 if (!base.pathname.endsWith('/')) base.pathname += '/';
 const production = base.href === canonicalOrigin.href;
+const MAX_RESPONSE_BYTES = 4 * 1024 * 1024;
+const MAX_REQUESTS = 256;
+const MAX_SITEMAPS = 32;
+const MAX_PAGES = 200;
+let requests = 0;
 
-async function request(url) {
+function approvedTarget(url) {
+    let parsed;
+    try { parsed = new URL(url); }
+    catch { return false; }
+    return parsed.protocol === base.protocol && parsed.origin === base.origin &&
+        !parsed.username && !parsed.password && !parsed.hash;
+}
+
+function approvedRedirectSource(url, redirect) {
+    if (!redirect) return false;
+    try {
+        const source = new URL(redirect.from);
+        if (url !== source.href || redirect.to !== canonicalOrigin.href) return false;
+        if (!['http:', 'https:'].includes(source.protocol) ||
+            ![canonicalOrigin.hostname, `www.${canonicalOrigin.hostname}`].includes(source.hostname)) return false;
+        return source.pathname === '/' && !source.search && !source.hash &&
+            !source.username && !source.password;
+    } catch { return false; }
+}
+
+async function request(url, explicitRedirect = null) {
+    if (!approvedTarget(url) && !approvedRedirectSource(url, explicitRedirect)) {
+        report('defect', `${url}: request target is outside the approved origin`);
+        return null;
+    }
     let lastError;
     for (let attempt = 1; attempt <= 3; attempt++) {
+        if (++requests > MAX_REQUESTS) {
+            report('infrastructure', `request budget exceeded (${MAX_REQUESTS})`);
+            return null;
+        }
         try {
-            return await fetch(url, {
-                redirect: 'follow',
+            const response = await fetch(url, {
+                redirect: 'manual',
                 headers: { 'user-agent': 'portfolio-search-contract/4' },
                 signal: AbortSignal.timeout(15000)
             });
+            if (response.status >= 300 && response.status < 400) {
+                const location = response.headers.get('location');
+                if (!location) { report('defect', `${url}: redirect has no location`); return null; }
+                let next;
+                try { next = new URL(location, url).href; }
+                catch { report('defect', `${url}: invalid redirect location`); return null; }
+                if (!explicitRedirect || next !== explicitRedirect.to || !approvedTarget(next)) {
+                    report('defect', `${url}: redirect to unapproved target ${next}`);
+                    return null;
+                }
+                return request(next);
+            }
+            if (response.url && response.url !== url) {
+                report('defect', `${url}: transport returned unexpected URL ${response.url}`);
+                return null;
+            }
+            return response;
         } catch (error) {
             lastError = error;
             if (attempt < 3) await new Promise(resolve => setTimeout(resolve, attempt * 150));
@@ -83,7 +147,27 @@ function false404(body, url) {
 async function fetchText(url, rule = {}) {
     const response = await request(url);
     if (!response) return null;
-    const body = await response.text();
+    let body;
+    try {
+        if (!response.body?.getReader) throw new Error('response stream unavailable');
+        const reader = response.body.getReader();
+        const chunks = [];
+        let bytes = 0;
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            bytes += value.byteLength;
+            if (bytes > MAX_RESPONSE_BYTES) {
+                await reader.cancel();
+                throw new Error(`response exceeds ${MAX_RESPONSE_BYTES} bytes`);
+            }
+            chunks.push(value);
+        }
+        body = new TextDecoder().decode(Buffer.concat(chunks));
+    } catch (error) {
+        report('infrastructure', `${url}: ${error.message}`);
+        return null;
+    }
     if (!response.ok) report('defect', `${url}: HTTP ${response.status}`);
     const type = response.headers.get('content-type') || '';
     if (rule.contentTypes?.length && !rule.contentTypes.some(expected => type.toLowerCase().includes(expected.toLowerCase()))) {
@@ -100,6 +184,10 @@ const sitemapBodies = new Map();
 
 async function fetchSitemap(canonical, seen = new Set()) {
     if (seen.has(canonical)) return;
+    if (seen.size >= MAX_SITEMAPS) {
+        report('infrastructure', `sitemap budget exceeded (${MAX_SITEMAPS})`);
+        return;
+    }
     seen.add(canonical);
     const target = deployedUrl(canonical);
     const result = await fetchText(target, { contentTypes: ['xml'] });
@@ -108,7 +196,7 @@ async function fetchSitemap(canonical, seen = new Set()) {
     if (/<sitemapindex\b/i.test(result.body)) {
         for (const match of result.body.matchAll(/<sitemap>[\s\S]*?<loc>([^<]+)<\/loc>[\s\S]*?<\/sitemap>/gi)) {
             let child;
-            try { child = new URL(match[1].replace(/&amp;/g, '&')); }
+            try { child = new URL(decode(match[1])); }
             catch { report('defect', `${canonical}: invalid child sitemap URL ${match[1]}`); continue; }
             if (child.origin !== canonicalOrigin.origin) {
                 report('defect', `${canonical}: child sitemap uses noncanonical origin ${child.href}`);
@@ -143,7 +231,7 @@ const canonicals = [];
 const sitemapLastmods = new Map();
 for (const [sitemap, body] of sitemapBodies) {
     for (const match of body.matchAll(/<url>([\s\S]*?)<\/url>/gi)) {
-        const canonical = match[1].match(/<loc>([^<]+)<\/loc>/i)?.[1]?.replace(/&amp;/g, '&');
+        const canonical = decode(match[1].match(/<loc>([^<]+)<\/loc>/i)?.[1]);
         const lastmod = match[1].match(/<lastmod>([^<]+)<\/lastmod>/i)?.[1]?.trim();
         if (!canonical) {
             report('defect', `${sitemap}: URL entry is missing loc`);
@@ -152,19 +240,19 @@ for (const [sitemap, body] of sitemapBodies) {
         let url;
         try { url = new URL(canonical); }
         catch { report('defect', `${sitemap}: invalid page location ${canonical}`); continue; }
-        if (url.origin !== canonicalOrigin.origin || url.href !== canonical) {
+        if (url.protocol !== 'https:' || url.origin !== canonicalOrigin.origin || url.href !== canonical) {
             report('defect', `${sitemap}: noncanonical page location ${canonical}`);
+            continue;
+        }
+        if (canonicals.length >= MAX_PAGES) {
+            report('infrastructure', `page budget exceeded (${MAX_PAGES})`);
+            break;
         }
         canonicals.push(canonical);
         sitemapLastmods.set(canonical, lastmod);
     }
 }
-if (!canonicals.length) report('infrastructure', 'live sitemaps contain no page locations');
-
-function decode(value) {
-    return String(value || '').replace(/&amp;/g, '&').replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
-}
+if (!canonicals.length && !defects) report('infrastructure', 'live sitemaps contain no page locations');
 
 function repositoryCanonicals() {
     const output = path.resolve(ROOT, config.outputDir || '');
@@ -266,8 +354,8 @@ async function checkPage(canonical) {
     if (!result) return;
     if (result.response.url !== target) report('defect', `${target}: final URL is ${result.response.url}`);
     const html = result.body;
-    const pageCanonical = html.match(/<link\b[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)?.[1]
-        || html.match(/<link\b[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["']/i)?.[1];
+    const pageCanonical = decode(html.match(/<link\b[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)?.[1]
+        || html.match(/<link\b[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["']/i)?.[1]);
     if (pageCanonical !== canonical) report('defect', `${target}: canonical ${pageCanonical || '(missing)'} does not equal ${canonical}`);
     if (/<meta\b[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html)) {
         report('defect', `${target}: sitemap page is noindex`);
@@ -287,7 +375,7 @@ await mapLimit([...new Set(canonicals)], 8, checkPage);
 
 if (production) {
     for (const redirect of config.redirects || []) {
-        const response = await request(redirect.from);
+        const response = await request(redirect.from, redirect);
         if (response && response.url !== redirect.to) {
             report('defect', `${redirect.from}: final URL is ${response.url}, expected ${redirect.to}`);
         }
